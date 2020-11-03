@@ -88,3 +88,37 @@ Nx Cloud pairs with Nx in order to enable you to build and test code more rapidl
 Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
 
 Visit [Nx Cloud](https://nx.app/) to learn more.
+
+# Font Icons
+
+## Usage (Work In Progress)
+
+### How to use font icon
+
+Install with `npm install dot-components`
+
+Import CSS with `import 'dot-design-system/dist/index.css';`
+
+Find which icon you would like to use by going to [.dot design system](https://zeroheight.com/4a9ac476a/p/13a447-icons/b/43c8ca)
+
+Follow the code example [shown here](https://zeroheight.com/4a9ac476a/p/13a447-icons/b/52c5a5)
+
+Note: You can use search in the upper right corner to search for an icon if you know its name.
+
+## How to modify the existing font icon and update it
+
+For details go to [.dot design system](https://zeroheight.com/4a9ac476a/p/13a447-icons/t/36e685)
+
+You can import `dot-components/src/lib/font-icon/selection.json` back to the IcoMoon app using the _Import Icons_ button (or via Main Menu → Manage Projects) to retrieve your icon selection.
+
+After downloading generated files from icomoon only the following files should be copied over and a pull request submitted.
+
+```
+- dot-components/src/lib/font-icon/fonts/*
+- dot-components/src/lib/font-icon/selection.json
+- dot-components/src/lib/font-icon/style.css
+- dot-components/src/lib/font-icon/style.scss
+- dot-components/src/lib/font-icon/variables.scss
+```
+
+You won't need any of the files located under the `demo-files/` directory when including the generated font in your own projects.
