@@ -1,0 +1,11 @@
+{
+  "name": "@digital-ai/dot-components",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/digital-ai"
+  },
+  "repository": "git://github.com/digital-ai/dot-components.git",
+  "peerDependencies": {
+    "react": "^16.13.1"
+  }
+}
