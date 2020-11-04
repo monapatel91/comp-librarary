@@ -1,103 +1,53 @@
-# DotComponents
+# @digital-ai/dot-components
 
-This project was generated using [Nx](https://nx.dev).
+<!-- TODO: add more detail -->
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+This is a component library...
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+## Installation
 
-## Adding capabilities to your workspace
+Before you can install the `@digital-ai/dot-components` package in your project you will need to authenticate to GitHub Packages and configure npm for your project to use GitHub Packages for its npm registry.
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+### Authenticating
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+To install private packages in GitHub Packages you need to generate a personal access token with GitHub. You can do this by following the instructions at [Authenticating to GitHub Packages](https://docs.github.com/en/free-pro-team@latest/packages/publishing-and-managing-packages/about-github-packages#authenticating-to-github-packages).
 
-Below are our core plugins:
+Once you have created your personal access token you can login to npm on your local machine by doing the following:
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+```sh
+$ npm login --registry=https://npm.pkg.github.com
+> Username: USERNAME
+> Password: TOKEN
+> Email: PUBLIC-EMAIL-ADDRESS
+```
 
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
+### Installing the package from the GitHub Packages npm registry
 
-## Generate an application
+`@digital-ai/dot-components` is available as a private npm package on GitHub Packages. Your project will likely have other npm packages from the public NPM registry. To configure your project to only get the `@digital-ai/dot-components` package from GitHub Packages you will need to create the create or edit an `.npmrc` file in the same directory as your `package.json` file and add the following to the file:
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+```sh
+@digital-ai:registry=https://npm.pkg.github.com
+```
 
-> You can use any of the plugins above to generate applications as well.
+Once you have done that, and you have authenticated to GitHub Packages (see above), then you can install the package.
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+```sh
+// with npm
+npm install @digital-ai/dot-components
 
-## Generate a library
+// with yarn
+yarn add @digital-ai/dot-components
+```
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+The library ships with a CSS file that will bring in its styles and font-icons. To import the styles into your application simply include the following import in one of the top component in your application.
 
-> You can also use any of the plugins above to generate libraries as well.
+```js
+import '@digital-ai/dot-components/dot-components.esm.css';
+```
 
-Libraries are sharable across libraries and applications. They can be imported from `@dot-components/mylib`.
-
-## Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-## ☁ Nx Cloud
-
-### Computation Memoization in the Cloud
-
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
-
-# Font Icons
-
-## Usage (Work In Progress)
+## Font Icons
 
 ### How to use font icon
-
-Install with `npm install dot-components`
-
-Import CSS with `import 'dot-design-system/dist/index.css';`
 
 Find which icon you would like to use by going to [.dot design system](https://zeroheight.com/4a9ac476a/p/13a447-icons/b/43c8ca)
 
@@ -113,7 +63,7 @@ You can import `dot-components/src/lib/font-icon/selection.json` back to the Ico
 
 After downloading generated files from icomoon only the following files should be copied over and a pull request submitted.
 
-```
+```sh
 - dot-components/src/lib/font-icon/fonts/*
 - dot-components/src/lib/font-icon/selection.json
 - dot-components/src/lib/font-icon/style.css
@@ -122,3 +72,7 @@ After downloading generated files from icomoon only the following files should b
 ```
 
 You won't need any of the files located under the `demo-files/` directory when including the generated font in your own projects.
+
+## Contributing
+
+Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process, now to test changes, and how to build and publish the package to GitHub Packages.
