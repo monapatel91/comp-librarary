@@ -5,10 +5,12 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test",
+    "build": "nx build --project=dot-components",
+    "build:publish": "yarn build; cd dist/libs/dot-components; npm publish",
+    "test": "nx test --project=dot-components",
     "lint": "nx workspace-lint && nx lint",
-    "e2e": "nx e2e",
+    "e2e": "nx e2e --project=dot-components-e2e",
+    "e2e:ci": "yarn e2e --headless",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -24,7 +26,9 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "storybook": "nx run dot-components:storybook"
+    "storybook": "nx run dot-components:storybook",
+    "generate:comp": "nx generate @nrwl/react:component --pascalCaseFiles --no-interactive --project=dot-components",
+    "generate:comp:dry": "yarn generate:comp --dry-run"
   },
   "private": true,
   "dependencies": {
