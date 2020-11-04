@@ -32,10 +32,10 @@ $ npm login --registry=https://npm.pkg.github.com
 Once you have done that, and you have authenticated to GitHub Packages (see above), then you can install the package.
 
 ```sh
-// with npm
+# with npm
 npm install @digital-ai/dot-components
 
-// with yarn
+# with yarn
 yarn add @digital-ai/dot-components
 ```
 
