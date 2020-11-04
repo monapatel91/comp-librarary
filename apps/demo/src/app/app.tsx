@@ -2,7 +2,7 @@ import React from 'react';
 
 import './app.scss';
 
-import { DotButton } from '@digital-ai/dot-components';
+import { DotButton, DotIcon } from '@digital-ai/dot-components';
 
 export const App = () => {
   return (
@@ -12,6 +12,7 @@ export const App = () => {
         onClick={() => alert('Button clicked!')}
         type="primary"
       />
+      <DotIcon icon="script" />
     </div>
   );
 };
