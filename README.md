@@ -12,14 +12,7 @@ Before you can install the `@digital-ai/dot-components` package in your project 
 
 To install private packages in GitHub Packages you need to generate a personal access token with GitHub. You can do this by following the instructions at [Authenticating to GitHub Packages](https://docs.github.com/en/free-pro-team@latest/packages/publishing-and-managing-packages/about-github-packages#authenticating-to-github-packages).
 
-Once you have created your personal access token you can login to npm on your local machine by doing the following:
-
-```sh
-$ npm login --registry=https://npm.pkg.github.com
-> Username: USERNAME
-> Password: TOKEN
-> Email: PUBLIC-EMAIL-ADDRESS
-```
+Once you have created your personal access token you will need to set an environment variable on your local machine called `DOT_COMPONENTS_TOKEN` with the value of your personal access token.
 
 ### Installing the package from the GitHub Packages npm registry
 
