@@ -1,0 +1,141 @@
+@import '../styles/mixins';
+@import '../styles/palette';
+@import '../styles/variables';
+
+$phaseHeight: 44px;
+$colorPickerWidth: 200px;
+
+.phase-header {
+  background: $n600;
+  border-radius: $radius;
+  color: $n0;
+  display: flex;
+  flex-wrap: nowrap;
+  height: $phaseHeight;
+  padding-right: $gutter;
+  width: 300px;
+
+  &:hover,
+  &:focus {
+    .delete-btn {
+      display: flex;
+    }
+  }
+
+  &.editing {
+    .delete-btn {
+      display: none;
+    }
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+
+  .phase-color {
+    background: $o500;
+    height: $phaseHeight;
+    width: $gutter * 2;
+    min-width: $gutter * 2;
+    padding: 0;
+    border-radius: $radius 0 0 $radius;
+  }
+
+  .phase-content {
+    display: flex;
+    flex-grow: 2;
+
+    .phase-label {
+      padding: 3px $gutter/2 0;
+
+      .dot-inline-edit {
+        .editing-actions {
+          margin-top: $gutter;
+        }
+
+        .MuiFormControl-root {
+          margin: 0;
+        }
+
+        .MuiInputBase-root {
+          color: $n0;
+
+          .MuiInputBase-input {
+            font-size: 14px;
+          }
+          .MuiOutlinedInput-notchedOutline {
+            border: none;
+          }
+        }
+
+        &:hover,
+        &:focus {
+          .MuiInputBase-root {
+            background: $n900;
+          }
+        }
+
+        &.editing {
+          width: 275px;
+          z-index: $layerTwo;
+
+          .MuiInputBase-root {
+            background: $n0;
+            color: $n700;
+          }
+        }
+      }
+    }
+  }
+
+  .delete-btn {
+    align-self: center;
+    background: transparent;
+    color: $n0;
+    cursor: pointer;
+    display: none;
+
+    &:hover,
+    &:focus {
+      background: $n900;
+    }
+  }
+}
+
+// TODO: pull out color picker to be it's own component
+ul.phase-color-picker {
+  width: $colorPickerWidth;
+
+  li.phase-color-option {
+    text-transform: capitalize;
+    font-size: 14px;
+    color: $n700;
+
+    i {
+      border-radius: 50%;
+      display: inline-block;
+      height: 20px;
+      margin-right: $gutter * 1.5;
+      width: 20px;
+
+      &.build {
+        @include phaseColorBg(build);
+      }
+      &.code {
+        @include phaseColorBg(code);
+      }
+      &.deploy {
+        @include phaseColorBg(deploy);
+      }
+      &.monitor {
+        @include phaseColorBg(monitor);
+      }
+      &.plan {
+        @include phaseColorBg(plan);
+      }
+      &.test {
+        @include phaseColorBg(test);
+      }
+    }
+  }
+}
