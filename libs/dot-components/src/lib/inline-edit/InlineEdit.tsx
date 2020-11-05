@@ -155,7 +155,7 @@ export const DotInlineEdit = ({
           />
           <DotIconButton
             iconButtonSize="small"
-            iconId="check"
+            iconId="block"
             iconSize="small"
             data-testid="inline-edit-confirm"
             onClick={onConfirm}
