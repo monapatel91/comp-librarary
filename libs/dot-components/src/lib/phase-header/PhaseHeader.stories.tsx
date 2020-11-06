@@ -5,7 +5,7 @@ import { DotPhaseHeader, CategoryType } from './PhaseHeader';
 
 export default {
   component: DotPhaseHeader,
-  title: 'Organisms',
+  title: 'DotPhaseHeader',
 };
 
 export const phaseHeader = () => {
