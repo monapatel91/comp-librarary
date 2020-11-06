@@ -33,3 +33,11 @@ jobs:
         run: yarn install
       - name: Lint
         run: yarn lint
+      - name: Build
+        run: yarn build
+        env:
+          CI: true
+      - name: Unit Tests
+        run: yarn test
+        env:
+          CI: true
