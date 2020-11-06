@@ -1,0 +1,24 @@
+@import '../styles/variables';
+
+.MuiDialog-root.with-close-button {
+  .MuiDialogTitle-root h2 {
+    display: flex;
+    flex-wrap: nowrap;
+
+    .dialog-title {
+      flex-grow: 1;
+    }
+  }
+
+  button.MuiIconButton-root {
+    padding: $gutter/2;
+  }
+
+  .MuiDialogActions-root {
+    padding: $gutter * 2 $gutter * 3;
+
+    .cancel-button {
+      color: inherit;
+    }
+  }
+}

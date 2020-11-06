@@ -1,0 +1,10 @@
+@import '../styles/variables';
+
+.dot-icon-btn {
+  &.small {
+    padding: $gutter/4;
+  }
+  &.medium {
+    padding: $gutter;
+  }
+}

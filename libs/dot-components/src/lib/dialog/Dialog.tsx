@@ -1,0 +1,107 @@
+import React, { KeyboardEvent, MouseEvent } from 'react';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from '@material-ui/core';
+import { ButtonProps, ButtonType, DotButton } from '../button/Button';
+import { DotIconButton } from '../button/IconButton';
+import './Dialog.scss';
+
+export interface DialogButtonProps {
+  /** Space delimited CSS classes to be attributed to the button */
+  classes?: string;
+  /** If true, the button will be disabled. */
+  disabled?: boolean;
+  /** The text displayed on the button */
+  displayText?: string;
+  /** The icon to display on the button */
+  iconId?: string;
+  /** 'destructive', 'primary', 'secondary', 'transparent' */
+  type?: ButtonType;
+}
+
+export interface DialogProps {
+  /** props passed down to the cancel button */
+  cancelButtonProps?: DialogButtonProps;
+  /** components or string that is displayed in the dialog body */
+  children?: string | JSX.Element[] | JSX.Element;
+  /** if true, automatically focuses the submit button */
+  focusSubmitButton?: boolean;
+  /** The callback to be executed when the action is cancelled */
+  onCancel: (event: MouseEvent | object) => void;
+  /** The callback to be executed when the action is submitted */
+  onSubmit: (event: KeyboardEvent | MouseEvent) => void;
+  /** if true, the dialog is visible to the user */
+  open: boolean;
+  /** props passed down to the submit button */
+  submitButtonProps?: DialogButtonProps;
+  /** dialog heading */
+  title: string | JSX.Element;
+}
+
+export const DotDialog = ({
+  cancelButtonProps,
+  children,
+  focusSubmitButton = false,
+  onCancel,
+  onSubmit,
+  open,
+  submitButtonProps,
+  title,
+}: DialogProps) => {
+  const handleClose = (event: object) => {
+    onCancel(event);
+  };
+
+  const cancelButtonPropsWithDefaults: ButtonProps = {
+    displayText: 'Cancel',
+    type: 'transparent',
+    onClick: handleClose,
+    ...cancelButtonProps,
+  };
+
+  const submitButtonPropsWithDefaults: ButtonProps = {
+    displayText: 'OK',
+    type: 'primary',
+    onClick: onSubmit,
+    focused: focusSubmitButton,
+    ...submitButtonProps,
+  };
+
+  const onKeyPress = (event: KeyboardEvent): void => {
+    const inputWrapper = event.target;
+
+    if (event.key === 'Enter') {
+      onSubmit(event);
+      (inputWrapper as HTMLElement).blur();
+    }
+  };
+
+  return (
+    <div onKeyDown={(event) => onKeyPress(event)}>
+      <Dialog
+        classes={{ root: 'with-close-button' }}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="dialog-title"
+      >
+        <DialogTitle>
+          <div className="dialog-title">{title}</div>
+          <DotIconButton iconId="close" onClick={handleClose} />
+        </DialogTitle>
+        <DialogContent>{children}</DialogContent>
+        <DialogActions>
+          <DotButton
+            classes="cancel-button"
+            {...cancelButtonPropsWithDefaults}
+          />
+          <DotButton {...submitButtonPropsWithDefaults} />
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+};
+
+export default DotDialog;
