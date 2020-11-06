@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-
+import '@testing-library/jest-dom';
 import PhaseHeader from './PhaseHeader';
 
 describe('PhaseHeader', () => {
@@ -21,6 +21,7 @@ describe('PhaseHeader', () => {
     render(<PhaseHeader label="Edit Label" canEdit={true} />);
     const editButton = screen.getByTestId('phase-header-color-picker');
     expect(editButton).toBeTruthy();
+
     userEvent.click(editButton);
     const presentation = screen.getByRole('presentation');
     expect(presentation).toBeVisible();
@@ -52,8 +53,6 @@ describe('PhaseHeader', () => {
     userEvent.click(buildSelection);
 
     expect(colorPicker).toHaveClass(menuSelection);
-
-    expect(buildSelection).not.toBeInTheDocument();
     expect(categoryChange).toHaveBeenCalledTimes(1);
   });
 

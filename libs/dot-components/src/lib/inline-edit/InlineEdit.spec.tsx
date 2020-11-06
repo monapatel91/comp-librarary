@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 
 import DotInlineEdit from './InlineEdit';
 
@@ -17,8 +18,8 @@ describe('DotInlineEdit', () => {
 
   it('unable to edit while disabled', () => {
     render(<DotInlineEdit name="test" required={false} disabled={true} />);
-
     const editDiv = screen.getByTestId(inlineEditName);
+
     userEvent.hover(editDiv);
     expect(editDiv).toBeVisible();
     expect(editDiv).toHaveClass('disabled');
