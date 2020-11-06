@@ -8,7 +8,7 @@
     "build": "nx build --project=dot-components",
     "build:publish": "yarn build; cd dist/libs/dot-components; npm publish",
     "test": "nx test --project=dot-components",
-    "lint": "nx workspace-lint && nx lint",
+    "lint": "nx workspace-lint && nx lint --project=dot-components",
     "e2e": "nx e2e --project=dot-components-e2e",
     "e2e:ci": "yarn e2e --headless",
     "affected:apps": "nx affected:apps",
