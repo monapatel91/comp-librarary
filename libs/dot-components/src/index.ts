@@ -1,4 +1,5 @@
 export * from './lib/button/Button';
+export * from './lib/button/IconButton';
 export * from './lib/confirmation-dialog/ConfirmationDialog';
 export * from './lib/dialog/Dialog';
 export * from './lib/icon/Icon';
