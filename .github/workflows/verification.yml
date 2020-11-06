@@ -31,3 +31,13 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: yarn install
         run: yarn install
+      - name: Lint
+        run: |
+          if [[ $GITHUB_BASE_REF ]]
+          then
+            export NX_BASE=remotes/origin/$GITHUB_BASE_REF
+          else
+            export NX_BASE=$(git rev-parse HEAD~1)
+          fi
+          echo "Base => $NX_BASE"
+          yarn affected:lint --base=$NX_BASE
