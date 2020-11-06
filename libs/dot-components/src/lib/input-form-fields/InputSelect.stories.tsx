@@ -1,7 +1,7 @@
 import React from 'react';
 import { array, boolean, select, text } from '@storybook/addon-knobs';
 import { DotInputSelect } from './InputFormFields';
-import { marginOptions, variantOptions } from './InputFormFields';
+import { inputMarginOptions, inputVariantOptions } from './InputFormFields';
 
 export default {
   component: DotInputSelect,
@@ -30,7 +30,7 @@ export const inputSelect = () => {
     sbMarginOptions,
     'none',
     groupId
-  ) as marginOptions;
+  ) as inputMarginOptions;
   const name = text('Name', 'Default name', groupId);
   const options = array(
     'Options',
@@ -44,7 +44,7 @@ export const inputSelect = () => {
     sbVariantOptions,
     'outlined',
     groupId
-  ) as variantOptions;
+  ) as inputVariantOptions;
   return (
     <DotInputSelect
       autoFocus={autoFocus}
