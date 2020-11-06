@@ -1,4 +1,4 @@
-name: @digital-ai/dot-components
+name: Dot Components
 
 on: [push, pull_request]
 
