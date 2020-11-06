@@ -1,5 +1,5 @@
 import React from 'react';
-import { radios, text, select } from '@storybook/addon-knobs';
+import { radios, text } from '@storybook/addon-knobs';
 import { DotIcon, IconFontSize, IconType, sbFontSizeOptions } from './Icon';
 
 export default {
