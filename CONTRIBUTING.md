@@ -50,6 +50,24 @@ yarn e2e --watch
 
 **_Note:_** When running e2e tests in watch mode Storybook is also running and available.
 
+## Running linter
+
+We use eslint for linting our source code. You can check the component library for lint issues by running `yarn lint` locally.
+
+## Checking code style
+
+For code formatting we use [Prettier](https://prettier.io/). Any overrides that we have configured to the default Prettier rules is defined in the `.prettierrc` file.
+
+You can use the following scripts to help you check for and fix any code format issues that you have:
+
+```sh
+# check for format issues
+yarn format:check
+
+# to fix any format issues
+yarn format
+```
+
 ## Understand your workspace
 
 Run `nx dep-graph` to see a diagram of the dependencies of your projects.
