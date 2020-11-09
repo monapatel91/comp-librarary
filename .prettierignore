@@ -2,3 +2,6 @@
 
 /dist
 /coverage
+
+# auto generated directories
+libs/dot-components/src/lib/font-icon/**
