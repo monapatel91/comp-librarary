@@ -34,18 +34,14 @@
     },
     "demo-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "demo"
-      ]
+      "implicitDependencies": ["demo"]
     },
     "dot-components": {
       "tags": []
     },
     "dot-components-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "dot-components"
-      ]
+      "implicitDependencies": ["dot-components"]
     }
   }
 }
