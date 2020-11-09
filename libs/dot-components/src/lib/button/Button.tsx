@@ -3,7 +3,6 @@ import { Button, Icon } from '@material-ui/core';
 
 import './Button.scss';
 
-
 export type ButtonType =
   | 'destructive'
   | 'primary'
