@@ -1,11 +1,11 @@
 import React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { DotInputText } from './InputFormFields';
-import { marginOptions, variantOptions } from './InputFormFields';
+import { inputMarginOptions, inputVariantOptions } from './InputFormFields';
 
 export default {
   component: DotInputText,
-  title: 'Atoms',
+  title: 'DotInputText',
 };
 
 export const inputText = () => {
@@ -29,7 +29,7 @@ export const inputText = () => {
     sbMarginOptions,
     'none',
     groupId
-  ) as marginOptions;
+  ) as inputMarginOptions;
   const name = text('Name', 'Default name', groupId);
   const label = text('Label', 'Default Label', groupId);
   const required = boolean('Required', true, groupId);
@@ -38,7 +38,7 @@ export const inputText = () => {
     sbVariantOptions,
     'outlined',
     groupId
-  ) as variantOptions;
+  ) as inputVariantOptions;
   return (
     <DotInputText
       autoFocus={autoFocus}

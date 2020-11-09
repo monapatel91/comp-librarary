@@ -6,7 +6,7 @@ import { DotIconButton, IconButtonColor, IconButtonSize } from './IconButton';
 
 export default {
   component: DotIconButton,
-  title: 'Atoms',
+  title: 'DotIconButton',
 };
 
 export const iconButton = () => {

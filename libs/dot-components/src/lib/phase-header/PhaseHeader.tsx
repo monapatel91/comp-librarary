@@ -6,7 +6,7 @@ import { DotInlineEdit } from '../inline-edit/InlineEdit';
 
 import './PhaseHeader.scss';
 
-enum CategoryType {
+export enum CategoryType {
   plan = 'plan',
   code = 'code',
   build = 'build',

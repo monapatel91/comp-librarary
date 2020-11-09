@@ -6,7 +6,7 @@ import { DotConfirmationDialog } from './ConfirmationDialog';
 
 export default {
   component: DotConfirmationDialog,
-  title: 'Organisms',
+  title: 'DotConfirmationDialog',
 };
 
 export const confirmationDialog = () => {

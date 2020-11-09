@@ -6,7 +6,7 @@ import { DotDialog } from './Dialog';
 
 export default {
   component: DotDialog,
-  title: 'Organisms',
+  title: 'DotDialog',
 };
 
 export const dialog = () => {
