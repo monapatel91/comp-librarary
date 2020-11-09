@@ -1,0 +1,31 @@
+@import '../styles/variables';
+
+.dot-stage-card .phase-color {
+  border-radius: 4px;
+  height: 18px;
+  margin-right: $gutter;
+  width: $gutter;
+}
+
+.stage-timeline.MuiTimeline-root {
+  margin: 0;
+  padding-top: 0;
+
+  .stage-timeline-dot {
+    box-shadow: none;
+    margin: 0;
+  }
+
+  .stage-timeline-item {
+    &:before {
+      display: none;
+    }
+    &:first-child .MuiTimelineContent-root {
+      padding-top: 0;
+      margin-top: $gutter * 2;
+    }
+    &:last-child .MuiTimelineConnector-root:last-of-type {
+      background: transparent;
+    }
+  }
+}
