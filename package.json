@@ -27,6 +27,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "storybook": "nx run dot-components:storybook",
+    "storybook:build": "nx run dot-components:build-storybook",
     "generate:comp": "nx generate @nrwl/react:component --pascalCaseFiles --no-interactive --project=dot-components",
     "generate:comp:dry": "yarn generate:comp --dry-run"
   },
