@@ -133,7 +133,7 @@ jobs:
       env:
         KUBE_CONFIG_DATA: ${{ secrets.EKS_CONFIG }}
       with:
-        command: helm upgrade ux-pr${{ steps.get_pr.outputs.pr }} --install --namespace=pr${{ steps.get_pr.outputs.pr }} --set image.tag=${{needs.get-version.outputs.version-string}} --set image.sha=${{github.sha}} build/helm/storybook
+        command: helm upgrade ux-pr${{ steps.get_pr.outputs.pr }} --install --create-namespace --namespace=ux-pr${{ steps.get_pr.outputs.pr }} --set image.tag=${{needs.get-version.outputs.version-string}} --set image.sha=${{github.sha}} build/helm/storybook
 
     - name: Add comment to PR
       uses: github-actions-up-and-running/pr-comment@v1.0.1

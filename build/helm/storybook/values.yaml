@@ -39,7 +39,7 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
     nginx.ingress.kubernetes.io/proxy-send-timeout: '600'
-  host: "ux-{{ .Release.Namespace }}.{{ .Values.domain }}"
+  host: "{{ .Release.Namespace }}.{{ .Values.domain }}"
   path: "/"
   tls: []
 
