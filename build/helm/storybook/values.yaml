@@ -1,0 +1,62 @@
+replicaCount: 1
+
+image:
+  repository: 006517755855.dkr.ecr.us-east-2.amazonaws.com/storybook
+  pullPolicy: Always
+  tag: ""
+  sha: "unknown"
+
+imagePullSecrets: []
+nameOverride: "storybook"
+fullnameOverride: "storybook"
+domain: "lisbon-dev.com"
+
+serviceAccount:
+  create: false
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '600'
+  host: "{{ .Release.Namespace }}.{{ .Values.domain }}"
+  path: "/"
+  tls: []
+
+resources:
+  limits:
+    cpu: "10m"
+    memory: "20Mi"
+  requests:
+    cpu: "10m"
+    memory: "20Mi"
+
+autoscaling:
+  enabled: false
+
+nodeSelector:
+  lifecycle: Ec2Spot
+
+tolerations: []
+
+affinity: {}

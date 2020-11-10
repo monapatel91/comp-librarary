@@ -1,0 +1,39 @@
+name: Cleanup PR Deployments
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  cleanup:
+    name: Cleanup PR Deployment in EKS
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v2
+    
+        - name: pr-number-action
+          id: get_pr
+          uses: kkak10/pr-number-action@v1.3
+          if: github.event_name == 'pull_request'
+    
+        - name: AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.EKS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.EKS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ secrets.AWS_REGION }}
+
+        - name: helm uninstall storybook
+          uses: koslibpro/helm-eks-action@v1.4.10
+          env:
+              KUBE_CONFIG_DATA: ${{ secrets.EKS_CONFIG }}
+          with:
+              command: helm uninstall ux-pr${{ steps.get_pr.outputs.pr }} --namespace=ux-pr${{ steps.get_pr.outputs.pr }}
+
+        - name: Delete Namespace
+          uses: koslibpro/helm-eks-action@v1.4.10
+          env:
+              KUBE_CONFIG_DATA: ${{ secrets.EKS_CONFIG }}
+          with:
+              command: kubectl delete namespace ux-pr${{ steps.get_pr.outputs.pr }}
