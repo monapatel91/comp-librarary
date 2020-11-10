@@ -1,3 +1,7 @@
+export * from './lib/breadcrumbs/Breadcrumbs';
+export * from './lib/drawer/Drawer';
+export * from './lib/chip/Chip';
+export * from './lib/switch/Switch';
 export * from './lib/avatar/Avatar';
 export * from './lib/button/Button';
 export * from './lib/card/Card';
