@@ -19,6 +19,4 @@ export * from './lib/stage-card/StageCard';
 export * from './lib/step-card/StepCard';
 export * from './lib/switch/Switch';
 export * from './lib/table/Table';
-export * from './lib/table/TableBody';
-export * from './lib/table/TableCell';
 export * from './lib/table/TableDataWithPagination';
