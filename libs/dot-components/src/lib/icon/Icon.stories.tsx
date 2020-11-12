@@ -4,7 +4,7 @@ import { DotIcon, IconFontSize, IconType, sbFontSizeOptions } from './Icon';
 
 export default {
   component: DotIcon,
-  title: 'DotIcon',
+  title: 'Icon',
 };
 
 export const icon = () => {

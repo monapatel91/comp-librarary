@@ -5,7 +5,7 @@ import { inputMarginOptions, inputVariantOptions } from './InputFormFields';
 
 export default {
   component: DotInputSelect,
-  title: 'DotInputSelect',
+  title: 'InputSelect',
 };
 
 export const inputSelect = () => {

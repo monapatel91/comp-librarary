@@ -8,7 +8,7 @@ import {
 
 export default {
   component: DotInlineEdit,
-  title: 'DotInlineEdit',
+  title: 'InlineEdit',
 };
 
 export const inlineEdit = () => {

@@ -5,7 +5,7 @@ import { inputMarginOptions, inputVariantOptions } from './InputFormFields';
 
 export default {
   component: DotInputText,
-  title: 'DotInputText',
+  title: 'InputText',
 };
 
 export const inputText = () => {

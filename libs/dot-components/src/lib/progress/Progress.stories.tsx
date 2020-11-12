@@ -8,7 +8,7 @@ import {
 
 export default {
   component: DotProgress,
-  title: 'Atoms',
+  title: 'Progress',
 };
 
 export const progress = () => {

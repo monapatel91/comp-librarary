@@ -8,7 +8,7 @@ import { DotStageCard, StepObject } from './StageCard';
 
 export default {
   component: DotStageCard,
-  title: 'DotStageCard',
+  title: 'StageCard',
 };
 
 export const stageCard = () => {

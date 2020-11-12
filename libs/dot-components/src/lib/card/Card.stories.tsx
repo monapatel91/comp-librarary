@@ -6,7 +6,7 @@ import { CardMenuOption, DotCard } from './Card';
 
 export default {
   component: DotCard,
-  title: 'DotCard',
+  title: 'Card',
 };
 
 export const card = () => {

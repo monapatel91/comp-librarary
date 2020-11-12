@@ -6,7 +6,7 @@ import { ButtonType, DotButton, sbButtonTypeOptions } from './Button';
 
 export default {
   component: DotButton,
-  title: 'DotButton',
+  title: 'Button',
 };
 
 export const button = () => {
