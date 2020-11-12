@@ -8,7 +8,7 @@ import { TableDataWithPagination } from './TableDataWithPagination';
 
 export default {
   component: InfiniteScrollTable,
-  title: 'Organisms',
+  title: 'Infinite Scroll',
 };
 
 export const InfiniteTable = () => {
@@ -45,6 +45,7 @@ export const InfiniteTable = () => {
     rowsPerPage: number,
     page: number
   ): TableDataWithPagination => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const items = new Array<any>();
 
     const start = page * rowsPerPage;

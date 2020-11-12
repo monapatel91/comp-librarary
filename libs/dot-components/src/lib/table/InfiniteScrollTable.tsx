@@ -64,19 +64,17 @@ export const InfiniteScrollTable = ({
   const [totalCount, updateTotalCount] = useState<number>(0);
 
   function loadMoreData(page: number, reset = false) {
-    return onTableUpdate(rowsPerPage, page, 'asc')
-      .then((tableData) => {
-        if (tableData) {
-          if (!reset) {
-            updateItems(items.concat(tableData.data));
-          } else {
-            updateItems(tableData.data);
-          }
-          updateCurrentPage(tableData.pagination.current_page);
-          updateTotalCount(tableData.pagination.total_elements);
+    return onTableUpdate(rowsPerPage, page, 'asc').then((tableData) => {
+      if (tableData) {
+        if (!reset) {
+          updateItems(items.concat(tableData.data));
+        } else {
+          updateItems(tableData.data);
         }
-      })
-      .finally();
+        updateCurrentPage(tableData.pagination.current_page);
+        updateTotalCount(tableData.pagination.total_elements);
+      }
+    });
   }
 
   useEffect(() => {

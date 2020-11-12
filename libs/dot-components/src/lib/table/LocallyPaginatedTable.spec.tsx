@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
-
+import '@testing-library/jest-dom';
 import LocallyPaginatedTable from './LocallyPaginatedTable';
 import { getComparator, stableSort } from './LocallyPaginatedTable';
 

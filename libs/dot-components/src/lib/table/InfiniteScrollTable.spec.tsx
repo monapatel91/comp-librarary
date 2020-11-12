@@ -16,6 +16,7 @@ const getTestData: OnTableUpdate = async (
   orderBy?: string
 ) => {
   const rowsPerPage = 20;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const items = new Array<any>();
   const start = page * rowsPerPage;
   const end = start + rowsPerPage;

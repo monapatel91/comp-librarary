@@ -7,7 +7,7 @@ import { Order } from './TableBody';
 
 export default {
   component: LocallyPaginatedTable,
-  title: 'Organisms',
+  title: 'Paginated Table - Local',
 };
 
 export const PaginatedTable = () => {
