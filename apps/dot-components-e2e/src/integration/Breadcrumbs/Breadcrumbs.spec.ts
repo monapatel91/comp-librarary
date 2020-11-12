@@ -1,5 +1,5 @@
 describe('dot-components: Breadcrumbs component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=breadcrumbs--breadcrumb'));
+  beforeEach(() => cy.visit('/iframe.html?id=breadcrumbs--primary'));
 
   it('should render the component', () => {
     cy.get('div').should('contain', 'Link 1');

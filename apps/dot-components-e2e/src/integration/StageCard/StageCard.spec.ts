@@ -1,5 +1,5 @@
 describe('dot-components: Stage Card component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=dotstagecard--stage-card'));
+  beforeEach(() => cy.visit('/iframe.html?id=stage-card--primary'));
 
   it('should render the component', () => {
     cy.get('h6').should('contain', 'Some name');

@@ -11,6 +11,7 @@ export default {
     title: { defaultValue: 'Hello World' },
     subheader: { defaultValue: 'Well hello there' },
     preHeader: { defaultValue: true },
+    menuOptions: { defaultValue: [{ displayText: 'Option 1' }] },
   },
 } as Meta;
 

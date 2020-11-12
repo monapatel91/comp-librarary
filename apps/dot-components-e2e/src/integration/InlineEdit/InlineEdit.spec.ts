@@ -1,5 +1,5 @@
 describe('dot-components: Inline Edit component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=dotinlineedit--inline-edit'));
+  beforeEach(() => cy.visit('/iframe.html?id=inline-edit--primary'));
 
   it('should render the component', () => {
     cy.get('input').should('have.class', 'MuiOutlinedInput-inputAdornedEnd');
