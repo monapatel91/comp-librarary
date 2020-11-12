@@ -1,44 +1,22 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
-import { DotPhaseHeader, CategoryType } from './PhaseHeader';
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { DotPhaseHeader, PhaseHeaderProps } from './PhaseHeader';
 
 export default {
+  title: 'Phase Header',
   component: DotPhaseHeader,
-  title: 'DotPhaseHeader',
-};
+  argTypes: {
+    canDelete: { defaultValue: true },
+    canEdit: { defaultValue: true },
+    category: { defaultValue: 'deploy' },
+    label: { defaultValue: 'Label' },
+    onDelete: { action: 'deleted' },
+    onLabelChange: { action: 'label changed' },
+    onCategoryChange: { action: 'category changed' },
+  },
+} as Meta;
 
-export const phaseHeader = () => {
-  const categoryOptions = {
-    Plan: 'plan',
-    Code: 'code',
-    Build: 'build',
-    Test: 'test',
-    Deploy: 'deploy',
-    Monitor: 'monitor',
-  };
-
-  const groupId = 'Options';
-  const canDelete = boolean('Can Delete', true, groupId);
-  const canEdit = boolean('Can Edit', true, groupId);
-  const category = select(
-    'Category',
-    categoryOptions,
-    'deploy',
-    groupId
-  ) as CategoryType;
-  const label = text('Label Text', 'Label', groupId);
-
-  return (
-    <DotPhaseHeader
-      data-index={1}
-      canDelete={canDelete}
-      canEdit={canEdit}
-      category={category}
-      label={label}
-      onCategoryChange={action('category changed')}
-      onDelete={action('delete')}
-      // onLabelChange={action('label changed')}
-    />
-  );
-};
+export const Primary: Story<PhaseHeaderProps> = (args) => (
+  <DotPhaseHeader {...args} />
+);

@@ -1,49 +1,15 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { DotDrawer, DrawerAnchor, DrawerVariant } from './Drawer';
+import { DotDrawer, DrawerProps } from './Drawer';
 
 export default {
-  component: DotDrawer,
   title: 'Drawer',
-};
+  component: DotDrawer,
+  argTypes: {
+    open: { defaultValue: true },
+    children: { defaultValue: 'I am Batman' },
+  },
+} as Meta;
 
-export const drawer = () => {
-  const anchorOptions = {
-    Bottom: 'bottom',
-    Left: 'left',
-    Right: 'right',
-    Top: 'top',
-  };
-  const variantOptions = {
-    Permanent: 'permanent',
-    Persistent: 'persistent',
-    Temporary: 'temporary',
-  };
-  const groupId = 'Options';
-  const anchor = select(
-    'Postion',
-    anchorOptions,
-    'right',
-    groupId
-  ) as DrawerAnchor;
-  const open = boolean('Is Open?', true, groupId);
-  const variant = select(
-    'Variant',
-    variantOptions,
-    'temporary',
-    groupId
-  ) as DrawerVariant;
-  const children = text('Content', 'I am Batman', groupId);
-
-  return (
-    <DotDrawer
-      anchor={anchor}
-      children={children}
-      onClose={action('onClose')}
-      open={open}
-      variant={variant}
-    />
-  );
-};
+export const Primary: Story<DrawerProps> = (args) => <DotDrawer {...args} />;
