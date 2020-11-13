@@ -1,7 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { CardMenuOption } from '../card/Card';
 import { DotStepCard, StepCardProps } from './StepCard';
 
 export default {

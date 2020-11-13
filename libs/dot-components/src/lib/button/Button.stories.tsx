@@ -4,8 +4,8 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotButton, ButtonProps } from './Button';
 
 export default {
-  component: DotButton,
   title: 'Button',
+  component: DotButton,
   argTypes: {
     onClick: {
       action: 'clicked',
