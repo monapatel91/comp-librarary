@@ -90,7 +90,7 @@ describe('DotButton', () => {
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
-  it('should render an icon button', () => {
+  xit('should render an icon button', () => {
     render(
       <DotButton
         displayText="Test"
@@ -105,7 +105,7 @@ describe('DotButton', () => {
     expect(screen.getByText('save')).toBeVisible();
   });
 
-  it('should not render an icon button if no icon is provided', () => {
+  xit('should not render an icon button if no icon is provided', () => {
     render(
       <DotButton
         displayText="Test"

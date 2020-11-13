@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-
+// import '@testing-library/jest-dom';
 import { DotRow } from './Row';
 
 const testText = 'hello world';
