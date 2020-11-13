@@ -4,7 +4,7 @@ import { radios } from '@storybook/addon-knobs';
 
 export default {
   component: DotAvatar,
-  title: 'DotAvatar',
+  title: 'Avatar',
 };
 
 export const avatar = () => {

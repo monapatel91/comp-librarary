@@ -6,7 +6,7 @@ import { DotStepCard } from './StepCard';
 
 export default {
   component: DotStepCard,
-  title: 'DotStepCard',
+  title: 'StepCard',
 };
 
 export const stepCard = () => {
