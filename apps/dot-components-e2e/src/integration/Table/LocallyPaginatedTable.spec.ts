@@ -1,7 +1,5 @@
 describe('dot-components: Locally Paginated Table component', () => {
-  beforeEach(() =>
-    cy.visit('/iframe.html?id=paginated-table-local--paginated-table')
-  );
+  beforeEach(() => cy.visit('/iframe.html?id=paginated-table-local--primary'));
 
   it('should render the component', () => {
     cy.get('table').should('have.class', 'dot-table');

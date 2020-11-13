@@ -1,13 +1,11 @@
 import React from 'react';
-import { DotAvatar } from './Avatar';
-import { radios } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { DotAvatar, AvatarProps } from './Avatar';
 
 export default {
-  component: DotAvatar,
   title: 'Avatar',
-};
+  component: DotAvatar,
+} as Meta;
 
-export const avatar = () => {
-  const size = radios('Size', { Small: 'small', Medium: 'medium' }, 'small');
-  return <DotAvatar size={size} />;
-};
+export const Primary: Story<AvatarProps> = (args) => <DotAvatar {...args} />;

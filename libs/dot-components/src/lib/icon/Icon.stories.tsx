@@ -1,43 +1,21 @@
 import React from 'react';
-import { radios, text } from '@storybook/addon-knobs';
-import { DotIcon, IconFontSize, IconType, sbFontSizeOptions } from './Icon';
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { DotIcon, IconProps } from './Icon';
 
 export default {
-  component: DotIcon,
   title: 'Icon',
-};
+  component: DotIcon,
+  argTypes: {
+    icon: { defaultValue: 'script' },
+    iconBgColor: {
+      defaultValue: '#eee',
+      control: 'color',
+    },
+    fontSize: { defaultValue: 'default' },
+    iconType: { defaultValue: 'circle' },
+    title: { defaultValue: 'Hello World' },
+  },
+} as Meta;
 
-export const icon = () => {
-  const sbIconTypeOptions = {
-    Circle: 'circle',
-    Square: 'square',
-    Transparent: 'transparent',
-  };
-
-  const groupId = 'Options';
-  const iconId = text('Icon ID', 'script', groupId);
-  const iconBgColor = text('Background Color', '#eee', groupId);
-  const fontSize = radios(
-    'Size',
-    sbFontSizeOptions,
-    'default',
-    groupId
-  ) as IconFontSize;
-  const iconType = radios(
-    'Type',
-    sbIconTypeOptions,
-    'circle',
-    groupId
-  ) as IconType;
-  const title = text('Title', 'Hello World', groupId);
-
-  return (
-    <DotIcon
-      icon={iconId}
-      iconBgColor={iconBgColor}
-      fontSize={fontSize}
-      iconType={iconType}
-      title={title}
-    />
-  );
-};
+export const Primary: Story<IconProps> = (args) => <DotIcon {...args} />;

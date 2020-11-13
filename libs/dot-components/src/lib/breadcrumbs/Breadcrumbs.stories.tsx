@@ -1,59 +1,41 @@
-import React, { MouseEvent } from 'react';
-import { action } from '@storybook/addon-actions';
-import { number, select } from '@storybook/addon-knobs';
-import { DotBreadcrumbs, LinkUnderlineOptions } from './Breadcrumbs';
+import React from 'react';
+import { Story, Meta } from '@storybook/react/types-6-0';
 
+import { DotBreadcrumbs, BreadcrumbProps } from './Breadcrumbs';
+
+// Leaving actions out of this for now when clicking on a items because
+// I'm not sure how to do this with the new argTypes.
+// It might be worth while to consider moving onClick to a prop on Breadcrumbs though.
 export default {
   component: DotBreadcrumbs,
   title: 'Breadcrumbs',
-};
+  argTypes: {
+    items: {
+      defaultValue: [
+        {
+          text: 'Link 1',
+          underline: 'hover',
+        },
+        {
+          text: 'Link 2',
+          underline: 'hover',
+        },
+        {
+          text: 'Link 3',
+          underline: 'hover',
+        },
+        {
+          text: 'Link 4',
+          underline: 'hover',
+        },
+        {
+          text: 'Link 5',
+        },
+      ],
+    },
+  },
+} as Meta;
 
-export const breadcrumb = () => {
-  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    action('onClick');
-  };
-  const underlineOptions = {
-    Always: 'always',
-    Hover: 'hover',
-    None: 'none',
-  };
-
-  const groupId = 'Options';
-  const maxItems = number('Max Items', 5, {}, groupId);
-  const underline = select(
-    'Underline',
-    underlineOptions,
-    'hover',
-    groupId
-  ) as LinkUnderlineOptions;
-  const dummyItems = [
-    {
-      href: '#',
-      onClick: handleClick,
-      text: 'Link 1',
-      underline: underline,
-    },
-    {
-      href: '#',
-      onClick: handleClick,
-      text: 'Link 2',
-      underline: underline,
-    },
-    {
-      href: '#',
-      onClick: handleClick,
-      text: 'Link 3',
-      underline: underline,
-    },
-    {
-      href: '#',
-      onClick: handleClick,
-      text: 'Link 4',
-      underline: underline,
-    },
-    {
-      text: 'Link 5',
-    },
-  ];
-  return <DotBreadcrumbs items={dummyItems} maxItems={maxItems} />;
-};
+export const Primary: Story<BreadcrumbProps> = (args) => (
+  <DotBreadcrumbs {...args} />
+);

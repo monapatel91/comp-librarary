@@ -1,42 +1,26 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { text, boolean, select } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { ButtonType, DotButton, sbButtonTypeOptions } from './Button';
+import { DotButton, ButtonProps } from './Button';
 
 export default {
-  component: DotButton,
   title: 'Button',
-};
+  component: DotButton,
+  argTypes: {
+    onClick: {
+      action: 'clicked',
+    },
+    displayText: {
+      name: 'Display Text',
+      defaultValue: 'Button',
+    },
+    iconId: {
+      defaultValue: '',
+    },
+    type: {
+      defaultValue: 'primary',
+    },
+  },
+} as Meta;
 
-export const button = () => {
-  const iconOptions = {
-    None: '',
-    Add: 'add_circle_outline',
-    Save: 'save',
-    Delete: 'delete',
-  };
-
-  const groupId = 'Options';
-  const typeValue = select(
-    'Type',
-    sbButtonTypeOptions,
-    'primary',
-    groupId
-  ) as ButtonType;
-  const disabled = boolean('Disabled', false, groupId);
-  const displayText = text('Text', 'Button', groupId);
-  const iconValue = select('Icon', iconOptions, undefined, groupId);
-  const tooltip = text('Tooltip (title)', '', groupId);
-
-  return (
-    <DotButton
-      disabled={disabled}
-      displayText={displayText}
-      iconId={iconValue}
-      onClick={action('click')}
-      titleTooltip={tooltip}
-      type={typeValue}
-    />
-  );
-};
+export const Primary: Story<ButtonProps> = (args) => <DotButton {...args} />;

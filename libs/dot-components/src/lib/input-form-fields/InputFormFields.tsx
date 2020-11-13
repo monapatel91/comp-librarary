@@ -80,7 +80,7 @@ export const DotInputSelect = ({
   margin = 'dense',
   name,
   onChange,
-  options,
+  options = [],
   required,
   defaultValue = options[0],
   variant = 'outlined',

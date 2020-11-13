@@ -1,41 +1,22 @@
 import React from 'react';
-import { boolean, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { Story, Meta } from '@storybook/react/types-6-0';
+
 import { DotIcon } from '../icon/Icon';
-import { CardMenuOption, DotCard } from './Card';
+import { DotCard, CardProps } from './Card';
 
 export default {
-  component: DotCard,
   title: 'Card',
-};
+  component: DotCard,
+  argTypes: {
+    title: { defaultValue: 'Hello World' },
+    subheader: { defaultValue: 'Well hello there' },
+    preHeader: { defaultValue: true },
+    menuOptions: { defaultValue: [{ displayText: 'Option 1' }] },
+  },
+} as Meta;
 
-export const card = () => {
-  let groupId = 'Options';
-  const title = text('Title', 'Hello World', groupId);
-  const subheader = text('Sub Header', 'Well hello there', groupId);
-  const preheader = boolean('Display PreHeader', true, groupId);
+export const Primary: Story<CardProps> = (args) => {
+  const { preHeader } = args;
   const preheaderExample = <DotIcon icon="block" />;
-
-  groupId = 'Menu Options';
-  const menuOptions: Array<CardMenuOption> = [];
-  if (boolean('Delete?', true, groupId)) {
-    menuOptions.push({ displayText: 'Delete', action: action('Delete') });
-  }
-  if (boolean('Some other option?', true, groupId)) {
-    menuOptions.push({
-      displayText: 'Some other option',
-      action: action('Some other option'),
-    });
-  }
-
-  return (
-    <DotCard
-      menuOptions={menuOptions}
-      preHeader={preheader ? preheaderExample : null}
-      subheader={subheader}
-      title={title}
-    >
-      Look Mom! I'm a card!!!
-    </DotCard>
-  );
+  return <DotCard preHeader={preHeader ? preheaderExample : null} {...args} />;
 };
