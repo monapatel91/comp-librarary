@@ -1,8 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { DotInputText } from './InputFormFields';
-import { InputTextProps } from './InputFormFields';
+import { DotInputText, InputTextProps } from './InputFormFields';
 
 export default {
   title: 'Input Text',
