@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
-
+import userEvent from '@testing-library/user-event';
 import DotEmptyState from './EmptyState';
 import { ReactComponent as EmptyStateImage } from '../assets/empty-state.svg';
 

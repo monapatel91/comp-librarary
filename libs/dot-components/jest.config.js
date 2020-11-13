@@ -8,10 +8,10 @@ module.exports = {
       { cwd: __dirname, configFile: './babel-jest.config.json' },
     ],
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   moduleNameMapper: {
-    '\\.svg$': '<rootDir>/../testing-utils/src/lib/file-mock.ts',
+    '\\.svg': '<rootDir>/../testing-utils/src/lib/file-mock.ts',
   },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/dot-components',
   coveragePathIgnorePatterns: ['/node_modules/'],
 };
