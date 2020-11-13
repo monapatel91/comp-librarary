@@ -1,28 +1,13 @@
 import React from 'react';
-import { text, boolean, radios } from '@storybook/addon-knobs';
-import { DotAvatar } from '../avatar/Avatar';
-import { DotSkeleton, SkeletonVariantType } from './Skeleton';
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { DotSkeleton, SkeletonProps } from './Skeleton';
 
 export default {
-  component: DotSkeleton,
   title: 'Skeleton',
-};
+  component: DotSkeleton,
+} as Meta;
 
-export const skeleton = () => {
-  const groupId = 'Options';
-  const displayChild = boolean('Display Child?', false, groupId);
-  const height = text('Height', '50px', groupId);
-  const width = text('Width', '50px', groupId);
-  const variant = radios(
-    'Variant',
-    { Circle: 'circle', Rect: 'rect', Text: 'text' },
-    'circle',
-    groupId
-  ) as SkeletonVariantType;
-
-  return (
-    <DotSkeleton height={height} width={width} variant={variant}>
-      {displayChild ? <DotAvatar /> : undefined}
-    </DotSkeleton>
-  );
-};
+export const Primary: Story<SkeletonProps> = (args) => (
+  <DotSkeleton {...args} />
+);
