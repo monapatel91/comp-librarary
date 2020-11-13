@@ -5,9 +5,6 @@ import {
   LocallyPaginatedTable,
   LocallyPaginatedTableProps,
 } from './LocallyPaginatedTable';
-import { Header } from './TableHeader';
-import { Cell } from './TableCell';
-import { Order } from './TableBody';
 
 export default {
   title: 'Paginated Table - Local',
