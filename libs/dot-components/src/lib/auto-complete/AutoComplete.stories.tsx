@@ -6,6 +6,20 @@ import { DotAutoComplete, AutoCompleteProps } from './AutoComplete';
 export default {
   title: 'Auto Complete',
   component: DotAutoComplete,
+  argTypes: {
+    options: {
+      defaultValue: [
+        { category: 'Marvel', title: 'Hulk' },
+        { category: 'Marvel', title: 'Thor' },
+        { category: 'Marvel', title: 'Ironman' },
+        { category: 'Marvel', title: 'Spiderman' },
+        { category: 'D.C.', title: 'Batman' },
+        { category: 'D.C.', title: 'Flash' },
+        { category: 'D.C.', title: 'Aquaman' },
+        { category: 'D.C.', title: 'Wonderwoman' },
+      ],
+    },
+  },
 } as Meta;
 
 export const Primary: Story<AutoCompleteProps> = (args) => (
