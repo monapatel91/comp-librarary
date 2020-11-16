@@ -88,7 +88,9 @@ export const DotPhaseHeader = ({
 
   return (
     <div
-      className={`phase-header ${inlineEditing ? 'editing' : ''} ${classes}`}
+      className={`dot-phase-header ${
+        inlineEditing ? 'editing' : ''
+      } ${classes}`}
     >
       <Button
         aria-controls="simple-menu"

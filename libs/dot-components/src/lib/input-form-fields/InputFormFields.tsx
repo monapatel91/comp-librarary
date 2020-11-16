@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
+import './InputFormFields.scss';
 
 export type inputMarginOptions = 'dense' | 'none' | 'normal';
 export type inputVariantOptions = 'filled' | 'outlined' | 'standard';
@@ -52,6 +53,7 @@ export const DotInputText = ({
     <TextField
       aria-label={name}
       autoFocus={autoFocus}
+      className="dot-text-field"
       error={error}
       fullWidth={fullWidth}
       helperText={helperText}
@@ -88,6 +90,7 @@ export const DotInputSelect = ({
   return (
     <TextField
       autoFocus={autoFocus}
+      className="dot-select-field"
       defaultValue={defaultValue}
       error={error}
       fullWidth={fullWidth}

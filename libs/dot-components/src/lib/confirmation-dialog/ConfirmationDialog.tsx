@@ -1,6 +1,8 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
 import { DialogButtonProps, DotDialog } from '../dialog/Dialog';
 
+import './ConfirmationDialog.scss';
+
 export interface ConfirmationDialogProps {
   /** Cancel button properties */
   cancelBtnProps?: DialogButtonProps;
@@ -37,6 +39,7 @@ export const DotConfirmationDialog = ({
   return (
     <DotDialog
       cancelButtonProps={cancelBtnProps}
+      classes="dot-confirmation-dialog"
       data-testid={dataTestId}
       focusSubmitButton={true}
       onCancel={() => onCancel && onCancel()}

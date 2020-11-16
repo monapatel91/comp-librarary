@@ -1,3 +1,4 @@
+@import '../styles/global';
 @import '../styles/mixins';
 @import '../styles/palette';
 @import '../styles/variables';
@@ -5,7 +6,7 @@
 $phaseHeight: 44px;
 $colorPickerWidth: 200px;
 
-.phase-header {
+.dot-phase-header {
   background: $n600;
   border-radius: $radius;
   color: $n0;

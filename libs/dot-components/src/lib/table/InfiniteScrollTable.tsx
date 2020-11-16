@@ -83,7 +83,10 @@ export const InfiniteScrollTable = ({
 
   return (
     <Fragment>
-      <div className="infinite-scroll-container" data-testid={dataTestId}>
+      <div
+        className="dot-infinite-scroll infinite-scroll-container"
+        data-testid={dataTestId}
+      >
         <InfiniteLoader
           isRowLoaded={(params: Index) => {
             return !!items[params.index];

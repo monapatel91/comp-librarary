@@ -1,6 +1,6 @@
 import React from 'react';
 import { Skeleton } from '@material-ui/lab';
-
+import './Skeleton.scss';
 export type SkeletonAnimationType = 'pulse' | 'wave' | false;
 export type SkeletonVariantType = 'circle' | 'rect' | 'text';
 
@@ -27,6 +27,7 @@ export const DotSkeleton = ({
   return (
     <Skeleton
       animation={animation}
+      className="dot-skeleton"
       height={height}
       width={width}
       variant={variant}

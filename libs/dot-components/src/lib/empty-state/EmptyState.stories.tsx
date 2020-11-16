@@ -9,13 +9,17 @@ export default {
   component: DotEmptyState,
   argTypes: {
     buttonProps: {
-      displayText: 'Add Data',
-      onClick: () => {
-        console.log('clicked');
+      defaultValue: {
+        displayText: 'Add Data',
+        onClick: () => {
+          console.log('clicked');
+        },
+        type: 'primary',
       },
-      type: 'primary',
     },
-    Image: EmptyState,
+    Image: {
+      defaultValue: EmptyState,
+    },
     subtitle: {
       defaultValue: 'That is unexpected',
     },

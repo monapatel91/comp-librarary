@@ -18,7 +18,12 @@ export interface BreadcrumbProps {
 
 export const DotBreadcrumbs = ({ items, maxItems = 3 }: BreadcrumbProps) => {
   return (
-    <Breadcrumbs aria-label="breadcrumb" maxItems={maxItems} separator="›">
+    <Breadcrumbs
+      className="dot-breadcrumbs"
+      aria-label="breadcrumb"
+      maxItems={maxItems}
+      separator="›"
+    >
       {items.map((item: BreadcrumbItem, index: number) => {
         const { href, onClick, text, underline } = item;
         if (index === items.length - 1) {

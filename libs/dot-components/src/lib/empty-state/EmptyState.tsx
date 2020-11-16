@@ -21,7 +21,7 @@ export const DotEmptyState = ({
   subtitle,
 }: EmptyStateProps) => {
   return (
-    <div className="empty-state-container">
+    <div className="dot-empty-state empty-state-container">
       {Image && (
         <Image
           title={imageAltText || title}

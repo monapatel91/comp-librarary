@@ -1,5 +1,6 @@
 import React, { MouseEvent } from 'react';
 import { Drawer } from '@material-ui/core';
+import './Drawer.scss';
 
 export type DrawerAnchor = 'bottom' | 'left' | 'right' | 'top';
 export type DrawerVariant = 'permanent' | 'persistent' | 'temporary';
@@ -30,7 +31,7 @@ export const DotDrawer = ({
   return (
     <Drawer
       anchor={anchor}
-      className={classes}
+      className={`dot-drawer ${classes}`}
       onClose={(event: MouseEvent) => onClose && onClose(event)}
       open={open}
       variant={variant}

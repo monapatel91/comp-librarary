@@ -3,6 +3,8 @@ import { Autocomplete } from '@material-ui/lab';
 import { TextField } from '@material-ui/core';
 import { inputVariantOptions } from '../input-form-fields/InputFormFields';
 
+import './AutoComplete.scss';
+
 export type autoCompleteSize = 'medium' | 'small';
 
 export interface AutoCompleteOption {

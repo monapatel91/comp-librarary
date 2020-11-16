@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FormControlLabel, Switch } from '@material-ui/core';
+import './Switch.scss';
 
 export type SwitchColor = 'default' | 'primary' | 'secondary';
 export type SwitchSize = 'medium' | 'small';
@@ -35,6 +36,7 @@ export const DotSwitch = ({
 
   return (
     <FormControlLabel
+      className="dot-switch"
       control={
         <Switch
           checked={isChecked}
