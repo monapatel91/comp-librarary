@@ -67,6 +67,7 @@ export const DotAutoComplete = ({
 }: AutoCompleteProps) => {
   return (
     <Autocomplete
+      className="dot-autocomplete"
       multiple={multiple}
       options={options.sort((a, b) => -b.category.localeCompare(a.category))}
       defaultValue={defaultValue ? [defaultValue.title] : []}
