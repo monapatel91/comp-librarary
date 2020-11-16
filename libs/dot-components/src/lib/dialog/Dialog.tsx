@@ -25,6 +25,8 @@ export interface DialogButtonProps {
 export interface DialogProps {
   /** props passed down to the cancel button */
   cancelButtonProps?: DialogButtonProps;
+  /** Space delimited CSS classes to be attributed to the button */
+  classes?: string;
   /** components or string that is displayed in the dialog body */
   children?: string | JSX.Element[] | JSX.Element;
   /** if true, automatically focuses the submit button */
@@ -43,6 +45,7 @@ export interface DialogProps {
 
 export const DotDialog = ({
   cancelButtonProps,
+  classes,
   children,
   focusSubmitButton = false,
   onCancel,
@@ -82,7 +85,7 @@ export const DotDialog = ({
   return (
     <div onKeyDown={(event) => onKeyPress(event)}>
       <Dialog
-        classes={{ root: 'with-close-button' }}
+        classes={{ root: `dot-dialog with-close-button ${classes}` }}
         open={open}
         onClose={handleClose}
         aria-labelledby="dialog-title"

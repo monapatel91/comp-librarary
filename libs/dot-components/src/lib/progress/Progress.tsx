@@ -1,6 +1,6 @@
 import React from 'react';
 import { CircularProgress } from '@material-ui/core';
-
+import './Progress.scss';
 export type progressColorOptions = 'inherit' | 'primary' | 'secondary';
 export type progressVariantOptions = 'determinate' | 'indeterminate' | 'static';
 
@@ -29,6 +29,7 @@ export const DotProgress = ({
 }: ProgressProps) => {
   return (
     <CircularProgress
+      className="dot-progress"
       color={color}
       size={size}
       thickness={thickness}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
-import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import DotBreadcrumbs, { BreadcrumbItem } from './Breadcrumbs';
 

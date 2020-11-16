@@ -1,0 +1,13 @@
+@import 'variables';
+
+*[class^='dot-'] {
+  font-family: $baseFont;
+  font-style: normal;
+  font-weight: normal;
+  font-feature-settings: 'liga' off;
+  font-variant-ligatures: none;
+}
+
+i[class*='icon-']:before {
+  color: inherit;
+}

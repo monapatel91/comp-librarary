@@ -1,5 +1,6 @@
 import React, { MouseEvent } from 'react';
-import { Button, Icon } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { DotIcon } from '../icon/Icon';
 
 import './Button.scss';
 
@@ -78,7 +79,7 @@ export const DotButton = ({
       data-testid={dataTestId}
       disabled={disabled}
       onClick={(event) => onClick && onClick(event)}
-      startIcon={iconId ? <Icon>{iconId}</Icon> : undefined}
+      startIcon={iconId ? <DotIcon icon={iconId} /> : undefined}
       title={titleTooltip}
       variant={variant}
     >

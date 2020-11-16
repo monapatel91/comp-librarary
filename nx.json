@@ -42,6 +42,9 @@
     "dot-components-e2e": {
       "tags": [],
       "implicitDependencies": ["dot-components"]
+    },
+    "testing-utils": {
+      "tags": []
     }
   }
 }

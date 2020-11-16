@@ -2,7 +2,6 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
 import PhaseHeader from './PhaseHeader';
 
 describe('PhaseHeader', () => {
