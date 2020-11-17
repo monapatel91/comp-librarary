@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@digital-ai/dot-components": ["libs/dot-components/src/index.ts"],
-      "@dot-components/testing-utils": ["libs/testing-utils/src/index.ts"]
+      "@digital-ai/testing-utils": ["libs/testing-utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

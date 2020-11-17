@@ -1,0 +1,83 @@
+@import '../styles/global';
+@import '../styles/palette';
+@import '../styles/variables';
+
+nav {
+  ul,
+  li {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    flex-direction: column;
+
+    &.horizontal {
+      flex-direction: row;
+
+      li a {
+        padding: 0 $gutter * 2;
+      }
+    }
+
+    &.vertical {
+      li a {
+        padding: $gutter / 2 0;
+      }
+    }
+  }
+
+  li {
+    align-items: stretch;
+    cursor: pointer;
+
+    &.vertical > a {
+      flex-direction: column;
+
+      .material-icons {
+        margin: 0;
+      }
+    }
+
+    * {
+      align-self: center;
+    }
+
+    a {
+      align-items: stretch;
+      color: $n700;
+      display: flex;
+      flex-grow: 1;
+      text-decoration: none;
+
+      &:hover,
+      &:focus,
+      &.active {
+        color: $digital_green;
+      }
+
+      * {
+        align-self: center;
+      }
+
+      span:not(.material-icons) {
+        flex-grow: 1;
+      }
+    }
+
+    .material-icons {
+      max-height: $gutter * 8;
+      object-fit: scale-down;
+
+      &.first {
+        margin-right: $gutter;
+      }
+
+      &.last {
+        margin-left: $gutter;
+        order: 4;
+      }
+    }
+  }
+}
