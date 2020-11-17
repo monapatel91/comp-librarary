@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from '@material-ui/core';
 import './Icon.scss';
-import '../font-icon/style.scss';
+import '../../font-icon/style.scss';
 
 export type IconType = 'circle' | 'square' | 'transparent';
 export type IconFontSize = 'inherit' | 'default' | 'small' | 'large';
