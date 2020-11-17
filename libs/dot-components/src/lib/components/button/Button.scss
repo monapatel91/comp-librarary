@@ -1,0 +1,17 @@
+@import '../../styles/global';
+@import '../../styles/variables';
+
+.dot-btn {
+  &.MuiButton-text {
+    // Make Mui textButtons have the same padding as all other buttons
+    padding: 6px $gutter * 2;
+  }
+
+  &.MuiButton-root {
+    text-transform: inherit;
+  }
+}
+
+.MuiButton-root .MuiButton-label {
+  text-transform: none;
+}

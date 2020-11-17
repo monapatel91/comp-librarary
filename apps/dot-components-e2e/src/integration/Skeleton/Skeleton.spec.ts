@@ -1,5 +1,5 @@
 describe('dot-components: Skeleton component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=skeleton--primary'));
+  beforeEach(() => cy.visit('/iframe.html?id=components-skeleton--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('span').should('have.class', 'dot-skeleton');

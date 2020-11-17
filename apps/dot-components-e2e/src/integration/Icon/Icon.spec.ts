@@ -1,5 +1,5 @@
 describe('dot-components: Icon component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=icon--primary'));
+  beforeEach(() => cy.visit('/iframe.html?id=components-icon--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('span').should('have.class', 'dot-icon');

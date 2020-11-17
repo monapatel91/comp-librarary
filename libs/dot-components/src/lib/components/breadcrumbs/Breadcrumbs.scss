@@ -1,0 +1,11 @@
+@import '../../styles/global';
+@import '../../styles/variables';
+
+.currentPage {
+  color: $n700;
+  cursor: default;
+}
+
+.MuiBreadcrumbs-li {
+  color: $n300;
+}
