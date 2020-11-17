@@ -3,7 +3,7 @@ import { DotHeader, HeaderProps } from './Header';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 export default {
-  title: 'Header',
+  title: 'Components/Header',
   component: DotHeader,
   argTypes: {
     items: {
@@ -34,4 +34,4 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<HeaderProps> = (args) => <DotHeader {...args} />;
+export const Default: Story<HeaderProps> = (args) => <DotHeader {...args} />;

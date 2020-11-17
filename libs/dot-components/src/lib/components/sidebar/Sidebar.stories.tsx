@@ -3,7 +3,7 @@ import { DotSidebar, SidebarProps } from './Sidebar';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 export default {
-  title: 'Sidebar',
+  title: 'Components/Sidebar',
   component: DotSidebar,
   argTypes: {
     backItem: {
@@ -46,4 +46,4 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<SidebarProps> = (args) => <DotSidebar {...args} />;
+export const Default: Story<SidebarProps> = (args) => <DotSidebar {...args} />;

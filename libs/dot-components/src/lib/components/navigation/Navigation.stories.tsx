@@ -7,7 +7,7 @@ import { DotNavigation, NavigationProps } from './Navigation';
 addDecorator(StoryRouter());
 
 export default {
-  title: 'Navigation',
+  title: 'Components/Navigation',
   component: DotNavigation,
   argTypes: {
     direction: {
@@ -38,6 +38,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<NavigationProps> = (args) => (
+export const Default: Story<NavigationProps> = (args) => (
   <DotNavigation {...args} />
 );
