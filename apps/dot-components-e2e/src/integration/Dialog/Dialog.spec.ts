@@ -1,5 +1,5 @@
 describe('dot-components: Dialog component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=components-dialog--primary'));
+  beforeEach(() => cy.visit('/iframe.html?id=components-dialog--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-dialog');

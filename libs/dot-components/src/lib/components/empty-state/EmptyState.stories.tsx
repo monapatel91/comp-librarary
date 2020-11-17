@@ -29,6 +29,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<EmptyStateProps> = (args) => (
+export const Default: Story<EmptyStateProps> = (args) => (
   <DotEmptyState {...args} />
 );

@@ -15,6 +15,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<InputTextProps> = (args) => (
+export const Default: Story<InputTextProps> = (args) => (
   <DotInputText {...args} />
 );

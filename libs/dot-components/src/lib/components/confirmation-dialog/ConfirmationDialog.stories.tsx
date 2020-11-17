@@ -16,6 +16,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<ConfirmationDialogProps> = (args) => (
+export const Default: Story<ConfirmationDialogProps> = (args) => (
   <DotConfirmationDialog {...args} />
 );

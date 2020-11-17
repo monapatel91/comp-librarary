@@ -8,4 +8,4 @@ export default {
   component: DotAvatar,
 } as Meta;
 
-export const Primary: Story<AvatarProps> = (args) => <DotAvatar {...args} />;
+export const Default: Story<AvatarProps> = (args) => <DotAvatar {...args} />;

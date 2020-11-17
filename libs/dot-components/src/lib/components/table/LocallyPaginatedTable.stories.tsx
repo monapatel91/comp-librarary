@@ -27,6 +27,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<LocallyPaginatedTableProps> = (args) => (
+export const Default: Story<LocallyPaginatedTableProps> = (args) => (
   <LocallyPaginatedTable {...args} />
 );

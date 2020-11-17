@@ -13,4 +13,4 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<SwitchProps> = (args) => <DotSwitch {...args} />;
+export const Default: Story<SwitchProps> = (args) => <DotSwitch {...args} />;

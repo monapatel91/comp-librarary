@@ -36,6 +36,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<BreadcrumbProps> = (args) => (
+export const Default: Story<BreadcrumbProps> = (args) => (
   <DotBreadcrumbs {...args} />
 );

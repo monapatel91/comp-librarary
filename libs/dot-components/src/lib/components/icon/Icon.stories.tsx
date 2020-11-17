@@ -18,4 +18,4 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<IconProps> = (args) => <DotIcon {...args} />;
+export const Default: Story<IconProps> = (args) => <DotIcon {...args} />;

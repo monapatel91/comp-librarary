@@ -16,6 +16,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<InlineEditProps> = (args) => (
+export const Default: Story<InlineEditProps> = (args) => (
   <DotInlineEdit {...args} />
 );

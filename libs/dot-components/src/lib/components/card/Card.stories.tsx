@@ -15,7 +15,7 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<CardProps> = (args) => {
+export const Default: Story<CardProps> = (args) => {
   const { preHeader } = args;
   const preheaderExample = <DotIcon icon="block" />;
   return <DotCard preHeader={preHeader ? preheaderExample : null} {...args} />;

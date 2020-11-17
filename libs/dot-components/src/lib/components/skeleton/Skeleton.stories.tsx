@@ -8,6 +8,6 @@ export default {
   component: DotSkeleton,
 } as Meta;
 
-export const Primary: Story<SkeletonProps> = (args) => (
+export const Default: Story<SkeletonProps> = (args) => (
   <DotSkeleton {...args} />
 );

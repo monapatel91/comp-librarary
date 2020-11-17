@@ -24,6 +24,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<StepCardProps> = (args) => (
+export const Default: Story<StepCardProps> = (args) => (
   <DotStepCard {...args} />
 );

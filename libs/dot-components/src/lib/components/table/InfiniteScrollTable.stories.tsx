@@ -26,7 +26,7 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<InfiniteScrollTableProps> = ({
+export const Default: Story<InfiniteScrollTableProps> = ({
   onTableUpdate: update,
   ...args
 }) => {

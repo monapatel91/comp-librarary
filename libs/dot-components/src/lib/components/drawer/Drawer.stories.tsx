@@ -12,4 +12,4 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<DrawerProps> = (args) => <DotDrawer {...args} />;
+export const Default: Story<DrawerProps> = (args) => <DotDrawer {...args} />;

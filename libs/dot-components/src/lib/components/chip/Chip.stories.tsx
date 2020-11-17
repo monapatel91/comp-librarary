@@ -19,4 +19,4 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<ChipProps> = (args) => <DotChip {...args} />;
+export const Default: Story<ChipProps> = (args) => <DotChip {...args} />;

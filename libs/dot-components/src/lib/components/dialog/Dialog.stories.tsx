@@ -12,6 +12,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<DialogProps> = (args) => (
+export const Default: Story<DialogProps> = (args) => (
   <DotDialog {...args}>Put whatever you want here :)</DotDialog>
 );

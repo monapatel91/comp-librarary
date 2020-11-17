@@ -23,4 +23,4 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<ButtonProps> = (args) => <DotButton {...args} />;
+export const Default: Story<ButtonProps> = (args) => <DotButton {...args} />;

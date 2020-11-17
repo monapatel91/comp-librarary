@@ -17,6 +17,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<PhaseHeaderProps> = (args) => (
+export const Default: Story<PhaseHeaderProps> = (args) => (
   <DotPhaseHeader {...args} />
 );

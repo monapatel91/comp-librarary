@@ -19,4 +19,4 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<RowProps> = (args) => <DotRow {...args} />;
+export const Default: Story<RowProps> = (args) => <DotRow {...args} />;

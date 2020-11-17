@@ -29,6 +29,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<ProgressProps> = (args) => (
+export const Default: Story<ProgressProps> = (args) => (
   <DotProgress {...args} />
 );

@@ -1,6 +1,6 @@
 describe('dot-components: Confirmation Dialog component', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=components-confirmation-dialog--primary')
+    cy.visit('/iframe.html?id=components-confirmation-dialog--default')
   );
 
   it('should have a dot- prefix', () => {

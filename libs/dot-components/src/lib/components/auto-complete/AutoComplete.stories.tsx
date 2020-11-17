@@ -22,6 +22,6 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<AutoCompleteProps> = (args) => (
+export const Default: Story<AutoCompleteProps> = (args) => (
   <DotAutoComplete {...args} />
 );
