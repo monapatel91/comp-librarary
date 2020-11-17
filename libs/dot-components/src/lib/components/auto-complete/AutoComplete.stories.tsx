@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotAutoComplete, AutoCompleteProps } from './AutoComplete';
 
 export default {
-  title: 'Auto Complete',
+  title: 'Components/Auto Complete',
   component: DotAutoComplete,
   argTypes: {
     options: {

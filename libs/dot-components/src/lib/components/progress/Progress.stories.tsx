@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotProgress, ProgressProps } from './Progress';
 
 export default {
-  title: 'Progress',
+  title: 'Components/Progress',
   component: DotProgress,
   argTypes: {
     color: { defaultValue: 'primary' },

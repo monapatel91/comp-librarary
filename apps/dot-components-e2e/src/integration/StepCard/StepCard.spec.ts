@@ -1,5 +1,5 @@
 describe('dot-components: Step Card component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=step-card--primary'));
+  beforeEach(() => cy.visit('/iframe.html?id=components-step-card--primary'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-step-card');

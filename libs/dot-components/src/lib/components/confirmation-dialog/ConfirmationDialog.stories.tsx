@@ -7,7 +7,7 @@ import {
 } from './ConfirmationDialog';
 
 export default {
-  title: 'Confirmation Dialog',
+  title: 'Components/Confirmation Dialog',
   component: DotConfirmationDialog,
   argTypes: {
     message: { defaultValue: 'something useful' },

@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotDialog, DialogProps } from './Dialog';
 
 export default {
-  title: 'Dialog',
+  title: 'Components/Dialog',
   component: DotDialog,
   argTypes: {
     open: { defaultValue: true },

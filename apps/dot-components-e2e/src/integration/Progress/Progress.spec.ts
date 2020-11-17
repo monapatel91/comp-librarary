@@ -1,5 +1,5 @@
 describe('dot-components: Progress component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=progress--primary'));
+  beforeEach(() => cy.visit('/iframe.html?id=components-progress--primary'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-progress');

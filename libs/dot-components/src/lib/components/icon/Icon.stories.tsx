@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotIcon, IconProps } from './Icon';
 
 export default {
-  title: 'Icon',
+  title: 'Components/Icon',
   component: DotIcon,
   argTypes: {
     icon: { defaultValue: 'script' },

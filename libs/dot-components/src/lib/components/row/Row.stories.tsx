@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotRow, RowProps } from './Row';
 
 export default {
-  title: 'Row',
+  title: 'Components/Row',
   component: DotRow,
   argTypes: {
     canDelete: {

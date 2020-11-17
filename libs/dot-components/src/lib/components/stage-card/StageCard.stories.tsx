@@ -5,7 +5,7 @@ import { DotStageCard, StageCardProps } from './StageCard';
 import { CategoryType } from '../phase-header/PhaseHeader';
 
 export default {
-  title: 'Stage Card',
+  title: 'Components/Stage Card',
   component: DotStageCard,
   argTypes: {
     title: { defaultValue: 'Some name' },

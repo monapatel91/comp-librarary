@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotPhaseHeader, PhaseHeaderProps } from './PhaseHeader';
 
 export default {
-  title: 'Phase Header',
+  title: 'Components/Phase Header',
   component: DotPhaseHeader,
   argTypes: {
     canDelete: { defaultValue: true },

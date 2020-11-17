@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotInputSelect, InputSelectProps } from './InputFormFields';
 
 export default {
-  title: 'Input Select',
+  title: 'Components/Input Select',
   component: DotInputSelect,
   argTypes: {
     label: { defaultValue: 'Default Label' },

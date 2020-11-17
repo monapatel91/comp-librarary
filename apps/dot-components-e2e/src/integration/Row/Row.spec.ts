@@ -1,5 +1,5 @@
 describe('dot-components: Row component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=row--primary'));
+  beforeEach(() => cy.visit('/iframe.html?id=components-row--primary'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-row');

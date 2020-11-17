@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotInputText, InputTextProps } from './InputFormFields';
 
 export default {
-  title: 'Input Text',
+  title: 'Components/Input Text',
   component: DotInputText,
   argTypes: {
     fullWidth: { defaultValue: false },

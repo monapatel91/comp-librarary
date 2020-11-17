@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotStepCard, StepCardProps } from './StepCard';
 
 export default {
-  title: 'Step Card',
+  title: 'Components/Step Card',
   component: DotStepCard,
   argTypes: {
     title: { defaultValue: 'Some name' },

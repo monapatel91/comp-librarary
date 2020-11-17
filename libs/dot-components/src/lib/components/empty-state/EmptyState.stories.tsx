@@ -5,7 +5,7 @@ import { ReactComponent as EmptyState } from '../../assets/empty-state.svg';
 import { DotEmptyState, EmptyStateProps } from './EmptyState';
 
 export default {
-  title: 'Empty State',
+  title: 'Components/Empty State',
   component: DotEmptyState,
   argTypes: {
     buttonProps: {
