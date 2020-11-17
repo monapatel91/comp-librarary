@@ -1,0 +1,21 @@
+@import '../../styles/global';
+@import '../../styles/variables';
+
+header.dot-header {
+  align-items: center;
+  background: $n700;
+  border-bottom: 4px solid $digital_green;
+  color: $n0;
+  display: flex;
+  justify-content: space-between;
+  padding: $gutter/2 $gutter * 2;
+
+  .logo {
+    display: flex;
+  }
+
+  nav ul.horizontal li a {
+    color: $n0;
+    padding: 0;
+  }
+}
