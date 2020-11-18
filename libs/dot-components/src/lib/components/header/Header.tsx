@@ -7,12 +7,13 @@ import './Header.scss';
 
 export interface HeaderProps {
   items: Array<NavigationItemProps>;
+  logo?: JSX.Element;
 }
 
-export const DotHeader = ({ items }: HeaderProps) => {
+export const DotHeader = ({ items, logo }: HeaderProps) => {
   return (
     <header className="dot-header">
-      <LogoDigitalAiWhite className="logo" title="digital.ai" />
+      {logo ? logo : <LogoDigitalAiWhite className="logo" title="digital.ai" />}
       <DotNavigation
         classes="admin-nav"
         direction="horizontal"
