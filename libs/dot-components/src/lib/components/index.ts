@@ -23,7 +23,7 @@ export * from './skeleton/Skeleton';
 export * from './stage-card/StageCard';
 export * from './step-card/StepCard';
 export * from './switch/Switch';
-// export * from './table/InfiniteScrollTable';
+export * from './table/InfiniteScrollTable';
 export * from './table/LocallyPaginatedTable';
 export * from './table/RemotelyPaginatedTable';
 export * from './table/Table';

@@ -35,11 +35,13 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "@types/react-virtualized": "^9.21.10",
     "document-register-element": "1.13.1",
     "pubsub-js": "^1.9.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "react-virtualized": "^9.22.2"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",
