@@ -60,10 +60,13 @@ describe('RemotelyPaginatedTable', () => {
         onTableUpdate={getTestData}
       />
     );
-    expect(baseElement).toBeTruthy();
+
+    waitFor(() => {
+      expect(baseElement).toBeTruthy();
+    });
   });
 
-  it('should call getTestData on load', () => {
+  it('should call getTestData on load', async () => {
     const { rerender } = render(
       <RemotelyPaginatedTable
         ariaLabel="super heroes!"
@@ -72,7 +75,8 @@ describe('RemotelyPaginatedTable', () => {
         refreshTopicName="topic"
       />
     );
-    expect(getMockedData).toHaveBeenCalledTimes(1);
+
+    await waitFor(() => expect(getMockedData).toHaveBeenCalledTimes(1));
 
     PubSub.publish('topic', undefined);
 
@@ -84,7 +88,8 @@ describe('RemotelyPaginatedTable', () => {
         refreshTopicName="topic"
       />
     );
-    expect(getMockedData).toHaveBeenCalledTimes(1);
+
+    await waitFor(() => expect(getMockedData).toHaveBeenCalledTimes(1));
   });
 
   it('should call getTestData when a column header is clicked', () => {
@@ -96,7 +101,10 @@ describe('RemotelyPaginatedTable', () => {
       />
     );
     userEvent.click(screen.getByRole('button', { name: 'Type' }));
-    expect(getMockedData).toHaveBeenCalledTimes(2);
+
+    waitFor(() => {
+      expect(getMockedData).toHaveBeenCalledTimes(2);
+    });
   });
 
   it('should call getTestData when "previous page" is clicked', async () => {
@@ -111,7 +119,7 @@ describe('RemotelyPaginatedTable', () => {
     userEvent.click(screen.getByRole('button', { name: 'Next page' }));
     await waitFor(() => expect(getMockedData).toHaveBeenCalledTimes(2));
     userEvent.click(screen.getByRole('button', { name: 'Previous page' }));
-    expect(getMockedData).toHaveBeenCalledTimes(3);
+    await waitFor(() => expect(getMockedData).toHaveBeenCalledTimes(3));
   });
 
   it('should call getTestData when "next page" is clicked', async () => {
@@ -124,7 +132,7 @@ describe('RemotelyPaginatedTable', () => {
     );
     await waitFor(() => expect(getMockedData).toHaveBeenCalledTimes(1));
     userEvent.click(screen.getByRole('button', { name: 'Next page' }));
-    expect(getMockedData).toHaveBeenCalledTimes(2);
+    await waitFor(() => expect(getMockedData).toHaveBeenCalledTimes(2));
   });
 
   it('should call getTestData when "page size" is changed', async () => {
@@ -140,6 +148,6 @@ describe('RemotelyPaginatedTable', () => {
     await waitFor(() => expect(getMockedData).toHaveBeenCalledTimes(1));
     userEvent.click(screen.getByRole('button', { name: 'Rows per page: 10' }));
     userEvent.click(screen.getByRole('option', { name: '25' }));
-    expect(getMockedData).toHaveBeenCalledTimes(2);
+    await waitFor(() => expect(getMockedData).toHaveBeenCalledTimes(2));
   });
 });
