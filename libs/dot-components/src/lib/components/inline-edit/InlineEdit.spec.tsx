@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { screen } from '@testing-library/dom';
+import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 
 import DotInlineEdit from './InlineEdit';
@@ -135,8 +135,11 @@ describe('DotInlineEdit', () => {
     userEvent.type(textField, newValue);
 
     fireEvent.keyDown(textField, { key: 'Enter', code: 13 });
-    expect(textField).toHaveValue(originalValue + newValue);
-    expect(onLabelChange).toHaveBeenCalledTimes(1);
-    expect(onEditStageChange).toHaveBeenCalledTimes(2);
+
+    waitFor(() => {
+      expect(textField).toHaveValue(originalValue + newValue);
+      expect(onLabelChange).toHaveBeenCalledTimes(1);
+      expect(onEditStageChange).toHaveBeenCalledTimes(2);
+    });
   });
 });

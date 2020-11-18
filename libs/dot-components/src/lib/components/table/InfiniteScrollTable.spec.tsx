@@ -52,7 +52,8 @@ describe('InfiniteScrollTable', () => {
         onTableUpdate={getTestData}
       />
     );
-    expect(baseElement).toBeTruthy();
+
+    waitFor(() => expect(baseElement).toBeTruthy());
   });
 
   it('load more when scrolling', async () => {
