@@ -131,11 +131,6 @@
                 "output": "."
               },
               {
-                "glob": "libs/dot-components/src/lib/assets/**",
-                "input": ".",
-                "output": "./assets"
-              },
-              {
                 "glob": "libs/dot-components/src/lib/font-icon/fonts/**",
                 "input": ".",
                 "output": "./fonts"
