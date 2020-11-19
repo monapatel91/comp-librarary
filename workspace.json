@@ -131,14 +131,9 @@
                 "output": "."
               },
               {
-                "glob": "libs/dot-components/src/lib/fonts/*.ttf",
-                "input": ".",
-                "output": "./fonts"
-              },
-              {
-                "glob": "libs/dot-components/src/lib/fonts/font-icon/fonts/**",
-                "input": ".",
-                "output": "./fonts"
+                "glob": "**/*",
+                "input": "libs/dot-components/src/lib/fonts/",
+                "output": "/fonts/"
               },
               {
                 "glob": "libs/dot-components/.npmrc",

@@ -1,18 +1,16 @@
-@import 'palette';
-
 $gutter: 8px;
 $radius: 4px;
 
 @font-face {
   font-family: 'LatoRegular';
   font-weight: 400;
-  src: url('../fonts/Lato-Regular.ttf');
+  src: url('/fonts/Lato-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'LatoBold';
   font-weight: 700;
-  src: url('../fonts/Lato-Bold.ttf');
+  src: url('/fonts/Lato-Bold.ttf') format('truetype');
 }
 
 $baseFont: 'LatoRegular', sans-serif;

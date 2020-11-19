@@ -1,24 +1,31 @@
 import React from 'react';
 import { DotNavigation } from '../navigation/Navigation';
 import { NavigationItemProps } from '../navigation/NavItem';
+import { DotIconButton } from '../button/IconButton';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
 
 import './Header.scss';
 
 export interface HeaderProps {
-  brand: string;
+  borderColor?: string;
+  brand?: string;
   items: Array<NavigationItemProps>;
 }
 
-export const DotHeader = ({ brand, items }: HeaderProps) => {
+export const DotHeader = ({
+  borderColor = '#74b941',
+  brand,
+  items,
+}: HeaderProps) => {
   return (
-    <header className="dot-header">
+    <header className="dot-header" style={{ borderBottomColor: borderColor }}>
+      <DotIconButton iconId="menu" iconSize="small" />
       <div className="dot-branding">
-        <LogoDigitalAiWhite className="logo" title="digital.ai" />
-        <span className="dot-product-name">{brand}</span>
+        <LogoDigitalAiWhite title="digital.ai" />
+        {brand && <span className="dot-product-name">{brand}</span>}
       </div>
       <DotNavigation
-        classes="admin-nav"
+        classes="dot-admin-nav"
         direction="horizontal"
         iconSize="small"
         items={items}

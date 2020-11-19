@@ -1,17 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-*:not(i):not(.material-icons) {
-  font-family: 'Lato', -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-feature-settings: 'liga' off;
-  font-variant-ligatures: none;
-}
-
-i[class*='icon-']:before {
-  color: inherit;
-}
-
 html,
 body {
   height: 100vh;

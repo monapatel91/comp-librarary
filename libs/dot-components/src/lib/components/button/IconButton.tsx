@@ -29,7 +29,7 @@ export interface IconButtonProps {
 
 export const DotIconButton = ({
   classes,
-  color = 'default',
+  color = 'inherit',
   'data-testid': dataTestId,
   disabled = false,
   iconId,
