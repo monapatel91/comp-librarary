@@ -6,14 +6,17 @@ import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_
 import './Header.scss';
 
 export interface HeaderProps {
+  brand: string;
   items: Array<NavigationItemProps>;
-  logo?: JSX.Element;
 }
 
-export const DotHeader = ({ items, logo }: HeaderProps) => {
+export const DotHeader = ({ brand, items }: HeaderProps) => {
   return (
     <header className="dot-header">
-      {logo ? logo : <LogoDigitalAiWhite className="logo" title="digital.ai" />}
+      <div className="dot-branding">
+        <LogoDigitalAiWhite className="logo" title="digital.ai" />
+        <span className="dot-product-name">{brand}</span>
+      </div>
       <DotNavigation
         classes="admin-nav"
         direction="horizontal"

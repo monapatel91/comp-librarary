@@ -48,7 +48,7 @@ const sideNavItems: Array<NavigationItemProps> = [
 export const App = () => {
   return (
     <BrowserRouter>
-      <DotHeader items={topNavItems} />
+      <DotHeader brand="Continuum" items={topNavItems} />
       <main>
         <DotSidebar primaryItems={sideNavItems} />
         <section className="main-content">
