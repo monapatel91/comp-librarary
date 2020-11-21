@@ -25,7 +25,9 @@ export interface HeaderProps {
 
 export interface HeaderCellProps {
   align?: boolean;
-  createSortHandler?: Function;
+  createSortHandler?: (
+    property: string
+  ) => (event: MouseEvent<unknown>) => void;
   id?: string;
   /** The order of data which is being sorted by */
   order?: Order;

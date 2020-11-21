@@ -32,7 +32,7 @@ export interface DialogProps {
   /** if true, automatically focuses the submit button */
   focusSubmitButton?: boolean;
   /** The callback to be executed when the action is cancelled */
-  onCancel: (event: MouseEvent | object) => void;
+  onCancel: (event: unknown) => void;
   /** The callback to be executed when the action is submitted */
   onSubmit: (event: KeyboardEvent | MouseEvent) => void;
   /** if true, the dialog is visible to the user */
@@ -54,7 +54,7 @@ export const DotDialog = ({
   submitButtonProps,
   title,
 }: DialogProps) => {
-  const handleClose = (event: object) => {
+  const handleClose = (event: unknown) => {
     onCancel(event);
   };
 

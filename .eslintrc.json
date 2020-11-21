@@ -10,7 +10,6 @@
         "createDefaultProgram": true
       },
       "rules": {
-        "@typescript-eslint/no-var-requires": "off",
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
           {
@@ -37,7 +36,9 @@
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nrwl/nx/javascript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
     }
   ]
 }
