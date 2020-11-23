@@ -6,6 +6,6 @@ import ProgressionBoard from './ProgressionBoard';
 describe('ProgressionBoard', () => {
   it('should render successfully', () => {
     const { baseElement } = render(<ProgressionBoard />);
-    expect(baseElement).not.toBeTruthy();
+    expect(baseElement).toBeTruthy();
   });
 });
