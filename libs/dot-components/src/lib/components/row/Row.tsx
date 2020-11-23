@@ -20,9 +20,9 @@ export interface RowProps {
   /** The icon to display on the button */
   iconId?: string;
   /** Callback event when delete confirmed */
-  onDelete?: (event: {}) => void;
+  onDelete?: (event: unknown) => void;
   /** Callback event when editing */
-  onEdit?: (event: {}) => void;
+  onEdit?: (event: unknown) => void;
   /** Space delimited CSS classes to be attributed to the row */
   rowClasses?: string;
   /** unique ID, usually matching what is used in the database */
