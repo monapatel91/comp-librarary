@@ -11,6 +11,24 @@ $mango: #ea6c02;
 $sunset: #d52101;
 $darkerDenim: darken($denim, 15%);
 
+$ghost: #edf2f9;
+$pale: #dde2e9;
+$dove: #c4cacd;
+$heather: #b7bcc4;
+$fog: #a0a6a9;
+$slate: #888e90;
+$aluminum: #878c94;
+$shadow: #767b7e;
+$shuttle: #61666e;
+$forge: #474c54;
+$gunmetal: #31363e;
+$midnight: #272c34;
+$obsidian: #000000;
+$cerulean: #00a9e0;
+
+$darkerLime: darken($lime, 15%); // #59a222
+$darkerMahogany: darken($mahogany, 15%); // #9a0200
+
 $boldFont: 700;
 $semiBoldFont: $boldFont;
 
@@ -21,6 +39,10 @@ $layer_four: $chrome100;
 $layer_five: $chrome200;
 
 $globalRadius: 6px;
+$global_color: $chrome700;
+
+$currentColor: #f00;
+$lighterCerulean: lighten($cerulean, 45%); // #73d0ee
 
 $section_background: $layer_two;
 $subsection_background: $layer_four;
@@ -30,3 +52,16 @@ $board_swimlane_header_background: $layer_four;
 $board_column_background: $chrome50;
 
 $globalGutter: 8px;
+
+$navigation_header: $shuttle;
+
+$asset_improve: $darkerLime;
+$asset_improve_hover: lighten($darkerLime, 10%);
+$asset_maintain: $darkerMahogany;
+$asset_maintain_hover: lighten($darkerMahogany, 10%);
+
+$card_background: $paper;
+$card_border: $chrome300;
+$card_box_shadow: 0 2px 1px rgba($obsidian, 0.2);
+$card_nav_hover: $gunmetal;
+$card_nav_hover_text: $paper;
