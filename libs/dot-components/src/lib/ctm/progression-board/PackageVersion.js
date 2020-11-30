@@ -8,6 +8,8 @@ import { CardIndicators } from './Card';
 // import { getProgressionCardIndicatorData } from '../../../../../ajax';
 import { getMostSignificantLabel } from './duration';
 
+// this is temporary code.
+// #TODO use new api
 const getProgressionCardIndicatorData = () => {
     const result =  new Promise((resolve, reject) => {
     resolve({"progression_id" : "591afccd2979935b172328f8","package_id":"578fc04f29799325c589a729","revision":100,"phase_name":"Acceptance Test","arrival_dt":"2017-09-23T15:54:30.566000"});

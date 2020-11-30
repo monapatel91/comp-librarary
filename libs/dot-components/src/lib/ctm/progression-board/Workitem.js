@@ -14,13 +14,13 @@ const Workitem = (props) => {
   const isEmphaziedClass = isEmphazied ? 'emphasized' : '';
   const splitClass = isSplit ? 'split' : '';
   const hoverClass = isSelected ? 'hover' : '';
-  const className = `${value_goal} ${isEmphaziedClass} ${splitClass} ${hoverClass}`;
+  const classes = `${value_goal} ${isEmphaziedClass} ${splitClass} ${hoverClass}`;
 
   const url = `/flow/workitem_detail?id=${_id}`;
 
   return (
     <li
-      className={className}
+      className={classes}
       onClick={() => (location.href = url)}
       onMouseEnter={selectWorkitem}
       onMouseLeave={deSelectWorkitem}

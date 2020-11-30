@@ -1,6 +1,5 @@
 import React from 'react';
 import SvgIcon from './SvgIcon';
-import classNames from 'classnames';
 
 export const CardIdentifier = ({ url, title, titleTooltip }) => (
   <div className="identity-left left">
@@ -13,7 +12,7 @@ export const CardIdentifier = ({ url, title, titleTooltip }) => (
 );
 
 export const CardIndicator = ({ id, label = '', onHover, url }) => {
-  const classes = classNames('action', 'tooltip-bottom', id);
+  const classes = `action tooltip-bottom ${id}`;
   return (
     <div data-cooltip={label} className={classes} onMouseEnter={onHover}>
       <a href={url}>
@@ -35,7 +34,7 @@ export const CardIndicators = (props) => (
 );
 
 export const Card = (props) => {
-  const classes = classNames('card-container', props.classNames);
+  const classes = `card-container ${props.classNames}`;
   return (
     <div className={classes}>
       <div className="card">

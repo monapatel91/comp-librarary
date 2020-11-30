@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import SvgIcon from './SvgIcon';
 
 export default (props) => (
@@ -15,7 +14,7 @@ export default (props) => (
 );
 
 export const QCIcon = ({ id, label = '', onHover = null, url }) => {
-  const classes = classNames('hidden', 'qcicon', 'tooltip-bottom', id);
+  const classes = `hidden qcicon tooltip-bottom ${id}`;
   return (
     <a
       href={url}
