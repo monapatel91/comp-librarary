@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Phase from './Phase';
 import { BoardHeaders } from './BoardHeaders';
 
+import './ProgressionBoard.scss'
+
 export interface  ProgressionBoardProps {
   phases: any
 }
@@ -11,10 +13,6 @@ export interface SwimLaneProps {
 }
 
 export class ProgressionBoard extends Component<ProgressionBoardProps> {
-
-  constructor(props, context) {
-    super(props, context);
-  }
 
   getPackages = () => {
     return (
@@ -35,8 +33,8 @@ export class ProgressionBoard extends Component<ProgressionBoardProps> {
         })
         // sort alphabetically in ascending order
         .sort((packageA, packageB) => {
-          var nameA = packageA.package_name.toUpperCase();
-          var nameB = packageB.package_name.toUpperCase();
+          const nameA = packageA.package_name.toUpperCase();
+          const nameB = packageB.package_name.toUpperCase();
           if (nameA < nameB) {
             return -1;
           }
@@ -49,7 +47,7 @@ export class ProgressionBoard extends Component<ProgressionBoardProps> {
         })
         // add phases to each package containing only packageVersions related to the package
         .map((pkg) => {
-          var phases = this.props.phases.map((phase) => ({
+          const phases = this.props.phases.map((phase) => ({
             ...phase,
             packageVersions: phase.packageVersions.filter(
               (version) => version.package_id === pkg.package_id
@@ -65,8 +63,8 @@ export class ProgressionBoard extends Component<ProgressionBoardProps> {
   };
 
   render() {
-    var packages = this.getPackages();
-    var phaseNames = this.props.phases.map((phase) => phase.name);
+    const packages = this.getPackages();
+    const phaseNames = this.props.phases.map((phase) => phase.name);
     return (
       <div id="in-progress" className="columns-wrapper">
         <BoardHeaders headers={phaseNames} />
@@ -82,12 +80,8 @@ export class ProgressionBoard extends Component<ProgressionBoardProps> {
 
 class SwimLane extends Component<SwimLaneProps> {
 
-  constructor(props, context) {
-    super(props, context);
-  }
-
   render() {
-    var pkg = this.props.package;
+    const pkg = this.props.package;
 
     return (
       <div>
