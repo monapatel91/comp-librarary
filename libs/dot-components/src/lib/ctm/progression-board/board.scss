@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+@import 'ctm_palette';
+
+
+$lime: #69be28;
+$mahogany: #b50200;
+$paper: #ffffff;
+$gunmetal: #31363e;
+$denim: #005293;
+$mango: #ea6c02;
+$sunset: #d52101;
+$darkerDenim: darken($denim, 15%);
+
+$boldFont: 700;
+$semiBoldFont: $boldFont;
+
+$layer_one: $chrome50;
+$layer_two: $paper;
+$layer_three: $chrome50;
+$layer_four: $chrome100;
+$layer_five: $chrome200;
+
+$globalRadius: 6px;
+
+$section_background: $layer_two;
+$subsection_background: $layer_four;
+
+$board_header: $chrome700;
+$board_swimlane_header_background: $layer_four;
+$board_column_background: $chrome50;
+
+$globalGutter: 8px;

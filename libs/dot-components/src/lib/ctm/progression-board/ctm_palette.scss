@@ -1,0 +1,63 @@
+$vone_maroon: #8d0e3a;                      // Branded Colors
+
+// Digital.ai App Colors
+$digital_green: #79B522;
+$digital_gray: #495260;
+$digital_blue: #61b3b8;
+
+// Digital.ai Brand Colors
+$digital_brand_green: #649A3D;
+$digital_brand_gray: #2A2A2A;
+
+$chrome500: #438098;
+$chrome50: lighten($chrome500, 50%);        // #e6f0f4
+$chrome100: lighten($chrome500, 40%);       // #c3dbe5
+$chrome200: lighten($chrome500, 30%);       // #9fc6d5
+$chrome300: lighten($chrome500, 20%);       // #7cb1c5
+$chrome400: lighten($chrome500, 10%);       // #589bb6
+$chrome600: darken($chrome500, 10%);        // #336275
+$chrome700: darken($chrome500, 20%);        // #244552
+$chrome800: darken($chrome500, 30%);        // #14272e
+$chrome900: darken($chrome500, 40%);        // #05090b
+
+$primary500: #1DAABD;
+$primary50: lighten($primary500, 50%);      // #e0f7fa
+$primary100: lighten($primary500, 40%);     // #b4ecf3
+$primary200: lighten($primary500, 30%);     // #88e1ec
+$primary300: lighten($primary500, 20%);     // #5cd5e6
+$primary350: lighten($primary500, 15%);     // #30c6be
+$primary400: lighten($primary500, 10%);     // #30cadf
+$primary600: darken($primary500, 10%);      // #178392
+$primary700: darken($primary500, 20%);      // #105b65
+$primary800: darken($primary500, 30%);      // #093439
+$primary900: darken($primary500, 40%);      // #020c0d
+
+$amber500: #ff9800;
+$amber400: lighten($amber500, 10%);         // #ffad33
+$amber550: darken($amber500, 5%);           // #e68900
+
+$success_color: #8bc34a;
+$failure_color: #f44336;
+
+$chart_purple: #af78cf;
+
+// Array of colors used for graphs
+$chart_1: #00E7FF;
+$chart_2: #FF7208;
+$chart_3: #8200FF;
+$chart_4: #FFCE00;
+$chart_5: #3700FF;
+$chart_6: #64FF00;
+$chart_7: #00FF9D;
+$chart_8: #FF2424;
+$chart_9: #00A4FF;
+$chart_10: #E81F48;
+$chart_11: #FFFF00;
+$chart_12: #AE00FF;
+$chart_13: #FF9100;
+$chart_14: #00FFDA;
+$chart_15: #C8FF00;
+$chart_16: #F800FF;
+$chart_17: #E03BB9;
+$chart_18: #89B5C9;
+$chart_19: #0068FF;
