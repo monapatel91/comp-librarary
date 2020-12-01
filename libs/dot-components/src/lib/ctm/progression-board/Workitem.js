@@ -29,8 +29,28 @@ const Workitem = (props) => {
 };
 
 class SmartWorkitem extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.selectWorkitem = this.selectWorkitem.bind(this);
+    this.deSelectWorkitem = this.deSelectWorkitem.bind(this);
+    this.state = {isSelected: false};
+  }
+
+  selectWorkitem() {
+    this.setState({isSelected: true});
+  }
+
+  deSelectWorkitem() {
+    this.setState({isSelected: false});
+  }
+
   render() {
-    return <Workitem {...this.props} />;
+    console.log(this.isSelected);
+    return <Workitem {...this.props}
+                     selectWorkitem={this.selectWorkitem}
+                     deSelectWorkitem={this.deSelectWorkitem}
+                     isSelected={this.state.isSelected}
+    />;
   }
 }
 
