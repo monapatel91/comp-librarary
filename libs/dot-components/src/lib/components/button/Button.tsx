@@ -4,18 +4,7 @@ import { DotIcon } from '../icon/Icon';
 
 import './Button.scss';
 
-export type ButtonType =
-  | 'destructive'
-  | 'primary'
-  | 'secondary'
-  | 'transparent';
-
-export const sbButtonTypeOptions = {
-  Destructive: 'destructive',
-  Primary: 'primary',
-  Secondary: 'secondary',
-  Transparent: 'transparent',
-};
+export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
 
 export interface ButtonProps {
   /** Space delimited CSS classes to be attributed to the button. */
@@ -34,7 +23,7 @@ export interface ButtonProps {
   iconId?: string;
   /** Help text to be displayed on hover */
   titleTooltip?: string;
-  /** primary, destructive, secondary, or transparent. */
+  /** The type of button */
   type: ButtonType;
 }
 
@@ -61,11 +50,11 @@ export const DotButton = ({
       color = 'primary';
       variant = 'contained';
       break;
-    case 'secondary':
+    case 'outlined':
       color = displayText ? 'primary' : 'default';
       variant = 'outlined';
       break;
-    case 'transparent':
+    case 'text':
       color = displayText ? 'primary' : 'default';
       variant = 'text';
       break;
