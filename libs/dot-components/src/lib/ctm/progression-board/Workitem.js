@@ -45,7 +45,6 @@ class SmartWorkitem extends React.Component {
   }
 
   render() {
-    console.log(this.isSelected);
     return <Workitem {...this.props}
                      selectWorkitem={this.selectWorkitem}
                      deSelectWorkitem={this.deSelectWorkitem}
