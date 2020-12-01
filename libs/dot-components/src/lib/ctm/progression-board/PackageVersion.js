@@ -1,21 +1,27 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import RevisionRangeLabel from './RevisionRangeLabel';
 import QualityCorner from './QualityCorner';
 import PackageVersionLabel from './PackageVersionLabel';
 import Workitem from './Workitem';
-import { Card } from './Card';
-import { CardIndicators } from './Card';
+import {Card, CardIndicators} from './Card';
 // import { getProgressionCardIndicatorData } from '../../../../../ajax';
-import { getMostSignificantLabel } from './duration';
+import {getMostSignificantLabel} from './duration';
 
 // this is temporary code.
 // #TODO use new api
-const getProgressionCardIndicatorData = () => {
-    const result =  new Promise((resolve, reject) => {
-    resolve({"progression_id" : "591afccd2979935b172328f8","package_id":"578fc04f29799325c589a729","revision":100,"phase_name":"Acceptance Test","arrival_dt":"2017-09-23T15:54:30.566000"});
+// hover data?  continuum uiMethods.py
+const getProgressionCardIndicatorData = (params) => {
+  const result = new Promise((resolve, reject) => {
+      resolve({
+        "progression_id": "591afccd2979935b172328f8",
+        "package_id": "578fc04f29799325c589a729",
+        "revision": 100,
+        "phase_name": "Acceptance Test",
+        "arrival_dt": "2017-09-23T15:54:30.566000"
+      });
     }
-    );
-    return result;
+  );
+  return result;
 };
 
 const isTruthy = (x) => !!x;
@@ -53,7 +59,7 @@ class ValidPackage extends Component {
         Math.floor(
           (indicatorData.activity_start_count /
             indicatorData.total_activity_count) *
-            100
+          100
         ) || 0;
       this.setState(() => {
         return {
@@ -84,7 +90,7 @@ class ValidPackage extends Component {
       riskyFileLabel,
       unManagedCommitLabel,
       revurl,
-      revisionRangeLabel,
+      revisionRangeLabel=`${this.props.rev_from} - ${this.props.rev_to}`,
       version,
       package_id,
       package_name,
@@ -92,23 +98,23 @@ class ValidPackage extends Component {
       control_failed,
       activity_failed,
     } = this.props;
-    const { timeEstimateLabel, activityCompletionPercentageLabel } = this.state;
+    const {timeEstimateLabel, activityCompletionPercentageLabel} = this.state;
 
     const indicators = [
       control_failed || activity_failed
         ? {
-            id: 'drip-alert',
-            label: 'Acitivity or Control failed',
-            url: this.props.revurl,
-          }
+          id: 'drip-alert',
+          label: 'Acitivity or Control failed',
+          url: this.props.revurl,
+        }
         : null,
-      hasRisky ? { id: 'drip-alert', label: riskyFileLabel } : null,
+      hasRisky ? {id: 'drip-alert', label: riskyFileLabel} : null,
       pending_activity
         ? {
-            id: 'drip-hourglass',
-            label: 'Pending Manual Activity',
-            url: this.props.revurl,
-          }
+          id: 'drip-hourglass',
+          label: 'Pending Manual Activity',
+          url: this.props.revurl,
+        }
         : null,
       {
         id: 'drip-forecast',
@@ -125,41 +131,41 @@ class ValidPackage extends Component {
     const qcicons = [
       showDashboardLink
         ? {
-            id: 'drip-info',
-            label: 'Jump to Dashboard',
-            url: dashboardUrl,
-          }
+          id: 'drip-info',
+          label: 'Jump to Dashboard',
+          url: dashboardUrl,
+        }
         : null,
       hasUnmanaged
-        ? { id: 'drip-icon-rogue-commits', label: unManagedCommitLabel }
+        ? {id: 'drip-icon-rogue-commits', label: unManagedCommitLabel}
         : null,
       hasSeverity1
         ? {
-            id: 'drip-locked',
-            label: severity1Label,
-            url: severity1Url,
-          }
+          id: 'drip-locked',
+          label: severity1Label,
+          url: severity1Url,
+        }
         : null,
       hasFailedTests
         ? {
-            id: 'drip-thumbs-down',
-            label: failedTestsLabel,
-            url: failedTestsUrl,
-          }
+          id: 'drip-thumbs-down',
+          label: failedTestsLabel,
+          url: failedTestsUrl,
+        }
         : null,
       hasLowCoverage
         ? {
-            id: 'drip-checked-off',
-            label: coverageLabel,
-            url: coverageUrl,
-          }
+          id: 'drip-checked-off',
+          label: coverageLabel,
+          url: coverageUrl,
+        }
         : null,
     ].filter(isTruthy);
 
     return (
       <Card
         url={this.props.revurl}
-        indicators={<CardIndicators indicators={indicators} />}
+        indicators={<CardIndicators indicators={indicators}/>}
         bottomLeft={
           <QualityCorner
             qcicons={qcicons}
@@ -168,6 +174,7 @@ class ValidPackage extends Component {
             package_id={package_id}
           />
         }
+        title={`${this.props.fullversion_from} - ${this.props.fullversion_to}`}
         bottomRight={
           <RevisionRangeLabel
             revurl={revurl}
@@ -177,7 +184,7 @@ class ValidPackage extends Component {
         {...this.props}
       >
         <div className="title">
-          <PackageVersionLabel version={version} package_id={package_id} />
+          <PackageVersionLabel version={version} package_id={package_id}/>
         </div>
         <ul className="workitems">
           {this.props.workitems.map((workitem, i) => (

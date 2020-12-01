@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import 'board';
 @import 'ctm_palette';
 
 .card-container {
@@ -8,11 +9,10 @@
 .card {
   min-width: 110px;
   font-size: 0.857em;
-  border: 1px solid transparent;
+  border: 1px solid $card_border;
   position: relative;
   border-radius: $globalRadius;
   background: $card_background;
-  border-color: $card_border;
   box-shadow: $card_box_shadow;
 
   .identity {
@@ -120,10 +120,9 @@
             position: absolute;
             top: 20px;
             right: 0;
-            border: 1px solid transparent;
+            border: 1px solid $card_border;
             min-width: 100px;
             background: $layer_three;
-            border-color: $card_border;
 
             .action-menu-item {
               cursor: pointer;
@@ -241,7 +240,7 @@
     background: transparent;
     font-size: 12px;
     text-align: center;
-    border: 0 solid $currentColor;
+    border: 0 solid currentColor;
     font-weight: $boldFont;
     border-radius: 50%;
     line-height: 21px;
@@ -258,8 +257,8 @@
   width: 20px;
   cursor: pointer;
   color: $heather;
-  background-color: $currentColor;
-  border: 1px solid $currentColor;
+  background-color: currentColor;
+  border: 1px solid currentColor;
   border-radius: 50%;
   transition: 0.2s all linear;
 
