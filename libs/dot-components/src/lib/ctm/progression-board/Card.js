@@ -1,5 +1,5 @@
 import React from 'react';
-import SvgIcon from './SvgIcon';
+import {DotIcon} from "../../components/icon/Icon";
 
 export const CardIdentifier = ({ url, title, titleTooltip }) => (
   <div className="identity-left left">
@@ -16,7 +16,7 @@ export const CardIndicator = ({ id, label = '', onHover, url }) => {
   return (
     <div data-cooltip={label} className={classes} onMouseEnter={onHover}>
       <a href={url}>
-        <SvgIcon id={id} className="small" />
+        <DotIcon icon={id} fontSize={"small"} />
       </a>
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './app.scss';
 
-import {DotButton, DotIcon, ProgressionBoard} from '@digital-ai/dot-components';
+import {DotButton, DotIcon, ProgressionBoardHydrator} from '@digital-ai/dot-components';
 
 const data = [{
   name: "Build",
@@ -1030,7 +1030,7 @@ export const App = () => {
       />
       <DotIcon icon="script"/>
       <div>
-        <ProgressionBoard phases={data}/>
+        <ProgressionBoardHydrator phases={data}/>
       </div>
     </div>
 

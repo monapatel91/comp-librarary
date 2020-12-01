@@ -103,15 +103,15 @@ class ValidPackage extends Component {
     const indicators = [
       control_failed || activity_failed
         ? {
-          id: 'drip-alert',
+          id: 'error-outlines',
           label: 'Acitivity or Control failed',
           url: this.props.revurl,
         }
         : null,
-      hasRisky ? {id: 'drip-alert', label: riskyFileLabel} : null,
+      hasRisky ? {id: 'error-outlines', label: riskyFileLabel} : null,
       pending_activity
         ? {
-          id: 'drip-hourglass',
+          id: 'pending-clock',
           label: 'Pending Manual Activity',
           url: this.props.revurl,
         }
@@ -122,7 +122,7 @@ class ValidPackage extends Component {
         onHover: this.hoverHandler,
       },
       {
-        id: 'drip-checked',
+        id: 'check-solid',
         label: activityCompletionPercentageLabel,
         onHover: this.hoverHandler,
       },
@@ -131,24 +131,24 @@ class ValidPackage extends Component {
     const qcicons = [
       showDashboardLink
         ? {
-          id: 'drip-info',
+          id: 'info-solid',
           label: 'Jump to Dashboard',
           url: dashboardUrl,
         }
         : null,
       hasUnmanaged
-        ? {id: 'drip-icon-rogue-commits', label: unManagedCommitLabel}
+        ? {id: 'rogue-commits', label: unManagedCommitLabel}
         : null,
       hasSeverity1
         ? {
-          id: 'drip-locked',
+          id: 'lock',
           label: severity1Label,
           url: severity1Url,
         }
         : null,
       hasFailedTests
         ? {
-          id: 'drip-thumbs-down',
+          id: 'thumbs-down',
           label: failedTestsLabel,
           url: failedTestsUrl,
         }

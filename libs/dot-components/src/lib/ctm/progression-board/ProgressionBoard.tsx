@@ -1,15 +1,30 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Phase from './Phase';
-import { BoardHeaders } from './BoardHeaders';
+import {BoardHeaders} from './BoardHeaders';
 
 import './ProgressionBoard.scss'
+import {hydratePhases} from "./hydrate_phases";
 
-export interface  ProgressionBoardProps {
+export interface ProgressionBoardProps {
   phases: any
 }
 
 export interface SwimLaneProps {
   package: any
+}
+
+
+export class ProgressionBoardHydrator extends Component<ProgressionBoardProps> {
+  water = () => {
+    const phases = hydratePhases(this.props.phases);
+    return phases;
+  }
+
+  render() {
+    return (
+        <ProgressionBoard phases={this.water()}/>
+    );
+  }
 }
 
 export class ProgressionBoard extends Component<ProgressionBoardProps> {
@@ -67,10 +82,10 @@ export class ProgressionBoard extends Component<ProgressionBoardProps> {
     const phaseNames = this.props.phases.map((phase) => phase.name);
     return (
       <div id="in-progress" className="columns-wrapper">
-        <BoardHeaders headers={phaseNames} />
+        <BoardHeaders headers={phaseNames}/>
         <div className="progression">
           {packages.map((pkg) => (
-            <SwimLane key={pkg.package_id} package={pkg} />
+            <SwimLane key={pkg.package_id} package={pkg}/>
           ))}
         </div>
       </div>
