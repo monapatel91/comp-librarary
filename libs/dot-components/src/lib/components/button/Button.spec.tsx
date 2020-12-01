@@ -42,7 +42,7 @@ describe('DotButton', () => {
         onClick={() => {
           console.log('test click');
         }}
-        type="secondary"
+        type="outlined"
       />
     );
     expect(screen.getByRole('button')).toHaveClass('MuiButton-outlinedPrimary');
@@ -55,7 +55,7 @@ describe('DotButton', () => {
         onClick={() => {
           console.log('test click');
         }}
-        type="transparent"
+        type="text"
       />
     );
     expect(screen.getByRole('button')).toHaveClass('MuiButton-textPrimary');
@@ -93,7 +93,7 @@ describe('DotButton', () => {
         onClick={() => {
           console.log('test click');
         }}
-        type="secondary"
+        type="outlined"
         iconId="save"
       />
     );
@@ -108,7 +108,7 @@ describe('DotButton', () => {
         onClick={() => {
           console.log('test click');
         }}
-        type="secondary"
+        type="outlined"
       />
     );
     expect(screen.queryByText('save')).toBeNull();
