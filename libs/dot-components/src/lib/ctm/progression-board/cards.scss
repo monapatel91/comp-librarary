@@ -79,16 +79,17 @@
     .identity-right {
       text-align: right;
       border-radius: 0 0 0 24px;
-      padding-left: 12px;
+      // padding-left: 12px;
       position: relative;
 
       .actions-container {
         margin: auto;
-        text-align: center;
+        text-align: left;
         display: flex;
         justify-content: flex-end;
         min-width: 20px;
         height: 20px;
+        padding-right: 10px;
 
         .action {
           height: 100%;
@@ -102,17 +103,10 @@
             height: 100%;
             width: 100%;
             display: block;
-            vertical-align: baseline;
 
             svg {
               width: 12px;
               height: 12px;
-            }
-
-            &.drip-chevron svg {
-              cursor: pointer;
-              position: relative;
-              transform: rotate(90deg);
             }
           }
 
