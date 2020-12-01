@@ -18,10 +18,12 @@ export interface ButtonProps {
   displayText: string;
   /** Give the button focus */
   focused?: boolean;
-  /** Event callback */
-  onClick: (event: MouseEvent<Element>) => void;
   /** The icon to display on the button */
   iconId?: string;
+  /** Is this a submit button */
+  isSubmit?: boolean;
+  /** Event callback */
+  onClick: (event: MouseEvent<Element>) => void;
   /** The size of the button */
   size?: ButtonSize;
   /** Help text to be displayed on hover */
@@ -38,6 +40,7 @@ export const DotButton = ({
   disabled = false,
   focused = false,
   iconId,
+  isSubmit = false,
   onClick,
   size = 'medium',
   titleTooltip,
@@ -76,6 +79,7 @@ export const DotButton = ({
       title={titleTooltip}
       variant={variant}
       size={size}
+      type={isSubmit ? 'submit' : 'button'}
     >
       {displayText}
     </Button>
