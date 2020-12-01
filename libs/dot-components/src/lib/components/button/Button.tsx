@@ -5,6 +5,7 @@ import { DotIcon } from '../icon/Icon';
 import './Button.scss';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
 export interface ButtonProps {
   /** Space delimited CSS classes to be attributed to the button. */
@@ -21,6 +22,8 @@ export interface ButtonProps {
   onClick: (event: MouseEvent<Element>) => void;
   /** The icon to display on the button */
   iconId?: string;
+  /** The size of the button */
+  size?: ButtonSize;
   /** Help text to be displayed on hover */
   titleTooltip?: string;
   /** The type of button */
@@ -36,6 +39,7 @@ export const DotButton = ({
   focused = false,
   iconId,
   onClick,
+  size = 'medium',
   titleTooltip,
   type,
 }: ButtonProps) => {
@@ -71,6 +75,7 @@ export const DotButton = ({
       startIcon={iconId ? <DotIcon icon={iconId} /> : undefined}
       title={titleTooltip}
       variant={variant}
+      size={size}
     >
       {displayText}
     </Button>
