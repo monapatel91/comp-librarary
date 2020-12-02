@@ -15,7 +15,7 @@ export interface ButtonProps {
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** Button label */
-  displayText: string;
+  label: string;
   /** Give the button focus */
   focused?: boolean;
   /** The icon to display on the button */
@@ -36,7 +36,7 @@ export interface ButtonProps {
 export const DotButton = ({
   classes,
   'data-testid': dataTestId,
-  displayText,
+  label,
   disabled = false,
   focused = false,
   iconId,
@@ -58,11 +58,11 @@ export const DotButton = ({
       variant = 'contained';
       break;
     case 'outlined':
-      color = displayText ? 'primary' : 'default';
+      color = label ? 'primary' : 'default';
       variant = 'outlined';
       break;
     case 'text':
-      color = displayText ? 'primary' : 'default';
+      color = label ? 'primary' : 'default';
       variant = 'text';
       break;
   }
@@ -81,7 +81,7 @@ export const DotButton = ({
       size={size}
       type={isSubmit ? 'submit' : 'button'}
     >
-      {displayText}
+      {label}
     </Button>
   );
 };

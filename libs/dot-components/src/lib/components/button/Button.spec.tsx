@@ -8,7 +8,7 @@ describe('DotButton', () => {
   it('should render a primary button', () => {
     render(
       <DotButton
-        displayText="Test"
+        label="Test"
         onClick={() => {
           console.log('test click');
         }}
@@ -23,7 +23,7 @@ describe('DotButton', () => {
   it('should render a destructive button', () => {
     render(
       <DotButton
-        displayText="Test"
+        label="Test"
         onClick={() => {
           console.log('test click');
         }}
@@ -38,7 +38,7 @@ describe('DotButton', () => {
   it('should render a secondary button', () => {
     render(
       <DotButton
-        displayText="Test"
+        label="Test"
         onClick={() => {
           console.log('test click');
         }}
@@ -51,7 +51,7 @@ describe('DotButton', () => {
   it('should render a transparent button', () => {
     render(
       <DotButton
-        displayText="Test"
+        label="Test"
         onClick={() => {
           console.log('test click');
         }}
@@ -63,9 +63,7 @@ describe('DotButton', () => {
 
   it('should allow me to click the button', () => {
     const onClick = jest.fn();
-    render(
-      <DotButton displayText="Test" onClick={onClick} type="destructive" />
-    );
+    render(<DotButton label="Test" onClick={onClick} type="destructive" />);
     const myButton = screen.getByRole('button');
     userEvent.click(myButton);
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -75,7 +73,7 @@ describe('DotButton', () => {
     const onClick = jest.fn();
     render(
       <DotButton
-        displayText="Test"
+        label="Test"
         onClick={onClick}
         type="destructive"
         disabled={true}
@@ -89,7 +87,7 @@ describe('DotButton', () => {
   xit('should render an icon button', () => {
     render(
       <DotButton
-        displayText="Test"
+        label="Test"
         onClick={() => {
           console.log('test click');
         }}
@@ -104,7 +102,7 @@ describe('DotButton', () => {
   xit('should not render an icon button if no icon is provided', () => {
     render(
       <DotButton
-        displayText="Test"
+        label="Test"
         onClick={() => {
           console.log('test click');
         }}
