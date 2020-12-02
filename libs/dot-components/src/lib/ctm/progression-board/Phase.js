@@ -14,7 +14,7 @@ export default (props) => {
   return (
     <li className="board-column">
       {packageVersions.map((packageVersion, i) => (
-        <PackageDetails {...packageVersion} key={i} />
+        <PackageDetails {...packageVersion} key={i} selectWorkitemProps={props.selectWorkitemProps}/>
       ))}
     </li>
   );

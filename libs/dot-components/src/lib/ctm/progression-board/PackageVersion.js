@@ -4,7 +4,6 @@ import QualityCorner from './QualityCorner';
 import PackageVersionLabel from './PackageVersionLabel';
 import Workitem from './Workitem';
 import {Card, CardIndicators} from './Card';
-// import { getProgressionCardIndicatorData } from '../../../../../ajax';
 import {getMostSignificantLabel} from './duration';
 
 // this is temporary code.
@@ -188,7 +187,7 @@ class ValidPackage extends Component {
         </div>
         <ul className="workitems">
           {this.props.workitems.map((workitem, i) => (
-            <Workitem key={i} {...workitem} />
+            <Workitem key={i} {...workitem} {...this.props.selectWorkitemProps}/>
           ))}
           {this.props.workitems.length > 0 ? (
             <li>{this.props.workitems.length}</li>

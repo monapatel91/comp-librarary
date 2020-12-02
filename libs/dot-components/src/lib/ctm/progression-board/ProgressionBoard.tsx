@@ -11,7 +11,15 @@ export interface ProgressionBoardProps {
 
 export interface SwimLaneProps {
   package: any
+  selectWorkitemProps: {
+    selectWorkitem: (id) => void, 
+    deSelectWorkitem: (id) => void, 
+    selectedWorkitem: string,
+  }
 }
+ export interface pbState {
+  selectedWorkitem: ''
+ }
 
 
 export class ProgressionBoardHydrator extends Component<ProgressionBoardProps> {
@@ -27,7 +35,22 @@ export class ProgressionBoardHydrator extends Component<ProgressionBoardProps> {
   }
 }
 
-export class ProgressionBoard extends Component<ProgressionBoardProps> {
+export class ProgressionBoard extends Component<ProgressionBoardProps, pbState> {
+  constructor(props, state) {
+    super(props,state);
+    this.state = {selectedWorkitem: ''}
+  }
+
+  selectWorkitem = (id) => {
+    this.setState({selectedWorkitem: id});
+  }
+
+  deSelectWorkitem = () => {
+    this.setState({selectedWorkitem: ''});
+  }
+
+
+
 
   getPackages = () => {
     return (
@@ -80,12 +103,13 @@ export class ProgressionBoard extends Component<ProgressionBoardProps> {
   render() {
     const packages = this.getPackages();
     const phaseNames = this.props.phases.map((phase) => phase.name);
+    const selectWorkitemProps = {selectWorkitem: this.selectWorkitem, deSelectWorkitem: this.deSelectWorkitem, selectedWorkitem: this.state.selectedWorkitem}
     return (
       <div id="in-progress" className="columns-wrapper">
         <BoardHeaders headers={phaseNames}/>
         <div className="progression">
           {packages.map((pkg) => (
-            <SwimLane key={pkg.package_id} package={pkg}/>
+            <SwimLane key={pkg.package_id} package={pkg} selectWorkitemProps={selectWorkitemProps}/>
           ))}
         </div>
       </div>
@@ -94,6 +118,7 @@ export class ProgressionBoard extends Component<ProgressionBoardProps> {
 }
 
 class SwimLane extends Component<SwimLaneProps> {
+  
 
   render() {
     const pkg = this.props.package;
@@ -109,7 +134,7 @@ class SwimLane extends Component<SwimLaneProps> {
         </div>
         <ul id="phases" className="board phases">
           {pkg.phases.map((phase, i) => (
-            <Phase key={i} {...phase} />
+            <Phase key={i} {...phase} selectWorkitemProps={this.props.selectWorkitemProps}/>
           ))}
         </ul>
       </div>

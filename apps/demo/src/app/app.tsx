@@ -61,7 +61,7 @@ const data = [{
             isSplit: true,
           },
           {
-            _id: "59f248b3297993061cb9ab50",
+            _id: "59f196572979930319b9ab50",
             change_count: 3,
             external_id: "10298",
             external_key: "API-99",
@@ -1021,25 +1021,25 @@ const data = [{
 ];
 
 export const App = () => {
-  const [phases, setPhases] = useState();
+  // const [phases, setPhases] = useState();
 
-  useEffect(() => {
-    if (!phases) {
-      getData();
-    }
-  });
+  // useEffect(() => {
+  //   if (!phases) {
+  //     getData();
+  //   }
+  // });
 
-  const getData = async () => {
-    const response = await fetch('http://localhost:8080/api/get_progression_details?progression=Ecommerce%20App&output_format=json', {
-    method:'GET',
-    headers: {
-      'Authorization': 'Token 559589e35fb284021f6aa2ca'
-    }
-    })
-
-    const json = await response.json()
-    setPhases(json.Response.phases);
-  }
+  // const getData = async () => {
+  //   const response = await fetch('http://localhost:8080/api/get_progression_details?progression=Ecommerce%20App&output_format=json', {
+  //   method:'GET',
+  //   headers: {
+  //     'Authorization': 'Token 559589e35fb284021f6aa2ca'
+  //   }
+  //   })
+  
+  //   const json = await response.json()
+  //   setPhases(json.Response.phases);
+  // }
 
   return (
     <div>
@@ -1050,7 +1050,7 @@ export const App = () => {
       />
       <DotIcon icon="script"/>
       <div>
-        <ProgressionBoardHydrator phases={phases}/>
+        <ProgressionBoardHydrator phases={data}/>
       </div>
     </div>
 
