@@ -6,7 +6,8 @@ import './ProgressionBoard.scss'
 import {hydratePhases} from "./hydrate_phases";
 
 export interface ProgressionBoardProps {
-  phases: any
+  phases: any,
+  baseUrl: string,
 }
 
 export interface SwimLaneProps {
@@ -16,6 +17,7 @@ export interface SwimLaneProps {
     deSelectWorkitem: (id) => void, 
     selectedWorkitem: string,
   }
+  baseUrl: string,
 }
  export interface pbState {
   selectedWorkitem: ''
@@ -30,7 +32,7 @@ export class ProgressionBoardHydrator extends Component<ProgressionBoardProps> {
 
   render() {
     return (
-        <ProgressionBoard phases={this.water()}/>
+        <ProgressionBoard phases={this.water()} baseUrl={this.props.baseUrl}/>
     );
   }
 }
@@ -103,13 +105,14 @@ export class ProgressionBoard extends Component<ProgressionBoardProps, pbState> 
   render() {
     const packages = this.getPackages();
     const phaseNames = this.props.phases.map((phase) => phase.name);
-    const selectWorkitemProps = {selectWorkitem: this.selectWorkitem, deSelectWorkitem: this.deSelectWorkitem, selectedWorkitem: this.state.selectedWorkitem}
+    const selectWorkitemProps = {selectWorkitem: this.selectWorkitem, deSelectWorkitem: this.deSelectWorkitem, selectedWorkitem: this.state.selectedWorkitem};
+    const baseUrl = this.props.baseUrl;
     return (
       <div id="in-progress" className="columns-wrapper">
         <BoardHeaders headers={phaseNames}/>
         <div className="progression">
           {packages.map((pkg) => (
-            <SwimLane key={pkg.package_id} package={pkg} selectWorkitemProps={selectWorkitemProps}/>
+            <SwimLane key={pkg.package_id} package={pkg} selectWorkitemProps={selectWorkitemProps} baseUrl={baseUrl}/>
           ))}
         </div>
       </div>
@@ -134,7 +137,7 @@ class SwimLane extends Component<SwimLaneProps> {
         </div>
         <ul id="phases" className="board phases">
           {pkg.phases.map((phase, i) => (
-            <Phase key={i} {...phase} selectWorkitemProps={this.props.selectWorkitemProps}/>
+            <Phase key={i} {...phase} selectWorkitemProps={this.props.selectWorkitemProps} baseUrl={this.props.baseUrl}/>
           ))}
         </ul>
       </div>

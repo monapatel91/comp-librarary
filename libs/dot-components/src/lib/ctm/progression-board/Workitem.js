@@ -8,7 +8,8 @@ const Workitem = (props) => {
     isSplit,
     selectWorkitem,
     deSelectWorkitem,
-    selectedWorkitem
+    selectedWorkitem,
+    baseUrl,
   } = props;
 
   const isEmphaziedClass = isEmphazied ? 'emphasized' : '';
@@ -21,14 +22,15 @@ const Workitem = (props) => {
   const hoevrThing = () => {
     selectWorkitem(_id);
   };
-
+  const fullUrl = baseUrl+url;
   return (
     <li
       className={classes}
-      onClick={() => (location.href = url)}
+      onClick={
+        () => window.open(fullUrl, "_blank")
+      }
       onMouseEnter={hoevrThing}
       onMouseLeave={deSelectWorkitem}
-
     />
   );
 };

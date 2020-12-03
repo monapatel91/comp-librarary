@@ -1050,7 +1050,7 @@ export const App = () => {
       />
       <DotIcon icon="script"/>
       <div>
-        <ProgressionBoardHydrator phases={data}/>
+        <ProgressionBoardHydrator phases={data} baseUrl='http://localhost:8080'/>
       </div>
     </div>
 

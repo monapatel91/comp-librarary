@@ -4,7 +4,7 @@ import {DotIcon} from "../../components/icon/Icon";
 export const CardIdentifier = ({ url, title, titleTooltip }) => (
   <div className="identity-left left">
     <div className="identifier">
-      <a href={url} data-cooltip={titleTooltip} className="tooltip-bottom">
+      <a href={url} data-cooltip={titleTooltip} className="tooltip-bottom" target="_blank" rel='noreferrer'>
         {title}
       </a>
     </div>

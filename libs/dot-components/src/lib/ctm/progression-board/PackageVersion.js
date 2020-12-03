@@ -160,10 +160,9 @@ class ValidPackage extends Component {
         }
         : null,
     ].filter(isTruthy);
-
     return (
       <Card
-        url={this.props.revurl}
+        url={this.props.baseUrl+this.props.revurl}
         indicators={<CardIndicators indicators={indicators}/>}
         bottomLeft={
           <QualityCorner
@@ -173,9 +172,9 @@ class ValidPackage extends Component {
             package_id={package_id}
           />
         }
-        title={`${this.props.fullversion_from} - ${this.props.fullversion_to}`}
         bottomRight={
           <RevisionRangeLabel
+            baseUrl={this.props.baseUrl}
             revurl={revurl}
             revisionRangeLabel={revisionRangeLabel}
           />
@@ -183,11 +182,11 @@ class ValidPackage extends Component {
         {...this.props}
       >
         <div className="title">
-          <PackageVersionLabel version={version} package_id={package_id}/>
+          <PackageVersionLabel version={version} package_id={package_id} baseUrl={this.props.baseUrl}/>
         </div>
         <ul className="workitems">
           {this.props.workitems.map((workitem, i) => (
-            <Workitem key={i} {...workitem} {...this.props.selectWorkitemProps}/>
+            <Workitem key={i} {...workitem} {...this.props.selectWorkitemProps} baseUrl={this.props.baseUrl}/>
           ))}
           {this.props.workitems.length > 0 ? (
             <li>{this.props.workitems.length}</li>
