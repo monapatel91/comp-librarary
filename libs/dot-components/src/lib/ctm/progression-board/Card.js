@@ -16,7 +16,7 @@ export const CardIndicator = ({ id, label = '', onHover, url }) => {
   return (
     <div data-cooltip={label} className={classes} onMouseEnter={onHover}>
       <a href={url}>
-        <DotIcon icon={id} fontSize={"small"} />
+        <DotIcon icon={id} fontSize={"small"} title={label}/>
       </a>
     </div>
   );

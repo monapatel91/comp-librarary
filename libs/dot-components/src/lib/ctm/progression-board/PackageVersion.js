@@ -116,7 +116,7 @@ class ValidPackage extends Component {
         }
         : null,
       {
-        id: 'drip-forecast',
+        id: 'file-dotted',
         label: timeEstimateLabel,
         onHover: this.hoverHandler,
       },
@@ -154,7 +154,7 @@ class ValidPackage extends Component {
         : null,
       hasLowCoverage
         ? {
-          id: 'drip-checked-off',
+          id: 'error-solid',
           label: coverageLabel,
           url: coverageUrl,
         }
