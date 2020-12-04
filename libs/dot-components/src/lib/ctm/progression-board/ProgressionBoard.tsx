@@ -13,8 +13,8 @@ export interface ProgressionBoardProps {
 export interface SwimLaneProps {
   package: any
   selectWorkitemProps: {
-    selectWorkitem: (id) => void, 
-    deSelectWorkitem: (id) => void, 
+    selectWorkitem: (id) => void,
+    deSelectWorkitem: (id) => void,
     selectedWorkitem: string,
   }
   baseUrl: string,
@@ -24,7 +24,7 @@ export interface SwimLaneProps {
  }
 
 
-export class ProgressionBoardHydrator extends Component<ProgressionBoardProps> {
+export class DotProgressionBoard extends Component<ProgressionBoardProps> {
   water = () => {
     const phases = hydratePhases(this.props.phases);
     return phases;
@@ -121,7 +121,7 @@ export class ProgressionBoard extends Component<ProgressionBoardProps, pbState> 
 }
 
 class SwimLane extends Component<SwimLaneProps> {
-  
+
 
   render() {
     const pkg = this.props.package;

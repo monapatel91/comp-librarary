@@ -1,5 +1,6 @@
 import React from 'react';
 import {DotIcon} from "../../components/icon/Icon";
+import PackageVersionLabel from "./PackageVersionLabel";
 
 export const CardIdentifier = ({ url, title, titleTooltip }) => (
   <div className="identity-left left">
@@ -11,22 +12,31 @@ export const CardIdentifier = ({ url, title, titleTooltip }) => (
   </div>
 );
 
-export const CardIndicator = ({ id, label = '', onHover, url }) => {
+export const CardIndicator = ({ id, label = '', onHover, url, baseUrl }) => {
   const classes = `action tooltip-bottom ${id}`;
-  return (
-    <div data-cooltip={label} className={classes} onMouseEnter={onHover}>
-      <a href={url}>
-        <DotIcon icon={id} fontSize={"small"} title={label}/>
-      </a>
-    </div>
-  );
+  if (url === undefined) {
+    return (
+      <div data-cooltip={label} className={classes} onMouseEnter={onHover}>
+          <DotIcon icon={id} fontSize="small" title={label}/>
+      </div>
+    );
+  } else {
+    const fullUrl = baseUrl + url;
+    return (
+      <div data-cooltip={label} className={classes} onMouseEnter={onHover}>
+        <a href={fullUrl} target='_blank' rel='noreferrer'>
+          <DotIcon icon={id} fontSize="small" title={label}/>
+        </a>
+      </div>
+    );
+  }
 };
 
 export const CardIndicators = (props) => (
   <div className="identity-right right">
     <div className="actions-container">
       {(props.indicators || []).map((indicator, i) => (
-        <CardIndicator key={i} {...indicator} />
+        <CardIndicator key={i} {...indicator} baseUrl={props.baseUrl} />
       ))}
       {props.actionMenu}
     </div>

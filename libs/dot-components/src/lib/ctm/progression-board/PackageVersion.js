@@ -163,7 +163,7 @@ class ValidPackage extends Component {
     return (
       <Card
         url={this.props.baseUrl+this.props.revurl}
-        indicators={<CardIndicators indicators={indicators}/>}
+        indicators={<CardIndicators indicators={indicators} baseUrl={this.props.baseUrl}/>}
         bottomLeft={
           <QualityCorner
             qcicons={qcicons}

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import {Meta, Story} from '@storybook/react/types-6-0';
 
-import './app.scss';
+import {DotProgressionBoard, ProgressionBoardProps} from './ProgressionBoard';
 
-import {DotButton, DotIcon, DotProgressionBoard} from '@digital-ai/dot-components';
-
-const data = [{
-  name: "Build",
-  packageVersions: [],
-  code_complete: false,
-},
+const phasesData = [
+  {
+    name: "Build",
+    packageVersions: [],
+    code_complete: false,
+  },
   {
     name: "Acceptance Test",
     packageVersions: [
@@ -1020,41 +1020,13 @@ const data = [{
   },
 ];
 
-export const App = () => {
-  // const [phases, setPhases] = useState();
+export default {
+  title: 'Components/ProgressionBoard',
+  component: DotProgressionBoard,
+  argTypes: {
+    phases: {defaultValue: phasesData},
+    baseUrl: {defaultValue: 'http://localhost:8080'}
+  },
+} as Meta;
 
-  // useEffect(() => {
-  //   if (!phases) {
-  //     getData();
-  //   }
-  // });
-
-  // const getData = async () => {
-  //   const response = await fetch('http://localhost:8080/api/get_progression_details?progression=Ecommerce%20App&output_format=json', {
-  //   method:'GET',
-  //   headers: {
-  //     'Authorization': 'Token 559589e35fb284021f6aa2ca'
-  //   }
-  //   })
-
-  //   const json = await response.json()
-  //   setPhases(json.Response.phases);
-  // }
-
-  return (
-    <div>
-      <DotButton
-        label="Click"
-        onClick={() => alert('Button clicked!')}
-        type="primary"
-      />
-      <DotIcon icon="script"/>
-      <div>
-        <DotProgressionBoard phases={data} baseUrl='http://localhost:8080'/>
-      </div>
-    </div>
-
-  );
-};
-
-export default App;
+export const Default: Story<ProgressionBoardProps> = (args) => <DotProgressionBoard {...args} />;
