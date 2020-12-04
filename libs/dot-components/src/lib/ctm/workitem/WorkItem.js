@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Workitem = (props) => {
+export const WorkItem = (props) => {
   const {
     _id,
     value_goal,
@@ -16,13 +16,12 @@ const Workitem = (props) => {
   const splitClass = isSplit ? 'split' : '';
   const hoverClass = _id === selectedWorkitem ? 'hover' : '';
   const classes = `${value_goal} ${isEmphaziedClass} ${splitClass} ${hoverClass}`;
-
-  const url = `/flow/workitem_detail?id=${_id}`;
+  const fullUrl = baseUrl + `/flow/workitem_detail?id=${_id}`;
 
   const hoevrThing = () => {
     selectWorkitem(_id);
   };
-  const fullUrl = baseUrl+url;
+
   return (
     <li
       className={classes}
@@ -34,5 +33,3 @@ const Workitem = (props) => {
     />
   );
 };
-
-export default Workitem;

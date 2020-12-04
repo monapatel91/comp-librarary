@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import RevisionRangeLabel from './RevisionRangeLabel';
-import QualityCorner from './QualityCorner';
+import RevisionRangeLabel from '../ctm-card/RevisionRangeLabel';
+import QualityCorner from '../ctm-card/QualityCorner';
 import PackageVersionLabel from './PackageVersionLabel';
-import Workitem from './Workitem';
-import {Card, CardIndicators} from './Card';
+import {WorkItem} from '../workitem/WorkItem';
+import {Card, CardIndicators} from '../ctm-card/Card';
 import {getMostSignificantLabel} from './duration';
 
 // this is temporary code.
@@ -89,7 +89,7 @@ class ValidPackage extends Component {
       riskyFileLabel,
       unManagedCommitLabel,
       revurl,
-      revisionRangeLabel=`${this.props.rev_from} - ${this.props.rev_to}`,
+      revisionRangeLabel = `${this.props.rev_from} - ${this.props.rev_to}`,
       version,
       package_id,
       package_name,
@@ -162,7 +162,7 @@ class ValidPackage extends Component {
     ].filter(isTruthy);
     return (
       <Card
-        url={this.props.baseUrl+this.props.revurl}
+        url={this.props.baseUrl + this.props.revurl}
         indicators={<CardIndicators indicators={indicators} baseUrl={this.props.baseUrl}/>}
         bottomLeft={
           <QualityCorner
@@ -186,7 +186,7 @@ class ValidPackage extends Component {
         </div>
         <ul className="workitems">
           {this.props.workitems.map((workitem, i) => (
-            <Workitem key={i} {...workitem} {...this.props.selectWorkitemProps} baseUrl={this.props.baseUrl}/>
+            <WorkItem key={i} {...workitem} {...this.props.selectWorkitemProps} baseUrl={this.props.baseUrl}/>
           ))}
           {this.props.workitems.length > 0 ? (
             <li>{this.props.workitems.length}</li>

@@ -1,7 +1,7 @@
 @import '../../styles/global';
 @import '../../styles/variables';
 @import 'board';
-@import 'cards';
+@import '../ctm-card/card';
 
 .board,
 .board-headers {

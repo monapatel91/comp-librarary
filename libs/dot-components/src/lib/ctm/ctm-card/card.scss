@@ -1,6 +1,6 @@
 @import '../../styles/variables';
-@import 'board';
-@import 'ctm_palette';
+@import '../progression-board/board';
+@import '../styles/ctm_palette';
 
 .card-container {
   padding: $globalGutter;
