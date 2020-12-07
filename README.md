@@ -73,3 +73,7 @@ If you're using the `DotIcon` component then you do not need to pass in the `ico
 ## Contributing
 
 Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process, now to test changes, and how to build and publish the package to GitHub Packages.
+
+## Change Log
+
+[Learn about the latest improvements](/libs/dot-components/src/lib/ChangeLog.stories.mdx).
