@@ -69,7 +69,6 @@ export const DotDialog = ({
     label: 'OK',
     type: 'primary',
     onClick: onSubmit,
-    focused: focusSubmitButton,
     ...submitButtonProps,
   };
 
