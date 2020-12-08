@@ -131,12 +131,12 @@ export class ProgressionBoard extends Component<
     return (
       this.props.phases
         // create an array of packages included in each phase
-        .flatMap((phase) =>
-          phase.packageVersions.map((version) => ({
-            package_id: version.package_id,
-            package_name: version.package_name,
-          }))
-        )
+        .map((phase) =>
+        phase.packageVersions.map((version) => ({
+          package_id: version.package_id,
+          package_name: version.package_name,
+        })))
+        .reduce((prev, next) => prev.concat(next), [])
         // filter out all but one unique representation of each package
         .filter((item, index, arr) => {
           return (
