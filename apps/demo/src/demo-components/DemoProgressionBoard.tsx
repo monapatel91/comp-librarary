@@ -6,6 +6,8 @@ const data = [{
     name: "Build",
     packageVersions: [],
     code_complete: false,
+    delivery_category: "Developing",
+    description: "",
   },
     {
       name: "Acceptance Test",
@@ -146,6 +148,8 @@ const data = [{
         },
       ],
       code_complete: true,
+      delivery_category: "Developing",
+      description: "",
     },
     {
       name: "Regression Test",
@@ -352,6 +356,8 @@ const data = [{
         },
       ],
       code_complete: false,
+      delivery_category: "Developing",
+      description: "",
     },
     {
       name: "Performance Test",
@@ -702,6 +708,8 @@ const data = [{
         },
       ],
       code_complete: false,
+      delivery_category: "Developing",
+      description: "",
     },
     {
       name: "Ready for Delivery",
@@ -1009,12 +1017,16 @@ const data = [{
           ],
         },
       ],
+      delivery_category: "Developing",
+      description: "",
       code_complete: false,
     },
     {
       name: "Canary Release",
       packageVersions: [],
       code_complete: false,
+      delivery_category: "Developing",
+      description: "",
     },
   ];
 

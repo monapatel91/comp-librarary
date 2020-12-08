@@ -6,12 +6,18 @@ import './ProgressionBoard.scss'
 import {hydratePhases} from "./hydrate_phases";
 
 export interface ProgressionBoardProps {
-  phases: any,
+  phases: Array<{
+      "code_complete": boolean,
+      "delivery_category": string,
+      "description": string,
+      "name": string,
+      "packageVersions": Array<unknown>
+  }>,
   baseUrl: string,
 }
 
 export interface SwimLaneProps {
-  package: any
+  package: Array<unknown>
   selectWorkitemProps: {
     selectWorkitem: (id) => void,
     deSelectWorkitem: (id) => void,
