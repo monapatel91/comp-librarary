@@ -56,7 +56,7 @@ type PackageType = {
   unmanaged_change_count: number | null;
   version: string;
   workitem_count: number | null;
-  workitems: Array<WorkItemType> | [];
+  workitems: Array<WorkItemType>;
 };
 
 type PhaseType = {
@@ -64,7 +64,19 @@ type PhaseType = {
   delivery_category: string;
   description: string;
   name: string;
-  packageVersions: Array<PackageType> | [];
+  packageVersions: Array<PackageType>;
+};
+
+type SwimLanepkg = {
+  package_id: string;
+  package_name: string;
+  phases:{
+       packageVersions: PackageType[];
+        code_complete: boolean;
+        delivery_category: string;
+        description: string;
+        name: string;
+  }[];
 };
 
 export interface ProgressionBoardProps {
@@ -73,7 +85,7 @@ export interface ProgressionBoardProps {
 }
 
 export interface SwimLaneProps {
-  package: Array<PackageType>;
+  package: SwimLanepkg;
   selectWorkitemProps: {
     selectWorkitem: (id) => void;
     deSelectWorkitem: (id) => void;
