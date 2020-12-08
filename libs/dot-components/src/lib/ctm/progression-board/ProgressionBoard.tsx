@@ -70,12 +70,12 @@ type PhaseType = {
 type SwimLanepkg = {
   package_id: string;
   package_name: string;
-  phases:{
-       packageVersions: PackageType[];
-        code_complete: boolean;
-        delivery_category: string;
-        description: string;
-        name: string;
+  phases: {
+    packageVersions: PackageType[];
+    code_complete: boolean;
+    delivery_category: string;
+    description: string;
+    name: string;
   }[];
 };
 
@@ -132,10 +132,11 @@ export class ProgressionBoard extends Component<
       this.props.phases
         // create an array of packages included in each phase
         .map((phase) =>
-        phase.packageVersions.map((version) => ({
-          package_id: version.package_id,
-          package_name: version.package_name,
-        })))
+          phase.packageVersions.map((version) => ({
+            package_id: version.package_id,
+            package_name: version.package_name,
+          }))
+        )
         .reduce((prev, next) => prev.concat(next), [])
         // filter out all but one unique representation of each package
         .filter((item, index, arr) => {
