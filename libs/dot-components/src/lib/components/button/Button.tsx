@@ -16,8 +16,6 @@ export interface ButtonProps {
   disabled?: boolean;
   /** Button label */
   label: string;
-  /** Give the button focus */
-  focused?: boolean;
   /** The icon to display on the button */
   iconId?: string;
   /** Is this a submit button */
@@ -38,7 +36,6 @@ export const DotButton = ({
   'data-testid': dataTestId,
   label,
   disabled = false,
-  focused = false,
   iconId,
   isSubmit = false,
   onClick,
@@ -69,7 +66,6 @@ export const DotButton = ({
 
   return (
     <Button
-      autoFocus={focused}
       className={`dot-btn ${classes}`}
       color={color}
       data-testid={dataTestId}
