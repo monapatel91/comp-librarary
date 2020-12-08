@@ -7,5 +7,9 @@ export default (props) => {
   const href = `/package_detail?id=${package_id}`;
   const fullUrl = props.baseUrl + href;
 
-  return <a href={fullUrl} target="_blank" rel='noreferrer'>{title}</a>;
+  return (
+    <a href={fullUrl} target="_blank" rel="noreferrer">
+      {title}
+    </a>
+  );
 };

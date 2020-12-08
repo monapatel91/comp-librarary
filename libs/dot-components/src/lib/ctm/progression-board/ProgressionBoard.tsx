@@ -1,64 +1,63 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Phase from './Phase';
-import {BoardHeaders} from './BoardHeaders';
+import { BoardHeaders } from './BoardHeaders';
 
-import './ProgressionBoard.scss'
-import {hydratePhases} from "./hydrate_phases";
+import './ProgressionBoard.scss';
+import { hydratePhases } from './hydrate_phases';
 
 export interface ProgressionBoardProps {
   phases: Array<{
-      "code_complete": boolean,
-      "delivery_category": string,
-      "description": string,
-      "name": string,
-      "packageVersions": Array<unknown>
-  }>,
-  baseUrl: string,
+    code_complete: boolean;
+    delivery_category: string;
+    description: string;
+    name: string;
+    packageVersions: Array<unknown>;
+  }>;
+  baseUrl: string;
 }
 
 export interface SwimLaneProps {
-  package: Array<unknown>
+  package: Array<unknown>;
   selectWorkitemProps: {
-    selectWorkitem: (id) => void,
-    deSelectWorkitem: (id) => void,
-    selectedWorkitem: string,
-  }
-  baseUrl: string,
+    selectWorkitem: (id) => void;
+    deSelectWorkitem: (id) => void;
+    selectedWorkitem: string;
+  };
+  baseUrl: string;
 }
- export interface pbState {
-  selectedWorkitem: ''
- }
-
+export interface pbState {
+  selectedWorkitem: '';
+}
 
 export class DotProgressionBoard extends Component<ProgressionBoardProps> {
   water = () => {
     const phases = hydratePhases(this.props.phases);
     return phases;
-  }
+  };
 
   render() {
     return (
-        <ProgressionBoard phases={this.water()} baseUrl={this.props.baseUrl}/>
+      <ProgressionBoard phases={this.water()} baseUrl={this.props.baseUrl} />
     );
   }
 }
 
-export class ProgressionBoard extends Component<ProgressionBoardProps, pbState> {
+export class ProgressionBoard extends Component<
+  ProgressionBoardProps,
+  pbState
+> {
   constructor(props, state) {
-    super(props,state);
-    this.state = {selectedWorkitem: ''}
+    super(props, state);
+    this.state = { selectedWorkitem: '' };
   }
 
   selectWorkitem = (id) => {
-    this.setState({selectedWorkitem: id});
-  }
+    this.setState({ selectedWorkitem: id });
+  };
 
   deSelectWorkitem = () => {
-    this.setState({selectedWorkitem: ''});
-  }
-
-
-
+    this.setState({ selectedWorkitem: '' });
+  };
 
   getPackages = () => {
     return (
@@ -111,14 +110,23 @@ export class ProgressionBoard extends Component<ProgressionBoardProps, pbState> 
   render() {
     const packages = this.getPackages();
     const phaseNames = this.props.phases.map((phase) => phase.name);
-    const selectWorkitemProps = {selectWorkitem: this.selectWorkitem, deSelectWorkitem: this.deSelectWorkitem, selectedWorkitem: this.state.selectedWorkitem};
+    const selectWorkitemProps = {
+      selectWorkitem: this.selectWorkitem,
+      deSelectWorkitem: this.deSelectWorkitem,
+      selectedWorkitem: this.state.selectedWorkitem,
+    };
     const baseUrl = this.props.baseUrl;
     return (
       <div id="in-progress" className="columns-wrapper">
-        <BoardHeaders headers={phaseNames}/>
+        <BoardHeaders headers={phaseNames} />
         <div className="progression">
           {packages.map((pkg) => (
-            <SwimLane key={pkg.package_id} package={pkg} selectWorkitemProps={selectWorkitemProps} baseUrl={baseUrl}/>
+            <SwimLane
+              key={pkg.package_id}
+              package={pkg}
+              selectWorkitemProps={selectWorkitemProps}
+              baseUrl={baseUrl}
+            />
           ))}
         </div>
       </div>
@@ -127,8 +135,6 @@ export class ProgressionBoard extends Component<ProgressionBoardProps, pbState> 
 }
 
 class SwimLane extends Component<SwimLaneProps> {
-
-
   render() {
     const pkg = this.props.package;
 
@@ -143,7 +149,12 @@ class SwimLane extends Component<SwimLaneProps> {
         </div>
         <ul id="phases" className="board phases">
           {pkg.phases.map((phase, i) => (
-            <Phase key={i} {...phase} selectWorkitemProps={this.props.selectWorkitemProps} baseUrl={this.props.baseUrl}/>
+            <Phase
+              key={i}
+              {...phase}
+              selectWorkitemProps={this.props.selectWorkitemProps}
+              baseUrl={this.props.baseUrl}
+            />
           ))}
         </ul>
       </div>

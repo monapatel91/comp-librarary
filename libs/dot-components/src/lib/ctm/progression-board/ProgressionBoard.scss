@@ -133,7 +133,7 @@ $progressionBoardHeight: 80vh;
   margin: 0 auto;
 
   .in-progress,
-  [data-component="EmptyState"],
+  [data-component='EmptyState'],
   #delivered {
     flex: 1 auto;
   }

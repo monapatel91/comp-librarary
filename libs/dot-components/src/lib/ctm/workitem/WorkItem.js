@@ -25,9 +25,7 @@ export const WorkItem = (props) => {
   return (
     <li
       className={classes}
-      onClick={
-        () => window.open(fullUrl, "_blank")
-      }
+      onClick={() => window.open(fullUrl, '_blank')}
       onMouseEnter={hoevrThing}
       onMouseLeave={deSelectWorkitem}
     />

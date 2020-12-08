@@ -9,7 +9,7 @@ export default (props) => (
       data-for={props.revurl}
       className="tooltip-top"
       target="_blank"
-      rel='noreferrer'
+      rel="noreferrer"
     >
       <title
         id={props.revurl}

@@ -2,12 +2,10 @@ import React from 'react';
 
 import './app.scss';
 
-import {DotButton, DotIcon} from '@digital-ai/dot-components';
+import { DotButton, DotIcon } from '@digital-ai/dot-components';
 import DemoProgressionBoard from '../demo-components/DemoProgressionBoard';
 
 export const App = () => {
-
-
   return (
     <div>
       <DotButton
@@ -15,12 +13,11 @@ export const App = () => {
         onClick={() => alert('Button clicked!')}
         type="primary"
       />
-      <DotIcon icon="script"/>
+      <DotIcon icon="script" />
       <div>
-        <DemoProgressionBoard/>
+        <DemoProgressionBoard />
       </div>
     </div>
-
   );
 };
 

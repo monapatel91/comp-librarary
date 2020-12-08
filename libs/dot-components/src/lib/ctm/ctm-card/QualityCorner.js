@@ -1,5 +1,5 @@
 import React from 'react';
-import {DotIcon} from "../../components/icon/Icon";
+import { DotIcon } from '../../components/icon/Icon';
 
 export default (props) => (
   <div
@@ -23,7 +23,7 @@ export const QCIcon = ({ id, label = '', onHover = null, url }) => {
       className={classes}
       onMouseEnter={onHover}
     >
-      <DotIcon icon={id} fontSize={"small"} title={label}/>
+      <DotIcon icon={id} fontSize={'small'} title={label} />
     </a>
   );
 };
