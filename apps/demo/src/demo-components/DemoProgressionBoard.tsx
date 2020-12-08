@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { DotProgressionBoard } from '@digital-ai/dot-components';
 
 // Demo data so that we can provide a constant example.
-const data = [
+const phasesData = [
   {
     name: 'Build',
     packageVersions: [],
@@ -994,9 +994,9 @@ const data = [
         ],
       },
     ],
+    code_complete: false,
     delivery_category: 'Developing',
     description: '',
-    code_complete: false,
   },
   {
     name: 'Canary Release',
@@ -1032,7 +1032,10 @@ export const DemoProgressionBoard = () => {
 
   return (
     <div>
-      <DotProgressionBoard phases={data} baseUrl="http://localhost:8080" />
+      <DotProgressionBoard
+        phases={phasesData}
+        baseUrl="http://localhost:8080"
+      />
     </div>
   );
 };
