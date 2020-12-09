@@ -24,6 +24,16 @@ export DOT_COMPONENTS_TOKEN=[YOUR TOKEN HERE]
 
 Save and source your profile `source ~/.bash_profile` then you should be good to go.
 
+#### Windows
+
+Configure `npm` for use with GitHub Packages by adding your token to your `.npmrc` file.
+
+```sh
+//npm.pkg.github.com/:_authToken=TOKEN
+```
+
+Alternatively, you can log in with the `npm login` command. More information on this method can be found on the [GitHub Docs.](https://docs.github.com/en/free-pro-team@latest/packages/guides/configuring-npm-for-use-with-github-packages#authenticating-with-a-personal-access-token)
+
 ### Installing the package from the GitHub Packages npm registry
 
 `@digital-ai/dot-components` is available as a private npm package on GitHub Packages. Your project will likely have other npm packages from the public NPM registry. To configure your project to only get the `@digital-ai/dot-components` package from GitHub Packages you will need to create the create or edit an `.npmrc` file in the same directory as your `package.json` file and add the following to the file:
