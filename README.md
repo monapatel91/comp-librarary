@@ -27,11 +27,12 @@ Save and source your profile `source ~/.bash_profile` then you should be good to
 #### Windows
 
 Configure `npm` for use with GitHub Packages by adding your token to your `.npmrc` file.
+
 ```sh
 //npm.pkg.github.com/:_authToken=TOKEN
 ```
-Alternatively, you can log in with the `npm login` command. More information on this method can be found on the [GitHub Docs.](https://docs.github.com/en/free-pro-team@latest/packages/guides/configuring-npm-for-use-with-github-packages#authenticating-with-a-personal-access-token)
 
+Alternatively, you can log in with the `npm login` command. More information on this method can be found on the [GitHub Docs.](https://docs.github.com/en/free-pro-team@latest/packages/guides/configuring-npm-for-use-with-github-packages#authenticating-with-a-personal-access-token)
 
 ### Installing the package from the GitHub Packages npm registry
 
