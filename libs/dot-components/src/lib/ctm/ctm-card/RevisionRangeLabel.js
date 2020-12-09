@@ -16,7 +16,6 @@ export default (props) => (
         className="tooltip-nowrap"
         effect="solid"
         type="dark"
-        // multiline={true}
       >
         <span>{props.revisionRangeLabel}</span>
       </title>
