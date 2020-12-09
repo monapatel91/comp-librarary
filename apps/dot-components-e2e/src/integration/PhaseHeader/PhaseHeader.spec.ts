@@ -1,6 +1,6 @@
 describe('dot-components: Phase Header component', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=components-phase-header--default')
+    cy.visit('/iframe.html?id=experimental-phase-header--default')
   );
 
   it('should have a dot- prefix', () => {
