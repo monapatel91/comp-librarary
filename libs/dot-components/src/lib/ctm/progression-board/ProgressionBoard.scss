@@ -1,6 +1,5 @@
 @import '../../styles/global';
-@import '../../styles/variables';
-@import 'board';
+@import '../styles/ctm_variables';
 @import '../ctm-card/card';
 
 .board,
@@ -39,7 +38,7 @@ ul.board {
   width: 100%;
   position: -webkit-sticky;
   position: sticky;
-  top: 0px;
+  top: 0;
   z-index: 2;
 
   .delivery-category {
@@ -64,7 +63,7 @@ ul.board {
     font-weight: $boldFont;
     padding: 10px 5px;
     margin: 0 3px;
-    border-radius: $globalRadius $globalRadius 0 0;
+    border-radius: $radius $radius 0 0;
     font-size: 1.5em;
     text-align: left;
     padding-left: 20px;

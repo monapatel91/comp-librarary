@@ -1,6 +1,4 @@
-@import '../../styles/variables';
-@import '../progression-board/board';
-@import '../styles/ctm_palette';
+@import '../styles/ctm_variables';
 
 .card-container {
   padding: $globalGutter;
@@ -11,7 +9,7 @@
   font-size: 0.857em;
   border: 1px solid $card_border;
   position: relative;
-  border-radius: $globalRadius;
+  border-radius: $radius;
   background: $card_background;
   box-shadow: $card_box_shadow;
 
@@ -70,7 +68,7 @@
         width: 24px;
         height: 24px;
         position: absolute;
-        border-radius: $globalRadius 0 100% 0;
+        border-radius: $radius 0 100% 0;
         top: -1px;
         background-color: $card_border;
       }

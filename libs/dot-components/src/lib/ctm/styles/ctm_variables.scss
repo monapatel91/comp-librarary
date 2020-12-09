@@ -1,0 +1,54 @@
+@import '../../styles/variables';
+
+$paper: #ffffff;
+$gunmetal: #31363e;
+$denim: #005293;
+$mango: #ea6c02;
+$darkerDenim: darken($denim, 15%);
+
+$heather: #b7bcc4;
+$shuttle: #61666e;
+$obsidian: #000000;
+
+$boldFont: 700;
+$semiBoldFont: $boldFont;
+
+$chrome500: #438098;
+$chrome50: lighten($chrome500, 50%);
+$chrome700: darken($chrome500, 20%); // #244552
+
+$layer_two: $paper;
+$layer_three: $chrome50;
+$layer_four: lighten($chrome500, 40%);
+
+$section_background: $layer_two;
+
+$board_header: $chrome700;
+$board_swimlane_header_background: $layer_four;
+$board_column_background: $chrome50;
+
+$globalGutter: 8px;
+
+$navigation_header: $shuttle;
+
+
+// Card
+
+$lime: #69be28;
+$mahogany: #b50200;
+
+$lighterCerulean: #c6f1ff;
+$darkerLime: darken($lime, 15%);
+$darkerMahogany: darken($mahogany, 15%);
+$global_color: $chrome700;
+
+$card_background: $paper;
+$card_border: lighten($chrome500, 20%);
+$card_box_shadow: 0 2px 1px rgba($obsidian, 0.2);
+$card_nav_hover: $gunmetal;
+$card_nav_hover_text: $paper;
+
+$asset_improve: $darkerLime;
+$asset_improve_hover: lighten($darkerLime, 10%);
+$asset_maintain: $darkerMahogany;
+$asset_maintain_hover: lighten($darkerMahogany, 10%);
