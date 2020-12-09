@@ -7,7 +7,7 @@ import {
 } from './LocallyPaginatedTable';
 
 export default {
-  title: 'Components/Paginated Table - Local',
+  title: 'Experimental/Paginated Table - Local',
   component: LocallyPaginatedTable,
   argTypes: {
     data: {
