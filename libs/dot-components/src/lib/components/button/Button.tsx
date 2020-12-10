@@ -57,6 +57,13 @@ export const DotButton = ({
 }: ButtonProps) => {
   const btnClasses = useStyles({ type });
 
+  // combine the root classes into one string
+  const rootClasses = [
+    'dot-button',
+    btnClasses.root,
+    ...(className ? [className] : []),
+  ].join(' ');
+
   let color: 'primary' | 'secondary' | 'default';
   let variant: 'contained' | 'outlined' | 'text';
   switch (type) {
@@ -80,7 +87,7 @@ export const DotButton = ({
 
   return (
     <Button
-      className={`dot-button ${className} ${btnClasses.root}`}
+      className={rootClasses}
       color={color}
       data-testid={dataTestId}
       disabled={disabled}
