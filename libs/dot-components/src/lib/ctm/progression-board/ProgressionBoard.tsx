@@ -1,101 +1,10 @@
 import React, { Component } from 'react';
-import Phase from './Phase';
 import { BoardHeaders } from './BoardHeaders';
 
 import './ProgressionBoard.scss';
 import { hydratePhases } from './hydrate_phases';
-
-type WorkItemType = {
-  _id: string;
-  change_count: number | null;
-  external_id: string;
-  external_key: string;
-  title: string;
-  value_goal: string;
-};
-
-type CardIndicatorType = {
-  activity_start_count: number | null;
-  estimated_time_remaining: number | null;
-  total_activity_count: number | null;
-};
-
-type PackageType = {
-  _id: string;
-  activity_failed: boolean;
-  actual: number | null;
-  arrival_dt: string;
-  cardIndicatorStatus?: CardIndicatorType;
-  change_count: number | null;
-  control_failed: boolean;
-  fullversion_from: string;
-  fullversion_to: string;
-  last_update_dt: string;
-  package_id: string;
-  package_name: string;
-  pending_activity: boolean;
-  phase_name: string;
-  progression_id: string;
-  rev_from: number | null;
-  rev_from_id: string;
-  rev_to: number | null;
-  rev_to_id: string;
-  risk_coverage_percentage: number | null;
-  risk_coverage_report_url: number | null;
-  risk_dashboard_url: number | null;
-  risk_failed_tests_count: number | null;
-  risk_failed_tests_report_url: number | null;
-  risk_has_failed_tests: boolean;
-  risk_has_high_risk_file: boolean;
-  risk_has_low_coverage: boolean;
-  risk_has_severity1_violations: boolean;
-  risk_severity1_report_url: number | null;
-  risk_severity1_violation_count: number | null;
-  risk_show_dashboard_link: boolean;
-  team_id: string;
-  unmanaged_change_count: number | null;
-  version: string;
-  workitem_count: number | null;
-  workitems: Array<WorkItemType>;
-};
-
-type PhaseType = {
-  code_complete: boolean;
-  delivery_category: string;
-  description: string;
-  name: string;
-  packageVersions: Array<PackageType>;
-};
-
-type SwimLanepkg = {
-  package_id: string;
-  package_name: string;
-  phases: {
-    packageVersions: PackageType[];
-    code_complete: boolean;
-    delivery_category: string;
-    description: string;
-    name: string;
-  }[];
-};
-
-export interface ProgressionBoardProps {
-  phases: Array<PhaseType>;
-  baseUrl: string;
-}
-
-export interface SwimLaneProps {
-  package: SwimLanepkg;
-  selectWorkitemProps: {
-    selectWorkitem: (id) => void;
-    deSelectWorkitem: (id) => void;
-    selectedWorkitem: string;
-  };
-  baseUrl: string;
-}
-export interface pbState {
-  selectedWorkitem: '';
-}
+import { pbState, ProgressionBoardProps } from './ProgressionBoardInterfaces';
+import { SwimLane } from './SwimLane';
 
 export class DotProgressionBoard extends Component<ProgressionBoardProps> {
   water = () => {
@@ -198,34 +107,6 @@ export class ProgressionBoard extends Component<
             />
           ))}
         </div>
-      </div>
-    );
-  }
-}
-
-class SwimLane extends Component<SwimLaneProps> {
-  render() {
-    const pkg = this.props.package;
-
-    return (
-      <div>
-        <div className="swimlane-header">
-          {pkg.phases.map((phase, i) => (
-            <div className="swimlane-column" key={i}>
-              {i === 0 ? pkg.package_name : ''}
-            </div>
-          ))}
-        </div>
-        <ul id="phases" className="board phases">
-          {pkg.phases.map((phase, i) => (
-            <Phase
-              key={i}
-              {...phase}
-              selectWorkitemProps={this.props.selectWorkitemProps}
-              baseUrl={this.props.baseUrl}
-            />
-          ))}
-        </ul>
       </div>
     );
   }
