@@ -1,40 +1,32 @@
 import React, { MouseEvent } from 'react';
 import { Button } from '@material-ui/core';
+
 import { DotIcon } from '../icon/Icon';
+import { CommonProps } from '../CommonProps';
 
 import './Button.scss';
 
-export type ButtonType =
-  | 'destructive'
-  | 'primary'
-  | 'secondary'
-  | 'transparent';
+export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
-export const sbButtonTypeOptions = {
-  Destructive: 'destructive',
-  Primary: 'primary',
-  Secondary: 'secondary',
-  Transparent: 'transparent',
-};
-
-export interface ButtonProps {
-  /** Space delimited CSS classes to be attributed to the button. */
-  classes?: string;
-  /** data attribute passed through for testing purposes ONLY */
-  'data-testid'?: string;
+export interface ButtonProps extends CommonProps {
   /** If true, the button will be disabled. */
   disabled?: boolean;
-  /** Button label */
-  displayText: string;
-  /** Give the button focus */
-  focused?: boolean;
-  /** Event callback */
-  onClick: (event: MouseEvent<Element>) => void;
+  /**
+   * The label for the button. Button labels should be in sentence case.
+   */
+  label: string;
   /** The icon to display on the button */
   iconId?: string;
+  /** Is this a submit button */
+  isSubmit?: boolean;
+  /** Event callback */
+  onClick: (event: MouseEvent<Element>) => void;
+  /** The size of the button */
+  size?: ButtonSize;
   /** Help text to be displayed on hover */
   titleTooltip?: string;
-  /** primary, destructive, secondary, or transparent. */
+  /** The type of button */
   type: ButtonType;
 }
 
@@ -42,11 +34,12 @@ export interface ButtonProps {
 export const DotButton = ({
   classes,
   'data-testid': dataTestId,
-  displayText,
+  label,
   disabled = false,
-  focused = false,
   iconId,
+  isSubmit = false,
   onClick,
+  size = 'medium',
   titleTooltip,
   type,
 }: ButtonProps) => {
@@ -61,19 +54,18 @@ export const DotButton = ({
       color = 'primary';
       variant = 'contained';
       break;
-    case 'secondary':
-      color = displayText ? 'primary' : 'default';
+    case 'outlined':
+      color = label ? 'primary' : 'default';
       variant = 'outlined';
       break;
-    case 'transparent':
-      color = displayText ? 'primary' : 'default';
+    case 'text':
+      color = label ? 'primary' : 'default';
       variant = 'text';
       break;
   }
 
   return (
     <Button
-      autoFocus={focused}
       className={`dot-btn ${classes}`}
       color={color}
       data-testid={dataTestId}
@@ -82,8 +74,10 @@ export const DotButton = ({
       startIcon={iconId ? <DotIcon icon={iconId} /> : undefined}
       title={titleTooltip}
       variant={variant}
+      size={size}
+      type={isSubmit ? 'submit' : 'button'}
     >
-      {displayText}
+      {label}
     </Button>
   );
 };
