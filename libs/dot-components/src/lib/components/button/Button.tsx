@@ -44,7 +44,7 @@ export interface ButtonProps extends CommonProps {
 
 /** This component wraps the Button component from @material-ui. */
 export const DotButton = ({
-  classes,
+  className,
   'data-testid': dataTestId,
   label,
   disabled = false,
@@ -80,7 +80,7 @@ export const DotButton = ({
 
   return (
     <Button
-      className={`dot-button ${classes} ${btnClasses.root}`}
+      className={`dot-button ${className} ${btnClasses.root}`}
       color={color}
       data-testid={dataTestId}
       disabled={disabled}
