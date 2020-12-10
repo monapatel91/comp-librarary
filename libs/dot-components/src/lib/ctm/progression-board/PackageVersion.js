@@ -6,7 +6,6 @@ import { WorkItem } from '../workitem/WorkItem';
 import { Card, CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
 
-
 const isTruthy = (x) => !!x;
 
 class ValidPackage extends Component {
@@ -26,15 +25,11 @@ class ValidPackage extends Component {
     const {
       estimated_time_remaining,
       activity_start_count,
-      total_activity_count
+      total_activity_count,
     } = this.props;
 
     let activityCompletionPercentage =
-      Math.floor(
-        (activity_start_count /
-          total_activity_count) *
-          100
-      ) || 0;
+      Math.floor((activity_start_count / total_activity_count) * 100) || 0;
     this.setState(() => {
       return {
         timeEstimateLabel: `Delivery forecast:  ${getMostSignificantLabel(
