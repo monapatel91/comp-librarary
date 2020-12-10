@@ -8,7 +8,7 @@ import InfiniteScrollTable, {
 import { TableDataWithPagination } from './TableDataWithPagination';
 
 export default {
-  title: 'Components/Infinite Scroll',
+  title: 'Experimental/Infinite Scroll',
   component: InfiniteScrollTable,
   argTypes: {
     columns: {

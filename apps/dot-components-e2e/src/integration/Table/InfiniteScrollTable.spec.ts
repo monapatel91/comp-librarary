@@ -1,6 +1,6 @@
 describe('dot-components: Infinite Scroll Table component', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=components-infinite-scroll--default')
+    cy.visit('/iframe.html?id=experimental-infinite-scroll--default')
   );
 
   it('should have a dot- prefix', () => {

@@ -11,3 +11,11 @@ export const withTheme = (Story) => {
   );
 };
 addDecorator(withTheme);
+
+export const parameters = {
+  options: {
+    storySort: {
+      order: ['Introduction', 'Change Log', 'Components', 'Experimental'],
+    },
+  },
+};
