@@ -26,7 +26,7 @@ class ValidPackage extends Component {
       estimated_time_remaining,
       activity_start_count,
       total_activity_count,
-    } = this.props;
+    } = this.props.cardIndicatorStatus;
 
     let activityCompletionPercentage =
       Math.floor((activity_start_count / total_activity_count) * 100) || 0;

@@ -15,6 +15,11 @@ const phasesData = [
         activity_failed: false,
         actual: 43,
         arrival_dt: '2017-09-23T15:54:30.566000',
+        cardIndicatorStatus: {
+          activity_start_count: 3,
+          estimated_time_remaining: 20103612,
+          total_activity_count: 11,
+        },
         change_count: 44,
         control_failed: true,
         fullversion_from: '3.1.83',
@@ -44,9 +49,6 @@ const phasesData = [
         team_id: '5bc507d029799317d49517fb',
         unmanaged_change_count: 24,
         version: '3.1',
-        estimated_time_remaining: 7200 * 14,
-        activity_start_count: 2,
-        total_activity_count: 8,
         workitem_count: 8,
         workitems: [
           {
@@ -155,6 +157,11 @@ const phasesData = [
         activity_failed: false,
         actual: 68,
         arrival_dt: '2017-11-03T20:23:37.984000',
+        cardIndicatorStatus: {
+          activity_start_count: 32,
+          estimated_time_remaining: 201003612,
+          total_activity_count: 111,
+        },
         change_count: 24,
         control_failed: true,
         fullversion_from: '3.1.69',
@@ -361,6 +368,11 @@ const phasesData = [
         activity_failed: false,
         actual: 68,
         arrival_dt: '2017-11-01T16:54:32.030000',
+        cardIndicatorStatus: {
+          activity_start_count: 1,
+          estimated_time_remaining: 2010612,
+          total_activity_count: 87,
+        },
         change_count: 50,
         control_failed: true,
         fullversion_from: '3.1.43',
@@ -702,6 +714,11 @@ const phasesData = [
         activity_failed: false,
         actual: 19,
         arrival_dt: '2017-10-21T10:23:32.033000',
+        cardIndicatorStatus: {
+          activity_start_count: 13,
+          estimated_time_remaining: 20,
+          total_activity_count: 19,
+        },
         change_count: 43,
         control_failed: true,
         fullversion_from: '3.0.1',
