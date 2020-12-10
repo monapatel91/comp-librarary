@@ -1,17 +1,15 @@
 import React, { MouseEvent } from 'react';
 import { Button } from '@material-ui/core';
+
 import { DotIcon } from '../icon/Icon';
+import { CommonProps } from '../CommonProps';
 
 import './Button.scss';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
 export type ButtonSize = 'small' | 'medium' | 'large';
 
-export interface ButtonProps {
-  /** Space delimited CSS classes to be attributed to the button. */
-  classes?: string;
-  /** data attribute passed through for testing purposes ONLY */
-  'data-testid'?: string;
+export interface ButtonProps extends CommonProps {
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /**
