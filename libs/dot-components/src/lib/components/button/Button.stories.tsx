@@ -10,7 +10,7 @@ export default {
     onClick: {
       action: 'clicked',
     },
-    displayText: {
+    label: {
       name: 'Display Text',
       defaultValue: 'Button',
     },

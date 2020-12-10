@@ -10,7 +10,7 @@ export default {
   argTypes: {
     buttonProps: {
       defaultValue: {
-        displayText: 'Add Data',
+        label: 'Add Data',
         onClick: () => {
           console.log('clicked');
         },

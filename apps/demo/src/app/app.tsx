@@ -8,7 +8,7 @@ export const App = () => {
   return (
     <div>
       <DotButton
-        displayText="Click"
+        label="Click"
         onClick={() => alert('Button clicked!')}
         type="primary"
       />
