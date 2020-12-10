@@ -58,6 +58,16 @@ The library ships with a CSS file that will bring in its styles and font-icons. 
 import '@digital-ai/dot-components/dot-components.esm.css';
 ```
 
+### Theme Provider
+
+The `DotThemeProvider` provides the theme for the components in this library. When using this library you will need to wrap your application with it like this:
+
+```jsx
+<DotThemeProvider>
+  <App />
+</DotThemeProvider>
+```
+
 ### Updating
 
 When you're ready to pull in the latest version of the `dot-components` package run the following command.
