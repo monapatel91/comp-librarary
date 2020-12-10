@@ -6,21 +6,6 @@ import { WorkItem } from '../workitem/WorkItem';
 import { Card, CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
 
-// this is temporary code.
-// #TODO use new api
-// hover data?  continuum uiMethods.py
-const getProgressionCardIndicatorData = (params) => {
-  const result = new Promise((resolve, reject) => {
-    resolve({
-      progression_id: '591afccd2979935b172328f8',
-      package_id: '578fc04f29799325c589a729',
-      revision: 100,
-      phase_name: 'Acceptance Test',
-      arrival_dt: '2017-09-23T15:54:30.566000',
-    });
-  });
-  return result;
-};
 
 const isTruthy = (x) => !!x;
 
@@ -39,34 +24,24 @@ class ValidPackage extends Component {
 
   hoverHandler() {
     const {
-      progression_id,
-      package_id,
-      rev_to,
-      phase_name,
-      arrival_dt,
+      estimated_time_remaining,
+      activity_start_count,
+      total_activity_count
     } = this.props;
 
-    getProgressionCardIndicatorData({
-      progression_id,
-      package_id,
-      revision: rev_to,
-      phase_name,
-      arrival_dt,
-    }).then((indicatorData) => {
-      let activityCompletionPercentage =
-        Math.floor(
-          (indicatorData.activity_start_count /
-            indicatorData.total_activity_count) *
-            100
-        ) || 0;
-      this.setState(() => {
-        return {
-          timeEstimateLabel: `Delivery forecast:  ${getMostSignificantLabel(
-            indicatorData.estimated_time_remaining || 0
-          )}`,
-          activityCompletionPercentageLabel: `${activityCompletionPercentage}% Activities complete.`,
-        };
-      });
+    let activityCompletionPercentage =
+      Math.floor(
+        (activity_start_count /
+          total_activity_count) *
+          100
+      ) || 0;
+    this.setState(() => {
+      return {
+        timeEstimateLabel: `Delivery forecast:  ${getMostSignificantLabel(
+          estimated_time_remaining || 0
+        )}`,
+        activityCompletionPercentageLabel: `${activityCompletionPercentage}% Activities complete.`,
+      };
     });
   }
 

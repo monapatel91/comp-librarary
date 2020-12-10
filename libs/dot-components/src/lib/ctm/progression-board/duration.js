@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 const least_significant_unit = 'minutes';
 
 const ordered_by_least_significant = [
@@ -13,12 +11,10 @@ const defaultMostSignificantValue = {
   unit: least_significant_unit,
 };
 
-const getHours = (seconds) => moment.duration(seconds, 'seconds').hours();
+const getHours = (seconds) => Math.floor(seconds / 3600);
 
 const getDays = (seconds) =>
-  Math.floor(moment.duration(seconds, 'seconds').asDays());
-
-export const getDaysLabel = (seconds) => `${getDays(seconds)} days`;
+  Math.floor(getHours(seconds) / 24);
 
 export const getDaysWithHourPercisionFromSeconds = (seconds) => ({
   days: getDays(seconds),
@@ -28,17 +24,12 @@ export const getDaysWithHourPercisionFromSeconds = (seconds) => ({
 export const calculateMostSignificantValue = (duration_data, defaultValue) =>
   ordered_by_least_significant.reduce((mostSignificantValue, unit) => {
     return duration_data[unit] > 0
-      ? { unit, value: duration_data[unit] }
+      ? {unit, value: duration_data[unit]}
       : mostSignificantValue;
   }, defaultValue || defaultMostSignificantValue);
 
-export const determineTense = ({ value, unit }) =>
+export const determineTense = ({value, unit}) =>
   value === 1 ? unit.substring(0, unit.length - 1) : unit;
-
-const getDuration = (duration) => {
-  const d = moment.duration(duration, 'seconds')._data;
-  return calculateMostSignificantValue(d);
-};
 
 const getLabel = (duration) => ({
   value: duration.days,

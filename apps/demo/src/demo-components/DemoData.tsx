@@ -44,6 +44,9 @@ const phasesData = [
         team_id: '5bc507d029799317d49517fb',
         unmanaged_change_count: 24,
         version: '3.1',
+        estimated_time_remaining: 7200 * 14,
+        activity_start_count: 2,
+        total_activity_count: 8,
         workitem_count: 8,
         workitems: [
           {
