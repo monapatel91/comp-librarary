@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { DotHeader, DotSidebar, NavigationItemProps } from '@digital-ai/dot-components';
+import {
+  DotHeader,
+  DotSidebar,
+  NavigationItemProps,
+} from '@digital-ai/dot-components';
 import DemoProgressionBoard from '../demo-components/DemoProgressionBoard';
 
 import './app.scss';
