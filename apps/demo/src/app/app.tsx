@@ -127,6 +127,7 @@ export const App = () => {
           backItem={backItem}
           primaryItems={sampleSideNavItems}
           navOpen={true}
+          title="FedEx"
           toggleItem={toggleItem}
         />
         <section className="main-content">

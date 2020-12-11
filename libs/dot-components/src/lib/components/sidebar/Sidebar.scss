@@ -13,6 +13,11 @@ aside.dot-sidebar {
   max-width: 240px;
   padding-top: $gutter/2;
 
+  h4 {
+    border-bottom: 1px solid $n50;
+    padding: $gutter * 2;
+  }
+
   .toggle-sub-nav {
     border-bottom: 1px solid $n200;
 

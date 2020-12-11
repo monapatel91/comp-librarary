@@ -13,6 +13,7 @@ export interface SidebarProps {
   primaryItems?: Array<NavigationItemProps>;
   secondaryItems?: Array<NavigationItemProps>;
   subNavOpen?: boolean;
+  title?: string;
   toggleItem?: Array<NavigationItemProps>;
 }
 
@@ -23,6 +24,7 @@ export const DotSidebar = ({
   primaryItems,
   secondaryItems = [],
   subNavOpen,
+  title,
   toggleItem,
 }: SidebarProps) => {
   return (
@@ -30,6 +32,7 @@ export const DotSidebar = ({
       className={`dot-sidebar ${!navOpen ? 'collapsed' : 'expanded'}`}
       data-testid="primaryNav"
     >
+      {title && <h4>{title}</h4>}
       {subNavOpen ? (
         <Fragment>
           {goBack && (
