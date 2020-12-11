@@ -12,10 +12,10 @@ const useStyles = makeStyles(
     createStyles({
       root: {
         textTransform: 'inherit',
-        padding: (props: { type: ButtonType }) =>
-          `6px ${
-            props.type === 'outlined' ? theme.spacing(2) - 1 : theme.spacing(2)
-          }px`,
+        padding: `6px ${theme.spacing(2)}px`,
+      },
+      outlined: {
+        padding: `6px ${theme.spacing(2) - 1}px`,
       },
     }),
   { name: 'dot-button' }
@@ -87,7 +87,7 @@ export const DotButton = ({
 
   return (
     <Button
-      className={rootClasses}
+      classes={{ root: rootClasses, outlined: btnClasses.outlined }}
       color={color}
       data-testid={dataTestId}
       disabled={disabled}
