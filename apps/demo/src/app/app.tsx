@@ -3,6 +3,7 @@ import React from 'react';
 import './app.scss';
 
 import { DotButton, DotIcon } from '@digital-ai/dot-components';
+import DemoProgressionBoard from '../demo-components/DemoProgressionBoard';
 
 export const App = () => {
   return (
@@ -13,6 +14,9 @@ export const App = () => {
         type="primary"
       />
       <DotIcon icon="script" />
+      <div>
+        <DemoProgressionBoard />
+      </div>
     </div>
   );
 };

@@ -1,13 +1,11 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-
-import { ProgressionBoard } from './ProgressionBoard';
-
-const data = [
+// Demo data so that we can provide a constant example.
+const phasesData = [
   {
     name: 'Build',
     packageVersions: [],
     code_complete: false,
+    delivery_category: 'Developing',
+    description: '',
   },
   {
     name: 'Acceptance Test',
@@ -17,6 +15,11 @@ const data = [
         activity_failed: false,
         actual: 43,
         arrival_dt: '2017-09-23T15:54:30.566000',
+        cardIndicatorStatus: {
+          activity_start_count: 3,
+          estimated_time_remaining: 20103612,
+          total_activity_count: 11,
+        },
         change_count: 44,
         control_failed: true,
         fullversion_from: '3.1.83',
@@ -57,19 +60,19 @@ const data = [
             value_goal: 'improve',
             isEmphazied: false,
             isSelected: false,
-            isSplit: false,
+            isSplit: true,
           },
           {
-            _id: '59f248b3297993061cb9ab50',
+            _id: '59f196572979930319b9ab50',
             change_count: 3,
             external_id: '10298',
             external_key: 'API-99',
             title:
               "UI - Cloud 'Test' button only supports AWS, hide for other providers",
-            value_goal: 'improve',
+            value_goal: 'maintain',
             isEmphazied: false,
             isSelected: false,
-            isSplit: false,
+            isSplit: true,
           },
           {
             _id: '59f2bda72979930921b9ab50',
@@ -77,7 +80,7 @@ const data = [
             external_id: '10297',
             external_key: 'API-98',
             title: '3rd party javascript installs to the wrong location',
-            value_goal: 'improve',
+            value_goal: 'maintain',
             isEmphazied: false,
             isSelected: false,
             isSplit: false,
@@ -143,6 +146,8 @@ const data = [
       },
     ],
     code_complete: true,
+    delivery_category: 'Developing',
+    description: '',
   },
   {
     name: 'Regression Test',
@@ -152,6 +157,11 @@ const data = [
         activity_failed: false,
         actual: 68,
         arrival_dt: '2017-11-03T20:23:37.984000',
+        cardIndicatorStatus: {
+          activity_start_count: 32,
+          estimated_time_remaining: 201003612,
+          total_activity_count: 111,
+        },
         change_count: 24,
         control_failed: true,
         fullversion_from: '3.1.69',
@@ -184,7 +194,7 @@ const data = [
         workitem_count: 14,
         workitems: [
           {
-            _id: '59d638a32979933824b9ab4e',
+            _id: '59f196572979930319b9ab50',
             change_count: 1,
             external_id: '10286',
             external_key: 'API-87',
@@ -206,7 +216,7 @@ const data = [
             isSplit: false,
           },
           {
-            _id: '59d805e32979933e4bb9ab4e',
+            _id: '59f196572979930319b9ab50',
             change_count: 1,
             external_id: '10290',
             external_key: 'API-91',
@@ -285,7 +295,7 @@ const data = [
             isSplit: false,
           },
           {
-            _id: '59dcc3f32979935148b9ab4f',
+            _id: '59f196572979930319b9ab50',
             change_count: 2,
             external_id: '10282',
             external_key: 'API-83',
@@ -347,6 +357,8 @@ const data = [
       },
     ],
     code_complete: false,
+    delivery_category: 'Developing',
+    description: '',
   },
   {
     name: 'Performance Test',
@@ -356,6 +368,11 @@ const data = [
         activity_failed: false,
         actual: 68,
         arrival_dt: '2017-11-01T16:54:32.030000',
+        cardIndicatorStatus: {
+          activity_start_count: 1,
+          estimated_time_remaining: 2010612,
+          total_activity_count: 87,
+        },
         change_count: 50,
         control_failed: true,
         fullversion_from: '3.1.43',
@@ -399,7 +416,7 @@ const data = [
             isSplit: false,
           },
           {
-            _id: '59c6fd1b2979936d43b9ab50',
+            _id: '59f196572979930319b9ab50',
             change_count: 3,
             external_id: '10277',
             external_key: 'API-78',
@@ -477,7 +494,7 @@ const data = [
             isSplit: false,
           },
           {
-            _id: '59cb2bf729799301e0b9ab50',
+            _id: '59f196572979930319b9ab50',
             change_count: 3,
             external_id: '10270',
             external_key: 'API-71',
@@ -686,6 +703,8 @@ const data = [
       },
     ],
     code_complete: false,
+    delivery_category: 'Developing',
+    description: '',
   },
   {
     name: 'Ready for Delivery',
@@ -695,6 +714,11 @@ const data = [
         activity_failed: false,
         actual: 19,
         arrival_dt: '2017-10-21T10:23:32.033000',
+        cardIndicatorStatus: {
+          activity_start_count: 13,
+          estimated_time_remaining: 20,
+          total_activity_count: 19,
+        },
         change_count: 43,
         control_failed: true,
         fullversion_from: '3.0.1',
@@ -739,7 +763,7 @@ const data = [
             isSplit: false,
           },
           {
-            _id: '59b5d3472979933303b9ab50',
+            _id: '59f196572979930319b9ab50',
             change_count: 3,
             external_id: '10230',
             external_key: 'API-31',
@@ -868,7 +892,7 @@ const data = [
             isSplit: false,
           },
           {
-            _id: '59bc225b2979934cecb9ab50',
+            _id: '59f196572979930319b9ab50',
             change_count: 3,
             external_id: '10219',
             external_key: 'API-20',
@@ -988,17 +1012,16 @@ const data = [
       },
     ],
     code_complete: false,
+    delivery_category: 'Developing',
+    description: '',
   },
   {
     name: 'Canary Release',
     packageVersions: [],
     code_complete: false,
+    delivery_category: 'Developing',
+    description: '',
   },
 ];
 
-describe('ProgressionBoard', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(<ProgressionBoard phases={data} />);
-    expect(baseElement).toBeTruthy();
-  });
-});
+export default phasesData;

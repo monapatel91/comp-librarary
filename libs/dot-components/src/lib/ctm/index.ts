@@ -1,1 +1,1 @@
-export { ProgressionBoard } from './progression-board/ProgressionBoard';
+export { DotProgressionBoard } from './progression-board/ProgressionBoard';

@@ -1,0 +1,177 @@
+@import '../../styles/global';
+@import '../styles/ctm_variables';
+@import '../ctm-card/card';
+
+.board,
+.board-headers {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0;
+  background-color: $section_background;
+  overflow-x: visible;
+
+  .board-column {
+    display: flex;
+    flex-flow: column wrap;
+    flex: 1;
+    margin: 0 3px;
+    background-color: $board_column_background;
+  }
+}
+
+ul.board {
+  padding: 0;
+}
+
+.board-column-header,
+.board-column {
+  min-width: 285px;
+}
+
+.columns-wrapper {
+  display: table;
+  flex: 1;
+  width: 100%;
+}
+
+.board-headers {
+  width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  .delivery-category {
+    border-top-style: solid;
+    border-top-width: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .delivery-category-developing {
+    border-top-color: $mango;
+  }
+
+  .delivery-category-packaged {
+    border-top-color: $denim;
+  }
+
+  .board-column-header {
+    display: flex;
+    flex-flow: column wrap;
+    flex: 1;
+    font-weight: $boldFont;
+    padding: 10px 5px;
+    margin: 0 3px;
+    border-radius: $radius $radius 0 0;
+    font-size: 1.5em;
+    text-align: left;
+    padding-left: 20px;
+    word-break: break-word;
+    background-color: $board_column_background;
+    color: $board_header;
+  }
+}
+
+// overrides
+#env {
+  .filter-text {
+    display: flex;
+
+    input {
+      padding: 10px;
+    }
+  }
+}
+
+.environments {
+  .board {
+    flex-flow: column;
+
+    .board-row {
+      border-bottom: 1px dashed $gunmetal;
+      display: flex;
+
+      &:last-child {
+        border: none;
+      }
+    }
+
+    .package-name-label {
+      text-align: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: $semiBoldFont;
+      color: $darkerDenim;
+      padding: 8px 0;
+    }
+
+    .environments-content {
+      a {
+        display: block;
+      }
+    }
+  }
+}
+
+#environments-board .board-headers {
+  border-bottom: 1px dashed $gunmetal;
+}
+
+.progression .board-column {
+  min-height: 30px;
+  padding: 10px;
+}
+
+$progressionBoardHeight: 80vh;
+
+.progression-content-container {
+  overflow: auto;
+  height: $progressionBoardHeight;
+  display: flex;
+  margin: 0 auto;
+
+  .in-progress,
+  [data-component='EmptyState'],
+  #delivered {
+    flex: 1 auto;
+  }
+}
+
+.swimlane-header {
+  background: transparent;
+  font-weight: $semiBoldFont;
+  font-size: 1.25em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 45px; // stops the swimline header just below the main header
+  z-index: $layerOne;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0;
+  overflow-x: visible;
+  color: $board_header;
+
+  .icon-button {
+    margin-left: 4px;
+  }
+
+  .swimlane-column {
+    display: flex;
+    flex-flow: column wrap;
+    flex: 1;
+    font-weight: $boldFont;
+    margin: 0 3px;
+    font-size: 1.25em;
+    text-align: left;
+    padding: 5px;
+    padding-left: 20px;
+    word-break: break-word;
+    background: $board_swimlane_header_background;
+    color: $board_header;
+  }
+
+  .swimlane-subheader {
+    font-size: 12px;
+  }
+}
