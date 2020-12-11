@@ -24,6 +24,16 @@ export DOT_COMPONENTS_TOKEN=[YOUR TOKEN HERE]
 
 Save and source your profile `source ~/.bash_profile` then you should be good to go.
 
+#### Windows
+
+Configure `npm` for use with GitHub Packages by adding your token to your `.npmrc` file.
+
+```sh
+//npm.pkg.github.com/:_authToken=TOKEN
+```
+
+Alternatively, you can log in with the `npm login` command. More information on this method can be found on the [GitHub Docs.](https://docs.github.com/en/free-pro-team@latest/packages/guides/configuring-npm-for-use-with-github-packages#authenticating-with-a-personal-access-token)
+
 ### Installing the package from the GitHub Packages npm registry
 
 `@digital-ai/dot-components` is available as a private npm package on GitHub Packages. Your project will likely have other npm packages from the public NPM registry. To configure your project to only get the `@digital-ai/dot-components` package from GitHub Packages you will need to create the create or edit an `.npmrc` file in the same directory as your `package.json` file and add the following to the file:
@@ -46,6 +56,16 @@ The library ships with a CSS file that will bring in its styles and font-icons. 
 
 ```js
 import '@digital-ai/dot-components/dot-components.esm.css';
+```
+
+### Theme Provider
+
+The `DotThemeProvider` provides the theme for the components in this library. When using this library you will need to wrap your application with it like this:
+
+```jsx
+<DotThemeProvider>
+  <App />
+</DotThemeProvider>
 ```
 
 ### Updating
@@ -73,3 +93,7 @@ If you're using the `DotIcon` component then you do not need to pass in the `ico
 ## Contributing
 
 Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process, now to test changes, and how to build and publish the package to GitHub Packages.
+
+## Change Log
+
+[Learn about the latest improvements](/libs/dot-components/src/lib/ChangeLog.stories.mdx).

@@ -15,10 +15,10 @@ export interface DialogButtonProps {
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** The text displayed on the button */
-  displayText?: string;
+  label?: string;
   /** The icon to display on the button */
   iconId?: string;
-  /** 'destructive', 'primary', 'secondary', 'transparent' */
+  /** The type of button to be used */
   type?: ButtonType;
 }
 
@@ -32,7 +32,7 @@ export interface DialogProps {
   /** if true, automatically focuses the submit button */
   focusSubmitButton?: boolean;
   /** The callback to be executed when the action is cancelled */
-  onCancel: (event: MouseEvent | object) => void;
+  onCancel: (event: unknown) => void;
   /** The callback to be executed when the action is submitted */
   onSubmit: (event: KeyboardEvent | MouseEvent) => void;
   /** if true, the dialog is visible to the user */
@@ -54,22 +54,21 @@ export const DotDialog = ({
   submitButtonProps,
   title,
 }: DialogProps) => {
-  const handleClose = (event: object) => {
+  const handleClose = (event: unknown) => {
     onCancel(event);
   };
 
   const cancelButtonPropsWithDefaults: ButtonProps = {
-    displayText: 'Cancel',
-    type: 'transparent',
+    label: 'Cancel',
+    type: 'text',
     onClick: handleClose,
     ...cancelButtonProps,
   };
 
   const submitButtonPropsWithDefaults: ButtonProps = {
-    displayText: 'OK',
+    label: 'OK',
     type: 'primary',
     onClick: onSubmit,
-    focused: focusSubmitButton,
     ...submitButtonProps,
   };
 

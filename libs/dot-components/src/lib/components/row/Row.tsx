@@ -20,9 +20,9 @@ export interface RowProps {
   /** The icon to display on the button */
   iconId?: string;
   /** Callback event when delete confirmed */
-  onDelete?: (event: {}) => void;
+  onDelete?: (event: unknown) => void;
   /** Callback event when editing */
-  onEdit?: (event: {}) => void;
+  onEdit?: (event: unknown) => void;
   /** Space delimited CSS classes to be attributed to the row */
   rowClasses?: string;
   /** unique ID, usually matching what is used in the database */
@@ -60,10 +60,10 @@ export const DotRow = ({
         {canEdit && (
           <DotButton
             data-testid={uid}
-            displayText="Edit"
+            label="Edit"
             iconId="edit"
             onClick={(event) => onEdit && onEdit(event)}
-            type="transparent"
+            type="text"
           />
         )}
         {canDelete && (
@@ -75,16 +75,16 @@ export const DotRow = ({
               title={deleteTitle}
               showDialog={deleteDialogIsOpen}
               submitBtnProps={{
-                displayText: deleteButtonText,
+                label: deleteButtonText,
                 type: 'destructive',
               }}
             />
             <DotButton
               data-testid={uid}
-              displayText="Delete"
+              label="Delete"
               iconId="delete"
               onClick={() => setDeleteDialogIsOpen(true)}
-              type="transparent"
+              type="text"
             />
           </Fragment>
         )}
