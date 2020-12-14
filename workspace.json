@@ -15,7 +15,15 @@
             "main": "apps/demo/src/main.tsx",
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.app.json",
-            "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
+            "assets": [
+              "apps/demo/src/favicon.ico",
+              "apps/demo/src/assets",
+              {
+                "glob": "**/*",
+                "input": "libs/dot-components/src/lib/fonts/",
+                "output": "/fonts/"
+              }
+            ],
             "styles": ["apps/demo/src/styles.scss"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -131,9 +139,9 @@
                 "output": "."
               },
               {
-                "glob": "libs/dot-components/src/lib/font-icon/fonts/**",
-                "input": ".",
-                "output": "./fonts"
+                "glob": "**/*",
+                "input": "libs/dot-components/src/lib/fonts/",
+                "output": "/fonts/"
               },
               {
                 "glob": "libs/dot-components/.npmrc",

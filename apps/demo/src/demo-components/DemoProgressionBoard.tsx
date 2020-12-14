@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { DotProgressionBoard } from '@digital-ai/dot-components';
 import phasesData from './DemoData';
 
@@ -26,12 +26,7 @@ export const DemoProgressionBoard = () => {
   // }
 
   return (
-    <div>
-      <DotProgressionBoard
-        phases={phasesData}
-        baseUrl="http://localhost:8080"
-      />
-    </div>
+    <DotProgressionBoard phases={phasesData} baseUrl="http://localhost:8080" />
   );
 };
 

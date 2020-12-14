@@ -1,6 +1,5 @@
 @import '../../styles/global';
 @import '../../styles/mixins';
-@import '../../styles/variables';
 
 aside.dot-sidebar {
   align-items: stretch;
@@ -13,6 +12,11 @@ aside.dot-sidebar {
   letter-spacing: 0.01em;
   max-width: 240px;
   padding-top: $gutter/2;
+
+  h4 {
+    border-bottom: 1px solid $n50;
+    padding: $gutter * 2;
+  }
 
   .toggle-sub-nav {
     border-bottom: 1px solid $n200;
