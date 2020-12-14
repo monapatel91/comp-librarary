@@ -11,7 +11,7 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      textTransform: 'inherit',
+      textTransform: 'none',
       padding: `6px ${theme.spacing(2)}px`,
     },
     outlined: {
