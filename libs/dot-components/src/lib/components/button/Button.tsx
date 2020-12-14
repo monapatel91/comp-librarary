@@ -1,13 +1,23 @@
 import React, { MouseEvent } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, createStyles, Theme } from '@material-ui/core';
 
 import { DotIcon } from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
-
-import './Button.scss';
+import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
 export type ButtonSize = 'small' | 'medium' | 'large';
+
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      textTransform: 'none',
+      padding: `6px ${theme.spacing(2)}px`,
+    },
+    outlined: {
+      padding: `6px ${theme.spacing(2) - 1}px`,
+    },
+  });
 
 export interface ButtonProps extends CommonProps {
   /** If true, the button will be disabled. */
@@ -32,7 +42,7 @@ export interface ButtonProps extends CommonProps {
 
 /** This component wraps the Button component from @material-ui. */
 export const DotButton = ({
-  classes,
+  className,
   'data-testid': dataTestId,
   label,
   disabled = false,
@@ -43,6 +53,12 @@ export const DotButton = ({
   titleTooltip,
   type,
 }: ButtonProps) => {
+  const { rootClasses, otherClasses } = useStylesWithRootClass(
+    'dot-button',
+    styles,
+    className
+  );
+
   let color: 'primary' | 'secondary' | 'default';
   let variant: 'contained' | 'outlined' | 'text';
   switch (type) {
@@ -66,7 +82,7 @@ export const DotButton = ({
 
   return (
     <Button
-      className={`dot-btn ${classes}`}
+      classes={{ root: rootClasses, ...otherClasses }}
       color={color}
       data-testid={dataTestId}
       disabled={disabled}

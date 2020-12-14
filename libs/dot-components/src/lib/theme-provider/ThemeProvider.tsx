@@ -14,6 +14,16 @@ const theme = createMuiTheme({
       main: red[500],
     },
   },
+  typography: {
+    fontFamily:
+      '"Lato", -apple-system, system-ui, BlinkMacSystemFont, sans-serif',
+    allVariants: {
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      fontFeatureSettings: '"liga" off',
+      fontVariantLigatures: 'none',
+    },
+  },
 });
 
 interface ThemeProviderProps {

@@ -96,7 +96,7 @@ export const DotDialog = ({
         <DialogContent>{children}</DialogContent>
         <DialogActions>
           <DotButton
-            classes="cancel-button"
+            className="cancel-button"
             {...cancelButtonPropsWithDefaults}
           />
           <DotButton {...submitButtonPropsWithDefaults} />
