@@ -1,1 +1,79 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold !important;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+h1 {
+  font-size: 35px;
+  line-height: 42px;
+}
+
+h2 {
+  font-size: 29px;
+  line-height: 35px;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+h4 {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+h5 {
+  font-size: 17px;
+  line-height: 23px;
+}
+
+h6 {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 48px);
+  width: 100vw;
+  overflow: hidden;
+
+  section.main-content {
+    padding: 8px * 2;
+    width: 100%;
+  }
+}

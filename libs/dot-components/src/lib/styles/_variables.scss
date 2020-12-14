@@ -1,9 +1,20 @@
-@import 'palette';
-
 $gutter: 8px;
 $radius: 4px;
 
-$baseFont: 'Lato', -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
+@font-face {
+  font-family: 'LatoRegular';
+  font-weight: 400;
+  src: url('/fonts/Lato-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'LatoBold';
+  font-weight: 700;
+  src: url('/fonts/Lato-Bold.ttf') format('truetype');
+}
+
+$baseFont: 'LatoRegular', sans-serif;
+$boldFont: 'LatoBold', sans-serif;
 
 $layerOne: 1;
 $layerTwo: 10;

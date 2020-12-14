@@ -16,16 +16,16 @@ yarn generate:comp --name=[name of component]
 
 For details go to [.dot design system](https://zeroheight.com/4a9ac476a/p/13a447-icons/t/36e685)
 
-You can import `dot-components/src/lib/font-icon/selection.json` back to the IcoMoon app using the _Import Icons_ button (or via Main Menu → Manage Projects) to retrieve your icon selection.
+You can import `dot-components/src/lib/fonts/font-icon/selection.json` back to the IcoMoon app using the _Import Icons_ button (or via Main Menu → Manage Projects) to retrieve your icon selection.
 
 After downloading generated files from icomoon only the following files should be copied over and a pull request submitted.
 
 ```sh
-- dot-components/src/lib/font-icon/fonts/*
-- dot-components/src/lib/font-icon/selection.json
-- dot-components/src/lib/font-icon/style.css
-- dot-components/src/lib/font-icon/style.scss
-- dot-components/src/lib/font-icon/variables.scss
+- dot-components/src/lib/fonts/font-icon/fonts/*
+- dot-components/src/lib/fonts/font-icon/selection.json
+- dot-components/src/lib/fonts/font-icon/style.css
+- dot-components/src/lib/fonts/font-icon/style.scss
+- dot-components/src/lib/fonts/font-icon/variables.scss
 ```
 
 You won't need any of the files located under the `demo-files/` directory when including the generated font in your own projects.

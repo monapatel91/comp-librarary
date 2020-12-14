@@ -1,5 +1,4 @@
 @import '../../styles/global';
-@import '../../styles/variables';
 
 .dot-infinite-footer {
   border-top: 1px solid #ccc;
@@ -21,7 +20,7 @@
     background: #eee;
     border: 0;
     border-bottom: 1px solid #ccc;
-    font-weight: 700;
+    font-family: $boldFont;
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: horizontal;
