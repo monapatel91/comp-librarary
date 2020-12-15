@@ -3,6 +3,7 @@ import { Avatar, createStyles, Theme } from '@material-ui/core';
 
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { DotIcon } from '../icon/Icon';
 
 type AvatarSize = 'small' | 'medium' | 'large';
 
@@ -45,6 +46,8 @@ const styles = (theme: Theme) =>
 export interface AvatarProps extends CommonProps {
   /** Text displayed on hover */
   alt?: string;
+  /** The ID of the icon to display on the button */
+  iconId?: string;
   /** Size of avatar displayed */
   size?: AvatarSize;
 }
@@ -54,13 +57,21 @@ export const DotAvatar = ({
   alt,
   className,
   'data-testid': dataTestId,
+  iconId,
   size = 'medium',
 }: AvatarProps) => {
   const classes = useStylesWithRootClass('dot-avatar', styles, className, {
     size,
   });
 
-  return <Avatar alt={alt} data-testid={dataTestId} classes={{ ...classes }} />;
+  // currently the icon component calls medium "default"
+  const iconSize = size === 'medium' ? 'default' : size;
+
+  return (
+    <Avatar alt={alt} data-testid={dataTestId} classes={{ ...classes }}>
+      {iconId ? <DotIcon icon={iconId} fontSize={iconSize} /> : null}
+    </Avatar>
+  );
 };
 
 export default DotAvatar;
