@@ -14,10 +14,10 @@ export interface SidebarProps {
 }
 
 export const DotSidebar = ({
-  backItem,
+  backItem = [],
   company,
   goBack,
-  navItems,
+  navItems = [],
 }: SidebarProps) => {
   const [open, updateOpen] = useState(true);
 

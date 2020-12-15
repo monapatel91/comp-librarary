@@ -44,7 +44,7 @@ describe(' Sidebar', () => {
   });
 
   xit('navigation is expanded by default', () => {
-    renderWithRouter(<DotSidebar />);
+    renderWithRouter(<DotSidebar navItems={navItems} />);
 
     const primaryNav = screen.getByTestId('primaryNav');
     expect(primaryNav).toHaveClass('expanded');
