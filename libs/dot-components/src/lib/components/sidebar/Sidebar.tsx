@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { DotNavigation } from '../navigation/Navigation';
 import { NavigationItemProps } from '../navigation/NavItem';
 import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
@@ -22,8 +22,6 @@ export const DotSidebar = ({
   goBack,
   navOpen,
   primaryItems,
-  secondaryItems = [],
-  subNavOpen,
   title,
   toggleItem,
 }: SidebarProps) => {
@@ -33,32 +31,20 @@ export const DotSidebar = ({
       data-testid="primaryNav"
     >
       {title && <h4>{title}</h4>}
-      {subNavOpen ? (
-        <Fragment>
-          {goBack && (
-            <DotNavigation
-              classes={`toggle-sub-nav`}
-              direction="vertical"
-              items={backItem}
-            />
-          )}
-          <DotNavigation
-            ariaLabel="second level navigation"
-            classes="sub-nav dense"
-            data-testid="secondLevelNav"
-            direction="vertical"
-            items={secondaryItems}
-          />
-        </Fragment>
-      ) : (
+      {goBack && (
         <DotNavigation
-          ariaLabel="top level navigation"
-          classes="top-level-nav dense"
-          data-testid="topLevelNav"
+          classes={`go-back`}
           direction="vertical"
-          items={primaryItems}
+          items={backItem}
         />
       )}
+      <DotNavigation
+        ariaLabel="top level navigation"
+        classes="top-level-nav dense"
+        data-testid="topLevelNav"
+        direction="vertical"
+        items={primaryItems}
+      />
       {toggleItem && (
         <DotNavigation
           classes={`toggle-nav`}

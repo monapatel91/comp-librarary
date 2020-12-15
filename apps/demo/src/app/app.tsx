@@ -36,11 +36,31 @@ const topNavItems: Array<NavigationItemProps> = [
 const sampleSideNavItems: Array<NavigationItemProps> = [
   {
     icon: 'process-template',
+    items: [
+      {
+        text: 'Package Progression',
+        url: '/package-progression',
+      },
+      {
+        text: 'Feature Progression',
+        url: '/feature-progression',
+      },
+    ],
     text: 'Progressions',
     url: '/progressions',
   },
   {
     icon: 'satellite-group',
+    items: [
+      {
+        text: 'Groups',
+        url: '/pipeline-groups',
+      },
+      {
+        text: 'Instances',
+        url: '/pipeline-instance',
+      },
+    ],
     text: 'Pipelines',
     url: '/pipelines',
   },
@@ -48,6 +68,9 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
     icon: 'dashboard',
     text: 'Insights',
     url: '/insights',
+  },
+  {
+    divider: true,
   },
   {
     icon: 'block',
@@ -65,6 +88,9 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
     url: '/projects',
   },
   {
+    divider: true,
+  },
+  {
     icon: 'file-lines',
     text: 'Workitems',
     url: '/workitems',
@@ -78,6 +104,9 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
     icon: 'square-settings',
     text: 'Artifacts',
     url: '/artifacts',
+  },
+  {
+    divider: true,
   },
   {
     icon: 'monitor-gears',

@@ -14,11 +14,11 @@ aside.dot-sidebar {
   padding-top: $gutter/2;
 
   h4 {
-    border-bottom: 1px solid $n50;
+    border-bottom: 1px solid $n100;
     padding: $gutter * 2;
   }
 
-  .toggle-sub-nav {
+  .go-back {
     border-bottom: 1px solid $n200;
 
     li a {
@@ -28,23 +28,21 @@ aside.dot-sidebar {
     }
   }
 
-  .sub-nav,
-  .top-level-nav {
+  nav.top-level-nav {
     flex-grow: 2;
 
-    &.dense li a {
-      padding: 6px $gutter * 2;
-    }
-
     li {
+      align-items: stretch;
       flex-grow: 2;
 
-      &:last-child {
+      &.divider {
         border-bottom: 1px solid $n100;
       }
 
+      &.has-subnav,
       a {
-        padding: $gutter $gutter * 2;
+        padding: 6px;
+        padding-left: $gutter * 2;
 
         &.active,
         &:hover,
@@ -53,9 +51,23 @@ aside.dot-sidebar {
           color: $n700;
         }
 
-        .material-icons.first {
+        ul {
+          display: none;
+        }
+
+        span:not(.dot-icon) {
+          flex-grow: 1;
+        }
+
+        .dot-icon {
           padding: 0;
-          margin-right: $gutter * 4;
+
+          &.first {
+            margin-right: $gutter * 4;
+          }
+          &.nav-arrow {
+            align-self: flex-end;
+          }
         }
       }
     }
@@ -104,10 +116,10 @@ aside.dot-sidebar {
         height: 56px;
         justify-content: center;
 
-        .material-icons.first {
+        .dot-icon.first {
           margin-right: 0;
         }
-        span:not(.material-icons) {
+        span:not(.dot-icon) {
           display: none;
         }
       }
