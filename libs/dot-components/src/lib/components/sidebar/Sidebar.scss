@@ -32,6 +32,7 @@ aside.dot-sidebar {
 
   nav.side-nav {
     flex-grow: 2;
+    overflow: hidden;
 
     li {
       align-items: center;
