@@ -50,6 +50,7 @@ export interface AvatarProps extends CommonProps {
   alt?: string;
   /** The ID of the icon to display on the button */
   iconId?: string;
+  imageSrc?: string;
   /** Size of avatar displayed */
   size?: AvatarSize;
   /** The text to be displayed. Only the first 2 letters will be displayed. */
@@ -66,6 +67,7 @@ export const DotAvatar = ({
   className,
   'data-testid': dataTestId,
   iconId,
+  imageSrc,
   size = 'medium',
   text,
   type = 'image',
@@ -90,14 +92,12 @@ export const DotAvatar = ({
       break;
 
     case 'medium':
-      // this is just because currently the Icon component has a size
-      // called "default" rather than "medium"
       iconFontSize = 'default';
       textVariant = 'h3';
       break;
 
     case 'large':
-      iconFontSize = size;
+      iconFontSize = 'default';
       textVariant = 'h1';
       break;
   }
@@ -122,6 +122,7 @@ export const DotAvatar = ({
       data-testid={dataTestId}
       classes={{ ...classes }}
       variant={variant}
+      src={imageSrc}
     >
       {child}
     </Avatar>
