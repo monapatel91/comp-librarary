@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DotNavigation } from '../navigation/Navigation';
 import { NavigationItemProps } from '../navigation/NavItem';
 import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
@@ -8,29 +8,34 @@ import './Sidebar.scss';
 
 export interface SidebarProps {
   backItem?: Array<NavigationItemProps>;
+  company?: string;
   goBack?: boolean;
-  navOpen?: boolean;
-  primaryItems?: Array<NavigationItemProps>;
-  secondaryItems?: Array<NavigationItemProps>;
-  subNavOpen?: boolean;
-  title?: string;
-  toggleItem?: Array<NavigationItemProps>;
+  navItems?: Array<NavigationItemProps>;
 }
 
 export const DotSidebar = ({
   backItem,
+  company,
   goBack,
-  navOpen,
-  primaryItems,
-  title,
-  toggleItem,
+  navItems,
 }: SidebarProps) => {
+  const [open, updateOpen] = useState(true);
+
+  const toggleItem: Array<NavigationItemProps> = [
+    {
+      icon: 'chevron-left',
+      onClick: () => updateOpen(!open),
+      title: 'Toggle Nav',
+      url: '/',
+    },
+  ];
+
   return (
     <aside
-      className={`dot-sidebar ${!navOpen ? 'collapsed' : 'expanded'}`}
+      className={`dot-sidebar ${!open ? 'collapsed' : 'expanded'}`}
       data-testid="primaryNav"
     >
-      {title && <h4>{title}</h4>}
+      {company && <h4>{company}</h4>}
       {goBack && (
         <DotNavigation
           classes={`go-back`}
@@ -43,15 +48,13 @@ export const DotSidebar = ({
         classes="top-level-nav dense"
         data-testid="topLevelNav"
         direction="vertical"
-        items={primaryItems}
+        items={navItems}
       />
-      {toggleItem && (
-        <DotNavigation
-          classes={`toggle-nav`}
-          direction="vertical"
-          items={toggleItem}
-        />
-      )}
+      <DotNavigation
+        classes={`toggle-nav`}
+        direction="vertical"
+        items={toggleItem}
+      />
       <div className="powered-by">
         <span className="desc">Release orchestration powered by</span>
         <LogoDigitalAi className="company-name" title="digital.ai" />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import {
   DotHeader,
@@ -126,8 +126,6 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
 ];
 
 export const App = () => {
-  const [open, updateOpen] = useState(true);
-
   const backItem: Array<NavigationItemProps> = [
     {
       icon: 'back',
@@ -140,25 +138,14 @@ export const App = () => {
     },
   ];
 
-  const toggleItem: Array<NavigationItemProps> = [
-    {
-      icon: 'chevron-left',
-      onClick: () => updateOpen(!open),
-      title: 'Toggle Nav',
-      url: '/',
-    },
-  ];
-
   return (
     <BrowserRouter>
       <DotHeader brand="Continuum" items={topNavItems} />
       <main>
         <DotSidebar
           backItem={backItem}
-          primaryItems={sampleSideNavItems}
-          navOpen={true}
-          title="FedEx"
-          toggleItem={toggleItem}
+          navItems={sampleSideNavItems}
+          company="FedEx"
         />
         <section className="main-content">
           <DemoProgressionBoard />

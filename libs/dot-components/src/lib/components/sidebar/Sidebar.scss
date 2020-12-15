@@ -1,6 +1,9 @@
 @import '../../styles/global';
 @import '../../styles/mixins';
 
+$collapseTransition: width 0.3s cubic-bezier(0, 4, 0.2, 1);
+$toggleTransition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
 aside.dot-sidebar {
   align-items: stretch;
   background: $n50;
@@ -10,11 +13,13 @@ aside.dot-sidebar {
   flex-direction: column;
   justify-content: space-between;
   letter-spacing: 0.01em;
-  max-width: 240px;
   padding-top: $gutter/2;
+  transition: $collapseTransition;
+  width: 240px;
 
   h4 {
     border-bottom: 1px solid $n100;
+    font-size: 14px;
     padding: $gutter * 2;
   }
 
@@ -37,6 +42,7 @@ aside.dot-sidebar {
 
       &.divider {
         border-bottom: 1px solid $n100;
+        margin: $gutter 0;
       }
 
       &.has-subnav,
@@ -110,8 +116,16 @@ aside.dot-sidebar {
 
   // Styles applied when primary nav is collapsed
   &.collapsed {
-    nav {
-      li a {
+    transition: $collapseTransition;
+    width: 56px;
+
+    h4 {
+      display: none;
+    }
+
+    nav li {
+      &.has-subnav,
+      a {
         align-items: stretch;
         height: 56px;
         justify-content: center;
@@ -119,7 +133,8 @@ aside.dot-sidebar {
         .dot-icon.first {
           margin-right: 0;
         }
-        span:not(.dot-icon) {
+        span:not(.dot-icon),
+        .dot-icon.nav-arrow {
           display: none;
         }
       }
@@ -130,6 +145,7 @@ aside.dot-sidebar {
 
       .dot-icon {
         transform: rotate(180deg);
+        transition: $toggleTransition;
       }
     }
 

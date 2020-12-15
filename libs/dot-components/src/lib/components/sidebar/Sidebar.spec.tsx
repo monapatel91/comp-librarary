@@ -7,7 +7,7 @@ import { renderWithRouter } from '../../testing-utils/RenderWithRouter';
 import { NavigationItemProps } from '../navigation/NavItem';
 import { DotSidebar } from './Sidebar';
 
-const primaryItems: Array<NavigationItemProps> = [
+const navItems: Array<NavigationItemProps> = [
   {
     icon: 'block',
     title: 'Home',
@@ -20,30 +20,12 @@ const primaryItems: Array<NavigationItemProps> = [
   },
 ];
 
-const secondLevelNav: Array<NavigationItemProps> = [
-  { icon: 'block', text: 'Batman', url: '' },
-];
-
 describe(' Sidebar', () => {
   it('should render successfully', () => {
     const { baseElement } = renderWithRouter(
-      <DotSidebar primaryItems={primaryItems} goBack={false} />
+      <DotSidebar navItems={navItems} goBack={false} />
     );
     expect(baseElement).toBeTruthy();
-  });
-
-  xit('should display the subnav correctly', async () => {
-    const dummySubNav = [{ icon: 'block', text: 'Batman', url: '' }];
-    renderWithRouter(<DotSidebar secondaryItems={dummySubNav} />);
-    const primaryNav = screen.getByTestId('primaryNav');
-    const subNav = screen.findByTestId('sub-nav');
-
-    await waitFor(() => {
-      expect(primaryNav).toBeTruthy();
-      expect(subNav).toBeTruthy();
-    });
-
-    expect(screen.getByText('Batman')).toBeVisible();
   });
 
   xit('navigation expands/collapses as expected', async () => {
@@ -69,7 +51,7 @@ describe(' Sidebar', () => {
   });
 
   xit('displays top level navigation when back button clicked', async () => {
-    renderWithRouter(<DotSidebar secondaryItems={secondLevelNav} />);
+    renderWithRouter(<DotSidebar navItems={navItems} />);
     const primaryNav = screen.getByTestId('primaryNav');
     await waitFor(() => {
       expect(primaryNav.innerHTML).toContain('Batman');
