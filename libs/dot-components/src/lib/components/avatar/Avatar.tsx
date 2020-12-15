@@ -72,8 +72,11 @@ export const DotAvatar = ({
     size,
   });
 
-  // currently the icon component calls medium "default"
-  const iconSize = size === 'medium' ? 'default' : size;
+  // verify conditionally required fields
+  if ((type === 'icon' || type === 'image') && !alt) {
+    console.error('"alt" is required for Avatars of type "icon" or "image"');
+  }
+
   // determine values for variables dependent on size
   let iconFontSize: IconFontSize;
   let textVariant: Variant;
