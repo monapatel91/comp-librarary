@@ -38,10 +38,12 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
     icon: 'process-template',
     items: [
       {
+        icon: 'process-template',
         text: 'Package Progression',
         url: '/package-progression',
       },
       {
+        icon: 'process-template',
         text: 'Feature Progression',
         url: '/feature-progression',
       },
@@ -53,10 +55,12 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
     icon: 'satellite-group',
     items: [
       {
+        icon: 'satellite-group',
         text: 'Groups',
         url: '/pipeline-groups',
       },
       {
+        icon: 'satellite-group',
         text: 'Instances',
         url: '/pipeline-instance',
       },
@@ -71,6 +75,7 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
   },
   {
     divider: true,
+    title: 'Workflow',
   },
   {
     icon: 'block',
@@ -107,6 +112,7 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
   },
   {
     divider: true,
+    title: 'System',
   },
   {
     icon: 'monitor-gears',

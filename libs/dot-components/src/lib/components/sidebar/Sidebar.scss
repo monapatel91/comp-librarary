@@ -1,9 +1,6 @@
 @import '../../styles/global';
 @import '../../styles/mixins';
 
-$collapseTransition: width 0.3s cubic-bezier(0, 4, 0.2, 1);
-$toggleTransition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
 aside.dot-sidebar {
   align-items: stretch;
   background: $n50;
@@ -14,8 +11,8 @@ aside.dot-sidebar {
   justify-content: space-between;
   letter-spacing: 0.01em;
   padding-top: $gutter/2;
-  transition: $collapseTransition;
   width: 240px;
+  @include transition($prop: width, $func: cubic-bezier(0.4, 0, 0.6, 1));
 
   h4 {
     border-bottom: 1px solid $n100;
@@ -23,7 +20,7 @@ aside.dot-sidebar {
     padding: $gutter * 2;
   }
 
-  .go-back {
+  nav.go-back {
     border-bottom: 1px solid $n200;
 
     li a {
@@ -33,22 +30,29 @@ aside.dot-sidebar {
     }
   }
 
-  nav.top-level-nav {
+  nav.side-nav {
     flex-grow: 2;
 
     li {
-      align-items: stretch;
+      align-items: center;
       flex-grow: 2;
 
       &.divider {
         border-bottom: 1px solid $n100;
         margin: $gutter 0;
+
+        h5 {
+          font-size: 12px;
+          font-weight: normal;
+          padding: 0 $gutter * 2;
+        }
       }
 
       &.has-subnav,
       a {
-        padding: 6px;
-        padding-left: $gutter * 2;
+        align-items: stretch;
+        height: 44px;
+        padding: 6px 6px 6px $gutter * 2;
 
         &.active,
         &:hover,
@@ -57,8 +61,25 @@ aside.dot-sidebar {
           color: $n700;
         }
 
-        ul {
+        ul.flyout {
+          background: $n0;
+          border-radius: 4px;
+          box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
+            0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2);
           display: none;
+          left: 206px;
+          margin-top: 70px;
+          padding: $gutter * 2 0;
+          position: absolute;
+          width: 248px;
+          z-index: $layerTwo;
+
+          a {
+            &:hover,
+            &:focus {
+              background: $n100;
+            }
+          }
         }
 
         span:not(.dot-icon) {
@@ -71,15 +92,21 @@ aside.dot-sidebar {
           &.first {
             margin-right: $gutter * 4;
           }
-          &.nav-arrow {
-            align-self: flex-end;
+        }
+      }
+
+      &.has-subnav {
+        &:hover,
+        &:focus {
+          ul {
+            display: block;
           }
         }
       }
     }
   }
 
-  .toggle-nav {
+  nav.toggle-nav {
     align-self: flex-end;
 
     li a.active {
@@ -88,7 +115,7 @@ aside.dot-sidebar {
 
     .dot-icon {
       transform: rotate(0deg);
-      @include transition(transform, 0.2s);
+      @include transition($func: cubic-bezier(0.4, 0, 0.2, 1));
     }
   }
 
@@ -99,6 +126,7 @@ aside.dot-sidebar {
     flex-direction: column;
     font-size: 12px;
     margin: $gutter;
+    overflow: hidden;
     padding: $gutter;
 
     span.desc {
@@ -116,19 +144,22 @@ aside.dot-sidebar {
 
   // Styles applied when primary nav is collapsed
   &.collapsed {
-    transition: $collapseTransition;
     width: 56px;
+    @include transition($prop: width, $func: cubic-bezier(0.4, 0, 0.6, 1));
 
-    h4 {
-      display: none;
+    h4::first-letter {
+      background: $n200;
+      border-radius: 50%;
+      margin-right: 999px;
+      padding: $gutter/2 $gutter;
     }
 
     nav li {
       &.has-subnav,
       a {
-        align-items: stretch;
-        height: 56px;
+        height: 44px;
         justify-content: center;
+        padding: 6px;
 
         .dot-icon.first {
           margin-right: 0;
@@ -138,6 +169,10 @@ aside.dot-sidebar {
           display: none;
         }
       }
+
+      &.divider h5 {
+        display: none;
+      }
     }
 
     .toggle-nav {
@@ -145,7 +180,7 @@ aside.dot-sidebar {
 
       .dot-icon {
         transform: rotate(180deg);
-        transition: $toggleTransition;
+        @include transition($func: cubic-bezier(0.4, 0, 0.2, 1));
       }
     }
 

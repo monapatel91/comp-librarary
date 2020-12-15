@@ -38,20 +38,20 @@ export const DotSidebar = ({
       {company && <h4>{company}</h4>}
       {goBack && (
         <DotNavigation
-          classes={`go-back`}
+          classes="go-back"
           direction="vertical"
           items={backItem}
         />
       )}
       <DotNavigation
-        ariaLabel="top level navigation"
-        classes="top-level-nav dense"
-        data-testid="topLevelNav"
+        ariaLabel="left navigation"
+        classes="side-nav dense"
+        data-testid="sideNav"
         direction="vertical"
         items={navItems}
       />
       <DotNavigation
-        classes={`toggle-nav`}
+        classes="toggle-nav"
         direction="vertical"
         items={toggleItem}
       />

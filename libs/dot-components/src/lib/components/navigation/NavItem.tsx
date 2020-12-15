@@ -53,7 +53,7 @@ export const DotNavItem = ({
   url,
 }: NavigationItemProps) => {
   if (divider) {
-    return <li className="divider"></li>;
+    return <li className="divider">{title && <h5>{title}</h5>}</li>;
   } else if (items.length > 0) {
     return (
       <li className={`has-subnav ${direction}`}>
@@ -69,7 +69,7 @@ export const DotNavItem = ({
         )}
         {text && <span className={textClasses}>{text}</span>}
         <DotIcon icon="chevron-right" iconClasses="nav-arrow" />
-        <ul>
+        <ul className="flyout">
           {items.map((item: NavigationItemProps, index: number) => {
             return <DotNavItem {...item} iconSize={iconSize} key={index} />;
           })}
