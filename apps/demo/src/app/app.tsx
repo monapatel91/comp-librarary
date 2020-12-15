@@ -75,7 +75,7 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
   },
   {
     divider: true,
-    title: 'Workflow',
+    text: 'Workflow',
   },
   {
     icon: 'block',
@@ -112,7 +112,7 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
   },
   {
     divider: true,
-    title: 'System',
+    text: 'System',
   },
   {
     icon: 'monitor-gears',

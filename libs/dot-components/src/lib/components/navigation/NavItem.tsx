@@ -53,7 +53,7 @@ export const DotNavItem = ({
   url,
 }: NavigationItemProps) => {
   if (divider) {
-    return <li className="divider">{title && <h5>{title}</h5>}</li>;
+    return <li className="divider">{text && <h5>{text}</h5>}</li>;
   } else if (items.length > 0) {
     return (
       <li className={`has-subnav ${direction}`}>
