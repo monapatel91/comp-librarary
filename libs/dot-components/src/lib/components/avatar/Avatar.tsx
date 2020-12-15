@@ -4,7 +4,13 @@ import { Avatar, createStyles, Theme } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
-type AvatarSize = 'small' | 'medium';
+type AvatarSize = 'small' | 'medium' | 'large';
+
+const avatarSpacing = {
+  small: 3,
+  medium: 5,
+  large: 7,
+};
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -12,19 +18,25 @@ const styles = (theme: Theme) =>
       height: (props: { size: AvatarSize }) => {
         switch (props.size) {
           case 'small':
-            return theme.spacing(3);
+            return theme.spacing(avatarSpacing.small);
+
+          case 'large':
+            return theme.spacing(avatarSpacing.large);
 
           default:
-            return theme.spacing(4);
+            return theme.spacing(avatarSpacing.medium);
         }
       },
       width: (props: { size: AvatarSize }) => {
         switch (props.size) {
           case 'small':
-            return theme.spacing(3);
+            return theme.spacing(avatarSpacing.small);
+
+          case 'large':
+            return theme.spacing(avatarSpacing.large);
 
           default:
-            return theme.spacing(4);
+            return theme.spacing(avatarSpacing.medium);
         }
       },
     },
