@@ -56,6 +56,8 @@ export interface AvatarProps extends CommonProps {
   text?: string;
   /** The type of the avatar */
   type?: AvatarType;
+  /** The shape of the avatar */
+  variant?: 'circle' | 'square';
 }
 
 // TODO: need to use src or srcSet in order to utilize alt text prop
@@ -67,6 +69,7 @@ export const DotAvatar = ({
   size = 'medium',
   text,
   type = 'image',
+  variant = 'circle',
 }: AvatarProps) => {
   const classes = useStylesWithRootClass('dot-avatar', styles, className, {
     size,
@@ -114,7 +117,12 @@ export const DotAvatar = ({
   }
 
   return (
-    <Avatar alt={alt} data-testid={dataTestId} classes={{ ...classes }}>
+    <Avatar
+      alt={alt}
+      data-testid={dataTestId}
+      classes={{ ...classes }}
+      variant={variant}
+    >
       {child}
     </Avatar>
   );
