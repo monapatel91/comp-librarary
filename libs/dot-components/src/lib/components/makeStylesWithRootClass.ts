@@ -10,16 +10,18 @@ export function useStylesWithRootClass<Theme, ClassKey extends string = string>(
   props?: any
 ) {
   // generate style classes
-  const classes: any = makeStyles(styles, { name })(props);
+  const classes = makeStyles(styles, { name })(props);
 
-  // get the root class and separate the other classes from generated styles
-  const { root, ...otherClasses } = classes;
+  // get the root class from generated styles
+  const rootClass = 'root' in classes ? classes['root'] : '';
 
   // combine the root classes into one string
-  const rootClasses = [name, root, ...(className ? [className] : [])].join(' ');
+  const rootClasses = [name, rootClass, ...(className ? [className] : [])].join(
+    ' '
+  );
 
-  return {
-    rootClasses,
-    otherClasses,
-  };
+  // set the combined root classes on the classes object
+  classes['root'] = rootClasses;
+
+  return classes;
 }
