@@ -62,27 +62,6 @@ aside.dot-sidebar {
           color: $n700;
         }
 
-        ul.flyout {
-          background: $n0;
-          border-radius: 4px;
-          box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
-            0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2);
-          display: none;
-          left: 206px;
-          margin-top: 70px;
-          padding: $gutter * 2 0;
-          position: absolute;
-          width: 248px;
-          z-index: $layerTwo;
-
-          a {
-            &:hover,
-            &:focus {
-              background: $n100;
-            }
-          }
-        }
-
         span:not(.dot-icon) {
           flex-grow: 1;
         }
@@ -92,15 +71,6 @@ aside.dot-sidebar {
 
           &.first {
             margin-right: $gutter * 4;
-          }
-        }
-      }
-
-      &.has-subnav {
-        &:hover,
-        &:focus {
-          ul {
-            display: block;
           }
         }
       }
@@ -196,6 +166,30 @@ aside.dot-sidebar {
       .d-icon {
         display: block;
       }
+    }
+  }
+}
+
+.dot-flyout {
+  margin: 10px 0 0 190px;
+  width: 248px;
+
+  li {
+    &.active,
+    &:hover,
+    &:focus {
+      background: $n100;
+    }
+  }
+
+  a {
+    align-items: center;
+    color: $n700;
+    display: flex;
+    &.active,
+    &:hover,
+    &:focus {
+      background: transparent;
     }
   }
 }

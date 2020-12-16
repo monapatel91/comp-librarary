@@ -1,5 +1,6 @@
-import React, { Fragment, MouseEvent } from 'react';
+import React, { createRef, Fragment, MouseEvent, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Menu, MenuItem } from '@material-ui/core';
 import { DotIcon, IconFontSize, IconType } from '../icon/Icon';
 
 export type DirectionType = 'horizontal' | 'vertical';
@@ -52,29 +53,67 @@ export const DotNavItem = ({
   title,
   url,
 }: NavigationItemProps) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [open, setOpen] = useState(false);
+
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpen(false);
+  };
+
   if (divider) {
     return <li className="divider">{text && <h5>{text}</h5>}</li>;
   } else if (items.length > 0) {
     return (
-      <li className={`has-subnav ${direction}`}>
-        {icon && (
-          <DotIcon
-            fontSize={iconSize}
-            icon={icon}
-            iconBgColor={iconBgColor}
-            iconClasses={`${iconClasses} ${iconPlacement}`}
-            iconType={iconType}
-            title={title || text}
-          />
-        )}
-        {text && <span className={textClasses}>{text}</span>}
-        <DotIcon icon="chevron-right" iconClasses="nav-arrow" />
-        <ul className="flyout">
-          {items.map((item: NavigationItemProps, index: number) => {
-            return <DotNavItem {...item} iconSize={iconSize} key={index} />;
-          })}
-        </ul>
-      </li>
+      <Fragment>
+        <li
+          className={`has-subnav ${direction}`}
+          onClick={(event) => handleClick(event)}
+        >
+          {icon && (
+            <DotIcon
+              fontSize={iconSize}
+              icon={icon}
+              iconBgColor={iconBgColor}
+              iconClasses={`${iconClasses} ${iconPlacement}`}
+              iconType={iconType}
+              title={title || text}
+            />
+          )}
+          {text && <span className={textClasses}>{text}</span>}
+          <DotIcon icon="chevron-right" iconClasses="nav-arrow" />
+        </li>
+        <Menu
+          anchorEl={anchorEl}
+          classes={{ paper: 'dot-flyout' }}
+          keepMounted
+          open={open}
+          onClose={handleClose}
+        >
+          {items.map((item: NavigationItemProps, index: number) => (
+            <MenuItem key={index} onClick={handleClose}>
+              <NavLink exact to={item.url} title={item.text}>
+                {item.icon && (
+                  <DotIcon
+                    fontSize={iconSize}
+                    icon={item.icon}
+                    iconBgColor={iconBgColor}
+                    iconClasses={`${iconClasses} ${iconPlacement}`}
+                    iconType={iconType}
+                    title={item.title || item.text}
+                  />
+                )}
+                {item.text && <span className={textClasses}>{item.text}</span>}
+              </NavLink>
+            </MenuItem>
+          ))}
+        </Menu>
+      </Fragment>
     );
   } else {
     return (
