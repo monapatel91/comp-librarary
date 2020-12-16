@@ -23,6 +23,15 @@ const theme = createMuiTheme({
       fontFeatureSettings: '"liga" off',
       fontVariantLigatures: 'none',
     },
+    h1: {
+      fontSize: 24,
+    },
+    h3: {
+      fontSize: 17,
+    },
+    caption: {
+      fontSize: 10,
+    },
   },
 });
 
