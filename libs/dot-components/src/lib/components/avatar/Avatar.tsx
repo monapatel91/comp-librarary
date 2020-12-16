@@ -50,6 +50,7 @@ export interface AvatarProps extends CommonProps {
   alt?: string;
   /** The ID of the icon to display on the button */
   iconId?: string;
+  /** Source for the image used for the avatar */
   imageSrc?: string;
   /** Size of avatar displayed */
   size?: AvatarSize;
@@ -112,7 +113,11 @@ export const DotAvatar = ({
       break;
 
     case 'text':
-      child = <Typography variant={textVariant}>{text}</Typography>;
+      child = (
+        <Typography variant={textVariant}>
+          {text ? text.slice(0, 2) : ''}
+        </Typography>
+      );
       break;
   }
 
