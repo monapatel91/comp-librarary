@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import {
   DotHeader,
@@ -36,11 +36,35 @@ const topNavItems: Array<NavigationItemProps> = [
 const sampleSideNavItems: Array<NavigationItemProps> = [
   {
     icon: 'process-template',
+    items: [
+      {
+        icon: 'process-template',
+        text: 'Package Progression',
+        url: '/package-progression',
+      },
+      {
+        icon: 'process-template',
+        text: 'Feature Progression',
+        url: '/feature-progression',
+      },
+    ],
     text: 'Progressions',
     url: '/progressions',
   },
   {
     icon: 'satellite-group',
+    items: [
+      {
+        icon: 'satellite-group',
+        text: 'Groups',
+        url: '/pipeline-groups',
+      },
+      {
+        icon: 'satellite-group',
+        text: 'Instances',
+        url: '/pipeline-instance',
+      },
+    ],
     text: 'Pipelines',
     url: '/pipelines',
   },
@@ -48,6 +72,10 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
     icon: 'dashboard',
     text: 'Insights',
     url: '/insights',
+  },
+  {
+    divider: true,
+    text: 'Workflow',
   },
   {
     icon: 'block',
@@ -65,6 +93,9 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
     url: '/projects',
   },
   {
+    divider: true,
+  },
+  {
     icon: 'file-lines',
     text: 'Workitems',
     url: '/workitems',
@@ -78,6 +109,10 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
     icon: 'square-settings',
     text: 'Artifacts',
     url: '/artifacts',
+  },
+  {
+    divider: true,
+    text: 'System',
   },
   {
     icon: 'monitor-gears',
@@ -97,8 +132,6 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
 ];
 
 export const App = () => {
-  const [open, updateOpen] = useState(true);
-
   const backItem: Array<NavigationItemProps> = [
     {
       icon: 'back',
@@ -111,25 +144,14 @@ export const App = () => {
     },
   ];
 
-  const toggleItem: Array<NavigationItemProps> = [
-    {
-      icon: 'chevron-left',
-      onClick: () => updateOpen(!open),
-      title: 'Toggle Nav',
-      url: '/',
-    },
-  ];
-
   return (
     <BrowserRouter>
       <DotHeader brand="Continuum" items={topNavItems} />
       <main>
         <DotSidebar
           backItem={backItem}
-          primaryItems={sampleSideNavItems}
-          navOpen={true}
-          title="FedEx"
-          toggleItem={toggleItem}
+          navItems={sampleSideNavItems}
+          company="FedEx"
         />
         <section className="main-content">
           <DemoProgressionBoard />

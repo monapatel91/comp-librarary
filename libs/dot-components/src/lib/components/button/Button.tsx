@@ -11,11 +11,13 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      textTransform: 'none',
       padding: `6px ${theme.spacing(2)}px`,
     },
     outlined: {
       padding: `6px ${theme.spacing(2) - 1}px`,
+    },
+    containedSecondary: {
+      backgroundColor: theme.palette.error.main,
     },
   });
 

@@ -10,15 +10,17 @@ aside.dot-sidebar {
   flex-direction: column;
   justify-content: space-between;
   letter-spacing: 0.01em;
-  max-width: 240px;
   padding-top: $gutter/2;
+  width: 240px;
+  @include transition($prop: width, $func: cubic-bezier(0.4, 0, 0.6, 1));
 
   h4 {
-    border-bottom: 1px solid $n50;
+    border-bottom: 1px solid $n100;
+    font-size: 14px;
     padding: $gutter * 2;
   }
 
-  .toggle-sub-nav {
+  nav.go-back {
     border-bottom: 1px solid $n200;
 
     li a {
@@ -28,23 +30,30 @@ aside.dot-sidebar {
     }
   }
 
-  .sub-nav,
-  .top-level-nav {
+  nav.side-nav {
     flex-grow: 2;
-
-    &.dense li a {
-      padding: 6px $gutter * 2;
-    }
+    overflow: hidden;
 
     li {
+      align-items: center;
       flex-grow: 2;
 
-      &:last-child {
+      &.divider {
         border-bottom: 1px solid $n100;
+        margin: $gutter 0;
+
+        h5 {
+          font-size: 12px;
+          font-weight: normal;
+          padding: 0 $gutter * 2;
+        }
       }
 
+      &.has-subnav,
       a {
-        padding: $gutter $gutter * 2;
+        align-items: stretch;
+        height: 44px;
+        padding: 6px 6px 6px $gutter * 2;
 
         &.active,
         &:hover,
@@ -53,15 +62,22 @@ aside.dot-sidebar {
           color: $n700;
         }
 
-        .material-icons.first {
+        span:not(.dot-icon) {
+          flex-grow: 1;
+        }
+
+        .dot-icon {
           padding: 0;
-          margin-right: $gutter * 4;
+
+          &.first {
+            margin-right: $gutter * 4;
+          }
         }
       }
     }
   }
 
-  .toggle-nav {
+  nav.toggle-nav {
     align-self: flex-end;
 
     li a.active {
@@ -70,7 +86,7 @@ aside.dot-sidebar {
 
     .dot-icon {
       transform: rotate(0deg);
-      @include transition(transform, 0.2s);
+      @include transition($func: cubic-bezier(0.4, 0, 0.2, 1));
     }
   }
 
@@ -81,6 +97,7 @@ aside.dot-sidebar {
     flex-direction: column;
     font-size: 12px;
     margin: $gutter;
+    overflow: hidden;
     padding: $gutter;
 
     span.desc {
@@ -98,18 +115,34 @@ aside.dot-sidebar {
 
   // Styles applied when primary nav is collapsed
   &.collapsed {
-    nav {
-      li a {
-        align-items: stretch;
-        height: 56px;
-        justify-content: center;
+    width: 56px;
+    @include transition($prop: width, $func: cubic-bezier(0.4, 0, 0.6, 1));
 
-        .material-icons.first {
+    h4::first-letter {
+      background: $n200;
+      border-radius: 50%;
+      margin-right: 999px;
+      padding: $gutter/2 $gutter;
+    }
+
+    nav li {
+      &.has-subnav,
+      a {
+        height: 44px;
+        justify-content: center;
+        padding: 6px;
+
+        .dot-icon.first {
           margin-right: 0;
         }
-        span:not(.material-icons) {
+        span:not(.dot-icon),
+        .dot-icon.nav-arrow {
           display: none;
         }
+      }
+
+      &.divider h5 {
+        display: none;
       }
     }
 
@@ -118,6 +151,7 @@ aside.dot-sidebar {
 
       .dot-icon {
         transform: rotate(180deg);
+        @include transition($func: cubic-bezier(0.4, 0, 0.2, 1));
       }
     }
 
@@ -132,6 +166,30 @@ aside.dot-sidebar {
       .d-icon {
         display: block;
       }
+    }
+  }
+}
+
+.dot-flyout {
+  margin: 10px 0 0 190px;
+  width: 248px;
+
+  li {
+    &.active,
+    &:hover,
+    &:focus {
+      background: $n100;
+    }
+  }
+
+  a {
+    align-items: center;
+    color: $n700;
+    display: flex;
+    &.active,
+    &:hover,
+    &:focus {
+      background: transparent;
     }
   }
 }

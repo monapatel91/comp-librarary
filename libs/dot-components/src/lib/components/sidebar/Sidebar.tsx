@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState } from 'react';
 import { DotNavigation } from '../navigation/Navigation';
 import { NavigationItemProps } from '../navigation/NavItem';
 import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
@@ -8,64 +8,53 @@ import './Sidebar.scss';
 
 export interface SidebarProps {
   backItem?: Array<NavigationItemProps>;
+  company?: string;
   goBack?: boolean;
-  navOpen?: boolean;
-  primaryItems?: Array<NavigationItemProps>;
-  secondaryItems?: Array<NavigationItemProps>;
-  subNavOpen?: boolean;
-  title?: string;
-  toggleItem?: Array<NavigationItemProps>;
+  navItems?: Array<NavigationItemProps>;
 }
 
 export const DotSidebar = ({
-  backItem,
+  backItem = [],
+  company,
   goBack,
-  navOpen,
-  primaryItems,
-  secondaryItems = [],
-  subNavOpen,
-  title,
-  toggleItem,
+  navItems = [],
 }: SidebarProps) => {
+  const [open, updateOpen] = useState(true);
+
+  const toggleItem: Array<NavigationItemProps> = [
+    {
+      icon: 'chevron-left',
+      onClick: () => updateOpen(!open),
+      title: 'Toggle Nav',
+      url: '/',
+    },
+  ];
+
   return (
     <aside
-      className={`dot-sidebar ${!navOpen ? 'collapsed' : 'expanded'}`}
+      className={`dot-sidebar ${!open ? 'collapsed' : 'expanded'}`}
       data-testid="primaryNav"
     >
-      {title && <h4>{title}</h4>}
-      {subNavOpen ? (
-        <Fragment>
-          {goBack && (
-            <DotNavigation
-              classes={`toggle-sub-nav`}
-              direction="vertical"
-              items={backItem}
-            />
-          )}
-          <DotNavigation
-            ariaLabel="second level navigation"
-            classes="sub-nav dense"
-            data-testid="secondLevelNav"
-            direction="vertical"
-            items={secondaryItems}
-          />
-        </Fragment>
-      ) : (
+      {company && <h4>{company}</h4>}
+      {goBack && (
         <DotNavigation
-          ariaLabel="top level navigation"
-          classes="top-level-nav dense"
-          data-testid="topLevelNav"
+          classes="go-back"
           direction="vertical"
-          items={primaryItems}
+          items={backItem}
         />
       )}
-      {toggleItem && (
-        <DotNavigation
-          classes={`toggle-nav`}
-          direction="vertical"
-          items={toggleItem}
-        />
-      )}
+      <DotNavigation
+        ariaLabel="left navigation"
+        classes="side-nav dense"
+        data-testid="sideNav"
+        direction="vertical"
+        items={navItems}
+      />
+      <DotNavigation
+        classes="toggle-nav"
+        direction="vertical"
+        items={toggleItem}
+      />
       <div className="powered-by">
         <span className="desc">Release orchestration powered by</span>
         <LogoDigitalAi className="company-name" title="digital.ai" />
