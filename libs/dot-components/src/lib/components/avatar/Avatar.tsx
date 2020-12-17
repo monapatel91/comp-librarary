@@ -47,7 +47,7 @@ const styles = (theme: Theme) =>
 
 export interface AvatarProps extends CommonProps {
   /** Text displayed on hover */
-  alt?: string;
+  alt: string;
   /** The ID of the icon to display on the avatar */
   iconId?: string;
   /** Source for the image used for the avatar */
@@ -77,11 +77,6 @@ export const DotAvatar = ({
   const classes = useStylesWithRootClass('dot-avatar', styles, className, {
     size,
   });
-
-  // verify conditionally required fields
-  if ((type === 'icon' || type === 'image') && !alt) {
-    console.error('"alt" is required for Avatars of type "icon" or "image"');
-  }
 
   // determine values for variables dependent on size
   let iconFontSize: IconFontSize;

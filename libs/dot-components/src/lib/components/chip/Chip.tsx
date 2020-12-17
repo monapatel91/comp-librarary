@@ -48,7 +48,7 @@ export const DotChip = ({
 }: ChipProps) => {
   return (
     <Chip
-      avatar={avatar ? <DotAvatar size="small" /> : undefined}
+      avatar={avatar ? <DotAvatar size="small" alt={label} /> : undefined}
       className="dot-chip"
       clickable={clickable}
       color={color}

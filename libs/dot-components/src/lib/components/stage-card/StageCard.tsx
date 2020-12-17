@@ -59,7 +59,10 @@ export const DotStageCard = ({
         preHeader={preHeader}
       >
         <CardActions className="dot-card-actions">
-          <DotAvatar size="small" />
+          <DotAvatar
+            size="small"
+            alt="THIS MUST BE CHANGED ONCE WE HAVE REAL AVATARS HERE"
+          />
           {steps.length > 0 && (
             <DotIconButton
               data-testid="display-stage-steps"

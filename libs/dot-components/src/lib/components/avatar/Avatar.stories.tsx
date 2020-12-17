@@ -7,6 +7,9 @@ import EmptyState from '../../assets/empty-state.svg';
 export default {
   title: 'Components/Avatar',
   component: DotAvatar,
+  args: {
+    alt: 'Avatar alt text',
+  },
 } as Meta;
 
 export const Default: Story<AvatarProps> = (args) => <DotAvatar {...args} />;
