@@ -1,18 +1,25 @@
 import React, { ReactNode } from 'react';
 import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
-import { blue, green, red } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: blue[500],
+      main: '#3d6c9e',
+      light: '5A82AD',
+      contrastText: '#fff',
     },
     secondary: {
-      main: green[500],
+      main: '#498500',
+      contrastText: '#fff',
     },
-    warning: {
-      main: red[500],
+    error: {
+      main: '#d61f21',
+      contrastText: '#fff',
     },
+    text: {
+      primary: '#3B485C',
+    },
+    tonalOffset: 0.2,
   },
   typography: {
     fontFamily:
