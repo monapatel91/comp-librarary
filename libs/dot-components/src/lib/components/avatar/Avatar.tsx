@@ -62,7 +62,6 @@ export interface AvatarProps extends CommonProps {
   variant?: 'circle' | 'square';
 }
 
-// TODO: need to use src or srcSet in order to utilize alt text prop
 export const DotAvatar = ({
   alt,
   className,
