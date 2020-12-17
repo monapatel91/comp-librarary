@@ -48,7 +48,7 @@ const styles = (theme: Theme) =>
 export interface AvatarProps extends CommonProps {
   /** Text displayed on hover */
   alt?: string;
-  /** The ID of the icon to display on the button */
+  /** The ID of the icon to display on the avatar */
   iconId?: string;
   /** Source for the image used for the avatar */
   imageSrc?: string;
