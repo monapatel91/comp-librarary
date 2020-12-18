@@ -4,6 +4,7 @@
 aside.dot-sidebar {
   align-items: stretch;
   background: $n50;
+  border-right: 1px solid $n100;
   color: $n700;
   display: flex;
   height: 100%;
@@ -52,6 +53,7 @@ aside.dot-sidebar {
       &.has-subnav,
       a {
         align-items: stretch;
+        font-size: 14px;
         height: 44px;
         padding: 6px 6px 6px $gutter * 2;
 
@@ -70,7 +72,7 @@ aside.dot-sidebar {
           padding: 0;
 
           &.first {
-            margin-right: $gutter * 4;
+            margin-right: $gutter * 3;
           }
         }
       }
@@ -173,6 +175,10 @@ aside.dot-sidebar {
 .dot-flyout {
   margin: 10px 0 0 190px;
   width: 248px;
+
+  &.collapsed {
+    margin-left: 36px;
+  }
 
   li {
     &.active,

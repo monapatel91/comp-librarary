@@ -48,6 +48,7 @@ export const DotSidebar = ({
         classes="side-nav dense"
         data-testid="sideNav"
         direction="vertical"
+        isOpen={open}
         items={navItems}
       />
       <DotNavigation
