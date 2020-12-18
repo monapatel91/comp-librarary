@@ -55,11 +55,7 @@ export const DotButton = ({
   titleTooltip,
   type,
 }: ButtonProps) => {
-  const { rootClasses, otherClasses } = useStylesWithRootClass(
-    'dot-button',
-    styles,
-    className
-  );
+  const classes = useStylesWithRootClass('dot-button', styles, className);
 
   let color: 'primary' | 'secondary' | 'default';
   let variant: 'contained' | 'outlined' | 'text';
@@ -84,7 +80,7 @@ export const DotButton = ({
 
   return (
     <Button
-      classes={{ root: rootClasses, ...otherClasses }}
+      classes={{ ...classes }}
       color={color}
       data-testid={dataTestId}
       disabled={disabled}

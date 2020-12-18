@@ -66,11 +66,11 @@ export const DotStepCard = ({
         >
           {team && team.avatar && (
             <div className="team">
-              <DotAvatar alt={team.name} classes="team-avatar" size="small" />
+              <DotAvatar alt={team.name} className="team-avatar" size="small" />
             </div>
           )}
           {user && (
-            <DotAvatar alt={user.name} classes="user-avatar" size="small" />
+            <DotAvatar alt={user.name} className="user-avatar" size="small" />
           )}
         </CardActions>
       )}
