@@ -16,5 +16,5 @@ export const Default: Story<AvatarProps> = (args) => <DotAvatar {...args} />;
 
 export const Image: Story<AvatarProps> = ({
   imageSrc = EmptyState,
-  ...rest
-}) => <DotAvatar imageSrc={imageSrc} {...rest} />;
+  ...props
+}) => <DotAvatar imageSrc={imageSrc} {...props} />;
