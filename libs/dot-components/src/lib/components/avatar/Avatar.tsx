@@ -102,10 +102,25 @@ export const DotAvatar = ({
   let child: ReactNode;
   switch (type) {
     case 'icon':
-      child = <DotIcon icon={iconId} fontSize={iconFontSize} />;
+      child = (
+        <DotIcon
+          data-testid={`${dataTestId}-icon`}
+          icon={iconId ? iconId : 'user'}
+          fontSize={iconFontSize}
+        />
+      );
       break;
 
     case 'image':
+      if (!imageSrc) {
+        child = (
+          <DotIcon
+            data-testid={`${dataTestId}-icon`}
+            icon={iconId ? iconId : 'user'}
+            fontSize={iconFontSize}
+          />
+        );
+      }
       break;
 
     case 'text':
