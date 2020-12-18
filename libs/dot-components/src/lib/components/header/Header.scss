@@ -12,6 +12,7 @@ header.dot-header {
     display: flex;
 
     .dot-product-name {
+      font-size: 18px;
       margin-left: $gutter * 1.5;
     }
   }

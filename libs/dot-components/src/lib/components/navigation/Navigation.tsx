@@ -15,6 +15,8 @@ export interface NavigationProps {
   direction?: DirectionType;
   /** Determines the size of the icon and spacing around it */
   iconSize?: IconFontSize;
+  /** used to inform the flyout menu if applicable */
+  isOpen?: boolean;
   /** Array of nav items to be displayed */
   items: Array<NavigationItemProps>;
 }
@@ -25,6 +27,7 @@ export const DotNavigation = ({
   'data-testid': dataTestId,
   direction = 'horizontal',
   iconSize,
+  isOpen,
   items,
 }: NavigationProps) => {
   return (
@@ -35,7 +38,14 @@ export const DotNavigation = ({
     >
       <ul className={direction}>
         {items.map((item: NavigationItemProps, index: number) => {
-          return <DotNavItem {...item} iconSize={iconSize} key={index} />;
+          return (
+            <DotNavItem
+              {...item}
+              iconSize={iconSize}
+              key={index}
+              navOpen={isOpen}
+            />
+          );
         })}
       </ul>
     </nav>

@@ -25,6 +25,8 @@ export interface NavigationItemProps {
   iconType?: IconType;
   /** Determines the nav items which will be displayed inside of a sub menu */
   items?: Array<NavigationItemProps>;
+  /** Used to inform the flyout menu if the navigaton is collapsed or not */
+  navOpen?: boolean;
   /** Event callback */
   onClick?: (event: MouseEvent) => void;
   /** The text displayed on the nav item */
@@ -40,7 +42,6 @@ export interface NavigationItemProps {
 export const DotNavItem = ({
   direction = 'horizontal',
   divider = false,
-  onClick,
   icon,
   iconBgColor,
   iconClasses,
@@ -48,6 +49,8 @@ export const DotNavItem = ({
   iconSize,
   iconType,
   items = [],
+  navOpen = true,
+  onClick,
   text,
   textClasses,
   title,
@@ -90,7 +93,7 @@ export const DotNavItem = ({
         </li>
         <Menu
           anchorEl={anchorEl}
-          classes={{ paper: 'dot-flyout' }}
+          classes={{ paper: `dot-flyout ${!navOpen ? 'collapsed' : ''}` }}
           keepMounted
           open={open}
           onClose={handleClose}
