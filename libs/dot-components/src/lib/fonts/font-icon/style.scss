@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?aqdzb7')
+  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?7f926w')
       format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?aqdzb7')
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?7f926w')
       format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?aqdzb7##{$icomoon-font-family}')
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?7f926w##{$icomoon-font-family}')
       format('svg');
   font-weight: normal;
   font-style: normal;
@@ -28,6 +28,54 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-host {
+  &:before {
+    content: $icon-host;
+    color: #3b485c;
+  }
+}
+.icon-cluster {
+  &:before {
+    content: $icon-cluster;
+    color: #3b485c;
+  }
+}
+.icon-environment {
+  &:before {
+    content: $icon-environment;
+    color: #3b485c;
+  }
+}
+.icon-monitor-controls {
+  &:before {
+    content: $icon-monitor-controls;
+    color: #3b485c;
+  }
+}
+.icon-flag {
+  &:before {
+    content: $icon-flag;
+    color: #3b485c;
+  }
+}
+.icon-satelite {
+  &:before {
+    content: $icon-satelite;
+    color: #3b485c;
+  }
+}
+.icon-satelite-group {
+  &:before {
+    content: $icon-satelite-group;
+    color: #3b485c;
+  }
+}
+.icon-monitor-gears {
+  &:before {
+    content: $icon-monitor-gears;
+    color: #3b485c;
+  }
+}
 .icon-patch {
   &:before {
     content: $icon-patch;
