@@ -42,6 +42,8 @@ const styles = (theme: Theme) =>
             return theme.spacing(avatarSpacing.medium);
         }
       },
+      backgroundColor: theme.palette.grey[100],
+      color: theme.palette.text.primary,
     },
   });
 
