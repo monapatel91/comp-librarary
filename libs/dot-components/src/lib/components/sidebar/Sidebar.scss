@@ -33,7 +33,8 @@ aside.dot-sidebar {
 
   nav.side-nav {
     flex-grow: 2;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
 
     li {
       align-items: center;
@@ -97,6 +98,7 @@ aside.dot-sidebar {
     color: $n400;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     font-size: 12px;
     margin: $gutter;
     overflow: hidden;
