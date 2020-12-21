@@ -80,12 +80,10 @@ aside.dot-sidebar {
     }
   }
 
-  nav.toggle-nav {
-    align-self: flex-end;
-
-    li a.active {
-      color: $n700;
-    }
+  .toggle-nav {
+    border-top: 1px solid $n100;
+    padding: $gutter;
+    text-align: right;
 
     .dot-icon {
       transform: rotate(0deg);
@@ -100,7 +98,7 @@ aside.dot-sidebar {
     flex-direction: column;
     flex-shrink: 0;
     font-size: 12px;
-    margin: $gutter;
+    margin: 0 $gutter $gutter;
     overflow: hidden;
     padding: $gutter;
 

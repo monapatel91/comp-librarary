@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { DotIconButton } from '../button/IconButton';
 import { DotNavigation } from '../navigation/Navigation';
 import { NavigationItemProps } from '../navigation/NavItem';
 import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
@@ -21,15 +22,6 @@ export const DotSidebar = ({
 }: SidebarProps) => {
   const [open, updateOpen] = useState(true);
 
-  const toggleItem: Array<NavigationItemProps> = [
-    {
-      icon: 'chevron-left',
-      onClick: () => updateOpen(!open),
-      title: 'Toggle Nav',
-      url: '/',
-    },
-  ];
-
   return (
     <aside
       className={`dot-sidebar ${!open ? 'collapsed' : 'expanded'}`}
@@ -51,11 +43,13 @@ export const DotSidebar = ({
         isOpen={open}
         items={navItems}
       />
-      <DotNavigation
-        classes="toggle-nav"
-        direction="vertical"
-        items={toggleItem}
-      />
+      <div className="toggle-nav">
+        <DotIconButton
+          iconButtonSize="small"
+          iconId="chevron-left"
+          onClick={() => updateOpen(!open)}
+        />
+      </div>
       <div className="powered-by">
         <span className="desc">Release orchestration powered by</span>
         <LogoDigitalAi className="company-name" title="digital.ai" />
