@@ -37,7 +37,7 @@ aside.dot-sidebar {
     overflow-y: scroll;
 
     li {
-      align-items: center;
+      // align-items: center;
       flex-grow: 2;
 
       &.divider {
@@ -56,7 +56,7 @@ aside.dot-sidebar {
         align-items: stretch;
         font-size: 14px;
         height: 44px;
-        padding: 6px 6px 6px $gutter * 2;
+        padding: 6px;
 
         &.active,
         &:hover,
@@ -74,6 +74,7 @@ aside.dot-sidebar {
 
           &.first {
             margin-right: $gutter * 3;
+            padding-left: 10px;
           }
         }
       }
@@ -118,7 +119,7 @@ aside.dot-sidebar {
   // Styles applied when primary nav is collapsed
   &.collapsed {
     width: 56px;
-    @include transition($prop: width, $func: cubic-bezier(0.4, 0, 0.6, 1));
+    @include transition($func: cubic-bezier(0.4, 0, 0.6, 1));
 
     h4::first-letter {
       background: $n200;
@@ -131,7 +132,6 @@ aside.dot-sidebar {
       &.has-subnav,
       a {
         height: 44px;
-        justify-content: center;
         padding: 6px;
 
         .dot-icon.first {
@@ -139,12 +139,12 @@ aside.dot-sidebar {
         }
         span:not(.dot-icon),
         .dot-icon.nav-arrow {
-          display: none;
+          opacity: 0;
         }
       }
 
       &.divider h5 {
-        display: none;
+        opacity: 0;
       }
     }
 
