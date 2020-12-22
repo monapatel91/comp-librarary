@@ -13,6 +13,7 @@ export * from './header/Header';
 export * from './icon/Icon';
 export * from './inline-edit/InlineEdit';
 export * from './input-form-fields/InputFormFields';
+export * from './menu/Menu';
 export * from './navigation/Navigation';
 export * from './navigation/NavItem';
 export * from './phase-header/PhaseHeader';
