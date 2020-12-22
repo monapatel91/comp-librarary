@@ -83,7 +83,7 @@ aside.dot-sidebar {
 
   .toggle-nav {
     border-top: 1px solid $n100;
-    padding: $gutter;
+    padding: $gutter 6px;
     text-align: right;
 
     .dot-icon {
@@ -133,14 +133,6 @@ aside.dot-sidebar {
       a {
         height: 44px;
         padding: 6px;
-
-        .dot-icon.first {
-          margin-right: 0;
-        }
-        span:not(.dot-icon),
-        .dot-icon.nav-arrow {
-          opacity: 0;
-        }
       }
 
       &.divider h5 {
