@@ -19,27 +19,105 @@ export default {
         },
       ],
     },
-    primaryItems: {
+    company: {
+      defaultValue: 'Your Company Here',
+    },
+    navItems: {
       defaultValue: [
         {
+          icon: 'process-template',
+          items: [
+            {
+              icon: 'process-template',
+              text: 'Package Progression',
+              url: '/package-progression',
+            },
+            {
+              icon: 'process-template',
+              text: 'Feature Progression',
+              url: '/feature-progression',
+            },
+          ],
+          text: 'Progressions',
+          url: '/progressions',
+        },
+        {
+          icon: 'satellite-group',
+          items: [
+            {
+              icon: 'satellite-group',
+              text: 'Groups',
+              url: '/pipeline-groups',
+            },
+            {
+              icon: 'satellite-group',
+              text: 'Instances',
+              url: '/pipeline-instance',
+            },
+          ],
+          text: 'Pipelines',
+          url: '/pipelines',
+        },
+        {
+          icon: 'dashboard',
+          text: 'Insights',
+          url: '/insights',
+        },
+        {
+          divider: true,
+          text: 'Workflow',
+        },
+        {
           icon: 'block',
-          title: 'Home',
-          url: '/',
+          text: 'Packages',
+          url: '/packages',
+        },
+        {
+          icon: 'flag',
+          text: 'Features',
+          url: '/features',
+        },
+        {
+          icon: 'collection',
+          text: 'Projects',
+          url: '/projects',
+        },
+        {
+          divider: true,
+        },
+        {
+          icon: 'file-lines',
+          text: 'Workitems',
+          url: '/workitems',
         },
         {
           icon: 'change',
-          title: 'Changes',
-          url: '/',
+          text: 'Changes',
+          url: '/changes',
         },
-      ],
-    },
-    toggleItem: {
-      defaultValue: [
         {
-          icon: 'chevron-left',
-          onClick: () => console.log('toggle side bar'),
-          title: 'Toggle Nav',
-          url: '/',
+          icon: 'square-settings',
+          text: 'Artifacts',
+          url: '/artifacts',
+        },
+        {
+          divider: true,
+          text: 'System',
+        },
+        {
+          icon: 'monitor-gears',
+          text: 'Tasks',
+          url: '/tasks',
+        },
+        {
+          icon: 'archive',
+          text: 'Buckets',
+          url: '/buckets',
+        },
+        {
+          icon: 'monitor',
+          text: 'Environment',
+          url: '/environment',
         },
       ],
     },
