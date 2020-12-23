@@ -7,6 +7,12 @@ export default {
   title: 'Components/Menu',
   component: DotMenu,
   argTypes: {
+    buttonContent: {
+      defaultValue: 'Toggle Menu',
+    },
+    id: {
+      defaultValue: 'foobar',
+    },
     menuItems: {
       defaultValue: [
         { text: 'Batman' },
@@ -22,5 +28,5 @@ export default {
 } as Meta;
 
 export const Default: Story<MenuProps> = (args) => {
-  return <DotMenu buttonContent="Toggle Menu" id="my_menu_list" {...args} />;
+  return <DotMenu {...args} />;
 };
