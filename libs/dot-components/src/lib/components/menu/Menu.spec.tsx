@@ -1,11 +1,51 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
-import Menu from './Menu';
+import { screen } from '@testing-library/dom';
+import userEvent from '@testing-library/user-event';
+import DotMenu from './Menu';
 
 describe('Menu', () => {
+  const dummyMenuItems = [
+    { text: 'Batman' },
+    { text: 'Robin' },
+    { text: 'Bat Girl' },
+  ];
+
   it('should render successfully', () => {
-    const { baseElement } = render(<Menu />);
+    const { baseElement } = render(
+      <DotMenu
+        buttonContent="Toggle Menu"
+        id="foo_bar"
+        menuItems={dummyMenuItems}
+      />
+    );
     expect(baseElement).toBeTruthy();
+  });
+
+  it('should open when button is clicked', () => {
+    render(
+      <DotMenu
+        buttonContent="Toggle Menu"
+        id="foo_bar"
+        menuItems={dummyMenuItems}
+      />
+    );
+    userEvent.click(screen.getByRole('button'));
+    expect(screen.getByText('Batman')).toBeVisible();
+  });
+
+  it('should close when a menu item is clicked', () => {
+    render(
+      <DotMenu
+        buttonContent="Toggle Menu"
+        id="foo_bar"
+        menuItems={dummyMenuItems}
+      />
+    );
+    userEvent.click(screen.getByRole('button'));
+
+    const menuItem = screen.getByText('Batman');
+    userEvent.click(menuItem);
+    expect(menuItem).not.toBeVisible();
   });
 });

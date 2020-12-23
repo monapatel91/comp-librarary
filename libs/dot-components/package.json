@@ -10,8 +10,7 @@
     "react-virtualized": "^9.22.2",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/core": "^4.11.0",
-    "pubsub-js": "^1.9.0",
-    "typeface-lato": "^1.1.13"
+    "pubsub-js": "^1.9.0"
   },
   "peerDependencies": {
     "react": "^16.13.1"

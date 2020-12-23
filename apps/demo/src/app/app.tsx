@@ -154,6 +154,7 @@ export const App = () => {
           company="FedEx"
         />
         <section className="main-content">
+          <h1>dot-components demo app</h1>
           <DemoProgressionBoard />
         </section>
       </main>
