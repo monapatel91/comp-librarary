@@ -9,16 +9,16 @@ import './Sidebar.scss';
 
 export interface SidebarProps {
   backItem?: Array<NavigationItemProps>;
-  company?: string;
   goBack?: boolean;
   navItems?: Array<NavigationItemProps>;
+  title?: string;
 }
 
 export const DotSidebar = ({
   backItem = [],
-  company,
   goBack,
   navItems = [],
+  title,
 }: SidebarProps) => {
   const [open, updateOpen] = useState(true);
 
@@ -27,7 +27,7 @@ export const DotSidebar = ({
       className={`dot-sidebar ${!open ? 'collapsed' : 'expanded'}`}
       data-testid="primaryNav"
     >
-      {company && <h4>{company}</h4>}
+      {title && <h4>{title}</h4>}
       {goBack && (
         <DotNavigation
           classes="go-back"

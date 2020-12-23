@@ -151,7 +151,7 @@ export const App = () => {
         <DotSidebar
           backItem={backItem}
           navItems={sampleSideNavItems}
-          company="FedEx"
+          title="FedEx"
         />
         <section className="main-content">
           <h1>dot-components demo app</h1>

@@ -19,9 +19,6 @@ export default {
         },
       ],
     },
-    company: {
-      defaultValue: 'Your Company Here',
-    },
     navItems: {
       defaultValue: [
         {
@@ -120,6 +117,9 @@ export default {
           url: '/environment',
         },
       ],
+    },
+    title: {
+      defaultValue: 'Your Company Here',
     },
   },
 } as Meta;
