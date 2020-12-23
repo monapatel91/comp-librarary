@@ -18,7 +18,9 @@ aside.dot-sidebar {
   h4 {
     border-bottom: 1px solid $n100;
     font-size: 14px;
+    overflow: hidden;
     padding: $gutter * 2;
+    white-space: nowrap;
   }
 
   nav.go-back {
