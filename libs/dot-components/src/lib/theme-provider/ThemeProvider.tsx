@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
 import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 
-import 'typeface-lato';
-
 import * as lightColors from './colors/light-theme-colors';
 
 const theme = createMuiTheme({
