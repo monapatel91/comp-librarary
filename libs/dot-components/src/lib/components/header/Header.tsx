@@ -42,7 +42,9 @@ export const DotHeader = ({
         </Fragment>
       )}
       <div className="dot-branding">
-        <LogoDigitalAiWhite title="digital.ai" />
+        <a href="/">
+          <LogoDigitalAiWhite title="digital.ai" />
+        </a>
         {brand && <span className="dot-product-name">{brand}</span>}
       </div>
       <DotNavigation
