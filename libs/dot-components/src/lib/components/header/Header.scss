@@ -1,4 +1,5 @@
 @import '../../styles/global';
+@import '../../styles/variables';
 
 header.dot-header {
   align-items: center;
@@ -6,6 +7,9 @@ header.dot-header {
   border-bottom: 4px solid transparent;
   color: $n0;
   display: flex;
+  position: fixed;
+  width: 100%;
+  z-index: $layerTop;
 
   .dot-branding {
     align-items: center;
@@ -26,5 +30,14 @@ header.dot-header {
       color: $n0;
       padding: 0;
     }
+  }
+}
+
+.dot-main-menu {
+  margin-top: $topBarHeight;
+
+  .dot-drawer-paper {
+    height: calc(100vh - 56px);
+    margin-top: $topBarHeight;
   }
 }

@@ -9,6 +9,7 @@ import './Sidebar.scss';
 
 export interface SidebarProps {
   backItem?: Array<NavigationItemProps>;
+  collapsable?: boolean;
   goBack?: boolean;
   navItems?: Array<NavigationItemProps>;
   title?: string;
@@ -16,6 +17,7 @@ export interface SidebarProps {
 
 export const DotSidebar = ({
   backItem = [],
+  collapsable = false,
   goBack,
   navItems = [],
   title,
@@ -43,13 +45,15 @@ export const DotSidebar = ({
         isOpen={open}
         items={navItems}
       />
-      <div className="toggle-nav">
-        <DotIconButton
-          iconButtonSize="small"
-          iconId="chevron-left"
-          onClick={() => updateOpen(!open)}
-        />
-      </div>
+      {collapsable && (
+        <div className="toggle-nav">
+          <DotIconButton
+            iconButtonSize="small"
+            iconId="chevron-left"
+            onClick={() => updateOpen(!open)}
+          />
+        </div>
+      )}
       <div className="powered-by">
         <span className="desc">Release orchestration powered by</span>
         <LogoDigitalAi className="company-name" title="digital.ai" />

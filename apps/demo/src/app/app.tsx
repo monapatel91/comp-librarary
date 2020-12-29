@@ -33,7 +33,78 @@ const topNavItems: Array<NavigationItemProps> = [
   },
 ];
 
-const sampleSideNavItems: Array<NavigationItemProps> = [
+const mainMenuNavItems: Array<NavigationItemProps> = [
+  {
+    icon: 'process-template',
+    text: 'Progressions',
+    url: '/progressions',
+  },
+  {
+    icon: 'satellite-group',
+    text: 'Pipelines',
+    url: '/pipelines',
+  },
+  {
+    icon: 'dashboard',
+    text: 'Insights',
+    url: '/insights',
+  },
+  {
+    divider: true,
+    text: 'Workflow',
+  },
+  {
+    icon: 'block',
+    text: 'Packages',
+    url: '/packages',
+  },
+  {
+    icon: 'flag',
+    text: 'Features',
+    url: '/features',
+  },
+  {
+    icon: 'collection',
+    text: 'Projects',
+    url: '/projects',
+  },
+  {
+    icon: 'file-lines',
+    text: 'Workitems',
+    url: '/workitems',
+  },
+  {
+    icon: 'change',
+    text: 'Changes',
+    url: '/changes',
+  },
+  {
+    icon: 'square-settings',
+    text: 'Artifacts',
+    url: '/artifacts',
+  },
+  {
+    divider: true,
+    text: 'System',
+  },
+  {
+    icon: 'monitor-gears',
+    text: 'Tasks',
+    url: '/tasks',
+  },
+  {
+    icon: 'archive',
+    text: 'Buckets',
+    url: '/buckets',
+  },
+  {
+    icon: 'monitor',
+    text: 'Environment',
+    url: '/environment',
+  },
+];
+
+const sideNavItems: Array<NavigationItemProps> = [
   {
     icon: 'process-template',
     items: [
@@ -131,6 +202,8 @@ const sampleSideNavItems: Array<NavigationItemProps> = [
   },
 ];
 
+const mainMenu = <DotSidebar navItems={mainMenuNavItems} />;
+
 export const App = () => {
   const backItem: Array<NavigationItemProps> = [
     {
@@ -146,11 +219,12 @@ export const App = () => {
 
   return (
     <BrowserRouter>
-      <DotHeader brand="Continuum" items={topNavItems} />
+      <DotHeader brand="Continuum" items={topNavItems} mainMenu={mainMenu} />
       <main>
         <DotSidebar
           backItem={backItem}
-          navItems={sampleSideNavItems}
+          collapsable={true}
+          navItems={sideNavItems}
           title="FedEx"
         />
         <section className="main-content">
