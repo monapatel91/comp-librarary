@@ -31,6 +31,7 @@ export const DotDrawer = ({
   return (
     <Drawer
       anchor={anchor}
+      classes={{ paper: 'dot-drawer-paper' }}
       className={`dot-drawer ${classes}`}
       onClose={(event: MouseEvent) => onClose && onClose(event)}
       open={open}
