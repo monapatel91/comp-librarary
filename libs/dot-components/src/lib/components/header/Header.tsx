@@ -27,7 +27,7 @@ export const DotHeader = ({
       {mainMenu && (
         <Fragment>
           <DotIconButton
-            iconId="menu"
+            iconId={menuOpen ? 'close' : 'menu'}
             iconSize="small"
             onClick={() => updateMenuOpen(!menuOpen)}
           />
