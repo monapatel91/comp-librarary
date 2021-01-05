@@ -5,7 +5,7 @@ import { DotIcon } from '../icon/Icon';
 import { DotCard, CardProps } from './Card';
 
 export default {
-  title: 'Components/Card',
+  title: 'Experimental/Card',
   component: DotCard,
   argTypes: {
     title: { defaultValue: 'Hello World' },

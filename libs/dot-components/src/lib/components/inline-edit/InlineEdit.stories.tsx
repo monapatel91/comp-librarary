@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotInlineEdit, InlineEditProps } from './InlineEdit';
 
 export default {
-  title: 'Components/Inline Edit',
+  title: 'Experimental/Inline Edit',
   component: DotInlineEdit,
   argTypes: {
     autoFocus: { defaultValue: true },

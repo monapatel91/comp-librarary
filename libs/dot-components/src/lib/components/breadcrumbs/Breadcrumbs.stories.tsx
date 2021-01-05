@@ -8,7 +8,7 @@ import { DotBreadcrumbs, BreadcrumbProps } from './Breadcrumbs';
 // It might be worth while to consider moving onClick to a prop on Breadcrumbs though.
 export default {
   component: DotBreadcrumbs,
-  title: 'Components/Breadcrumbs',
+  title: 'Experimental/Breadcrumbs',
   argTypes: {
     items: {
       defaultValue: [

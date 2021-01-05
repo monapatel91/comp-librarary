@@ -1,6 +1,6 @@
 describe('dot-components: Auto Complete component', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=components-auto-complete--default')
+    cy.visit('/iframe.html?id=experimental-auto-complete--default')
   );
 
   it('should have a dot- prefix', () => {

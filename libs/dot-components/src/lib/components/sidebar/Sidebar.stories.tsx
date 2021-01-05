@@ -3,7 +3,7 @@ import { DotSidebar, SidebarProps } from './Sidebar';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 export default {
-  title: 'Components/Sidebar',
+  title: 'Experimental/Sidebar',
   component: DotSidebar,
   argTypes: {
     backItem: {

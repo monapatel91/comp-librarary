@@ -1029,7 +1029,7 @@ const phasesData = [
 ];
 
 export default {
-  title: 'Components/ProgressionBoard',
+  title: 'Experimental/ProgressionBoard',
   component: DotProgressionBoard,
   argTypes: {
     phases: { defaultValue: phasesData },

@@ -7,7 +7,7 @@ import { DotNavigation, NavigationProps } from './Navigation';
 addDecorator(StoryRouter());
 
 export default {
-  title: 'Components/Navigation',
+  title: 'Experimental/Navigation',
   component: DotNavigation,
   argTypes: {
     direction: {

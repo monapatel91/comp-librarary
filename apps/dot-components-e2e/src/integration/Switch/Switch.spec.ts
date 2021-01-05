@@ -1,5 +1,5 @@
 describe('dot-components: Switch component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=components-switch--default'));
+  beforeEach(() => cy.visit('/iframe.html?id=experimental-switch--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('label').should('have.class', 'dot-switch');
