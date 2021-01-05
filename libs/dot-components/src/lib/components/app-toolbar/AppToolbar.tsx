@@ -11,7 +11,8 @@ export interface AppToolbarProps {
   avatar?: JSX.Element;
   borderColor?: string;
   brand?: string;
-  items: Array<NavigationItemProps>;
+  children?: JSX.Element;
+  items?: Array<NavigationItemProps>;
   mainMenu?: JSX.Element;
 }
 
@@ -19,7 +20,8 @@ export const DotAppToolbar = ({
   avatar = null,
   borderColor = '#74b941',
   brand,
-  items,
+  children = null,
+  items = [],
   mainMenu = null,
 }: AppToolbarProps) => {
   const [menuOpen, updateMenuOpen] = useState(false);
@@ -52,6 +54,7 @@ export const DotAppToolbar = ({
         </a>
         {brand && <span className="dot-product-name">{brand}</span>}
       </div>
+      {children}
       <DotNavigation
         classes="dot-admin-nav"
         direction="horizontal"

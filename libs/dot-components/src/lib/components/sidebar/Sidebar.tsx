@@ -9,6 +9,7 @@ import './Sidebar.scss';
 
 export interface SidebarProps {
   backItem?: Array<NavigationItemProps>;
+  children?: JSX.Element;
   collapsable?: boolean;
   goBack?: boolean;
   navItems?: Array<NavigationItemProps>;
@@ -17,6 +18,7 @@ export interface SidebarProps {
 
 export const DotSidebar = ({
   backItem = [],
+  children = null,
   collapsable = false,
   goBack,
   navItems = [],
@@ -45,6 +47,7 @@ export const DotSidebar = ({
         isOpen={open}
         items={navItems}
       />
+      {children}
       {collapsable && (
         <div className="toggle-nav">
           <DotIconButton
