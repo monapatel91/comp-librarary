@@ -34,6 +34,7 @@ export const DotAppToolbar = ({
       {mainMenu && (
         <Fragment>
           <DotIconButton
+            iconButtonSize="small"
             iconId={menuOpen ? 'close' : 'menu'}
             iconSize="small"
             onClick={() => updateMenuOpen(!menuOpen)}
@@ -48,7 +49,7 @@ export const DotAppToolbar = ({
           </DotDrawer>
         </Fragment>
       )}
-      <div className="dot-branding">
+      <div className={`dot-branding ${mainMenu ? 'hamburger' : ''}`}>
         <a href="/">
           <LogoDigitalAiWhite title="digital.ai" />
         </a>
