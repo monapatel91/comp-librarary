@@ -1,10 +1,10 @@
 import React from 'react';
-import { DotHeader, HeaderProps } from './Header';
+import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 export default {
-  title: 'Components/Header',
-  component: DotHeader,
+  title: 'Components/AppToolbar',
+  component: DotAppToolbar,
   argTypes: {
     items: {
       defaultValue: [
@@ -34,4 +34,6 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<HeaderProps> = (args) => <DotHeader {...args} />;
+export const Default: Story<AppToolbarProps> = (args) => (
+  <DotAppToolbar {...args} />
+);

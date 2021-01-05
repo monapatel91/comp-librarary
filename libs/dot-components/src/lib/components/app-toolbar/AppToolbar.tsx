@@ -5,25 +5,30 @@ import { DotDrawer } from '../drawer/Drawer';
 import { DotIconButton } from '../button/IconButton';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
 
-import './Header.scss';
+import './AppToolbar.scss';
 
-export interface HeaderProps {
+export interface AppToolbarProps {
+  avatar?: JSX.Element;
   borderColor?: string;
   brand?: string;
   items: Array<NavigationItemProps>;
   mainMenu?: JSX.Element;
 }
 
-export const DotHeader = ({
+export const DotAppToolbar = ({
+  avatar = null,
   borderColor = '#74b941',
   brand,
   items,
   mainMenu = null,
-}: HeaderProps) => {
+}: AppToolbarProps) => {
   const [menuOpen, updateMenuOpen] = useState(false);
 
   return (
-    <header className="dot-header" style={{ borderBottomColor: borderColor }}>
+    <header
+      className="dot-app-toolbar"
+      style={{ borderBottomColor: borderColor }}
+    >
       {mainMenu && (
         <Fragment>
           <DotIconButton
@@ -53,6 +58,7 @@ export const DotHeader = ({
         iconSize="small"
         items={items}
       />
+      {avatar}
     </header>
   );
 };

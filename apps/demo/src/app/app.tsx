@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import {
-  DotHeader,
+  DotAvatar,
+  DotAppToolbar,
   DotSidebar,
   NavigationItemProps,
 } from '@digital-ai/dot-components';
@@ -204,6 +205,10 @@ const sideNavItems: Array<NavigationItemProps> = [
 
 const mainMenu = <DotSidebar navItems={mainMenuNavItems} />;
 
+const userAvatar = (
+  <DotAvatar alt="Batman" text="BW" size="small" type="text" />
+);
+
 export const App = () => {
   const backItem: Array<NavigationItemProps> = [
     {
@@ -219,7 +224,12 @@ export const App = () => {
 
   return (
     <BrowserRouter>
-      <DotHeader brand="Continuum" items={topNavItems} mainMenu={mainMenu} />
+      <DotAppToolbar
+        avatar={userAvatar}
+        brand="Continuum"
+        items={topNavItems}
+        mainMenu={mainMenu}
+      />
       <main>
         <DotSidebar
           backItem={backItem}

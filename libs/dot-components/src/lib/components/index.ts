@@ -1,3 +1,4 @@
+export * from './app-toolbar/AppToolbar';
 export * from './auto-complete/AutoComplete';
 export * from './avatar/Avatar';
 export * from './breadcrumbs/Breadcrumbs';
@@ -9,7 +10,6 @@ export * from './confirmation-dialog/ConfirmationDialog';
 export * from './dialog/Dialog';
 export * from './drawer/Drawer';
 export * from './empty-state/EmptyState';
-export * from './header/Header';
 export * from './icon/Icon';
 export * from './inline-edit/InlineEdit';
 export * from './input-form-fields/InputFormFields';

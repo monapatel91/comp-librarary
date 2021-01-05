@@ -1,7 +1,7 @@
 @import '../../styles/global';
 @import '../../styles/variables';
 
-header.dot-header {
+header.dot-app-toolbar {
   align-items: center;
   background: $n700;
   border-bottom: 4px solid transparent;
@@ -14,6 +14,10 @@ header.dot-header {
   .dot-branding {
     align-items: center;
     display: flex;
+
+    a {
+      line-height: 0;
+    }
 
     .dot-product-name {
       font-size: 18px;
@@ -30,6 +34,10 @@ header.dot-header {
       color: $n0;
       padding: 0;
     }
+  }
+
+  .dot-avatar {
+    margin-right: $gutter;
   }
 }
 
