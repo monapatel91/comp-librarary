@@ -11,7 +11,8 @@ export interface AppToolbarProps {
   avatar?: JSX.Element;
   borderColor?: string;
   brand?: string;
-  items: Array<NavigationItemProps>;
+  children?: JSX.Element;
+  items?: Array<NavigationItemProps>;
   mainMenu?: JSX.Element;
 }
 
@@ -19,7 +20,8 @@ export const DotAppToolbar = ({
   avatar = null,
   borderColor = '#74b941',
   brand,
-  items,
+  children = null,
+  items = [],
   mainMenu = null,
 }: AppToolbarProps) => {
   const [menuOpen, updateMenuOpen] = useState(false);
@@ -32,6 +34,7 @@ export const DotAppToolbar = ({
       {mainMenu && (
         <Fragment>
           <DotIconButton
+            iconButtonSize="small"
             iconId={menuOpen ? 'close' : 'menu'}
             iconSize="small"
             onClick={() => updateMenuOpen(!menuOpen)}
@@ -46,12 +49,13 @@ export const DotAppToolbar = ({
           </DotDrawer>
         </Fragment>
       )}
-      <div className="dot-branding">
+      <div className={`dot-branding ${mainMenu ? 'hamburger' : ''}`}>
         <a href="/">
           <LogoDigitalAiWhite title="digital.ai" />
         </a>
         {brand && <span className="dot-product-name">{brand}</span>}
       </div>
+      {children}
       <DotNavigation
         classes="dot-admin-nav"
         direction="horizontal"

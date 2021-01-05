@@ -19,6 +19,15 @@ export default {
         },
       ],
     },
+    children: {
+      defaultValue: <input type="text" placeholder="search" />,
+    },
+    collapsable: {
+      defaultValue: true,
+    },
+    goBack: {
+      defaultValue: false,
+    },
     navItems: {
       defaultValue: [
         {

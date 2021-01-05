@@ -6,6 +6,12 @@ export default {
   title: 'Components/AppToolbar',
   component: DotAppToolbar,
   argTypes: {
+    brand: {
+      defaultValue: 'Project Lisbon',
+    },
+    children: {
+      defaultValue: <input type="text" placeholder="search" />,
+    },
     items: {
       defaultValue: [
         {

@@ -7,6 +7,8 @@ header.dot-app-toolbar {
   border-bottom: 4px solid transparent;
   color: $n0;
   display: flex;
+  height: $topBarHeight;
+  padding-left: $gutter/2;
   position: fixed;
   width: 100%;
   z-index: $layerTop;
@@ -14,7 +16,11 @@ header.dot-app-toolbar {
   .dot-branding {
     align-items: center;
     display: flex;
-    margin-left: $gutter;
+    margin-left: $gutter * 1.5;
+
+    &.hamburger {
+      margin-left: $gutter;
+    }
 
     a {
       line-height: 0;
@@ -22,7 +28,7 @@ header.dot-app-toolbar {
 
     .dot-product-name {
       font-size: 18px;
-      margin-left: $gutter * 1.5;
+      margin: 0 $gutter * 1.5;
     }
   }
 
@@ -46,7 +52,7 @@ header.dot-app-toolbar {
   margin-top: $topBarHeight;
 
   .dot-drawer-paper {
-    height: calc(100vh - 56px);
+    height: calc(100vh - 48px);
     margin-top: $topBarHeight;
   }
 }
