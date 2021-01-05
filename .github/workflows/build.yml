@@ -63,6 +63,9 @@ jobs:
     needs: [build-release, get-version]
     name: Deploy Production Release to EKS
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://storybook.lisbon-dev.com/
 
     steps:
     - uses: actions/checkout@v2
