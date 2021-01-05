@@ -14,6 +14,7 @@ header.dot-app-toolbar {
   .dot-branding {
     align-items: center;
     display: flex;
+    margin-left: $gutter;
 
     a {
       line-height: 0;
