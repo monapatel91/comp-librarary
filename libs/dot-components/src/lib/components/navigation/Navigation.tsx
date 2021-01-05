@@ -21,6 +21,9 @@ export interface NavigationProps {
   items: Array<NavigationItemProps>;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotNavigation = ({
   ariaLabel,
   classes,

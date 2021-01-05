@@ -29,7 +29,11 @@ export interface RowProps {
   uid?: string;
 }
 
-/** This component has the ability to display an icon, some text and a couple action buttons. */
+/**
+ * This component has the ability to display an icon, some text and a couple action buttons.
+ *
+ * @experimental This component is still in development
+ */
 export const DotRow = ({
   canDelete = false,
   canEdit = false,

@@ -20,6 +20,9 @@ export interface SwitchProps {
   size?: SwitchSize;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotSwitch = ({
   ariaLabel,
   checked = false,

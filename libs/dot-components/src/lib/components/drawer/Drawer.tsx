@@ -20,6 +20,9 @@ export interface DrawerProps {
   variant?: DrawerVariant;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotDrawer = ({
   anchor = 'right',
   children,

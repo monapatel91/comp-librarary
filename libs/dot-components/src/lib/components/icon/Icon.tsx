@@ -29,6 +29,9 @@ export const sbFontSizeOptions = {
   Large: 'large',
 };
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotIcon = ({
   fontSize = 'default',
   icon,

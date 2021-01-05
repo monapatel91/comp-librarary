@@ -40,6 +40,9 @@ export interface InlineEditProps {
   variant?: inputVariantOptions;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotInlineEdit = ({
   autoFocus,
   'data-testid': dataTestId,

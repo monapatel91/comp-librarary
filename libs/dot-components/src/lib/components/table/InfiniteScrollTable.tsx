@@ -46,6 +46,9 @@ export interface InfiniteScrollTableProps {
   filters?: string | Array<string> | null;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const InfiniteScrollTable = ({
   ariaLabel,
   columns,

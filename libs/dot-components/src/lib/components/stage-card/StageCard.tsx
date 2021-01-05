@@ -29,6 +29,9 @@ export interface StageCardProps {
   menuOptions?: Array<CardMenuOption>;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotStageCard = ({
   steps,
   title,

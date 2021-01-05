@@ -16,6 +16,9 @@ export interface BreadcrumbProps {
   maxItems?: number;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotBreadcrumbs = ({ items, maxItems = 3 }: BreadcrumbProps) => {
   return (
     <Breadcrumbs

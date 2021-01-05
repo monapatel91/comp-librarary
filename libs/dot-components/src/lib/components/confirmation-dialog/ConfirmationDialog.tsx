@@ -22,6 +22,9 @@ export interface ConfirmationDialogProps {
   title?: string | JSX.Element;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotConfirmationDialog = ({
   cancelBtnProps,
   'data-testid': dataTestId = '',

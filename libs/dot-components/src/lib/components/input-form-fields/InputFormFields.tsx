@@ -35,7 +35,11 @@ export interface InputSelectProps extends InputTextProps {
   options: Array<string>;
 }
 
-/** A component for generating an input element of type "text" */
+/**
+ * A component for generating an input element of type "text"
+ *
+ * @experimental This component is still in development
+ */
 export const DotInputText = ({
   autoFocus,
   'data-testid': dataTestId,
@@ -72,6 +76,9 @@ export const DotInputText = ({
   );
 };
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotInputSelect = ({
   autoFocus,
   'data-testid': dataTestId,

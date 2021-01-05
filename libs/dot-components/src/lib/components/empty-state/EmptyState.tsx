@@ -13,6 +13,9 @@ export interface EmptyStateProps {
   title: string;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotEmptyState = ({
   buttonProps,
   Image,
