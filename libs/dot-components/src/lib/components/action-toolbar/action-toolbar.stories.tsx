@@ -9,15 +9,14 @@ export default {
   title: 'Components/ActionToolbar',
   component: DotActionToolbar,
   argTypes: {
-    className: { defaultValue: 'custom-toolbar', },
+    className: { defaultValue: 'custom-toolbar' },
   },
-} as Meta;  
+} as Meta;
 
-export const Default: Story<DotActionBarProps> = (args) =>
+export const Default: Story<DotActionBarProps> = (args) => (
   <DotActionToolbar {...args}>
-    <Typography component="h1" variant="h4">Page title</Typography>
-    <div>
-    <DotButton onClick={() => console.log('Secondary')} label="Secondary" type="outlined" />
-    <DotButton onClick={() => console.log('primary')} label="Primary" type="primary" />
-    </div>
+    <Typography component="h1" variant="h4">
+      Action toolbar
+    </Typography>
   </DotActionToolbar>
+);
