@@ -33,6 +33,9 @@ export interface ChipProps {
   variant?: ChipVariant;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotChip = ({
   avatar,
   clickable,

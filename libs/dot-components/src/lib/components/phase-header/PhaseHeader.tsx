@@ -36,6 +36,9 @@ export interface PhaseHeaderProps {
   onLabelChange?: (name: string, index: number) => Promise<string | null>;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotPhaseHeader = ({
   canEdit = false,
   canDelete = false,

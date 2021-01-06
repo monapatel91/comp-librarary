@@ -52,6 +52,9 @@ export interface AutoCompleteProps {
   value?: AutoCompleteOption | string;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotAutoComplete = ({
   defaultValue,
   freesolo = true,

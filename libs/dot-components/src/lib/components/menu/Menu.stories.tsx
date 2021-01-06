@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotMenu, MenuProps } from './Menu';
 
 export default {
-  title: 'Components/Menu',
+  title: 'Experimental/Menu',
   component: DotMenu,
   argTypes: {
     buttonContent: {

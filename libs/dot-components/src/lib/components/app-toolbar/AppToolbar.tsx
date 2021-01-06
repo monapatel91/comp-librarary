@@ -16,6 +16,9 @@ export interface AppToolbarProps {
   mainMenu?: JSX.Element;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotAppToolbar = ({
   avatar = null,
   borderColor = '#74b941',

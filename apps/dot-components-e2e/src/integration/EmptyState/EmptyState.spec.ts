@@ -1,5 +1,7 @@
 describe('dot-components: Empty State component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=components-empty-state--default'));
+  beforeEach(() =>
+    cy.visit('/iframe.html?id=experimental-empty-state--default')
+  );
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-empty-state');

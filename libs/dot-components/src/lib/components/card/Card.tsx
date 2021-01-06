@@ -23,6 +23,9 @@ export interface CardProps {
   subheader?: string;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotCard = ({
   children,
   classes,

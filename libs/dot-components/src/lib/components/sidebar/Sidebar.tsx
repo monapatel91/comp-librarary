@@ -16,6 +16,9 @@ export interface SidebarProps {
   title?: string;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotSidebar = ({
   backItem = [],
   children = null,

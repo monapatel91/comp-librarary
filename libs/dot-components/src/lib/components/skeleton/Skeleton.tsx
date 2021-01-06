@@ -17,6 +17,9 @@ export interface SkeletonProps {
   variant?: SkeletonVariantType;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotSkeleton = ({
   animation = 'wave',
   children,

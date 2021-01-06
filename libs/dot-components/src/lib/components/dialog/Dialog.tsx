@@ -43,6 +43,9 @@ export interface DialogProps {
   title: string | JSX.Element;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotDialog = ({
   cancelButtonProps,
   classes,

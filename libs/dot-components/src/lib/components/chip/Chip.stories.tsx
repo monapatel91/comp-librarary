@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotChip, ChipProps } from './Chip';
 
 export default {
-  title: 'Components/Chip',
+  title: 'Experimental/Chip',
   component: DotChip,
   argTypes: {
     clickable: { defaultValue: true },

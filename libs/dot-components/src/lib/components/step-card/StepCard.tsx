@@ -33,6 +33,9 @@ export interface StepCardProps {
   user?: UserObject;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotStepCard = ({
   menuOptions = [],
   stepIcon = 'keyboard',

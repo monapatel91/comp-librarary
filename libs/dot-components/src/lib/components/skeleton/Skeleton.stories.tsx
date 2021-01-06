@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotSkeleton, SkeletonProps } from './Skeleton';
 
 export default {
-  title: 'Components/Skeleton',
+  title: 'Experimental/Skeleton',
   component: DotSkeleton,
 } as Meta;
 

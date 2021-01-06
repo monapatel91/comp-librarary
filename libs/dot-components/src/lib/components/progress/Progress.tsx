@@ -19,6 +19,9 @@ export interface ProgressProps {
   variant?: progressVariantOptions;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotProgress = ({
   color = 'primary',
   size = 40,

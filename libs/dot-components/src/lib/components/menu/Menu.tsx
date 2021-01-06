@@ -42,6 +42,9 @@ export interface MenuItemProps {
   text?: string;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export function DotMenu({
   buttonContent,
   classes,

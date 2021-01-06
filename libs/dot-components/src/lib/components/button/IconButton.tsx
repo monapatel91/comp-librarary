@@ -27,6 +27,9 @@ export interface IconButtonProps {
   titleTooltip?: string;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotIconButton = ({
   classes,
   color = 'inherit',
