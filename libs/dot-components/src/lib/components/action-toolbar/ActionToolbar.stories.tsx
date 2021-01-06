@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { DotActionToolbar, DotActionBarProps } from './action-toolbar';
+import { DotActionToolbar, DotActionBarProps } from './ActionToolbar';
 import Typography from '@material-ui/core/Typography';
 
 export default {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import DotActionToolbar from './action-toolbar';
+import DotActionToolbar from './ActionToolbar';
 
 describe('ActionToolbar', () => {
   it('should render successfully', () => {
