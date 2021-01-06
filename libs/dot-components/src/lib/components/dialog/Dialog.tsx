@@ -29,8 +29,6 @@ export interface DialogProps {
   classes?: string;
   /** components or string that is displayed in the dialog body */
   children?: string | JSX.Element[] | JSX.Element;
-  /** if true, automatically focuses the submit button */
-  focusSubmitButton?: boolean;
   /** The callback to be executed when the action is cancelled */
   onCancel: (event: unknown) => void;
   /** The callback to be executed when the action is submitted */
@@ -50,7 +48,6 @@ export const DotDialog = ({
   cancelButtonProps,
   classes,
   children,
-  focusSubmitButton = false,
   onCancel,
   onSubmit,
   open,
@@ -70,7 +67,6 @@ export const DotDialog = ({
 
   const submitButtonPropsWithDefaults: ButtonProps = {
     label: 'OK',
-    type: 'primary',
     onClick: onSubmit,
     ...submitButtonProps,
   };
@@ -87,17 +83,24 @@ export const DotDialog = ({
   return (
     <div onKeyDown={(event) => onKeyPress(event)}>
       <Dialog
-        classes={{ root: `dot-dialog with-close-button ${classes}` }}
+        classes={{ root: `dot-dialog ${classes}` }}
         open={open}
         onClose={handleClose}
-        aria-labelledby="dialog-title"
+        aria-labelledby="MuiDialogTitle-root"
       >
-        <DialogTitle>
-          <div className="dialog-title">{title}</div>
-          <DotIconButton iconId="close" onClick={handleClose} />
+        <DialogTitle disableTypography={true}>
+          <h2>{title}</h2>
+          <DotIconButton
+            iconButtonSize="small"
+            iconId="close"
+            iconSize="small"
+            onClick={handleClose}
+          />
         </DialogTitle>
-        <DialogContent>{children}</DialogContent>
-        <DialogActions>
+        <DialogContent classes={{ root: `dot-dialog-content` }}>
+          {children}
+        </DialogContent>
+        <DialogActions classes={{ root: `dot-dialog-actions` }}>
           <DotButton
             className="cancel-button"
             {...cancelButtonPropsWithDefaults}

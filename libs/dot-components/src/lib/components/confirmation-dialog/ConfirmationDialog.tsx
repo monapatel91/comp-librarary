@@ -44,7 +44,6 @@ export const DotConfirmationDialog = ({
       cancelButtonProps={cancelBtnProps}
       classes="dot-confirmation-dialog"
       data-testid={dataTestId}
-      focusSubmitButton={true}
       onCancel={() => onCancel && onCancel()}
       onSubmit={(event) => onConfirm && onConfirm(event)}
       open={showDialog}

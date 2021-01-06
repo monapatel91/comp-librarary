@@ -1,21 +1,27 @@
 @import '../../styles/variables';
 
-.MuiDialog-root.with-close-button {
-  .MuiDialogTitle-root h2 {
+.dot-dialog {
+  .MuiDialogTitle-root {
+    align-items: center;
     display: flex;
     flex-wrap: nowrap;
+    padding: $gutter $gutter * 2;
 
-    .dialog-title {
+    h2 {
       flex-grow: 1;
+    }
+
+    .dot-icon-button {
+      margin-left: $gutter;
     }
   }
 
-  button.MuiIconButton-root {
-    padding: $gutter/2;
+  .dot-dialog-content {
+    padding: $gutter $gutter * 2;
   }
 
-  .MuiDialogActions-root {
-    padding: $gutter * 2 $gutter * 3;
+  .dot-dialog-actions {
+    padding: $gutter * 2;
 
     .cancel-button {
       color: inherit;
