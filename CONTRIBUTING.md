@@ -5,7 +5,7 @@
   - [Run Storybook](#run-storybook)
   - [Code Styleguide](#code-styleguide)
   - [Commit Messages](#commit-messages)
-  - [Running Tests & Formatters](#running-tests---formatters)
+  - [Running Tests & Formatters](#running-tests-and-formatters)
     - [Running unit tests](#running-unit-tests)
     - [Running end-to-end tests](#running-end-to-end-tests)
     - [Running linter](#running-linter)
@@ -51,7 +51,7 @@ When working on something that is part of a Digital.ai Agility issue we request 
 'S-12345: some message here'
 ```
 
-## Running Tests & Formatters
+## Running Tests and Formatters
 
 ### Running unit tests
 
