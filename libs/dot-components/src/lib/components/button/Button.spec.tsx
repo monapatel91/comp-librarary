@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { getByTestId, screen } from '@testing-library/dom';
+import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import DotButton from './Button';
 

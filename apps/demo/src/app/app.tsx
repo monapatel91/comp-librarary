@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom';
 import {
   DotAvatar,
   DotAppToolbar,
-  DotButton,
   DotSidebar,
   NavigationItemProps,
 } from '@digital-ai/dot-components';
@@ -28,7 +27,7 @@ const topNavItems: Array<NavigationItemProps> = [
     type: 'button',
   },
   {
-    // icon: 'dark',
+    icon: 'dark',
     iconSize: 'small',
     onClick: () => console.log('theme clicked'),
     text: 'Theme',
@@ -212,8 +211,6 @@ const userAvatar = (
   <DotAvatar alt="Batman" text="BW" size="small" type="text" />
 );
 
-const exampleBtn = <DotButton iconId="dark" label="Theme" size="small" />;
-
 export const App = () => {
   const backItem: Array<NavigationItemProps> = [
     {
@@ -232,7 +229,6 @@ export const App = () => {
       <DotAppToolbar
         avatar={userAvatar}
         brand="Continuum"
-        children={exampleBtn}
         items={topNavItems}
         mainMenu={mainMenu}
       />
