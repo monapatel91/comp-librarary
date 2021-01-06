@@ -84,7 +84,7 @@ describe('DotButton', () => {
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
-  xit('should render an icon button', () => {
+  it('should render an icon inside of a button', () => {
     render(
       <DotButton
         label="Test"
@@ -95,20 +95,10 @@ describe('DotButton', () => {
         iconId="save"
       />
     );
-    expect(screen.getByText('save')).toHaveClass('material-icons');
-    expect(screen.getByText('save')).toBeVisible();
-  });
+    const icon = screen.getByTestId('icon');
 
-  xit('should not render an icon button if no icon is provided', () => {
-    render(
-      <DotButton
-        label="Test"
-        onClick={() => {
-          console.log('test click');
-        }}
-        type="outlined"
-      />
-    );
-    expect(screen.queryByText('save')).toBeNull();
+    expect(screen.getByText('Test')).toContainElement(icon);
+    expect(icon).toHaveClass('material-icons');
+    expect(icon).toBeVisible();
   });
 });

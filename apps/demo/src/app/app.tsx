@@ -14,23 +14,25 @@ const topNavItems: Array<NavigationItemProps> = [
   {
     icon: 'notification-bell',
     title: 'Alerts',
-    url: '/',
+    type: 'button',
   },
   {
     icon: 'help',
     title: 'Help',
-    url: '/',
+    type: 'button',
   },
   {
     icon: 'apps',
     title: 'Admin',
-    url: '/',
+    type: 'button',
   },
   {
     icon: 'dark',
+    iconSize: 'small',
     onClick: () => console.log('theme clicked'),
+    text: 'Theme',
     title: 'Toggle Theme',
-    url: '',
+    type: 'button',
   },
 ];
 
@@ -51,8 +53,8 @@ const mainMenuNavItems: Array<NavigationItemProps> = [
     url: '/insights',
   },
   {
-    divider: true,
     text: 'Workflow',
+    type: 'divider',
   },
   {
     icon: 'block',
@@ -85,8 +87,8 @@ const mainMenuNavItems: Array<NavigationItemProps> = [
     url: '/artifacts',
   },
   {
-    divider: true,
     text: 'System',
+    type: 'divider',
   },
   {
     icon: 'monitor-gears',
@@ -146,8 +148,8 @@ const sideNavItems: Array<NavigationItemProps> = [
     url: '/insights',
   },
   {
-    divider: true,
     text: 'Workflow',
+    type: 'divider',
   },
   {
     icon: 'block',
@@ -165,7 +167,7 @@ const sideNavItems: Array<NavigationItemProps> = [
     url: '/projects',
   },
   {
-    divider: true,
+    type: 'divider',
   },
   {
     icon: 'file-lines',
@@ -183,8 +185,8 @@ const sideNavItems: Array<NavigationItemProps> = [
     url: '/artifacts',
   },
   {
-    divider: true,
     text: 'System',
+    type: 'divider',
   },
   {
     icon: 'monitor-gears',
