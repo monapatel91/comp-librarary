@@ -28,6 +28,10 @@ export interface InputTextProps {
   required: boolean;
   /** The variant to use. */
   variant?: inputVariantOptions;
+  /** Type of input should be a valid HTML 5 input type
+   * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types
+   */
+  type?: string;
 }
 
 export interface InputSelectProps extends InputTextProps {
@@ -52,6 +56,7 @@ export const DotInputText = ({
   onChange,
   required = false,
   variant = 'outlined',
+  type = 'text',
 }: InputTextProps) => {
   return (
     <TextField
@@ -70,7 +75,7 @@ export const DotInputText = ({
       name={name}
       onChange={(event) => onChange && onChange(event.target.value)}
       required={required}
-      type="text"
+      type={type}
       variant={variant}
     />
   );
