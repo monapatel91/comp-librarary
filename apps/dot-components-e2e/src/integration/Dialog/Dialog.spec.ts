@@ -6,6 +6,6 @@ describe('dot-components: Dialog component', () => {
   });
 
   it('should render the component', () => {
-    cy.get('h2').should('contain', 'The title');
+    cy.get('h2').should('contain', 'Superheros');
   });
 });
