@@ -1,9 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-
 import { DotActionToolbar, DotActionBarProps } from './action-toolbar';
 import Typography from '@material-ui/core/Typography';
-import DotButton from '../button/Button';
 
 export default {
   title: 'Components/ActionToolbar',
