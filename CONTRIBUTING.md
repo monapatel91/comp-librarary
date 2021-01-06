@@ -3,6 +3,8 @@
 - [Getting Started](#getting-started)
   - [Run demo application](#run-demo-application)
   - [Run Storybook](#run-storybook)
+  - [Code Styleguide](#code-styleguide)
+  - [Commit Messages](#commit-messages)
   - [Running Tests & Formatters](#running-tests---formatters)
     - [Running unit tests](#running-unit-tests)
     - [Running end-to-end tests](#running-end-to-end-tests)
@@ -25,7 +27,29 @@ To run the demo application run `yarn start`. You can then see the running appli
 
 ## Run Storybook
 
+When creating new components it's easiest to use Storybook as your reference point. You should make sure that all `props` are setup as `actions` on Storybook so that users can experiment with the various options. Please also make sure to document each `prop` accordingly.
+
 To run Storybook locally run `yarn storybook`. You can then see Storybook running at <http://localhost:4400/>.
+
+## Code Styleguide
+
+This is a work in progress...
+
+- Order all props alphabetically, this allows for easier maintenance of larger components.
+
+## Commit Messages
+
+When working on something that is part of a GitHub issue we request that you use the following format with your commit messages. Doing so will allow your commit message to properly link to the related issue.
+
+```sh
+'Issue #1: some message here'
+```
+
+When working on something that is part of a Digital.ai Agility issue we request that you use the following format with your commit messages. Doing so will allow your commit message to properly link to the story in Agility if the GitHub integration is setup properly.
+
+```sh
+'S-12345: some message here'
+```
 
 ## Running Tests & Formatters
 
@@ -79,10 +103,10 @@ To generate a component execute use following commands:
 
 ```sh
 # dry run to see what files will be generated
-yarn generate:comp:dry --name=[name of component]
+yarn generate:comp:dry --name=[name of component] --export --pascalCaseFiles
 
 # the real thing
-yarn generate:comp --name=[name of component]
+yarn generate:comp --name=[name of component] --export --pascalCaseFiles
 ```
 
 ## Updating font icon
