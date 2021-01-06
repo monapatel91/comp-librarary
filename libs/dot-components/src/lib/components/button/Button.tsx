@@ -13,7 +13,9 @@ const styles = (theme: Theme) =>
       backgroundColor: theme.palette.error.main,
     },
     startIcon: {
-      padding: 0,
+      '& span': {
+        padding: 0,
+      },
     },
   });
 
@@ -84,7 +86,6 @@ export const DotButton = ({
       startIcon={
         iconId ? (
           <DotIcon
-            iconClasses={classes.icon}
             icon={iconId}
             fontSize={size === 'medium' ? 'default' : size}
           />
