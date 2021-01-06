@@ -7,11 +7,10 @@ export default {
   title: 'Experimental/Dialog',
   component: DotDialog,
   argTypes: {
+    children: { defaultValue: 'Batman is way better than superman' },
     open: { defaultValue: true },
-    title: { defaultValue: 'The title' },
+    title: { defaultValue: 'Superheros' },
   },
 } as Meta;
 
-export const Default: Story<DialogProps> = (args) => (
-  <DotDialog {...args}>Put whatever you want here :)</DotDialog>
-);
+export const Default: Story<DialogProps> = (args) => <DotDialog {...args} />;
