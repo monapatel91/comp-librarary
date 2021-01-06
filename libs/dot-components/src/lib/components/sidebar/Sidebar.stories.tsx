@@ -70,8 +70,8 @@ export default {
           url: '/insights',
         },
         {
-          divider: true,
           text: 'Workflow',
+          type: 'divider',
         },
         {
           icon: 'block',
@@ -89,7 +89,7 @@ export default {
           url: '/projects',
         },
         {
-          divider: true,
+          type: 'divider',
         },
         {
           icon: 'file-lines',
@@ -107,8 +107,8 @@ export default {
           url: '/artifacts',
         },
         {
-          divider: true,
           text: 'System',
+          type: 'divider',
         },
         {
           icon: 'monitor-gears',

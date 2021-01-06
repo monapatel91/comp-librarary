@@ -23,12 +23,6 @@ export interface IconProps {
   title?: string;
 }
 
-export const sbFontSizeOptions = {
-  Default: 'default',
-  Small: 'small',
-  Large: 'large',
-};
-
 /**
  * @experimental This component is still in development
  */

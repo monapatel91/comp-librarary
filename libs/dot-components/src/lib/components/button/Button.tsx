@@ -1,6 +1,5 @@
 import React, { MouseEvent } from 'react';
 import { Button, createStyles, Theme } from '@material-ui/core';
-
 import { DotIcon } from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
@@ -10,14 +9,11 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 
 const styles = (theme: Theme) =>
   createStyles({
-    root: {
-      padding: `6px ${theme.spacing(2)}px`,
-    },
-    outlined: {
-      padding: `6px ${theme.spacing(2) - 1}px`,
-    },
     containedSecondary: {
       backgroundColor: theme.palette.error.main,
+    },
+    startIcon: {
+      padding: 0,
     },
   });
 
@@ -33,13 +29,13 @@ export interface ButtonProps extends CommonProps {
   /** Is this a submit button */
   isSubmit?: boolean;
   /** Event callback */
-  onClick: (event: MouseEvent<Element>) => void;
+  onClick?: (event: MouseEvent<Element>) => void;
   /** The size of the button */
   size?: ButtonSize;
   /** Help text to be displayed on hover */
   titleTooltip?: string;
   /** The type of button */
-  type: ButtonType;
+  type?: ButtonType;
 }
 
 /** This component wraps the Button component from @material-ui. */
@@ -50,10 +46,10 @@ export const DotButton = ({
   disabled = false,
   iconId,
   isSubmit = false,
-  onClick,
+  onClick = null,
   size = 'medium',
   titleTooltip,
-  type,
+  type = 'primary',
 }: ButtonProps) => {
   const classes = useStylesWithRootClass('dot-button', styles, className);
 
@@ -85,7 +81,15 @@ export const DotButton = ({
       data-testid={dataTestId}
       disabled={disabled}
       onClick={(event) => onClick && onClick(event)}
-      startIcon={iconId ? <DotIcon icon={iconId} /> : undefined}
+      startIcon={
+        iconId ? (
+          <DotIcon
+            iconClasses={classes.icon}
+            icon={iconId}
+            fontSize={size === 'medium' ? 'default' : size}
+          />
+        ) : undefined
+      }
       title={titleTooltip}
       variant={variant}
       size={size}
