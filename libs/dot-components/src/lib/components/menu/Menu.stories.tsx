@@ -15,9 +15,9 @@ export default {
     },
     menuItems: {
       defaultValue: [
-        { text: 'Batman' },
-        { text: 'Robin' },
-        { text: 'Bat Girl' },
+        { children: <span>Batman</span> },
+        { children: <span>Robin</span> },
+        { children: <span>Bat Girl</span> },
       ],
       name: 'Menu Items',
     },

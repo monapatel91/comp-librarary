@@ -27,7 +27,7 @@ export type PopperPlacement =
 /* eslint-disable-next-line */
 export interface MenuProps {
   buttonContent: JSX.Element | string;
-  /** Space delimited CSS classes to be attributed to the phase header */
+  /** Space delimited CSS classes to be attributed to the menu */
   classes?: string;
   /** Unique ID that ties a particular menu to a specific element */
   id: string;
@@ -38,10 +38,12 @@ export interface MenuProps {
 }
 
 export interface MenuItemProps {
+  /** The text displayed on the item */
+  children?: JSX.Element;
+  /** Space delimited CSS classes to be attributed to the menu item */
+  classes?: string;
   /** Event callback on click */
   onClick?: (event: MouseEvent) => void;
-  /** The text displayed on the item */
-  text?: string;
 }
 
 /**
@@ -65,6 +67,7 @@ export function DotMenu({
     if (item.onClick) {
       item.onClick(event);
     }
+
     handleClose(event);
   };
 
@@ -129,10 +132,11 @@ export function DotMenu({
                   {menuItems.map((item, index: number) => {
                     return (
                       <MenuItem
+                        className={item.classes}
                         onClick={(event) => handleItemClick(event, item)}
                         key={index}
                       >
-                        {item.text}
+                        {item.children}
                       </MenuItem>
                     );
                   })}
