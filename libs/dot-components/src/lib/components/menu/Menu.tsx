@@ -38,6 +38,8 @@ export interface MenuProps {
 }
 
 export interface MenuItemProps {
+  /** Event callback on click */
+  onClick?: (event: MouseEvent) => void;
   /** The text displayed on the item */
   text?: string;
 }
@@ -57,6 +59,13 @@ export function DotMenu({
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleItemClick = (event, item) => {
+    if (item.onClick) {
+      item.onClick(event);
+    }
+    handleClose(event);
   };
 
   const handleClose = (event) => {
@@ -119,7 +128,10 @@ export function DotMenu({
                 >
                   {menuItems.map((item, index: number) => {
                     return (
-                      <MenuItem onClick={handleClose} key={index}>
+                      <MenuItem
+                        onClick={(event) => handleItemClick(event, item)}
+                        key={index}
+                      >
                         {item.text}
                       </MenuItem>
                     );
