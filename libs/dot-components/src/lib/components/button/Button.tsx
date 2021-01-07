@@ -11,6 +11,12 @@ const styles = (theme: Theme) =>
   createStyles({
     containedSecondary: {
       backgroundColor: theme.palette.error.main,
+      '&:hover': {
+        backgroundColor: theme.palette.error['800'],
+      },
+      '&:active': {
+        backgroundColor: theme.palette.error['800'],
+      },
     },
     startIcon: {
       '& span': {
