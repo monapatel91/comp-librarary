@@ -6,9 +6,9 @@ import DotMenu from './Menu';
 
 describe('Menu', () => {
   const dummyMenuItems = [
-    { text: 'Batman' },
-    { text: 'Robin' },
-    { text: 'Bat Girl' },
+    { children: <span>Batman</span> },
+    { children: <span>Robin</span> },
+    { children: <span>Bat Girl</span> },
   ];
 
   it('should render successfully', () => {
