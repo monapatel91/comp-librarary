@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import { CategoryType } from '../phase-header/PhaseHeader';
@@ -36,7 +36,7 @@ describe('DotStageCard', () => {
   });
 
   it('should display card action menu if menu options provided and execute action for clicked on menu option', () => {
-    const { rerender } = render(
+    render(
       <DotStageCard
         steps={dummySteps}
         title="some"
@@ -50,7 +50,7 @@ describe('DotStageCard', () => {
       { displayText: 'Option 1', action: jest.fn() },
       { displayText: 'Option 2', action: jest.fn() },
     ];
-    rerender(
+    render(
       <DotStageCard
         steps={dummySteps}
         title="some"
