@@ -1,10 +1,29 @@
 {
   "name": "@digital-ai/dot-components",
-  "version": "0.2.3",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/digital-ai"
+  "version": "0.0.0-alpha.1",
+  "private": false,
+  "license": "SEE LICENSE IN <LICENSE.md>",
+  "contributors": [
+    "Keith Stewart <kstewart@digial.ai>",
+    "Matthew Haff <mhaff@digital.ai>",
+    "Josh Schoen <jschoen@digital.ai>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/digital-ai/dot-components.git"
   },
-  "repository": "git://github.com/digital-ai/dot-components.git",
+  "main": "./dot-components.umd.js",
+  "module": "./dot-components.esm.js",
+  "typings": "./index.d.ts",
+  "description": "<!-- TODO: add more detail -->",
+  "bugs": {
+    "url": "https://github.com/digital-ai/dot-components/issues"
+  },
+  "homepage": "https://github.com/digital-ai/dot-components#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Keith Stewart",
   "dependencies": {
     "react-router-dom": "^5.2.0",
     "react-virtualized": "^9.22.2",
