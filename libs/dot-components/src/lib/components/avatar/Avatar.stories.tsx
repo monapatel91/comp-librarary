@@ -10,6 +10,11 @@ export default {
   args: {
     alt: 'Avatar alt text',
   },
+  argTypes: {
+    onClick: {
+      action: 'clicked',
+    },
+  },
 } as Meta;
 
 export const Default: Story<AvatarProps> = (args) => <DotAvatar {...args} />;
