@@ -1,6 +1,7 @@
 import React from 'react';
 import { DotSidebar, SidebarProps } from './Sidebar';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { TextField } from '@material-ui/core';
 
 export default {
   title: 'Experimental/Sidebar',
@@ -19,10 +20,16 @@ export default {
         },
       ],
     },
+    brandDesc: {
+      defaultValue: 'Release orchestration powered by',
+    },
     children: {
-      defaultValue: <input type="text" placeholder="search" />,
+      defaultValue: <TextField placeholder="search" variant="outlined" />,
     },
     collapsable: {
+      defaultValue: true,
+    },
+    displayBrand: {
       defaultValue: true,
     },
     goBack: {
@@ -128,7 +135,7 @@ export default {
       ],
     },
     title: {
-      defaultValue: 'Your Company Here',
+      defaultValue: 'Title Goes Here',
     },
   },
 } as Meta;

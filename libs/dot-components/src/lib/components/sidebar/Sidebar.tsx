@@ -9,8 +9,10 @@ import './Sidebar.scss';
 
 export interface SidebarProps {
   backItem?: Array<NavigationItemProps>;
+  brandDesc?: string;
   children?: JSX.Element;
   collapsable?: boolean;
+  displayBrand?: boolean;
   goBack?: boolean;
   navItems?: Array<NavigationItemProps>;
   title?: string;
@@ -21,8 +23,10 @@ export interface SidebarProps {
  */
 export const DotSidebar = ({
   backItem = [],
+  brandDesc,
   children = null,
   collapsable = false,
+  displayBrand = true,
   goBack,
   navItems = [],
   title,
@@ -60,11 +64,13 @@ export const DotSidebar = ({
           />
         </div>
       )}
-      <div className="powered-by">
-        <span className="desc">Release orchestration powered by</span>
-        <LogoDigitalAi className="company-name" title="digital.ai" />
-        <LogoD className="d-icon" title="digital.ai" />
-      </div>
+      {displayBrand && (
+        <div className="powered-by">
+          <span className="desc">{brandDesc}</span>
+          <LogoDigitalAi className="company-name" title="digital.ai" />
+          <LogoD className="d-icon" title="digital.ai" />
+        </div>
+      )}
     </aside>
   );
 };
