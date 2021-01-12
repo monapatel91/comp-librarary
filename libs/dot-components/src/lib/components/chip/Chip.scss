@@ -1,22 +1,23 @@
 @import '../../styles/global';
 
+// important is needed until this is handled with styled-components
 .dot-chip {
   &.MuiChip-sizeSmall {
     .dot-icon,
     .dot-avatar {
-      width: 18px;
-      height: 18px;
+      width: 18px !important;
+      height: 18px !important;
     }
   }
 
   .dot-icon {
     height: 24px;
+    margin: 0 -5px 0 4px;
     padding: 0;
     width: 24px;
   }
 
-  .dot-icon,
-  .dot-avatar {
-    margin: 0 -5px 0 4px;
+  .dot-avatar .dot-icon {
+    margin: 0;
   }
 }
