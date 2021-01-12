@@ -28,7 +28,10 @@ nav.dot-navigation {
 
   li {
     align-items: stretch;
-    cursor: pointer;
+
+    &:not(.divider) {
+      cursor: pointer;
+    }
 
     &.vertical > a {
       flex-direction: column;

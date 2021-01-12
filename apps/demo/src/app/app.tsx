@@ -235,6 +235,7 @@ export const App = () => {
       <main>
         <DotSidebar
           backItem={backItem}
+          brandDesc="Release orchestration powered by"
           collapsable={true}
           navItems={sideNavItems}
           title="FedEx"
