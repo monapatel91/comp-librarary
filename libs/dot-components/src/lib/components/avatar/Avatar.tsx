@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
-import { Avatar, createStyles, Theme, Typography } from '@material-ui/core';
+import { Avatar, Theme, Typography } from '@material-ui/core';
 import { Variant } from '@material-ui/core/styles/createTypography';
+import styled, { css } from 'styled-components';
 
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
@@ -15,37 +16,29 @@ const avatarSpacing = {
   large: 7,
 };
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      height: (props: { size: AvatarSize }) => {
-        switch (props.size) {
-          case 'small':
-            return theme.spacing(avatarSpacing.small);
+const StyledAvatar = styled(Avatar)`
+  ${({ theme }: { theme: Theme }) => css`
+    &.MuiAvatar-root {
+      background-color: ${theme.palette.grey[100]};
+      color: ${theme.palette.text.primary};
 
-          case 'large':
-            return theme.spacing(avatarSpacing.large);
+      &.small {
+        height: ${theme.spacing(avatarSpacing.small)}px;
+        width: ${theme.spacing(avatarSpacing.small)}px;
+      }
 
-          default:
-            return theme.spacing(avatarSpacing.medium);
-        }
-      },
-      width: (props: { size: AvatarSize }) => {
-        switch (props.size) {
-          case 'small':
-            return theme.spacing(avatarSpacing.small);
+      &.medium {
+        height: ${theme.spacing(avatarSpacing.medium)}px;
+        width: ${theme.spacing(avatarSpacing.medium)}px;
+      }
 
-          case 'large':
-            return theme.spacing(avatarSpacing.large);
-
-          default:
-            return theme.spacing(avatarSpacing.medium);
-        }
-      },
-      backgroundColor: theme.palette.grey[100],
-      color: theme.palette.text.primary,
-    },
-  });
+      &.large {
+        height: ${theme.spacing(avatarSpacing.large)}px;
+        width: ${theme.spacing(avatarSpacing.large)}px;
+      }
+    }
+  `}
+`;
 
 export interface AvatarProps extends CommonProps {
   /** Text displayed on hover */
@@ -75,9 +68,7 @@ export const DotAvatar = ({
   type = 'image',
   variant = 'circle',
 }: AvatarProps) => {
-  const classes = useStylesWithRootClass('dot-avatar', styles, className, {
-    size,
-  });
+  const rootClasses = useStylesWithRootClass('dot-avatar', className);
 
   // determine values for variables dependent on size
   let iconFontSize: IconFontSize;
@@ -133,15 +124,16 @@ export const DotAvatar = ({
   }
 
   return (
-    <Avatar
+    <StyledAvatar
       alt={alt}
       data-testid={dataTestId}
-      classes={{ ...classes }}
+      classes={{ root: rootClasses }}
+      className={size}
       variant={variant}
       src={imageSrc}
     >
       {child}
-    </Avatar>
+    </StyledAvatar>
   );
 };
 

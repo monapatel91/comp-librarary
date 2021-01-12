@@ -1,5 +1,7 @@
 import React, { MouseEvent } from 'react';
-import { Button, createStyles, Theme } from '@material-ui/core';
+import { Button, darken, Theme } from '@material-ui/core';
+import styled, { css } from 'styled-components';
+
 import { DotIcon } from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
@@ -7,23 +9,22 @@ import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
 export type ButtonSize = 'small' | 'medium' | 'large';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    containedSecondary: {
-      backgroundColor: theme.palette.error.main,
-      '&:hover': {
-        backgroundColor: theme.palette.error['800'],
-      },
-      '&:active': {
-        backgroundColor: theme.palette.error['800'],
-      },
-    },
-    startIcon: {
-      '& span': {
-        padding: 0,
-      },
-    },
-  });
+const StyledButton = styled(Button)`
+  ${({ theme }: { theme: Theme }) => css`
+    &.MuiButton-containedSecondary {
+      background-color: ${theme.palette.error.main};
+
+      &:hover,
+      &:active {
+        background-color: ${darken(theme.palette.error.main, 0.2)};
+      }
+    }
+
+    span.MuiButton-startIcon {
+      padding: 0;
+    }
+  `}
+`;
 
 export interface ButtonProps extends CommonProps {
   /** If true, the button will be disabled. */
@@ -59,7 +60,7 @@ export const DotButton = ({
   titleTooltip,
   type = 'primary',
 }: ButtonProps) => {
-  const classes = useStylesWithRootClass('dot-button', styles, className);
+  const rootClasses = useStylesWithRootClass('dot-button', className);
 
   let color: 'primary' | 'secondary' | 'default';
   let variant: 'contained' | 'outlined' | 'text';
@@ -83,8 +84,8 @@ export const DotButton = ({
   }
 
   return (
-    <Button
-      classes={{ ...classes }}
+    <StyledButton
+      classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}
       disabled={disabled}
@@ -103,7 +104,7 @@ export const DotButton = ({
       type={isSubmit ? 'submit' : 'button'}
     >
       {label}
-    </Button>
+    </StyledButton>
   );
 };
 

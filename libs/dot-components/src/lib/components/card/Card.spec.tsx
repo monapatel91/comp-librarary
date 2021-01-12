@@ -1,6 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-
+import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { DotCard } from './Card';
 
 describe('DotCard', () => {

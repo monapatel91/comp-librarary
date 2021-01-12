@@ -1,5 +1,11 @@
 import React, { ReactNode } from 'react';
-import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
+import {
+  createMuiTheme,
+  CssBaseline,
+  MuiThemeProvider,
+  StylesProvider,
+} from '@material-ui/core';
+import { ThemeProvider } from 'styled-components';
 
 import * as lightColors from './colors/light-theme-colors';
 
@@ -211,9 +217,13 @@ interface ThemeProviderProps {
 
 export function DotThemeProvider({ children }: ThemeProviderProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
+    <StylesProvider injectFirst>
+      <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {children}
+        </ThemeProvider>
+      </MuiThemeProvider>
+    </StylesProvider>
   );
 }
