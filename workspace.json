@@ -139,6 +139,11 @@
                 "output": "."
               },
               {
+                "glob": "LICENSE.md",
+                "input": ".",
+                "output": "."
+              },
+              {
                 "glob": "**/*",
                 "input": "libs/dot-components/src/lib/fonts/",
                 "output": "/fonts/"
