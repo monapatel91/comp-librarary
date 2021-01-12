@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import { Avatar, Theme, Typography } from '@material-ui/core';
 import { Variant } from '@material-ui/core/styles/createTypography';
 import styled, { css } from 'styled-components';
@@ -47,6 +47,8 @@ export interface AvatarProps extends CommonProps {
   iconId?: string;
   /** Source for the image used for the avatar */
   imageSrc?: string;
+  /** Event callback */
+  onClick?: (event: MouseEvent) => void;
   /** Size of avatar displayed */
   size?: AvatarSize;
   /** The text to be displayed. Only the first 2 letters will be displayed. */
@@ -63,6 +65,7 @@ export const DotAvatar = ({
   'data-testid': dataTestId,
   iconId,
   imageSrc,
+  onClick,
   size = 'medium',
   text,
   type = 'image',
@@ -126,11 +129,12 @@ export const DotAvatar = ({
   return (
     <StyledAvatar
       alt={alt}
-      data-testid={dataTestId}
       classes={{ root: rootClasses }}
       className={size}
-      variant={variant}
+      data-testid={dataTestId}
+      onClick={(event) => (onClick ? onClick(event) : null)}
       src={imageSrc}
+      variant={variant}
     >
       {child}
     </StyledAvatar>
