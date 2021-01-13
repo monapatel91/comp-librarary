@@ -111,14 +111,25 @@ export const DotNavItem = ({
               {iconId && (
                 <DotIcon
                   className={`${iconClasses} ${iconPlacement}`}
+<<<<<<< HEAD
                   data-testid="icon"
                   fontSize={iconSize}
                   iconId={iconId}
+=======
+                  fontSize={iconSize}
+                  icon={icon}
+                  iconBgColor={iconBgColor}
+                  iconType={iconType}
+>>>>>>> issue #116: update Icon to be styled component
                   title={title || text}
                 />
               )}
               {text && <span className={textClasses}>{text}</span>}
+<<<<<<< HEAD
               <DotIcon iconId="chevron-right" className="nav-arrow" />
+=======
+              <DotIcon icon="chevron-right" className="nav-arrow" />
+>>>>>>> issue #116: update Icon to be styled component
             </li>
             <Menu
               anchorEl={anchorEl}
@@ -134,8 +145,15 @@ export const DotNavItem = ({
                       <DotIcon
                         data-testid="icon"
                         fontSize={iconSize}
+<<<<<<< HEAD
                         iconId={item.iconId}
                         className={`${iconClasses} ${iconPlacement}`}
+=======
+                        icon={item.icon}
+                        iconBgColor={iconBgColor}
+                        className={`${iconClasses} ${iconPlacement}`}
+                        iconType={iconType}
+>>>>>>> issue #116: update Icon to be styled component
                         title={item.title || item.text}
                       />
                     )}
@@ -161,8 +179,15 @@ export const DotNavItem = ({
                 <DotIcon
                   data-testid="link-icon"
                   fontSize={iconSize}
+<<<<<<< HEAD
                   iconId={iconId}
                   className={`${iconClasses} ${iconPlacement}`}
+=======
+                  icon={icon}
+                  iconBgColor={iconBgColor}
+                  className={`${iconClasses} ${iconPlacement}`}
+                  iconType={iconType}
+>>>>>>> issue #116: update Icon to be styled component
                   title={title || text}
                 />
               )}

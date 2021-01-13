@@ -1,10 +1,9 @@
 import React, { MouseEvent } from 'react';
 import { Button, darken, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
-
-import { DotIcon } from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { DotIcon } from '../icon/Icon';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
 export type ButtonSize = 'small' | 'medium' | 'large';
