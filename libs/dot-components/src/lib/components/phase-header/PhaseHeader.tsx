@@ -155,10 +155,10 @@ export const DotPhaseHeader = ({
             }}
           />
           <DotIconButton
-            classes={canEdit ? 'clickable delete-btn' : 'delete-btn'}
+            className={canEdit ? 'clickable delete-btn' : 'delete-btn'}
             data-testid={`phase-icon-delete-${dataIndex}`}
+            fontSize="small"
             iconId="delete"
-            iconSize="small"
             onClick={() => setDeleteDialogIsOpen(true)}
             titleTooltip="Delete phase"
           />

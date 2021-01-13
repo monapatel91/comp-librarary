@@ -58,9 +58,9 @@ export const DotSidebar = ({
       {collapsable && (
         <div className="toggle-nav">
           <DotIconButton
-            iconButtonSize="small"
             iconId="chevron-left"
             onClick={() => updateOpen(!open)}
+            size="small"
           />
         </div>
       )}

@@ -1,58 +1,70 @@
 import React, { MouseEvent } from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Theme } from '@material-ui/core';
+import styled, { css } from 'styled-components';
+
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+
 import { DotIcon, IconFontSize } from '../icon/Icon';
-import './IconButton.scss';
 
 export type IconButtonColor = 'default' | 'inherit' | 'primary' | 'secondary';
 export type IconButtonSize = 'small' | 'medium';
 
-export interface IconButtonProps {
-  /** Space delimited CSS classes to be attributed to the button. */
-  classes?: string;
+const StyledIconButton = styled(IconButton)`
+  ${({ theme }: { theme: Theme }) => css`
+    &.MuiIconButton-root {
+      padding: 8px;
+
+      &.MuiIconButton-sizeSmall {
+        padding: 2px;
+      }
+    }
+  `}
+`;
+
+export interface IconButtonProps extends CommonProps {
   /** 'default', 'inherit', 'primary', 'secondary' */
   color?: IconButtonColor;
-  /** data attribute passed through for testing purposes ONLY */
-  'data-testid'?: string;
   /** If true, the button will be disabled. */
   disabled?: boolean;
-  /** Determines the size of the button and padding around the icon */
-  iconButtonSize?: IconButtonSize;
   /** The icon to display on the button */
   iconId: string;
   /** Determines the size of the icon */
-  iconSize?: IconFontSize;
+  fontSize?: IconFontSize;
   /** Event callback */
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   /** Help text to be displayed on icon hover */
   titleTooltip?: string;
+  /** Determines the size of the button and padding around the icon */
+  size?: IconButtonSize;
 }
 
-/**
- * @experimental This component is still in development
- */
+/** This component wraps the IconButton component from @material-ui. */
 export const DotIconButton = ({
-  classes,
+  className,
   color = 'inherit',
   'data-testid': dataTestId,
   disabled = false,
   iconId,
-  iconButtonSize = 'medium',
-  iconSize = 'default',
+  fontSize = 'default',
   onClick,
   titleTooltip,
+  size = 'medium',
 }: IconButtonProps) => {
+  const rootClasses = useStylesWithRootClass('dot-icon-btn', className);
+
   return (
-    <IconButton
-      classes={{ root: `dot-icon-btn ${iconButtonSize} ${classes}` }}
+    <StyledIconButton
+      classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}
       disabled={disabled}
       onClick={(event) => onClick && onClick(event)}
-      size={iconButtonSize}
+      size={size}
       title={titleTooltip}
     >
-      <DotIcon fontSize={iconSize} icon={iconId} />
-    </IconButton>
+      <DotIcon fontSize={fontSize} icon={iconId} />
+    </StyledIconButton>
   );
 };
 

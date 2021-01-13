@@ -68,11 +68,11 @@ export const DotStageCard = ({
           />
           {steps.length > 0 && (
             <DotIconButton
+              className={`expand-button ${stepsVisible ? 'visible' : ''}`}
               data-testid="display-stage-steps"
-              classes={`expand-button ${stepsVisible ? 'visible' : ''}`}
               iconId="expand_more"
-              iconButtonSize="small"
               onClick={() => setStepsVisible(!stepsVisible)}
+              size="small"
             />
           )}
         </CardActions>

@@ -37,10 +37,10 @@ export const DotAppToolbar = ({
       {mainMenu && (
         <Fragment>
           <DotIconButton
-            iconButtonSize="small"
+            fontSize="small"
             iconId={menuOpen ? 'close' : 'menu'}
-            iconSize="small"
             onClick={() => updateMenuOpen(!menuOpen)}
+            size="small"
           />
           <DotDrawer
             anchor="left"

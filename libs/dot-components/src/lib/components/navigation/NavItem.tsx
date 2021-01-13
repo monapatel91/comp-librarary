@@ -97,11 +97,11 @@ export const DotNavItem = ({
             />
           ) : (
             <DotIconButton
-              classes={iconClasses}
-              iconButtonSize={iconBtnSize}
+              className={iconClasses}
+              fontSize={iconSize}
               iconId={icon}
-              iconSize={iconSize}
               onClick={(event) => onClick && onClick(event)}
+              size={iconBtnSize}
               titleTooltip={title}
             />
           )}
