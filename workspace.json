@@ -168,6 +168,7 @@
           "options": {
             "uiFramework": "@storybook/react",
             "port": 4400,
+            "staticDir": ["libs/dot-components/src/lib"],
             "config": {
               "configFolder": "libs/dot-components/.storybook"
             }
