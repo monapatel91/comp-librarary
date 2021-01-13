@@ -22,7 +22,7 @@ export interface SidebarProps extends CommonProps {
 
 const StyledSidebar = styled.aside`
   ${({ theme }: { theme: Theme }) => css`
-    aside.dot-sidebar {
+    &.dot-sidebar {
       align-items: stretch;
       background: ${theme.palette.grey[50]};
       border-right: 1px solid ${theme.palette.grey[100]};
@@ -34,13 +34,16 @@ const StyledSidebar = styled.aside`
       letter-spacing: 0.01em;
       padding-top: ${theme.spacing(1) * 0.5}px;
       width: 240px;
-      @include transition($prop: width, $func: cubic-bezier(0.4, 0, 0.6, 1));
+      -o-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
+      -moz-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
+      -webkit-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
+      transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
       h4 {
         border-bottom: 1px solid ${theme.palette.grey[100]};
         font-size: 14px;
         overflow: hidden;
-        padding: ${theme.spacing(1) * 2}px;
+        padding: ${theme.spacing(2)}px;
         white-space: nowrap;
       }
 
@@ -64,14 +67,14 @@ const StyledSidebar = styled.aside`
 
           &.divider {
             border-bottom: 1px solid ${theme.palette.grey[100]};
-            margin: ${theme.spacing(1, 0, 0)}px;
+            margin: ${theme.spacing(1)}px 0 0;
 
             h5 {
               font-size: 12px;
               font-weight: normal;
               line-height: 36px;
               margin: 0;
-              padding: ${theme.spacing(0, 1 * 2)}px;
+              padding: 0 ${theme.spacing(2)}px;
             }
           }
 
@@ -112,7 +115,10 @@ const StyledSidebar = styled.aside`
 
         .dot-icon {
           transform: rotate(0deg);
-          @include transition($func: cubic-bezier(0.4, 0, 0.2, 1));
+          -o-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+          -moz-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+          -webkit-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+          transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
         }
       }
 
@@ -140,16 +146,18 @@ const StyledSidebar = styled.aside`
         }
       }
 
-      // Styles applied when primary nav is collapsed
       &.collapsed {
         width: 56px;
-        @include transition($func: cubic-bezier(0.4, 0, 0.6, 1));
+        -o-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
+        -moz-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
+        -webkit-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
+        transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
         h4::first-letter {
           background: ${theme.palette.grey[200]};
           border-radius: 50%;
           margin-right: 9999px;
-          padding: ${theme.spacing(1 * 0.5, 1)}px;
+          padding: ${theme.spacing(1 * 0.5)}px ${theme.spacing(1)}px;
         }
 
         nav li {
@@ -169,7 +177,10 @@ const StyledSidebar = styled.aside`
 
           .dot-icon {
             transform: rotate(180deg);
-            @include transition($func: cubic-bezier(0.4, 0, 0.2, 1));
+            -o-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+            -moz-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+            -webkit-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+            transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
           }
         }
 
@@ -217,6 +228,7 @@ const StyledSidebar = styled.aside`
     }
   `}
 `;
+
 /** This is a custom component which is used for the sidebar */
 export const DotSidebar = ({
   backItem = [],
