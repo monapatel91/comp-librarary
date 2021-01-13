@@ -116,16 +116,16 @@ export const DotNavItem = ({
             >
               {icon && (
                 <DotIcon
+                  className={`${iconClasses} ${iconPlacement}`}
                   fontSize={iconSize}
                   icon={icon}
                   iconBgColor={iconBgColor}
-                  iconClasses={`${iconClasses} ${iconPlacement}`}
                   iconType={iconType}
                   title={title || text}
                 />
               )}
               {text && <span className={textClasses}>{text}</span>}
-              <DotIcon icon="chevron-right" iconClasses="nav-arrow" />
+              <DotIcon icon="chevron-right" className="nav-arrow" />
             </li>
             <Menu
               anchorEl={anchorEl}
@@ -142,7 +142,7 @@ export const DotNavItem = ({
                         fontSize={iconSize}
                         icon={item.icon}
                         iconBgColor={iconBgColor}
-                        iconClasses={`${iconClasses} ${iconPlacement}`}
+                        className={`${iconClasses} ${iconPlacement}`}
                         iconType={iconType}
                         title={item.title || item.text}
                       />
@@ -170,7 +170,7 @@ export const DotNavItem = ({
                   fontSize={iconSize}
                   icon={icon}
                   iconBgColor={iconBgColor}
-                  iconClasses={`${iconClasses} ${iconPlacement}`}
+                  className={`${iconClasses} ${iconPlacement}`}
                   iconType={iconType}
                   title={title || text}
                 />

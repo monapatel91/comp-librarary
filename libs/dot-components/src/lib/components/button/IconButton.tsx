@@ -1,7 +1,6 @@
 import React, { MouseEvent } from 'react';
 import { IconButton, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
-
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
