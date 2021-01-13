@@ -61,12 +61,11 @@ ul.board {
     flex-flow: column wrap;
     flex: 1;
     font-weight: $boldFont;
-    padding: 10px 5px;
+    padding: 12px 20px 10px 20px;
     margin: 0 3px;
     border-radius: $radius $radius 0 0;
     font-size: 1.5em;
     text-align: left;
-    padding-left: 20px;
     word-break: break-word;
     background-color: $board_column_background;
     color: $board_header;
@@ -144,7 +143,7 @@ $progressionBoardHeight: 80vh;
   font-size: 1.25em;
   position: -webkit-sticky;
   position: sticky;
-  top: 45px; // stops the swimline header just below the main header
+  top: 36px; // stops the swimline header just below the main header
   z-index: $layerOne;
   display: flex;
   flex-flow: row nowrap;
@@ -164,8 +163,7 @@ $progressionBoardHeight: 80vh;
     margin: 0 3px;
     font-size: 1.25em;
     text-align: left;
-    padding: 5px;
-    padding-left: 20px;
+    padding: 8px 20px 5px 20px;
     word-break: break-word;
     background: $board_swimlane_header_background;
     color: $board_header;
