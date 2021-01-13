@@ -281,14 +281,14 @@ export const DotSidebar = ({
       )}
       {goBack && (
         <DotNavigation
-          classes="go-back"
+          className="go-back"
           direction="vertical"
           items={backItem}
         />
       )}
       <DotNavigation
         ariaLabel="left navigation"
-        classes="side-nav dense"
+        className="side-nav dense"
         data-testid="sideNav"
         direction="vertical"
         isOpen={open}

@@ -1,16 +1,101 @@
 import React from 'react';
+import { Theme } from '@material-ui/core';
+import styled, { css } from 'styled-components';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 import { IconFontSize } from '../icon/Icon';
 import { DirectionType, DotNavItem, NavigationItemProps } from './NavItem';
 
-import './Navigation.scss';
+const StyledNavigation = styled.nav`
+  ${({ theme }: { theme: Theme }) => css`
+    .dot-navigation {
+      ul,
+      li {
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
 
-export interface NavigationProps {
+      ul {
+        flex-direction: column;
+
+        &.horizontal {
+          flex-direction: row;
+
+          li a {
+            padding: 0 ${theme.spacing(2)}px;
+          }
+        }
+
+        &.vertical {
+          li a {
+            padding: ${theme.spacing(1 * 0.5, 0)}px;
+          }
+        }
+      }
+
+      li {
+        align-items: stretch;
+
+        &:not(.divider) {
+          cursor: pointer;
+        }
+
+        &.vertical > a {
+          flex-direction: column;
+
+          .material-icons {
+            margin: 0;
+          }
+        }
+
+        * {
+          align-self: center;
+        }
+
+        a {
+          align-items: stretch;
+          color: ${theme.palette.grey[700]};
+          display: flex;
+          flex-grow: 1;
+          text-decoration: none;
+
+          &:hover,
+          &:focus,
+          &.active {
+            color: #74b941;
+          }
+
+          * {
+            align-self: center;
+          }
+
+          span:not(.material-icons) {
+            flex-grow: 1;
+          }
+        }
+
+        .material-icons {
+          max-height: ${theme.spacing(8)}px;
+          object-fit: scale-down;
+
+          &.first {
+            margin-right: ${theme.spacing(1)}px;
+          }
+
+          &.last {
+            margin-left: ${theme.spacing(1)}px;
+            order: 4;
+          }
+        }
+      }
+    }
+  `}
+`;
+
+export interface NavigationProps extends CommonProps {
   /** aria-label passed to the navigation component */
   ariaLabel?: string;
-  /** Space delimited CSS classes to be attributed to the nav container. */
-  classes?: string;
-  /** data attribute passed through for testing purposes ONLY */
-  'data-testid'?: string;
   /** determines the direction of the nav container 'horizontal' or 'vertical' */
   direction?: DirectionType;
   /** Determines the size of the icon and spacing around it */
@@ -21,22 +106,21 @@ export interface NavigationProps {
   items: Array<NavigationItemProps>;
 }
 
-/**
- * @experimental This component is still in development
- */
+/** This is a custom navigation component */
 export const DotNavigation = ({
   ariaLabel,
-  classes,
+  className,
   'data-testid': dataTestId,
   direction = 'horizontal',
   iconSize,
   isOpen,
   items,
 }: NavigationProps) => {
+  const rootClasses = useStylesWithRootClass('dot-navigation', className);
   return (
-    <nav
+    <StyledNavigation
       aria-label={ariaLabel}
-      className={`dot-navigation ${classes}`}
+      className={rootClasses}
       data-testid={dataTestId}
     >
       <ul className={direction}>
@@ -51,7 +135,7 @@ export const DotNavigation = ({
           );
         })}
       </ul>
-    </nav>
+    </StyledNavigation>
   );
 };
 
