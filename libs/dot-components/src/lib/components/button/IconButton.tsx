@@ -13,10 +13,13 @@ export type IconButtonSize = 'small' | 'medium';
 const StyledIconButton = styled(IconButton)`
   ${({ theme }: { theme: Theme }) => css`
     &.dot-icon-btn {
-      padding: ${theme.spacing(1)}px;
-
       &.MuiIconButton-sizeSmall {
         padding: ${theme.spacing(1 * 0.25)}px;
+
+        .dot-icon {
+          height: 20px;
+          width: 20px;
+        }
       }
 
       .dot-icon {
@@ -64,11 +67,7 @@ export const DotIconButton = ({
       size={size}
       title={titleTooltip}
     >
-      <DotIcon
-        fontSize={size === 'medium' ? 'default' : size}
-        icon={iconId}
-        title={titleTooltip}
-      />
+      <DotIcon fontSize="small" icon={iconId} title={titleTooltip} />
     </StyledIconButton>
   );
 };
