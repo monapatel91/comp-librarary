@@ -64,7 +64,7 @@ export const DotBreadcrumbs = ({
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       maxItems={maxItems}
-      separator={<DotIcon icon="chevron-right" className="separator" />}
+      separator={<DotIcon iconId="chevron-right" className="separator" />}
     >
       {items.map((item: BreadcrumbItem, index: number) => {
         const { href, onClick, text, underline } = item;
