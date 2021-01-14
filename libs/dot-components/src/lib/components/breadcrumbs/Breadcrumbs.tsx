@@ -3,7 +3,10 @@ import { Breadcrumbs, Link, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 import DotIcon from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
+<<<<<<< HEAD
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+=======
+>>>>>>> issue: #113 add CommonProps
 
 export type LinkUnderlineOptions = 'always' | 'hover' | 'none';
 
@@ -33,12 +36,9 @@ const StyledBreadcrumbs = styled(Breadcrumbs)`
         height: 20px;
         padding: 0;
       }
-<<<<<<< HEAD
       .breadcrumb {
         padding: ${theme.spacing(0.5, 2)};
       }
-=======
->>>>>>> issue: #113 simplified styles, added useStylesWithRootClass and common props
       .MuiBreadcrumbs-separator {
         margin: 0;
       }
@@ -56,41 +56,22 @@ const StyledBreadcrumbs = styled(Breadcrumbs)`
   `}
 `;
 
-<<<<<<< HEAD
 export const DotBreadcrumbs = ({
   className,
   'data-testid': dataTestId,
   items,
   maxItems = 3,
-=======
-/**
- * @experimental This component is still in development
- */
-export const DotBreadcrumbs = ({
-  className,
-  items,
-  maxItems = 3,
-  'data-testid': dataTestId,
->>>>>>> issue: #113 simplified styles, added useStylesWithRootClass and common props
 }: BreadcrumbProps) => {
   const rootClasses = useStylesWithRootClass('dot-breadcrumbs', className);
 
   return (
     <StyledBreadcrumbs
-<<<<<<< HEAD
       aria-label="breadcrumb"
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       itemsAfterCollapse={2}
       maxItems={maxItems}
       separator={<DotIcon iconId="chevron-right" className="separator" />}
-=======
-      classes={{ root: rootClasses }}
-      aria-label="breadcrumb"
-      data-testid={dataTestId}
-      maxItems={maxItems}
-      separator={<DotIcon icon="chevron-right" className="separator" />}
->>>>>>> issue: #113 simplified styles, added useStylesWithRootClass and common props
     >
       {items.map((item: BreadcrumbItem, index: number) => {
         const { href, onClick, text, underline } = item;
