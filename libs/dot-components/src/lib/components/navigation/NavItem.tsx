@@ -98,7 +98,6 @@ export const DotNavItem = ({
           ) : (
             <DotIconButton
               className={iconClasses}
-              fontSize={iconSize}
               iconId={icon}
               onClick={(event) => onClick && onClick(event)}
               size={iconBtnSize}

@@ -18,6 +18,10 @@ const StyledIconButton = styled(IconButton)`
       &.MuiIconButton-sizeSmall {
         padding: ${theme.spacing(1 * 0.25)}px;
       }
+
+      .dot-icon {
+        padding: 0;
+      }
     }
   `}
 `;
@@ -29,8 +33,6 @@ export interface IconButtonProps extends CommonProps {
   disabled?: boolean;
   /** The icon to display on the button */
   iconId: string;
-  /** Determines the size of the icon */
-  fontSize?: IconFontSize;
   /** Event callback */
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   /** Help text to be displayed on icon hover */
@@ -46,7 +48,6 @@ export const DotIconButton = ({
   'data-testid': dataTestId,
   disabled = false,
   iconId,
-  fontSize = 'default',
   onClick,
   titleTooltip,
   size = 'medium',
@@ -63,7 +64,11 @@ export const DotIconButton = ({
       size={size}
       title={titleTooltip}
     >
-      <DotIcon fontSize={fontSize} icon={iconId} />
+      <DotIcon
+        fontSize={size === 'medium' ? 'default' : size}
+        icon={iconId}
+        title={titleTooltip}
+      />
     </StyledIconButton>
   );
 };
