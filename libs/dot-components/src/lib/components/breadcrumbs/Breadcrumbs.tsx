@@ -1,6 +1,7 @@
 import React, { MouseEvent } from 'react';
-import { Breadcrumbs, Link } from '@material-ui/core';
-import './Breadcrumbs.scss';
+import { Breadcrumbs, Link, Theme } from '@material-ui/core';
+import styled, { css } from 'styled-components';
+import DotIcon from '../icon/Icon';
 
 export type LinkUnderlineOptions = 'always' | 'hover' | 'none';
 
@@ -16,16 +17,39 @@ export interface BreadcrumbProps {
   maxItems?: number;
 }
 
+const StyledBreadcrumbs = styled(Breadcrumbs)`
+  ${({ theme }: { theme: Theme }) => css`
+    .currentPage {
+      color: ${theme.palette.grey[700]};
+      cursor: default;
+    }
+    .MuiBreadcrumbs-li,
+    .MuiBreadcrumbs-separator {
+      color: ${theme.palette.grey[300]};
+    }
+    .MuiBreadcrumbs-separator {
+      padding: 0;
+      font-size: 12px;
+      margin-bottom: 0;
+    }
+    .MuiLink-underlineHover {
+      cursor: pointer;
+    }
+  `}
+`;
+
 /**
  * @experimental This component is still in development
  */
 export const DotBreadcrumbs = ({ items, maxItems = 3 }: BreadcrumbProps) => {
   return (
-    <Breadcrumbs
+    <StyledBreadcrumbs
       className="dot-breadcrumbs"
       aria-label="breadcrumb"
       maxItems={maxItems}
-      separator="›"
+      separator={
+        <DotIcon icon="chevron-right" iconClasses="MuiBreadcrumbs-separator" />
+      }
     >
       {items.map((item: BreadcrumbItem, index: number) => {
         const { href, onClick, text, underline } = item;
@@ -51,7 +75,7 @@ export const DotBreadcrumbs = ({ items, maxItems = 3 }: BreadcrumbProps) => {
           );
         }
       })}
-    </Breadcrumbs>
+    </StyledBreadcrumbs>
   );
 };
 
