@@ -41,7 +41,7 @@ const StyledBreadcrumbs = styled(Breadcrumbs)`
       }
     }
     .breadcrumb {
-      padding: ${theme.spacing(0.5)}px ${theme.spacing(2)}px;
+      padding: ${theme.spacing(0.5, 2)};
     }
     .current-page {
       color: ${theme.palette.grey[700]};
@@ -50,21 +50,18 @@ const StyledBreadcrumbs = styled(Breadcrumbs)`
   `}
 `;
 
-/**
- * @experimental This component is still in development
- */
 export const DotBreadcrumbs = ({
   className,
+  'data-testid': dataTestId,
   items,
   maxItems = 3,
-  'data-testid': dataTestId,
 }: BreadcrumbProps) => {
   const rootClasses = useStylesWithRootClass('dot-breadcrumbs', className);
 
   return (
     <StyledBreadcrumbs
-      classes={{ root: rootClasses }}
       aria-label="breadcrumb"
+      classes={{ root: rootClasses }}
       data-testid={dataTestId}
       maxItems={maxItems}
       separator={<DotIcon icon="chevron-right" className="separator" />}
@@ -81,13 +78,13 @@ export const DotBreadcrumbs = ({
           return (
             <Link
               className="breadcrumb"
-              tabIndex={0}
               color="inherit"
               href={href}
               key={index}
               onClick={(event: MouseEvent<HTMLAnchorElement>) =>
                 onClick && onClick(event)
               }
+              tabIndex={0}
               underline={underline}
             >
               {text}
