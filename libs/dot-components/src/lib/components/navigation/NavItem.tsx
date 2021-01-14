@@ -1,7 +1,9 @@
 import React, { Fragment, MouseEvent, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, MenuItem, Typography } from '@material-ui/core';
+import { Menu, MenuItem, Theme, Typography } from '@material-ui/core';
+import styled, { css } from 'styled-components';
 import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 import { ButtonSize, ButtonType, DotButton } from '../button/Button';
 import { DotIconButton, IconButtonSize } from '../button/IconButton';
 import { DotIcon, IconFontSize } from '../icon/Icon';
@@ -45,6 +47,69 @@ export interface NavigationItemProps extends CommonProps {
   url?: string;
 }
 
+const StyledNavItemDivider = styled.li`
+  ${({ theme }: { theme: Theme }) => css`
+    .dot-nav-item {
+      align-items: stretch;
+      display: flex;
+      margin: 0;
+      padding: 0;
+
+      &:not(.divider) {
+        cursor: pointer;
+      }
+
+      &.vertical > a {
+        flex-direction: column;
+
+        .material-icons {
+          margin: 0;
+        }
+      }
+
+      * {
+        align-self: center;
+      }
+
+      a {
+        align-items: stretch;
+        color: ${theme.palette.grey[700]};
+        display: flex;
+        flex-grow: 1;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &.active {
+          color: #74b941;
+        }
+
+        * {
+          align-self: center;
+        }
+
+        span:not(.material-icons) {
+          flex-grow: 1;
+        }
+      }
+
+      .material-icons {
+        max-height: ${theme.spacing(8)}px;
+        object-fit: scale-down;
+
+        &.first {
+          margin-right: ${theme.spacing(1)}px;
+        }
+
+        &.last {
+          margin-left: ${theme.spacing(1)}px;
+          order: 4;
+        }
+      }
+    }
+  `}
+`;
+
 export const DotNavItem = ({
   btnSize = 'small',
   btnType,
@@ -65,11 +130,12 @@ export const DotNavItem = ({
   type = 'link',
   url,
 }: NavigationItemProps) => {
+  const rootClasses = useStylesWithRootClass('dot-nav-item', className);
   switch (type) {
     case 'divider':
       return (
         <DotNavItemDivider
-          className={className}
+          className={rootClasses}
           data-testid={dataTestId}
           text={text}
         />
@@ -79,7 +145,7 @@ export const DotNavItem = ({
         <DotNavItemButton
           btnSize={btnSize}
           btnType={btnType}
-          className={className}
+          className={rootClasses}
           data-testid={dataTestId}
           direction={direction}
           icon={icon}
@@ -94,7 +160,7 @@ export const DotNavItem = ({
       if (items.length > 0) {
         return (
           <DotNavItemMenu
-            className={className}
+            className={rootClasses}
             data-testid={dataTestId}
             direction={direction}
             icon={icon}
@@ -113,7 +179,7 @@ export const DotNavItem = ({
       } else {
         return (
           <DotNavItemLink
-            className={className}
+            className={rootClasses}
             data-testid={dataTestId}
             direction={direction}
             icon={icon}
@@ -138,8 +204,13 @@ export const DotNavItemDivider = ({
   'data-testid': dataTestId,
   text,
 }: NavigationItemProps) => (
+<<<<<<< HEAD
   <li className={`divider ${className}`} data-testid={dataTestId}>
     {text && <Typography variant="h5">{text}</Typography>}
+=======
+  <li className={`${className} divider`} data-testid={dataTestId}>
+    {text && <h5>{text}</h5>}
+>>>>>>> issue #115: updating nav items based on PR feedback
   </li>
 );
 
@@ -156,7 +227,7 @@ export const DotNavItemButton = ({
   text,
   title,
 }: NavigationItemProps) => (
-  <li className={`${direction} ${className}`} data-testid={dataTestId}>
+  <li className={`${className} ${direction}`} data-testid={dataTestId}>
     {text ? (
       <DotButton
         iconId={icon}
@@ -193,7 +264,7 @@ export const DotNavItemLink = ({
   title,
   url,
 }: NavigationItemProps) => (
-  <li className={`${direction} ${className}`} data-testid={dataTestId}>
+  <li className={`${className} ${direction}`} data-testid={dataTestId}>
     <NavLink
       exact
       to={url}

@@ -33,62 +33,6 @@ const StyledNavigation = styled.nav`
           }
         }
       }
-
-      li {
-        align-items: stretch;
-
-        &:not(.divider) {
-          cursor: pointer;
-        }
-
-        &.vertical > a {
-          flex-direction: column;
-
-          .material-icons {
-            margin: 0;
-          }
-        }
-
-        * {
-          align-self: center;
-        }
-
-        a {
-          align-items: stretch;
-          color: ${theme.palette.grey[700]};
-          display: flex;
-          flex-grow: 1;
-          text-decoration: none;
-
-          &:hover,
-          &:focus,
-          &.active {
-            color: #74b941;
-          }
-
-          * {
-            align-self: center;
-          }
-
-          span:not(.material-icons) {
-            flex-grow: 1;
-          }
-        }
-
-        .material-icons {
-          max-height: ${theme.spacing(8)}px;
-          object-fit: scale-down;
-
-          &.first {
-            margin-right: ${theme.spacing(1)}px;
-          }
-
-          &.last {
-            margin-left: ${theme.spacing(1)}px;
-            order: 4;
-          }
-        }
-      }
     }
   `}
 `;
