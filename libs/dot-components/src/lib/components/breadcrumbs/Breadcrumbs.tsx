@@ -39,9 +39,8 @@ const StyledBreadcrumbs = styled(Breadcrumbs)`
         cursor: pointer;
       }
     }
-    .MuiBreadcrumbs-separator {
-      padding: 0;
-      font-size: 12px;
+    .breadcrumb {
+      padding: ${theme.spacing(0.5, 2)};
     }
     .current-page {
       color: ${theme.palette.grey[700]};
