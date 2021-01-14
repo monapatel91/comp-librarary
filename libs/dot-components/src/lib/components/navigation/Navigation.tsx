@@ -8,7 +8,7 @@ import { DirectionType, DotNavItem, NavigationItemProps } from './NavItem';
 
 const StyledNavigation = styled.nav`
   ${({ theme }: { theme: Theme }) => css`
-    .dot-navigation {
+    &.dot-navigation {
       ul,
       li {
         display: flex;

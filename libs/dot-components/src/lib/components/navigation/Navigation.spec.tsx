@@ -51,9 +51,8 @@ describe(' Navigation', () => {
   it('displays text if available', async () => {
     renderWithRouter(<DotNavigation items={mockNavItems} />);
     const items = await screen.findAllByRole('listitem');
-    const text = '<span>Link Two</span>';
 
-    expect(items[1]).toContainHTML(text);
+    expect(items[1]).toHaveTextContent('Link Two');
   });
 
   it('correct classes are applied', async () => {

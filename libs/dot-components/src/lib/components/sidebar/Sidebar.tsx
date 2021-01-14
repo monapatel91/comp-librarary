@@ -300,7 +300,6 @@ export const DotSidebar = ({
           <DotIconButton
             iconId="chevron-left"
             onClick={() => updateOpen(!open)}
-            size="small"
           />
         </div>
       )}

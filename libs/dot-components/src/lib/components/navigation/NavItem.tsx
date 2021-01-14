@@ -48,16 +48,26 @@ export interface NavigationItemProps extends CommonProps {
 }
 
 const StyledNavItemDivider = styled.li`
+  &.dot-nav-item {
+    align-items: stretch;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    * {
+      align-self: center;
+    }
+  }
+`;
+
+const StyledNavItem = styled.li`
   ${({ theme }: { theme: Theme }) => css`
-    .dot-nav-item {
+    &.dot-nav-item {
       align-items: stretch;
       display: flex;
       margin: 0;
       padding: 0;
-
-      &:not(.divider) {
-        cursor: pointer;
-      }
+      cursor: pointer;
 
       &.vertical > a {
         flex-direction: column;
@@ -204,14 +214,12 @@ export const DotNavItemDivider = ({
   'data-testid': dataTestId,
   text,
 }: NavigationItemProps) => (
-<<<<<<< HEAD
-  <li className={`divider ${className}`} data-testid={dataTestId}>
+  <StyledNavItemDivider
+    className={`divider ${className}`}
+    data-testid={dataTestId}
+  >
     {text && <Typography variant="h5">{text}</Typography>}
-=======
-  <li className={`${className} divider`} data-testid={dataTestId}>
-    {text && <h5>{text}</h5>}
->>>>>>> issue #115: updating nav items based on PR feedback
-  </li>
+  </StyledNavItemDivider>
 );
 
 export const DotNavItemButton = ({
@@ -227,7 +235,10 @@ export const DotNavItemButton = ({
   text,
   title,
 }: NavigationItemProps) => (
-  <li className={`${className} ${direction}`} data-testid={dataTestId}>
+  <StyledNavItem
+    className={`${className} ${direction}`}
+    data-testid={dataTestId}
+  >
     {text ? (
       <DotButton
         iconId={icon}
@@ -245,7 +256,7 @@ export const DotNavItemButton = ({
         titleTooltip={title}
       />
     )}
-  </li>
+  </StyledNavItem>
 );
 
 export const DotNavItemLink = ({
@@ -264,7 +275,10 @@ export const DotNavItemLink = ({
   title,
   url,
 }: NavigationItemProps) => (
-  <li className={`${className} ${direction}`} data-testid={dataTestId}>
+  <StyledNavItem
+    className={`${className} ${direction}`}
+    data-testid={dataTestId}
+  >
     <NavLink
       exact
       to={url}
@@ -273,6 +287,7 @@ export const DotNavItemLink = ({
     >
       {icon && (
         <DotIcon
+          data-testid="link-icon"
           fontSize={iconSize}
           icon={icon}
           iconBgColor={iconBgColor}
@@ -287,7 +302,7 @@ export const DotNavItemLink = ({
         </Typography>
       )}
     </NavLink>
-  </li>
+  </StyledNavItem>
 );
 
 export const DotNavItemMenu = ({
@@ -354,6 +369,7 @@ export const DotNavItemMenu = ({
             >
               {iconId && (
                 <DotIcon
+                  data-testid="link-icon"
                   fontSize={iconSize}
                   iconId={iconId}
                   title={title || text}
