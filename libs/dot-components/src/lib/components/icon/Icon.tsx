@@ -14,7 +14,7 @@ const StyledIcon = styled(Icon)`
       align-items: center;
 =======
   ${({ theme, iconBgColor }: { theme: Theme; iconBgColor: string }) => css`
-    &.MuiIcon-root {
+    &.dot-icon {
       align-items: center;
       background-color: ${iconBgColor ? iconBgColor : theme.palette.grey[100]}
 >>>>>>> issue #116: update Icon to be styled component
@@ -74,6 +74,7 @@ export interface IconProps extends CommonProps {
 export const DotIcon = ({
   className,
 <<<<<<< HEAD
+<<<<<<< HEAD
   'data-testid': dataTestId,
   fontSize = 'default',
   iconId,
@@ -82,6 +83,9 @@ export const DotIcon = ({
   const rootClasses = useStylesWithRootClass('dot-icon', className);
 =======
   'data-testid': dataTestId = 'icon',
+=======
+  'data-testid': dataTestId,
+>>>>>>> issue #116: addressing PR feedback
   fontSize = 'default',
   icon,
   iconType = 'transparent',
