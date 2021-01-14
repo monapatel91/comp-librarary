@@ -3,7 +3,6 @@ import { Breadcrumbs, Link, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 import DotIcon from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
 export type LinkUnderlineOptions = 'always' | 'hover' | 'none';
 
@@ -40,8 +39,9 @@ const StyledBreadcrumbs = styled(Breadcrumbs)`
         cursor: pointer;
       }
     }
-    .breadcrumb {
-      padding: ${theme.spacing(0.5, 2)};
+    .MuiBreadcrumbs-separator {
+      padding: 0;
+      font-size: 12px;
     }
     .current-page {
       color: ${theme.palette.grey[700]};
