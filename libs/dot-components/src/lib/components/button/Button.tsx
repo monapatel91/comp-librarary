@@ -90,6 +90,7 @@ export const DotButton = ({
       startIcon={
         iconId ? (
           <DotIcon
+            data-testid="icon"
             icon={iconId}
             fontSize={size === 'medium' ? 'default' : size}
           />

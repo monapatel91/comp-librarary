@@ -58,7 +58,9 @@ export const DotRow = ({
 
   return (
     <div className={`theme-light dot-row ${rowClasses}`} data-uid={uid}>
-      {iconId && <DotIcon icon={iconId} iconType="circle" />}
+      {iconId && (
+        <DotIcon data-testid="row-icon" icon={iconId} iconType="circle" />
+      )}
       <span className="text">{displayText}</span>
       <div className="row-actions">
         {canEdit && (

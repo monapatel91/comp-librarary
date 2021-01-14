@@ -117,6 +117,7 @@ export const DotNavItem = ({
               {icon && (
                 <DotIcon
                   className={`${iconClasses} ${iconPlacement}`}
+                  data-testid="icon"
                   fontSize={iconSize}
                   icon={icon}
                   iconBgColor={iconBgColor}
@@ -139,6 +140,7 @@ export const DotNavItem = ({
                   <NavLink exact to={item.url} title={item.text}>
                     {item.icon && (
                       <DotIcon
+                        data-testid="icon"
                         fontSize={iconSize}
                         icon={item.icon}
                         iconBgColor={iconBgColor}
@@ -167,6 +169,7 @@ export const DotNavItem = ({
             >
               {icon && (
                 <DotIcon
+                  data-testid="link-icon"
                   fontSize={iconSize}
                   icon={icon}
                   iconBgColor={iconBgColor}

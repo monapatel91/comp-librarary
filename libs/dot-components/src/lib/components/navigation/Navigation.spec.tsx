@@ -42,7 +42,7 @@ describe(' Navigation', () => {
   it('displays icon if available', async () => {
     renderWithRouter(<DotNavigation items={mockNavItems} />);
     const items = screen.getAllByRole('listitem');
-    const icon = screen.getByTestId('icon');
+    const icon = screen.getByTestId('link-icon');
 
     expect(items[0]).toContainElement(icon);
     expect(items[1]).not.toContainElement(icon);
