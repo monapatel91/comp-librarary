@@ -3,6 +3,7 @@ import { Breadcrumbs, Link, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 import DotIcon from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
 export type LinkUnderlineOptions = 'always' | 'hover' | 'none';
 
@@ -20,20 +21,31 @@ export interface BreadcrumbProps extends CommonProps {
 
 const StyledBreadcrumbs = styled(Breadcrumbs)`
   ${({ theme }: { theme: Theme }) => css`
-    .currentPage {
+    &.dot-breadcrumbs {
+      .MuiBreadcrumbs-li,
+      .separator {
+        color: ${theme.palette.grey[300]};
+        margin: 0;
+      }
+      .separator {
+        font-size: 12px;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+      }
+      .MuiBreadcrumbs-separator {
+        margin: 0;
+      }
+      .MuiLink-underlineHover {
+        cursor: pointer;
+      }
+    }
+    .breadcrumb {
+      padding: ${theme.spacing(0.5)}px ${theme.spacing(2)}px;
+    }
+    .current-page {
       color: ${theme.palette.grey[700]};
       cursor: default;
-    }
-    .MuiBreadcrumbs-li,
-    .MuiBreadcrumbs-separator {
-      color: ${theme.palette.grey[300]};
-    }
-    .MuiBreadcrumbs-separator {
-      padding: 0;
-      font-size: 12px;
-    }
-    .MuiLink-underlineHover {
-      cursor: pointer;
     }
   `}
 `;
@@ -51,13 +63,11 @@ export const DotBreadcrumbs = ({
 
   return (
     <StyledBreadcrumbs
-      className="dot-breadcrumbs"
+      classes={{ root: rootClasses }}
       aria-label="breadcrumb"
       data-testid={dataTestId}
       maxItems={maxItems}
-      separator={
-        <DotIcon icon="chevron-right" iconClasses="MuiBreadcrumbs-separator" />
-      }
+      separator={<DotIcon icon="chevron-right" className="separator" />}
     >
       {items.map((item: BreadcrumbItem, index: number) => {
         const { href, onClick, text, underline } = item;
