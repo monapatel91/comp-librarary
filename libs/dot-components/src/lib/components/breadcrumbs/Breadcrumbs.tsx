@@ -3,10 +3,7 @@ import { Breadcrumbs, Link, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 import DotIcon from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
-<<<<<<< HEAD
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
-=======
->>>>>>> issue: #113 add CommonProps
 
 export type LinkUnderlineOptions = 'always' | 'hover' | 'none';
 
