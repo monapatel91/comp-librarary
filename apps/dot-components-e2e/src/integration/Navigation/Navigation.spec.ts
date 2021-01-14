@@ -10,6 +10,6 @@ describe('dot-components: Navigation component', () => {
   it('should render the component', () => {
     cy.get('a').should('have.class', 'active');
     cy.get('i').should('have.class', 'icon-block');
-    cy.get('span').should('contain', 'link');
+    cy.get('p').should('contain', 'link');
   });
 });
