@@ -124,12 +124,6 @@
             "tsConfig": "libs/dot-components/tsconfig.lib.json",
             "project": "libs/dot-components/package.json",
             "entryFile": "libs/dot-components/src/index.ts",
-            "external": [
-              "react",
-              "react-dom",
-              "react-router-dom",
-              "react-virtualized"
-            ],
             "babelConfig": "@nrwl/react/plugins/bundle-babel",
             "rollupConfig": "libs/dot-components/rollup.config.js",
             "assets": [
