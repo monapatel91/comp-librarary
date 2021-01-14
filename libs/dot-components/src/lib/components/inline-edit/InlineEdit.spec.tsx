@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
+import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 

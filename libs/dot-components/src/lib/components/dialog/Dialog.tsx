@@ -90,12 +90,7 @@ export const DotDialog = ({
       >
         <DialogTitle disableTypography={true}>
           <h2>{title}</h2>
-          <DotIconButton
-            iconButtonSize="small"
-            iconId="close"
-            iconSize="small"
-            onClick={handleClose}
-          />
+          <DotIconButton iconId="close" onClick={handleClose} size="small" />
         </DialogTitle>
         <DialogContent classes={{ root: `dot-dialog-content` }}>
           {children}

@@ -29,9 +29,7 @@ const StyledButton = styled(Button)`
 export interface ButtonProps extends CommonProps {
   /** If true, the button will be disabled. */
   disabled?: boolean;
-  /**
-   * The label for the button. Button labels should be in sentence case.
-   */
+  /** The label for the button. Button labels should be in sentence case. */
   label: string;
   /** The icon to display on the button */
   iconId?: string;

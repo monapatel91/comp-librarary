@@ -149,19 +149,17 @@ export const DotInlineEdit = ({
       {editing && (
         <div className="editing-actions">
           <DotIconButton
-            iconButtonSize="small"
-            iconId="close"
-            iconSize="small"
             data-testid="inline-edit-cancel"
+            iconId="close"
             onClick={onCancel}
+            size="small"
             titleTooltip="Cancel [esc]"
           />
           <DotIconButton
-            iconButtonSize="small"
-            iconId="block"
-            iconSize="small"
             data-testid="inline-edit-confirm"
+            iconId="block"
             onClick={onConfirm}
+            size="small"
             titleTooltip="Confirm [enter]"
           />
         </div>

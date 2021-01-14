@@ -28,21 +28,12 @@ describe('DotIconButton', () => {
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
-  it('should render an icon button with default tooltip', () => {
-    render(
-      <DotIconButton
-        iconId="download"
-        titleTooltip="Please add a tooltip for icon-only button"
-      />
-    );
-    expect(screen.getByTestId('icon')).toBeVisible();
-    expect(
-      screen.getByTitle('Please add a tooltip for icon-only button')
-    ).toBeVisible();
-  });
-
-  it('should render an icon button with given tooltip', () => {
+  it('should render an icon button with tooltip', () => {
     render(<DotIconButton iconId="download" titleTooltip="Test title" />);
-    expect(screen.getByTitle('Test title')).toBeVisible();
+    const title = screen.getAllByTitle('Test title');
+    expect(title).toHaveLength(2);
+    expect(screen.getByTestId('icon')).toBeVisible();
+    expect(title[0]).toBeVisible();
+    expect(title[1]).toBeVisible();
   });
 });

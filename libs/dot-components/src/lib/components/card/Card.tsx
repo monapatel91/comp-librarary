@@ -52,11 +52,11 @@ export const DotCard = ({
     menuOptions.length > 0 ? (
       <Fragment>
         <DotIconButton
+          className="expand-button"
           data-testid="card-header-action-button"
-          classes="expand-button"
           iconId="options"
           onClick={handleClick}
-          iconButtonSize="small"
+          size="small"
         />
         <Menu anchorEl={anchorEl} keepMounted open={open} onClose={handleClose}>
           {menuOptions.map((option: CardMenuOption, index: number) => (
