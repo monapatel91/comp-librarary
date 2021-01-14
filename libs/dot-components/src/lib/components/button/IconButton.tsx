@@ -66,7 +66,12 @@ export const DotIconButton = ({
       size={size}
       title={titleTooltip}
     >
-      <DotIcon fontSize="small" icon={iconId} title={titleTooltip} />
+      <DotIcon
+        data-testid="button-icon"
+        fontSize="small"
+        icon={iconId}
+        title={titleTooltip}
+      />
     </StyledIconButton>
   );
 };

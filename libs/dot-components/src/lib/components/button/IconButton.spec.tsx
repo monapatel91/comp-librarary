@@ -32,7 +32,7 @@ describe('DotIconButton', () => {
     render(<DotIconButton iconId="download" titleTooltip="Test title" />);
     const title = screen.getAllByTitle('Test title');
     expect(title).toHaveLength(2);
-    expect(screen.getByTestId('icon')).toBeVisible();
+    expect(screen.getByTestId('button-icon')).toBeVisible();
     expect(title[0]).toBeVisible();
     expect(title[1]).toBeVisible();
   });
