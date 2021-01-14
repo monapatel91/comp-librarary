@@ -40,14 +40,8 @@ const StyledBreadcrumbs = styled(Breadcrumbs)`
         cursor: pointer;
       }
     }
-<<<<<<< HEAD
     .breadcrumb {
       padding: ${theme.spacing(0.5, 2)};
-=======
-    .MuiBreadcrumbs-separator {
-      padding: 0;
-      font-size: 12px;
->>>>>>> issue: #113 add CommonProps
     }
     .current-page {
       color: ${theme.palette.grey[700]};
