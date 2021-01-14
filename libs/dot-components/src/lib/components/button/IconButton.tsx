@@ -12,7 +12,7 @@ export type IconButtonSize = 'small' | 'medium';
 
 const StyledIconButton = styled(IconButton)`
   ${({ theme }: { theme: Theme }) => css`
-    &.MuiIconButton-root {
+    &.dot-icon-btn {
       padding: ${theme.spacing(1)}px;
 
       &.MuiIconButton-sizeSmall {
