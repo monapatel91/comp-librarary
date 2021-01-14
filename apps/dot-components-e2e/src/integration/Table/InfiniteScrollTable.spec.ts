@@ -1,4 +1,5 @@
-describe('dot-components: Infinite Scroll Table component', () => {
+// Temporarily skipping these tests until we are ready to add this to the library
+xdescribe('dot-components: Infinite Scroll Table component', () => {
   beforeEach(() =>
     cy.visit('/iframe.html?id=experimental-infinite-scroll--default')
   );
