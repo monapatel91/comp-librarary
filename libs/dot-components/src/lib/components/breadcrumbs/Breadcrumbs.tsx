@@ -2,6 +2,7 @@ import React, { MouseEvent } from 'react';
 import { Breadcrumbs, Link, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 import DotIcon from '../icon/Icon';
+import { CommonProps } from '../CommonProps';
 
 export type LinkUnderlineOptions = 'always' | 'hover' | 'none';
 
@@ -12,7 +13,7 @@ export type BreadcrumbItem = {
   underline?: LinkUnderlineOptions;
 };
 
-export interface BreadcrumbProps {
+export interface BreadcrumbProps extends CommonProps {
   items: Array<BreadcrumbItem>;
   maxItems?: number;
 }
@@ -30,7 +31,6 @@ const StyledBreadcrumbs = styled(Breadcrumbs)`
     .MuiBreadcrumbs-separator {
       padding: 0;
       font-size: 12px;
-      margin-bottom: 0;
     }
     .MuiLink-underlineHover {
       cursor: pointer;
