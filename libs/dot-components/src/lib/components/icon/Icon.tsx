@@ -10,7 +10,7 @@ export type IconFontSize = 'inherit' | 'default' | 'small' | 'large';
 
 const StyledIcon = styled(Icon)`
   ${({ theme, iconBgColor }: { theme: Theme; iconBgColor: string }) => css`
-    &.MuiIcon-root {
+    &.dot-icon {
       align-items: center;
       background-color: ${iconBgColor ? iconBgColor : theme.palette.grey[100]}
       box-sizing: content-box;
@@ -61,7 +61,7 @@ export interface IconProps extends CommonProps {
 /** This component wraps the Icon component from @material-ui. */
 export const DotIcon = ({
   className,
-  'data-testid': dataTestId = 'icon',
+  'data-testid': dataTestId,
   fontSize = 'default',
   icon,
   iconType = 'transparent',
