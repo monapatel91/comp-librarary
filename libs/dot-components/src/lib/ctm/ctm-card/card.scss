@@ -13,6 +13,10 @@
   background: $card_background;
   box-shadow: $card_box_shadow;
 
+  a {
+    text-decoration: none;
+  }
+
   .identity {
     width: 100%;
     position: relative;
@@ -302,4 +306,40 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
+}
+
+.icon-error-outlines {
+  color: $sunset;
+}
+
+.icon-error-solid {
+  color: $denim;
+}
+
+.icon-info-solid {
+  color: $lime;
+}
+
+.icon-rogue-commits {
+  color: $sunglow;
+}
+
+.icon-file-dotted {
+  color: $denim;
+}
+
+.icon-pending-clock {
+  color: $greenvogue;
+}
+
+.icon-check-solid {
+  color: $cerulean;
+}
+
+.icon-thumbs-down {
+  color: $eggplant;
+}
+
+.icon-lock {
+  color: $sunset;
 }

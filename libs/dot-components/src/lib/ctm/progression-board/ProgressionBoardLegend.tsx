@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './legends.scss';
-//import '../ctm-card/card.scss';
 
 export class DotProgressionBoardLegend extends Component {
   render() {
