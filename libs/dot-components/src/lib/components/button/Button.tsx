@@ -80,6 +80,9 @@ export const DotButton = ({
       break;
   }
 
+  const iconFontSize =
+    size === 'medium' ? 'default' : size === 'large' ? 'inherit' : 'small';
+
   return (
     <StyledButton
       classes={{ root: rootClasses }}
@@ -89,11 +92,7 @@ export const DotButton = ({
       onClick={(event) => onClick && onClick(event)}
       startIcon={
         iconId ? (
-          <DotIcon
-            data-testid="icon"
-            icon={iconId}
-            fontSize={size === 'medium' ? 'default' : size}
-          />
+          <DotIcon data-testid="icon" icon={iconId} fontSize={iconFontSize} />
         ) : undefined
       }
       title={titleTooltip}
