@@ -56,7 +56,7 @@ export const DotChip = ({
       clickable={clickable}
       color={color}
       disabled={disabled}
-      icon={iconId !== undefined ? <DotIcon icon={iconId} /> : undefined}
+      icon={iconId !== undefined ? <DotIcon iconId={iconId} /> : undefined}
       label={label}
       onClick={(event) => onClick && onClick(event)}
       onDelete={deletable && onDelete ? (event) => onDelete(event) : undefined}

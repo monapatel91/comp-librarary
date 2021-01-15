@@ -21,8 +21,6 @@ export interface StepCardProps {
   menuOptions?: Array<CardMenuOption>;
   /** The icon to be displayed next to the title */
   stepIcon?: string;
-  /** The background color of the icon container */
-  stepIconBg?: string;
   /** Team which is assigned to the card */
   team?: TeamObject;
   /** Title text displayed on the card */
@@ -39,20 +37,12 @@ export interface StepCardProps {
 export const DotStepCard = ({
   menuOptions = [],
   stepIcon = 'keyboard',
-  stepIconBg,
   team = undefined,
   title,
   subheader,
   user = undefined,
 }: StepCardProps) => {
-  const preHeader = (
-    <DotIcon
-      fontSize="small"
-      icon={stepIcon}
-      iconBgColor={stepIconBg}
-      iconType="circle"
-    />
-  );
+  const preHeader = <DotIcon fontSize="small" iconId={stepIcon} />;
 
   return (
     <DotCard

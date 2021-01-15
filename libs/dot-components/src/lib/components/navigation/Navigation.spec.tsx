@@ -11,7 +11,7 @@ const onClick = jest.fn();
 const mockNavItems: Array<NavigationItemProps> = [
   {
     direction: 'horizontal',
-    icon: 'block',
+    iconId: 'block',
     iconPlacement: 'first',
     text: 'Link One',
     url: '/',

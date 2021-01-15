@@ -92,7 +92,7 @@ export const DotButton = ({
       onClick={(event) => onClick && onClick(event)}
       startIcon={
         iconId ? (
-          <DotIcon data-testid="icon" icon={iconId} fontSize={iconFontSize} />
+          <DotIcon data-testid="icon" iconId={iconId} fontSize={iconFontSize} />
         ) : undefined
       }
       title={titleTooltip}

@@ -15,22 +15,22 @@ export default {
     items: {
       defaultValue: [
         {
-          icon: 'notification-bell',
+          iconId: 'notification-bell',
           title: 'Alerts',
           url: '/',
         },
         {
-          icon: 'help',
+          iconId: 'help',
           title: 'Help',
           url: '/',
         },
         {
-          icon: 'apps',
+          iconId: 'apps',
           title: 'Admin',
           url: '/',
         },
         {
-          icon: 'dark',
+          iconId: 'dark',
           onClick: () => console.log('theme btn clicked'),
           title: 'Toggle Theme',
           url: '/',

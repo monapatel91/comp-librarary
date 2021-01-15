@@ -17,7 +17,7 @@ export default {
       defaultValue: [
         {
           direction: 'horizontal',
-          icon: 'block',
+          iconId: 'block',
           text: 'link 1',
           iconPlacement: 'first',
           onClick: () => console.log('clicked on nav item'),
@@ -26,7 +26,7 @@ export default {
         },
         {
           direction: 'horizontal',
-          icon: 'block',
+          iconId: 'block',
           text: 'link 2',
           iconPlacement: 'first',
           onClick: () => console.log('clicked on nav item'),

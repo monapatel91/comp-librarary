@@ -23,7 +23,7 @@ export const QCIcon = ({ id, label = '', onHover = null, url }) => {
       className={classes}
       onMouseEnter={onHover}
     >
-      <DotIcon icon={id} fontSize={'small'} title={label} />
+      <DotIcon iconId={id} fontSize={'small'} title={label} />
     </a>
   );
 };

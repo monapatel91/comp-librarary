@@ -10,9 +10,7 @@ export default {
     backItem: {
       defaultValue: [
         {
-          icon: 'back',
-          iconBgColor: '#E3E5E8',
-          iconType: 'circle',
+          iconId: 'back',
           onClick: () => console.log('go back clicked'),
           text: 'Home',
           title: `Go Back to Home`,
@@ -38,15 +36,15 @@ export default {
     navItems: {
       defaultValue: [
         {
-          icon: 'process-template',
+          iconId: 'process-template',
           items: [
             {
-              icon: 'process-template',
+              iconId: 'process-template',
               text: 'Package Progression',
               url: '/package-progression',
             },
             {
-              icon: 'process-template',
+              iconId: 'process-template',
               text: 'Feature Progression',
               url: '/feature-progression',
             },
@@ -55,15 +53,15 @@ export default {
           url: '/progressions',
         },
         {
-          icon: 'satellite-group',
+          iconId: 'satellite-group',
           items: [
             {
-              icon: 'satellite-group',
+              iconId: 'satellite-group',
               text: 'Groups',
               url: '/pipeline-groups',
             },
             {
-              icon: 'satellite-group',
+              iconId: 'satellite-group',
               text: 'Instances',
               url: '/pipeline-instance',
             },
@@ -72,7 +70,7 @@ export default {
           url: '/pipelines',
         },
         {
-          icon: 'dashboard',
+          iconId: 'dashboard',
           text: 'Insights',
           url: '/insights',
         },
@@ -81,17 +79,17 @@ export default {
           type: 'divider',
         },
         {
-          icon: 'block',
+          iconId: 'block',
           text: 'Packages',
           url: '/packages',
         },
         {
-          icon: 'flag',
+          iconId: 'flag',
           text: 'Features',
           url: '/features',
         },
         {
-          icon: 'collection',
+          iconId: 'collection',
           text: 'Projects',
           url: '/projects',
         },
@@ -99,17 +97,17 @@ export default {
           type: 'divider',
         },
         {
-          icon: 'file-lines',
+          iconId: 'file-lines',
           text: 'Workitems',
           url: '/workitems',
         },
         {
-          icon: 'change',
+          iconId: 'change',
           text: 'Changes',
           url: '/changes',
         },
         {
-          icon: 'square-settings',
+          iconId: 'square-settings',
           text: 'Artifacts',
           url: '/artifacts',
         },
@@ -118,17 +116,17 @@ export default {
           type: 'divider',
         },
         {
-          icon: 'monitor-gears',
+          iconId: 'monitor-gears',
           text: 'Tasks',
           url: '/tasks',
         },
         {
-          icon: 'archive',
+          iconId: 'archive',
           text: 'Buckets',
           url: '/buckets',
         },
         {
-          icon: 'monitor',
+          iconId: 'monitor',
           text: 'Environment',
           url: '/environment',
         },

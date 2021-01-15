@@ -12,22 +12,22 @@ import './app.scss';
 
 const topNavItems: Array<NavigationItemProps> = [
   {
-    icon: 'notification-bell',
+    iconId: 'notification-bell',
     title: 'Alerts',
     type: 'button',
   },
   {
-    icon: 'help',
+    iconId: 'help',
     title: 'Help',
     type: 'button',
   },
   {
-    icon: 'apps',
+    iconId: 'apps',
     title: 'Admin',
     type: 'button',
   },
   {
-    icon: 'dark',
+    iconId: 'dark',
     iconSize: 'small',
     onClick: () => console.log('theme clicked'),
     text: 'Theme',
@@ -38,17 +38,17 @@ const topNavItems: Array<NavigationItemProps> = [
 
 const mainMenuNavItems: Array<NavigationItemProps> = [
   {
-    icon: 'process-template',
+    iconId: 'process-template',
     text: 'Progressions',
     url: '/progressions',
   },
   {
-    icon: 'satellite-group',
+    iconId: 'satellite-group',
     text: 'Pipelines',
     url: '/pipelines',
   },
   {
-    icon: 'dashboard',
+    iconId: 'dashboard',
     text: 'Insights',
     url: '/insights',
   },
@@ -57,32 +57,32 @@ const mainMenuNavItems: Array<NavigationItemProps> = [
     type: 'divider',
   },
   {
-    icon: 'block',
+    iconId: 'block',
     text: 'Packages',
     url: '/packages',
   },
   {
-    icon: 'flag',
+    iconId: 'flag',
     text: 'Features',
     url: '/features',
   },
   {
-    icon: 'collection',
+    iconId: 'collection',
     text: 'Projects',
     url: '/projects',
   },
   {
-    icon: 'file-lines',
+    iconId: 'file-lines',
     text: 'Workitems',
     url: '/workitems',
   },
   {
-    icon: 'change',
+    iconId: 'change',
     text: 'Changes',
     url: '/changes',
   },
   {
-    icon: 'square-settings',
+    iconId: 'square-settings',
     text: 'Artifacts',
     url: '/artifacts',
   },
@@ -91,17 +91,17 @@ const mainMenuNavItems: Array<NavigationItemProps> = [
     type: 'divider',
   },
   {
-    icon: 'monitor-gears',
+    iconId: 'monitor-gears',
     text: 'Tasks',
     url: '/tasks',
   },
   {
-    icon: 'archive',
+    iconId: 'archive',
     text: 'Buckets',
     url: '/buckets',
   },
   {
-    icon: 'monitor',
+    iconId: 'monitor',
     text: 'Environment',
     url: '/environment',
   },
@@ -109,15 +109,15 @@ const mainMenuNavItems: Array<NavigationItemProps> = [
 
 const sideNavItems: Array<NavigationItemProps> = [
   {
-    icon: 'process-template',
+    iconId: 'process-template',
     items: [
       {
-        icon: 'process-template',
+        iconId: 'process-template',
         text: 'Package Progression',
         url: '/package-progression',
       },
       {
-        icon: 'process-template',
+        iconId: 'process-template',
         text: 'Feature Progression',
         url: '/feature-progression',
       },
@@ -126,15 +126,15 @@ const sideNavItems: Array<NavigationItemProps> = [
     url: '/progressions',
   },
   {
-    icon: 'satellite-group',
+    iconId: 'satellite-group',
     items: [
       {
-        icon: 'satellite-group',
+        iconId: 'satellite-group',
         text: 'Groups',
         url: '/pipeline-groups',
       },
       {
-        icon: 'satellite-group',
+        iconId: 'satellite-group',
         text: 'Instances',
         url: '/pipeline-instance',
       },
@@ -143,7 +143,7 @@ const sideNavItems: Array<NavigationItemProps> = [
     url: '/pipelines',
   },
   {
-    icon: 'dashboard',
+    iconId: 'dashboard',
     text: 'Insights',
     url: '/insights',
   },
@@ -152,17 +152,17 @@ const sideNavItems: Array<NavigationItemProps> = [
     type: 'divider',
   },
   {
-    icon: 'block',
+    iconId: 'block',
     text: 'Packages',
     url: '/packages',
   },
   {
-    icon: 'flag',
+    iconId: 'flag',
     text: 'Features',
     url: '/features',
   },
   {
-    icon: 'collection',
+    iconId: 'collection',
     text: 'Projects',
     url: '/projects',
   },
@@ -170,17 +170,17 @@ const sideNavItems: Array<NavigationItemProps> = [
     type: 'divider',
   },
   {
-    icon: 'file-lines',
+    iconId: 'file-lines',
     text: 'Workitems',
     url: '/workitems',
   },
   {
-    icon: 'change',
+    iconId: 'change',
     text: 'Changes',
     url: '/changes',
   },
   {
-    icon: 'square-settings',
+    iconId: 'square-settings',
     text: 'Artifacts',
     url: '/artifacts',
   },
@@ -189,17 +189,17 @@ const sideNavItems: Array<NavigationItemProps> = [
     type: 'divider',
   },
   {
-    icon: 'monitor-gears',
+    iconId: 'monitor-gears',
     text: 'Tasks',
     url: '/tasks',
   },
   {
-    icon: 'archive',
+    iconId: 'archive',
     text: 'Buckets',
     url: '/buckets',
   },
   {
-    icon: 'monitor',
+    iconId: 'monitor',
     text: 'Environment',
     url: '/environment',
   },
@@ -214,9 +214,7 @@ const userAvatar = (
 export const App = () => {
   const backItem: Array<NavigationItemProps> = [
     {
-      icon: 'back',
-      iconBgColor: '#E3E5E8',
-      iconType: 'circle',
+      iconId: 'back',
       onClick: () => console.log('go back clicked'),
       text: 'Home',
       title: `Go Back to Home`,

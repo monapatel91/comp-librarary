@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Menu, MenuItem } from '@material-ui/core';
 import { ButtonSize, ButtonType, DotButton } from '../button/Button';
 import { DotIconButton, IconButtonSize } from '../button/IconButton';
-import { DotIcon, IconFontSize, IconType } from '../icon/Icon';
+import { DotIcon, IconFontSize } from '../icon/Icon';
 
 export type DirectionType = 'horizontal' | 'vertical';
 export type IconPlacementType = 'first' | 'last';
@@ -17,9 +17,7 @@ export interface NavigationItemProps {
   /** determines the direction of the nav items 'horizontal' or 'vertical' */
   direction?: DirectionType;
   /** The ID of the icon to display on the nav item */
-  icon?: string;
-  /** The background color of the icon container */
-  iconBgColor?: string;
+  iconId?: string;
   /** Determines the size of the button and padding around the icon */
   iconBtnSize?: IconButtonSize;
   /** Space delimited CSS classes to be attributed to the nav item icon. */
@@ -28,8 +26,6 @@ export interface NavigationItemProps {
   iconPlacement?: IconPlacementType;
   /** Determines the size of the icon and spacing around it */
   iconSize?: IconFontSize;
-  /** Determines the background color and shape of containing element */
-  iconType?: IconType;
   /** Determines the nav items which will be displayed inside of a sub menu */
   items?: Array<NavigationItemProps>;
   /** Used to inform the flyout menu if the navigaton is collapsed or not */
@@ -52,13 +48,11 @@ export const DotNavItem = ({
   btnSize = 'small',
   btnType,
   direction = 'horizontal',
-  icon,
-  iconBgColor,
+  iconId,
   iconBtnSize = 'small',
   iconClasses,
   iconPlacement = 'first',
   iconSize,
-  iconType,
   items = [],
   navOpen = true,
   onClick,
@@ -89,7 +83,7 @@ export const DotNavItem = ({
         <li className={direction}>
           {text ? (
             <DotButton
-              iconId={icon}
+              iconId={iconId}
               label={text}
               onClick={(event) => onClick && onClick(event)}
               size={btnSize}
@@ -98,7 +92,7 @@ export const DotNavItem = ({
           ) : (
             <DotIconButton
               className={iconClasses}
-              iconId={icon}
+              iconId={iconId}
               onClick={(event) => onClick && onClick(event)}
               size={iconBtnSize}
               titleTooltip={title}
@@ -114,19 +108,17 @@ export const DotNavItem = ({
               className={`has-subnav ${direction}`}
               onClick={(event) => handleMenuClick(event)}
             >
-              {icon && (
+              {iconId && (
                 <DotIcon
                   className={`${iconClasses} ${iconPlacement}`}
                   data-testid="icon"
                   fontSize={iconSize}
-                  icon={icon}
-                  iconBgColor={iconBgColor}
-                  iconType={iconType}
+                  iconId={iconId}
                   title={title || text}
                 />
               )}
               {text && <span className={textClasses}>{text}</span>}
-              <DotIcon icon="chevron-right" className="nav-arrow" />
+              <DotIcon iconId="chevron-right" className="nav-arrow" />
             </li>
             <Menu
               anchorEl={anchorEl}
@@ -138,14 +130,12 @@ export const DotNavItem = ({
               {items.map((item: NavigationItemProps, index: number) => (
                 <MenuItem key={index} onClick={handleMenuClose}>
                   <NavLink exact to={item.url} title={item.text}>
-                    {item.icon && (
+                    {item.iconId && (
                       <DotIcon
                         data-testid="icon"
                         fontSize={iconSize}
-                        icon={item.icon}
-                        iconBgColor={iconBgColor}
+                        iconId={item.iconId}
                         className={`${iconClasses} ${iconPlacement}`}
-                        iconType={iconType}
                         title={item.title || item.text}
                       />
                     )}
@@ -167,14 +157,12 @@ export const DotNavItem = ({
               onClick={(event) => onClick && onClick(event)}
               title={text}
             >
-              {icon && (
+              {iconId && (
                 <DotIcon
                   data-testid="link-icon"
                   fontSize={iconSize}
-                  icon={icon}
-                  iconBgColor={iconBgColor}
+                  iconId={iconId}
                   className={`${iconClasses} ${iconPlacement}`}
-                  iconType={iconType}
                   title={title || text}
                 />
               )}

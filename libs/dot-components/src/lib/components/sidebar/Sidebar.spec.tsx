@@ -9,12 +9,12 @@ import { DotSidebar } from './Sidebar';
 
 const navItems: Array<NavigationItemProps> = [
   {
-    icon: 'block',
+    iconId: 'block',
     title: 'Home',
     url: '/',
   },
   {
-    icon: 'change',
+    iconId: 'change',
     title: 'Changes',
     url: '/',
   },

@@ -37,7 +37,7 @@ export interface IconProps extends CommonProps {
   /** Determines the size of the icon and spacing around it */
   fontSize?: IconFontSize;
   /** The ID of the icon to display on the button */
-  icon: string;
+  iconId: string;
   /** Tooltip text displayed on hover */
   title?: string;
 }
@@ -47,7 +47,7 @@ export const DotIcon = ({
   className,
   'data-testid': dataTestId,
   fontSize = 'default',
-  icon,
+  iconId,
   title = '',
 }: IconProps) => {
   const rootClasses = useStylesWithRootClass('dot-icon', className);
@@ -60,7 +60,7 @@ export const DotIcon = ({
       fontSize={fontSize}
       title={title}
     >
-      <i className={`icon-${icon}`} />
+      <i className={`icon-${iconId}`} />
     </StyledIcon>
   );
 };

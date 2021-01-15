@@ -99,7 +99,7 @@ export const DotAvatar = ({
       child = (
         <DotIcon
           data-testid={`${dataTestId}-icon`}
-          icon={iconId ? iconId : 'user'}
+          iconId={iconId ? iconId : 'user'}
           fontSize={iconFontSize}
         />
       );
@@ -110,7 +110,7 @@ export const DotAvatar = ({
         child = (
           <DotIcon
             data-testid={`${dataTestId}-icon`}
-            icon={iconId ? iconId : 'user'}
+            iconId={iconId ? iconId : 'user'}
             fontSize={iconFontSize}
           />
         );

@@ -4,16 +4,11 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotIcon, IconProps } from './Icon';
 
 export default {
-  title: 'Experimental/Icon',
+  title: 'Components/Icon',
   component: DotIcon,
   argTypes: {
-    icon: { defaultValue: 'script' },
-    iconBgColor: {
-      defaultValue: '#eee',
-      control: 'color',
-    },
+    iconId: { defaultValue: 'script' },
     fontSize: { defaultValue: 'default' },
-    iconType: { defaultValue: 'circle' },
     title: { defaultValue: 'Hello World' },
   },
 } as Meta;

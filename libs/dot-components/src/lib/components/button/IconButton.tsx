@@ -69,7 +69,7 @@ export const DotIconButton = ({
       <DotIcon
         data-testid="button-icon"
         fontSize="small"
-        icon={iconId}
+        iconId={iconId}
         title={titleTooltip}
       />
     </StyledIconButton>
