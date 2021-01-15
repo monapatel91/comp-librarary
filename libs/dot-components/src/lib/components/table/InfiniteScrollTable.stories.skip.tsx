@@ -24,6 +24,7 @@ export default {
     rowHeight: { defaultValue: 20 },
     rowsPerPage: { defaultValue: 20 },
   },
+  excludeStories: ['Default'],
 } as Meta;
 
 export const Default: Story<InfiniteScrollTableProps> = ({

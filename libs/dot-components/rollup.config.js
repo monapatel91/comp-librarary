@@ -14,5 +14,16 @@ module.exports = (config) => {
         titleProp: true,
       }),
     ],
+    output: {
+      ...config.output,
+      globals: {
+        ...config.output.globals,
+        react: 'React',
+        'react-router-dom': 'ReactRouterDom',
+        '@material-ui/core': 'MuiCore',
+        '@material-ui/lab': 'MuiLab',
+        'styled-components': 'styled',
+      },
+    },
   };
 };
