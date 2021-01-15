@@ -14,6 +14,9 @@ export default {
       name: 'Display Text',
       defaultValue: 'Button',
     },
+    children: {
+      defaultValue: 'Button',
+    },
     iconId: {
       defaultValue: '',
     },
@@ -24,3 +27,13 @@ export default {
 } as Meta;
 
 export const Default: Story<ButtonProps> = (args) => <DotButton {...args} />;
+export const Verbose: Story<ButtonProps> = ({
+  children,
+  onClick,
+  iconId,
+  type,
+}) => (
+  <DotButton iconId={iconId} onClick={onClick} type={type}>
+    {children}
+  </DotButton>
+);

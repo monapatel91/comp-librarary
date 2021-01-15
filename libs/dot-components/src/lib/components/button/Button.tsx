@@ -1,9 +1,10 @@
 import React, { MouseEvent } from 'react';
 import { Button, darken, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+
+import { DotIcon } from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
-import { DotIcon } from '../icon/Icon';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
 export type ButtonSize = 'small' | 'medium' | 'large';
@@ -26,10 +27,12 @@ const StyledButton = styled(Button)`
 `;
 
 export interface ButtonProps extends CommonProps {
+  /** The text for the button. Button text should be in sentence case. Overides label. */
+  children?: string;
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** The label for the button. Button labels should be in sentence case. */
-  label: string;
+  label?: string;
   /** The icon to display on the button */
   iconId?: string;
   /** Is this a submit button */
@@ -46,6 +49,7 @@ export interface ButtonProps extends CommonProps {
 
 /** This component wraps the Button component from @material-ui. */
 export const DotButton = ({
+  children,
   className,
   'data-testid': dataTestId,
   label,
@@ -92,7 +96,15 @@ export const DotButton = ({
       onClick={(event) => onClick && onClick(event)}
       startIcon={
         iconId ? (
+<<<<<<< HEAD
           <DotIcon data-testid="icon" iconId={iconId} fontSize={iconFontSize} />
+=======
+          <DotIcon
+            data-testid="button-icon"
+            icon={iconId}
+            fontSize={size !== 'small' ? 'default' : size}
+          />
+>>>>>>> issue: #118 updated to use children, fixed the button theme line-height issue, added unit test for large button size
         ) : undefined
       }
       title={titleTooltip}
@@ -100,7 +112,7 @@ export const DotButton = ({
       size={size}
       type={isSubmit ? 'submit' : 'button'}
     >
-      {label}
+      {children ? children : label}
     </StyledButton>
   );
 };

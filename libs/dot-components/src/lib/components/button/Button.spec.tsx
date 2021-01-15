@@ -20,6 +20,22 @@ describe('DotButton', () => {
     );
   });
 
+  it('should render a verbose primary button', () => {
+    render(
+      <DotButton
+        onClick={() => {
+          console.log('test click');
+        }}
+        type="primary"
+      >
+        Verbose test
+      </DotButton>
+    );
+    expect(screen.getByRole('button')).toHaveClass(
+      'MuiButton-containedPrimary'
+    );
+  });
+
   it('should render a destructive button', () => {
     render(
       <DotButton
@@ -95,10 +111,46 @@ describe('DotButton', () => {
         iconId="save"
       />
     );
-    const icon = screen.getByTestId('icon');
+    const icon = screen.getByTestId('button-icon');
 
     expect(screen.getByText('Test')).toContainElement(icon);
     expect(icon).toHaveClass('material-icons');
+    expect(icon).toBeVisible();
+  });
+
+  it('should render the large button size', () => {
+    render(
+      <DotButton
+        label="Test"
+        size="large"
+        onClick={() => {
+          console.log('test click');
+        }}
+        type="outlined"
+      />
+    );
+
+    expect(screen.getByRole('button')).toHaveClass('MuiButton-sizeLarge');
+  });
+  
+  it('should render the large button size with the default icon size inside a button', () => {
+    render(
+      <DotButton
+        label="Test"
+        size="large"
+        onClick={() => {
+          console.log('test click');
+        }}
+        type="outlined"
+        iconId="save"
+      />
+    );
+    const icon = screen.getByTestId('button-icon');
+
+    expect(screen.getByRole('button')).toHaveClass('MuiButton-sizeLarge');
+    expect(screen.getByText('Test')).toContainElement(icon);
+    expect(icon).not.toHaveClass('MuiIcon-fontSizeLarge');
+    expect(icon).not.toHaveClass('MuiIcon-fontSizeSmall');
     expect(icon).toBeVisible();
   });
 });
