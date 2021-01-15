@@ -28,7 +28,7 @@ const StyledButton = styled(Button)`
 
 export interface ButtonProps extends CommonProps {
   /** The text for the button. Button text should be in sentence case. */
-  children?: string;
+  children: string;
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** The icon to display on the button */
@@ -72,11 +72,11 @@ export const DotButton = ({
       variant = 'contained';
       break;
     case 'outlined':
-      color = children ? 'primary' : 'default';
+      color = 'primary';
       variant = 'outlined';
       break;
     case 'text':
-      color = children ? 'primary' : 'default';
+      color = 'primary';
       variant = 'text';
       break;
   }
