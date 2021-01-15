@@ -3,6 +3,7 @@ import { Breadcrumbs, Link, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 import DotIcon from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
 export type LinkUnderlineOptions = 'always' | 'hover' | 'none';
 
@@ -62,6 +63,7 @@ export const DotBreadcrumbs = ({
       aria-label="breadcrumb"
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
+      itemsAfterCollapse={2}
       maxItems={maxItems}
       separator={<DotIcon iconId="chevron-right" className="separator" />}
     >
