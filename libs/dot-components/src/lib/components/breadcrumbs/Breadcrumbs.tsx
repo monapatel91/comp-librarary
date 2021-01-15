@@ -18,7 +18,7 @@ export interface BreadcrumbProps extends CommonProps {
   items: Array<BreadcrumbItem>;
   maxItems?: number;
 }
-//test
+
 const StyledBreadcrumbs = styled(Breadcrumbs)`
   ${({ theme }: { theme: Theme }) => css`
     &.dot-breadcrumbs {
@@ -32,6 +32,9 @@ const StyledBreadcrumbs = styled(Breadcrumbs)`
         width: 20px;
         height: 20px;
         padding: 0;
+      }
+      .breadcrumb {
+      padding: ${theme.spacing(0.5, 2)};
       }
       .MuiBreadcrumbs-separator {
         margin: 0;
