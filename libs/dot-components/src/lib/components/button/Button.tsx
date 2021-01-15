@@ -7,7 +7,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
-export type ButtonSize = 'small' | 'default' | 'large';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
 const StyledButton = styled(Button)`
   ${({ theme }: { theme: Theme }) => css`
@@ -27,12 +27,10 @@ const StyledButton = styled(Button)`
 `;
 
 export interface ButtonProps extends CommonProps {
-  /** The text for the button. Button text should be in sentence case. Overides label. */
-  children?: string;
+  /** The text for the button. Button text should be in sentence case. */
+  children: string;
   /** If true, the button will be disabled. */
   disabled?: boolean;
-  /** The label for the button. Button labels should be in sentence case. */
-  label?: string;
   /** The icon to display on the button */
   iconId?: string;
   /** Is this a submit button */
@@ -52,12 +50,11 @@ export const DotButton = ({
   children,
   className,
   'data-testid': dataTestId,
-  label,
   disabled = false,
   iconId,
   isSubmit = false,
   onClick = null,
-  size = 'default',
+  size = 'medium',
   titleTooltip,
   type = 'primary',
 }: ButtonProps) => {
@@ -75,11 +72,11 @@ export const DotButton = ({
       variant = 'contained';
       break;
     case 'outlined':
-      color = label ? 'primary' : 'default';
+      color = children ? 'primary' : 'default';
       variant = 'outlined';
       break;
     case 'text':
-      color = label ? 'primary' : 'default';
+      color = children ? 'primary' : 'default';
       variant = 'text';
       break;
   }
@@ -100,7 +97,7 @@ export const DotButton = ({
           <DotIcon data-testid="icon" iconId={iconId} fontSize={iconFontSize} />
 =======
           <DotIcon
-            data-testid="button-icon"
+            data-testid="icon"
             icon={iconId}
             fontSize={size !== 'small' ? 'default' : size}
           />
@@ -109,10 +106,10 @@ export const DotButton = ({
       }
       title={titleTooltip}
       variant={variant}
-      size={size === 'default' ? 'medium' : size}
+      size={size}
       type={isSubmit ? 'submit' : 'button'}
     >
-      {children ? children : label}
+      {children}
     </StyledButton>
   );
 };

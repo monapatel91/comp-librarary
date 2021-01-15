@@ -7,15 +7,11 @@ export default {
   title: 'Components/Button',
   component: DotButton,
   argTypes: {
-    onClick: {
-      action: 'clicked',
-    },
-    label: {
-      name: 'Display Text',
-      defaultValue: 'Button',
-    },
     children: {
       defaultValue: 'Button',
+    },
+    onClick: {
+      action: 'clicked',
     },
     iconId: {
       defaultValue: '',
@@ -26,7 +22,6 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<ButtonProps> = (args) => <DotButton {...args} />;
 export const Verbose: Story<ButtonProps> = ({
   children,
   onClick,
