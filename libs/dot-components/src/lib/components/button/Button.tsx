@@ -20,7 +20,7 @@ const StyledButton = styled(Button)`
       }
     }
 
-    span.MuiButton-startIcon {
+    span.dot-icon {
       padding: 0;
     }
   `}
