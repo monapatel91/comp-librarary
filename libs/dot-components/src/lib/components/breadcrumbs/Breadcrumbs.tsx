@@ -34,7 +34,7 @@ const StyledBreadcrumbs = styled(Breadcrumbs)`
         padding: 0;
       }
       .breadcrumb {
-      padding: ${theme.spacing(0.5, 2)};
+        padding: ${theme.spacing(0.5, 2)};
       }
       .MuiBreadcrumbs-separator {
         margin: 0;
