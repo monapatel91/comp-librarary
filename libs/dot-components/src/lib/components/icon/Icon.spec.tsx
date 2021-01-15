@@ -4,7 +4,7 @@ import { DotIcon } from './Icon';
 
 describe('DotIcon', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<DotIcon icon="script" />);
+    const { baseElement } = render(<DotIcon iconId="script" />);
     expect(baseElement).toBeTruthy();
   });
 });

@@ -133,7 +133,7 @@ export const DotInlineEdit = ({
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <DotIcon icon="edit" />
+              <DotIcon iconId="edit" />
             </InputAdornment>
           ),
         }}

@@ -49,6 +49,6 @@ describe(' Row', () => {
   it('should display icon when enabled', () => {
     render(<DotRow displayText={testText} iconId="work_outline" />);
 
-    expect(screen.getByTestId('icon')).toBeTruthy();
+    expect(screen.getByTestId('row-icon')).toBeTruthy();
   });
 });

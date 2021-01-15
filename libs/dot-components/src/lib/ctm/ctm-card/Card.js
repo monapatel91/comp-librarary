@@ -22,7 +22,7 @@ export const CardIndicator = ({ id, label = '', onHover, url, baseUrl }) => {
   if (url === undefined) {
     return (
       <div data-cooltip={label} className={classes} onMouseEnter={onHover}>
-        <DotIcon icon={id} fontSize="small" title={label} />
+        <DotIcon iconId={id} fontSize="small" title={label} />
       </div>
     );
   } else {
@@ -30,7 +30,7 @@ export const CardIndicator = ({ id, label = '', onHover, url, baseUrl }) => {
     return (
       <div data-cooltip={label} className={classes} onMouseEnter={onHover}>
         <a href={fullUrl} target="_blank" rel="noreferrer">
-          <DotIcon icon={id} fontSize="small" title={label} />
+          <DotIcon iconId={id} fontSize="small" title={label} />
         </a>
       </div>
     );

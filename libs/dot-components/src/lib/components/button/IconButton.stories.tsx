@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotIconButton, IconButtonProps } from './IconButton';
 
 export default {
-  title: 'Experimental/Icon Button',
+  title: 'Components/Icon Button',
   component: DotIconButton,
   argTypes: {
     iconId: {

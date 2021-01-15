@@ -1,10 +1,9 @@
 import React, { MouseEvent } from 'react';
 import { Button, darken, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
-
-import { DotIcon } from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { DotIcon } from '../icon/Icon';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
 export type ButtonSize = 'small' | 'medium' | 'large';
@@ -81,6 +80,9 @@ export const DotButton = ({
       break;
   }
 
+  const iconFontSize =
+    size === 'medium' ? 'default' : size === 'large' ? 'inherit' : 'small';
+
   return (
     <StyledButton
       classes={{ root: rootClasses }}
@@ -90,10 +92,7 @@ export const DotButton = ({
       onClick={(event) => onClick && onClick(event)}
       startIcon={
         iconId ? (
-          <DotIcon
-            icon={iconId}
-            fontSize={size === 'medium' ? 'default' : size}
-          />
+          <DotIcon data-testid="icon" iconId={iconId} fontSize={iconFontSize} />
         ) : undefined
       }
       title={titleTooltip}

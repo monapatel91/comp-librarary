@@ -17,6 +17,6 @@ export default {
 
 export const Default: Story<CardProps> = (args) => {
   const { preHeader } = args;
-  const preheaderExample = <DotIcon icon="block" />;
+  const preheaderExample = <DotIcon iconId="block" />;
   return <DotCard preHeader={preHeader ? preheaderExample : null} {...args} />;
 };

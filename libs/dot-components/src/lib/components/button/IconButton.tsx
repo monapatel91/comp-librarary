@@ -1,7 +1,6 @@
 import React, { MouseEvent } from 'react';
 import { IconButton, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
-
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
@@ -67,7 +66,12 @@ export const DotIconButton = ({
       size={size}
       title={titleTooltip}
     >
-      <DotIcon fontSize="small" icon={iconId} title={titleTooltip} />
+      <DotIcon
+        data-testid="button-icon"
+        fontSize="small"
+        iconId={iconId}
+        title={titleTooltip}
+      />
     </StyledIconButton>
   );
 };

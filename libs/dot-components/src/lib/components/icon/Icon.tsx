@@ -1,51 +1,67 @@
 import React from 'react';
-import { Icon } from '@material-ui/core';
-import './Icon.scss';
+import { Icon, Theme } from '@material-ui/core';
+import styled, { css } from 'styled-components';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 import '../../fonts/font-icon/style.scss';
 
-export type IconType = 'circle' | 'square' | 'transparent';
-export type IconFontSize = 'inherit' | 'default' | 'small' | 'large';
+export type IconFontSize = 'inherit' | 'default' | 'small';
 
-export interface IconProps {
-  /** data attribute passed through for testing purposes ONLY */
-  'data-testid'?: string;
+const StyledIcon = styled(Icon)`
+  ${({ theme }: { theme: Theme }) => css`
+    &.dot-icon {
+      align-items: center;
+      box-sizing: content-box;
+      display: flex;
+      font-size: 18px;
+      height: 24px;
+      justify-content: center;
+      padding: ${theme.spacing(1)}px;
+      width: 24px;
+
+      &.MuiIcon-fontSizeLarge {
+        font-size: 28px;
+        height: 35px;
+        width: 35px;
+      }
+      &.MuiIcon-fontSizeSmall {
+        font-size: 16px;
+        height: 20px;
+        width: 20px;
+      }
+    }
+  `}
+`;
+
+export interface IconProps extends CommonProps {
   /** Determines the size of the icon and spacing around it */
   fontSize?: IconFontSize;
   /** The ID of the icon to display on the button */
-  icon: string;
-  /** The background color of the icon container */
-  iconBgColor?: string;
-  /** A series of space delimited CSS classes to be attributed to the button. */
-  iconClasses?: string;
-  /** Determines the background color and shape of containing element */
-  iconType?: IconType;
+  iconId: string;
   /** Tooltip text displayed on hover */
   title?: string;
 }
 
-/**
- * @experimental This component is still in development
- */
+/** This component wraps the Icon component from @material-ui. */
 export const DotIcon = ({
+  className,
+  'data-testid': dataTestId,
   fontSize = 'default',
-  icon,
-  iconBgColor,
-  iconClasses = '',
-  iconType = 'transparent',
+  iconId,
   title = '',
-  'data-testid': dataTestId = 'icon',
 }: IconProps) => {
+  const rootClasses = useStylesWithRootClass('dot-icon', className);
+
   return (
-    <Icon
+    <StyledIcon
       aria-hidden="false"
-      className={`dot-icon ${fontSize} ${iconType} ${iconClasses}`}
+      classes={{ root: rootClasses }}
       data-testid={dataTestId}
       fontSize={fontSize}
-      style={{ background: iconBgColor }}
       title={title}
     >
-      <i className={`icon-${icon}`} />
-    </Icon>
+      <i className={`icon-${iconId}`} />
+    </StyledIcon>
   );
 };
 
