@@ -5,14 +5,12 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 import '../../fonts/font-icon/style.scss';
 
-export type IconType = 'circle' | 'square' | 'transparent';
-export type IconFontSize = 'inherit' | 'default' | 'small' | 'large';
+export type IconFontSize = 'inherit' | 'default' | 'small';
 
 const StyledIcon = styled(Icon)`
-  ${({ theme, iconBgColor }: { theme: Theme; iconBgColor: string }) => css`
+  ${({ theme }: { theme: Theme }) => css`
     &.dot-icon {
       align-items: center;
-      background-color: ${iconBgColor ? iconBgColor : theme.palette.grey[100]}
       box-sizing: content-box;
       display: flex;
       font-size: 18px;
@@ -31,16 +29,6 @@ const StyledIcon = styled(Icon)`
         height: 20px;
         width: 20px;
       }
-
-      &.transparent {
-        background: transparent;
-      }
-      &.circle {
-        border-radius: 50%;
-      }
-      &.square {
-        border-radius: 4px;
-      }
     }
   `}
 `;
@@ -50,10 +38,6 @@ export interface IconProps extends CommonProps {
   fontSize?: IconFontSize;
   /** The ID of the icon to display on the button */
   icon: string;
-  /** The background color of the icon container */
-  iconBgColor?: string;
-  /** Determines the background color and shape of containing element */
-  iconType?: IconType;
   /** Tooltip text displayed on hover */
   title?: string;
 }
@@ -64,13 +48,9 @@ export const DotIcon = ({
   'data-testid': dataTestId,
   fontSize = 'default',
   icon,
-  iconType = 'transparent',
   title = '',
 }: IconProps) => {
-  const rootClasses = useStylesWithRootClass(
-    'dot-icon',
-    `${iconType} ${className}`
-  );
+  const rootClasses = useStylesWithRootClass('dot-icon', className);
 
   return (
     <StyledIcon
