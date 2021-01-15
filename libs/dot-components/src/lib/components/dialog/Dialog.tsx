@@ -15,7 +15,7 @@ export interface DialogButtonProps {
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** The text displayed on the button */
-  children?: string;
+  children: string;
   /** The icon to display on the button */
   iconId?: string;
   /** The type of button to be used */
