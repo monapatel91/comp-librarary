@@ -42,7 +42,7 @@ describe(' EmptyState', () => {
     render(
       <DotEmptyState
         buttonProps={{
-          label: 'Click Me',
+          children: 'Click Me',
           type: 'primary',
           onClick: clickHandler,
         }}
@@ -58,7 +58,7 @@ describe(' EmptyState', () => {
     render(
       <DotEmptyState
         buttonProps={{
-          label: 'Click Me',
+          children: 'Click Me',
           type: 'primary',
           onClick: clickHandler,
         }}

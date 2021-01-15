@@ -7,12 +7,11 @@ export default {
   title: 'Components/Button',
   component: DotButton,
   argTypes: {
+    children: {
+      defaultValue: 'Button',
+    },
     onClick: {
       action: 'clicked',
-    },
-    label: {
-      name: 'Display Text',
-      defaultValue: 'Button',
     },
     iconId: {
       defaultValue: '',

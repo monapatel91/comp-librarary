@@ -84,7 +84,7 @@ export const DotNavItem = ({
           {text ? (
             <DotButton
               iconId={iconId}
-              label={text}
+              children={text}
               onClick={(event) => onClick && onClick(event)}
               size={btnSize}
               type={btnType}

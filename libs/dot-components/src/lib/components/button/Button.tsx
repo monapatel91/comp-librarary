@@ -1,9 +1,10 @@
 import React, { MouseEvent } from 'react';
 import { Button, darken, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+
+import { DotIcon } from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
-import { DotIcon } from '../icon/Icon';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
 export type ButtonSize = 'small' | 'medium' | 'large';
@@ -19,17 +20,17 @@ const StyledButton = styled(Button)`
       }
     }
 
-    span.MuiButton-startIcon {
+    span.dot-icon {
       padding: 0;
     }
   `}
 `;
 
 export interface ButtonProps extends CommonProps {
+  /** The text for the button. Button text should be in sentence case. */
+  children: string;
   /** If true, the button will be disabled. */
   disabled?: boolean;
-  /** The label for the button. Button labels should be in sentence case. */
-  label: string;
   /** The icon to display on the button */
   iconId?: string;
   /** Is this a submit button */
@@ -46,9 +47,9 @@ export interface ButtonProps extends CommonProps {
 
 /** This component wraps the Button component from @material-ui. */
 export const DotButton = ({
+  children,
   className,
   'data-testid': dataTestId,
-  label,
   disabled = false,
   iconId,
   isSubmit = false,
@@ -71,11 +72,11 @@ export const DotButton = ({
       variant = 'contained';
       break;
     case 'outlined':
-      color = label ? 'primary' : 'default';
+      color = 'primary';
       variant = 'outlined';
       break;
     case 'text':
-      color = label ? 'primary' : 'default';
+      color = 'primary';
       variant = 'text';
       break;
   }
@@ -100,7 +101,7 @@ export const DotButton = ({
       size={size}
       type={isSubmit ? 'submit' : 'button'}
     >
-      {label}
+      {children}
     </StyledButton>
   );
 };

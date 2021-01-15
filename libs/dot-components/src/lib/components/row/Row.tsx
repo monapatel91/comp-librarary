@@ -64,7 +64,7 @@ export const DotRow = ({
         {canEdit && (
           <DotButton
             data-testid={uid}
-            label="Edit"
+            children="Edit"
             iconId="edit"
             onClick={(event) => onEdit && onEdit(event)}
             type="text"
@@ -79,13 +79,13 @@ export const DotRow = ({
               title={deleteTitle}
               showDialog={deleteDialogIsOpen}
               submitBtnProps={{
-                label: deleteButtonText,
+                children: deleteButtonText,
                 type: 'destructive',
               }}
             />
             <DotButton
               data-testid={uid}
-              label="Delete"
+              children="Delete"
               iconId="delete"
               onClick={() => setDeleteDialogIsOpen(true)}
               type="text"
