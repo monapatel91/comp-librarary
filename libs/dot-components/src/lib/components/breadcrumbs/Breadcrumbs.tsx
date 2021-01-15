@@ -67,6 +67,7 @@ export const DotBreadcrumbs = ({
       aria-label="breadcrumb"
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
+      itemsAfterCollapse={2}
       maxItems={maxItems}
       separator={<DotIcon iconId="chevron-right" className="separator" />}
     >
