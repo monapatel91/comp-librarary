@@ -20,6 +20,51 @@ describe('DotButton', () => {
     );
   });
 
+  it('should render the default button size', () => {
+    render(
+      <DotButton
+        label="Test"
+        size="default"
+        onClick={() => {
+          console.log('test click');
+        }}
+        type="outlined"
+      />
+    );
+
+    expect(screen.getByRole('button')).not.toHaveClass('MuiButton-sizeLarge');
+    expect(screen.getByRole('button')).not.toHaveClass('MuiButton-sizeSmall');
+  });
+
+  it('should render the small button size', () => {
+    render(
+      <DotButton
+        label="Test"
+        size="small"
+        onClick={() => {
+          console.log('test click');
+        }}
+        type="outlined"
+      />
+    );
+    expect(screen.getByRole('button')).toHaveClass('MuiButton-sizeSmall');
+  });
+
+  it('should render the large button size', () => {
+    render(
+      <DotButton
+        label="Test"
+        size="large"
+        onClick={() => {
+          console.log('test click');
+        }}
+        type="outlined"
+      />
+    );
+
+    expect(screen.getByRole('button')).toHaveClass('MuiButton-sizeLarge');
+  });
+
   it('should render a verbose primary button', () => {
     render(
       <DotButton
@@ -118,21 +163,6 @@ describe('DotButton', () => {
     expect(icon).toBeVisible();
   });
 
-  it('should render the large button size', () => {
-    render(
-      <DotButton
-        label="Test"
-        size="large"
-        onClick={() => {
-          console.log('test click');
-        }}
-        type="outlined"
-      />
-    );
-
-    expect(screen.getByRole('button')).toHaveClass('MuiButton-sizeLarge');
-  });
-  
   it('should render the large button size with the default icon size inside a button', () => {
     render(
       <DotButton
@@ -148,9 +178,7 @@ describe('DotButton', () => {
     const icon = screen.getByTestId('button-icon');
 
     expect(screen.getByRole('button')).toHaveClass('MuiButton-sizeLarge');
-    expect(screen.getByText('Test')).toContainElement(icon);
     expect(icon).not.toHaveClass('MuiIcon-fontSizeLarge');
     expect(icon).not.toHaveClass('MuiIcon-fontSizeSmall');
-    expect(icon).toBeVisible();
   });
 });

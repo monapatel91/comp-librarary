@@ -7,7 +7,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
-export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonSize = 'small' | 'default' | 'large';
 
 const StyledButton = styled(Button)`
   ${({ theme }: { theme: Theme }) => css`
@@ -57,7 +57,7 @@ export const DotButton = ({
   iconId,
   isSubmit = false,
   onClick = null,
-  size = 'medium',
+  size = 'default',
   titleTooltip,
   type = 'primary',
 }: ButtonProps) => {
@@ -109,7 +109,7 @@ export const DotButton = ({
       }
       title={titleTooltip}
       variant={variant}
-      size={size}
+      size={size === 'default' ? 'medium' : size}
       type={isSubmit ? 'submit' : 'button'}
     >
       {children ? children : label}
