@@ -11,9 +11,10 @@ describe('DotButton', () => {
         onClick={() => {
           console.log('test click');
         }}
-        type="primary">
-          Test
-          </DotButton>
+        type="primary"
+      >
+        Test
+      </DotButton>
     );
     expect(screen.getByRole('button')).toHaveClass(
       'MuiButton-containedPrimary'
@@ -29,7 +30,7 @@ describe('DotButton', () => {
         }}
         type="outlined"
       >
-      Test
+        Test
       </DotButton>
     );
 
@@ -46,7 +47,7 @@ describe('DotButton', () => {
         }}
         type="outlined"
       >
-      Test
+        Test
       </DotButton>
     );
     expect(screen.getByRole('button')).toHaveClass('MuiButton-sizeSmall');
@@ -61,7 +62,7 @@ describe('DotButton', () => {
         }}
         type="outlined"
       >
-      Test
+        Test
       </DotButton>
     );
 
@@ -76,7 +77,7 @@ describe('DotButton', () => {
         }}
         type="destructive"
       >
-      Test
+        Test
       </DotButton>
     );
     expect(screen.getByRole('button')).toHaveClass(
@@ -92,7 +93,7 @@ describe('DotButton', () => {
         }}
         type="outlined"
       >
-      Test
+        Test
       </DotButton>
     );
     expect(screen.getByRole('button')).toHaveClass('MuiButton-outlinedPrimary');
@@ -106,7 +107,7 @@ describe('DotButton', () => {
         }}
         type="text"
       >
-      Test
+        Test
       </DotButton>
     );
     expect(screen.getByRole('button')).toHaveClass('MuiButton-textPrimary');
@@ -114,7 +115,11 @@ describe('DotButton', () => {
 
   it('should allow me to click the button', () => {
     const onClick = jest.fn();
-    render(<DotButton onClick={onClick} type="destructive">Test</DotButton>);
+    render(
+      <DotButton onClick={onClick} type="destructive">
+        Test
+      </DotButton>
+    );
     const myButton = screen.getByRole('button');
     userEvent.click(myButton);
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -123,12 +128,8 @@ describe('DotButton', () => {
   it('should not allow me to click a disabled button', () => {
     const onClick = jest.fn();
     render(
-      <DotButton
-        onClick={onClick}
-        type="destructive"
-        disabled={true}
-      >
-      Test
+      <DotButton onClick={onClick} type="destructive" disabled={true}>
+        Test
       </DotButton>
     );
     const myButton = screen.getByRole('button');
@@ -145,10 +146,10 @@ describe('DotButton', () => {
         type="outlined"
         iconId="save"
       >
-      Test
+        Test
       </DotButton>
     );
-    const icon = screen.getByTestId('button-icon');
+    const icon = screen.getByTestId('icon');
 
     expect(screen.getByText('Test')).toContainElement(icon);
     expect(icon).toHaveClass('material-icons');
@@ -165,7 +166,7 @@ describe('DotButton', () => {
         type="outlined"
         iconId="save"
       >
-      Test
+        Test
       </DotButton>
     );
     const icon = screen.getByTestId('icon');

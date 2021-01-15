@@ -28,7 +28,7 @@ const StyledButton = styled(Button)`
 
 export interface ButtonProps extends CommonProps {
   /** The text for the button. Button text should be in sentence case. */
-  children: string;
+  children?: string;
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** The icon to display on the button */
@@ -93,15 +93,7 @@ export const DotButton = ({
       onClick={(event) => onClick && onClick(event)}
       startIcon={
         iconId ? (
-<<<<<<< HEAD
           <DotIcon data-testid="icon" iconId={iconId} fontSize={iconFontSize} />
-=======
-          <DotIcon
-            data-testid="icon"
-            icon={iconId}
-            fontSize={size !== 'small' ? 'default' : size}
-          />
->>>>>>> issue: #118 updated to use children, fixed the button theme line-height issue, added unit test for large button size
         ) : undefined
       }
       title={titleTooltip}

@@ -22,13 +22,4 @@ export default {
   },
 } as Meta;
 
-export const Verbose: Story<ButtonProps> = ({
-  children,
-  onClick,
-  iconId,
-  type,
-}) => (
-  <DotButton iconId={iconId} onClick={onClick} type={type}>
-    {children}
-  </DotButton>
-);
+export const Default: Story<ButtonProps> = (args) => <DotButton {...args} />;

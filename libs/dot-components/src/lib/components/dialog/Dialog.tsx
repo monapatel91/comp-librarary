@@ -15,7 +15,7 @@ export interface DialogButtonProps {
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** The text displayed on the button */
-  label?: string;
+  children?: string;
   /** The icon to display on the button */
   iconId?: string;
   /** The type of button to be used */
@@ -59,14 +59,14 @@ export const DotDialog = ({
   };
 
   const cancelButtonPropsWithDefaults: ButtonProps = {
-    label: 'Cancel',
+    children: 'Cancel',
     type: 'text',
     onClick: handleClose,
     ...cancelButtonProps,
   };
 
   const submitButtonPropsWithDefaults: ButtonProps = {
-    label: 'OK',
+    children: 'OK',
     onClick: onSubmit,
     ...submitButtonProps,
   };

@@ -150,7 +150,7 @@ export const DotPhaseHeader = ({
             title={`Delete phase "${label}"?`}
             showDialog={deleteDialogIsOpen}
             submitBtnProps={{
-              label: 'Delete phase',
+              children: 'Delete phase',
               type: 'destructive',
             }}
           />
