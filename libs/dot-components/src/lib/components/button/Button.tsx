@@ -72,11 +72,11 @@ export const DotButton = ({
       variant = 'contained';
       break;
     case 'outlined':
-      color = 'primary';
+      color = 'default';
       variant = 'outlined';
       break;
     case 'text':
-      color = 'primary';
+      color = 'default';
       variant = 'text';
       break;
   }
