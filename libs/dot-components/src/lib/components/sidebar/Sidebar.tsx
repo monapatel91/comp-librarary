@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Theme } from '@material-ui/core';
+import React, { Fragment, useState } from 'react';
+import { Theme, Typography } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 import { DotIconButton } from '../button/IconButton';
 import { DotNavigation } from '../navigation/Navigation';
 import { CommonProps } from '../CommonProps';
@@ -18,6 +19,7 @@ export interface SidebarProps extends CommonProps {
   goBack?: boolean;
   navItems?: Array<NavigationItemProps>;
   title?: string;
+  titleAvatarProps?: AvatarProps;
 }
 
 const StyledSidebar = styled.aside`
@@ -39,16 +41,22 @@ const StyledSidebar = styled.aside`
       -webkit-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
       transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
-      h4 {
+      h3 {
+        align-items: center;
         border-bottom: 1px solid ${theme.palette.grey[100]};
+        display: flex;
         font-size: 14px;
         overflow: hidden;
-        padding: ${theme.spacing(2)}px;
+        padding: ${theme.spacing(1, 2)};
         white-space: nowrap;
+
+        .dot-avatar {
+          margin-right: ${theme.spacing(1)}px;
+        }
       }
 
       nav.go-back {
-        border-bottom: 1px solid ${theme.palette.grey[200]};
+        border-bottom: 1px solid ${theme.palette.grey[100]};
 
         li a {
           color: ${theme.palette.grey[700]};
@@ -88,7 +96,7 @@ const StyledSidebar = styled.aside`
             &.active,
             &:hover,
             &:focus {
-              background: ${theme.palette.grey[200]};
+              background: ${theme.palette.grey[100]};
               color: ${theme.palette.grey[700]};
             }
 
@@ -241,6 +249,7 @@ export const DotSidebar = ({
   goBack,
   navItems = [],
   title,
+  titleAvatarProps = null,
 }: SidebarProps) => {
   const [open, updateOpen] = useState(true);
   const rootClasses = useStylesWithRootClass(
@@ -248,12 +257,21 @@ export const DotSidebar = ({
     `${!open ? 'collapsed' : 'expanded'} ${className}`
   );
 
+  console.log(titleAvatarProps);
+
   return (
     <StyledSidebar
       className={rootClasses}
       data-testid={`primaryNav ${dataTestId}`}
     >
-      {title && <h4>{title}</h4>}
+      {title && (
+        <Typography variant="h3">
+          <Fragment>
+            {titleAvatarProps && <DotAvatar {...titleAvatarProps} />}
+            {title}
+          </Fragment>
+        </Typography>
+      )}
       {goBack && (
         <DotNavigation
           classes="go-back"
