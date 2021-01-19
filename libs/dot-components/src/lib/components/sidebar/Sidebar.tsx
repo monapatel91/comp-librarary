@@ -11,14 +11,23 @@ import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
 import { ReactComponent as LogoDigitalAi } from '../../assets/logo_digital_ai.svg';
 
 export interface SidebarProps extends CommonProps {
+  /** Component passed for back nav item */
   backItem?: Array<NavigationItemProps>;
+  /** If displayBrand is true this text will be displayed above the Digital.ai branding */
   brandDesc?: string;
+  /** If provided will display below the navItems */
   children?: JSX.Element;
+  /** If true will display the expand/collapse icon button */
   collapsable?: boolean;
+  /** If true will display Digital.ai branding at the bottom */
   displayBrand?: boolean;
+  /** If true will display the go back nav item at the top of the sidebar */
   goBack?: boolean;
+  /** Array of nav items */
   navItems?: Array<NavigationItemProps>;
+  /** The text that is displayed at the top of the sidebar */
   title?: string;
+  /** If provided, will display an avatar next to the title text */
   titleAvatarProps?: AvatarProps;
 }
 
