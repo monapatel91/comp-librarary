@@ -96,7 +96,7 @@ describe('DotButton', () => {
         Test
       </DotButton>
     );
-    expect(screen.getByRole('button')).toHaveClass('MuiButton-outlinedPrimary');
+    expect(screen.getByRole('button')).toHaveClass('MuiButton-outlined');
   });
 
   it('should render a transparent button', () => {
@@ -110,7 +110,7 @@ describe('DotButton', () => {
         Test
       </DotButton>
     );
-    expect(screen.getByRole('button')).toHaveClass('MuiButton-textPrimary');
+    expect(screen.getByRole('button')).toHaveClass('MuiButton-text');
   });
 
   it('should allow me to click the button', () => {
