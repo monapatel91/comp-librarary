@@ -158,7 +158,7 @@ export const DotNavItem = ({
           className={rootClasses}
           data-testid={dataTestId}
           direction={direction}
-          icon={icon}
+          iconId={iconId}
           iconBtnSize={iconBtnSize}
           iconClasses={iconClasses}
           onClick={onClick}
@@ -173,12 +173,10 @@ export const DotNavItem = ({
             className={rootClasses}
             data-testid={dataTestId}
             direction={direction}
-            icon={icon}
-            iconBgColor={iconBgColor}
+            iconId={iconId}
             iconClasses={iconClasses}
             iconPlacement={iconPlacement}
             iconSize={iconSize}
-            iconType={iconType}
             items={items}
             navOpen={navOpen}
             text={text}
@@ -192,12 +190,10 @@ export const DotNavItem = ({
             className={rootClasses}
             data-testid={dataTestId}
             direction={direction}
-            icon={icon}
-            iconBgColor={iconBgColor}
+            iconId={iconId}
             iconClasses={iconClasses}
             iconPlacement={iconPlacement}
             iconSize={iconSize}
-            iconType={iconType}
             onClick={onClick}
             text={text}
             textClasses={textClasses}
@@ -228,7 +224,7 @@ export const DotNavItemButton = ({
   className,
   'data-testid': dataTestId,
   direction,
-  icon,
+  iconId,
   iconBtnSize,
   iconClasses,
   onClick,
@@ -241,8 +237,8 @@ export const DotNavItemButton = ({
   >
     {text ? (
       <DotButton
-        iconId={icon}
-        label={text}
+        iconId={iconId}
+        children={text}
         onClick={(event) => onClick && onClick(event)}
         size={btnSize}
         type={btnType}
@@ -250,7 +246,7 @@ export const DotNavItemButton = ({
     ) : (
       <DotIconButton
         className={iconClasses}
-        iconId={icon}
+        iconId={iconId}
         onClick={(event) => onClick && onClick(event)}
         size={iconBtnSize}
         titleTooltip={title}
@@ -263,12 +259,10 @@ export const DotNavItemLink = ({
   className,
   'data-testid': dataTestId,
   direction,
-  icon,
-  iconBgColor,
+  iconId,
   iconClasses,
   iconPlacement,
   iconSize,
-  iconType,
   onClick,
   text,
   textClasses,
@@ -285,14 +279,12 @@ export const DotNavItemLink = ({
       onClick={(event) => onClick && onClick(event)}
       title={text}
     >
-      {icon && (
+      {iconId && (
         <DotIcon
           data-testid="link-icon"
           fontSize={iconSize}
-          icon={icon}
-          iconBgColor={iconBgColor}
+          iconId={iconId}
           className={`${iconClasses} ${iconPlacement}`}
-          iconType={iconType}
           title={title || text}
         />
       )}
@@ -309,12 +301,10 @@ export const DotNavItemMenu = ({
   className,
   'data-testid': dataTestId,
   direction,
-  icon,
-  iconBgColor,
+  iconId,
   iconClasses,
   iconPlacement,
   iconSize,
-  iconType,
   items,
   navOpen,
   title,
@@ -334,94 +324,50 @@ export const DotNavItemMenu = ({
     setOpen(false);
   };
 
-  switch (type) {
-    case 'divider':
-      return <li className="divider">{text && <h5>{text}</h5>}</li>;
-    case 'button':
-      return (
-        <li className={direction}>
-          {text ? (
-            <DotButton
-              iconId={iconId}
-              children={text}
-              onClick={(event) => onClick && onClick(event)}
-              size={btnSize}
-              type={btnType}
-            />
-          ) : (
-            <DotIconButton
-              className={iconClasses}
-              iconId={iconId}
-              onClick={(event) => onClick && onClick(event)}
-              size={iconBtnSize}
-              titleTooltip={title}
-            />
-          )}
-        </li>
-      );
-    default:
-      if (items.length > 0) {
-        return (
-          <Fragment>
-            <li
-              className={`has-subnav ${direction}`}
-              onClick={(event) => handleMenuClick(event)}
-            >
-              {iconId && (
+  return (
+    <Fragment>
+      <StyledNavItem
+        className={`${className} ${direction} has-subnav`}
+        data-testid={dataTestId}
+        onClick={(event) => handleMenuClick(event)}
+      >
+        {iconId && (
+          <DotIcon
+            className={`${iconClasses} ${iconPlacement}`}
+            data-testid="link-icon"
+            fontSize={iconSize}
+            iconId={iconId}
+            title={title || text}
+          />
+        )}
+        {text && (
+          <Typography className={textClasses} variant="body1">
+            {text}
+          </Typography>
+        )}
+        <DotIcon
+          data-testid="link-icon"
+          iconId="chevron-right"
+          className="nav-arrow"
+        />
+      </StyledNavItem>
+      <Menu
+        anchorEl={anchorEl}
+        classes={{ paper: `dot-flyout ${!navOpen ? 'collapsed' : ''}` }}
+        keepMounted
+        open={open}
+        onClose={handleMenuClose}
+      >
+        {items.map((item: NavigationItemProps, index: number) => (
+          <MenuItem key={index} onClick={handleMenuClose}>
+            <NavLink exact to={item.url} title={item.text}>
+              {item.iconId && (
                 <DotIcon
-                  data-testid="link-icon"
+                  data-testid="icon"
                   fontSize={iconSize}
-                  iconId={iconId}
-                  title={title || text}
-                />
-              )}
-              {text && <span className={textClasses}>{text}</span>}
-              <DotIcon iconId="chevron-right" className="nav-arrow" />
-            </li>
-            <Menu
-              anchorEl={anchorEl}
-              classes={{ paper: `dot-flyout ${!navOpen ? 'collapsed' : ''}` }}
-              keepMounted
-              open={open}
-              onClose={handleMenuClose}
-            >
-              {items.map((item: NavigationItemProps, index: number) => (
-                <MenuItem key={index} onClick={handleMenuClose}>
-                  <NavLink exact to={item.url} title={item.text}>
-                    {item.iconId && (
-                      <DotIcon
-                        data-testid="icon"
-                        fontSize={iconSize}
-                        iconId={item.iconId}
-                        className={`${iconClasses} ${iconPlacement}`}
-                        title={item.title || item.text}
-                      />
-                    )}
-                    {item.text && (
-                      <span className={textClasses}>{item.text}</span>
-                    )}
-                  </NavLink>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Fragment>
-        );
-      } else {
-        return (
-          <li className={direction}>
-            <NavLink
-              exact
-              to={url}
-              onClick={(event) => onClick && onClick(event)}
-              title={text}
-            >
-              {iconId && (
-                <DotIcon
-                  data-testid="link-icon"
-                  fontSize={iconSize}
-                  iconId={iconId}
+                  iconId={item.iconId}
                   className={`${iconClasses} ${iconPlacement}`}
-                  title={title || text}
+                  title={item.title || item.text}
                 />
               )}
               {item.text && (
