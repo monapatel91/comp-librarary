@@ -77,7 +77,7 @@ const StyledSidebar = styled.aside`
       nav.side-nav {
         flex-grow: 2;
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: auto;
 
         li {
           flex-grow: 2;
