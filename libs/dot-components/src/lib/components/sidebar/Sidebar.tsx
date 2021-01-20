@@ -266,8 +266,6 @@ export const DotSidebar = ({
     `${!open ? 'collapsed' : 'expanded'} ${className}`
   );
 
-  console.log(titleAvatarProps);
-
   return (
     <StyledSidebar
       className={rootClasses}
