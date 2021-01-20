@@ -5,13 +5,14 @@
   - [Run Storybook](#run-storybook)
   - [Code Styleguide](#code-styleguide)
   - [Commit Messages](#commit-messages)
-  - [Running Tests & Formatters](#running-tests-and-formatters)
-    - [Running unit tests](#running-unit-tests)
-    - [Running end-to-end tests](#running-end-to-end-tests)
-    - [Running linter](#running-linter)
-    - [Checking code style](#checking-code-style)
+  - [Submitting Pull Requests](#submitting-pull-requests)
   - [Generate a component](#generate-a-component)
   - [Updating font icon](#updating-font-icon)
+- [Running Tests & Formatters](#running-tests-and-formatters)
+  - [Running unit tests](#running-unit-tests)
+  - [Running end-to-end tests](#running-end-to-end-tests)
+  - [Running linter](#running-linter)
+  - [Checking code style](#checking-code-style)
 - [Definition of Done](#definition-of-done)
   - [Understand your workspace](#understand-your-workspace)
 - [Publishing](#publishing)
@@ -51,51 +52,13 @@ When working on something that is part of a Digital.ai Agility issue we request 
 'S-12345: some message here'
 ```
 
-## Running Tests and Formatters
+## Submitting Pull Requests
 
-### Running unit tests
+When you're ready to submit your work then please create a pull request and mark it as either a `draft` or `ready` accordingly.
 
-Unit tests are run via [Jest](https://jestjs.io). The following commands can be used to run unit tests for the component library:
+If the PR should be linked to a story or defect in Agility then please format the title as `S-12345: Story Title Here` or `D-12345: Defect Title`. This will allow future integrations to automatically connect the PR to the story/defect.
 
-```sh
-# execute all unit tests
-yarn test
-
-# execute unit tests in watch mode
-yarn test --watch
-```
-
-### Running end-to-end tests
-
-e2e tests are run via [Cypress](https://www.cypress.io/). The following commands can be used to run e2e tests for the component library:
-
-```sh
-# execute all e2e tests
-yarn e2e
-
-# execute e2e tests in watch mode
-yarn e2e --watch
-```
-
-**_Note:_** When running e2e tests in watch mode Storybook is also running and available.
-
-### Running linter
-
-We use eslint for linting our source code. You can check the component library for lint issues by running `yarn lint` locally.
-
-### Checking code style
-
-For code formatting we use [Prettier](https://prettier.io/). Any overrides that we have configured to the default Prettier rules is defined in the `.prettierrc` file.
-
-You can use the following scripts to help you check for and fix any code format issues that you have:
-
-```sh
-# check for format issues
-yarn format:check
-
-# to fix any format issues
-yarn format
-```
+If your PR should be linked to an existing issue then please format the title as `Issue #1: Title Here` and be sure to add `Resolves #1` to your description so that it is automatically linked to the issue.
 
 ## Generate a component
 
@@ -128,6 +91,52 @@ After downloading generated files from icomoon only the following files should b
 You won't need any of the files located under the `demo-files/` directory when including the generated font in your own projects.
 
 When you're done be sure to update [the package number](#set-the-package-version-number)
+
+# Running Tests and Formatters
+
+## Running unit tests
+
+Unit tests are run via [Jest](https://jestjs.io). The following commands can be used to run unit tests for the component library:
+
+```sh
+# execute all unit tests
+yarn test
+
+# execute unit tests in watch mode
+yarn test --watch
+```
+
+## Running end-to-end tests
+
+e2e tests are run via [Cypress](https://www.cypress.io/). The following commands can be used to run e2e tests for the component library:
+
+```sh
+# execute all e2e tests
+yarn e2e
+
+# execute e2e tests in watch mode
+yarn e2e --watch
+```
+
+**_Note:_** When running e2e tests in watch mode Storybook is also running and available.
+
+## Running linter
+
+We use eslint for linting our source code. You can check the component library for lint issues by running `yarn lint` locally.
+
+## Checking code style
+
+For code formatting we use [Prettier](https://prettier.io/). Any overrides that we have configured to the default Prettier rules is defined in the `.prettierrc` file.
+
+You can use the following scripts to help you check for and fix any code format issues that you have:
+
+```sh
+# check for format issues
+yarn format:check
+
+# to fix any format issues
+yarn format
+```
 
 # Definition of Done
 
