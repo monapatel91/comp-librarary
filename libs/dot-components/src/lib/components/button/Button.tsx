@@ -27,9 +27,15 @@ const StyledButton = styled(Button)`
 
 export interface ButtonProps extends CommonProps {
   /** The text for the button. Button text should be in sentence case. */
-  children: string;
+  children: JSX.Element | string;
   /** If true, the button will be disabled. */
   disabled?: boolean;
+  /** If true, the ripple effect will be disabled. */
+  disableRipple?: boolean;
+  /** Icon placed after the children. */
+  endIcon?: JSX.Element;
+  /** If true, the button will take up the full width of its container.  */
+  fullWidth?: boolean;
   /** The icon to display on the button */
   iconId?: string;
   /** Is this a submit button */
@@ -50,6 +56,9 @@ export const DotButton = ({
   className,
   'data-testid': dataTestId,
   disabled = false,
+  disableRipple = false,
+  endIcon = null,
+  fullWidth = false,
   iconId,
   isSubmit = false,
   onClick = null,
@@ -89,6 +98,9 @@ export const DotButton = ({
       color={color}
       data-testid={dataTestId}
       disabled={disabled}
+      disableRipple={disableRipple}
+      endIcon={endIcon}
+      fullWidth={fullWidth}
       onClick={(event) => onClick && onClick(event)}
       startIcon={
         iconId ? (

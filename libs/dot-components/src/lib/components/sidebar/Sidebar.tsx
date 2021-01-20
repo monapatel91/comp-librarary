@@ -28,7 +28,7 @@ export interface SidebarProps extends CommonProps {
   /** The text that is displayed at the top of the sidebar */
   title?: string;
   /** If provided, will display an avatar next to the title text */
-  titleAvatarProps?: AvatarProps;
+  titleAvatarProps: AvatarProps;
 }
 
 const StyledSidebar = styled.aside`
@@ -95,10 +95,37 @@ const StyledSidebar = styled.aside`
             }
           }
 
-          &.has-subnav,
+          .dot-button {
+            border-radius: 0;
+            height: 44px;
+            padding: 6px;
+
+            &.active,
+            &:hover,
+            &:focus,
+            &.Mui-focusVisible {
+              background: ${theme.palette.grey[100]};
+              color: ${theme.palette.grey[700]};
+            }
+
+            .MuiButton-label {
+              .MuiButton-startIcon {
+                margin: ${theme.spacing(0, 3, 0, 0)};
+                padding-left: 10px;
+              }
+
+              .dot-icon {
+                padding: 0;
+              }
+
+              p {
+                flex-grow: 1;
+                text-align: left;
+              }
+            }
+          }
+
           a {
-            align-items: stretch;
-            font-size: 14px;
             height: 44px;
             padding: 6px;
 
@@ -170,18 +197,14 @@ const StyledSidebar = styled.aside`
         -webkit-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
-        h4::first-letter {
-          background: ${theme.palette.grey[200]};
-          border-radius: 50%;
-          margin-right: 9999px;
-          padding: ${theme.spacing(1 * 0.5)}px ${theme.spacing(1)}px;
+        h3 {
+          padding: ${theme.spacing(1)}px;
         }
 
         nav li {
-          &.has-subnav,
-          a {
-            height: 44px;
-            padding: 6px;
+          .dot-button {
+            /* needed to ensure the start icon aligns properly when collapsed */
+            min-width: 240px;
           }
 
           &.divider h5 {
@@ -258,7 +281,7 @@ export const DotSidebar = ({
   goBack,
   navItems = [],
   title,
-  titleAvatarProps = null,
+  titleAvatarProps,
 }: SidebarProps) => {
   const [open, updateOpen] = useState(true);
   const rootClasses = useStylesWithRootClass(
@@ -273,10 +296,14 @@ export const DotSidebar = ({
     >
       {title && (
         <Typography variant="h3">
-          <Fragment>
-            {titleAvatarProps && <DotAvatar {...titleAvatarProps} />}
-            {title}
-          </Fragment>
+          {open ? (
+            <Fragment>
+              <DotAvatar {...titleAvatarProps} />
+              {title}
+            </Fragment>
+          ) : (
+            <DotAvatar {...titleAvatarProps} />
+          )}
         </Typography>
       )}
       {goBack && (

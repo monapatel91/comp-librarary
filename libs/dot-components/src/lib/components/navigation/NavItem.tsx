@@ -81,11 +81,18 @@ const StyledNavItem = styled.li`
         align-self: center;
       }
 
+      .dot-button {
+        &.active,
+        &:hover,
+        &:focus,
+        &.Mui-focusVisible {
+          color: #74b941;
+        }
+      }
+
       a {
-        align-items: stretch;
         color: ${theme.palette.grey[700]};
         display: flex;
-        flex-grow: 1;
         text-decoration: none;
 
         &:hover,
@@ -98,12 +105,12 @@ const StyledNavItem = styled.li`
           align-self: center;
         }
 
-        span:not(.material-icons) {
+        p {
           flex-grow: 1;
         }
       }
 
-      .material-icons {
+      .dot-icon {
         max-height: ${theme.spacing(8)}px;
         object-fit: scale-down;
 
@@ -238,11 +245,12 @@ export const DotNavItemButton = ({
     {text ? (
       <DotButton
         iconId={iconId}
-        children={text}
         onClick={(event) => onClick && onClick(event)}
         size={btnSize}
         type={btnType}
-      />
+      >
+        {text}
+      </DotButton>
     ) : (
       <DotIconButton
         className={iconClasses}
@@ -307,7 +315,6 @@ export const DotNavItemMenu = ({
   iconSize,
   items,
   navOpen,
-  title,
   text,
   textClasses,
 }: NavigationItemProps) => {
@@ -329,28 +336,23 @@ export const DotNavItemMenu = ({
       <StyledNavItem
         className={`${className} ${direction} has-subnav`}
         data-testid={dataTestId}
-        onClick={(event) => handleMenuClick(event)}
-        tabIndex={0}
       >
-        {iconId && (
-          <DotIcon
-            className={`${iconClasses} ${iconPlacement}`}
-            data-testid="link-icon"
-            fontSize={iconSize}
-            iconId={iconId}
-            title={title || text}
-          />
-        )}
-        {text && (
-          <Typography className={textClasses} variant="body1">
-            {text}
-          </Typography>
-        )}
-        <DotIcon
-          data-testid="link-icon"
-          iconId="chevron-right"
-          className="nav-arrow"
-        />
+        <DotButton
+          iconId={iconId}
+          disableRipple={true}
+          endIcon={
+            <DotIcon
+              data-testid="link-icon"
+              iconId="chevron-right"
+              className="nav-arrow"
+            />
+          }
+          fullWidth={true}
+          onClick={handleMenuClick}
+          type="text"
+        >
+          <Typography variant="body1">{text}</Typography>
+        </DotButton>
       </StyledNavItem>
       <Menu
         anchorEl={anchorEl}
