@@ -330,6 +330,7 @@ export const DotNavItemMenu = ({
         className={`${className} ${direction} has-subnav`}
         data-testid={dataTestId}
         onClick={(event) => handleMenuClick(event)}
+        tabIndex={0}
       >
         {iconId && (
           <DotIcon

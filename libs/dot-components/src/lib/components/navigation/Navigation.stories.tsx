@@ -7,7 +7,7 @@ import { DotNavigation, NavigationProps } from './Navigation';
 addDecorator(StoryRouter());
 
 export default {
-  title: 'Experimental/Navigation',
+  title: 'Components/Navigation',
   component: DotNavigation,
   argTypes: {
     direction: {
@@ -22,7 +22,26 @@ export default {
           iconPlacement: 'first',
           onClick: () => console.log('clicked on nav item'),
           title: 'link 1',
-          url: '/',
+          items: [
+            {
+              direction: 'horizontal',
+              iconId: 'block',
+              text: 'link 3',
+              iconPlacement: 'first',
+              onClick: () => console.log('clicked on nav item'),
+              title: 'link 3',
+              url: '/repos',
+            },
+            {
+              direction: 'horizontal',
+              iconId: 'block',
+              text: 'link 4',
+              iconPlacement: 'first',
+              onClick: () => console.log('clicked on nav item'),
+              title: 'link 4',
+              url: '/repos',
+            },
+          ],
         },
         {
           direction: 'horizontal',

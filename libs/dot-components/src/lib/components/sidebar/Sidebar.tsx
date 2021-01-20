@@ -109,7 +109,7 @@ const StyledSidebar = styled.aside`
               color: ${theme.palette.grey[700]};
             }
 
-            span:not(.dot-icon) {
+            p {
               flex-grow: 1;
             }
 
