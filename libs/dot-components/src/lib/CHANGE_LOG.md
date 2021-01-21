@@ -17,7 +17,12 @@
 - **Action Toolbar**: created the `DotActionToolbar` component
 - **Breadcrumbs**: added the `className` prop to include a class to the root dom element
 - **Breadcrumbs**: updated style to more closely match the design system
-- **Button**: remove the `label` prop and accept text as a child to represent the button text
+- **Breadcrumbs**: added `tabIndex` on links
+- **Breadcrumbs**: added `cursor: pointer` on link hover
+- **Breadcrumbs**: updated Link styles
+- **Button**: changed `label` prop to `children`
+- **Button**: changed `text` and `outlined` colors to `default`
+- **Button**: updated theme to use default `line-height`
 - **Icon Button**: updated style to more closely match the design system
 - **Icon Button**: replace `iconButtonSize` and `iconSize` props with the `size` prop
 - **Icon Button**: rename `classes` prop to `className`
