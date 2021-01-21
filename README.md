@@ -54,4 +54,4 @@ TBD
 
 ## Change Log
 
-[Learn about the latest improvements](/libs/dot-components/src/lib/CHANGE_LOG.md).
+[Learn about the latest improvements](/CHANGE_LOG.md).
