@@ -27,7 +27,7 @@ const StyledButton = styled(Button)`
 
 export interface ButtonProps extends CommonProps {
   /** The text for the button. Button text should be in sentence case. */
-  children: JSX.Element | string;
+  children: string;
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** If true, the ripple effect will be disabled. */

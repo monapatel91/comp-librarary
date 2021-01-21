@@ -204,6 +204,7 @@ const theme = createMuiTheme({
     button: {
       fontSize: 14,
       fontWeight: 400,
+      letterSpacing: '0.03em',
       textTransform: 'none',
     },
   },

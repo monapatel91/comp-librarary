@@ -82,17 +82,26 @@ const StyledNavItem = styled.li`
       }
 
       .dot-button {
+        justify-content: flex-start;
+
         &.active,
         &:hover,
         &:focus,
         &.Mui-focusVisible {
           color: #74b941;
         }
+
+        .MuiButton-endIcon {
+          display: flex;
+          flex-grow: 1;
+          justify-content: flex-end;
+        }
       }
 
       a {
         color: ${theme.palette.grey[700]};
         display: flex;
+        flex-grow: 1;
         text-decoration: none;
 
         &:hover,
@@ -351,7 +360,7 @@ export const DotNavItemMenu = ({
           onClick={handleMenuClick}
           type="text"
         >
-          <Typography variant="body1">{text}</Typography>
+          {text}
         </DotButton>
       </StyledNavItem>
       <Menu
