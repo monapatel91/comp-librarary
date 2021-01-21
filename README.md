@@ -58,4 +58,4 @@ TBD
 
 ## Change Log
 
-[Learn about the latest improvements](https://zeroheight.com/4a9ac476a/p/1087aa-change-log).
+[Learn about the latest improvements](/libs/dot-components/src/lib/CHANGE_LOG.md).
