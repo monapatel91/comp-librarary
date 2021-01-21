@@ -20,25 +20,25 @@
     - [Set the package version number](#set-the-package-version-number)
     - [Build and publish](#build-and-publish)
 
-# Getting Started
+## Getting Started
 
-## Run demo application
+### Run demo application
 
 To run the demo application run `yarn start`. You can then see the running application at <http://localhost:4200/>.
 
-## Run Storybook
+### Run Storybook
 
 When creating new components it's easiest to use Storybook as your reference point. You should make sure that all `props` are setup as `actions` on Storybook so that users can experiment with the various options. Please also make sure to document each `prop` accordingly.
 
 To run Storybook locally run `yarn storybook`. You can then see Storybook running at <http://localhost:4400/>.
 
-## Code Styleguide
+### Code Styleguide
 
 This is a work in progress...
 
 - Order all props alphabetically, this allows for easier maintenance of larger components.
 
-## Commit Messages
+### Commit Messages
 
 When working on something that is part of a GitHub issue we request that you use the following format with your commit messages. Doing so will allow your commit message to properly link to the related issue.
 
@@ -52,7 +52,7 @@ When working on something that is part of a Digital.ai Agility issue we request 
 'S-12345: some message here'
 ```
 
-## Submitting Pull Requests
+### Submitting Pull Requests
 
 When you're ready to submit your work then please create a pull request and mark it as either a `draft` or `ready` accordingly.
 
@@ -60,7 +60,7 @@ If the PR should be linked to a story or defect in Agility then please format th
 
 If your PR should be linked to an existing issue then please format the title as `Issue #1: Title Here` and be sure to add `Resolves #1` to your description so that it is automatically linked to the issue.
 
-## Generate a component
+### Generate a component
 
 To generate a component execute use following commands:
 
@@ -72,7 +72,7 @@ yarn generate:comp:dry --name=[name of component] --export --pascalCaseFiles
 yarn generate:comp --name=[name of component] --export --pascalCaseFiles
 ```
 
-## Updating font icon
+### Updating font icon
 
 For details go to [.dot design system](https://zeroheight.com/4a9ac476a/p/13a447-icons/t/36e685)
 
@@ -92,9 +92,9 @@ You won't need any of the files located under the `demo-files/` directory when i
 
 When you're done be sure to update [the package number](#set-the-package-version-number)
 
-# Running Tests and Formatters
+## Running Tests and Formatters
 
-## Running unit tests
+### Running unit tests
 
 Unit tests are run via [Jest](https://jestjs.io). The following commands can be used to run unit tests for the component library:
 
@@ -106,7 +106,7 @@ yarn test
 yarn test --watch
 ```
 
-## Running end-to-end tests
+### Running end-to-end tests
 
 e2e tests are run via [Cypress](https://www.cypress.io/). The following commands can be used to run e2e tests for the component library:
 
@@ -120,11 +120,11 @@ yarn e2e --watch
 
 **_Note:_** When running e2e tests in watch mode Storybook is also running and available.
 
-## Running linter
+### Running linter
 
 We use eslint for linting our source code. You can check the component library for lint issues by running `yarn lint` locally.
 
-## Checking code style
+### Checking code style
 
 For code formatting we use [Prettier](https://prettier.io/). Any overrides that we have configured to the default Prettier rules is defined in the `.prettierrc` file.
 
@@ -138,7 +138,7 @@ yarn format:check
 yarn format
 ```
 
-# Definition of Done
+## Definition of Done
 
 ## Understand your workspace
 
