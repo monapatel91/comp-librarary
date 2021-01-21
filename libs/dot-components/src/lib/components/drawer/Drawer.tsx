@@ -23,17 +23,17 @@ export interface DrawerProps extends CommonProps {
 
 const StyledDrawer = styled(Drawer)<DrawerProps>`
   ${({ theme }: { theme: Theme }) => css`
-   &.dot-drawer {
-    .MuiBackdrop-root {
+    &.dot-drawer {
+      .MuiBackdrop-root {
         background: rgba(${theme.palette.grey[700]}, 0.3);
         opacity: 0.7 !important;
       }
       z-index: 9999;
     }
     .dot-drawer-paper {
-      width: ${({width}: DrawerProps ) => width};
+      width: ${({ width, anchor }: DrawerProps) =>
+        anchor === 'bottom' || anchor === 'top' ? '100%' : width};
       padding: ${theme.spacing(2)}px;
-
     }
   `}
 `;
@@ -49,7 +49,7 @@ export const DotDrawer = ({
   onClose,
   open,
   variant = 'temporary',
-  width = '256px'
+  width,
 }: DrawerProps) => {
   return (
     <StyledDrawer
@@ -59,7 +59,6 @@ export const DotDrawer = ({
       className={`dot-drawer ${className}`}
       onClose={(event: MouseEvent) => onClose && onClose(event)}
       open={open}
-      PaperProps={{['data-testid']: 'drawer-paper'} as any}
       variant={variant}
       width={width}
     >

@@ -6,7 +6,7 @@ import {
   DotSidebar,
   NavigationItemProps,
   DotDrawer,
-  DotButton
+  DotButton,
 } from '@digital-ai/dot-components';
 import DemoProgressionBoard from '../demo-components/DemoProgressionBoard';
 
@@ -227,10 +227,10 @@ export const App = () => {
 
   return (
     <BrowserRouter>
-    <DotButton onClick={() =>setOpened(!opened)}>toggle</DotButton>
-    <DotDrawer onClose={() =>setOpened(!opened)} open={opened} width='300px'>
-      test
-    </DotDrawer>
+      <DotButton onClick={() => setOpened(!opened)}>toggle</DotButton>
+      <DotDrawer onClose={() => setOpened(!opened)} open={opened} width="300px">
+        test
+      </DotDrawer>
       <DotAppToolbar
         avatar={userAvatar}
         brand="Continuum"
