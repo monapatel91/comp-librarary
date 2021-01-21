@@ -2,7 +2,6 @@ import React, { MouseEvent } from 'react';
 import { Drawer, Theme } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import styled, { css } from 'styled-components';
-// import './Drawer.scss';
 
 export type DrawerAnchor = 'bottom' | 'left' | 'right' | 'top';
 export type DrawerVariant = 'permanent' | 'persistent' | 'temporary';
@@ -22,20 +21,19 @@ export interface DrawerProps extends CommonProps {
   width?: string;
 }
 
-const setDrawerPosition = (anchor): string => {
-  let left = 'auto';
-  if (anchor === 'bottom' || anchor === 'top') {
-    left = '50%';
-  }
-  return `transform: translate(${left === 'auto' ? 0 : `-${left}`}, 0); left: ${left}`;
-}
-
 const StyledDrawer = styled(Drawer)<DrawerProps>`
   ${({ theme }: { theme: Theme }) => css`
+   &.dot-drawer {
+    .MuiBackdrop-root {
+        background: rgba(${theme.palette.grey[700]}, 0.3);
+        opacity: 0.7 !important;
+      }
+      z-index: 9999;
+    }
     .dot-drawer-paper {
       width: ${({width}: DrawerProps ) => width};
       padding: ${theme.spacing(2)}px;
-      ${({ anchor }: DrawerProps) => setDrawerPosition(anchor)};
+
     }
   `}
 `;
