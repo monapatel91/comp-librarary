@@ -1,8 +1,7 @@
 import React, { MouseEvent } from 'react';
-import { Drawer, Theme } from '@material-ui/core';
+import { Drawer, Theme, fade } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
-import { fade } from '@material-ui/core/styles';
 import styled, { css } from 'styled-components';
 
 export type DrawerAnchor = 'bottom' | 'left' | 'right' | 'top';
