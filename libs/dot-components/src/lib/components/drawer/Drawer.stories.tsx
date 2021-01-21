@@ -5,7 +5,7 @@ import { DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
 
 export default {
-  title: 'Experimental/Drawer',
+  title: 'Components/Drawer',
   component: DotDrawer,
   argTypes: {
     open: { defaultValue: true },
