@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import {
   DotAvatar,
   DotAppToolbar,
   DotSidebar,
   NavigationItemProps,
-  DotDrawer,
-  DotButton,
 } from '@digital-ai/dot-components';
 import DemoProgressionBoard from '../demo-components/DemoProgressionBoard';
 
@@ -214,7 +212,6 @@ const userAvatar = (
 );
 
 export const App = () => {
-  const [opened, setOpened] = useState(true);
   const backItem: Array<NavigationItemProps> = [
     {
       iconId: 'back',
@@ -227,10 +224,6 @@ export const App = () => {
 
   return (
     <BrowserRouter>
-      <DotButton onClick={() => setOpened(!opened)}>toggle</DotButton>
-      <DotDrawer onClose={() => setOpened(!opened)} open={opened} width="300px">
-        test
-      </DotDrawer>
       <DotAppToolbar
         avatar={userAvatar}
         brand="Continuum"
