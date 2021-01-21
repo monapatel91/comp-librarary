@@ -144,22 +144,11 @@ yarn format
 
 Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
-# Publishing
-
-## Publishing as NPM package to GitHub Packages
-
-In order to publish you will need to have authenticated to GitHub Packages. If you haven't done so already [Authenticating](/README.md) for instructions.
+## Publishing
 
 ### Set the package version number
 
-<!-- TODO: come up with a better and more consistent way of setting the version number -->
-
 Set the new version number for the package in the `/libs/dot-components/package.json` file. Create a commit with the new version number.
-
-- adding a new component should be an increase of `0.0.1`
-- adding a new font icon should be an increase of `0.0.1`
-- once a new set of components are added an increase of `0.1.0`
-- breaking changes will be an increase of `1.0.0`
 
 ### Build and publish
 
