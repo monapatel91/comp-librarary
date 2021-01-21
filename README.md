@@ -1,9 +1,5 @@
 # @digital-ai/dot-components
 
-<!-- TODO: add more detail -->
-
-This is a component library...
-
 ## Installation
 
 ```sh
