@@ -43,7 +43,7 @@ export const DotAppToolbar = ({
           />
           <DotDrawer
             anchor="left"
-            classes="dot-main-menu"
+            className="dot-main-menu"
             onClose={() => updateMenuOpen(false)}
             open={menuOpen}
           >
