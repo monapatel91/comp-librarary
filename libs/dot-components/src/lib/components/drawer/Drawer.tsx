@@ -2,6 +2,7 @@ import React, { MouseEvent } from 'react';
 import { Drawer, Theme } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { fade } from '@material-ui/core/styles';
 import styled, { css } from 'styled-components';
 
 export type DrawerAnchor = 'bottom' | 'left' | 'right' | 'top';
@@ -26,8 +27,7 @@ const StyledDrawer = styled(Drawer)<DrawerProps>`
   ${({ theme }: { theme: Theme }) => css`
     &.dot-drawer {
       .MuiBackdrop-root {
-        background: ${theme.palette.grey[900]};
-        opacity: 0.7 !important;
+        background-color: ${fade(theme.palette.grey[900], 0.7)};
       }
     }
     .dot-drawer-paper {
