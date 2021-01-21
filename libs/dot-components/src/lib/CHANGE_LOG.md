@@ -2,6 +2,8 @@
 
 ## Current
 
+### Components
+
 - **AppToolbar**: converted `DotHeader` to `DotAppToolbar`
 - **AppToolbar**: added `DotAvatar` to `DotAppToolbar`
 - **AppToolbar**: added `DotMenu` to `DotAppToolbar` for hamburger menu
@@ -10,6 +12,34 @@
 - **Navigation**: added support for button & icon button
 - **Navigation**: added support for divider, section header
 - **Navigation**: ability to display a second level navigation onClick
+- **Menu**: changed from `text` to `children` to allow for more flexibility around menu item
+- **Menu**: added `onClick` handler for menu items
+- **Action Toolbar**: created the `DotActionToolbar` component
+- **Breadcrumbs**: added the `className` prop to include a class to the root dom element
+- **Breadcrumbs**: updated style to more closely match the design system
+- **Button**: remove the `label` prop and accept text as a child to represent the button text
+- **Icon Button**: updated style to more closely match the design system
+- **Icon Button**: replace `iconButtonSize` and `iconSize` props with the `size` prop
+- **Icon Button**: rename `classes` prop to `className`
+- **Icon**: updated style to more closely match the design system
+- **Icon**: renamed the `icon` prop to `iconId`
+- **Icon**: removed the `iconBgColor`, `iconClasses`, and `iconType` props
+- **Icon**: added the `className` prop to include a class to the root dom element
+
+### Experimental
+
+- **Progression Board Legend**: created the `DotProgressionBoardLegend` component
+
+## 0.0.0-alpha.2
+
+### Experimental
+
+- **Progression Board**: created the `DotProgressionBoard` component
+
+## 0.0.0-alpha.1
+
+### Components
+
 - **ThemeProvider**: created the theme provider and included a light theme configuration with a color palette and typography configuration that matches the Dot Design System
 - **Avatar**: added the following props: `iconId`, `imageSrc`, `text`, `type`, and `variant`
 - **Avatar**: made the `alt` prop required
@@ -19,13 +49,14 @@
 - **Button**: set button types to `destructive`, `primary`, `outlined`, or `text`
 - **Button**: change `displayText` prop to `label`
 - **Button**: add the following props: `isSubmit` and `size`
+
+### Experimental
+
 - **Menu**: created `DotMenu` wrapper component with included button for ease of consumption
-- **Menu**: changed from `text` to `children` to allow for more flexibility around menu item
-- **Menu**: added `onClick` handler for menu items
 
 ## 0.1.2
 
-### Updates
+### Experimental
 
 - **Auto Complete**: Create the auto complete component. [Design docs](https://zeroheight.com/4a9ac476a/p/94a413-auto-complete/b/861f76).
 - **Avatar**: Create the avatar component. [Design docs](https://zeroheight.com/4a9ac476a/p/357f84-avatar/b/207629).
@@ -45,9 +76,6 @@
 - **Progress**: Create the progress component. [Design docs](https://zeroheight.com/4a9ac476a/p/6102aa-progress-indicators/b/41fdf6).
 - **Skeleton**: Create the skeleton component. [Design docs](https://zeroheight.com/4a9ac476a/p/739a93-skeleton-loader/b/060be8).
 - **Switch**: Create the switch component. [Design docs](https://zeroheight.com/4a9ac476a/p/906d11-switches/b/71f6ed).
-
-### Experimental
-
 - **Stage Card**: Create the stage card component. [Design docs](https://zeroheight.com/4a9ac476a/p/52a412-stage-card/b/57fcb0).
 - **Step Card**: Create the stage card component. [Design docs](https://zeroheight.com/4a9ac476a/p/495871-step-card/b/426fc4).
 - **Infinite Scroll**: Create the infinite scroll component. [Design docs](https://zeroheight.com/4a9ac476a/p/796995-infinite-scroll/b/533430).
