@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { TextField } from '@material-ui/core';
 
 export default {
-  title: 'Experimental/Sidebar',
+  title: 'Components/Sidebar',
   component: DotSidebar,
   argTypes: {
     backItem: {
@@ -134,6 +134,13 @@ export default {
     },
     title: {
       defaultValue: 'Title Goes Here',
+    },
+    titleAvatarProps: {
+      defaultValue: {
+        alt: 'Avatar goes here',
+        iconId: 'user',
+        type: 'icon',
+      },
     },
   },
 } as Meta;

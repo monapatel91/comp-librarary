@@ -21,7 +21,7 @@ describe('Breadcrumbs', () => {
     render(<DotBreadcrumbs items={dummyItems} maxItems={2} />);
     const links = screen.getAllByRole('link');
 
-    expect(links.length).toEqual(1);
+    expect(links.length).toEqual(2);
   });
 
   it('should call onClick if one is passed down as a prop', () => {
