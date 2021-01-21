@@ -16,7 +16,7 @@
   "main": "./dot-components.umd.js",
   "module": "./dot-components.esm.js",
   "typings": "./index.d.ts",
-  "description": "<!-- TODO: add more detail -->",
+  "description": "A component library the follows the Dot Design System",
   "bugs": {
     "url": "https://github.com/digital-ai/dot-components/issues"
   },
