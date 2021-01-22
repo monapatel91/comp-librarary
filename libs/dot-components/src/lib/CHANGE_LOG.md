@@ -30,6 +30,9 @@
 - **Icon**: renamed the `icon` prop to `iconId`
 - **Icon**: removed the `iconBgColor`, `iconClasses`, and `iconType` props
 - **Icon**: added the `className` prop to include a class to the root dom element
+- **Drawer**: added `width` props, defaults to `256px` for anchor positions `left` and `right`
+- **Drawer**: updated overlay styles
+- **Drawer**: added default padding `16px` to be in spec with material
 
 ### Experimental
 
