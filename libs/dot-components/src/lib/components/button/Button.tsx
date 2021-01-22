@@ -3,7 +3,6 @@ import { Button, darken, Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
-import { DotIcon } from '../icon/Icon';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
 export type ButtonSize = 'small' | 'medium' | 'large';
@@ -27,7 +26,7 @@ const StyledButton = styled(Button)`
 
 export interface ButtonProps extends CommonProps {
   /** The text for the button. Button text should be in sentence case. */
-  children: string;
+  children: JSX.Element | string;
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** If true, the ripple effect will be disabled. */
@@ -36,14 +35,14 @@ export interface ButtonProps extends CommonProps {
   endIcon?: JSX.Element;
   /** If true, the button will take up the full width of its container.  */
   fullWidth?: boolean;
-  /** The icon to display on the button */
-  iconId?: string;
   /** Is this a submit button */
   isSubmit?: boolean;
   /** Event callback */
   onClick?: (event: MouseEvent<Element>) => void;
   /** The size of the button */
   size?: ButtonSize;
+  /** Icon placed before the children. */
+  startIcon?: JSX.Element;
   /** Help text to be displayed on hover */
   titleTooltip?: string;
   /** The type of button */
@@ -59,10 +58,10 @@ export const DotButton = ({
   disableRipple = false,
   endIcon = null,
   fullWidth = false,
-  iconId,
   isSubmit = false,
   onClick = null,
   size = 'medium',
+  startIcon = null,
   titleTooltip,
   type = 'primary',
 }: ButtonProps) => {
@@ -89,9 +88,6 @@ export const DotButton = ({
       break;
   }
 
-  const iconFontSize =
-    size === 'medium' ? 'default' : size === 'large' ? 'inherit' : 'small';
-
   return (
     <StyledButton
       classes={{ root: rootClasses }}
@@ -102,14 +98,10 @@ export const DotButton = ({
       endIcon={endIcon}
       fullWidth={fullWidth}
       onClick={(event) => onClick && onClick(event)}
-      startIcon={
-        iconId ? (
-          <DotIcon data-testid="icon" iconId={iconId} fontSize={iconFontSize} />
-        ) : undefined
-      }
       title={titleTooltip}
       variant={variant}
       size={size}
+      startIcon={startIcon}
       type={isSubmit ? 'submit' : 'button'}
     >
       {children}

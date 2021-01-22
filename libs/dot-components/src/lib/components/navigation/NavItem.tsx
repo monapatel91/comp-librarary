@@ -72,7 +72,7 @@ const StyledNavItem = styled.li`
       &.vertical > a {
         flex-direction: column;
 
-        .material-icons {
+        .dot-icon {
           margin: 0;
         }
       }
@@ -83,12 +83,17 @@ const StyledNavItem = styled.li`
 
       .dot-button {
         justify-content: flex-start;
+        padding: ${theme.spacing(1)}px;
 
         &.active,
         &:hover,
         &:focus,
         &.Mui-focusVisible {
           color: #74b941;
+        }
+
+        .MuiButton-startIcon {
+          margin: ${theme.spacing(0, 1, 0, 0)};
         }
 
         .MuiButton-endIcon {
@@ -102,11 +107,13 @@ const StyledNavItem = styled.li`
         color: ${theme.palette.grey[700]};
         display: flex;
         flex-grow: 1;
+        padding: ${theme.spacing(1)}px;
         text-decoration: none;
 
         &:hover,
         &:focus,
         &.active {
+          background: ${theme.palette.grey[50]};
           color: #74b941;
         }
 
@@ -115,21 +122,22 @@ const StyledNavItem = styled.li`
         }
 
         p {
-          flex-grow: 1;
-        }
-      }
-
-      .dot-icon {
-        max-height: ${theme.spacing(8)}px;
-        object-fit: scale-down;
-
-        &.first {
-          margin-right: ${theme.spacing(1)}px;
+          margin-bottom: 0;
         }
 
-        &.last {
-          margin-left: ${theme.spacing(1)}px;
-          order: 4;
+        .dot-icon {
+          max-height: ${theme.spacing(8)}px;
+          object-fit: scale-down;
+          padding: 0;
+
+          &.first {
+            margin-right: ${theme.spacing(1)}px;
+          }
+
+          &.last {
+            margin-left: ${theme.spacing(1)}px;
+            order: 4;
+          }
         }
       }
     }
@@ -253,9 +261,9 @@ export const DotNavItemButton = ({
   >
     {text ? (
       <DotButton
-        iconId={iconId}
         onClick={(event) => onClick && onClick(event)}
         size={btnSize}
+        startIcon={<DotIcon data-testid="icon" iconId={iconId} />}
         type={btnType}
       >
         {text}
@@ -347,17 +355,21 @@ export const DotNavItemMenu = ({
         data-testid={dataTestId}
       >
         <DotButton
-          iconId={iconId}
           disableRipple={true}
           endIcon={
             <DotIcon
-              data-testid="link-icon"
-              iconId="chevron-right"
               className="nav-arrow"
+              data-testid="link-icon"
+              iconId={
+                direction === 'horizontal' ? 'chevron-down' : 'chevron-right'
+              }
             />
           }
           fullWidth={true}
           onClick={handleMenuClick}
+          startIcon={
+            <DotIcon className="first" data-testid="icon" iconId={iconId} />
+          }
           type="text"
         >
           {text}

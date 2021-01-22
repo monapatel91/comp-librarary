@@ -1,5 +1,11 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **Button**: changed `iconId` prop to `startIcon` prop which accepts a component
+
 ## 0.0.0-alpha.3
 
 ### Components

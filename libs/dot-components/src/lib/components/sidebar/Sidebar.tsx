@@ -28,7 +28,7 @@ export interface SidebarProps extends CommonProps {
   /** The text that is displayed at the top of the sidebar */
   title?: string;
   /** If provided, will display an avatar next to the title text */
-  titleAvatarProps: AvatarProps;
+  titleAvatarProps?: AvatarProps;
 }
 
 const StyledSidebar = styled.aside`
@@ -116,11 +116,6 @@ const StyledSidebar = styled.aside`
 
               .dot-icon {
                 padding: 0;
-              }
-
-              p {
-                flex-grow: 1;
-                text-align: left;
               }
             }
           }

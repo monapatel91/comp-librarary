@@ -65,8 +65,8 @@ export const DotRow = ({
           <DotButton
             data-testid={uid}
             children="Edit"
-            iconId="edit"
             onClick={(event) => onEdit && onEdit(event)}
+            startIcon={<DotIcon data-testid="icon" iconId="edit" />}
             type="text"
           />
         )}
@@ -86,8 +86,8 @@ export const DotRow = ({
             <DotButton
               data-testid={uid}
               children="Delete"
-              iconId="delete"
               onClick={() => setDeleteDialogIsOpen(true)}
+              startIcon={<DotIcon data-testid="icon" iconId="delete" />}
               type="text"
             />
           </Fragment>

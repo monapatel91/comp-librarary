@@ -3,6 +3,7 @@ import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import DotButton from './Button';
+import DotIcon from '../icon/Icon';
 
 describe('DotButton', () => {
   it('should render a primary button', () => {
@@ -144,7 +145,7 @@ describe('DotButton', () => {
           console.log('test click');
         }}
         type="outlined"
-        iconId="save"
+        startIcon={<DotIcon data-testid="icon" iconId="save" />}
       >
         Test
       </DotButton>
@@ -164,7 +165,7 @@ describe('DotButton', () => {
           console.log('test click');
         }}
         type="outlined"
-        iconId="save"
+        startIcon={<DotIcon data-testid="icon" iconId="save" />}
       >
         Test
       </DotButton>
