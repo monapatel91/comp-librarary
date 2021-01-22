@@ -5,6 +5,8 @@
 ### Components
 
 - **Button**: changed `iconId` prop to `startIcon` prop which accepts a component
+- **Navigation**: added button as component to trigger subnav
+- **Navigation**: added support for keyboard navigation
 
 ## 0.0.0-alpha.3
 
@@ -15,8 +17,6 @@
 - **AppToolbar**: added `DotMenu` to `DotAppToolbar` for hamburger menu
 - **Sidebar**: swapped out logo, component now controls the ability to collapse/expand
 - **Sidebar**: adjustments to animation used, style adjustments based on UX feedback
-- **Navigation**: added button as component to trigger subnav
-- **Navigation**: added support for keyboard navigation
 - **Navigation**: added support for button & icon button
 - **Navigation**: added support for divider, section header
 - **Navigation**: ability to display a second level navigation onClick
@@ -91,6 +91,6 @@
 - **Step Card**: Create the stage card component. [Design docs](https://zeroheight.com/4a9ac476a/p/495871-step-card/b/426fc4).
 - **Infinite Scroll**: Create the infinite scroll component. [Design docs](https://zeroheight.com/4a9ac476a/p/796995-infinite-scroll/b/533430).
 - **Paginated Table**: Create the infinite scroll component. [Design docs](https://zeroheight.com/4a9ac476a/p/662bde-table/b/25b7dc).
-- **AppToolBar**: Create the header component. [Design docs](https://zeroheight.com/4a9ac476a/p/74161a-single-level-nav-flow/b/94d1c7).
+- **Header**: Create the header component. [Design docs](https://zeroheight.com/4a9ac476a/p/74161a-single-level-nav-flow/b/94d1c7).
 - **Navigation**: Create the navigation component.
 - **Row**: Create the row component.
