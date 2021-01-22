@@ -2,40 +2,36 @@ import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import { createStyles, Theme, StyleRules } from '@material-ui/core/styles';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { CommonProps } from '../CommonProps';
+import styled, { css } from 'styled-components';
 
 export type DotActionBarVarient = 'regular' | 'dense';
 
-const styles: (theme: Theme) => StyleRules<string> = (theme) =>
-  createStyles({
-    root: {
-      borderBottom: `1px solid ${theme.palette.grey[100]}`,
-    },
-  });
-
-export interface DotActionBarProps {
-  /** string to add a custom class name to the div content wrapper */
-  className?: string;
+export interface DotActionBarProps extends CommonProps {
   /** string or JSX element that is displayed inside the toolbar */
   children?: string | JSX.Element | JSX.Element[];
   /** DotActionBarVarient dense and regular for toolbar height */
   variant?: DotActionBarVarient;
 }
 
+const StyledToolbar = styled(Toolbar)<DotActionBarProps>`
+  ${({ theme }: { theme: Theme }) => css`
+    &.dot-action-toolbar {
+      border-bottom: 1px solid ${theme.palette.grey[100]};
+    }
+  `}
+`;
+
 export function DotActionToolbar({
   children,
-  className,
   variant = 'dense',
 }: DotActionBarProps) {
-  const classes = useStylesWithRootClass(
-    'dot-action-toolbar',
-    styles,
-    className
-  );
+  const rootClasses = useStylesWithRootClass('dot-action-toolbar');
 
   return (
-    <Toolbar classes={{ ...classes }} variant={variant}>
+    <StyledToolbar className={rootClasses} variant={variant}>
       {children}
-    </Toolbar>
+    </StyledToolbar>
   );
 }
 
