@@ -1,12 +1,13 @@
 {
   "name": "@digital-ai/dot-components",
-  "version": "0.0.0-alpha.2",
+  "version": "0.0.0-alpha.3",
   "private": false,
   "license": "SEE LICENSE IN <LICENSE.md>",
   "contributors": [
     "Keith Stewart <kstewart@digial.ai>",
     "Matt Haff <mhaff@digital.ai>",
-    "Josh Schoen <jschoen@digital.ai>"
+    "Josh Schoen <jschoen@digital.ai>",
+    "Bojan Kocijan <Bojan.Kocijan@digital.ai>"
   ],
   "repository": {
     "type": "git",
@@ -15,7 +16,7 @@
   "main": "./dot-components.umd.js",
   "module": "./dot-components.esm.js",
   "typings": "./index.d.ts",
-  "description": "<!-- TODO: add more detail -->",
+  "description": "A component library the follows the Dot Design System",
   "bugs": {
     "url": "https://github.com/digital-ai/dot-components/issues"
   },
