@@ -9,6 +9,8 @@
 - **AppToolbar**: added `DotMenu` to `DotAppToolbar` for hamburger menu
 - **Sidebar**: swapped out logo, component now controls the ability to collapse/expand
 - **Sidebar**: adjustments to animation used, style adjustments based on UX feedback
+- **Navigation**: added button as component to trigger subnav
+- **Navigation**: added support for keyboard navigation
 - **Navigation**: added support for button & icon button
 - **Navigation**: added support for divider, section header
 - **Navigation**: ability to display a second level navigation onClick
@@ -20,7 +22,8 @@
 - **Breadcrumbs**: added `tabIndex` on links
 - **Breadcrumbs**: added `cursor: pointer` on link hover
 - **Breadcrumbs**: updated Link styles
-- **Button**: changed `label` prop to `children`
+- **Button**: added props for `disableRipple`, `fullWidth` and `endIcon`
+- **Button**: changed `label` prop to `children` which accepts string only
 - **Button**: changed `text` and `outlined` colors to `default`
 - **Button**: updated theme to use default `line-height`
 - **Icon Button**: updated style to more closely match the design system
@@ -67,17 +70,11 @@
 ### Experimental
 
 - **Auto Complete**: Create the auto complete component. [Design docs](https://zeroheight.com/4a9ac476a/p/94a413-auto-complete/b/861f76).
-- **Avatar**: Create the avatar component. [Design docs](https://zeroheight.com/4a9ac476a/p/357f84-avatar/b/207629).
-- **Breadcrumbs**: Create the breadcrumbs component. [Design docs](https://zeroheight.com/4a9ac476a/p/67de7b-breadcrumbs/b/200388).
-- **Button**: Create the button component. [Design docs](https://zeroheight.com/4a9ac476a/p/14028d-button/b/09d7b1).
-- **Icon Button**: Create the icon button component. [Design docs](https://zeroheight.com/4a9ac476a/p/14028d-button/b/09d7b1).
 - **Card**: Create the card component. [Design docs](https://zeroheight.com/4a9ac476a/p/7440a8-card/b/774ebb).
 - **Chip**: Create the chip component. [Design docs](https://zeroheight.com/4a9ac476a/p/315218-chips/b/6323a7).
 - **Confirmation Dialog**: Create the confirmation dialog component. [Design docs](https://zeroheight.com/4a9ac476a/p/516dfa-dialog/b/05631f).
 - **Dialog**: Create the dialog component. [Design docs](https://zeroheight.com/4a9ac476a/p/516dfa-dialog/b/05631f).
-- **Drawer**: Create the drawer component. [Design docs](https://zeroheight.com/4a9ac476a/p/84a534-drawer/b/200388).
 - **Empty State**: Create the empty state component. [Design docs](https://zeroheight.com/4a9ac476a/p/413789-empty-state/b/483e63).
-- **Icon**: Create the icon component. [Design docs](https://zeroheight.com/4a9ac476a/p/56c3a8-icon).
 - **Inline Edit**: Create the inline edit component. [Design docs](https://zeroheight.com/4a9ac476a/p/199edb-inline-edit/b/758e10).
 - **Input Select**: Create the input select component. [Design docs](https://zeroheight.com/4a9ac476a/p/3194b2-input-text/b/7993c9).
 - **Input Text**: Create the input text component. [Design docs](https://zeroheight.com/4a9ac476a/p/3194b2-input-text/b/7993c9).
@@ -88,7 +85,6 @@
 - **Step Card**: Create the stage card component. [Design docs](https://zeroheight.com/4a9ac476a/p/495871-step-card/b/426fc4).
 - **Infinite Scroll**: Create the infinite scroll component. [Design docs](https://zeroheight.com/4a9ac476a/p/796995-infinite-scroll/b/533430).
 - **Paginated Table**: Create the infinite scroll component. [Design docs](https://zeroheight.com/4a9ac476a/p/662bde-table/b/25b7dc).
-- **Header**: Create the header component. [Design docs](https://zeroheight.com/4a9ac476a/p/74161a-single-level-nav-flow/b/94d1c7).
-- **Sidebar**: Create the header component. [Design docs](https://zeroheight.com/4a9ac476a/p/74161a-single-level-nav-flow/b/94d1c7).
+- **AppToolBar**: Create the header component. [Design docs](https://zeroheight.com/4a9ac476a/p/74161a-single-level-nav-flow/b/94d1c7).
 - **Navigation**: Create the navigation component.
 - **Row**: Create the row component.
