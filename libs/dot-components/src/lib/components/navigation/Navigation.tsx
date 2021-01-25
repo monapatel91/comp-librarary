@@ -74,6 +74,7 @@ export const DotNavigation = ({
               {...item}
               iconSize={iconSize}
               key={index}
+              menuDirection={direction}
               navOpen={isOpen}
             />
           );

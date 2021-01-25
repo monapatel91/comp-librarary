@@ -11,7 +11,7 @@ export default {
   component: DotNavigation,
   argTypes: {
     direction: {
-      defaultValue: 'horizontal',
+      defaultValue: 'vertical',
     },
     items: {
       defaultValue: [

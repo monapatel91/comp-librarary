@@ -31,6 +31,8 @@ export interface NavigationItemProps extends CommonProps {
   iconSize?: IconFontSize;
   /** Determines the nav items which will be displayed inside of a sub menu */
   items?: Array<NavigationItemProps>;
+  /** determines the direction of the nav container 'horizontal' or 'vertical' */
+  menuDirection?: DirectionType;
   /** Used to inform the flyout menu if the navigaton is collapsed or not */
   navOpen?: boolean;
   /** Event callback */
@@ -85,13 +87,6 @@ const StyledNavItem = styled.li`
         justify-content: flex-start;
         padding: ${theme.spacing(1)}px;
 
-        &.active,
-        &:hover,
-        &:focus,
-        &.Mui-focusVisible {
-          color: #74b941;
-        }
-
         .MuiButton-startIcon {
           margin: ${theme.spacing(0, 1, 0, 0)};
         }
@@ -114,7 +109,6 @@ const StyledNavItem = styled.li`
         &:focus,
         &.active {
           background: ${theme.palette.grey[50]};
-          color: #74b941;
         }
 
         * {
@@ -156,6 +150,7 @@ export const DotNavItem = ({
   iconPlacement = 'first',
   iconSize,
   items = [],
+  menuDirection,
   navOpen = true,
   onClick,
   text,
@@ -202,6 +197,7 @@ export const DotNavItem = ({
             iconPlacement={iconPlacement}
             iconSize={iconSize}
             items={items}
+            menuDirection={menuDirection}
             navOpen={navOpen}
             text={text}
             textClasses={textClasses}
@@ -331,6 +327,7 @@ export const DotNavItemMenu = ({
   iconPlacement,
   iconSize,
   items,
+  menuDirection,
   navOpen,
   text,
   textClasses,
@@ -361,7 +358,9 @@ export const DotNavItemMenu = ({
               className="nav-arrow"
               data-testid="link-icon"
               iconId={
-                direction === 'horizontal' ? 'chevron-down' : 'chevron-right'
+                menuDirection === 'horizontal'
+                  ? 'chevron-down'
+                  : 'chevron-right'
               }
             />
           }
