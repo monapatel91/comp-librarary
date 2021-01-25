@@ -12,18 +12,20 @@ const userAvatar = (
 describe(' AppToolbar', () => {
   it('should render successfully', () => {
     const { baseElement } = renderWithRouter(
-      <DotAppToolbar items={menuItems} />
+      <DotAppToolbar navItems={menuItems} />
     );
     expect(baseElement).toBeTruthy();
   });
 
-  it('should display the brand', () => {
-    renderWithRouter(<DotAppToolbar brand="Lisbon" items={menuItems} />);
+  it('should display the application name', () => {
+    renderWithRouter(<DotAppToolbar appName="Lisbon" navItems={menuItems} />);
     expect(screen.getByText('Lisbon')).toBeVisible();
   });
 
   it('should display avatar if available', () => {
-    renderWithRouter(<DotAppToolbar avatar={userAvatar} items={menuItems} />);
+    renderWithRouter(
+      <DotAppToolbar avatar={userAvatar} navItems={menuItems} />
+    );
     expect(screen.getByText('BW')).toBeVisible();
   });
 });

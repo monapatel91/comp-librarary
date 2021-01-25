@@ -4,6 +4,8 @@
 
 ### Components
 
+- **AppToolbar**: changed `brand` to `appName`
+- **AppToolbar**: changed `items` to `navItems`
 - **Button**: changed `iconId` prop to `startIcon` prop which accepts a component
 - **Button**: added props for `disableRipple`, `fullWidth` and `endIcon`
 - **Navigation**: added button as component to trigger subnav

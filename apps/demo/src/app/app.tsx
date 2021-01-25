@@ -226,8 +226,8 @@ export const App = () => {
     <BrowserRouter>
       <DotAppToolbar
         avatar={userAvatar}
-        brand="Continuum"
-        items={topNavItems}
+        appName="Continuum"
+        navItems={topNavItems}
         mainMenu={mainMenu}
       />
       <main>

@@ -17,7 +17,7 @@ export default {
     borderColor: {
       defaultValue: '#1abc9c',
     },
-    brand: {
+    appName: {
       defaultValue: 'Batman',
     },
     children: {

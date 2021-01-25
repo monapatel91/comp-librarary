@@ -104,11 +104,11 @@ export interface AppToolbarProps extends CommonProps {
   /** Control the bottom border of the toolbar, accepts any valid  */
   borderColor?: string;
   /** Product name displayed next to Digital.ai logo */
-  brand?: string;
+  appName?: string;
   /** JSX Element that is displayed between the logo and right nav */
   children?: JSX.Element;
   /** Array of nav items to be displayed on the right side */
-  items?: Array<NavigationItemProps>;
+  navItems?: Array<NavigationItemProps>;
   /** If provided will display a hamburger main menu drawer */
   mainMenu?: JSX.Element;
 }
@@ -116,11 +116,11 @@ export interface AppToolbarProps extends CommonProps {
 export const DotAppToolbar = ({
   avatar = null,
   borderColor,
-  brand,
+  appName,
   children = null,
   className,
   'data-testid': dataTestId,
-  items = [],
+  navItems = [],
   mainMenu = null,
 }: AppToolbarProps) => {
   const rootClasses = useStylesWithRootClass(
@@ -157,13 +157,15 @@ export const DotAppToolbar = ({
         <a href="/">
           <LogoDigitalAiWhite title="digital.ai" />
         </a>
-        {brand && <Typography className="dot-product-name">{brand}</Typography>}
+        {appName && (
+          <Typography className="dot-product-name">{appName}</Typography>
+        )}
       </div>
       {children}
       <DotNavigation
         className="dot-admin-nav"
         direction="horizontal"
-        items={items}
+        items={navItems}
       />
       {avatar}
     </StyledAppToolbar>
