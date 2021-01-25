@@ -1,5 +1,13 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **Button**: changed `iconId` prop to `startIcon` prop which accepts a component
+- **Navigation**: added button as component to trigger subnav
+- **Navigation**: added support for keyboard navigation
+
 ## 0.0.0-alpha.3
 
 ### Components
@@ -20,7 +28,8 @@
 - **Breadcrumbs**: added `tabIndex` on links
 - **Breadcrumbs**: added `cursor: pointer` on link hover
 - **Breadcrumbs**: updated Link styles
-- **Button**: changed `label` prop to `children`
+- **Button**: added props for `disableRipple`, `fullWidth` and `endIcon`
+- **Button**: changed `label` prop to `children` which accepts string only
 - **Button**: changed `text` and `outlined` colors to `default`
 - **Button**: updated theme to use default `line-height`
 - **Icon Button**: updated style to more closely match the design system
@@ -89,6 +98,5 @@
 - **Infinite Scroll**: Create the infinite scroll component. [Design docs](https://zeroheight.com/4a9ac476a/p/796995-infinite-scroll/b/533430).
 - **Paginated Table**: Create the infinite scroll component. [Design docs](https://zeroheight.com/4a9ac476a/p/662bde-table/b/25b7dc).
 - **Header**: Create the header component. [Design docs](https://zeroheight.com/4a9ac476a/p/74161a-single-level-nav-flow/b/94d1c7).
-- **Sidebar**: Create the header component. [Design docs](https://zeroheight.com/4a9ac476a/p/74161a-single-level-nav-flow/b/94d1c7).
 - **Navigation**: Create the navigation component.
 - **Row**: Create the row component.

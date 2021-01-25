@@ -59,7 +59,7 @@ export const DotAppToolbar = ({
       </div>
       {children}
       <DotNavigation
-        classes="dot-admin-nav"
+        className="dot-admin-nav"
         direction="horizontal"
         iconSize="small"
         items={items}
