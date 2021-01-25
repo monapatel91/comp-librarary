@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { DotInputSelect, InputSelectProps } from './InputFormFields';
+import { DotInputSelect, InputSelectProps } from './InputSelect';
 
 export default {
   title: 'Experimental/Input Select',
