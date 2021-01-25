@@ -21,10 +21,6 @@ const StyledNavigation = styled.nav`
 
         &.horizontal {
           flex-direction: row;
-
-          /* li a {
-            padding: 0 ${theme.spacing(2)}px;
-          } */
         }
 
         &.vertical {
