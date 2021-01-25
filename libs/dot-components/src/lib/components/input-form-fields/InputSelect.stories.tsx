@@ -3,7 +3,11 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotInputSelect, InputSelectProps } from './InputSelect';
 import { DotIcon } from '../icon/Icon';
 
+<<<<<<< HEAD
 const iconOptions = [null, 'warning-solid', 'error-solid'];
+=======
+import { DotInputSelect, InputSelectProps } from './InputSelect';
+>>>>>>> isse: #107 #108 moved select to separate file
 
 export default {
   title: 'Components/Input Select',
