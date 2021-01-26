@@ -1,9 +1,9 @@
-@import "variables";
+@import 'variables';
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src:
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?676euk') format('woff');
+  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?676euk')
+    format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
