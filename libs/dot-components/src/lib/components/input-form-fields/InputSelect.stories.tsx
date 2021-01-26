@@ -21,10 +21,15 @@ export default {
       separator: ',',
     },
     variant: { defaultValue: 'outlined' },
+<<<<<<< HEAD
     warning: { defaultValue: false },
     id: { defaultValue: 'custom-text-input' },
     endIcon: { control: { type: 'select', options: iconOptions } },
     startIcon: { control: { type: 'select', options: iconOptions } },
+=======
+    warning: {defaultValue: false},
+    id: {defaultValue: 'custom-text-input'}
+>>>>>>> issue: #107 #108 rebased to master
   },
 } as Meta;
 

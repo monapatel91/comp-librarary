@@ -4,7 +4,12 @@ import { DotInputText } from './InputFormFields';
 import { InputTextProps } from './InputFormFields.propTypes';
 import { DotIcon } from '../icon/Icon';
 
+<<<<<<< HEAD
 const iconOptions = [null, 'warning-solid', 'error-solid'];
+=======
+import { DotInputText } from './InputFormFields';
+import { InputTextProps } from './Input-form-fields.foundation';
+>>>>>>> issue: #107 #108 rebased to master
 
 export default {
   title: 'Components/Input Text',
@@ -15,11 +20,16 @@ export default {
     name: { defaultValue: 'Default name' },
     label: { defaultValue: 'Default Label' },
     required: { defaultValue: true },
+<<<<<<< HEAD
     warning: { defaultValue: false },
     defaultValue: { defaultValue: '' },
     id: { defaultValue: 'custom-text-input' },
     endIcon: { control: { type: 'select', options: iconOptions } },
     startIcon: { control: { type: 'select', options: iconOptions } },
+=======
+    warning: { defaultValue: false},
+    id: {defaultValue: 'custom-text-input'}
+>>>>>>> issue: #107 #108 rebased to master
   },
 } as Meta;
 

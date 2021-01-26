@@ -91,7 +91,7 @@ export const DotInputSelect = ({
 };
 =======
 import { TextField } from '@material-ui/core';
-import { InputTextProps } from './InputFormFields';
+import { InputTextProps } from './Input-form-fields.foundation';
 
 export interface InputSelectProps extends InputTextProps {
     defaultValue?: string;
@@ -107,6 +107,7 @@ export const DotInputSelect = ({
     error = false,
     fullWidth = true,
     helperText,
+    id,
     label,
     margin = 'dense',
     name,
@@ -114,7 +115,6 @@ export const DotInputSelect = ({
     options = [],
     required,
     defaultValue = options[0],
-    variant = 'outlined',
   }: InputSelectProps) => {
     return (
       <TextField
@@ -124,6 +124,7 @@ export const DotInputSelect = ({
         error={error}
         fullWidth={fullWidth}
         helperText={helperText}
+        id={id}
         inputProps={{
           'data-testid': dataTestId,
         }}
@@ -137,7 +138,7 @@ export const DotInputSelect = ({
         SelectProps={{
           native: true,
         }}
-        variant={variant}
+        variant="outlined"
       >
         {options.map((option) => (
           <option key={option} value={option}>
