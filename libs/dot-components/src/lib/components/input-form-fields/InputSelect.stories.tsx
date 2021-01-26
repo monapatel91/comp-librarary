@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotInputSelect, InputSelectProps } from './InputSelect';
 
 export default {
-  title: 'Experimental/Input Select',
+  title: 'Components/Input Select',
   component: DotInputSelect,
   argTypes: {
     label: { defaultValue: 'Default Label' },
@@ -15,6 +15,8 @@ export default {
       separator: ',',
     },
     variant: { defaultValue: 'outlined' },
+    warning: {defaultValue: false},
+    id: {defaultValue: 'custom-text-input'}
   },
 } as Meta;
 
