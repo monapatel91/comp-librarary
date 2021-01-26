@@ -1,9 +1,7 @@
 @font-face {
   font-family: 'dot';
   src:
-    url('fonts/dot.ttf?676euk') format('truetype'),
     url('fonts/dot.woff?676euk') format('woff'),
-    url('fonts/dot.svg?676euk#dot') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
