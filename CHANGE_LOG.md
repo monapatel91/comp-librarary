@@ -4,7 +4,10 @@
 
 ### Components
 
+- **AppToolbar**: changed `brand` to `appName`
+- **AppToolbar**: changed `items` to `navItems`
 - **Button**: changed `iconId` prop to `startIcon` prop which accepts a component
+- **Button**: added props for `disableRipple`, `fullWidth` and `endIcon`
 - **Navigation**: added button as component to trigger subnav
 - **Navigation**: added support for keyboard navigation
 
@@ -28,7 +31,6 @@
 - **Breadcrumbs**: added `tabIndex` on links
 - **Breadcrumbs**: added `cursor: pointer` on link hover
 - **Breadcrumbs**: updated Link styles
-- **Button**: added props for `disableRipple`, `fullWidth` and `endIcon`
 - **Button**: changed `label` prop to `children` which accepts string only
 - **Button**: changed `text` and `outlined` colors to `default`
 - **Button**: updated theme to use default `line-height`

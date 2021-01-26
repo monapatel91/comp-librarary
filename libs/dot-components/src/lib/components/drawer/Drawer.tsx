@@ -29,6 +29,7 @@ const StyledDrawer = styled(Drawer)<DrawerProps>`
         background-color: ${fade(theme.palette.grey[900], 0.7)};
       }
     }
+
     .dot-drawer-paper {
       width: ${({ width, anchor }: DrawerProps) =>
         anchor === 'bottom' || anchor === 'top' ? '100%' : width};
@@ -37,9 +38,6 @@ const StyledDrawer = styled(Drawer)<DrawerProps>`
   `}
 `;
 
-/**
- * @experimental This component is still in development
- */
 export const DotDrawer = ({
   anchor = 'right',
   className,

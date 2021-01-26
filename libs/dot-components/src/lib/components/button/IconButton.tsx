@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
-import { DotIcon, IconFontSize } from '../icon/Icon';
+import { DotIcon } from '../icon/Icon';
 
 export type IconButtonColor = 'default' | 'inherit' | 'primary' | 'secondary';
 export type IconButtonSize = 'small' | 'medium';
