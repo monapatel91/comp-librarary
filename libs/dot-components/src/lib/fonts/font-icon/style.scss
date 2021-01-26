@@ -1,13 +1,11 @@
-@import 'variables';
+@import "variables";
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?7f926w')
-      format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?7f926w')
-      format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?7f926w##{$icomoon-font-family}')
-      format('svg');
+  src:
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?676euk') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?676euk') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?676euk##{$icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -30,1158 +28,954 @@ i {
 
 .icon-host {
   &:before {
-    content: $icon-host;
-    color: #3b485c;
+    content: $icon-host; 
   }
 }
 .icon-cluster {
   &:before {
-    content: $icon-cluster;
-    color: #3b485c;
+    content: $icon-cluster; 
   }
 }
 .icon-environment {
   &:before {
-    content: $icon-environment;
-    color: #3b485c;
+    content: $icon-environment; 
   }
 }
 .icon-monitor-controls {
   &:before {
-    content: $icon-monitor-controls;
-    color: #3b485c;
+    content: $icon-monitor-controls; 
   }
 }
 .icon-flag {
   &:before {
-    content: $icon-flag;
-    color: #3b485c;
+    content: $icon-flag; 
   }
 }
 .icon-satelite {
   &:before {
-    content: $icon-satelite;
-    color: #3b485c;
+    content: $icon-satelite; 
   }
 }
 .icon-satelite-group {
   &:before {
-    content: $icon-satelite-group;
-    color: #3b485c;
+    content: $icon-satelite-group; 
   }
 }
 .icon-monitor-gears {
   &:before {
-    content: $icon-monitor-gears;
-    color: #3b485c;
+    content: $icon-monitor-gears; 
   }
 }
 .icon-patch {
   &:before {
-    content: $icon-patch;
-    color: #3b485c;
+    content: $icon-patch; 
   }
 }
 .icon-branch {
   &:before {
-    content: $icon-branch;
-    color: #3b485c;
+    content: $icon-branch; 
   }
 }
 .icon-send-airplane {
   &:before {
-    content: $icon-send-airplane;
-    color: #3b485c;
+    content: $icon-send-airplane; 
   }
 }
 .icon-briefcase {
   &:before {
-    content: $icon-briefcase;
-    color: #3b485c;
+    content: $icon-briefcase; 
   }
 }
 .icon-cluster-dependencies {
   &:before {
-    content: $icon-cluster-dependencies;
-    color: #3b485c;
+    content: $icon-cluster-dependencies; 
   }
 }
 .icon-script {
   &:before {
-    content: $icon-script;
-    color: #3b485c;
+    content: $icon-script; 
   }
 }
 .icon-pattern-bundle {
   &:before {
-    content: $icon-pattern-bundle;
-    color: #3b485c;
+    content: $icon-pattern-bundle; 
   }
 }
 .icon-outline {
   &:before {
-    content: $icon-outline;
-    color: #3b485c;
+    content: $icon-outline; 
   }
 }
 .icon-apps {
   &:before {
-    content: $icon-apps;
-    color: #3b485c;
+    content: $icon-apps; 
   }
 }
 .icon-archive {
   &:before {
-    content: $icon-archive;
-    color: #3b485c;
+    content: $icon-archive; 
   }
 }
 .icon-arrow-down {
   &:before {
-    content: $icon-arrow-down;
-    color: #3b485c;
+    content: $icon-arrow-down; 
   }
 }
 .icon-arrow-right {
   &:before {
-    content: $icon-arrow-right;
-    color: #3b485c;
+    content: $icon-arrow-right; 
   }
 }
 .icon-arrow-up {
   &:before {
-    content: $icon-arrow-up;
-    color: #3b485c;
+    content: $icon-arrow-up; 
   }
 }
 .icon-attachment {
   &:before {
-    content: $icon-attachment;
-    color: #3b485c;
+    content: $icon-attachment; 
   }
 }
 .icon-board {
   &:before {
-    content: $icon-board;
-    color: #3b485c;
+    content: $icon-board; 
   }
 }
 .icon-calendar {
   &:before {
-    content: $icon-calendar;
-    color: #3b485c;
+    content: $icon-calendar; 
   }
 }
 .icon-change {
   &:before {
-    content: $icon-change;
-    color: #3b485c;
+    content: $icon-change; 
   }
 }
 .icon-chevron-right {
   &:before {
-    content: $icon-chevron-right;
-    color: #3b485c;
+    content: $icon-chevron-right; 
   }
 }
 .icon-circle-minus-outlines {
   &:before {
-    content: $icon-circle-minus-outlines;
-    color: #d61f21;
+    content: $icon-circle-minus-outlines; 
   }
 }
 .icon-circle-paused {
   &:before {
-    content: $icon-circle-paused;
-    color: #3b485c;
+    content: $icon-circle-paused; 
   }
 }
 .icon-column {
   &:before {
-    content: $icon-column;
-    color: #3b485c;
+    content: $icon-column; 
   }
 }
 .icon-comment {
   &:before {
-    content: $icon-comment;
-    color: #3b485c;
+    content: $icon-comment; 
   }
 }
 .icon-configuration-preferences {
   &:before {
-    content: $icon-configuration-preferences;
-    color: #3b485c;
+    content: $icon-configuration-preferences; 
   }
 }
 .icon-conversation-bubbles {
   &:before {
-    content: $icon-conversation-bubbles;
-    color: #3b485c;
+    content: $icon-conversation-bubbles; 
   }
 }
 .icon-dashboard {
   &:before {
-    content: $icon-dashboard;
-    color: #3b485c;
+    content: $icon-dashboard; 
   }
 }
 .icon-database {
   &:before {
-    content: $icon-database;
-    color: #3b485c;
+    content: $icon-database; 
   }
 }
 .icon-delivery-eta-icon {
   &:before {
-    content: $icon-delivery-eta-icon;
-    color: #3b485c;
+    content: $icon-delivery-eta-icon; 
   }
 }
 .icon-download {
   &:before {
-    content: $icon-download;
-    color: #3b485c;
+    content: $icon-download; 
   }
 }
 .icon-drag {
   &:before {
-    content: $icon-drag;
-    color: #3b485c;
+    content: $icon-drag; 
   }
 }
 .icon-duplicate {
   &:before {
-    content: $icon-duplicate;
-    color: #3b485c;
+    content: $icon-duplicate; 
   }
 }
 .icon-exit {
   &:before {
-    content: $icon-exit;
-    color: #3b485c;
+    content: $icon-exit; 
   }
 }
 .icon-expand-chevrons {
   &:before {
-    content: $icon-expand-chevrons;
-    color: #3b485c;
+    content: $icon-expand-chevrons; 
   }
 }
 .icon-expander {
   &:before {
-    content: $icon-expander;
-    color: #3b485c;
+    content: $icon-expander; 
   }
 }
 .icon-file-image {
   &:before {
-    content: $icon-file-image;
-    color: #3b485c;
+    content: $icon-file-image; 
   }
 }
 .icon-file-lines {
   &:before {
-    content: $icon-file-lines;
-    color: #3b485c;
+    content: $icon-file-lines; 
   }
 }
 .icon-file-warning {
   &:before {
-    content: $icon-file-warning;
-    color: #3b485c;
+    content: $icon-file-warning; 
   }
 }
 .icon-file {
   &:before {
-    content: $icon-file;
-    color: #3b485c;
+    content: $icon-file; 
   }
 }
 .icon-filter {
   &:before {
-    content: $icon-filter;
-    color: #3b485c;
+    content: $icon-filter; 
   }
 }
 .icon-flag-none {
   &:before {
-    content: $icon-flag-none;
-    color: #3b485c;
+    content: $icon-flag-none; 
   }
 }
 .icon-folder {
   &:before {
-    content: $icon-folder;
-    color: #3b485c;
+    content: $icon-folder; 
   }
 }
 .icon-full-screen {
   &:before {
-    content: $icon-full-screen;
-    color: #3b485c;
+    content: $icon-full-screen; 
   }
 }
 .icon-fullscreen-enter {
   &:before {
-    content: $icon-fullscreen-enter;
-    color: #3b485c;
+    content: $icon-fullscreen-enter; 
   }
 }
 .icon-fullscreen-exit {
   &:before {
-    content: $icon-fullscreen-exit;
-    color: #3b485c;
+    content: $icon-fullscreen-exit; 
   }
 }
 .icon-grid {
   &:before {
-    content: $icon-grid;
-    color: #3b485c;
+    content: $icon-grid; 
   }
 }
 .icon-hard-drive {
   &:before {
-    content: $icon-hard-drive;
-    color: #3b485c;
+    content: $icon-hard-drive; 
   }
 }
 .icon-help {
   &:before {
-    content: $icon-help;
-    color: #3b485c;
+    content: $icon-help; 
   }
 }
 .icon-history {
   &:before {
-    content: $icon-history;
-    color: #3b485c;
+    content: $icon-history; 
   }
 }
 .icon-inbox {
   &:before {
-    content: $icon-inbox;
-    color: #3b485c;
+    content: $icon-inbox; 
   }
 }
 .icon-link {
   &:before {
-    content: $icon-link;
-    color: #3b485c;
+    content: $icon-link; 
   }
 }
 .icon-list {
   &:before {
-    content: $icon-list;
-    color: #3b485c;
+    content: $icon-list; 
   }
 }
 .icon-lock {
   &:before {
-    content: $icon-lock;
-    color: #3b485c;
+    content: $icon-lock; 
   }
 }
 .icon-mail {
   &:before {
-    content: $icon-mail;
-    color: #3b485c;
+    content: $icon-mail; 
   }
 }
 .icon-menu {
   &:before {
-    content: $icon-menu;
-    color: #3b485c;
+    content: $icon-menu; 
   }
 }
 .icon-monitor-satellite {
   &:before {
-    content: $icon-monitor-satellite;
-    color: #3b485c;
+    content: $icon-monitor-satellite; 
   }
 }
 .icon-monitor {
   &:before {
-    content: $icon-monitor;
-    color: #3b485c;
+    content: $icon-monitor; 
   }
 }
 .icon-notification-bell {
   &:before {
-    content: $icon-notification-bell;
-    color: #3b485c;
+    content: $icon-notification-bell; 
   }
 }
 .icon-open-new-tab {
   &:before {
-    content: $icon-open-new-tab;
-    color: #3b485c;
+    content: $icon-open-new-tab; 
   }
 }
 .icon-options {
   &:before {
-    content: $icon-options;
-    color: #3b485c;
+    content: $icon-options; 
   }
 }
 .icon-parallel {
   &:before {
-    content: $icon-parallel;
-    color: #3b485c;
+    content: $icon-parallel; 
   }
 }
 .icon-pending-clock {
   &:before {
-    content: $icon-pending-clock;
-    color: #3b485c;
+    content: $icon-pending-clock; 
   }
 }
 .icon-play {
   &:before {
-    content: $icon-play;
-    color: #3b485c;
+    content: $icon-play; 
   }
 }
 .icon-redo {
   &:before {
-    content: $icon-redo;
-    color: #3b485c;
+    content: $icon-redo; 
   }
 }
 .icon-refresh {
   &:before {
-    content: $icon-refresh;
-    color: #3b485c;
+    content: $icon-refresh; 
   }
 }
 .icon-release {
   &:before {
-    content: $icon-release;
-    color: #3b485c;
-  }
-}
-.icon-satellite-group {
-  &:before {
-    content: $icon-satellite-group;
-    color: #3b485c;
-  }
-}
-.icon-satellite {
-  &:before {
-    content: $icon-satellite;
-    color: #3b485c;
+    content: $icon-release; 
   }
 }
 .icon-search {
   &:before {
-    content: $icon-search;
-    color: #3b485c;
+    content: $icon-search; 
   }
 }
 .icon-sequential {
   &:before {
-    content: $icon-sequential;
-    color: #3b485c;
+    content: $icon-sequential; 
   }
 }
 .icon-sort-asc {
   &:before {
-    content: $icon-sort-asc;
-    color: #3b485c;
+    content: $icon-sort-asc; 
   }
 }
 .icon-sort-desc {
   &:before {
-    content: $icon-sort-desc;
-    color: #3b485c;
+    content: $icon-sort-desc; 
   }
 }
 .icon-star-favorites-active {
   &:before {
-    content: $icon-star-favorites-active;
-    color: #3b485c;
+    content: $icon-star-favorites-active; 
   }
 }
 .icon-star-favorites-default {
   &:before {
-    content: $icon-star-favorites-default;
-    color: #3b485c;
+    content: $icon-star-favorites-default; 
   }
 }
 .icon-target {
   &:before {
-    content: $icon-target;
-    color: #3b485c;
+    content: $icon-target; 
   }
 }
 .icon-task {
   &:before {
-    content: $icon-task;
-    color: #3b485c;
+    content: $icon-task; 
   }
 }
 .icon-template {
   &:before {
-    content: $icon-template;
-    color: #3b485c;
+    content: $icon-template; 
   }
 }
 .icon-undo {
   &:before {
-    content: $icon-undo;
-    color: #3b485c;
+    content: $icon-undo; 
   }
 }
 .icon-unlock {
   &:before {
-    content: $icon-unlock;
-    color: #3b485c;
+    content: $icon-unlock; 
   }
 }
 .icon-variable {
   &:before {
-    content: $icon-variable;
-    color: #3b485c;
+    content: $icon-variable; 
   }
 }
 .icon-vault {
   &:before {
-    content: $icon-vault;
-    color: #3b485c;
+    content: $icon-vault; 
   }
 }
 .icon-visibility-off {
   &:before {
-    content: $icon-visibility-off;
-    color: #3b485c;
+    content: $icon-visibility-off; 
   }
 }
 .icon-visibility-on {
   &:before {
-    content: $icon-visibility-on;
-    color: #3b485c;
+    content: $icon-visibility-on; 
   }
 }
 .icon-webhook {
   &:before {
-    content: $icon-webhook;
-    color: #3b485c;
+    content: $icon-webhook; 
   }
 }
 .icon-wrench {
   &:before {
-    content: $icon-wrench;
-    color: #3b485c;
+    content: $icon-wrench; 
   }
 }
 .icon-bright {
   &:before {
-    content: $icon-bright;
-    color: #3b485c;
+    content: $icon-bright; 
   }
 }
 .icon-rogue-commits {
   &:before {
-    content: $icon-rogue-commits;
-    color: #3b485c;
+    content: $icon-rogue-commits; 
   }
 }
 .icon-home {
   &:before {
-    content: $icon-home;
-    color: #3b485c;
+    content: $icon-home; 
   }
 }
 .icon-blocking-issues {
   &:before {
-    content: $icon-blocking-issues;
-    color: #3b485c;
+    content: $icon-blocking-issues; 
   }
 }
 .icon-print-link {
   &:before {
-    content: $icon-print-link;
+    content: $icon-print-link;     
     color: #3b485c;
   }
 }
 .icon-logo-deploy {
   &:before {
-    content: $icon-logo-deploy;
-    color: #3b485c;
+    content: $icon-logo-deploy; 
   }
 }
 .icon-logo-experitest {
   &:before {
-    content: $icon-logo-experitest;
-    color: #3b485c;
+    content: $icon-logo-experitest; 
   }
 }
 .icon-logo-numerify {
   &:before {
-    content: $icon-logo-numerify;
-    color: #3b485c;
+    content: $icon-logo-numerify; 
   }
 }
 .icon-logo-arxan {
   &:before {
-    content: $icon-logo-arxan;
-    color: #3b485c;
+    content: $icon-logo-arxan; 
   }
 }
 .icon-logo-continuum {
   &:before {
-    content: $icon-logo-continuum;
-    color: #3b485c;
+    content: $icon-logo-continuum; 
   }
 }
 .icon-logo-versionone {
   &:before {
-    content: $icon-logo-versionone;
-    color: #3b485c;
+    content: $icon-logo-versionone; 
   }
 }
 .icon-logo-release {
   &:before {
-    content: $icon-logo-release;
-    color: #3b485c;
+    content: $icon-logo-release; 
   }
 }
 .icon-warning-solid {
   &:before {
-    content: $icon-warning-solid;
-    color: #ff9e49;
+    content: $icon-warning-solid; 
   }
 }
 .icon-warning-outline {
   &:before {
-    content: $icon-warning-outline;
-    color: #ff9e49;
+    content: $icon-warning-outline; 
   }
 }
 .icon-info-solid {
   &:before {
-    content: $icon-info-solid;
-    color: #3d6c9e;
+    content: $icon-info-solid; 
   }
 }
 .icon-minus-solid {
   &:before {
-    content: $icon-minus-solid;
-    color: #d61f21;
+    content: $icon-minus-solid; 
   }
 }
 .icon-check-solid {
   &:before {
-    content: $icon-check-solid;
-    color: #498500;
+    content: $icon-check-solid; 
   }
 }
 .icon-error-solid {
   &:before {
-    content: $icon-error-solid;
-    color: #d61f21;
+    content: $icon-error-solid; 
   }
 }
 .icon-error-outlines {
   &:before {
-    content: $icon-error-outlines;
-    color: #d61f21;
+    content: $icon-error-outlines; 
   }
 }
 .icon-add-outlined {
   &:before {
-    content: $icon-add-outlined;
-    color: #3b485c;
+    content: $icon-add-outlined; 
   }
 }
 .icon-add-solid {
   &:before {
-    content: $icon-add-solid;
-    color: #3b485c;
+    content: $icon-add-solid; 
   }
 }
 .icon-clear-solid {
   &:before {
-    content: $icon-clear-solid;
-    color: #3b485c;
+    content: $icon-clear-solid; 
   }
 }
 .icon-dark {
   &:before {
-    content: $icon-dark;
-    color: #3b485c;
+    content: $icon-dark; 
   }
 }
 .icon-location {
   &:before {
-    content: $icon-location;
-    color: #3b485c;
+    content: $icon-location; 
   }
 }
 .icon-roadmap {
   &:before {
-    content: $icon-roadmap;
-    color: #3b485c;
+    content: $icon-roadmap; 
   }
 }
 .icon-follow-solid {
   &:before {
-    content: $icon-follow-solid;
-    color: #3b485c;
+    content: $icon-follow-solid; 
   }
 }
 .icon-follow-outlined {
   &:before {
-    content: $icon-follow-outlined;
-    color: #3b485c;
+    content: $icon-follow-outlined; 
   }
 }
 .icon-video {
   &:before {
-    content: $icon-video;
-    color: #3b485c;
+    content: $icon-video; 
   }
 }
 .icon-thumbs-down {
   &:before {
-    content: $icon-thumbs-down;
-    color: #3b485c;
+    content: $icon-thumbs-down; 
   }
 }
 .icon-camera {
   &:before {
-    content: $icon-camera;
-    color: #3b485c;
+    content: $icon-camera; 
   }
 }
 .icon-users {
   &:before {
-    content: $icon-users;
-    color: #3b485c;
+    content: $icon-users; 
   }
 }
 .icon-user {
   &:before {
-    content: $icon-user;
-    color: #3b485c;
+    content: $icon-user; 
   }
 }
 .icon-announcement {
   &:before {
-    content: $icon-announcement;
-    color: #3b485c;
+    content: $icon-announcement; 
   }
 }
 .icon-not-allowed {
   &:before {
-    content: $icon-not-allowed;
-    color: #3b485c;
+    content: $icon-not-allowed; 
   }
 }
 .icon-zoom-out {
   &:before {
-    content: $icon-zoom-out;
-    color: #3b485c;
+    content: $icon-zoom-out; 
   }
 }
 .icon-zoom-in {
   &:before {
-    content: $icon-zoom-in;
-    color: #3b485c;
+    content: $icon-zoom-in; 
   }
 }
 .icon-triangle {
   &:before {
-    content: $icon-triangle;
-    color: #3b485c;
+    content: $icon-triangle; 
   }
 }
 .icon-delay {
   &:before {
-    content: $icon-delay;
-    color: #3b485c;
+    content: $icon-delay; 
   }
 }
 .icon-circle-outline {
   &:before {
-    content: $icon-circle-outline;
-    color: #3b485c;
+    content: $icon-circle-outline; 
   }
 }
 .icon-circle {
   &:before {
-    content: $icon-circle;
-    color: #3b485c;
+    content: $icon-circle; 
   }
 }
 .icon-add-from-list {
   &:before {
-    content: $icon-add-from-list;
-    color: #3b485c;
+    content: $icon-add-from-list; 
   }
 }
 .icon-sync {
   &:before {
-    content: $icon-sync;
-    color: #3b485c;
+    content: $icon-sync; 
   }
 }
 .icon-keyboard {
   &:before {
-    content: $icon-keyboard;
-    color: #3b485c;
+    content: $icon-keyboard; 
   }
 }
 .icon-planner {
   &:before {
-    content: $icon-planner;
-    color: #3b485c;
+    content: $icon-planner; 
   }
 }
 .icon-tag {
   &:before {
-    content: $icon-tag;
-    color: #3b485c;
+    content: $icon-tag; 
   }
 }
 .icon-progress {
   &:before {
-    content: $icon-progress;
-    color: #3b485c;
+    content: $icon-progress; 
   }
 }
 .icon-timeline {
   &:before {
-    content: $icon-timeline;
-    color: #3b485c;
+    content: $icon-timeline; 
   }
 }
 .icon-abort {
   &:before {
-    content: $icon-abort;
-    color: #3b485c;
+    content: $icon-abort; 
   }
 }
 .icon-cancel {
   &:before {
-    content: $icon-cancel;
-    color: #3b485c;
+    content: $icon-cancel; 
   }
 }
 .icon-power {
   &:before {
-    content: $icon-power;
-    color: #3b485c;
+    content: $icon-power; 
   }
 }
 .icon-resize {
   &:before {
-    content: $icon-resize;
-    color: #3b485c;
+    content: $icon-resize; 
   }
 }
 .icon-close {
   &:before {
-    content: $icon-close;
-    color: #3b485c;
+    content: $icon-close; 
   }
 }
 .icon-save {
   &:before {
-    content: $icon-save;
-    color: #3b485c;
+    content: $icon-save; 
   }
 }
 .icon-drag-vertical-up-down {
   &:before {
-    content: $icon-drag-vertical-up-down;
-    color: #3b485c;
+    content: $icon-drag-vertical-up-down; 
   }
 }
 .icon-add {
   &:before {
-    content: $icon-add;
-    color: #3b485c;
+    content: $icon-add; 
   }
 }
 .icon-minus {
   &:before {
-    content: $icon-minus;
-    color: #3b485c;
+    content: $icon-minus; 
   }
 }
 .icon-target-none {
   &:before {
-    content: $icon-target-none;
-    color: #3b485c;
+    content: $icon-target-none; 
   }
 }
 .icon-placeholder {
   &:before {
-    content: $icon-placeholder;
-    color: #3b485c;
+    content: $icon-placeholder; 
   }
 }
 .icon-server {
   &:before {
-    content: $icon-server;
-    color: #3b485c;
+    content: $icon-server; 
   }
 }
 .icon-square-wrench {
   &:before {
-    content: $icon-square-wrench;
-    color: #3b485c;
+    content: $icon-square-wrench; 
   }
 }
 .icon-square-wrench-check {
   &:before {
-    content: $icon-square-wrench-check;
-    color: #3b485c;
+    content: $icon-square-wrench-check; 
   }
 }
 .icon-square-settings {
   &:before {
-    content: $icon-square-settings;
-    color: #3b485c;
-  }
-}
-.icon-circle-lightning {
-  &:before {
-    content: $icon-circle-lightning;
-    color: #3b485c;
+    content: $icon-square-settings; 
   }
 }
 .icon-trigger {
   &:before {
-    content: $icon-trigger;
-    color: #3b485c;
+    content: $icon-trigger; 
   }
 }
 .icon-precondition {
   &:before {
-    content: $icon-precondition;
-    color: #3b485c;
+    content: $icon-precondition; 
   }
 }
 .icon-composition {
   &:before {
-    content: $icon-composition;
-    color: #3b485c;
+    content: $icon-composition; 
   }
 }
 .icon-block {
   &:before {
-    content: $icon-block;
-    color: #3b485c;
+    content: $icon-block; 
   }
 }
 .icon-group {
   &:before {
-    content: $icon-group;
-    color: #3b485c;
+    content: $icon-group; 
   }
 }
 .icon-settings-admin-opaque {
   &:before {
-    content: $icon-settings-admin-opaque;
-    color: #3b485c;
+    content: $icon-settings-admin-opaque; 
   }
 }
 .icon-puzzle {
   &:before {
-    content: $icon-puzzle;
-    color: #3b485c;
+    content: $icon-puzzle; 
   }
 }
 .icon-alphabet-icon {
   &:before {
-    content: $icon-alphabet-icon;
-    color: #3b485c;
+    content: $icon-alphabet-icon; 
   }
 }
 .icon-crop {
   &:before {
-    content: $icon-crop;
-    color: #3b485c;
+    content: $icon-crop; 
   }
 }
 .icon-upload-file {
   &:before {
-    content: $icon-upload-file;
-    color: #3b485c;
+    content: $icon-upload-file; 
   }
 }
 .icon-container {
   &:before {
-    content: $icon-container;
-    color: #3b485c;
+    content: $icon-container; 
   }
 }
 .icon-flag-risk {
   &:before {
-    content: $icon-flag-risk;
-    color: #3b485c;
+    content: $icon-flag-risk; 
   }
 }
 .icon-learn {
   &:before {
-    content: $icon-learn;
-    color: #3b485c;
+    content: $icon-learn; 
   }
 }
 .icon-tree {
   &:before {
-    content: $icon-tree;
-    color: #3b485c;
+    content: $icon-tree; 
   }
 }
 .icon-process-template {
   &:before {
-    content: $icon-process-template;
-    color: #3b485c;
+    content: $icon-process-template; 
   }
 }
 .icon-flag-attention {
   &:before {
-    content: $icon-flag-attention;
-    color: #3b485c;
+    content: $icon-flag-attention; 
   }
 }
 .icon-collection {
   &:before {
-    content: $icon-collection;
-    color: #3b485c;
+    content: $icon-collection; 
   }
 }
 .icon-table {
   &:before {
-    content: $icon-table;
-    color: #3b485c;
+    content: $icon-table; 
   }
 }
 .icon-linkBrakeIt {
   &:before {
-    content: $icon-linkBrakeIt;
-    color: #3b485c;
+    content: $icon-linkBrakeIt; 
   }
 }
 .icon-move-folder {
   &:before {
-    content: $icon-move-folder;
-    color: #3b485c;
+    content: $icon-move-folder; 
   }
 }
 .icon-columns {
   &:before {
-    content: $icon-columns;
-    color: #3b485c;
+    content: $icon-columns; 
   }
 }
 .icon-file-word-doc {
   &:before {
-    content: $icon-file-word-doc;
-    color: #3b485c;
+    content: $icon-file-word-doc; 
   }
 }
 .icon-file-ppt {
   &:before {
-    content: $icon-file-ppt;
-    color: #3b485c;
+    content: $icon-file-ppt; 
   }
 }
 .icon-file-zip {
   &:before {
-    content: $icon-file-zip;
-    color: #3b485c;
+    content: $icon-file-zip; 
   }
 }
 .icon-file-xls {
   &:before {
-    content: $icon-file-xls;
-    color: #3b485c;
+    content: $icon-file-xls; 
   }
 }
 .icon-file-pdf {
   &:before {
-    content: $icon-file-pdf;
-    color: #3b485c;
+    content: $icon-file-pdf; 
   }
 }
 .icon-file-xml {
   &:before {
-    content: $icon-file-xml;
-    color: #3b485c;
+    content: $icon-file-xml; 
   }
 }
 .icon-dictionary-locked {
   &:before {
-    content: $icon-dictionary-locked;
-    color: #3b485c;
+    content: $icon-dictionary-locked; 
   }
 }
 .icon-dictionary {
   &:before {
-    content: $icon-dictionary;
-    color: #3b485c;
+    content: $icon-dictionary; 
   }
 }
 .icon-file-dotted {
   &:before {
-    content: $icon-file-dotted;
-    color: #3b485c;
+    content: $icon-file-dotted; 
   }
 }
 .icon-file-circle-check {
   &:before {
-    content: $icon-file-circle-check;
-    color: #3b485c;
+    content: $icon-file-circle-check; 
   }
 }
 .icon-back {
   &:before {
-    content: $icon-back;
-    color: #3b485c;
+    content: $icon-back; 
   }
 }
 .icon-chevron-left {
   &:before {
-    content: $icon-chevron-left;
-    color: #3b485c;
+    content: $icon-chevron-left; 
   }
 }
 .icon-chevron-up {
   &:before {
-    content: $icon-chevron-up;
-    color: #3b485c;
+    content: $icon-chevron-up; 
   }
 }
 .icon-chevron-down {
   &:before {
-    content: $icon-chevron-down;
-    color: #3b485c;
+    content: $icon-chevron-down; 
   }
 }
 .icon-return-level-up {
   &:before {
-    content: $icon-return-level-up;
-    color: #3b485c;
+    content: $icon-return-level-up; 
   }
 }
 .icon-return {
   &:before {
-    content: $icon-return;
+    content: $icon-return;     
     color: #3b485c;
   }
 }
 .icon-edit {
   &:before {
-    content: $icon-edit;
-    color: #3b485c;
+    content: $icon-edit; 
   }
 }
 .icon-delete {
   &:before {
-    content: $icon-delete;
+    content: $icon-delete; 
   }
 }
+
