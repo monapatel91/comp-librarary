@@ -16,7 +16,7 @@ export default {
         type: 'primary',
       },
     },
-    Image: {
+    image: {
       defaultValue: EmptyState,
     },
     imageAltText: {

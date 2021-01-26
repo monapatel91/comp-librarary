@@ -19,7 +19,7 @@ const StyledEmptyState = styled.div`
 
 export interface EmptyStateProps extends CommonProps {
   buttonProps?: ButtonProps;
-  Image?: React.FunctionComponent<
+  image?: React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & { title?: string }
   >;
   imageAltText?: string;
@@ -31,7 +31,7 @@ export const DotEmptyState = ({
   buttonProps,
   className,
   'data-testid': dataTestId,
-  Image,
+  image: Image,
   imageAltText,
   subtitle,
   title,

@@ -9,6 +9,7 @@
 - **Button**: changed `iconId` prop to `startIcon` prop which accepts a component
 - **Button**: added props for `disableRipple`, `fullWidth` and `endIcon`
 - **EmptyState**: added `className` prop, updated title from `h4` to `h2`
+- **EmptyState**: changed `Image` prop to `image`
 - **Navigation**: added button as component to trigger subnav
 - **Navigation**: added support for keyboard navigation
 
