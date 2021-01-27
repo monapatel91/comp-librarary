@@ -1,6 +1,14 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
-import { InputTextProps } from './Input-form-fields.foundation';
+import { InputTextProps } from './InputFormFields.propTypes';
+import {
+    rootSelectClassName,
+    StyledTextField,
+    warningClassName,
+    adornmentIconClassName,
+    StyledAdornment
+  } from './InputFormFields.styles';
+import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
 export interface InputSelectProps extends InputTextProps {
     defaultValue?: string;
@@ -12,7 +20,9 @@ export interface InputSelectProps extends InputTextProps {
  */
 export const DotInputSelect = ({
     autoFocus,
+    className,
     'data-testid': dataTestId,
+    endIcon,
     error = false,
     fullWidth = true,
     helperText,
@@ -22,14 +32,21 @@ export const DotInputSelect = ({
     name,
     onChange,
     options = [],
-    required,
     defaultValue = options[0],
+    required,
+    startIcon,
+    warning,
   }: InputSelectProps) => {
+    const rootStyles = useStylesWithRootClass(rootSelectClassName, className);
+
+    const hasWarning = !error && warning && warningClassName;
+
     return (
-      <TextField
+      <StyledTextField
         autoFocus={autoFocus}
-        className="dot-select-field"
+        className={`${rootStyles} ${hasWarning}`}
         defaultValue={defaultValue}
+        endIcon={endIcon}
         error={error}
         fullWidth={fullWidth}
         helperText={helperText}
@@ -37,6 +54,14 @@ export const DotInputSelect = ({
         inputProps={{
           'data-testid': dataTestId,
         }}
+        InputProps={{
+            startAdornment: startIcon && <StyledAdornment className={`${adornmentIconClassName} start`} position="start">
+            {startIcon}
+          </StyledAdornment>,
+            endAdornment: endIcon && <StyledAdornment className={`${adornmentIconClassName} end`} position="end">
+            {endIcon}
+          </StyledAdornment>
+          }}
         label={label}
         margin={margin}
         multiline={false}
@@ -48,13 +73,14 @@ export const DotInputSelect = ({
           native: true,
         }}
         variant="outlined"
+        warning={warning}
       >
         {options.map((option) => (
           <option key={option} value={option}>
             {option}
           </option>
         ))}
-      </TextField>
+      </StyledTextField>
     );
   };
   

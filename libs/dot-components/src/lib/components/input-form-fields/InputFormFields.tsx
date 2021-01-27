@@ -1,13 +1,14 @@
 import { InputAdornment } from '@material-ui/core';
 import React from 'react';
-import DotIcon from '../icon/Icon';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import {  InputTextProps } from './InputFormFields.propTypes';
 import {
-  InputTextProps,
   rootClassName,
-  StyletextField,
+  StyledTextField,
   warningClassName,
-} from './Input-form-fields.foundation';
+  adornmentIconClassName,
+  StyledAdornment
+} from './InputFormFields.styles';
 
 /**
  * A component for generating an input element of type "text"
@@ -18,11 +19,11 @@ export const DotInputText = ({
   autoFocus,
   className,
   'data-testid': dataTestId,
-  adornmentPosition = 'end',
   error = false,
   fullWidth = true,
   helperText,
-  helperTextIconId,
+  startIcon,
+  endIcon,
   id,
   label,
   margin = 'dense',
@@ -34,34 +35,27 @@ export const DotInputText = ({
 }: InputTextProps) => {
   const rootStyles = useStylesWithRootClass(rootClassName, className);
 
-  const hasWarning = !error && warning ? warningClassName : '';
-
-  const helperTextWithIcon: any = helperTextIconId && helperText ? (
-    <>
-      <DotIcon className="helper-text-icon" iconId={helperTextIconId} />
-      {helperText}
-    </>
-  ) : (
-    helperText
-  );
+  const hasWarning = !error && warning && warningClassName;
 
   return (
-    <StyletextField
+    <StyledTextField
       id={id}
       aria-label={name}
       autoFocus={autoFocus}
       className={`${rootStyles} ${hasWarning}`}
       error={error}
       fullWidth={fullWidth}
-      helperTextIconId={helperTextIconId}
       helperText={helperText}
       inputProps={{
         'data-testid': dataTestId
       }}
       InputProps={{
-        endAdornment: <InputAdornment position={adornmentPosition}>
-        <DotIcon className="helper-text-icon" iconId={helperTextIconId} />
-      </InputAdornment>
+        startAdornment: startIcon && <StyledAdornment className={`${adornmentIconClassName} start`} position="start">
+        {startIcon}
+      </StyledAdornment>,
+        endAdornment: endIcon && <StyledAdornment className={`${adornmentIconClassName} end`} position="end">
+        {endIcon}
+      </StyledAdornment> 
       }}
       label={label}
       margin={margin}
