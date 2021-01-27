@@ -32,16 +32,17 @@ export const DotInputText = ({
   type = 'text',
   warning = false,
 }: InputTextProps) => {
-  const rootStyles = useStylesWithRootClass(rootClassName, className);
+
 
   const hasWarning = !error && warning ? warningClassName : '';
+  const rootStyles = useStylesWithRootClass(rootClassName, `${hasWarning} ${className}`);
 
   return (
     <StyledTextField
       id={id}
       aria-label={name}
       autoFocus={autoFocus}
-      className={`${rootStyles} ${hasWarning}`}
+      classes={{root: rootStyles}}
       defaultValue={defaultValue}
       endIcon={endIcon}
       error={error}
