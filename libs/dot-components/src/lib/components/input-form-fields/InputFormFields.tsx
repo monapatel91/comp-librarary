@@ -1,19 +1,17 @@
-import { InputAdornment } from '@material-ui/core';
 import React from 'react';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
-import {  InputTextProps } from './InputFormFields.propTypes';
+import { InputTextProps } from './InputFormFields.propTypes';
 import {
   rootClassName,
   StyledTextField,
   warningClassName,
   adornmentIconClassName,
-  StyledAdornment
+  StyledAdornment,
 } from './InputFormFields.styles';
 
 /**
  * A component for generating an input element of type "text"
  *
- * @experimental This component is still in development
  */
 export const DotInputText = ({
   autoFocus,
@@ -36,7 +34,7 @@ export const DotInputText = ({
 }: InputTextProps) => {
   const rootStyles = useStylesWithRootClass(rootClassName, className);
 
-  const hasWarning = !error && warning && warningClassName;
+  const hasWarning = !error && warning ? warningClassName : '';
 
   return (
     <StyledTextField
@@ -49,15 +47,25 @@ export const DotInputText = ({
       fullWidth={fullWidth}
       helperText={helperText}
       inputProps={{
-        'data-testid': dataTestId
+        'data-testid': dataTestId,
       }}
       InputProps={{
-        startAdornment: startIcon && <StyledAdornment className={`${adornmentIconClassName} start`} position="start">
-        {startIcon}
-      </StyledAdornment>,
-        endAdornment: endIcon && <StyledAdornment className={`${adornmentIconClassName} end`} position="end">
-        {endIcon}
-      </StyledAdornment> 
+        startAdornment: startIcon && (
+          <StyledAdornment
+            className={`${adornmentIconClassName} start`}
+            position="start"
+          >
+            {startIcon}
+          </StyledAdornment>
+        ),
+        endAdornment: endIcon && (
+          <StyledAdornment
+            className={`${adornmentIconClassName} end`}
+            position="end"
+          >
+            {endIcon}
+          </StyledAdornment>
+        ),
       }}
       label={label}
       margin={margin}

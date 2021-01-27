@@ -3,7 +3,7 @@ import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen, fireEvent } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 
-import { DotInputSelect } from './InputFormFields';
+import { DotInputSelect } from './InputSelect';
 
 const sampleOptions = ['Batman', 'Ironman', 'Superman'];
 

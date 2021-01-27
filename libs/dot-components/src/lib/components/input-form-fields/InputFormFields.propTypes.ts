@@ -19,7 +19,7 @@ export interface InputTextProps extends CommonProps {
   /** id to identify the element, also used to create label "for" and helper text id attribute
    * values while it's optional, it is considered required for accessiblity best practice.
    */
-  id?: string
+  id?: string;
   /** The label content. */
   label?: string;
   /** If dense or normal, will adjust vertical spacing of this and contained components. */

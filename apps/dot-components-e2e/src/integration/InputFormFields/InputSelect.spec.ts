@@ -1,6 +1,6 @@
 describe('dot-components: Input Select Field component', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=experimental-input-select--default')
+    cy.visit('/iframe.html?id=components-input-select--default')
   );
 
   it('should have a dot- prefix', () => {
