@@ -51,7 +51,7 @@ export const DotInputText = ({
       fullWidth={fullWidth}
       helperText={helperText}
       inputProps={{
-        'data-testid': dataTestId
+        'data-testid': dataTestId,
       }}
       InputProps={{
         startAdornment: startIcon && (

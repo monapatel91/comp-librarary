@@ -24,6 +24,7 @@ export default {
   },
 } as Meta;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Default: Story<InputSelectProps> = (args: any) => {
   const { endIcon: endIconId, startIcon: startIconId } = args;
   const endIcon = endIconId && <DotIcon iconId={endIconId} />;
