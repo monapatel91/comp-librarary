@@ -6,6 +6,8 @@ export type adornmentPosition = 'start' | 'end';
 export interface InputTextProps extends CommonProps {
   /** This prop helps users to fill forms faster */
   autoFocus?: boolean;
+  /** default value of the input element */
+  defaultValue?: string;
   /** Icon placed after the children. */
   endIcon?: JSX.Element;
   /** If true, the label will be displayed in an error state. */

@@ -18,6 +18,7 @@ import {
 export const DotInputText = ({
   autoFocus,
   className,
+  defaultValue,
   'data-testid': dataTestId,
   error = false,
   fullWidth = true,
@@ -43,6 +44,7 @@ export const DotInputText = ({
       aria-label={name}
       autoFocus={autoFocus}
       className={`${rootStyles} ${hasWarning}`}
+      defaultValue={defaultValue}
       error={error}
       fullWidth={fullWidth}
       helperText={helperText}

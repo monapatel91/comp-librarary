@@ -11,7 +11,6 @@ import {
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 
 export interface InputSelectProps extends InputTextProps {
-    defaultValue?: string;
     options: Array<string>;
   }
 

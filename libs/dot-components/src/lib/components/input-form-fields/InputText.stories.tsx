@@ -17,6 +17,7 @@ export default {
     label: { defaultValue: 'Default Label' },
     required: { defaultValue: true },
     warning: { defaultValue: false},
+    defaultValue: {defaultValue: ''},
     id: {defaultValue: 'custom-text-input'},
     endIcon: {  control: { type: 'select', options: iconOptions }},
     startIcon: {control: { type: 'select', options: iconOptions}}
