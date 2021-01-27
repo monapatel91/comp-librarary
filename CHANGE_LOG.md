@@ -18,6 +18,7 @@
 - **InputText & InputSelect**: added better demo controls in storybook for `startIcon`, `endIcon`
 - **InputText & InputSelect**: moved styled component definitions to `InputFormFields.styles.ts`
 - **InputText & InputSelect**: moved interface and type definitions to `InputFormFields.propTypes.ts`
+
 ## 0.0.0-alpha.3
 
 ### Components

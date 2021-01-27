@@ -20,7 +20,10 @@ export const StyledTextField = styled(TextField)<InputTextProps>`
   ${({ theme }: { theme: Theme }) => css`
     &.${rootClassName} {
       .MuiOutlinedInput-input {
-      padding: ${({ startIcon }: InputTextProps) => (startIcon ? `${theme.spacing(2.25, 1.5, 2.25, 0)}` : `${theme.spacing(2.25, 1.5)}`)}; 
+      padding: ${({ startIcon }: InputTextProps) =>
+        startIcon
+          ? `${theme.spacing(2.25, 1.5, 2.25, 0)}`
+          : `${theme.spacing(2.25, 1.5)}`}; 
       }
     }
     &.${rootSelectClassName}, &.${rootClassName} {
