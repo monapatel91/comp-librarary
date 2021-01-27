@@ -15,7 +15,7 @@ describe(' EmptyState', () => {
     render(
       <DotEmptyState
         title="Hello World"
-        Image={EmptyStateImage}
+        image={EmptyStateImage}
         imageAltText="Test Name"
       />
     );

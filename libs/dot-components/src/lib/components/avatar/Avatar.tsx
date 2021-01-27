@@ -129,8 +129,8 @@ export const DotAvatar = ({
   return (
     <StyledAvatar
       alt={alt}
-      classes={{ root: rootClasses }}
       className={size}
+      classes={{ root: rootClasses }}
       data-testid={dataTestId}
       onClick={(event) => (onClick ? onClick(event) : null)}
       src={imageSrc}

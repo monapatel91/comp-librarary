@@ -1,11 +1,10 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { ReactComponent as EmptyState } from '../../assets/empty-state.svg';
-
 import { DotEmptyState, EmptyStateProps } from './EmptyState';
 
 export default {
-  title: 'Experimental/Empty State',
+  title: 'Components/Empty State',
   component: DotEmptyState,
   argTypes: {
     buttonProps: {
@@ -17,8 +16,11 @@ export default {
         type: 'primary',
       },
     },
-    Image: {
+    image: {
       defaultValue: EmptyState,
+    },
+    imageAltText: {
+      defaultValue: 'Batman was here',
     },
     subtitle: {
       defaultValue: 'That is unexpected',
