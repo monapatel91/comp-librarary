@@ -12,7 +12,12 @@
 - **EmptyState**: changed `Image` prop to `image`
 - **Navigation**: added button as component to trigger subnav
 - **Navigation**: added support for keyboard navigation
-
+- **InputText & InputSelect**: added props for `startIcon`, `endIcon`, `warning`, `id`, `helperText`
+- **InputText & InputSelect**: added custom styles for `warning` state
+- **InputText & InputSelect**: fixed inconnsistent spec styles per UX review
+- **InputText & InputSelect**: added better demo controls in storybook for `startIcon`, `endIcon`
+- **InputText & InputSelect**: moved styled component definitions to `InputFormFields.styles.ts`
+- **InputText & InputSelect**: moved interface and type definitions to `InputFormFields.propTypes.ts`
 ## 0.0.0-alpha.3
 
 ### Components
