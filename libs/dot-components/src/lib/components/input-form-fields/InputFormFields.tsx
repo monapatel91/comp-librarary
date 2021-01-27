@@ -21,7 +21,6 @@ export const DotInputText = ({
   error = false,
   fullWidth = true,
   helperText,
-  startIcon,
   endIcon,
   id,
   label,
@@ -29,6 +28,7 @@ export const DotInputText = ({
   name,
   onChange,
   required = false,
+  startIcon,
   type = 'text',
   warning = false,
 }: InputTextProps) => {
@@ -43,6 +43,7 @@ export const DotInputText = ({
       autoFocus={autoFocus}
       className={`${rootStyles} ${hasWarning}`}
       defaultValue={defaultValue}
+      endIcon={endIcon}
       error={error}
       fullWidth={fullWidth}
       helperText={helperText}
@@ -73,6 +74,7 @@ export const DotInputText = ({
       name={name}
       onChange={(event) => onChange && onChange(event.target.value)}
       required={required}
+      startIcon={startIcon}
       type={type}
       variant="outlined"
     />
