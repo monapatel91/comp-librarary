@@ -1,7 +1,6 @@
 import { CommonProps } from '../CommonProps';
 
 export type inputMarginOptions = 'dense' | 'none' | 'normal';
-export type adornmentPosition = 'start' | 'end';
 
 export interface InputTextProps extends CommonProps {
   /** This prop helps users to fill forms faster */

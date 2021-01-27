@@ -2,9 +2,7 @@ import React, { KeyboardEvent, MouseEvent, useState } from 'react';
 import { InputAdornment, TextField } from '@material-ui/core';
 import { DotIcon } from '../icon/Icon';
 import { DotIconButton } from '../button/IconButton';
-import {
-  inputMarginOptions,
-} from '../input-form-fields/InputFormFields.propTypes';
+import { inputMarginOptions } from '../input-form-fields/InputFormFields.propTypes';
 
 import './InlineEdit.scss';
 
