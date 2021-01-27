@@ -134,14 +134,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "colorPermutations": {},
-        "tags": ["satelite"],
+        "tags": ["satellite"],
         "grid": 0
       },
       "attrs": [],
       "properties": {
         "order": 888,
         "id": 5,
-        "name": "satelite",
+        "name": "satellite",
         "prevSize": 32,
         "code": 59838
       },
@@ -167,14 +167,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "colorPermutations": {},
-        "tags": ["satelite-group"],
+        "tags": ["satellite-group"],
         "grid": 0
       },
       "attrs": [],
       "properties": {
         "order": 889,
         "id": 6,
-        "name": "satelite-group",
+        "name": "satellite-group",
         "prevSize": 32,
         "code": 59839
       },
