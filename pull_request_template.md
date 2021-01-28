@@ -13,9 +13,13 @@ For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot
 
 ---
 
-## Proposed Changes
+## PR Checklist
 
-- Change 1
-- Change 2
-
-`Resolves #`
+- [ ] `unit` test coverage updated
+- [ ] `e2e` test coverage updated
+- [ ] Storybook up-to-date
+- [ ] Configured as a styled component
+- [ ] Configured to extend `commonProps
+- [ ] UX review
+- [ ] `CHANGE_LOG.md` updated
+- [ ] `Resolves #XXXX`
