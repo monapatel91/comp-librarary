@@ -1,8 +1,7 @@
 import React, { MouseEvent } from 'react';
-import { Drawer, Theme, fade } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
-import styled, { css } from 'styled-components';
+import { rootClassName, StyledDrawer } from './Drawer.styles';
 
 export type DrawerAnchor = 'bottom' | 'left' | 'right' | 'top';
 export type DrawerVariant = 'permanent' | 'persistent' | 'temporary';
@@ -22,22 +21,6 @@ export interface DrawerProps extends CommonProps {
   width?: string;
 }
 
-const StyledDrawer = styled(Drawer)<DrawerProps>`
-  ${({ theme }: { theme: Theme }) => css`
-    &.dot-drawer {
-      .MuiBackdrop-root {
-        background-color: ${fade(theme.palette.grey[900], 0.7)};
-      }
-    }
-
-    .dot-drawer-paper {
-      width: ${({ width, anchor }: DrawerProps) =>
-        anchor === 'bottom' || anchor === 'top' ? '100%' : width};
-      padding: ${theme.spacing(2)}px;
-    }
-  `}
-`;
-
 export const DotDrawer = ({
   anchor = 'right',
   className,
@@ -48,7 +31,7 @@ export const DotDrawer = ({
   variant = 'temporary',
   width,
 }: DrawerProps) => {
-  const rootClasses = useStylesWithRootClass('dot-drawer', className);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   return (
     <StyledDrawer
       data-testid={dataTestId}
