@@ -32,8 +32,6 @@ export const DotInputText = ({
   type = 'text',
   warning = false,
 }: InputTextProps) => {
-
-
   const hasWarning = !error && warning ? warningClassName : '';
   const rootStyles = useStylesWithRootClass(
     rootClassName,
@@ -46,7 +44,7 @@ export const DotInputText = ({
       id={id}
       aria-label={name}
       autoFocus={autoFocus}
-      classes={{root: rootStyles}}
+      classes={{ root: rootStyles }}
       defaultValue={defaultValue}
       endIcon={endIcon}
       error={error}
