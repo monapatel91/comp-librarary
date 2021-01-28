@@ -15,7 +15,7 @@ export const StyledSidebar = styled.aside`
       flex-direction: column;
       justify-content: space-between;
       letter-spacing: 0.01em;
-      padding-top: ${theme.spacing(1) * 0.5}px;
+      padding-top: ${theme.spacing(0.5)}px;
       width: 240px;
       -o-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
       -moz-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
@@ -56,7 +56,7 @@ export const StyledSidebar = styled.aside`
 
           &.divider {
             border-bottom: 1px solid ${theme.palette.grey[100]};
-            margin: ${theme.spacing(1)}px 0 0;
+            margin: ${theme.spacing(1, 0, 0)};
 
             h5 {
               font-size: 12px;
@@ -121,7 +121,7 @@ export const StyledSidebar = styled.aside`
 
       .toggle-nav {
         border-top: 1px solid ${theme.palette.grey[100]};
-        padding: ${theme.spacing(1)}px 6px 0;
+        padding: ${theme.spacing(1, 0.75, 0)};
         text-align: right;
 
         .dot-icon {
