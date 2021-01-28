@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
-import { DotActionBarProps } from './ActionToolbar.propTypes'
+import { DotActionBarProps } from './ActionToolbar.propTypes';
 import { rootClassName, StyledToolbar } from './ActionToolbar.styles';
 
 export function DotActionToolbar({
