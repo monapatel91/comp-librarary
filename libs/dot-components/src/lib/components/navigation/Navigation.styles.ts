@@ -22,7 +22,7 @@ export const StyledNavigation = styled.nav`
 
         &.vertical {
           li a {
-            padding: ${theme.spacing(1 * 0.5, 0)}px;
+            padding: ${theme.spacing(0.5, 0)}px;
           }
         }
       }
