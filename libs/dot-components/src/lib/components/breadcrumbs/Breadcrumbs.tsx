@@ -1,9 +1,9 @@
 import React, { MouseEvent } from 'react';
-import { Breadcrumbs, Link, Theme } from '@material-ui/core';
-import styled, { css } from 'styled-components';
+import { Link } from '@material-ui/core';
 import DotIcon from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
 
 export type LinkUnderlineOptions = 'always' | 'hover' | 'none';
 
@@ -19,44 +19,13 @@ export interface BreadcrumbProps extends CommonProps {
   maxItems?: number;
 }
 
-const StyledBreadcrumbs = styled(Breadcrumbs)`
-  ${({ theme }: { theme: Theme }) => css`
-    &.dot-breadcrumbs {
-      .MuiBreadcrumbs-li,
-      .separator {
-        color: ${theme.palette.grey[300]};
-        margin: 0;
-      }
-      .separator {
-        font-size: 12px;
-        width: 20px;
-        height: 20px;
-        padding: 0;
-      }
-      .MuiBreadcrumbs-separator {
-        margin: 0;
-      }
-      .MuiLink-underlineHover {
-        cursor: pointer;
-      }
-    }
-    .breadcrumb {
-      padding: ${theme.spacing(0.5, 2)};
-    }
-    .current-page {
-      color: ${theme.palette.grey[700]};
-      cursor: default;
-    }
-  `}
-`;
-
 export const DotBreadcrumbs = ({
   className,
   'data-testid': dataTestId,
   items,
   maxItems = 3,
 }: BreadcrumbProps) => {
-  const rootClasses = useStylesWithRootClass('dot-breadcrumbs', className);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   return (
     <StyledBreadcrumbs
