@@ -25,6 +25,10 @@ export const StyledTextField = styled(TextField)<InputTextProps>`
           ? `${theme.spacing(2.25, 1.5, 2.25, 0)}`
           : `${theme.spacing(2.25, 1.5)}`}; 
       }
+      .MuiOutlinedInput-inputMarginDense {
+        padding-top: ${theme.spacing(1.3125)}px;
+        padding-bottom: ${theme.spacing(1.3125)}px;
+      }
     }
     &.${rootSelectClassName}, &.${rootClassName} {
       .MuiSelect-select:focus {

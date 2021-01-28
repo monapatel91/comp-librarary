@@ -35,7 +35,11 @@ export const DotInputText = ({
 
 
   const hasWarning = !error && warning ? warningClassName : '';
-  const rootStyles = useStylesWithRootClass(rootClassName, `${hasWarning} ${className}`);
+  const rootStyles = useStylesWithRootClass(
+    rootClassName,
+    className,
+    hasWarning
+  );
 
   return (
     <StyledTextField
