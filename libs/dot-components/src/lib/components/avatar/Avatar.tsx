@@ -1,44 +1,14 @@
 import React, { MouseEvent, ReactNode } from 'react';
-import { Avatar, Theme, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { Variant } from '@material-ui/core/styles/createTypography';
-import styled, { css } from 'styled-components';
 
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 import { DotIcon, IconFontSize } from '../icon/Icon';
+import { rootClassName, StyledAvatar } from './Avatar.styles';
 
 type AvatarSize = 'small' | 'medium' | 'large';
 type AvatarType = 'image' | 'text' | 'icon';
-
-const avatarSpacing = {
-  small: 3,
-  medium: 5,
-  large: 7,
-};
-
-const StyledAvatar = styled(Avatar)`
-  ${({ theme }: { theme: Theme }) => css`
-    &.MuiAvatar-root {
-      background-color: ${theme.palette.grey[100]};
-      color: ${theme.palette.text.primary};
-
-      &.small {
-        height: ${theme.spacing(avatarSpacing.small)}px;
-        width: ${theme.spacing(avatarSpacing.small)}px;
-      }
-
-      &.medium {
-        height: ${theme.spacing(avatarSpacing.medium)}px;
-        width: ${theme.spacing(avatarSpacing.medium)}px;
-      }
-
-      &.large {
-        height: ${theme.spacing(avatarSpacing.large)}px;
-        width: ${theme.spacing(avatarSpacing.large)}px;
-      }
-    }
-  `}
-`;
 
 export interface AvatarProps extends CommonProps {
   /** Text displayed on hover */
@@ -71,7 +41,7 @@ export const DotAvatar = ({
   type = 'image',
   variant = 'circle',
 }: AvatarProps) => {
-  const rootClasses = useStylesWithRootClass('dot-avatar', className);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   // determine values for variables dependent on size
   let iconFontSize: IconFontSize;
