@@ -12,27 +12,22 @@
 - **EmptyState**: changed `Image` prop to `image`
 - **Navigation**: added button as component to trigger subnav
 - **Navigation**: added support for keyboard navigation
-<<<<<<< HEAD
 - **InputText**: added props for `startIcon`, `endIcon`, `warning`, `id`, `helperText`
 - **InputText**: added custom styles for `warning` state
-- **InputText**: fixed inconnsistent spec styles per UX review
+- **InputText**: fixed inconnsistent styles per UX review
 - **InputText**: added better demo controls in storybook for `startIcon`, `endIcon`
 - **InputText**: moved styled component definitions to `InputFormFields.styles.ts`
 - **InputText**: moved interface and type definitions to `InputFormFields.propTypes.ts`
+- **InputText**: removed `variant` prop
 - **InputSelect**: added props for `startIcon`, `endIcon`, `warning`, `id`, `helperText`
 - **InputSelect**: added custom styles for `warning` state
-- **InputSelect**: fixed inconnsistent spec styles per UX review
+- **InputSelect**: fixed inconnsistent styles per UX review
 - **InputSelect**: added better demo controls in storybook for `startIcon`, `endIcon`
 - **InputSelect**: moved styled component definitions to `InputFormFields.styles.ts`
 - **InputSelect**: moved interface and type definitions to `InputFormFields.propTypes.ts`
-=======
-- **InputText & InputSelect**: added props for `startIcon`, `endIcon`, `warning`, `id`, `helperText`
-- **InputText & InputSelect**: added custom styles for `warning` state
-- **InputText & InputSelect**: fixed inconnsistent spec styles per UX review
-- **InputText & InputSelect**: added better demo controls in storybook for `startIcon`, `endIcon`
-- **InputText & InputSelect**: moved styled component definitions to `InputFormFields.styles.ts`
-- **InputText & InputSelect**: moved interface and type definitions to `InputFormFields.propTypes.ts`
->>>>>>> issue: #107 #108 fixed formating
+- **InputSelect**: removed `variant` prop
+- **AutoComplete**: removed `inputVariant` prop
+- **InlineEdit**: removed `inputVariant` prop
 
 ## 0.0.0-alpha.3
 

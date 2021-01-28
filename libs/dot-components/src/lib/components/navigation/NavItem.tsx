@@ -2,7 +2,7 @@ import React, { Fragment, MouseEvent, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, MenuItem, Typography } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { ButtonSize, ButtonType, DotButton } from '../button/Button';
 import { DotIconButton, IconButtonSize } from '../button/IconButton';
 import { DotIcon, IconFontSize } from '../icon/Icon';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { DotInputText } from './InputFormFields';
+import { DotInputText } from './InputText';
 import { InputTextProps } from './InputFormFields.propTypes';
 import { DotIcon } from '../icon/Icon';
 

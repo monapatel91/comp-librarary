@@ -4,7 +4,7 @@ import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 import { DotIconButton } from '../button/IconButton';
 import { DotNavigation } from '../navigation/Navigation';
 import { CommonProps } from '../CommonProps';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { NavigationItemProps } from '../navigation/NavItem';
 import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
 import { ReactComponent as LogoDigitalAi } from '../../assets/logo_digital_ai.svg';

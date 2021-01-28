@@ -15,7 +15,8 @@ export interface InputTextProps extends CommonProps {
   fullWidth?: boolean;
   /** The helper text content. */
   helperText?: string;
-  /** id to identify the element, also used to create label "for" and helper text id attribute
+  /** 
+   * id to identify the element, also used to create label "for" and helper text id attribute
    * values while it's optional, it is considered required for accessiblity best practice.
    */
   id?: string;
@@ -31,7 +32,8 @@ export interface InputTextProps extends CommonProps {
   required: boolean;
   /** Icon placed before the children. */
   startIcon?: JSX.Element;
-  /** Type of input should be a valid HTML 5 input type
+  /** 
+   * Type of input should be a valid HTML 5 input type
    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types
    */
   type?: string;

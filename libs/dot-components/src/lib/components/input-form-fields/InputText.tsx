@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { InputTextProps } from './InputFormFields.propTypes';
 import {
   rootClassName,

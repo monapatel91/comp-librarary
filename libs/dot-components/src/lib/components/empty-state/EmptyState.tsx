@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import { ButtonProps, DotButton } from '../button/Button';
 import { CommonProps } from '../CommonProps';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledEmptyState } from './EmptyState.styles';
 
 export interface EmptyStateProps extends CommonProps {

@@ -7,7 +7,7 @@ import {
   adornmentIconClassName,
   StyledAdornment,
 } from './InputFormFields.styles';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export interface InputSelectProps extends InputTextProps {
   options: Array<string>;
