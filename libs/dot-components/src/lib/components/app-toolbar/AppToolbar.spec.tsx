@@ -6,7 +6,7 @@ import { DotAppToolbar } from './AppToolbar';
 
 const menuItems = [];
 const userAvatar = (
-  <DotAvatar alt="Batman" text="BW" size="small" type="text" />
+  <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
 );
 
 describe(' AppToolbar', () => {

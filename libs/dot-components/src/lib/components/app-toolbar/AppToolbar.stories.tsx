@@ -11,7 +11,7 @@ export default {
   argTypes: {
     avatar: {
       defaultValue: (
-        <DotAvatar alt="Batman" text="BW" size="small" type="text" />
+        <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
       ),
     },
     borderColor: {
