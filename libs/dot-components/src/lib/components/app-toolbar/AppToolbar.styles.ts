@@ -17,7 +17,7 @@ export const StyledAppToolbar = styled.header`
     &.dot-app-toolbar {
       align-items: center;
       background: ${theme.palette.grey[700]};
-      border-bottom: 4px solid #649a3d;
+      border-bottom: 4px solid ${theme.palette.grey[100]};
       color: ${theme.palette.grey[0]};
       display: flex;
       height: 64px;
