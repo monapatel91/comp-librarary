@@ -7,7 +7,7 @@ export const StyledIconButton = styled(IconButton)`
   ${({ theme }: { theme: Theme }) => css`
     &.dot-icon-btn {
       &.MuiIconButton-sizeSmall {
-        padding: ${theme.spacing(1 * 0.25)}px;
+        padding: ${theme.spacing(0.25)}px;
 
         .dot-icon {
           height: 20px;
