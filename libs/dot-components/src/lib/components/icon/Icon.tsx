@@ -4,7 +4,7 @@ import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 import '../../fonts/font-icon/style.scss';
 import { rootClassName, StyledIcon } from './Icon.styles';
 
-export type IconFontSize = 'inherit' | 'default' | 'small';
+export type IconFontSize = 'inherit' | 'default' | 'small' | 'large';
 
 export interface IconProps extends CommonProps {
   /** Determines the size of the icon and spacing around it */

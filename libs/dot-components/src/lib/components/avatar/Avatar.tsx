@@ -4,8 +4,12 @@ import { Variant } from '@material-ui/core/styles/createTypography';
 
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+<<<<<<< HEAD
 import { DotIcon, IconFontSize } from '../icon/Icon';
 import { rootClassName, StyledAvatar } from './Avatar.styles';
+=======
+import { DotIcon } from '../icon/Icon';
+>>>>>>> defect #165: cleanup logic around displaying correct avatar type, change what text is displayed if more than one word or not
 
 type AvatarSize = 'small' | 'medium' | 'large';
 type AvatarType = 'image' | 'text' | 'icon';
@@ -43,58 +47,18 @@ export const DotAvatar = ({
 }: AvatarProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-  // determine values for variables dependent on size
-  let iconFontSize: IconFontSize;
-  let textVariant: Variant;
-  switch (size) {
-    case 'small':
-      iconFontSize = size;
-      textVariant = 'caption';
-      break;
+  const parsedText = () => {
+    const textArray = text.split(' ');
 
-    case 'medium':
-      iconFontSize = 'default';
-      textVariant = 'h3';
-      break;
+    if (textArray.length > 1) {
+      const firstInitial = textArray[0].slice(0, 1);
+      const lastInitial = textArray[1].slice(0, 1);
 
-    case 'large':
-      iconFontSize = 'default';
-      textVariant = 'h1';
-      break;
-  }
-
-  let child: ReactNode;
-  switch (type) {
-    case 'icon':
-      child = (
-        <DotIcon
-          data-testid={`${dataTestId}-icon`}
-          iconId={iconId ? iconId : 'user'}
-          fontSize={iconFontSize}
-        />
-      );
-      break;
-
-    case 'image':
-      if (!imageSrc) {
-        child = (
-          <DotIcon
-            data-testid={`${dataTestId}-icon`}
-            iconId={iconId ? iconId : 'user'}
-            fontSize={iconFontSize}
-          />
-        );
-      }
-      break;
-
-    case 'text':
-      child = (
-        <Typography variant={textVariant}>
-          {text ? text.slice(0, 2) : ''}
-        </Typography>
-      );
-      break;
-  }
+      return `${firstInitial}${lastInitial}`;
+    } else {
+      return text ? text.slice(0, 1) : '';
+    }
+  };
 
   return (
     <StyledAvatar
@@ -103,10 +67,24 @@ export const DotAvatar = ({
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       onClick={(event) => (onClick ? onClick(event) : null)}
-      src={imageSrc}
+      src={type === 'image' ? imageSrc : null}
       variant={variant}
     >
-      {child}
+      {type === 'icon' || (type === 'image' && !imageSrc) ? (
+        <DotIcon
+          data-testid={`${dataTestId}-icon`}
+          iconId={iconId ? iconId : 'user'}
+          fontSize={size === 'medium' ? 'default' : size}
+        />
+      ) : type === 'text' ? (
+        <Typography
+          variant={
+            size === 'small' ? 'caption' : size === 'large' ? 'h1' : 'h3'
+          }
+        >
+          {parsedText()}
+        </Typography>
+      ) : null}
     </StyledAvatar>
   );
 };

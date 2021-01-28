@@ -12,10 +12,28 @@ describe('DotAvatar', () => {
 
   it('should only display the first 2 characters of text', () => {
     render(
-      <DotAvatar data-testid="test-avatar" alt="test" type="text" text="BLAH" />
+      <DotAvatar
+        data-testid="test-avatar"
+        alt="test"
+        type="text"
+        text="Bruce Wayne"
+      />
     );
 
-    expect(screen.getByText('BL'));
+    expect(screen.getByText('BW'));
+  });
+
+  it('should only display the first character of text if only one word provided', () => {
+    render(
+      <DotAvatar
+        data-testid="test-avatar"
+        alt="test"
+        type="text"
+        text="Batman"
+      />
+    );
+
+    expect(screen.getByText('B'));
   });
 
   it('should display the icon for the iconId provided', () => {
