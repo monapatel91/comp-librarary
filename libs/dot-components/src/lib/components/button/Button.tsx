@@ -1,28 +1,10 @@
 import React, { MouseEvent } from 'react';
-import { Button, darken, Theme } from '@material-ui/core';
-import styled, { css } from 'styled-components';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { rootClassName, StyledButton } from './Button.styles';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
 export type ButtonSize = 'small' | 'medium' | 'large';
-
-const StyledButton = styled(Button)`
-  ${({ theme }: { theme: Theme }) => css`
-    &.MuiButton-containedSecondary {
-      background-color: ${theme.palette.error.main};
-
-      &:hover,
-      &:active {
-        background-color: ${darken(theme.palette.error.main, 0.2)};
-      }
-    }
-
-    span.dot-icon {
-      padding: 0;
-    }
-  `}
-`;
 
 export interface ButtonProps extends CommonProps {
   /** The text for the button. Button text should be in sentence case. */
@@ -65,7 +47,7 @@ export const DotButton = ({
   titleTooltip,
   type = 'primary',
 }: ButtonProps) => {
-  const rootClasses = useStylesWithRootClass('dot-button', className);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   let color: 'primary' | 'secondary' | 'default';
   let variant: 'contained' | 'outlined' | 'text';
