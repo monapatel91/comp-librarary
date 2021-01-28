@@ -69,9 +69,6 @@ export const StyledAppToolbar = styled.header`
         color: ${theme.palette.grey[100]};
         margin-right: ${theme.spacing(1)}px;
         padding: ${theme.spacing(1.5)}px;
-
-        &.hamburger {
-        }
       }
 
       nav.dot-admin-nav {
