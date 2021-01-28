@@ -10,20 +10,20 @@ describe('DotAvatar', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should only display the first 2 characters of text', () => {
+  it('should display the initial of the first 2 words when two or more words are passed', () => {
     render(
       <DotAvatar
         data-testid="test-avatar"
         alt="test"
         type="text"
-        text="Bruce Wayne"
+        text="Bruce Wayne Enterprises"
       />
     );
 
     expect(screen.getByText('BW'));
   });
 
-  it('should only display the first character of text if only one word provided', () => {
+  it('should display the first character of text if only one word provided', () => {
     render(
       <DotAvatar
         data-testid="test-avatar"

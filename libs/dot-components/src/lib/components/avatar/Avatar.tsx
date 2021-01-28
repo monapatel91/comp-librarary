@@ -1,15 +1,10 @@
-import React, { MouseEvent, ReactNode } from 'react';
+import React, { MouseEvent } from 'react';
 import { Typography } from '@material-ui/core';
-import { Variant } from '@material-ui/core/styles/createTypography';
 
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
-<<<<<<< HEAD
-import { DotIcon, IconFontSize } from '../icon/Icon';
-import { rootClassName, StyledAvatar } from './Avatar.styles';
-=======
 import { DotIcon } from '../icon/Icon';
->>>>>>> defect #165: cleanup logic around displaying correct avatar type, change what text is displayed if more than one word or not
+import { rootClassName, StyledAvatar } from './Avatar.styles';
 
 type AvatarSize = 'small' | 'medium' | 'large';
 type AvatarType = 'image' | 'text' | 'icon';
@@ -52,9 +47,9 @@ export const DotAvatar = ({
 
     if (textArray.length > 1) {
       const firstInitial = textArray[0].slice(0, 1);
-      const lastInitial = textArray[1].slice(0, 1);
+      const secondInitial = textArray[1].slice(0, 1);
 
-      return `${firstInitial}${lastInitial}`;
+      return `${firstInitial}${secondInitial}`;
     } else {
       return text ? text.slice(0, 1) : '';
     }
