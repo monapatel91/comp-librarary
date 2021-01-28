@@ -1,37 +1,9 @@
 import React from 'react';
-import { Theme } from '@material-ui/core';
-import styled, { css } from 'styled-components';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
 import { IconFontSize } from '../icon/Icon';
 import { DirectionType, DotNavItem, NavigationItemProps } from './NavItem';
-
-const StyledNavigation = styled.nav`
-  ${({ theme }: { theme: Theme }) => css`
-    &.dot-navigation {
-      ul,
-      li {
-        display: flex;
-        margin: 0;
-        padding: 0;
-      }
-
-      ul {
-        flex-direction: column;
-
-        &.horizontal {
-          flex-direction: row;
-        }
-
-        &.vertical {
-          li a {
-            padding: ${theme.spacing(1 * 0.5, 0)}px;
-          }
-        }
-      }
-    }
-  `}
-`;
+import { rootClassName, StyledNavigation } from './Navigation.styles';
 
 export interface NavigationProps extends CommonProps {
   /** aria-label passed to the navigation component */
@@ -56,7 +28,7 @@ export const DotNavigation = ({
   isOpen,
   items,
 }: NavigationProps) => {
-  const rootClasses = useStylesWithRootClass('dot-navigation', className);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   return (
     <StyledNavigation
       aria-label={ariaLabel}
