@@ -1,21 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Typography } from '@material-ui/core';
 import { ButtonProps, DotButton } from '../button/Button';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../makeStylesWithRootClass';
-
-const StyledEmptyState = styled.div`
-  &.dot-empty-state {
-    margin: 0 auto;
-    max-width: 600px;
-    text-align: center;
-
-    .empty-state-image {
-      min-height: 239px;
-    }
-  }
-`;
+import { rootClassName, StyledEmptyState } from './EmptyState.styles';
 
 export interface EmptyStateProps extends CommonProps {
   buttonProps?: ButtonProps;
@@ -36,7 +24,7 @@ export const DotEmptyState = ({
   subtitle,
   title,
 }: EmptyStateProps) => {
-  const rootClasses = useStylesWithRootClass('dot-empty-state', className);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   return (
     <StyledEmptyState className={rootClasses} data-testid={dataTestId}>
