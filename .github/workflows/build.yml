@@ -1,4 +1,4 @@
-name: Dot Components Build
+name: Deploy Storybook for Dot Components
 
 on:
   # this is being made manual for now
