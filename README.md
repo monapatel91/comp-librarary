@@ -54,4 +54,4 @@ TBD
 
 ## Change Log
 
-[Learn about the latest improvements](/CHANGE_LOG.md).
+[Learn about the latest improvements](https://zeroheight.com/4a9ac476a/p/1087aa-change-log).
