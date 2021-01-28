@@ -19,7 +19,7 @@ For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot
 - [ ] `e2e` test coverage updated
 - [ ] Storybook up-to-date
 - [ ] Configured as a styled component
-- [ ] Configured to extend `commonProps
+- [ ] Configured to extend `commonProps`
 - [ ] UX review
 - [ ] `CHANGE_LOG.md` updated
 - [ ] `Resolves #XXXX`
