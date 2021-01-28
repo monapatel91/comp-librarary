@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-import Toolbar from '@material-ui/core/Toolbar';
-import { Theme } from '@material-ui/core/styles';
+import { Theme, Toolbar } from '@material-ui/core';
 
 export const rootClassName = 'dot-action-toolbar';
 
