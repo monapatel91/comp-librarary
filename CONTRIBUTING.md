@@ -19,6 +19,7 @@
   - [Publishing as NPM package to GitHub Packages](#publishing-as-npm-package-to-github-packages)
     - [Set the package version number](#set-the-package-version-number)
     - [Build and publish](#build-and-publish)
+    - [Publish Storybook Site](#publish-storybook-site)
 
 ## Getting Started
 
@@ -161,3 +162,13 @@ yarn build
 # build and publish
 yarn build:publish
 ```
+
+### Publish Storybook Site
+
+The Storybook documentation is deployed via a manual GitHub Action. To trigger the Action follow these steps:
+
+1. Navigate to the [Actions](https://github.com/digital-ai/dot-components/actions) for the repository
+1. Click on the Workflow called "Deploy Storybook for Dot Components"
+1. Click on the "Run Workflow" menu
+1. Choose the appropriate branch to run the workflow on (should be the master branch)
+1. Click on the "Run Workflow" button
