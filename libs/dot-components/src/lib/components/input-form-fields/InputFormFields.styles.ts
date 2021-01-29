@@ -40,7 +40,11 @@ export const StyledTextField = styled(TextField)`
         }
       }
       .MuiSelect-icon {
-        right: ${InputProps.endAdornment ? `${theme.spacing(5.5)}px` : `${theme.spacing(1.5)}px`};
+        right: ${
+          InputProps.endAdornment
+            ? `${theme.spacing(5.5)}px`
+            : `${theme.spacing(1.5)}px`
+        };
       }
       &.${warningClassName} {
         .MuiOutlinedInput-notchedOutline {
