@@ -13,6 +13,9 @@ export interface InputSelectProps extends InputTextProps {
   options: Array<string>;
 }
 
+/**
+ * @experimental This component is still in development
+ */
 export const DotInputSelect = ({
   autoFocus,
   className,
@@ -30,7 +33,7 @@ export const DotInputSelect = ({
   defaultValue = options[0],
   required,
   startIcon,
-  warning,
+  warning = false,
 }: InputSelectProps) => {
   const rootStyles = useStylesWithRootClass(rootSelectClassName, className);
 

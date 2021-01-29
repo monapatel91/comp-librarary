@@ -26,8 +26,8 @@ export const StyledTextField = styled(TextField)`
       }; 
       }
       .MuiOutlinedInput-inputMarginDense {
-        padding-top: ${theme.spacing(1.3125)}px;
-        padding-bottom: ${theme.spacing(1.3125)}px;
+        padding-top: ${theme.spacing(1.3)}px;
+        padding-bottom: ${theme.spacing(1.3)}px;
       }
     }
     &.${rootSelectClassName}, &.${rootClassName} {

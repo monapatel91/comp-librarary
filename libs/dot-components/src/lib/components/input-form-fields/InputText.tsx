@@ -10,8 +10,7 @@ import {
 } from './InputFormFields.styles';
 
 /**
- * A component for generating an input element of type "text"
- *
+ * @experimental This component is still in development
  */
 export const DotInputText = ({
   autoFocus,
