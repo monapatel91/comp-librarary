@@ -41,7 +41,6 @@ export const DotInputSelect = ({
       autoFocus={autoFocus}
       className={`${rootStyles} ${hasWarning}`}
       defaultValue={defaultValue}
-      endIcon={endIcon}
       error={error}
       fullWidth={fullWidth}
       helperText={helperText}
@@ -78,7 +77,6 @@ export const DotInputSelect = ({
         native: true,
       }}
       variant="outlined"
-      warning={warning}
     >
       {options.map((option) => (
         <option key={option} value={option}>

@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { TextField, InputAdornment } from '@material-ui/core';
-import { StyledInputFormFieldsProps } from './InputFormFields.propTypes';
 
 export const rootClassName = 'dot-text-field';
 export const rootSelectClassName = 'dot-select-field';
@@ -17,11 +16,11 @@ export const StyledAdornment = styled(InputAdornment)`
 `;
 
 export const StyledTextField = styled(TextField)`
-  ${({ theme, startIcon, endIcon }: StyledInputFormFieldsProps) => css`
+  ${({ theme, InputProps }) => css`
     &.${rootClassName} {
       .MuiOutlinedInput-input {
       padding: ${
-        startIcon
+        InputProps.endAdornment
           ? `${theme.spacing(2.25, 1.5, 2.25, 0)}`
           : `${theme.spacing(2.25, 1.5)}`
       }; 
@@ -41,7 +40,7 @@ export const StyledTextField = styled(TextField)`
         }
       }
       .MuiSelect-icon {
-        right: ${endIcon ? '44px' : '12px'};
+        right: ${InputProps.endAdornment ? '44px' : '12px'};
       }
       &.${warningClassName} {
         .MuiOutlinedInput-notchedOutline {

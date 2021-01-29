@@ -46,7 +46,6 @@ export const DotInputText = ({
       autoFocus={autoFocus}
       classes={{ root: rootStyles }}
       defaultValue={defaultValue}
-      endIcon={endIcon}
       error={error}
       fullWidth={fullWidth}
       helperText={helperText}
@@ -77,7 +76,6 @@ export const DotInputText = ({
       name={name}
       onChange={(event) => onChange && onChange(event.target.value)}
       required={required}
-      startIcon={startIcon}
       type={type}
       variant="outlined"
     />
