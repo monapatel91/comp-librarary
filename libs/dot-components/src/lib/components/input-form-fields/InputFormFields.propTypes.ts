@@ -3,10 +3,6 @@ import { CommonProps } from '../CommonProps';
 
 export type inputMarginOptions = 'dense' | 'none' | 'normal';
 
-export interface StyledInputFormFieldsProps extends InputTextProps {
-  theme: Theme;
-}
-
 export interface InputTextProps extends CommonProps {
   /** This prop helps users to fill forms faster */
   autoFocus?: boolean;
@@ -44,4 +40,8 @@ export interface InputTextProps extends CommonProps {
   type?: string;
   /** If true, the label will be displayed in an warning state. */
   warning?: boolean;
+}
+
+export interface StyledInputFormFieldsProps extends InputTextProps {
+  theme: Theme;
 }
