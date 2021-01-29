@@ -6,7 +6,7 @@ import { DotIcon } from '../icon/Icon';
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
-  title: 'Components/Input Select',
+  title: 'Experimental/Input Select',
   component: DotInputSelect,
   argTypes: {
     label: { defaultValue: 'Default Label' },

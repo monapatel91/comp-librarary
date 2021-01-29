@@ -7,7 +7,7 @@ import { DotIcon } from '../icon/Icon';
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
-  title: 'Components/Input Text',
+  title: 'Experimental/Input Text',
   component: DotInputText,
   argTypes: {
     fullWidth: { defaultValue: false },
