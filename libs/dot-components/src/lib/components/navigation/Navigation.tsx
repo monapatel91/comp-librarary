@@ -1,6 +1,6 @@
 import React from 'react';
 import { CommonProps } from '../CommonProps';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { IconFontSize } from '../icon/Icon';
 import { DirectionType, DotNavItem, NavigationItemProps } from './NavItem';
 import { rootClassName, StyledNavigation } from './Navigation.styles';

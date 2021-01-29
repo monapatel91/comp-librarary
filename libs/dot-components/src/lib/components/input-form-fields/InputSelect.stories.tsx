@@ -1,7 +1,9 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { DotInputSelect, InputSelectProps } from './InputSelect';
+import { DotIcon } from '../icon/Icon';
 
-import { DotInputSelect, InputSelectProps } from './InputFormFields';
+const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
   title: 'Experimental/Input Select',
@@ -15,9 +17,17 @@ export default {
       separator: ',',
     },
     variant: { defaultValue: 'outlined' },
+    warning: { defaultValue: false },
+    id: { defaultValue: 'custom-text-input' },
+    endIcon: { control: { type: 'select', options: iconOptions } },
+    startIcon: { control: { type: 'select', options: iconOptions } },
   },
 } as Meta;
 
-export const Default: Story<InputSelectProps> = (args) => (
-  <DotInputSelect {...args} />
-);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Default: Story<InputSelectProps> = (args: any) => {
+  const { endIcon: endIconId, startIcon: startIconId } = args;
+  const endIcon = endIconId && <DotIcon iconId={endIconId} />;
+  const startIcon = startIconId && <DotIcon iconId={startIconId} />;
+  return <DotInputSelect {...args} endIcon={endIcon} startIcon={startIcon} />;
+};

@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
 import { CommonProps } from '../CommonProps';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
 import { rootClassName, StyledIconButton } from './IconButton.styles';
 

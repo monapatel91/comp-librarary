@@ -1,7 +1,6 @@
 import React from 'react';
 import { Autocomplete } from '@material-ui/lab';
 import { TextField } from '@material-ui/core';
-import { inputVariantOptions } from '../input-form-fields/InputFormFields';
 
 import './AutoComplete.scss';
 
@@ -33,8 +32,6 @@ export interface AutoCompleteProps {
   freesolo?: boolean;
   /** If true, options will be grouped by category */
   group?: boolean;
-  /** 'filled', 'outlined' or 'standard' */
-  inputVariant?: inputVariantOptions;
   /** Label displayed above the input field */
   label?: string;
   /** If true, will allow the user to select multiple options */
@@ -59,7 +56,6 @@ export const DotAutoComplete = ({
   defaultValue,
   freesolo = true,
   group = false,
-  inputVariant = 'outlined',
   label = undefined,
   multiple = true,
   onChange,
@@ -84,7 +80,7 @@ export const DotAutoComplete = ({
       renderInput={(params) => (
         <TextField
           {...params}
-          variant={inputVariant}
+          variant="outlined"
           label={label}
           placeholder={placeholder}
         />

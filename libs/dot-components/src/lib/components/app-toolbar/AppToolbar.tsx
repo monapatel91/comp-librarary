@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Typography } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotNavigation } from '../navigation/Navigation';
 import { NavigationItemProps } from '../navigation/NavItem';
 import { DotIconButton } from '../button/IconButton';

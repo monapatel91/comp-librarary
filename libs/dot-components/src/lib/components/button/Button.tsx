@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
 import { CommonProps } from '../CommonProps';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledButton } from './Button.styles';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';

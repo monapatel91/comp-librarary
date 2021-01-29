@@ -1,11 +1,10 @@
 import styled, { css } from 'styled-components';
-import { Theme } from '@material-ui/core/styles';
 import { DotDrawer } from '../drawer/Drawer';
 
 export const rootClassName = 'dot-app-toolbar';
 
 export const StyledMainMenu = styled(DotDrawer)`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.dot-main-menu .dot-drawer-paper {
       padding: ${theme.spacing(6, 0, 0)};
     }
@@ -13,7 +12,7 @@ export const StyledMainMenu = styled(DotDrawer)`
 `;
 
 export const StyledAppToolbar = styled.header`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.dot-app-toolbar {
       align-items: center;
       background: ${theme.palette.grey[700]};

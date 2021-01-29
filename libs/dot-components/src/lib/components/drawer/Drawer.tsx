@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
 import { CommonProps } from '../CommonProps';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDrawer } from './Drawer.styles';
 
 export type DrawerAnchor = 'bottom' | 'left' | 'right' | 'top';

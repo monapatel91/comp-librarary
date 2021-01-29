@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react';
 import { Link } from '@material-ui/core';
 import DotIcon from '../icon/Icon';
 import { CommonProps } from '../CommonProps';
-import { useStylesWithRootClass } from '../makeStylesWithRootClass';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
 
 export type LinkUnderlineOptions = 'always' | 'hover' | 'none';

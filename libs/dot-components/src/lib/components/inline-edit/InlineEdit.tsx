@@ -2,10 +2,7 @@ import React, { KeyboardEvent, MouseEvent, useState } from 'react';
 import { InputAdornment, TextField } from '@material-ui/core';
 import { DotIcon } from '../icon/Icon';
 import { DotIconButton } from '../button/IconButton';
-import {
-  inputMarginOptions,
-  inputVariantOptions,
-} from '../input-form-fields/InputFormFields';
+import { inputMarginOptions } from '../input-form-fields/InputFormFields.propTypes';
 
 import './InlineEdit.scss';
 
@@ -36,8 +33,6 @@ export interface InlineEditProps {
   required: boolean;
   /** default value that is displayed on load */
   value?: string;
-  /** The style of the input field */
-  variant?: inputVariantOptions;
 }
 
 /**
@@ -55,7 +50,6 @@ export const DotInlineEdit = ({
   onEditStateChange = undefined,
   onLabelChange = undefined,
   required = false,
-  variant = 'outlined',
   value = '',
 }: InlineEditProps) => {
   const [editing, setEditing] = useState(false);
@@ -144,7 +138,7 @@ export const DotInlineEdit = ({
         required={required}
         type="text"
         value={inputValue}
-        variant={variant}
+        variant="outlined"
       />
       {editing && (
         <div className="editing-actions">

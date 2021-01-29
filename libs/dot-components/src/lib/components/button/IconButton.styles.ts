@@ -1,10 +1,10 @@
-import { IconButton, Theme } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-icon-btn';
 
 export const StyledIconButton = styled(IconButton)`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.dot-icon-btn {
       &.MuiIconButton-sizeSmall {
         padding: ${theme.spacing(0.25)}px;
