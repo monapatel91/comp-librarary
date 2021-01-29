@@ -16,7 +16,6 @@ export const StyledAdornment = styled(InputAdornment)`
   }
 `;
 
-
 export const StyledTextField = styled(TextField)`
   ${({ theme, startIcon, endIcon }: StyledInputFormFieldsProps) => css`
     &.${rootClassName} {
@@ -24,7 +23,8 @@ export const StyledTextField = styled(TextField)`
       padding: ${
         startIcon
           ? `${theme.spacing(2.25, 1.5, 2.25, 0)}`
-          : `${theme.spacing(2.25, 1.5)}`}; 
+          : `${theme.spacing(2.25, 1.5)}`
+      }; 
       }
       .MuiOutlinedInput-inputMarginDense {
         padding-top: ${theme.spacing(1.3125)}px;
@@ -41,7 +41,7 @@ export const StyledTextField = styled(TextField)`
         }
       }
       .MuiSelect-icon {
-        right: ${ endIcon ? '44px' : '12px'};
+        right: ${endIcon ? '44px' : '12px'};
       }
       &.${warningClassName} {
         .MuiOutlinedInput-notchedOutline {
