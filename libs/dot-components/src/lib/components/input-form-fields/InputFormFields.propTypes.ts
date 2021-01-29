@@ -1,6 +1,11 @@
+import { Theme } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 
 export type inputMarginOptions = 'dense' | 'none' | 'normal';
+
+export interface StyledInputFormFieldsProps extends InputTextProps {
+  theme: Theme
+}
 
 export interface InputTextProps extends CommonProps {
   /** This prop helps users to fill forms faster */
