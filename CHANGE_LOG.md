@@ -1,17 +1,9 @@
 # Change Log
 
-## 0.0.0-alpha.4
+## 0.0.0-alpha.5
 
-### Components
+### Experimental
 
-- **AppToolbar**: changed `brand` to `appName`
-- **AppToolbar**: changed `items` to `navItems`
-- **Button**: changed `iconId` prop to `startIcon` prop which accepts a component
-- **Button**: added props for `disableRipple`, `fullWidth` and `endIcon`
-- **EmptyState**: added `className` prop, updated title from `h4` to `h2`
-- **EmptyState**: changed `Image` prop to `image`
-- **Navigation**: added button as component to trigger subnav
-- **Navigation**: added support for keyboard navigation
 - **InputText**: added props for `startIcon`, `endIcon`, `warning`, `id`, `helperText`
 - **InputText**: added custom styles for `warning` state
 - **InputText**: fixed inconnsistent styles per UX review
@@ -28,6 +20,19 @@
 - **InputSelect**: removed `variant` prop
 - **AutoComplete**: removed `inputVariant` prop
 - **InlineEdit**: removed `inputVariant` prop
+
+## 0.0.0-alpha.4
+
+### Components
+
+- **AppToolbar**: changed `brand` to `appName`
+- **AppToolbar**: changed `items` to `navItems`
+- **Button**: changed `iconId` prop to `startIcon` prop which accepts a component
+- **Button**: added props for `disableRipple`, `fullWidth` and `endIcon`
+- **EmptyState**: added `className` prop, updated title from `h4` to `h2`
+- **EmptyState**: changed `Image` prop to `image`
+- **Navigation**: added button as component to trigger subnav
+- **Navigation**: added support for keyboard navigation
 
 ## 0.0.0-alpha.3
 
