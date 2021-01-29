@@ -1,10 +1,10 @@
-import { Breadcrumbs, Theme } from '@material-ui/core';
+import { Breadcrumbs } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-breadcrumbs';
 
 export const StyledBreadcrumbs = styled(Breadcrumbs)`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.dot-breadcrumbs {
       .MuiBreadcrumbs-li,
       .separator {

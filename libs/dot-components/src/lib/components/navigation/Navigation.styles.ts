@@ -1,10 +1,9 @@
-import { Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-navigation';
 
 export const StyledNavigation = styled.nav`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.dot-navigation {
       ul,
       li {

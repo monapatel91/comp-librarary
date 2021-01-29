@@ -1,10 +1,9 @@
-import { Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-sidebar';
 
 export const StyledSidebar = styled.aside`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.dot-sidebar {
       align-items: stretch;
       background: ${theme.palette.grey[50]};

@@ -1,4 +1,3 @@
-import { Theme } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-nav-item';
@@ -17,7 +16,7 @@ export const StyledNavItemDivider = styled.li`
 `;
 
 export const StyledNavItem = styled.li`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.dot-nav-item {
       align-items: stretch;
       display: flex;

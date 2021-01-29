@@ -1,10 +1,10 @@
-import { Button, darken, Theme } from '@material-ui/core';
+import { Button, darken } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-button';
 
 export const StyledButton = styled(Button)`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.MuiButton-containedSecondary {
       background-color: ${theme.palette.error.main};
 

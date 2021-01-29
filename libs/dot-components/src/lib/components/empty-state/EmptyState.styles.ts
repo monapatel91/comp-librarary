@@ -1,10 +1,9 @@
 import styled, { css } from 'styled-components';
-import { Theme } from '@material-ui/core';
 
 export const rootClassName = 'dot-empty-state';
 
 export const StyledEmptyState = styled.div`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.dot-empty-state {
       margin: 0 auto;
       max-width: 600px;

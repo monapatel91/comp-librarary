@@ -1,10 +1,10 @@
-import { Icon, Theme } from '@material-ui/core';
+import { Icon } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-icon';
 
 export const StyledIcon = styled(Icon)`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.dot-icon {
       align-items: center;
       box-sizing: content-box;

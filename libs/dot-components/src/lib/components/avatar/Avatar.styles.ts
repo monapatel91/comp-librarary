@@ -1,4 +1,4 @@
-import { Avatar, Theme } from '@material-ui/core';
+import { Avatar } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-avatar';
@@ -10,7 +10,7 @@ const avatarSpacing = {
 };
 
 export const StyledAvatar = styled(Avatar)`
-  ${({ theme }: { theme: Theme }) => css`
+  ${({ theme }) => css`
     &.MuiAvatar-root {
       background-color: ${theme.palette.grey[100]};
       color: ${theme.palette.text.primary};
