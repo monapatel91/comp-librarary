@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { FormControlLabel, Switch } from '@material-ui/core';
-import './Switch.scss';
+import { FormControlLabel } from '@material-ui/core';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { rootClassName, StyledSwitch } from './Switch.styles';
 
 export type SwitchColor = 'default' | 'primary' | 'secondary';
 export type SwitchSize = 'medium' | 'small';
 
-export interface SwitchProps {
+export interface SwitchProps extends CommonProps {
   /** accessibility label */
   ariaLabel?: string;
   /** determines the default state of the switch */
@@ -26,11 +28,14 @@ export interface SwitchProps {
 export const DotSwitch = ({
   ariaLabel,
   checked = false,
-  disabled = false,
+  className,
   color = 'primary',
+  'data-testid': dataTestId,
+  disabled = false,
   label,
   size = 'medium',
 }: SwitchProps) => {
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   const [isChecked, updateChecked] = useState(checked);
 
   const handleChange = () => {
@@ -39,9 +44,9 @@ export const DotSwitch = ({
 
   return (
     <FormControlLabel
-      className="dot-switch"
+      className={rootClasses}
       control={
-        <Switch
+        <StyledSwitch
           checked={isChecked}
           color={color}
           disabled={disabled}
