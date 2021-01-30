@@ -44,9 +44,9 @@ export const DotSwitch = ({
 
   return (
     <FormControlLabel
-      className={rootClasses}
       control={
         <StyledSwitch
+          classes={{ root: rootClasses }}
           checked={isChecked}
           color={color}
           disabled={disabled}
