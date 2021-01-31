@@ -22,4 +22,6 @@ For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot
 - [ ] Configured to extend `commonProps`
 - [ ] UX review
 - [ ] `CHANGE_LOG.md` updated
-- [ ] `Resolves #XXXX`
+- [ ] Related issue linked to PR
+
+Resolves #XXXX
