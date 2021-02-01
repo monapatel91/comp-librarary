@@ -3,7 +3,8 @@
 - Please provide enough information so that others can review your pull request.
 - If adding additional functionality please extend `e2e` and `unit` tests accordingly.
 - Update your PR with the issue # that your PR resolves if applicable. [More info](https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword.)
-- Please mark your pull request as a `draft` if still a work in progress and update it to `ready` when your code changes are complete and ready for review.
+- PR should be marked as `draft` if still a work in progress
+- PR should be marked as `ready` when your code changes are complete and ready for review.
 - If PR should be linked to an issue then format the title as `Issue #1: Title Here`
 - If PR should be linked to a story/defect in Agility then format the title as `S-12345: Story Title Here`
 
@@ -13,15 +14,28 @@ For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot
 
 ---
 
-## PR Checklist
+## Changes Made
+
+- please note all changes made to API, design, functionality, etc.
+
+## Author Checklist
 
 - [ ] `unit` test coverage updated
 - [ ] `e2e` test coverage updated
-- [ ] Storybook up-to-date
-- [ ] Configured as a styled component
-- [ ] Configured to extend `commonProps`
-- [ ] UX review
+- [ ] Storybook configurations up-to-date
+- [ ] Component is a styled component
+- [ ] Component props extends `commonProps`
 - [ ] `CHANGE_LOG.md` updated
 - [ ] Related issue linked to PR
+- [ ] Checklist of changes made added to PR description
+
+## Reviewer Checklist
+
+- [ ] All acceptance criteria has been met from linked issue
+- [ ] Updated Storybook deployment has been reviewed
+- [ ] Run code locally and verify all changes
+- [ ] UX Review
+
+## Related Issue(s)
 
 Resolves #XXXX

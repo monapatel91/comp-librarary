@@ -25,3 +25,7 @@ A clear and concise description of any alternative solutions or features you've 
 ### Additional context
 
 Add any other context or screenshots about the feature request here.
+
+### Acceptance Criteria
+
+- [ ] Please provide a list of acceptance criteria, if you are unsure then add a list of your desired outcomes
