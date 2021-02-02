@@ -1,10 +1,9 @@
 import React, { MouseEvent } from 'react';
 import { Typography } from '@material-ui/core';
-
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { DotIcon } from '../icon/Icon';
 import { rootClassName, StyledAvatar } from './Avatar.styles';
+import { DotIcon } from '../icon/Icon';
 
 type AvatarSize = 'small' | 'medium' | 'large';
 type AvatarType = 'image' | 'text' | 'icon';
