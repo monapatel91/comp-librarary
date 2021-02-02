@@ -2,7 +2,7 @@
 name: Component review
 about: 'Review & refactor component'
 title: 'Component Review: '
-labels: UX, enhancement
+labels: UX, refactor
 assignees: BojanKocijan, CWSites
 ---
 
