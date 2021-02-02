@@ -16,7 +16,7 @@ export const StyledSwitch = styled(Switch)`
       // margin-bottom: 6px;
 
       span.Mui-disabled {
-          color: ${theme.palette.grey[50]};
+        color: ${theme.palette.grey[50]};
       }
 
       /* &:hover {
