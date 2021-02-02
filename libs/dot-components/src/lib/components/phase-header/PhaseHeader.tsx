@@ -1,10 +1,11 @@
 import React, { Fragment, KeyboardEvent, MouseEvent, useState } from 'react';
 import { Menu, MenuItem, Button } from '@material-ui/core';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { rootClassName, StyledPhaseHeader } from './PhaseHeader.styles';
 import { DotIconButton } from '../button/IconButton';
 import { DotConfirmationDialog } from '../confirmation-dialog/ConfirmationDialog';
 import { DotInlineEdit } from '../inline-edit/InlineEdit';
-
-import './PhaseHeader.scss';
 
 export enum CategoryType {
   plan = 'plan',
@@ -15,7 +16,7 @@ export enum CategoryType {
   monitor = 'monitor',
 }
 
-export interface PhaseHeaderProps {
+export interface PhaseHeaderProps extends CommonProps {
   /** If true, the delete button will be displayed. */
   canDelete?: boolean;
   /** If true, the user will be able to edit the color and the label. */
@@ -43,13 +44,15 @@ export const DotPhaseHeader = ({
   canEdit = false,
   canDelete = false,
   category = CategoryType.plan,
-  classes = '',
+  className,
   'data-index': dataIndex = 0,
+  'data-testid': dataTestId,
   label,
   onCategoryChange = undefined,
   onDelete = undefined,
   onLabelChange = undefined,
 }: PhaseHeaderProps) => {
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   const [phaseColor, setPhaseColor] = useState(category);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [inlineEditing, updateInlineEditing] = useState(false);
@@ -90,10 +93,9 @@ export const DotPhaseHeader = ({
   };
 
   return (
-    <div
-      className={`dot-phase-header ${
-        inlineEditing ? 'editing' : ''
-      } ${classes}`}
+    <StyledPhaseHeader
+      className={`${rootClasses} ${inlineEditing ? 'editing' : ''}`}
+      data-testid={dataTestId}
     >
       <Button
         aria-controls="simple-menu"
@@ -164,7 +166,7 @@ export const DotPhaseHeader = ({
           />
         </Fragment>
       )}
-    </div>
+    </StyledPhaseHeader>
   );
 };
 

@@ -4,7 +4,7 @@ describe('dot-components: Inline Edit component', () => {
   );
 
   it('should have a dot- prefix', () => {
-    cy.get('div').should('have.class', 'dot-inline-edit');
+    cy.get('div').should('have.class', 'inline-edit-wrapper');
   });
 
   it('should render the component', () => {

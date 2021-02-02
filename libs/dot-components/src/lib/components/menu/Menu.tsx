@@ -8,7 +8,8 @@ import {
   Paper,
   Popper,
 } from '@material-ui/core';
-import './Menu.scss';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export type PopperPlacement =
   | 'bottom-end'
@@ -25,10 +26,8 @@ export type PopperPlacement =
   | 'top';
 
 /* eslint-disable-next-line */
-export interface MenuProps {
+export interface MenuProps extends CommonProps {
   buttonContent: JSX.Element | string;
-  /** Space delimited CSS classes to be attributed to the menu */
-  classes?: string;
   /** Unique ID that ties a particular menu to a specific element */
   id: string;
   /** Array of items to be displayed inside the menu */
@@ -51,11 +50,13 @@ export interface MenuItemProps {
  */
 export function DotMenu({
   buttonContent,
-  classes,
+  className,
+  'data-testid': dataTestId,
   id,
   menuItems = [],
   menuPlacement = 'bottom',
 }: MenuProps) {
+  const rootClasses = useStylesWithRootClass('dot-menu', className);
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -97,7 +98,7 @@ export function DotMenu({
   }
 
   return (
-    <div className="dot-menu">
+    <div className={rootClasses} data-testid={dataTestId}>
       <Button
         ref={anchorRef}
         aria-controls={open ? id : undefined}
@@ -122,7 +123,7 @@ export function DotMenu({
                 placement === 'bottom' ? 'center top' : 'center bottom',
             }}
           >
-            <Paper className={classes}>
+            <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   autoFocusItem={open}
