@@ -9,7 +9,7 @@ export const StyledSwitch = styled(Switch)`
       margin-bottom: 6px;
 
       span.Mui-disabled {
-          color: white; // theme palette color?
+          color: ${theme.palette.grey[50]};
       }
 
       /* &:hover {
