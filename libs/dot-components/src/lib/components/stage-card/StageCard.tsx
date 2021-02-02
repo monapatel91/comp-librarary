@@ -55,7 +55,7 @@ export const DotStageCard = ({
   return (
     <Fragment>
       <DotCard
-        classes="dot-stage-card"
+        className="dot-stage-card"
         menuOptions={menuOptions}
         title={title}
         subheader={stepHeaderDescription()}

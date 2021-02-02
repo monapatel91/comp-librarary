@@ -1,8 +1,8 @@
 import React from 'react';
 import { Autocomplete } from '@material-ui/lab';
 import { TextField } from '@material-ui/core';
-
-import './AutoComplete.scss';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export type autoCompleteSize = 'medium' | 'small';
 
@@ -25,7 +25,7 @@ export const parseAutoCompleteValue = (
   }
 };
 
-export interface AutoCompleteProps {
+export interface AutoCompleteProps extends CommonProps {
   /** default option that is selected */
   defaultValue?: AutoCompleteOption;
   /** If true, any arbitrary value can be typed in the field */
@@ -53,6 +53,8 @@ export interface AutoCompleteProps {
  * @experimental This component is still in development
  */
 export const DotAutoComplete = ({
+  className,
+  'data-testid': dataTestId,
   defaultValue,
   freesolo = true,
   group = false,
@@ -64,9 +66,12 @@ export const DotAutoComplete = ({
   size = 'small',
   value,
 }: AutoCompleteProps) => {
+  const rootClasses = useStylesWithRootClass('dot-autocomplete', className);
+
   return (
     <Autocomplete
-      className="dot-autocomplete"
+      classes={{ root: rootClasses }}
+      data-testid={dataTestId}
       multiple={multiple}
       options={options.sort((a, b) => -b.category.localeCompare(a.category))}
       defaultValue={defaultValue ? [defaultValue.title] : []}

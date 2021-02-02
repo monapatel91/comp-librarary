@@ -46,7 +46,7 @@ export const DotStepCard = ({
 
   return (
     <DotCard
-      classes="dot-step-card"
+      className="dot-step-card"
       menuOptions={menuOptions}
       preHeader={preHeader}
       subheader={subheader}
