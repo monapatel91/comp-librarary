@@ -6,7 +6,14 @@ export const rootClassName = 'dot-switch';
 export const StyledSwitch = styled(Switch)`
   ${({ theme }) => css`{
     &.dot-switch {
-      margin-bottom: 8px;
-    }
+      margin-bottom: 6px;
+
+      span.Mui-disabled {
+          color: white; // theme palette color?
+      }
+
+      /* &:hover {
+      } */
+
   `}
 `;
