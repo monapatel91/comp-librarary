@@ -1,10 +1,12 @@
 import React, { Fragment, KeyboardEvent, MouseEvent, useState } from 'react';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { rootClassName, StyledRow } from './Row.styles';
 import { DotButton } from '../button/Button';
 import { DotConfirmationDialog } from '../confirmation-dialog/ConfirmationDialog';
 import { DotIcon } from '../icon/Icon';
-import './Row.scss';
 
-export interface RowProps {
+export interface RowProps extends CommonProps {
   /** If true, the delete button will be displayed. */
   canDelete?: boolean;
   /** If true, the edit button will be displayed. */
@@ -37,6 +39,8 @@ export interface RowProps {
 export const DotRow = ({
   canDelete = false,
   canEdit = false,
+  className,
+  'data-testid': dataTestId,
   deleteTitle = 'Please confirm',
   deleteBodyText = '',
   deleteButtonText = 'Confirm',
@@ -47,6 +51,11 @@ export const DotRow = ({
   rowClasses,
   uid,
 }: RowProps) => {
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    className,
+    rowClasses
+  );
   const [deleteDialogIsOpen, setDeleteDialogIsOpen] = useState(false);
 
   const handleConfirm = (event: MouseEvent | KeyboardEvent) => {
@@ -57,7 +66,7 @@ export const DotRow = ({
   };
 
   return (
-    <div className={`theme-light dot-row ${rowClasses}`} data-uid={uid}>
+    <StyledRow className={rootClasses} data-testid={dataTestId} data-uid={uid}>
       {iconId && <DotIcon data-testid="row-icon" iconId={iconId} />}
       <span className="text">{displayText}</span>
       <div className="row-actions">
@@ -93,7 +102,7 @@ export const DotRow = ({
           </Fragment>
         )}
       </div>
-    </div>
+    </StyledRow>
   );
 };
 

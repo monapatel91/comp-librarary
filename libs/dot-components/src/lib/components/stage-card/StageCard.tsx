@@ -1,28 +1,32 @@
 import React, { Fragment, useState } from 'react';
 import { CardActions } from '@material-ui/core';
 import {
-  Timeline,
   TimelineConnector,
   TimelineContent,
   TimelineDot,
   TimelineItem,
   TimelineSeparator,
 } from '@material-ui/lab';
-
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import {
+  rootClassName,
+  rootTimelineClassName,
+  StyledStageCard,
+  StyledStageTimeline,
+} from './StageCard.styles';
 import { DotIconButton } from '../button/IconButton';
-import { CardMenuOption, DotCard } from '../card/Card';
+import { CardMenuOption } from '../card/Card';
 import { DotStepCard } from '../step-card/StepCard';
 import { DotAvatar } from '../avatar/Avatar';
 import { CategoryType } from '../phase-header/PhaseHeader';
-
-import './StageCard.scss';
 
 export interface StepObject {
   title: string;
   subheader: string;
 }
 
-export interface StageCardProps {
+export interface StageCardProps extends CommonProps {
   steps: Array<StepObject>;
   title: string;
   phaseColor: CategoryType;
@@ -33,11 +37,14 @@ export interface StageCardProps {
  * @experimental This component is still in development
  */
 export const DotStageCard = ({
+  className,
+  'data-testid': dataTestId,
+  menuOptions = [],
+  phaseColor,
   steps,
   title,
-  phaseColor,
-  menuOptions = [],
 }: StageCardProps) => {
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   const [stepsVisible, setStepsVisible] = useState(false);
   const preHeader = <div className={`phase-color ${phaseColor}`} />;
 
@@ -54,12 +61,13 @@ export const DotStageCard = ({
 
   return (
     <Fragment>
-      <DotCard
-        className="dot-stage-card"
+      <StyledStageCard
+        className={rootClasses}
+        data-testid={dataTestId}
         menuOptions={menuOptions}
-        title={title}
-        subheader={stepHeaderDescription()}
         preHeader={preHeader}
+        subheader={stepHeaderDescription()}
+        title={title}
       >
         <CardActions className="dot-card-actions">
           <DotAvatar
@@ -76,9 +84,9 @@ export const DotStageCard = ({
             />
           )}
         </CardActions>
-      </DotCard>
+      </StyledStageCard>
       {steps.length > 0 && stepsVisible && (
-        <Timeline classes={{ root: 'stage-timeline' }}>
+        <StyledStageTimeline classes={{ root: rootTimelineClassName }}>
           {steps.map((step: StepObject, index: number) => {
             return (
               <TimelineItem
@@ -96,7 +104,7 @@ export const DotStageCard = ({
               </TimelineItem>
             );
           })}
-        </Timeline>
+        </StyledStageTimeline>
       )}
     </Fragment>
   );

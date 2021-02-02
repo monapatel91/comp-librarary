@@ -1,10 +1,12 @@
 import React from 'react';
 import { CircularProgress } from '@material-ui/core';
-import './Progress.scss';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+
 export type progressColorOptions = 'inherit' | 'primary' | 'secondary';
 export type progressVariantOptions = 'determinate' | 'indeterminate' | 'static';
 
-export interface ProgressProps {
+export interface ProgressProps extends CommonProps {
   /** color of the loading spinner border */
   color?: progressColorOptions;
   /** controls the diameter of the loading spinner */
@@ -24,16 +26,21 @@ export interface ProgressProps {
  */
 export const DotProgress = ({
   color = 'primary',
+  className,
+  'data-testid': dataTestId,
   size = 40,
   thickness = 3.6,
   title = 'loading data',
   value,
   variant = 'indeterminate',
 }: ProgressProps) => {
+  const rootClasses = useStylesWithRootClass('dot-progress', className);
+
   return (
     <CircularProgress
-      className="dot-progress"
+      classes={{ root: rootClasses }}
       color={color}
+      data-testid={dataTestId}
       size={size}
       thickness={thickness}
       title={title}

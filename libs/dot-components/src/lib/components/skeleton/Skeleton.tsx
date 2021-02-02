@@ -1,10 +1,12 @@
 import React from 'react';
 import { Skeleton } from '@material-ui/lab';
-import './Skeleton.scss';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+
 export type SkeletonAnimationType = 'pulse' | 'wave' | false;
 export type SkeletonVariantType = 'circle' | 'rect' | 'text';
 
-export interface SkeletonProps {
+export interface SkeletonProps extends CommonProps {
   /** type of animation that will displayed on the skeleton */
   animation?: SkeletonAnimationType;
   /** component(s) inside a skeleton will constrain the size/shape */
@@ -23,14 +25,18 @@ export interface SkeletonProps {
 export const DotSkeleton = ({
   animation = 'wave',
   children,
+  className,
+  'data-testid': dataTestId,
   height,
   width,
   variant,
 }: SkeletonProps) => {
+  const rootClasses = useStylesWithRootClass('dot-skeleton', className);
   return (
     <Skeleton
       animation={animation}
-      className="dot-skeleton"
+      classes={{ root: rootClasses }}
+      data-testid={dataTestId}
       height={height}
       width={width}
       variant={variant}
