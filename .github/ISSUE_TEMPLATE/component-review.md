@@ -1,3 +1,11 @@
+---
+name: Component review
+about: 'Review & refactor component'
+title: 'Component Review: '
+labels: UX, enhancement
+assignees: BojanKocijan, CWSites
+---
+
 The `[COMPONENT]` component is an existing component that needs to be converted to be a styled component, its API needs to be updated to be consistent with other components in the library, and it needs to go through a UX review to make sure that it matches up with design specifications.
 
 - [ ] Convert to styled components
