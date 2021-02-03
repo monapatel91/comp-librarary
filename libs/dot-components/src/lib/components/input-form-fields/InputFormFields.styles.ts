@@ -19,15 +19,13 @@ export const StyledTextField = styled(TextField)`
   ${({ theme, InputProps }) => css`
     &.${rootClassName} {
       .MuiOutlinedInput-input {
-      padding: ${
-        InputProps.endAdornment
-          ? `${theme.spacing(2.25, 1.5, 2.25, 0)}`
-          : `${theme.spacing(2.25, 1.5)}`
-      }; 
+        padding: ${
+          InputProps.startAdornment ? `18px 12px 18px 0px` : `18px 12px`
+        };
       }
       .MuiOutlinedInput-inputMarginDense {
-        padding-top: ${theme.spacing(1.3)}px;
-        padding-bottom: ${theme.spacing(1.3)}px;
+        padding-top: 10.5px;
+        padding-bottom: 10.5px;
       }
     }
     &.${rootSelectClassName}, &.${rootClassName} {
@@ -40,11 +38,7 @@ export const StyledTextField = styled(TextField)`
         }
       }
       .MuiSelect-icon {
-        right: ${
-          InputProps.endAdornment
-            ? `${theme.spacing(5.5)}px`
-            : `${theme.spacing(1.5)}px`
-        };
+        right: ${InputProps.endAdornment ? `44px` : `12px`};
       }
       &.${warningClassName} {
         .MuiOutlinedInput-notchedOutline {
@@ -58,10 +52,10 @@ export const StyledTextField = styled(TextField)`
         }
       }
       .MuiOutlinedInput-adornedStart {
-        padding-left: ${theme.spacing(1.5)}px;
+        padding-left: 12px;
       }
       .MuiOutlinedInput-adornedEnd {
-        padding-right: ${theme.spacing(1.5)}px;
+        padding-right: 12px;
       }
       .MuiFormHelperText-root {
         font-size: ${theme.typography.body2.fontSize}px;
