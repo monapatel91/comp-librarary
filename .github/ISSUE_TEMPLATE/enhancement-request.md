@@ -32,7 +32,7 @@ Add any other context or screenshots about the feature request here.
 
 ### UX Acceptance Criteria
 
-- [ ] Clear checklist for developer
+- [ ] Clear requirements for developer
 - [ ] Screenshots
 - [ ] Links to mockups (Figma, zeroHeight)
 - [ ] Links to specifications (Agility)
