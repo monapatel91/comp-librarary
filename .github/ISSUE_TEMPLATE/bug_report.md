@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report to help us improve
 title: ''
 labels: defect
-assignees: CWSites
+assignees:
 ---
 
 **Describe the bug**

@@ -2,8 +2,8 @@
 name: Enhancement request
 about: 'Request an enhancement or support for a new component '
 title: ''
-labels: UX, enhancement
-assignees: BojanKocijan, CWSites
+labels: enhancement
+assignees:
 ---
 
 ### Does your feature request fall under the official [Material Design spec guidelines](https://material.google.com)
