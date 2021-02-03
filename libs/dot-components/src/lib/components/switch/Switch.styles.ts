@@ -11,5 +11,12 @@ export const StyledSwitch = styled(Switch)`
         color: ${theme.palette.grey[50]};
       }
 
+      .MuiSwitch-switchBase {
+        &:not(.Mui-checked) {
+          &:not(.Mui-disabled) {
+            color: white;
+          }
+        }
+      }
   `}
 `;
