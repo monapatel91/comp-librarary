@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { BoardHeaders } from './BoardHeaders';
 
-import './ProgressionBoard.scss';
+import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
+import {
+  rootClassName,
+  StyledProgressionBoard,
+} from './ProgressionBoard.styles';
 import { hydratePhases } from './hydrate_phases';
 import { pbState, ProgressionBoardProps } from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
@@ -86,6 +90,10 @@ export class ProgressionBoard extends Component<
   };
 
   render() {
+    const rootClasses = useStylesWithRootClass(
+      rootClassName,
+      'columns-wrapper'
+    );
     const packages = this.getPackages();
     const phaseNames = this.props.phases.map((phase) => phase.name);
     const selectWorkitemProps = {
@@ -95,7 +103,7 @@ export class ProgressionBoard extends Component<
     };
     const baseUrl = this.props.baseUrl;
     return (
-      <div id="in-progress" className="columns-wrapper">
+      <StyledProgressionBoard id="in-progress" className={rootClasses}>
         <BoardHeaders headers={phaseNames} />
         <div className="progression">
           {packages.map((pkg) => (
@@ -107,7 +115,7 @@ export class ProgressionBoard extends Component<
             />
           ))}
         </div>
-      </div>
+      </StyledProgressionBoard>
     );
   }
 }

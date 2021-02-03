@@ -8,6 +8,7 @@ export default {
   component: DotInlineEdit,
   argTypes: {
     autoFocus: { defaultValue: true },
+    'data-testid': { defaultValue: 'inline-edit-wrapper' },
     helperText: { defaultValue: 'Name' },
     margin: { defaultValue: 'none' },
     name: { defaultValue: 'Default name' },

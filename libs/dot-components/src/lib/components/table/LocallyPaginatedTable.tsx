@@ -3,7 +3,6 @@ import DotTable from './Table';
 import { Header } from './TableHeader';
 import { Cell } from './TableCell';
 import { Order } from './TableBody';
-import './Table.scss';
 
 export interface LocallyPaginatedTableProps {
   ariaLabel: string;

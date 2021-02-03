@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
-import './legends.scss';
+import React from 'react';
+import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
+import {
+  rootClassName,
+  StyledProgressionLegend,
+} from './ProgressionBoardLegend.styles';
 
 export const DotProgressionBoardLegend = () => {
+  const rootClasses = useStylesWithRootClass(rootClassName);
   return (
-    <div className="legend-columns">
+    <StyledProgressionLegend className={rootClasses}>
       <div className="legend-column">
         <ul className="legends">
           <li className="workitems">
@@ -68,7 +73,7 @@ export const DotProgressionBoardLegend = () => {
           </li>
         </ul>
       </div>
-    </div>
+    </StyledProgressionLegend>
   );
 };
 

@@ -5,7 +5,6 @@ import { Header } from './TableHeader';
 import DotTable from './Table';
 import { Order } from './TableBody';
 import { TableDataWithPagination } from './TableDataWithPagination';
-import './Table.scss';
 
 export interface RemotelyPaginatedTableProps {
   ariaLabel: string;

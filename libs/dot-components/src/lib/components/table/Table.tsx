@@ -1,15 +1,16 @@
 import React, { MouseEvent } from 'react';
 import { Table, TablePagination } from '@material-ui/core';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { rootClassName, StyledTableContainer } from './Table.styles';
 
 import { DotTableBody, Order } from './TableBody';
 import { DotHeaderRow, Header } from './TableHeader';
 import { DotProgress } from '../progress/Progress';
 
-import './Table.scss';
-
 const rowsPerPageOptions = [10, 25, 50, 100, 150, 200];
 
-export interface TableProps {
+export interface TableProps extends CommonProps {
   ariaLabel: string;
   /** The table header columns */
   columns: Array<Header>;
@@ -39,9 +40,11 @@ export interface TableProps {
  */
 export const DotTable = ({
   ariaLabel,
+  className,
   columns,
   count,
   data,
+  'data-testid': dataTestId,
   emptyMessage,
   handleRequestSort,
   loading = false,
@@ -54,6 +57,11 @@ export const DotTable = ({
   setPage,
   setRowsPerPage,
 }: TableProps) => {
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    className,
+    loading ? 'loading' : ''
+  );
   const handleChangePage = (event: MouseEvent | null, newPage: number) => {
     setPage(newPage);
   };
@@ -70,7 +78,7 @@ export const DotTable = ({
   };
 
   return (
-    <div className={`dot-table-container ${loading ? 'loading' : ''}`}>
+    <StyledTableContainer className={rootClasses} data-testid={dataTestId}>
       <div className="progress-container" hidden={!loading}>
         <DotProgress />
       </div>
@@ -105,7 +113,7 @@ export const DotTable = ({
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
-    </div>
+    </StyledTableContainer>
   );
 };
 
