@@ -75,14 +75,16 @@ export const DotSidebar = ({
           items={backItem}
         />
       )}
-      <DotNavigation
-        ariaLabel="left navigation"
-        className="side-nav dense"
-        data-testid="sideNav"
-        direction="vertical"
-        isOpen={open}
-        items={navItems}
-      />
+      {navItems.length > 0 && (
+        <DotNavigation
+          ariaLabel="left navigation"
+          className="side-nav dense"
+          data-testid="sideNav"
+          direction="vertical"
+          isOpen={open}
+          items={navItems}
+        />
+      )}
       {children}
       {collapsable && (
         <div className="toggle-nav">
