@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { BoardHeaders } from './BoardHeaders';
-
-import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import {
   rootClassName,
   StyledProgressionBoard,
@@ -90,10 +88,6 @@ export class ProgressionBoard extends Component<
   };
 
   render() {
-    const rootClasses = useStylesWithRootClass(
-      rootClassName,
-      'columns-wrapper'
-    );
     const packages = this.getPackages();
     const phaseNames = this.props.phases.map((phase) => phase.name);
     const selectWorkitemProps = {
@@ -103,7 +97,10 @@ export class ProgressionBoard extends Component<
     };
     const baseUrl = this.props.baseUrl;
     return (
-      <StyledProgressionBoard id="in-progress" className={rootClasses}>
+      <StyledProgressionBoard
+        id="in-progress"
+        className={`${rootClassName} columns-wrapper`}
+      >
         <BoardHeaders headers={phaseNames} />
         <div className="progression">
           {packages.map((pkg) => (

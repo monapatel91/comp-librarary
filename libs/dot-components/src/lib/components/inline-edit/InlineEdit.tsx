@@ -114,7 +114,7 @@ export const DotInlineEdit = ({
       className={`${rootClasses} ${
         editing ? 'editing' : disabled ? 'disabled' : ''
       }`}
-      data-testid={dataTestId}
+      data-testid="inline-edit-wrapper"
       onClick={(event) => !disabled && handleClick(event)}
       onKeyDown={(event) => onKeyPress(event)}
     >

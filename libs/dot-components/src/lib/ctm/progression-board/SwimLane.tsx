@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { rootClassName, StyledProgressionSwimlane } from './Swimlane.styles';
 import Phase from './Phase';
 import { SwimLaneProps } from './ProgressionBoardInterfaces';
@@ -7,10 +6,9 @@ import { SwimLaneProps } from './ProgressionBoardInterfaces';
 export class SwimLane extends Component<SwimLaneProps> {
   render() {
     const pkg = this.props.package;
-    const rootClasses = useStylesWithRootClass(rootClassName);
 
     return (
-      <StyledProgressionSwimlane className={rootClasses}>
+      <StyledProgressionSwimlane className={rootClassName}>
         <div className="swimlane-header">
           {pkg.phases.map((phase, i) => (
             <div className="swimlane-column" key={i}>

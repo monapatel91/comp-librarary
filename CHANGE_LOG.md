@@ -4,6 +4,7 @@
 
 ### Experimental
 
+- CSS import completely removed, all components are now styled components
 - **InputText**: added props for `startIcon`, `endIcon`, `warning`, `id`, `helperText`
 - **InputText**: added custom styles for `warning` state
 - **InputText**: fixed inconnsistent styles per UX review

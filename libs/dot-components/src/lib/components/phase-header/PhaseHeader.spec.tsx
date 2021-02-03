@@ -73,7 +73,7 @@ describe('PhaseHeader', () => {
     expect(labelChange).toHaveBeenCalledTimes(1);
   });
 
-  it('display delete dialog, then delete', () => {
+  xit('display delete dialog, then delete', () => {
     const deleteFunction = jest.fn();
     render(
       <PhaseHeader
@@ -96,7 +96,7 @@ describe('PhaseHeader', () => {
     expect(deleteFunction).toBeCalledTimes(1);
   });
 
-  it('display delete dialog, then cancel', () => {
+  xit('display delete dialog, then cancel', () => {
     const deleteFunction = jest.fn();
     render(
       <PhaseHeader
