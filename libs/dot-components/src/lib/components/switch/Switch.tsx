@@ -55,6 +55,7 @@ export const DotSwitch = ({
           classes={{ root: rootClasses }}
           checked={isChecked}
           color={color}
+          data-testid={dataTestId}
           disabled={disabled}
           inputProps={{ 'aria-label': ariaLabel ? ariaLabel : label }}
           onChange={handleChange}
