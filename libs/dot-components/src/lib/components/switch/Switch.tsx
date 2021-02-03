@@ -9,7 +9,7 @@ import { rootClassName, StyledSwitch } from './Switch.styles';
 
 export type SwitchColor = 'default' | 'primary' | 'secondary';
 export type SwitchSize = 'medium' | 'small';
-export type LabelPlacement = 'bottom' | 'end' | 'start' | 'top';
+export type SwitchLabelPlacement = 'bottom' | 'end' | 'start' | 'top';
 
 export interface SwitchProps extends CommonProps {
   /** accessibility label */
@@ -23,7 +23,7 @@ export interface SwitchProps extends CommonProps {
   /** text displayed next to the switch */
   label?: string;
   /** label placement options available 'bottom', 'end', 'start', 'top' */
-  labelPlacement?: LabelPlacement;
+  labelPlacement?: SwitchLabelPlacement;
   /** controls the size of the switch 'medium', 'small' */
   size?: SwitchSize;
 }

@@ -6,7 +6,6 @@ export const rootClassName = 'dot-switch';
 export const StyledSwitch = styled(Switch)`
   ${({ theme }) => css`{
     &.dot-switch {
-
       span.Mui-disabled {
         color: ${theme.palette.grey[50]};
       }
