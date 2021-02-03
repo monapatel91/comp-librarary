@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { BoardHeaders } from './BoardHeaders';
-
-import './ProgressionBoard.scss';
+import {
+  rootClassName,
+  StyledProgressionBoard,
+} from './ProgressionBoard.styles';
 import { hydratePhases } from './hydrate_phases';
 import { pbState, ProgressionBoardProps } from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
@@ -95,11 +97,15 @@ export class ProgressionBoard extends Component<
     };
     const baseUrl = this.props.baseUrl;
     return (
-      <div id="in-progress" className="columns-wrapper">
+      <StyledProgressionBoard
+        id="in-progress"
+        className={`${rootClassName} columns-wrapper`}
+      >
         <BoardHeaders headers={phaseNames} />
         <div className="progression">
           {packages.map((pkg) => (
             <SwimLane
+              className="progression"
               key={pkg.package_id}
               package={pkg}
               selectWorkitemProps={selectWorkitemProps}
@@ -107,7 +113,7 @@ export class ProgressionBoard extends Component<
             />
           ))}
         </div>
-      </div>
+      </StyledProgressionBoard>
     );
   }
 }

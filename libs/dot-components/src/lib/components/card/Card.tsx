@@ -1,15 +1,16 @@
 import React, { Fragment, MouseEvent, useState, ReactNode } from 'react';
-import { Card, CardHeader, Menu, MenuItem } from '@material-ui/core';
+import { CardHeader, Menu, MenuItem } from '@material-ui/core';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { rootClassName, StyledCard } from './Card.styles';
 import { DotIconButton } from '../button/IconButton';
-
-import './Card.scss';
 
 export interface CardMenuOption {
   displayText: string;
   action: () => void;
 }
 
-export interface CardProps {
+export interface CardProps extends CommonProps {
   children: ReactNode;
   /** Space delimited CSS classes to be attributed to the CardContent. */
   classes?: string;
@@ -28,12 +29,14 @@ export interface CardProps {
  */
 export const DotCard = ({
   children,
-  classes,
+  className,
+  'data-testid': dataTestId,
   menuOptions = [],
   preHeader,
   subheader,
   title,
 }: CardProps) => {
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(false);
 
@@ -73,7 +76,11 @@ export const DotCard = ({
     ) : null;
 
   return (
-    <Card variant="outlined" className={`dot-card ${classes}`}>
+    <StyledCard
+      classes={{ root: rootClasses }}
+      data-testid={dataTestId}
+      variant="outlined"
+    >
       <div className="dot-card-header">
         {preHeader}
         <CardHeader
@@ -87,6 +94,6 @@ export const DotCard = ({
         />
       </div>
       <div className="dot-card-body">{children}</div>
-    </Card>
+    </StyledCard>
   );
 };

@@ -1,14 +1,19 @@
-@import 'palette';
-@import 'variables';
+@font-face {
+  font-family: 'LatoRegular';
+  font-weight: 400;
+  src: url('/fonts/Lato-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'LatoBold';
+  font-weight: 700;
+  src: url('/fonts/Lato-Bold.ttf') format('truetype');
+}
 
 *[class^='dot-'] {
-  font-family: $baseFont;
+  font-family: 'LatoRegular';
   font-style: normal;
   font-weight: normal;
   font-feature-settings: 'liga' off;
   font-variant-ligatures: none;
-}
-
-i[class*='icon-']:before {
-  color: inherit;
 }

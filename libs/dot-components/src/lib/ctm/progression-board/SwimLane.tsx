@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { rootClassName, StyledProgressionSwimlane } from './Swimlane.styles';
 import Phase from './Phase';
 import { SwimLaneProps } from './ProgressionBoardInterfaces';
 
 export class SwimLane extends Component<SwimLaneProps> {
   render() {
     const pkg = this.props.package;
+    const classes = this.props.className;
 
     return (
-      <div>
+      <StyledProgressionSwimlane className={`${rootClassName} ${classes}`}>
         <div className="swimlane-header">
           {pkg.phases.map((phase, i) => (
             <div className="swimlane-column" key={i}>
@@ -25,7 +27,7 @@ export class SwimLane extends Component<SwimLaneProps> {
             />
           ))}
         </ul>
-      </div>
+      </StyledProgressionSwimlane>
     );
   }
 }

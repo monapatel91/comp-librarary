@@ -78,6 +78,7 @@ export interface ProgressionBoardProps {
 }
 
 export interface SwimLaneProps {
+  className: string;
   package: SwimLanepkg;
   selectWorkitemProps: {
     selectWorkitem: (id) => void;

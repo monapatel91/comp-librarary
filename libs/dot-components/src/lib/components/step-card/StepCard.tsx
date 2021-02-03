@@ -1,10 +1,11 @@
 import React from 'react';
 import { CardActions } from '@material-ui/core';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { rootClassName, StyledStepCard } from './StepCard.styles';
 import { DotIcon } from '../icon/Icon';
 import { DotAvatar } from '../avatar/Avatar';
-import { CardMenuOption, DotCard } from '../card/Card';
-
-import './StepCard.scss';
+import { CardMenuOption } from '../card/Card';
 
 export interface TeamObject {
   name: string;
@@ -16,7 +17,7 @@ export interface UserObject {
   avatar?: string;
 }
 
-export interface StepCardProps {
+export interface StepCardProps extends CommonProps {
   /** Menu items that will be in the upper right corner */
   menuOptions?: Array<CardMenuOption>;
   /** The icon to be displayed next to the title */
@@ -35,18 +36,22 @@ export interface StepCardProps {
  * @experimental This component is still in development
  */
 export const DotStepCard = ({
+  className,
+  'data-testid': dataTestId,
   menuOptions = [],
   stepIcon = 'keyboard',
+  subheader,
   team = undefined,
   title,
-  subheader,
   user = undefined,
 }: StepCardProps) => {
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   const preHeader = <DotIcon fontSize="small" iconId={stepIcon} />;
 
   return (
-    <DotCard
-      classes="dot-step-card"
+    <StyledStepCard
+      className={rootClasses}
+      data-testid={dataTestId}
       menuOptions={menuOptions}
       preHeader={preHeader}
       subheader={subheader}
@@ -67,7 +72,7 @@ export const DotStepCard = ({
           )}
         </CardActions>
       )}
-    </DotCard>
+    </StyledStepCard>
   );
 };
 

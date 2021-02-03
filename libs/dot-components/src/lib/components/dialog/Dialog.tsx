@@ -1,13 +1,10 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '@material-ui/core';
+import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { ButtonProps, ButtonType, DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
-import './Dialog.scss';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { rootClassName, StyledDialog } from './Dialog.styles';
 
 export interface DialogButtonProps {
   /** Space delimited CSS classes to be attributed to the button */
@@ -22,11 +19,9 @@ export interface DialogButtonProps {
   type?: ButtonType;
 }
 
-export interface DialogProps {
+export interface DialogProps extends CommonProps {
   /** props passed down to the cancel button */
   cancelButtonProps?: DialogButtonProps;
-  /** Space delimited CSS classes to be attributed to the button */
-  classes?: string;
   /** components or string that is displayed in the dialog body */
   children?: string | JSX.Element[] | JSX.Element;
   /** The callback to be executed when the action is cancelled */
@@ -46,7 +41,8 @@ export interface DialogProps {
  */
 export const DotDialog = ({
   cancelButtonProps,
-  classes,
+  className,
+  'data-testid': dataTestId,
   children,
   onCancel,
   onSubmit,
@@ -54,6 +50,7 @@ export const DotDialog = ({
   submitButtonProps,
   title,
 }: DialogProps) => {
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   const handleClose = (event: unknown) => {
     onCancel(event);
   };
@@ -82,8 +79,9 @@ export const DotDialog = ({
 
   return (
     <div onKeyDown={(event) => onKeyPress(event)}>
-      <Dialog
-        classes={{ root: `dot-dialog ${classes}` }}
+      <StyledDialog
+        classes={{ root: rootClasses }}
+        data-testid={dataTestId}
         open={open}
         onClose={handleClose}
         aria-labelledby="MuiDialogTitle-root"
@@ -102,7 +100,7 @@ export const DotDialog = ({
           />
           <DotButton {...submitButtonPropsWithDefaults} />
         </DialogActions>
-      </Dialog>
+      </StyledDialog>
     </div>
   );
 };

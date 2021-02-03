@@ -1,13 +1,11 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DialogButtonProps, DotDialog } from '../dialog/Dialog';
 
-import './ConfirmationDialog.scss';
-
-export interface ConfirmationDialogProps {
+export interface ConfirmationDialogProps extends CommonProps {
   /** Cancel button properties */
   cancelBtnProps?: DialogButtonProps;
-  /** data attribute passed through for testing purposes ONLY */
-  'data-testid'?: string;
   /** The dialog message */
   message?: string | JSX.Element;
   /** The callback to be executed when the action is cancelled */
@@ -27,7 +25,8 @@ export interface ConfirmationDialogProps {
  */
 export const DotConfirmationDialog = ({
   cancelBtnProps,
-  'data-testid': dataTestId = '',
+  className,
+  'data-testid': dataTestId,
   message = '',
   onCancel = undefined,
   onConfirm = undefined,
@@ -35,6 +34,10 @@ export const DotConfirmationDialog = ({
   showDialog,
   title = '',
 }: ConfirmationDialogProps) => {
+  const rootClasses = useStylesWithRootClass(
+    'dot-confirmation-dialog',
+    className
+  );
   if (message === '' && title === '') {
     title = 'Please confirm';
   }
@@ -42,7 +45,7 @@ export const DotConfirmationDialog = ({
   return (
     <DotDialog
       cancelButtonProps={cancelBtnProps}
-      classes="dot-confirmation-dialog"
+      className={rootClasses}
       data-testid={dataTestId}
       onCancel={() => onCancel && onCancel()}
       onSubmit={(event) => onConfirm && onConfirm(event)}

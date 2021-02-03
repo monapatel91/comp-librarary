@@ -6,10 +6,16 @@ import {
   InfiniteLoader,
   Table,
 } from 'react-virtualized';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import {
+  rootClassName,
+  rootFooterClassName,
+  StyledInfiniteScroll,
+  StyledInfiniteScrollFooter,
+} from './InfiniteScrollTable.styles';
 import { Order } from './TableBody';
 import { TableDataWithPagination } from './TableDataWithPagination';
-
-import './InfiniteScrollTable.scss';
 
 export interface InfiniteColumn {
   dataKey: string;
@@ -24,11 +30,9 @@ export type OnTableUpdate = (
   orderBy?: string
 ) => Promise<TableDataWithPagination | null>;
 
-export interface InfiniteScrollTableProps {
+export interface InfiniteScrollTableProps extends CommonProps {
   ariaLabel: string;
   columns: Array<InfiniteColumn>;
-  /** specify the height of the table header rows */
-  'data-testid'?: string;
   headerHeight?: number;
   /** specify the height of the table */
   height: number;
@@ -51,6 +55,7 @@ export interface InfiniteScrollTableProps {
  */
 export const InfiniteScrollTable = ({
   ariaLabel,
+  className,
   columns,
   'data-testid': dataTestId,
   height,
@@ -61,6 +66,11 @@ export const InfiniteScrollTable = ({
   threshold = 15,
   filters = null,
 }: InfiniteScrollTableProps) => {
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    className,
+    'infinite-scroll-container'
+  );
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [items, updateItems] = useState<Array<any>>([]);
   const [currentPage, updateCurrentPage] = useState<number>(0);
@@ -86,10 +96,7 @@ export const InfiniteScrollTable = ({
 
   return (
     <Fragment>
-      <div
-        className="dot-infinite-scroll infinite-scroll-container"
-        data-testid={dataTestId}
-      >
+      <StyledInfiniteScroll className={rootClasses} data-testid={dataTestId}>
         <InfiniteLoader
           isRowLoaded={(params: Index) => {
             return !!items[params.index];
@@ -128,10 +135,13 @@ export const InfiniteScrollTable = ({
             </AutoSizer>
           )}
         </InfiniteLoader>
-      </div>
-      <div className="dot-infinite-footer" data-testid={`${dataTestId}-footer`}>
+      </StyledInfiniteScroll>
+      <StyledInfiniteScrollFooter
+        className={rootFooterClassName}
+        data-testid={`${dataTestId}-footer`}
+      >
         Viewing {items.length} out of {totalCount} results
-      </div>
+      </StyledInfiniteScrollFooter>
     </Fragment>
   );
 };

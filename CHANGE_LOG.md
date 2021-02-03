@@ -4,6 +4,10 @@
 
 ### Experimental
 
+- **Card**: updated `classes` prop to `className`
+- **Dialog**: updated `classes` prop to `className`
+- **Menu**: updated `classes` prop to `className`
+- **PhaseHeader**: updated `classes` prop to `className`
 - **InputText**: added props for `startIcon`, `endIcon`, `warning`, `id`, `helperText`
 - **InputText**: added custom styles for `warning` state
 - **InputText**: fixed inconnsistent styles per UX review

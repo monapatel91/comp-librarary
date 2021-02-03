@@ -1,16 +1,16 @@
 import React, { KeyboardEvent, MouseEvent, useState } from 'react';
 import { InputAdornment, TextField } from '@material-ui/core';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { rootClassName, StyledInlineEdit } from './InlineEdit.styles';
+
 import { DotIcon } from '../icon/Icon';
 import { DotIconButton } from '../button/IconButton';
 import { inputMarginOptions } from '../input-form-fields/InputFormFields.propTypes';
 
-import './InlineEdit.scss';
-
-export interface InlineEditProps {
+export interface InlineEditProps extends CommonProps {
   /** If true, the input will be focused automatically on load */
   autoFocus?: boolean;
-  /** data attribute passed through for testing purposes ONLY */
-  'data-testid'?: string;
   /** If true, the input will be disabled */
   disabled?: boolean;
   /** If true, the label will be displayed in an error state. */
@@ -40,6 +40,7 @@ export interface InlineEditProps {
  */
 export const DotInlineEdit = ({
   autoFocus,
+  className,
   'data-testid': dataTestId,
   disabled = false,
   error = false,
@@ -52,6 +53,7 @@ export const DotInlineEdit = ({
   required = false,
   value = '',
 }: InlineEditProps) => {
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   const [editing, setEditing] = useState(false);
   const [originalValue, setOriginalValue] = useState('');
   const [inputValue, setInputValue] = useState(value);
@@ -108,11 +110,11 @@ export const DotInlineEdit = ({
   };
 
   return (
-    <div
-      data-testid="inline-edit-wrapper"
-      className={`dot-inline-edit ${
+    <StyledInlineEdit
+      className={`${rootClasses} ${
         editing ? 'editing' : disabled ? 'disabled' : ''
       }`}
+      data-testid="inline-edit-wrapper"
       onClick={(event) => !disabled && handleClick(event)}
       onKeyDown={(event) => onKeyPress(event)}
     >
@@ -158,7 +160,7 @@ export const DotInlineEdit = ({
           />
         </div>
       )}
-    </div>
+    </StyledInlineEdit>
   );
 };
 

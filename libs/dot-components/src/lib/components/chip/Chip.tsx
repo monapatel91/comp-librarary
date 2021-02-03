@@ -1,14 +1,15 @@
 import React, { MouseEvent } from 'react';
-import { Chip } from '@material-ui/core';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { CommonProps } from '../CommonProps';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotIcon } from '../icon/Icon';
-import './Chip.scss';
+import { rootClassName, StyledChip } from './Chip.styles';
 
 export type ChipColor = 'default' | 'primary' | 'secondary';
 export type ChipSize = 'medium' | 'small';
 export type ChipVariant = 'default' | 'outlined';
 
-export interface ChipProps {
+export interface ChipProps extends CommonProps {
   /** If provided, will display an avatar which takes precedence over icon */
   avatar?: boolean;
   /** determines the color of chip 'default', 'primary' or 'secondary' */
@@ -38,8 +39,10 @@ export interface ChipProps {
  */
 export const DotChip = ({
   avatar,
+  className,
   clickable,
   color,
+  'data-testid': dataTestId,
   deletable = true,
   disabled = false,
   iconId,
@@ -49,12 +52,15 @@ export const DotChip = ({
   size = 'medium',
   variant = 'outlined',
 }: ChipProps) => {
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
+
   return (
-    <Chip
+    <StyledChip
       avatar={avatar ? <DotAvatar size="small" alt={label} /> : undefined}
-      className="dot-chip"
+      classes={{ root: rootClasses }}
       clickable={clickable}
       color={color}
+      data-testid={dataTestId}
       disabled={disabled}
       icon={iconId !== undefined ? <DotIcon iconId={iconId} /> : undefined}
       label={label}
