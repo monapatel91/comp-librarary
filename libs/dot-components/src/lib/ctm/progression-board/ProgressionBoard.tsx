@@ -105,6 +105,7 @@ export class ProgressionBoard extends Component<
         <div className="progression">
           {packages.map((pkg) => (
             <SwimLane
+              className="progression"
               key={pkg.package_id}
               package={pkg}
               selectWorkitemProps={selectWorkitemProps}

@@ -4,133 +4,110 @@ export const rootClassName = 'dot-progression-board';
 
 export const StyledProgressionBoard = styled.div`
   ${({ theme }) => css`
-    .board,
-    .board-headers {
-      display: flex;
-      flex-flow: row nowrap;
-      margin: 0;
-      background-color: #fff;
-      overflow-x: visible;
-
-      .board-column {
-        display: flex;
-        flex-flow: column wrap;
+    &.${rootClassName} {
+      &.columns-wrapper {
+        display: table;
         flex: 1;
-        margin: 0 3px;
-        background-color: lighten(#438098, 50%);
-      }
-    }
-
-    ul.board {
-      padding: 0;
-    }
-
-    .board-column-header,
-    .board-column {
-      min-width: 285px;
-    }
-
-    .columns-wrapper {
-      display: table;
-      flex: 1;
-      width: 100%;
-    }
-
-    .board-headers {
-      width: 100%;
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-      z-index: 2;
-
-      .delivery-category {
-        border-top: 8px solid transparent;
-        border-radius: 8px 8px 0 0;
+        width: 100%;
       }
 
-      .delivery-category-developing {
-        border-top-color: #ea6c02;
-      }
-
-      .delivery-category-packaged {
-        border-top-color: #005293;
-      }
-
-      .board-column-header {
+      .board-headers {
+        background-color: ${theme.palette.background.default};
         display: flex;
-        flex-flow: column wrap;
-        flex: 1;
-        font-weight: 700;
-        padding: 12px 20px 10px 20px;
-        margin: 0 3px;
-        border-radius: 4px 4px 0 0;
-        font-size: 1.5em;
-        text-align: left;
-        word-break: break-word;
-        background-color: lighten(#438098, 50%);
-        color: darken(#438098, 20%);
-      }
-    }
+        flex-flow: row nowrap;
+        margin: 0;
+        overflow-x: visible;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 2;
 
-    #env {
-      .filter-text {
-        display: flex;
+        .board-column-header {
+          background-color: #e6f0f4;
+          border-radius: 4px 4px 0 0;
+          color: #244451;
+          display: flex;
+          flex: 1;
+          flex-flow: column wrap;
+          font-weight: 700;
+          font-size: 1.5em;
+          padding: 12px 20px 10px 20px;
+          margin: 0 3px;
+          min-width: 285px;
+          text-align: left;
+          word-break: break-word;
+        }
 
-        input {
-          padding: 10px;
+        .delivery-category {
+          border-top: 8px solid transparent;
+          border-radius: 8px 8px 0 0;
+        }
+
+        .delivery-category-developing {
+          border-top-color: #ea6c02;
+        }
+
+        .delivery-category-packaged {
+          border-top-color: #005293;
         }
       }
-    }
 
-    .environments {
-      .board {
-        flex-flow: column;
-
-        .board-row {
-          border-bottom: 1px dashed #31363e;
+      #env {
+        .filter-text {
           display: flex;
 
-          &:last-child {
-            border: none;
-          }
-        }
-
-        .package-name-label {
-          text-align: center;
-          justify-content: center;
-          font-size: 18px;
-          font-weight: 700;
-          color: darken(#005293, 15%);
-          padding: 8px 0;
-        }
-
-        .environments-content {
-          a {
-            display: block;
+          input {
+            padding: 10px;
           }
         }
       }
-    }
 
-    #environments-board .board-headers {
-      border-bottom: 1px dashed #31363e;
-    }
+      .environments {
+        .board {
+          flex-flow: column;
 
-    .progression .board-column {
-      min-height: 30px;
-      padding: 10px;
-    }
+          .board-row {
+            border-bottom: 1px dashed #31363e;
+            display: flex;
 
-    .progression-content-container {
-      overflow: auto;
-      height: 80vh;
-      display: flex;
-      margin: 0 auto;
+            &:last-child {
+              border: none;
+            }
+          }
 
-      .in-progress,
-      [data-component='EmptyState'],
-      #delivered {
-        flex: 1 auto;
+          .package-name-label {
+            text-align: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #00457c;
+            padding: 8px 0;
+          }
+
+          .environments-content {
+            a {
+              display: block;
+            }
+          }
+        }
+      }
+
+      #environments-board .board-headers {
+        border-bottom: 1px dashed #31363e;
+      }
+
+      .progression-content-container {
+        overflow: auto;
+        height: 80vh;
+        display: flex;
+        margin: 0 auto;
+
+        .in-progress,
+        [data-component='EmptyState'],
+        #delivered {
+          flex: 1 auto;
+        }
       }
     }
   `}

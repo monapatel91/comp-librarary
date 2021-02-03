@@ -6,9 +6,10 @@ import { SwimLaneProps } from './ProgressionBoardInterfaces';
 export class SwimLane extends Component<SwimLaneProps> {
   render() {
     const pkg = this.props.package;
+    const classes = this.props.className;
 
     return (
-      <StyledProgressionSwimlane className={rootClassName}>
+      <StyledProgressionSwimlane className={`${rootClassName} ${classes}`}>
         <div className="swimlane-header">
           {pkg.phases.map((phase, i) => (
             <div className="swimlane-column" key={i}>
