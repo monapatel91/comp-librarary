@@ -14,6 +14,10 @@ export const StyledButton = styled(Button)`
       }
     }
 
+    &.MuiButton-text {
+      padding: 6px 16px;
+    }
+
     span.dot-icon {
       padding: 0;
     }
