@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { FormControlLabel } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import {
+  rootClassName as formRootClassName,
+  StyledFormControlLabel,
+} from './FormControlLabel.styles';
 import { rootClassName, StyledSwitch } from './Switch.styles';
 
 export type SwitchColor = 'default' | 'primary' | 'secondary';
@@ -44,8 +47,8 @@ export const DotSwitch = ({
   };
 
   return (
-    <FormControlLabel
-      className={rootClasses}
+    <StyledFormControlLabel
+      className={formRootClassName}
       labelPlacement={labelPlacement}
       control={
         <StyledSwitch
