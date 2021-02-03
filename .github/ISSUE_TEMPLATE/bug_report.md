@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report to help us improve
 title: ''
 labels: defect
-assignees: CWSites
+assignees:
 ---
 
 **Describe the bug**
@@ -45,3 +45,7 @@ Steps to reproduce the behavior:
 - Release Version [e.g. 1.0.0]
 - Did this work in previous versions?
 - Does this occur in the latest stable & nightly version?
+
+**Acceptance Criteria**
+
+- [ ] Please provide a list of acceptance criteria, if you are unsure then add a list of your desired outcomes

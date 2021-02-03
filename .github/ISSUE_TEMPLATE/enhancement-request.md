@@ -2,8 +2,8 @@
 name: Enhancement request
 about: 'Request an enhancement or support for a new component '
 title: ''
-labels: UX, enhancement
-assignees: BojanKocijan, CWSites
+labels: enhancement
+assignees:
 ---
 
 ### Does your feature request fall under the official [Material Design spec guidelines](https://material.google.com)
@@ -25,3 +25,14 @@ A clear and concise description of any alternative solutions or features you've 
 ### Additional context
 
 Add any other context or screenshots about the feature request here.
+
+### Acceptance Criteria
+
+- [ ] Please provide a list of acceptance criteria, if you are unsure then add a list of your desired outcomes
+
+### UX Acceptance Criteria
+
+- [ ] Clear requirements for developer
+- [ ] Screenshots
+- [ ] Links to mockups (Figma, zeroHeight)
+- [ ] Links to specifications (Agility)
