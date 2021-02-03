@@ -69,12 +69,12 @@ main {
   display: flex;
   flex-direction: row;
   height: 100vh;
-  padding-top: 48px; //$topBarHeight
+  padding-top: 48px;
   width: 100vw;
   overflow: hidden;
 
   section.main-content {
-    padding: 8px * 2; //$gutter * 2
+    padding: 8px * 2;
     width: 100%;
   }
 }

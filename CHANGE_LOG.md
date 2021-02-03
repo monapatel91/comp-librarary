@@ -4,7 +4,6 @@
 
 ### Experimental
 
-- CSS import completely removed, all components are now styled components
 - **Card**: updated `classes` prop to `className`
 - **Dialog**: updated `classes` prop to `className`
 - **Menu**: updated `classes` prop to `className`

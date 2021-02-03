@@ -27,7 +27,7 @@ export const StyledTableContainer = styled.div`
       display: none;
       flex-grow: 1;
       position: absolute;
-      z-index: $layerTwo;
+      z-index: 10;
     }
 
     .dot-table {
