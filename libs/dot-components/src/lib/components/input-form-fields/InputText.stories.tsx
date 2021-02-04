@@ -11,7 +11,6 @@ export default {
   component: DotInputText,
   argTypes: {
     fullWidth: { defaultValue: false },
-    margin: { defaultValue: 'none' },
     multiline: { defaultValue: false },
     name: { defaultValue: 'Default name' },
     label: { defaultValue: 'Default Label' },

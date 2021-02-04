@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
-import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { DotInputText } from './InputText';
 
@@ -32,7 +31,7 @@ describe('DotInputText', () => {
   });
 
   it('should be multiline', () => {
-    render(
+    const { baseElement } = render(
       <DotInputText
         id="id-test"
         label="Test"
@@ -42,10 +41,8 @@ describe('DotInputText', () => {
         data-testid="test-input"
       />
     );
-    const inputField = screen.getByTestId('test-input');
-
-    const isMultiline = inputField.hasAttribute('rows');
-    expect(isMultiline).toBeTruthy();
+    const textarea = baseElement.querySelector('textarea');
+    expect(textarea).toBeVisible();
   });
 
   it('rows should be 4', async () => {
@@ -64,8 +61,8 @@ describe('DotInputText', () => {
     expect(inputField).toHaveAttribute('rows', '4');
   });
 
-  it('should not have rows attributes', async () => {
-    render(
+  it('should not be textarea', async () => {
+    const { baseElement } = render(
       <DotInputText
         id="id-test"
         label="Test"
@@ -75,9 +72,9 @@ describe('DotInputText', () => {
         data-testid="test-input"
       />
     );
-    const inputField = screen.getByTestId('test-input');
-    const isMultiline = inputField.hasAttribute('rows');
-
-    expect(isMultiline).toBeFalsy();
+    const textarea = baseElement.querySelector('textarea');
+    const input = baseElement.querySelector('input');
+    expect(textarea).toBeFalsy();
+    expect(input).toBeVisible();
   });
 });

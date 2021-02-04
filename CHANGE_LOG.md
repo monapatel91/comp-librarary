@@ -11,6 +11,18 @@
 - **Icon**: integrated `dot` font family as part of styled component so consumer no longer needs to import `.css` file
 - **Switch**: added prop for `labelPlacement`
 - **Switch**: fixed inconsistent styles per UX review
+- **AutoComplete**: removed `inputVariant` prop
+- **InlineEdit**: removed `inputVariant` prop
+- **InputProps**: renamed `InputTextProps` to `InputProps` and moved `InputTextProps` to be used with `InputText` to support `multiline` props
+- **InputText**: added `multiline` prop, only applies to `multiline`
+- **InputText**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size.
+- **InputText**: removed `margin` prop in favor of the simpler `size` prop.
+- **InputText**: added `rows` prop, only applies to `multiline`
+- **InputText**: added `rowMax` prop, only applies to `multiline`
+- **InputSelect**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size.
+- **InputSelect**: removed `margin` prop in favor of the simpler `size` prop.
+- **AutoComplete**: removed `inputVariant` prop
+- **InlineEdit**: removed `inputVariant` prop
 
 ## 0.0.0-alpha.6
 

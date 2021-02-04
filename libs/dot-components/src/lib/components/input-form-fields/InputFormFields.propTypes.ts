@@ -1,6 +1,5 @@
 import { CommonProps } from '../CommonProps';
 
-export type inputMarginOptions = 'dense' | 'none' | 'normal';
 export type inputSizeOptions = 'small' | 'medium';
 
 export interface InputProps extends CommonProps {
@@ -23,8 +22,6 @@ export interface InputProps extends CommonProps {
   id: string;
   /** The label content. */
   label?: string;
-  /** If dense or normal, will adjust vertical spacing of this and contained components. */
-  margin?: inputMarginOptions;
   /** The name of input element */
   name: string;
   /** A function that should be executed when the value of the input changes */

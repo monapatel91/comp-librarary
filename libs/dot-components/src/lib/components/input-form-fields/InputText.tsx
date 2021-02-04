@@ -29,7 +29,6 @@ export const DotInputText = ({
   endIcon,
   id,
   label,
-  margin = 'dense',
   multiline = false,
   name,
   onChange,
@@ -80,7 +79,6 @@ export const DotInputText = ({
         ),
       }}
       label={label}
-      margin={margin}
       multiline={multiline}
       name={name}
       onChange={(event) => onChange && onChange(event.target.value)}
