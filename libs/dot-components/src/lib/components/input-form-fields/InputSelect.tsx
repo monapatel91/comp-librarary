@@ -33,6 +33,7 @@ export const DotInputSelect = ({
   defaultValue = options[0],
   required,
   startIcon,
+  size,
   warning = false,
 }: InputSelectProps) => {
   const rootStyles = useStylesWithRootClass(rootSelectClassName, className);
@@ -79,7 +80,7 @@ export const DotInputSelect = ({
       SelectProps={{
         native: true,
       }}
-      size="small"
+      size={size}
       variant="outlined"
     >
       {options.map((option) => (
