@@ -48,14 +48,6 @@ export const DotInputText = ({
     hasWarning
   );
 
-  let _rows = null;
-  let _rowsMax = null;
-
-  if (multiline) {
-    _rows = rows;
-    _rowsMax = rowsMax;
-  }
-
   return (
     <StyledTextField
       id={id}
@@ -93,8 +85,8 @@ export const DotInputText = ({
       name={name}
       onChange={(event) => onChange && onChange(event.target.value)}
       required={required}
-      rows={_rows}
-      rowsMax={_rowsMax}
+      rows={multiline ? rows : null}
+      rowsMax={multiline ? rowsMax : null}
       size={size}
       type={type}
       variant="outlined"
