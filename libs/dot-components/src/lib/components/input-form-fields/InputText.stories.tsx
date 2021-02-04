@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotInputText } from './InputText';
-import { InputTextProps } from './InputFormFields.propTypes';
+import { InputTextProps } from './InputText';
 import { DotIcon } from '../icon/Icon';
 
 const iconOptions = [null, 'warning-solid', 'error-solid'];
@@ -12,6 +12,7 @@ export default {
   argTypes: {
     fullWidth: { defaultValue: false },
     margin: { defaultValue: 'none' },
+    multiline: { defaultValue: false },
     name: { defaultValue: 'Default name' },
     label: { defaultValue: 'Default Label' },
     required: { defaultValue: true },
@@ -20,6 +21,7 @@ export default {
     id: { defaultValue: 'custom-text-input' },
     endIcon: { control: { type: 'select', options: iconOptions } },
     startIcon: { control: { type: 'select', options: iconOptions } },
+    size: { defaultValue: 'small' },
   },
 } as Meta;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputTextProps } from './InputFormFields.propTypes';
+import { InputProps } from './InputFormFields.propTypes';
 import {
   rootSelectClassName,
   StyledTextField,
@@ -9,7 +9,7 @@ import {
 } from './InputFormFields.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
-export interface InputSelectProps extends InputTextProps {
+export interface InputSelectProps extends InputProps {
   options: Array<string>;
 }
 
@@ -79,6 +79,7 @@ export const DotInputSelect = ({
       SelectProps={{
         native: true,
       }}
+      size="small"
       variant="outlined"
     >
       {options.map((option) => (
