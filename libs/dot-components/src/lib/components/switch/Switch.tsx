@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { FormControlLabel, Switch } from '@material-ui/core';
-import './Switch.scss';
+import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import {
+  rootClassName as formRootClassName,
+  StyledFormControlLabel,
+} from './FormControlLabel.styles';
+import { rootClassName, StyledSwitch } from './Switch.styles';
 
 export type SwitchColor = 'default' | 'primary' | 'secondary';
 export type SwitchSize = 'medium' | 'small';
+export type SwitchLabelPlacement = 'bottom' | 'end' | 'start' | 'top';
 
-export interface SwitchProps {
+export interface SwitchProps extends CommonProps {
   /** accessibility label */
   ariaLabel?: string;
   /** determines the default state of the switch */
@@ -16,21 +22,24 @@ export interface SwitchProps {
   disabled?: boolean;
   /** text displayed next to the switch */
   label?: string;
+  /** label placement options available 'bottom', 'end', 'start', 'top' */
+  labelPlacement?: SwitchLabelPlacement;
   /** controls the size of the switch 'medium', 'small' */
   size?: SwitchSize;
 }
 
-/**
- * @experimental This component is still in development
- */
 export const DotSwitch = ({
   ariaLabel,
   checked = false,
-  disabled = false,
+  className,
   color = 'primary',
+  'data-testid': dataTestId,
+  disabled = false,
   label,
+  labelPlacement = 'end',
   size = 'medium',
 }: SwitchProps) => {
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   const [isChecked, updateChecked] = useState(checked);
 
   const handleChange = () => {
@@ -38,12 +47,15 @@ export const DotSwitch = ({
   };
 
   return (
-    <FormControlLabel
-      className="dot-switch"
+    <StyledFormControlLabel
+      className={formRootClassName}
+      labelPlacement={labelPlacement}
       control={
-        <Switch
+        <StyledSwitch
+          classes={{ root: rootClasses }}
           checked={isChecked}
           color={color}
+          data-testid={dataTestId}
           disabled={disabled}
           inputProps={{ 'aria-label': ariaLabel ? ariaLabel : label }}
           onChange={handleChange}

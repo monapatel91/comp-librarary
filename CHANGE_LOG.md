@@ -24,6 +24,8 @@
 - **InputSelect**: removed `variant` prop
 - **AutoComplete**: removed `inputVariant` prop
 - **InlineEdit**: removed `inputVariant` prop
+- **Switch**: added prop for `labelPlacement`
+- **Switch**: fixed inconsistent styles per UX review
 
 ## 0.0.0-alpha.4
 
