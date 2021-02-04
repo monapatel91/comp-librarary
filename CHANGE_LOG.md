@@ -4,6 +4,7 @@
 
 ### Experimental
 
+- **Link**: Create the link component.
 - **Card**: updated `classes` prop to `className`
 - **Dialog**: updated `classes` prop to `className`
 - **Menu**: updated `classes` prop to `className`
