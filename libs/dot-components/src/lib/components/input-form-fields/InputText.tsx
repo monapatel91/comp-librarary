@@ -34,8 +34,8 @@ export const DotInputText = ({
   name,
   onChange,
   required = false,
-  rows = null,
-  rowsMax = null,
+  rows,
+  rowsMax,
   startIcon,
   size = 'small',
   type = 'text',
@@ -48,12 +48,12 @@ export const DotInputText = ({
     hasWarning
   );
 
+  let _rows = null;
+  let _rowsMax = null;
+
   if (multiline) {
-    rows = rows;
-    rowsMax = rowsMax;
-  } else {
-    rows = null;
-    rowsMax = null;
+    _rows = rows;
+    _rowsMax = rowsMax;
   }
 
   return (
@@ -93,8 +93,8 @@ export const DotInputText = ({
       name={name}
       onChange={(event) => onChange && onChange(event.target.value)}
       required={required}
-      rows={rows}
-      rowsMax={rowsMax}
+      rows={_rows}
+      rowsMax={_rowsMax}
       size={size}
       type={type}
       variant="outlined"
