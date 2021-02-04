@@ -23,12 +23,12 @@ export const StyledTextField = styled(TextField)`
           InputProps.startAdornment ? `18px 12px 18px 0px` : `18px 12px`
         };
       }
-      .MuiOutlinedInput-inputMultiline {
-        padding: 0;
-      }
       .MuiOutlinedInput-inputMarginDense {
         padding-top: 10.5px;
         padding-bottom: 10.5px;
+      }
+      .MuiOutlinedInput-inputMultiline {
+        padding: 0;
       }
     }
     &.${rootSelectClassName}, &.${rootClassName} {
