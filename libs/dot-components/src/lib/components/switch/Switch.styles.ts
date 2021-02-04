@@ -7,7 +7,7 @@ export const StyledSwitch = styled(Switch)`
   ${({ theme }) => css`{
     &.dot-switch {
       span.Mui-disabled {
-        color: ${theme.palette.grey[50]};
+        color: ${theme.palette.grey[200]};
       }
 
       .MuiSwitch-switchBase
