@@ -4,6 +4,10 @@
 
 - **AppToolbar**: fixed postion styles so the AppTollbar is always flush to top, left, and right
 - **InputSelect**: added `InputSelect` to the list of exported component from the library
+- **Card**: refactored to be a lightweight wrapper component.
+- **CardContent**: Create the card content component.
+- **CardFooter**: Create the card footer component.
+- **CardHeader**: Create the card header component.
 
 ## 0.0.0-alpha.7
 
