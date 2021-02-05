@@ -19,10 +19,11 @@
 - **InputText**: removed `margin` prop in favor of the simpler `size` prop.
 - **InputText**: added `rows` prop, only applies to `multiline`
 - **InputText**: added `rowMax` prop, only applies to `multiline`
+- **InputText**: added unit tests for `multiline`
 - **InputSelect**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size.
 - **InputSelect**: removed `margin` prop in favor of the simpler `size` prop.
-- **AutoComplete**: removed `inputVariant` prop
-- **InlineEdit**: removed `inputVariant` prop
+- **InlineEdit**: removed `margin` prop in favor of the simpler `size` prop.
+- **InlineEdit**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size.
 
 ## 0.0.0-alpha.6
 
