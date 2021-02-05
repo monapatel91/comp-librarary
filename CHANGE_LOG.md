@@ -6,6 +6,7 @@
 
 - **Avatar**: if `large` then icon `fontSize` will be set to `default`
 - **Icon**: removed `large` from `fontSize` options
+- **Link**: Create the link component.
 - **Switch**: added prop for `labelPlacement`
 - **Switch**: fixed inconsistent styles per UX review
 
@@ -13,7 +14,6 @@
 
 ### Experimental
 
-- **Link**: Create the link component.
 - **AutoComplete**: removed `inputVariant` prop
 - **Card**: updated `classes` prop to `className`
 - **Dialog**: updated `classes` prop to `className`

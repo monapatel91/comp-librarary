@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotLink, LinkProps } from './Link';
 
 export default {
-  title: 'Experimental/Link',
+  title: 'Components/Link',
   component: DotLink,
   argTypes: {
     text: { defaultValue: 'Sample Link' },

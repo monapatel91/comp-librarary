@@ -1,5 +1,5 @@
 describe('dot-components: Link component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=experimental-link--default'));
+  beforeEach(() => cy.visit('/iframe.html?id=components-link--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('a').should('have.class', 'dot-link');

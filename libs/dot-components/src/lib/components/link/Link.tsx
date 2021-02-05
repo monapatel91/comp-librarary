@@ -34,8 +34,8 @@ export const DotLink = ({
   color = 'primary',
   'data-testid': dataTestId,
   href,
-  onClick,
-  tabIndex = null,
+  onClick = null,
+  tabIndex = 0,
   text,
   underline = 'always',
 }: LinkProps) => {
@@ -43,8 +43,8 @@ export const DotLink = ({
 
   return (
     <StyledLink
-      color={color}
       classes={{ root: rootClasses }}
+      color={color}
       data-testid={dataTestId}
       href={href}
       onClick={(event) => onClick && onClick(event)}
