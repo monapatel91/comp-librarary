@@ -7,7 +7,7 @@ import { DotInputText } from './InputText';
 describe('DotInputText', () => {
   it('renders successfully', () => {
     const { baseElement } = render(
-      <DotInputText label="Test" name="test" required={false} />
+      <DotInputText id="test-id" label="Test" name="test" required={false} />
     );
     expect(baseElement).toBeTruthy();
   });
@@ -16,6 +16,7 @@ describe('DotInputText', () => {
     const onChange = jest.fn();
     render(
       <DotInputText
+        id="id-test"
         label="Test"
         name="test"
         required={false}
@@ -27,5 +28,53 @@ describe('DotInputText', () => {
 
     userEvent.type(inputField, 'Something super awesome!!!');
     expect(onChange).toHaveBeenCalled();
+  });
+
+  it('should be multiline', () => {
+    render(
+      <DotInputText
+        id="id-test"
+        label="Test"
+        multiline
+        name="test"
+        required={false}
+        data-testid="test-input"
+      />
+    );
+    const textarea = screen.getByTestId('test-input');
+    expect(textarea).toBeVisible();
+  });
+
+  it('rows should be 4', async () => {
+    render(
+      <DotInputText
+        id="id-test"
+        label="Test"
+        rows={4}
+        multiline
+        name="test"
+        required={false}
+        data-testid="test-input"
+      />
+    );
+    const inputField = screen.getByTestId('test-input');
+    expect(inputField).toHaveAttribute('rows', '4');
+  });
+
+  it('should not be textarea', async () => {
+    render(
+      <DotInputText
+        id="id-test"
+        label="Test"
+        name="test"
+        required={false}
+        rows={4}
+        data-testid="test-input"
+      />
+    );
+
+    const input = screen.getByTestId('test-input');
+    expect(input.tagName).not.toBe('TEXTAREA');
+    expect(input.tagName).toBe('INPUT');
   });
 });

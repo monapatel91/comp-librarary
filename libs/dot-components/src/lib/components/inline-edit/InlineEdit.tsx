@@ -6,7 +6,7 @@ import { rootClassName, StyledInlineEdit } from './InlineEdit.styles';
 
 import { DotIcon } from '../icon/Icon';
 import { DotIconButton } from '../button/IconButton';
-import { inputMarginOptions } from '../input-form-fields/InputFormFields.propTypes';
+import { inputSizeOptions } from '../input-form-fields/InputFormFields.propTypes';
 
 export interface InlineEditProps extends CommonProps {
   /** If true, the input will be focused automatically on load */
@@ -19,8 +19,6 @@ export interface InlineEditProps extends CommonProps {
   fullWidth?: boolean;
   /** The helper text content. */
   helperText?: string;
-  /** Adjusts vertical spacing of this and contained components. */
-  margin?: inputMarginOptions;
   /** The name of input element */
   name: string;
   /** A function that should be executed when the value of the input changes */
@@ -31,6 +29,8 @@ export interface InlineEditProps extends CommonProps {
   onLabelChange?: (name: string) => Promise<string | null>;
   /** If true, the input will be required and label will display accordingly */
   required: boolean;
+  /** Size of the input */
+  size?: inputSizeOptions;
   /** default value that is displayed on load */
   value?: string;
 }
@@ -46,11 +46,11 @@ export const DotInlineEdit = ({
   error = false,
   fullWidth = true,
   helperText,
-  margin = 'dense',
   name,
   onEditStateChange = undefined,
   onLabelChange = undefined,
   required = false,
+  size = 'small',
   value = '',
 }: InlineEditProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -133,11 +133,11 @@ export const DotInlineEdit = ({
             </InputAdornment>
           ),
         }}
-        margin={margin}
         multiline={false}
         name={name}
         onChange={(event) => setInputValue(event.target.value)}
         required={required}
+        size={size}
         type="text"
         value={inputValue}
         variant="outlined"

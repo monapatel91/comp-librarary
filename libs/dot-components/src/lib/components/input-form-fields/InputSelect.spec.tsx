@@ -11,6 +11,7 @@ describe('DotInputSelect', () => {
   it('renders successfully', () => {
     const { baseElement } = render(
       <DotInputSelect
+        id="test-id"
         label="Foo Bar"
         name="bar"
         required={false}
@@ -23,6 +24,7 @@ describe('DotInputSelect', () => {
   it('displays correct number of options', async () => {
     render(
       <DotInputSelect
+        id="test-id"
         label="Foo Bar"
         name="foo"
         required={false}
@@ -38,6 +40,7 @@ describe('DotInputSelect', () => {
     const onChange = jest.fn();
     render(
       <DotInputSelect
+        id="test-id"
         label="Foo Bar"
         name="foo"
         required={false}

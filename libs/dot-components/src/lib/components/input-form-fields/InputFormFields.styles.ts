@@ -27,6 +27,9 @@ export const StyledTextField = styled(TextField)`
         padding-top: 10.5px;
         padding-bottom: 10.5px;
       }
+      .MuiOutlinedInput-inputMultiline {
+        padding: 0;
+      }
     }
     &.${rootSelectClassName}, &.${rootClassName} {
       .MuiSelect-select:focus {
