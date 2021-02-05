@@ -1,29 +1,29 @@
 # Change Log
 
-## Current
+## 0.0.0-alpha.7
 
 ### Components
 
+- **AutoComplete**: removed `inputVariant` prop
 - **Avatar**: if `large` then icon `fontSize` will be set to `default`
 - **Global**: integrated `Lato` font family as global style so consumer no longer needs to import `.css` file
 - **Global**: removed `.css` files to improve consumption and performance
 - **Icon**: removed `large` from `fontSize` options
 - **Icon**: integrated `dot` font family as part of styled component so consumer no longer needs to import `.css` file
-- **Switch**: added prop for `labelPlacement`
-- **Switch**: fixed inconsistent styles per UX review
-- **AutoComplete**: removed `inputVariant` prop
 - **InlineEdit**: removed `inputVariant` prop
+- **InlineEdit**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size and needed to remove the complexity of having both options.
+- **InlineEdit**: removed `margin` prop in favor of the simpler `size` prop.
 - **InputProps**: renamed `InputTextProps` to `InputProps` and moved `InputTextProps` to be used with `InputText` to support `multiline` props
+- **InputSelect**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size and needed to remove the complexity of having both options.
+- **InputSelect**: removed `margin` prop in favor of the simpler `size` prop.
 - **InputText**: added `multiline` prop
 - **InputText**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size and needed to remove the complexity of having both options.
 - **InputText**: removed `margin` prop in favor of the simpler `size` prop.
 - **InputText**: added `rows` prop, only applies to `multiline`
 - **InputText**: added `rowMax` prop, only applies to `multiline`
 - **InputText**: added unit tests for `multiline`
-- **InputSelect**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size and needed to remove the complexity of having both options.
-- **InputSelect**: removed `margin` prop in favor of the simpler `size` prop.
-- **InlineEdit**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size and needed to remove the complexity of having both options.
-- **InlineEdit**: removed `margin` prop in favor of the simpler `size` prop.
+- **Switch**: added prop for `labelPlacement`
+- **Switch**: fixed inconsistent styles per UX review
 
 ## 0.0.0-alpha.6
 
