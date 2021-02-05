@@ -5,9 +5,18 @@
 ### Components
 
 - **Avatar**: if `large` then icon `fontSize` will be set to `default`
+- **Global**: integrated `Lato` font family as global style so consumer no longer needs to import `.css` file
+- **Global**: removed `.css` files to improve consumption and performance
 - **Icon**: removed `large` from `fontSize` options
+- **Icon**: integrated `dot` font family as part of styled component so consumer no longer needs to import `.css` file
 - **Switch**: added prop for `labelPlacement`
 - **Switch**: fixed inconsistent styles per UX review
+
+## 0.0.0-alpha.6
+
+### Components
+
+- **Sidebar**: `DotNavigation` no longer renders if `navItems` are not passed in.
 
 ## 0.0.0-alpha.5
 
