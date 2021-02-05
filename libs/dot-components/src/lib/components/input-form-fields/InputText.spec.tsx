@@ -31,7 +31,7 @@ describe('DotInputText', () => {
   });
 
   it('should be multiline', () => {
-    const { baseElement } = render(
+    render(
       <DotInputText
         id="id-test"
         label="Test"
@@ -41,7 +41,7 @@ describe('DotInputText', () => {
         data-testid="test-input"
       />
     );
-    const textarea = baseElement.querySelector('textarea');
+    const textarea = screen.getByTestId('test-input');
     expect(textarea).toBeVisible();
   });
 
@@ -62,7 +62,7 @@ describe('DotInputText', () => {
   });
 
   it('should not be textarea', async () => {
-    const { baseElement } = render(
+    render(
       <DotInputText
         id="id-test"
         label="Test"
@@ -72,9 +72,9 @@ describe('DotInputText', () => {
         data-testid="test-input"
       />
     );
-    const textarea = baseElement.querySelector('textarea');
-    const input = baseElement.querySelector('input');
-    expect(textarea).toBeFalsy();
-    expect(input).toBeVisible();
+
+    const input = screen.getByTestId('test-input');
+    expect(input.tagName).not.toBe('TEXTAREA');
+    expect(input.tagName).toBe('INPUT');
   });
 });

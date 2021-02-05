@@ -20,7 +20,6 @@ export default {
     id: { defaultValue: 'custom-text-input' },
     endIcon: { control: { type: 'select', options: iconOptions } },
     startIcon: { control: { type: 'select', options: iconOptions } },
-    size: { defaultValue: 'small' },
   },
 } as Meta;
 
