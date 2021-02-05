@@ -18,8 +18,8 @@ export default createGlobalStyle`
   }
 
   @font-face {
+    font-display: block;
     font-family: 'dot';
     src: url(${Dot}) format('woff');
-    font-display: block;
   }
 `;
