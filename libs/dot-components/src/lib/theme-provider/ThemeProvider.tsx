@@ -6,6 +6,7 @@ import {
   StylesProvider,
 } from '@material-ui/core';
 import { ThemeProvider } from 'styled-components';
+import GlobalFonts from '../fonts/fonts';
 
 import * as lightColors from './colors/light-theme-colors';
 
@@ -122,44 +123,50 @@ const theme = createMuiTheme({
     tonalOffset: 0.2,
   },
   typography: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'Lato, sans-serif',
     allVariants: {
       fontStyle: 'normal',
       fontWeight: 'normal',
-      fontFeatureSettings: '"liga" off',
+      fontFeatureSettings: 'liga off',
       fontVariantLigatures: 'none',
     },
     h1: {
       fontSize: 24,
+      fontFamily: 'LatoBold, sans-serif',
       fontWeight: 700,
       lineHeight: '30px',
     },
     h2: {
       fontSize: 20,
+      fontFamily: 'LatoBold, sans-serif',
       fontWeight: 700,
       lineHeight: '26px',
       letterSpacing: '0.02em',
     },
     h3: {
       fontSize: 17,
+      fontFamily: 'LatoBold, sans-serif',
       fontWeight: 700,
       lineHeight: '24px',
       letterSpacing: '0.02em',
     },
     h4: {
       fontSize: 14,
+      fontFamily: 'LatoBold, sans-serif',
       fontWeight: 700,
       lineHeight: '18px',
       letterSpacing: '0.03em',
     },
     h5: {
       fontSize: 12,
+      fontFamily: 'LatoBold, sans-serif',
       fontWeight: 700,
       lineHeight: '18px',
       letterSpacing: '0.03em',
     },
     subtitle1: {
       fontSize: 17,
+      fontFamily: 'LatoBold, sans-serif',
       fontWeight: 700,
       lineHeight: '23px',
       letterSpacing: '0.03em',
@@ -167,6 +174,7 @@ const theme = createMuiTheme({
     },
     subtitle2: {
       fontSize: 14,
+      fontFamily: 'LatoBold, sans-serif',
       fontWeight: 700,
       lineHeight: '20px',
       letterSpacing: '0.03em',
@@ -188,6 +196,7 @@ const theme = createMuiTheme({
     },
     caption: {
       fontSize: 10,
+      fontFamily: 'LatoBold, sans-serif',
       fontWeight: 700,
       lineHeight: '16px',
       letterSpacing: '0.03em',
@@ -220,6 +229,7 @@ export function DotThemeProvider({ children }: ThemeProviderProps) {
       <MuiThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <GlobalFonts />
           {children}
         </ThemeProvider>
       </MuiThemeProvider>

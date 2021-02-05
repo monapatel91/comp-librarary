@@ -1,7 +1,6 @@
 import React from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import '../../fonts/font-icon/style.scss';
 import { rootClassName, StyledIcon } from './Icon.styles';
 
 export type IconFontSize = 'inherit' | 'default' | 'small';
