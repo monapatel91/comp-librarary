@@ -10,7 +10,6 @@ export default {
   component: DotInputSelect,
   argTypes: {
     label: { defaultValue: 'Default Label' },
-    margin: { defaultValue: 'none' },
     name: { defaultValue: 'Default name' },
     options: {
       defaultValue: ['Option 1', 'Option 2', 'Option 3'],

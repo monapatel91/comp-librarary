@@ -7,7 +7,13 @@ module.exports = (config) => {
     ...config,
     plugins: [
       ...config.plugins,
-      url(),
+      url({
+        // by default, rollup-plugin-url will not handle font files
+        include: ['**/*.woff', '**/*.woff2'],
+        // setting infinite limit will ensure that the files
+        // are always bundled with the code, not copied to /dist
+        limit: Infinity,
+      }),
       svgr({
         svgo: false,
         ref: true,

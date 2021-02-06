@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { InputTextProps } from './InputFormFields.propTypes';
+import { InputProps } from './InputFormFields.propTypes';
 import {
   rootClassName,
   StyledTextField,
@@ -8,6 +8,12 @@ import {
   adornmentIconClassName,
   StyledAdornment,
 } from './InputFormFields.styles';
+
+export interface InputTextProps extends InputProps {
+  multiline?: boolean;
+  rows?: number;
+  rowsMax?: number;
+}
 
 /**
  * @experimental This component is still in development
@@ -23,11 +29,14 @@ export const DotInputText = ({
   endIcon,
   id,
   label,
-  margin = 'dense',
+  multiline = false,
   name,
   onChange,
   required = false,
+  rows,
+  rowsMax,
   startIcon,
+  size = 'small',
   type = 'text',
   warning = false,
 }: InputTextProps) => {
@@ -70,11 +79,13 @@ export const DotInputText = ({
         ),
       }}
       label={label}
-      margin={margin}
-      multiline={false}
+      multiline={multiline}
       name={name}
       onChange={(event) => onChange && onChange(event.target.value)}
       required={required}
+      rows={multiline ? rows : null}
+      rowsMax={multiline ? rowsMax : null}
+      size={size}
       type={type}
       variant="outlined"
     />

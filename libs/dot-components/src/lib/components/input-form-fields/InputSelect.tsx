@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputTextProps } from './InputFormFields.propTypes';
+import { InputProps } from './InputFormFields.propTypes';
 import {
   rootSelectClassName,
   StyledTextField,
@@ -9,7 +9,7 @@ import {
 } from './InputFormFields.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
-export interface InputSelectProps extends InputTextProps {
+export interface InputSelectProps extends InputProps {
   options: Array<string>;
 }
 
@@ -26,13 +26,13 @@ export const DotInputSelect = ({
   helperText,
   id,
   label,
-  margin = 'dense',
   name,
   onChange,
   options = [],
   defaultValue = options[0],
   required,
   startIcon,
+  size = 'small',
   warning = false,
 }: InputSelectProps) => {
   const rootStyles = useStylesWithRootClass(rootSelectClassName, className);
@@ -70,7 +70,6 @@ export const DotInputSelect = ({
         ),
       }}
       label={label}
-      margin={margin}
       multiline={false}
       name={name}
       onChange={(event) => onChange && onChange(event.target.value)}
@@ -79,6 +78,7 @@ export const DotInputSelect = ({
       SelectProps={{
         native: true,
       }}
+      size={size}
       variant="outlined"
     >
       {options.map((option) => (

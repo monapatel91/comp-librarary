@@ -1,8 +1,8 @@
 import { CommonProps } from '../CommonProps';
 
-export type inputMarginOptions = 'dense' | 'none' | 'normal';
+export type inputSizeOptions = 'small' | 'medium';
 
-export interface InputTextProps extends CommonProps {
+export interface InputProps extends CommonProps {
   /** This prop helps users to fill forms faster */
   autoFocus?: boolean;
   /** default value of the input element */
@@ -22,8 +22,6 @@ export interface InputTextProps extends CommonProps {
   id: string;
   /** The label content. */
   label?: string;
-  /** If dense or normal, will adjust vertical spacing of this and contained components. */
-  margin?: inputMarginOptions;
   /** The name of input element */
   name: string;
   /** A function that should be executed when the value of the input changes */
@@ -32,6 +30,8 @@ export interface InputTextProps extends CommonProps {
   required: boolean;
   /** Icon placed before the children. */
   startIcon?: JSX.Element;
+  /** Size of the input */
+  size?: inputSizeOptions;
   /**
    * Type of input should be a valid HTML 5 input type
    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types
