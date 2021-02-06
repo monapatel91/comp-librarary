@@ -24,7 +24,9 @@ export const StyledAppToolbar = styled.header`
       position: fixed;
       width: 100%;
       z-index: 9999;
-
+      top: 0;
+      left: 0;
+      right: 0;
       &.dense {
         height: 48px;
 
