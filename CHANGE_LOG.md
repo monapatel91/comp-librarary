@@ -1,5 +1,9 @@
 # Change Log
 
+### Current
+
+- **AppToolbar**: fixed postion styles so the AppTollbar is always flush to top, left, and right
+
 ## 0.0.0-alpha.7
 
 ### Components
