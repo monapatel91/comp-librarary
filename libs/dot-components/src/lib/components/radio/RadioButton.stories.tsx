@@ -10,11 +10,12 @@ export default {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
     color: { defaultValue: 'primary' },
     label: { defaultValue: 'Sample Label' },
+    name: { defaultValue: 'dot-radio-button' },
     onChange: {
       action: 'clicked',
     },
-    value: { defaultValue: '' },
-    selected: { defaultValue: 'test' },
+    value: { defaultValue: 'sample-label' },
+    selectedValue: { defaultValue: 'sample-label' },
   },
 } as Meta;
 

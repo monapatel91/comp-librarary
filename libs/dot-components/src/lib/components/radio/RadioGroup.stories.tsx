@@ -9,7 +9,7 @@ export default {
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
     defaultValue: { defaultValue: 'item-2' },
-    name: { defaultValue: 'Dot Radio Grapup' },
+    name: { defaultValue: 'dot-radio-group' },
     label: { defaultValue: 'Sample Label' },
     onChange: {
       action: 'clicked',

@@ -26,6 +26,8 @@ export * from './skeleton/Skeleton';
 export * from './stage-card/StageCard';
 export * from './step-card/StepCard';
 export * from './switch/Switch';
+export * from './radio/RadioButton';
+export * from './radio/RadioGroup';
 export * from './table/LocallyPaginatedTable';
 export * from './table/Table';
 export * from './table/TableDataWithPagination';

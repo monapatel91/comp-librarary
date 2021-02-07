@@ -9,6 +9,8 @@ import { SwitchProps } from '../switch/Switch';
 import { useRadioGroup } from '@material-ui/core';
 
 export interface RadioButtonProps extends SwitchProps {
+  /** name of radio input */
+  name?: string;
   /** A function that should be executed when the value of the radio buttom changes */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
   /** unique value for the radio button */
@@ -26,6 +28,7 @@ export function DotRadioButton({
   disabled = false,
   label,
   labelPlacement = 'end',
+  name,
   onChange,
   selectedValue,
   size = 'medium',
@@ -58,6 +61,7 @@ export function DotRadioButton({
           data-testid={dataTestId}
           disabled={disabled}
           inputProps={{ 'aria-label': ariaLabel ? ariaLabel : label }}
+          name={name}
           onChange={handleChange}
           size={size}
         />
