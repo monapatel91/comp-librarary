@@ -15,6 +15,8 @@ export type LinkColor =
 export type LinkUnderline = 'always' | 'hover' | 'none';
 
 export interface LinkProps extends CommonProps {
+  /** text for the link. */
+  children: JSX.Element | string;
   /** color options available 'initial', 'inherit', 'primary', 'secondary', 'textPrimary', 'textSecondary' */
   color?: LinkColor;
   /** href for the link. */
@@ -23,20 +25,18 @@ export interface LinkProps extends CommonProps {
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
   /** tab order for the link */
   tabIndex?: number;
-  /** text for the link. */
-  text: string;
   /**  underline the link */
   underline?: LinkUnderline;
 }
 
 export const DotLink = ({
+  children,
   className,
   color = 'primary',
   'data-testid': dataTestId,
   href,
   onClick = null,
   tabIndex = 0,
-  text,
   underline = 'always',
 }: LinkProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -51,7 +51,7 @@ export const DotLink = ({
       tabIndex={tabIndex}
       underline={underline}
     >
-      <Typography variant="body1">{text}</Typography>
+      <Typography variant="body1">{children}</Typography>
     </StyledLink>
   );
 };

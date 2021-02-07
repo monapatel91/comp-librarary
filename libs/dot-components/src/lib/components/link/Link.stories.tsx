@@ -7,7 +7,7 @@ export default {
   title: 'Components/Link',
   component: DotLink,
   argTypes: {
-    text: { defaultValue: 'Sample Link' },
+    children: { defaultValue: 'Sample Link' },
   },
 } as Meta;
 

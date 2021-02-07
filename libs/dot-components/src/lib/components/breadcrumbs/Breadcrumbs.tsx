@@ -51,9 +51,10 @@ export const DotBreadcrumbs = ({
               key={index}
               onClick={(event) => onClick && onClick(event)}
               tabIndex={0}
-              text={text}
               underline={underline}
-            />
+            >
+              {text}
+            </DotLink>
           );
         }
       })}
