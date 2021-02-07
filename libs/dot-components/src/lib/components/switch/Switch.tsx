@@ -4,7 +4,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   rootClassName as formRootClassName,
   StyledFormControlLabel,
-} from './FormControlLabel.styles';
+} from '../form-controls/FormControlLabel.styles';
 import { rootClassName, StyledSwitch } from './Switch.styles';
 
 export type SwitchColor = 'default' | 'primary' | 'secondary';
