@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import RadioButton from './RadioButton';
+import { DotRadioButton } from './RadioButton';
 
 describe('RadioButton', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<RadioButton />);
+    const { baseElement } = render(<DotRadioButton value="dot-radio" />);
     expect(baseElement).toBeTruthy();
   });
 });

@@ -8,6 +8,7 @@ export default {
   component: DotRadioGroup,
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
+    defaultValue: { defaultValue: 'item-2' },
     name: { defaultValue: 'Dot Radio Grapup' },
     label: { defaultValue: 'Sample Label' },
     onChange: {

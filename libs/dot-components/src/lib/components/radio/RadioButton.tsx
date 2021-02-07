@@ -9,9 +9,12 @@ import { SwitchProps } from '../switch/Switch';
 import { useRadioGroup } from '@material-ui/core';
 
 export interface RadioButtonProps extends SwitchProps {
+  /** A function that should be executed when the value of the radio buttom changes */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+  /** unique value for the radio button */
   value: string;
-  selected?: string;
+  /** selected value used to compare the again each value */
+  selectedValue?: string;
 }
 
 export function DotRadioButton({
@@ -24,8 +27,8 @@ export function DotRadioButton({
   label,
   labelPlacement = 'end',
   onChange,
+  selectedValue,
   size = 'medium',
-  selected,
   value,
 }: RadioButtonProps) {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -40,12 +43,13 @@ export function DotRadioButton({
   };
 
   const groupChecked =
-    radioGroup && checked ? checked : selected === value ? true : false;
+    radioGroup && checked ? checked : selectedValue === value ? true : false;
 
   return (
     <StyledFormControlLabel
       className={formRootClassName}
       labelPlacement={labelPlacement}
+      value={value}
       control={
         <StyledRadioButton
           classes={{ root: rootClasses }}
@@ -56,7 +60,6 @@ export function DotRadioButton({
           inputProps={{ 'aria-label': ariaLabel ? ariaLabel : label }}
           onChange={handleChange}
           size={size}
-          value={value}
         />
       }
       label={label}
