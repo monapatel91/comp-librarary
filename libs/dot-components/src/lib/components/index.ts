@@ -13,6 +13,7 @@ export * from './empty-state/EmptyState';
 export * from './icon/Icon';
 export * from './inline-edit/InlineEdit';
 export * from './input-form-fields/InputText';
+export * from './link/Link';
 export * from './menu/Menu';
 export * from './navigation/Navigation';
 export * from './navigation/NavItem';
