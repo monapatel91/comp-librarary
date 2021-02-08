@@ -11,7 +11,7 @@ export const StyledLink = styled(Link)`
     line-height: 20px;
     letter-spacing: 0.03em;
 
-    &:hover {
+    &:hover :not(.MuiLink-underlineHover) {
       text-decoration: none;
     }
   }
