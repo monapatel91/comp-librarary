@@ -25,6 +25,7 @@ export const StyledSidebar = styled.aside`
         align-items: center;
         border-bottom: 1px solid ${theme.palette.grey[100]};
         display: flex;
+        flex-shrink: 0;
         font-size: 14px;
         overflow: hidden;
         padding: ${theme.spacing(1, 2)};
