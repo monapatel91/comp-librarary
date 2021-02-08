@@ -12,6 +12,7 @@ export type LinkColor =
   | 'textSecondary'
   | 'error';
 export type LinkUnderline = 'always' | 'hover' | 'none';
+export type LinkTarget = '_blank' | '_self';
 
 export interface LinkProps extends CommonProps {
   /** text for the link. */
@@ -24,6 +25,8 @@ export interface LinkProps extends CommonProps {
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
   /** tab order for the link */
   tabIndex?: number;
+  /** where to open the link */
+  target?: LinkTarget;
   /**  underline the link */
   underline?: LinkUnderline;
 }
@@ -36,6 +39,7 @@ export const DotLink = ({
   href,
   onClick = null,
   tabIndex = 0,
+  target,
   underline = 'always',
 }: LinkProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -48,6 +52,7 @@ export const DotLink = ({
       href={!href || onClick ? '#' : href}
       onClick={(event) => onClick && onClick(event)}
       tabIndex={tabIndex}
+      target={target}
       underline={underline}
     >
       {children}
