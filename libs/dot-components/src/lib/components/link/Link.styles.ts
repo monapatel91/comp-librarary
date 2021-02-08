@@ -10,5 +10,9 @@ export const StyledLink = styled(Link)`
     .MuiTypography-body1 {
       margin-bottom: 0;
     }
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 `;
