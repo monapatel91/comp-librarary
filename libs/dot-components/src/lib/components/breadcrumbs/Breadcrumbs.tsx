@@ -1,17 +1,15 @@
 import React, { MouseEvent } from 'react';
-import { Link } from '@material-ui/core';
 import DotIcon from '../icon/Icon';
+import { DotLink, LinkUnderline } from '../link/Link';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
-
-export type LinkUnderlineOptions = 'always' | 'hover' | 'none';
 
 export type BreadcrumbItem = {
   href?: string;
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
   text: string;
-  underline?: LinkUnderlineOptions;
+  underline?: LinkUnderline;
 };
 
 export interface BreadcrumbProps extends CommonProps {
@@ -46,19 +44,17 @@ export const DotBreadcrumbs = ({
           );
         } else {
           return (
-            <Link
+            <DotLink
               className="breadcrumb"
               color="inherit"
               href={href}
               key={index}
-              onClick={(event: MouseEvent<HTMLAnchorElement>) =>
-                onClick && onClick(event)
-              }
+              onClick={(event) => onClick && onClick(event)}
               tabIndex={0}
               underline={underline}
             >
               {text}
-            </Link>
+            </DotLink>
           );
         }
       })}

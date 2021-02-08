@@ -26,6 +26,7 @@
 - **InputText**: added `rows` prop, only applies to `multiline`
 - **InputText**: added `rowMax` prop, only applies to `multiline`
 - **InputText**: added unit tests for `multiline`
+- **Link**: Create the link component.
 - **Switch**: added prop for `labelPlacement`
 - **Switch**: fixed inconsistent styles per UX review
 
