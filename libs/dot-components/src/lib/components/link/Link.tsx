@@ -17,7 +17,7 @@ export type LinkTarget = '_blank' | '_self';
 export interface LinkProps extends CommonProps {
   /** text for the link. */
   children: JSX.Element | string;
-  /** color options available 'initial', 'inherit', 'primary', 'secondary', 'textPrimary', 'textSecondary' */
+  /** link color */
   color?: LinkColor;
   /** href for the link. */
   href?: string;
