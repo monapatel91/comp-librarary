@@ -13,10 +13,11 @@ describe('Link', () => {
   });
 
   it('should have an href is one is passed', () => {
-    render(<DotLink href="#">Sample Link</DotLink>);
-    expect(screen.getByText('Sample Link').closest('a')).toHaveAttribute(
-      'href'
-    );
+    render(<DotLink href="someplace/cool">Sample Link</DotLink>);
+    expect(
+      screen.getByText('Sample Link').closest('a').getAttributeNode('href')
+        .value
+    ).toEqual('someplace/cool');
   });
 
   it('should call onClick if one is passed down as a prop', () => {
@@ -28,5 +29,17 @@ describe('Link', () => {
 
     userEvent.click(screen.getByText('Sample Link'));
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('should override href if onClick is passed', () => {
+    render(
+      <DotLink href="someplace/cool" onClick={onClick}>
+        Sample Link
+      </DotLink>
+    );
+    expect(
+      screen.getByText('Sample Link').closest('a').getAttributeNode('href')
+        .value
+    ).toEqual('#');
   });
 });
