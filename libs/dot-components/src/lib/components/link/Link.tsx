@@ -1,5 +1,4 @@
 import React, { MouseEvent } from 'react';
-import { Typography } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledLink } from './Link.styles';
@@ -51,7 +50,7 @@ export const DotLink = ({
       tabIndex={tabIndex}
       underline={underline}
     >
-      <Typography variant="body1">{children}</Typography>
+      {children}
     </StyledLink>
   );
 };
