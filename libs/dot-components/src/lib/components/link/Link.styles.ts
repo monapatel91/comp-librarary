@@ -5,10 +5,7 @@ export const rootClassName = 'dot-link';
 
 export const StyledLink = styled(Link)`
   &.${rootClassName} {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0.03em;
+    cursor: pointer;
 
     &:hover :not(.MuiLink-underlineHover) {
       text-decoration: none;
