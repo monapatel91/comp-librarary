@@ -607,31 +607,31 @@ export const StyledIcon = styled(Icon)`
           content: '\\e901';
         }
         &.icon-settings:before {
-          content: "\e93b";
+          content: "\\e93b";
         }
         &.icon-network-drive:before {
-          content: "\e9a1";
+          content: "\\e9a1";
         }
         &.icon-GitOps:before {
-          content: "\e9a2";
+          content: "\\e9a2";
         }
         &.icon-rss:before {
-          content: "\e9c1";
+          content: "\\e9c1";
         }
         &.icon-bug:before {
-          content: "\e9c2";
+          content: "\\e9c2";
         }
         &.icon-cloud:before {
-          content: "\e9c3";
+          content: "\\e9c3";
         }
         &.icon-more-horizontal:before {
-          content: "\e9c4";
+          content: "\\e9c4";
         }
         &.icon-expand:before {
-          content: "\e9c5";
+          content: "\\e9c5";
         }
         &.icon-collapse:before {
-          content: "\e9c6";
+          content: "\\e9c6";
         }
       }
     }
