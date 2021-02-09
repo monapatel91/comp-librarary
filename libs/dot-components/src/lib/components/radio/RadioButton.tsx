@@ -5,10 +5,21 @@ import {
 } from '../form-controls/FormControlLabel.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledRadioButton } from './RadioButton.styles';
-import { SwitchProps } from '../switch/Switch';
 import { useRadioGroup } from '@material-ui/core';
+import { CommonProps } from '../CommonProps';
 
-export interface RadioButtonProps extends SwitchProps {
+export type RadioSize = 'medium' | 'small';
+export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
+
+export interface RadioButtonBaseProps extends CommonProps {
+  /** accessibility label */
+  ariaLabel?: string;
+  /** text displayed next to the radio buttom */
+  label?: string;
+  /** label placement options available 'bottom' | 'end' | 'start' */
+  labelPlacement?: RadioLabelPlacement;
+  /** controls the size of the radio button 'medium', 'small' */
+  size?: RadioSize;
   /** name of radio input */
   name?: string;
   /** A function that should be executed when the value of the radio buttom changes */
@@ -19,11 +30,14 @@ export interface RadioButtonProps extends SwitchProps {
   selectedValue?: string;
 }
 
+export interface RadioButtonProps extends RadioButtonBaseProps {
+  /** if true makes the radio button disabled */
+  disabled?: boolean;
+}
+
 export function DotRadioButton({
   ariaLabel,
-  checked,
   className,
-  color = 'primary',
   'data-testid': dataTestId,
   disabled = false,
   label,
@@ -35,8 +49,10 @@ export function DotRadioButton({
   value,
 }: RadioButtonProps) {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-  const [isChecked, setChecked] = useState(checked);
   const radioGroup = useRadioGroup();
+  const [isChecked, setChecked] = useState(
+    !radioGroup && selectedValue === value
+  );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (!radioGroup) {
@@ -45,8 +61,7 @@ export function DotRadioButton({
     onChange && onChange(event, event.target.value);
   };
 
-  const groupChecked =
-    radioGroup && checked ? checked : selectedValue === value ? true : false;
+  const groupChecked = radioGroup && selectedValue === value && true;
 
   return (
     <StyledFormControlLabel
@@ -57,7 +72,7 @@ export function DotRadioButton({
         <StyledRadioButton
           classes={{ root: rootClasses }}
           checked={isChecked || groupChecked}
-          color={color}
+          color="primary"
           data-testid={dataTestId}
           disabled={disabled}
           inputProps={{ 'aria-label': ariaLabel ? ariaLabel : label }}

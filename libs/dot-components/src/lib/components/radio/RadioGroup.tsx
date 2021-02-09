@@ -1,13 +1,28 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { rootClassName, StyledRadioGroup } from './RadioGroup.styles';
-import { RadioButtonProps, DotRadioButton } from './RadioButton';
-import { FormControl, FormHelperText, FormLabel } from '@material-ui/core';
-import { SwitchProps } from '../switch/Switch';
+import {
+  rootClassName,
+  groupLabelClassName,
+  StyledRadioGroup,
+  StyledFormControl,
+  endAdornmentClassName,
+  startAdornmentClassName,
+  placementClassName,
+} from './RadioGroup.styles';
+import {
+  RadioButtonBaseProps,
+  DotRadioButton,
+  RadioButtonProps,
+} from './RadioButton';
+import { FormHelperText, FormLabel } from '@material-ui/core';
 
-export interface RadioGroupProps extends SwitchProps {
+export interface RadioGroupProps extends RadioButtonBaseProps {
   /** The default input element value. Use when the component is not controlled or has a value. */
   defaultValue?: string;
+  /** if true makes all radio buttons disabled */
+  disableGroup?: boolean;
+  /** Icon placed before the children. */
+  endIcon?: JSX.Element;
   /** If true, the label should be displayed in an error state. */
   error?: boolean;
   /** The helper text content. */
@@ -23,28 +38,34 @@ export interface RadioGroupProps extends SwitchProps {
   name?: string;
   /** Array of RadioButtonProps used to create the radio buttons */
   radioButtons?: RadioButtonProps[];
-  /** Value of the selected radio button.  */
-  value?: string;
+  /** Icon placed before the children. */
+  startIcon?: JSX.Element;
 }
 
 export function DotRadioGroup({
   ariaLabel,
   className,
-  color = 'primary',
   'data-testid': dataTestId,
   defaultValue,
-  disabled = false,
+  disableGroup = false,
+  endIcon,
   error = false,
-  helperText = null,
+  helperText,
   groupLabel,
   name,
-  labelPlacement,
+  labelPlacement = 'end',
   onChange,
   value,
   radioButtons,
-  size,
+  startIcon,
+  size = 'medium',
 }: RadioGroupProps) {
-  const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const placement = `${placementClassName}${labelPlacement}`;
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    className,
+    placement
+  );
   const [_value, setValue] = useState(value ? value : defaultValue);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -53,11 +74,10 @@ export function DotRadioGroup({
   };
 
   const renderRadioButtons = radioButtons
-    ? radioButtons.map(({ label, value }) => {
+    ? radioButtons.map(({ label, value, disabled }) => {
         return (
           <DotRadioButton
-            color={color}
-            disabled={disabled}
+            disabled={disabled || disableGroup}
             label={label}
             labelPlacement={labelPlacement}
             selectedValue={_value}
@@ -69,11 +89,22 @@ export function DotRadioGroup({
     : null;
 
   return (
-    <FormControl error={error} component="fieldset">
-      {groupLabel && <FormLabel component="legend">{groupLabel}</FormLabel>}
+    <StyledFormControl
+      classes={{ root: rootClasses }}
+      error={error}
+      component="fieldset"
+    >
+      {groupLabel && (
+        <FormLabel component="legend">
+          {startIcon && (
+            <span className={startAdornmentClassName}>{startIcon}</span>
+          )}
+          <span className={groupLabelClassName}>{groupLabel} </span>
+          {endIcon && <span className={endAdornmentClassName}>{endIcon}</span>}
+        </FormLabel>
+      )}
       <StyledRadioGroup
         aria-label={ariaLabel}
-        classes={{ root: rootClasses }}
         data-testid={dataTestId}
         defaultValue={defaultValue}
         name={name}
@@ -83,7 +114,7 @@ export function DotRadioGroup({
         {renderRadioButtons}
       </StyledRadioGroup>
       {helperText && <FormHelperText>{helperText}</FormHelperText>}
-    </FormControl>
+    </StyledFormControl>
   );
 }
 
