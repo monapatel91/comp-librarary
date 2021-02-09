@@ -77,21 +77,28 @@ yarn generate:comp --name=[name of component] --export --pascalCaseFiles
 
 For details go to [.dot design system](https://zeroheight.com/4a9ac476a/p/13a447-icons/t/36e685)
 
-You can import `dot-components/src/lib/fonts/font-icon/selection.json` back to the IcoMoon app using the _Import Icons_ button (or via Main Menu → Manage Projects) to retrieve your icon selection.
+You can import `dot-components/src/lib/fonts/selection.json` back to the IcoMoon app using the _Import Icons_ button (or via Main Menu → Manage Projects) to retrieve your icon selection.
 
-After downloading generated files from icomoon only the following files should be copied over and a pull request submitted.
+After downloading generated files from icomoon only the following files should be copied over and a pull request submitted; all other files can be ignored.
 
 ```sh
-- dot-components/src/lib/fonts/font-icon/fonts/*
-- dot-components/src/lib/fonts/font-icon/selection.json
-- dot-components/src/lib/fonts/font-icon/style.css
-- dot-components/src/lib/fonts/font-icon/style.scss
-- dot-components/src/lib/fonts/font-icon/variables.scss
+- dot-components/src/lib/fonts/dot.woff
+- dot-components/src/lib/fonts/selection.json
 ```
 
-You won't need any of the files located under the `demo-files/` directory when including the generated font in your own projects.
+You'll also need to copy the icon styles from the generated `style.css` and paste them at the bottom of the following file.
 
-When you're done be sure to update [the package number](#set-the-package-version-number)
+```sh
+- dot-components/src/lib/components/icon/Icon.styles.ts
+```
+
+It's important to adjust the copied styles so that they match the following format
+
+```css
+&.icon-delete:before {
+  content: '\\e901';
+}
+```
 
 ## Running Tests and Formatters
 
