@@ -1,8 +1,9 @@
 # Change Log
 
-### Current
+## 0.0.0-alpha.8
 
 - **AppToolbar**: fixed postion styles so the AppTollbar is always flush to top, left, and right
+- **InputSelect**: added `InputSelect` to the list of exported component from the library
 
 ## 0.0.0-alpha.7
 
