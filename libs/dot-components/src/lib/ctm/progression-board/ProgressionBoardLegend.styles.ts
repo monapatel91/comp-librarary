@@ -13,85 +13,100 @@ export const StyledProgressionLegend = styled.div`
       width: 258px;
 
       ul.legends {
-        span {
-          &.split {
-            &.improve,
-            &.maintain {
-              float: left;
-              height: 20px;
-              width: 20px;
-              display: inline-block;
-              background: linear-gradient(
-                -45deg,
-                #fff 0%,
-                #fff 50%,
-                currentColor 0%,
-                currentColor 100%
-              );
-              border: 1px solid currentColor;
-              border-radius: 50%;
-            }
-
-            &.improve {
-              color: darken(#69be28, 15%);
-            }
-
-            &.maintain {
-              color: darken(#b50200, 15%);
-            }
-          }
-
-          &.improve,
-          &.maintain {
-            float: left;
-            height: 20px;
-            width: 20px;
-            display: inline-block;
-            background-color: currentColor;
-            border: 1px solid currentColor;
-            border-radius: 50%;
-          }
-
-          &.improve {
-            color: darken(#69be28, 15%);
-          }
-
-          &.maintain {
-            color: darken(#b50200, 15%);
-          }
-
-          &.unknown {
-            float: left;
-            height: 20px;
-            width: 20px;
-            display: inline-block;
-            background-color: #b7bcc4;
-            border-radius: 50%;
-          }
-        }
-
-        li.item {
-          padding: 5px;
-
-          .title {
-            padding: 5px;
-          }
-        }
-
         li.workitems {
           display: block;
           margin: 9px;
           line-height: 20px;
 
+          & > span:first-of-type {
+            float: left;
+            height: 20px;
+            width: 20px;
+
+            &:not(.dot-icon) {
+              background: currentColor;
+              border: 1px solid currentColor;
+              border-radius: 50%;
+
+              &.improve {
+                background: #59a121;
+                border-color: #59a121;
+                &.split {
+                  background: linear-gradient(
+                    -45deg,
+                    #fff 0%,
+                    #fff 50%,
+                    #59a121 0%,
+                    #59a121 100%
+                  );
+                }
+              }
+
+              &.maintain {
+                background: #990100;
+                border-color: #990100;
+                &.split {
+                  background: linear-gradient(
+                    -45deg,
+                    #fff 0%,
+                    #fff 50%,
+                    #990100 0%,
+                    #990100 100%
+                  );
+                }
+              }
+
+              &.unknown {
+                background: #b7bcc4;
+                border: none;
+              }
+            }
+          }
+
           .title {
             padding: 9px;
           }
 
-          i {
-            float: left;
-            width: 20px;
-            text-align: center;
-            font-size: large;
+          .dot-icon {
+            display: inline-block;
+
+            i {
+              &.icon-error-outlines {
+                color: #d52101;
+              }
+
+              &.icon-error-solid {
+                color: #005293;
+              }
+
+              &.icon-info-solid {
+                color: #69be28;
+              }
+
+              &.icon-rogue-commits {
+                color: #eaab00;
+              }
+
+              &.icon-file-dotted {
+                color: #005293;
+              }
+
+              &.icon-pending-clock {
+                color: #244451;
+              }
+
+              &.icon-check-solid {
+                color: #00a9e0;
+              }
+
+              &.icon-thumbs-down {
+                color: #6d09a8;
+              }
+
+              &.icon-lock {
+                color: #d52101;
+              }
+            }
           }
         }
       }
