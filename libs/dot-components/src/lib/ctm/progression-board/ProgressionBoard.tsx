@@ -6,7 +6,7 @@ import {
   StyledProgressionBoard,
 } from './ProgressionBoard.styles';
 import { hydratePhases } from './hydrate_phases';
-import { pbState, ProgressionBoardProps } from './ProgressionBoardInterfaces';
+import { ProgressionBoardProps } from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
 
 export const DotProgressionBoard = ({

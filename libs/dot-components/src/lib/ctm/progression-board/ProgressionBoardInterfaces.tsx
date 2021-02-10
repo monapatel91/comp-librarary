@@ -1,19 +1,22 @@
-type WorkItemType = {
+export interface WorkItemType {
   _id: string;
   change_count: number | null;
   external_id: string;
   external_key: string;
+  isEmphazied: boolean;
+  isSelected: boolean;
+  isSplit: boolean;
   title: string;
   value_goal: string;
-};
+}
 
-type CardIndicatorType = {
+export interface CardIndicatorType {
   activity_start_count: number | null;
   estimated_time_remaining: number | null;
   total_activity_count: number | null;
-};
+}
 
-type PackageType = {
+export interface PackageType {
   _id: string;
   activity_failed: boolean;
   actual: number | null;
@@ -50,24 +53,24 @@ type PackageType = {
   version: string;
   workitem_count: number | null;
   workitems: Array<WorkItemType>;
-};
+}
 
-type PhaseType = {
+export interface PhaseType {
   code_complete: boolean;
-  delivery_category: string;
-  description: string;
+  delivery_category?: string;
+  description?: string;
   name: string;
   packageVersions: Array<PackageType>;
-};
+}
 
-type SwimLanepkg = {
+export interface SwimLanepkg {
   package_id: string;
   package_name: string;
   phases: Array<PhaseType>;
-};
+}
 
 export interface ProgressionBoardProps {
-  baseUrl: string;
+  baseUrl?: string;
   phases: Array<PhaseType>;
 }
 
@@ -80,8 +83,4 @@ export interface SwimLaneProps {
     deSelectWorkitem: (id) => void;
     selectedWorkitem: string;
   };
-}
-
-export interface pbState {
-  selectedWorkitem: string;
 }
