@@ -3,7 +3,7 @@ export interface WorkItemType {
   change_count: number | null;
   external_id: string;
   external_key: string;
-  isEmphazied: boolean;
+  isEmphasized: boolean;
   isSelected: boolean;
   isSplit: boolean;
   title: string;
