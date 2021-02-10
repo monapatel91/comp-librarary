@@ -24,9 +24,7 @@ export default {
             </Typography>
           </DotCardContent>
           <DotCardFooter>
-            <Typography variant="body1">
-              This is a footer
-            </Typography>
+            <Typography variant="body1">This is a footer</Typography>
           </DotCardFooter>
         </Fragment>
       ),

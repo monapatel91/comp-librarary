@@ -23,9 +23,9 @@ export const DotCardHeader = ({
       classes={{ root: className }}
       data-testid={dataTestId}
       subheader={subheader}
-      subheaderTypographyProps={{variant: 'body2'}}
+      subheaderTypographyProps={{ variant: 'body2' }}
       title={title}
-      titleTypographyProps={{variant: 'h4'}}
+      titleTypographyProps={{ variant: 'h4' }}
     ></CardHeader>
   );
 };
