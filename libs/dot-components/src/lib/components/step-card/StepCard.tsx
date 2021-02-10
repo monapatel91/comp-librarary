@@ -87,10 +87,7 @@ export const DotStepCard = ({
     ) : null;
 
   return (
-    <DotCard
-      className={rootClasses}
-      data-testid={dataTestId}
-    >
+    <DotCard className={rootClasses} data-testid={dataTestId}>
       <Fragment>
         <CardHeader
           action={headerAction}
