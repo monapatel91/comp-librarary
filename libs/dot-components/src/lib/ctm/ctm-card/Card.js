@@ -48,13 +48,23 @@ export const CardIndicators = (props) => (
   </div>
 );
 
+export const shorten = (str, length) =>
+  str.length > length ? `${str.substring(0, length)}...` : str;
+
 export const Card = (props) => {
   const classes = `card-container ${props.classNames}`;
+  const fromLabel = props.fullversion_from || props.rev_from;
+  const toLabel = props.fullversion_to || props.rev_to;
+
   return (
     <div className={classes}>
       <div className="card">
         <div className="identity">
-          <CardIdentifier {...props} />
+          <CardIdentifier
+            {...props}
+            title={shorten(`${fromLabel} - ${toLabel}`, 18)}
+            titleTooltip={`${fromLabel} - ${toLabel}`}
+          />
           {props.indicators}
         </div>
         <div className="content">{props.children}</div>

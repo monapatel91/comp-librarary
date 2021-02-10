@@ -8,6 +8,10 @@ import { getMostSignificantLabel } from './duration';
 
 const isTruthy = (x) => !!x;
 
+export const parseRevURL = (revFrom, revToId) => {
+  return `/flow/package_revision?id=${revToId}&from_revision=${revFrom}`;
+};
+
 class ValidPackage extends Component {
   constructor(props, context) {
     super(props, context);
@@ -42,22 +46,22 @@ class ValidPackage extends Component {
 
   render() {
     const {
-      showDashboardLink,
-      dashboardUrl,
-      hasSeverity1,
-      severity1Label,
-      severity1Url,
-      hasFailedTests,
-      failedTestsLabel,
-      failedTestsUrl,
-      hasLowCoverage,
-      coverageLabel,
-      coverageUrl,
-      hasUnmanaged,
-      hasRisky,
-      riskyFileLabel,
-      unManagedCommitLabel,
-      revurl,
+      risk_show_dashboard_link,
+      risk_dashboard_url,
+      risk_has_severity1_violations,
+      severity1Label = `${this.props.risk_severity1_violation_count} Severity One Violations`,
+      risk_severity1_report_url,
+      risk_has_failed_tests,
+      failedTestsLabel = `${this.props.risk_failed_tests_count} Failed Tests`,
+      risk_failed_tests_report_url,
+      risk_has_low_coverage,
+      coverageLabel = `${this.props.risk_coverage_percentage}% Coverage`,
+      risk_coverage_report_url,
+      hasUnmanaged = this.props.unmanaged_change_count > 0,
+      hasRisky = this.props.riskyFileCount > 0,
+      riskyFileLabel = `${this.props.riskyFileCount} Risky Files.`,
+      unManagedCommitLabel = `${this.props.unmanaged_change_count} Rogue Commits.`,
+      revurl = parseRevURL(this.props.rev_from, this.props.rev_to_id),
       revisionRangeLabel = `${this.props.rev_from} - ${this.props.rev_to}`,
       version,
       package_id,
@@ -73,7 +77,7 @@ class ValidPackage extends Component {
         ? {
             id: 'error-outlines',
             label: 'Acitivity or Control failed',
-            url: this.props.revurl,
+            url: parseRevURL(this.props.rev_from, this.props.rev_to_id),
           }
         : null,
       hasRisky ? { id: 'error-outlines', label: riskyFileLabel } : null,
@@ -81,7 +85,7 @@ class ValidPackage extends Component {
         ? {
             id: 'pending-clock',
             label: 'Pending Manual Activity',
-            url: this.props.revurl,
+            url: parseRevURL(this.props.rev_from, this.props.rev_to_id),
           }
         : null,
       {
@@ -97,41 +101,44 @@ class ValidPackage extends Component {
     ].filter(isTruthy);
 
     const qcicons = [
-      showDashboardLink
+      risk_show_dashboard_link
         ? {
             id: 'info-solid',
             label: 'Jump to Dashboard',
-            url: dashboardUrl,
+            url: risk_dashboard_url,
           }
         : null,
       hasUnmanaged
         ? { id: 'rogue-commits', label: unManagedCommitLabel }
         : null,
-      hasSeverity1
+      risk_has_severity1_violations
         ? {
             id: 'lock',
             label: severity1Label,
-            url: severity1Url,
+            url: risk_severity1_report_url,
           }
         : null,
-      hasFailedTests
+      risk_has_failed_tests
         ? {
             id: 'thumbs-down',
             label: failedTestsLabel,
-            url: failedTestsUrl,
+            url: risk_failed_tests_report_url,
           }
         : null,
-      hasLowCoverage
+      risk_has_low_coverage
         ? {
             id: 'error-solid',
             label: coverageLabel,
-            url: coverageUrl,
+            url: risk_coverage_report_url,
           }
         : null,
     ].filter(isTruthy);
     return (
       <Card
-        url={this.props.baseUrl + this.props.revurl}
+        url={
+          this.props.baseUrl +
+          parseRevURL(this.props.rev_from, this.props.rev_to_id)
+        }
         indicators={
           <CardIndicators
             indicators={indicators}

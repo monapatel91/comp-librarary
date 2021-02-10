@@ -4,7 +4,7 @@ import ValidPackage from './PackageVersion';
 const InvalidPackage = () => <div></div>;
 
 const PackageDetails = (props) => {
-  const { rangeIsInvalid } = props;
+  const rangeIsInvalid = props.rev_from > props.rev_to;
   const Package = rangeIsInvalid ? InvalidPackage : ValidPackage;
   return <Package {...props} />;
 };

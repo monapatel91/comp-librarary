@@ -5,7 +5,6 @@ import {
   rootClassName,
   StyledProgressionBoard,
 } from './ProgressionBoard.styles';
-import { hydratePhases } from './hydrate_phases';
 import { ProgressionBoardProps } from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
 
@@ -13,11 +12,7 @@ export const DotProgressionBoard = ({
   baseUrl,
   phases,
 }: ProgressionBoardProps) => {
-  const water = () => {
-    return hydratePhases(phases);
-  };
-
-  return <ProgressionBoard phases={water()} baseUrl={baseUrl} />;
+  return <ProgressionBoard baseUrl={baseUrl} phases={phases} />;
 };
 
 export const ProgressionBoard = ({
