@@ -1,33 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { rootClassName, StyledProgressionSwimlane } from './Swimlane.styles';
 import Phase from './Phase';
 import { SwimLaneProps } from './ProgressionBoardInterfaces';
 
-export class SwimLane extends Component<SwimLaneProps> {
-  render() {
-    const pkg = this.props.package;
-    const classes = this.props.className;
-
-    return (
-      <StyledProgressionSwimlane className={`${rootClassName} ${classes}`}>
-        <div className="swimlane-header">
-          {pkg.phases.map((phase, i) => (
-            <div className="swimlane-column" key={i}>
-              {i === 0 ? pkg.package_name : ''}
-            </div>
-          ))}
-        </div>
-        <ul id="phases" className="board phases">
-          {pkg.phases.map((phase, i) => (
-            <Phase
-              key={i}
-              {...phase}
-              selectWorkitemProps={this.props.selectWorkitemProps}
-              baseUrl={this.props.baseUrl}
-            />
-          ))}
-        </ul>
-      </StyledProgressionSwimlane>
-    );
-  }
-}
+export const SwimLane = ({
+  baseUrl,
+  className,
+  progressionPackage,
+  selectWorkitemProps,
+}: SwimLaneProps) => {
+  return (
+    <StyledProgressionSwimlane className={`${rootClassName} ${className}`}>
+      <div className="swimlane-header">
+        {/* TO-DO: phase isn't used below... */}
+        {progressionPackage.phases.map((phase, i) => (
+          <div className="swimlane-column" key={i}>
+            {i === 0 ? progressionPackage.package_name : ''}
+          </div>
+        ))}
+      </div>
+      <ul id="phases" className="board phases">
+        {progressionPackage.phases.map((phase, i) => (
+          <Phase
+            key={i}
+            {...phase}
+            selectWorkitemProps={selectWorkitemProps}
+            baseUrl={baseUrl}
+          />
+        ))}
+      </ul>
+    </StyledProgressionSwimlane>
+  );
+};

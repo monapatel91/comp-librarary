@@ -63,30 +63,25 @@ type PhaseType = {
 type SwimLanepkg = {
   package_id: string;
   package_name: string;
-  phases: {
-    packageVersions: PackageType[];
-    code_complete: boolean;
-    delivery_category: string;
-    description: string;
-    name: string;
-  }[];
+  phases: Array<PhaseType>;
 };
 
 export interface ProgressionBoardProps {
-  phases: Array<PhaseType>;
   baseUrl: string;
+  phases: Array<PhaseType>;
 }
 
 export interface SwimLaneProps {
+  baseUrl: string;
   className: string;
-  package: SwimLanepkg;
+  progressionPackage: SwimLanepkg;
   selectWorkitemProps: {
     selectWorkitem: (id) => void;
     deSelectWorkitem: (id) => void;
     selectedWorkitem: string;
   };
-  baseUrl: string;
 }
+
 export interface pbState {
-  selectedWorkitem: '';
+  selectedWorkitem: string;
 }
