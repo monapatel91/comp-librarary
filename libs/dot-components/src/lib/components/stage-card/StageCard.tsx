@@ -1,5 +1,5 @@
 import React, { Fragment, MouseEvent, useState } from 'react';
-import { CardActions, CardHeader, Menu, MenuItem } from '@material-ui/core';
+import { CardHeader, CardActions, Menu, MenuItem } from '@material-ui/core';
 import {
   TimelineConnector,
   TimelineContent,
@@ -100,9 +100,9 @@ export const DotStageCard = ({
     <Fragment>
       <DotCard className={rootClasses} data-testid={dataTestId}>
         <Fragment>
-          {preHeader}
           <CardHeader
             action={headerAction}
+            avatar={preHeader}
             subheader={stepHeaderDescription()}
             subheaderTypographyProps={{ variant: 'body2' }}
             title={title}

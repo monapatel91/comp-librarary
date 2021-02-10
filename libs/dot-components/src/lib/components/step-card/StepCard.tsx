@@ -47,7 +47,7 @@ export const DotStepCard = ({
   user = undefined,
 }: StepCardProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-  const preHeader = <DotIcon fontSize="small" iconId={stepIcon} />;
+  const preHeader = <DotIcon iconId={stepIcon} />;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(false);
 
@@ -92,9 +92,9 @@ export const DotStepCard = ({
       data-testid={dataTestId}
     >
       <Fragment>
-        {preHeader}
         <CardHeader
           action={headerAction}
+          avatar={preHeader}
           subheader={subheader}
           subheaderTypographyProps={{ variant: 'body2' }}
           title={title}
