@@ -9,9 +9,6 @@ export interface CardFooterProps extends CommonProps {
   classes?: string;
 }
 
-/**
- * @experimental This component is still in development
- */
 export const DotCardFooter = ({
   children,
   className,

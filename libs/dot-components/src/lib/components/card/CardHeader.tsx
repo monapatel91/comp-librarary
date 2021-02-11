@@ -9,9 +9,6 @@ export interface CardHeaderProps extends CommonProps {
   subheader?: string;
 }
 
-/**
- * @experimental This component is still in development
- */
 export const DotCardHeader = ({
   className,
   'data-testid': dataTestId,

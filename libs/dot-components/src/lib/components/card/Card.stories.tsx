@@ -22,7 +22,7 @@ const DotCardTemplate = ({ cardHeader, cardContent, cardFooter, ...args }) => (
 );
 
 export default {
-  title: 'Experimental/Card',
+  title: 'Components/Card',
   component: DotCard,
   argTypes: {
     children: {

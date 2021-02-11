@@ -11,9 +11,6 @@ export interface CardProps extends CommonProps {
   children: JSX.Element | string;
 }
 
-/**
- * @experimental This component is still in development
- */
 export const DotCard = ({
   children,
   className,

@@ -8,9 +8,6 @@ export interface CardContentProps extends CommonProps {
   classes?: string;
 }
 
-/**
- * @experimental This component is still in development
- */
 export const DotCardContent = ({
   children,
   className,
