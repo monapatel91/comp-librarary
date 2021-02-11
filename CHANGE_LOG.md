@@ -1,6 +1,7 @@
 # Change Log
 
 ## Current
+
 - **Card**: refactored to be a lightweight wrapper component.
 - **CardContent**: Create the card content component.
 - **CardFooter**: Create the card footer component.
