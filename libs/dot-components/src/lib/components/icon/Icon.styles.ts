@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const rootClassName = 'dot-icon';
 
 export const StyledIcon = styled(Icon)`
-  &.dot-icon {
+  &.${rootClassName} {
     align-items: center;
     box-sizing: content-box;
     display: flex;

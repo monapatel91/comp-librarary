@@ -8,6 +8,7 @@
 - **CardContent**: Create the card content component.
 - **CardFooter**: Create the card footer component.
 - **CardHeader**: Create the card header component.
+- **ProgressionBoardLegend**: utilize `DotIcon` component
 
 ## 0.0.0-alpha.7
 
