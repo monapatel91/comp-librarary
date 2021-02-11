@@ -4,7 +4,7 @@
 
 - **RadionButton**: added NEW `RadioButton` component
 - **RadioGroup**: added NEW `RadioGroup` component
-- **FormControlLabel.styles**: moved new `FormControlLabel.style` to a separate `form-controls` folder to start grouping FormControls
+- **FormControlLabel.styles**: moved `FormControlLabel.style` to a separate `form-controls` folder to start grouping FormControls
 
 ## 0.0.0-alpha.8
 
