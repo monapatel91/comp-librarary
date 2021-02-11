@@ -18,8 +18,6 @@ export interface RadioButtonBaseProps extends CommonProps {
   ariaLabel?: string;
   /** if the radio button is selected */
   checked?: boolean;
-  /** text displayed next to the radio buttom */
-  label?: string;
   /** label placement options available 'bottom' | 'end' | 'start' */
   labelPlacement?: RadioLabelPlacement;
   /** name of radio input */
@@ -35,6 +33,8 @@ export interface RadioButtonBaseProps extends CommonProps {
 export interface RadioButtonProps extends RadioButtonBaseProps {
   /** if true makes the radio button disabled */
   disabled?: boolean;
+  /** text displayed next to the radio buttom */
+  label?: string;
 }
 
 export function DotRadioButton({
