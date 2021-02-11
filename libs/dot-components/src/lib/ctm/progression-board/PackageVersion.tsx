@@ -152,8 +152,9 @@ export const ValidPackage = ({
       bottomRight={
         <RevisionRangeLabel
           baseUrl={baseUrl}
-          revurl={parseRevURL(rev_from, rev_to_id)}
-          revisionRangeLabel={`${rev_from} - ${rev_to}`}
+          revFrom={rev_from}
+          revTo={rev_to}
+          revToId={rev_to_id}
         />
       }
       {...packageVer}

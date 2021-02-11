@@ -89,9 +89,9 @@ export interface SwimLaneProps {
 
 // WorkItem Interfaces
 export interface SelectWorkItem {
-  deSelectWorkitem: (id) => void;
+  deSelectWorkitem: (id: string | null) => void;
   selectedWorkitem: string;
-  selectWorkitem: (id) => void;
+  selectWorkitem: (id: string) => void;
 }
 
 export interface WorkItemType {

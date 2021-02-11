@@ -56,19 +56,15 @@ export const ProgressionBoard = ({
           );
         })
         // sort alphabetically in ascending order
-        // TO-DO this can be cleaned up to...
-        // phases.sort((a, b) => a.package_name.toUpperCase() - b.package_name.toUpperCase()));
-        .sort((packageA, packageB) => {
-          const nameA = packageA.package_name.toUpperCase();
-          const nameB = packageB.package_name.toUpperCase();
+        .sort((a, b) => {
+          const nameA = a.package_name.toUpperCase();
+          const nameB = b.package_name.toUpperCase();
           if (nameA < nameB) {
             return -1;
           }
           if (nameA > nameB) {
             return 1;
           }
-
-          // names must be equal
           return 0;
         })
         // add phases to each package containing only packageVersions related to the package

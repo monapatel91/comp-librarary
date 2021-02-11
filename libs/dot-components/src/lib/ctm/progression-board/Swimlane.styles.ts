@@ -144,7 +144,6 @@ export const StyledProgressionSwimlane = styled.div`
                 .identity-right {
                   text-align: right;
                   border-radius: 0 0 0 24px;
-                  // padding-left: 12px;
                   position: relative;
 
                   .actions-container {
@@ -308,8 +307,8 @@ export const StyledProgressionSwimlane = styled.div`
             }
           }
 
-          .card .workitems > li,
-          .progression .workitems li {
+          .progression .workitems li,
+          .card .workitems > li {
             display: block;
             float: left;
             margin: 1px;
@@ -326,29 +325,7 @@ export const StyledProgressionSwimlane = styled.div`
               color: #bec2c9;
             }
 
-            &.split {
-              background: linear-gradient(
-                -45deg,
-                ${theme.palette.background.default} 0%,
-                ${theme.palette.background.default} 50%,
-                currentColor 0%,
-                currentColor 100%
-              );
-            }
-
-            &.improve.emphasized,
-            &.maintain.emphasized,
-            &.split.improve.emphasized,
-            &.split.maintain.emphasized {
-              color: #c6f1ff;
-
-              &.hover {
-                color: #d1f3ff;
-              }
-            }
-
-            &.improve,
-            &.split.improve {
+            &.improve {
               color: #467f1b;
 
               &.hover {
@@ -356,13 +333,33 @@ export const StyledProgressionSwimlane = styled.div`
               }
             }
 
-            &.maintain,
-            &.split.maintain {
+            &.maintain {
               color: #690100;
 
               &.hover {
                 color: #bc0100;
               }
+            }
+
+            &.improve,
+            &.maintain {
+              &.emphasized {
+                color: #c6f1ff;
+
+                &.hover {
+                  color: #d1f3ff;
+                }
+              }
+            }
+
+            &.split {
+              background: linear-gradient(
+                -45deg,
+                #fff 0%,
+                #fff 50%,
+                currentColor 0%,
+                currentColor 100%
+              );
             }
           }
 
@@ -372,40 +369,42 @@ export const StyledProgressionSwimlane = styled.div`
             justify-content: flex-end;
           }
 
-          .icon-error-outlines {
-            color: #d52101;
-          }
+          .dot-icon i {
+            &.icon-error-outlines {
+              color: #d52101;
+            }
 
-          .icon-error-solid {
-            color: #005293;
-          }
+            &.icon-error-solid {
+              color: #005293;
+            }
 
-          .icon-info-solid {
-            color: #69be28;
-          }
+            &.icon-info-solid {
+              color: #69be28;
+            }
 
-          .icon-rogue-commits {
-            color: #eaab00;
-          }
+            &.icon-rogue-commits {
+              color: #eaab00;
+            }
 
-          .icon-file-dotted {
-            color: #005293;
-          }
+            &.icon-file-dotted {
+              color: #005293;
+            }
 
-          .icon-pending-clock {
-            color: #244451;
-          }
+            &.icon-pending-clock {
+              color: #244451;
+            }
 
-          .icon-check-solid {
-            color: #00a9e0;
-          }
+            &.icon-check-solid {
+              color: #00a9e0;
+            }
 
-          .icon-thumbs-down {
-            color: #6d09a8;
-          }
+            &.icon-thumbs-down {
+              color: #6d09a8;
+            }
 
-          .icon-lock {
-            color: #d52101;
+            &.icon-lock {
+              color: #d52101;
+            }
           }
         }
       }
