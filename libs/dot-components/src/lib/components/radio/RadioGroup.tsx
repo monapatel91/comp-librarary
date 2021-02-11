@@ -58,10 +58,12 @@ export function DotRadioGroup({
     className,
     placement
   );
-  const [_value, setValue] = useState(value ? value : defaultValue);
+  const [selectedValue, setSelectedValue] = useState(
+    value ? value : defaultValue
+  );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    setSelectedValue(event.target.value);
     onChange(event, event.target.value);
   };
 
@@ -69,7 +71,7 @@ export function DotRadioGroup({
     ? radioButtons.map(({ label, value, disabled }) => {
         return (
           <DotRadioButton
-            checked={_value === value}
+            checked={selectedValue === value}
             disabled={disabled || disableGroup}
             label={label}
             labelPlacement={labelPlacement}
