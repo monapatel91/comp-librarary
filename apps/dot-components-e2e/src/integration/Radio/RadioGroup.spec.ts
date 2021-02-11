@@ -1,7 +1,5 @@
 describe('dot-components: Switch component', () => {
-  beforeEach(() =>
-    cy.visit('/iframe.html?id=experimental-radio-group--default')
-  );
+  beforeEach(() => cy.visit('/iframe.html?id=components-radio-group--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('label').should('have.class', 'dot-form-control-label');

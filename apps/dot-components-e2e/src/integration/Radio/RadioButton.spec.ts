@@ -1,6 +1,6 @@
 describe('dot-components: Radio Button component', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=experimental-radio-button--default')
+    cy.visit('/iframe.html?id=components-radio-button--default')
   );
 
   it('should have a dot- prefix', () => {

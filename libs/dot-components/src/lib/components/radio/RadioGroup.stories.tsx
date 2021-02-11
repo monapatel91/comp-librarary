@@ -7,7 +7,7 @@ import DotIcon from '../icon/Icon';
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
-  title: 'Experimental/Radio Group',
+  title: 'Components/Radio Group',
   component: DotRadioGroup,
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
