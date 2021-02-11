@@ -36,6 +36,7 @@ export interface PackageType {
   rev_from_id: string;
   rev_to: number | null;
   rev_to_id: string;
+  riskyFileCount: number | null; // this wasn't previously here?
   risk_coverage_percentage: number | null;
   risk_coverage_report_url: string | null;
   risk_dashboard_url: string | null;

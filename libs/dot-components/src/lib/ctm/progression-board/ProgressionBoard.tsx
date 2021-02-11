@@ -94,11 +94,11 @@ export const ProgressionBoard = ({
       <div className="progression">
         {getPackages().map((pkg) => (
           <SwimLane
+            baseUrl={baseUrl}
             className="progression"
             key={pkg.package_id}
             progressionPackage={pkg}
             selectWorkitemProps={selectWorkitemProps}
-            baseUrl={baseUrl}
           />
         ))}
       </div>
