@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotRadioButton, RadioButtonProps } from './RadioButton';
 
 export default {
-  title: 'Experimental/Radio Button',
+  title: 'Components/Radio Button',
   component: DotRadioButton,
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
