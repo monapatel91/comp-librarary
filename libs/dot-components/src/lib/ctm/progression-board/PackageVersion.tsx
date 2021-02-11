@@ -7,7 +7,7 @@ import { Card, CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
 import { PackageDetailProps } from './ProgressionBoardInterfaces';
 
-export const parseRevURL = (revFrom, revToId) => {
+export const parseRevURL = (revFrom: number | null, revToId: string) => {
   return `/flow/package_revision?id=${revToId}&from_revision=${revFrom}`;
 };
 
@@ -160,9 +160,9 @@ export const ValidPackage = ({
     >
       <div className="title">
         <PackageVersionLabel
-          version={version}
-          package_id={package_id}
           baseUrl={baseUrl}
+          package_id={package_id}
+          version={version}
         />
       </div>
       <ul className="workitems">

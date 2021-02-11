@@ -11,13 +11,12 @@ const defaultMostSignificantValue = {
   unit: least_significant_unit,
 };
 
-const getHours = (seconds) => Math.floor(seconds / 3600);
+const getHours = (sec) => Math.floor(sec / 3600);
+const getDays = (sec) => Math.floor(getHours(sec) / 24);
 
-const getDays = (seconds) => Math.floor(getHours(seconds) / 24);
-
-export const getDaysWithHourPercisionFromSeconds = (seconds) => ({
-  days: getDays(seconds),
-  hours: getHours(seconds),
+export const getDaysWithHourPercisionFromSeconds = (sec) => ({
+  days: getDays(sec),
+  hours: getHours(sec),
 });
 
 export const calculateMostSignificantValue = (duration_data, defaultValue) =>
