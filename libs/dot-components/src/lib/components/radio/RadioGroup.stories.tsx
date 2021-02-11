@@ -11,12 +11,12 @@ export default {
   component: DotRadioGroup,
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
-    defaultValue: { defaultValue: 'item-2' },
+    // defaultValue: { defaultValue: 'item-2' },
     name: { defaultValue: 'dot-radio-group' },
     onChange: {
       action: 'clicked',
     },
-    value: { defaultValue: 'item-1' },
+    value: { defaultValue: 'item-2' },
     groupLabel: { defaultValue: 'Group of items' },
     radioButtons: {
       defaultValue: [

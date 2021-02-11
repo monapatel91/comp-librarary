@@ -27,7 +27,7 @@ export interface RadioButtonBaseProps extends CommonProps {
   /** A function that should be executed when the value of the radio buttom changes */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
   /** unique value for the radio button */
-  value: string;
+  value?: string;
 }
 
 export interface RadioButtonProps extends RadioButtonBaseProps {

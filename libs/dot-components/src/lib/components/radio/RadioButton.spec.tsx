@@ -1,7 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
-
+import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { DotRadioButton } from './RadioButton';
 
 describe('RadioButton', () => {

@@ -1,5 +1,5 @@
 import { FormControl } from '@material-ui/core';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-radio-control';
 export const groupLabelClassName = 'dot-radio-group-label';
@@ -8,6 +8,7 @@ export const endAdornmentClassName = 'dot-end-adornment';
 export const placementClassName = 'dot-';
 
 export const StyledFormControl = styled(FormControl)`
+  ${({ theme }) => css`{
   &.${rootClassName} {
     .MuiFormLabel-root {
       width: 100%;
@@ -37,4 +38,5 @@ export const StyledFormControl = styled(FormControl)`
       }
     }
   }
+    `}
 ` as typeof FormControl;
