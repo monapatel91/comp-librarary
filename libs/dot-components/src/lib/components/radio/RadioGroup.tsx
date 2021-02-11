@@ -104,7 +104,7 @@ export function DotRadioGroup({
         defaultValue={defaultValue}
         name={name}
         onChange={handleChange}
-        value={_value}
+        value={selectedValue}
       >
         {renderRadioButtons}
       </RadioGroup>
