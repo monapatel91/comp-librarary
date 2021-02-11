@@ -1,7 +1,7 @@
-import { FormControl, RadioGroup } from '@material-ui/core';
+import { FormControl } from '@material-ui/core';
 import styled from 'styled-components';
 
-export const rootClassName = 'dot-radio-group';
+export const rootClassName = 'dot-radio-control';
 export const groupLabelClassName = 'dot-radio-group-label';
 export const startAdornmentClassName = 'dot-start-adornment';
 export const endAdornmentClassName = 'dot-end-adornment';
@@ -38,9 +38,3 @@ export const StyledFormControl = styled(FormControl)`
     }
   }
 ` as typeof FormControl;
-
-export const StyledRadioGroup = styled(RadioGroup)`
-  &.${rootClassName} {
-    padding: 8px;
-  }
-`;
