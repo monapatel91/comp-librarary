@@ -59,7 +59,7 @@ export const ValidPackage = ({
     const activityCompletionPercentage =
       Math.floor((activity_start_count / total_activity_count) * 100) || 0;
     updateTimeEstLabel(
-      `Delivery forecast:  ${getMostSignificantLabel(
+      `Delivery forecast: ${getMostSignificantLabel(
         estimated_time_remaining || 0
       )}`
     );
@@ -170,8 +170,8 @@ export const ValidPackage = ({
           <WorkItem
             baseUrl={baseUrl}
             key={i}
-            {...workitem}
-            {...selectWorkitemProps}
+            selectWorkItem={selectWorkitemProps}
+            workitem={workitem}
           />
         ))}
         {workitems.length > 0 ? <li>{workitems.length}</li> : null}

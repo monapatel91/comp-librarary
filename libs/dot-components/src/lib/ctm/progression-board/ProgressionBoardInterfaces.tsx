@@ -105,3 +105,9 @@ export interface WorkItemType {
   title: string;
   value_goal: string;
 }
+
+export interface WorkItemProps {
+  baseUrl: string;
+  selectWorkItem: SelectWorkItem;
+  workitem: WorkItemType;
+}
