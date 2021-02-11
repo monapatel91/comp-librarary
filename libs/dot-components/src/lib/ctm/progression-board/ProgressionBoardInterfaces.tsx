@@ -1,21 +1,11 @@
-export interface WorkItemType {
-  _id: string;
-  change_count: number | null;
-  external_id: string;
-  external_key: string;
-  isEmphasized: boolean;
-  isSelected: boolean;
-  isSplit: boolean;
-  title: string;
-  value_goal: string;
-}
-
+// Card Interfaces
 export interface CardIndicatorType {
   activity_start_count: number | null;
   estimated_time_remaining: number | null;
   total_activity_count: number | null;
 }
 
+// Package Interfaces
 export interface PackageType {
   _id: string;
   activity_failed: boolean;
@@ -56,6 +46,13 @@ export interface PackageType {
   workitems: Array<WorkItemType>;
 }
 
+export interface PackageDetailProps {
+  baseUrl: string;
+  packageVer: PackageType;
+  selectWorkitemProps: SelectWorkItem;
+}
+
+// Phase Interfaces
 export interface PhaseType {
   code_complete: boolean;
   delivery_category?: string;
@@ -64,14 +61,22 @@ export interface PhaseType {
   packageVersions: Array<PackageType>;
 }
 
-export interface SwimLanepkg {
-  package_id: string;
-  package_name: string;
+export interface PhaseProps {
+  baseUrl: string;
+  phase: PhaseType;
+  selectWorkitemProps: SelectWorkItem;
+}
+
+// Progression Board Interfaces
+export interface ProgressionBoardProps {
+  baseUrl?: string;
   phases: Array<PhaseType>;
 }
 
-export interface ProgressionBoardProps {
-  baseUrl?: string;
+// Swimlane Interfaces
+export interface SwimLanepkg {
+  package_id: string;
+  package_name: string;
   phases: Array<PhaseType>;
 }
 
@@ -79,9 +84,24 @@ export interface SwimLaneProps {
   baseUrl: string;
   className: string;
   progressionPackage: SwimLanepkg;
-  selectWorkitemProps: {
-    selectWorkitem: (id) => void;
-    deSelectWorkitem: (id) => void;
-    selectedWorkitem: string;
-  };
+  selectWorkitemProps: SelectWorkItem;
+}
+
+// WorkItem Interfaces
+export interface SelectWorkItem {
+  deSelectWorkitem: (id) => void;
+  selectedWorkitem: string;
+  selectWorkitem: (id) => void;
+}
+
+export interface WorkItemType {
+  _id: string;
+  change_count: number | null;
+  external_id: string;
+  external_key: string;
+  isEmphasized: boolean;
+  isSelected: boolean;
+  isSplit: boolean;
+  title: string;
+  value_goal: string;
 }

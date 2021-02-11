@@ -22,10 +22,10 @@ export const SwimLane = ({
       <ul id="phases" className="board phases">
         {progressionPackage.phases.map((phase, i) => (
           <Phase
-            key={i}
-            {...phase}
-            selectWorkitemProps={selectWorkitemProps}
             baseUrl={baseUrl}
+            key={i}
+            phase={phase}
+            selectWorkitemProps={selectWorkitemProps}
           />
         ))}
       </ul>
