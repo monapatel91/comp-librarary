@@ -1,6 +1,7 @@
 import React from 'react';
 import { CardHeader } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export interface CardHeaderProps extends CommonProps {
   /** Header of a card */
@@ -15,9 +16,10 @@ export const DotCardHeader = ({
   subheader,
   title,
 }: CardHeaderProps) => {
+  const rootClasses = useStylesWithRootClass('dot-card-header', className);
   return (
     <CardHeader
-      classes={{ root: className }}
+      classes={{ root: rootClasses }}
       data-testid={dataTestId}
       subheader={subheader}
       subheaderTypographyProps={{ variant: 'body2' }}

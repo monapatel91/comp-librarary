@@ -5,8 +5,6 @@ import { rootClassName, StyledDiv } from './CardFooter.styles';
 
 export interface CardFooterProps extends CommonProps {
   children: JSX.Element | string;
-  /** Space delimited CSS classes to be attributed to the CardContent. */
-  classes?: string;
 }
 
 export const DotCardFooter = ({

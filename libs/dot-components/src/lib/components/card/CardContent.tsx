@@ -1,11 +1,10 @@
 import React from 'react';
 import { CardContent } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export interface CardContentProps extends CommonProps {
   children: JSX.Element | string;
-  /** Space delimited CSS classes to be attributed to the CardContent. */
-  classes?: string;
 }
 
 export const DotCardContent = ({
@@ -13,8 +12,9 @@ export const DotCardContent = ({
   className,
   'data-testid': dataTestId,
 }: CardContentProps) => {
+  const rootClasses = useStylesWithRootClass('dot-card-content', className);
   return (
-    <CardContent classes={{ root: className }} data-testid={dataTestId}>
+    <CardContent classes={{ root: rootClasses }} data-testid={dataTestId}>
       {children}
     </CardContent>
   );
