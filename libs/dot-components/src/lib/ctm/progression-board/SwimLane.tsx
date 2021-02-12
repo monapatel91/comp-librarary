@@ -1,7 +1,14 @@
 import React from 'react';
 import { rootClassName, StyledProgressionSwimlane } from './Swimlane.styles';
 import Phase from './Phase';
-import { SwimLaneProps } from './ProgressionBoardInterfaces';
+import { SelectWorkItem, SwimLanepkg } from './ProgressionBoardInterfaces';
+
+export interface SwimLaneProps {
+  baseUrl: string;
+  className: string;
+  progressionPackage: SwimLanepkg;
+  selectWorkitemProps: SelectWorkItem;
+}
 
 export const SwimLane = ({
   baseUrl,

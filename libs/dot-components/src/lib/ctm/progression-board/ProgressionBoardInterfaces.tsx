@@ -1,18 +1,16 @@
-// Card Interfaces
 export interface CardIndicatorType {
-  activity_start_count: number | null;
-  estimated_time_remaining: number | null;
-  total_activity_count: number | null;
+  activity_start_count: number;
+  estimated_time_remaining: number;
+  total_activity_count: number;
 }
 
-// Package Interfaces
 export interface PackageType {
   _id: string;
   activity_failed: boolean;
-  actual: number | null;
+  actual: number;
   arrival_dt: string;
   cardIndicatorStatus?: CardIndicatorType;
-  change_count: number | null;
+  change_count: number;
   control_failed: boolean;
   fullversion_from: string;
   fullversion_to: string;
@@ -22,37 +20,30 @@ export interface PackageType {
   pending_activity: boolean;
   phase_name: string;
   progression_id: string;
-  rev_from: number | null;
+  rev_from: number;
   rev_from_id: string;
-  rev_to: number | null;
+  rev_to: number;
   rev_to_id: string;
-  riskyFileCount?: number | null; // this wasn't previously here?
-  risk_coverage_percentage: number | null;
-  risk_coverage_report_url: string | null;
-  risk_dashboard_url: string | null;
-  risk_failed_tests_count: number | null;
-  risk_failed_tests_report_url: string | null;
+  riskyFileCount?: number;
+  risk_coverage_percentage: number;
+  risk_coverage_report_url: string;
+  risk_dashboard_url: string;
+  risk_failed_tests_count: number;
+  risk_failed_tests_report_url: string;
   risk_has_failed_tests: boolean;
   risk_has_high_risk_file: boolean;
   risk_has_low_coverage: boolean;
   risk_has_severity1_violations: boolean;
-  risk_severity1_report_url: string | null;
-  risk_severity1_violation_count: number | null;
+  risk_severity1_report_url: string;
+  risk_severity1_violation_count: number;
   risk_show_dashboard_link: boolean;
   team_id: string;
-  unmanaged_change_count: number | null;
+  unmanaged_change_count: number;
   version: string;
-  workitem_count: number | null;
+  workitem_count: number;
   workitems: Array<WorkItemType>;
 }
 
-export interface PackageDetailProps {
-  baseUrl: string;
-  packageVer: PackageType;
-  selectWorkitemProps: SelectWorkItem;
-}
-
-// Phase Interfaces
 export interface PhaseType {
   code_complete: boolean;
   delivery_category?: string;
@@ -61,42 +52,21 @@ export interface PhaseType {
   packageVersions: Array<PackageType>;
 }
 
-export interface PhaseProps {
-  baseUrl: string;
-  phase: PhaseType;
-  selectWorkitemProps: SelectWorkItem;
-}
-
-// Progression Board Interfaces
-export interface ProgressionBoardProps {
-  baseUrl?: string;
-  phases: Array<PhaseType>;
-}
-
-// Swimlane Interfaces
 export interface SwimLanepkg {
   package_id: string;
   package_name: string;
   phases: Array<PhaseType>;
 }
 
-export interface SwimLaneProps {
-  baseUrl: string;
-  className: string;
-  progressionPackage: SwimLanepkg;
-  selectWorkitemProps: SelectWorkItem;
-}
-
-// WorkItem Interfaces
 export interface SelectWorkItem {
-  deSelectWorkitem: (id: string | null) => void;
+  deSelectWorkitem: () => void;
   selectedWorkitem: string;
   selectWorkitem: (id: string) => void;
 }
 
 export interface WorkItemType {
   _id: string;
-  change_count: number | null;
+  change_count: number;
   external_id: string;
   external_key: string;
   isEmphasized?: boolean;
@@ -104,10 +74,4 @@ export interface WorkItemType {
   isSplit?: boolean;
   title: string;
   value_goal: string;
-}
-
-export interface WorkItemProps {
-  baseUrl: string;
-  selectWorkItem: SelectWorkItem;
-  workitem: WorkItemType;
 }

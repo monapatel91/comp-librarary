@@ -1,8 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
 
-import { DotProgressionBoard } from './ProgressionBoard';
-import { ProgressionBoardProps } from './ProgressionBoardInterfaces';
+import { DotProgressionBoard, ProgressionBoardProps } from './ProgressionBoard';
 import samplePhases from './sampleData';
 
 export default {

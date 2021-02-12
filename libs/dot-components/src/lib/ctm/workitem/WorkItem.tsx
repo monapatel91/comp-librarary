@@ -1,6 +1,15 @@
 import React from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
-import { WorkItemProps } from '../progression-board/ProgressionBoardInterfaces';
+import {
+  SelectWorkItem,
+  WorkItemType,
+} from '../progression-board/ProgressionBoardInterfaces';
+
+export interface WorkItemProps {
+  baseUrl: string;
+  selectWorkItem: SelectWorkItem;
+  workitem: WorkItemType;
+}
 
 export const WorkItem = ({
   baseUrl,

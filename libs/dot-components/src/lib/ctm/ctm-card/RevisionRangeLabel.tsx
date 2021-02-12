@@ -4,7 +4,7 @@ import { parseRevURL } from '../progression-board/PackageVersion';
 export interface RevisionRangeLabelProps {
   baseUrl: string;
   revFrom: number;
-  revTo: string;
+  revTo: number;
   revToId: string;
 }
 

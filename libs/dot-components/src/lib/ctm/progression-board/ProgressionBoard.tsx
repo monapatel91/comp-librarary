@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
+import { CommonProps } from '../../components/CommonProps';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { BoardHeaders } from './BoardHeaders';
 import {
   rootClassName,
   StyledProgressionBoard,
 } from './ProgressionBoard.styles';
-import { ProgressionBoardProps } from './ProgressionBoardInterfaces';
+import { PhaseType } from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
+
+export interface ProgressionBoardProps extends CommonProps {
+  baseUrl?: string;
+  phases: Array<PhaseType>;
+}
 
 export const DotProgressionBoard = ({
   baseUrl,
+  className,
+  'data-testid': dataTestId,
   phases,
 }: ProgressionBoardProps) => {
-  return <ProgressionBoard baseUrl={baseUrl} phases={phases} />;
-};
-
-export const ProgressionBoard = ({
-  baseUrl,
-  phases,
-}: ProgressionBoardProps) => {
-  const rootClasses = useStylesWithRootClass(rootClassName, 'columns-wrapper');
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    'columns-wrapper',
+    className
+  );
   const [selectedWI, updateSelectedWorkitem] = useState('');
 
   const selectWorkitem = (id: string) => {
@@ -85,7 +90,11 @@ export const ProgressionBoard = ({
   };
 
   return (
-    <StyledProgressionBoard id="in-progress" className={rootClasses}>
+    <StyledProgressionBoard
+      className={rootClasses}
+      data-testid={dataTestId}
+      id="in-progress"
+    >
       <BoardHeaders headers={phaseNames} />
       <div className="progression">
         {getPackages().map((pkg) => (
@@ -101,3 +110,5 @@ export const ProgressionBoard = ({
     </StyledProgressionBoard>
   );
 };
+
+export default DotProgressionBoard;

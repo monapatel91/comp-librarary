@@ -1,6 +1,12 @@
 import React from 'react';
 import ValidPackage from './PackageVersion';
-import { PhaseProps } from './ProgressionBoardInterfaces';
+import { PhaseType, SelectWorkItem } from './ProgressionBoardInterfaces';
+
+export interface PhaseProps {
+  baseUrl: string;
+  phase: PhaseType;
+  selectWorkitemProps: SelectWorkItem;
+}
 
 export const Phase = ({ baseUrl, phase, selectWorkitemProps }: PhaseProps) => {
   return (

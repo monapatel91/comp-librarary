@@ -5,7 +5,13 @@ import PackageVersionLabel from './PackageVersionLabel';
 import { WorkItem } from '../workitem/WorkItem';
 import { Card, CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
-import { PackageDetailProps } from './ProgressionBoardInterfaces';
+import { PackageType, SelectWorkItem } from './ProgressionBoardInterfaces';
+
+export interface PackageDetailProps {
+  baseUrl: string;
+  packageVer: PackageType;
+  selectWorkitemProps: SelectWorkItem;
+}
 
 export const parseRevURL = (revFrom: number | null, revToId: string) => {
   return `/flow/package_revision?id=${revToId}&from_revision=${revFrom}`;
