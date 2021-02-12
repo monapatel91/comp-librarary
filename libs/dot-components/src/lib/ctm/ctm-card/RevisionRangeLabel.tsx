@@ -16,8 +16,8 @@ export const RevisionRangeLabel = ({
 }: RevisionRangeLabelProps) => {
   const revisionRangeLabel = `${revFrom} - ${revTo}`;
   return (
-    <>
-      <span>Revisions: </span>
+    <div className="revision-range-label">
+      Revisions:
       <a
         href={baseUrl + parseRevURL(revFrom, revToId)}
         target="_blank"
@@ -26,7 +26,7 @@ export const RevisionRangeLabel = ({
       >
         {revisionRangeLabel}
       </a>
-    </>
+    </div>
   );
 };
 

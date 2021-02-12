@@ -26,7 +26,7 @@ export const SwimLane = ({
           </div>
         ))}
       </div>
-      <ul id="phases" className="board phases">
+      <ul data-testid="board-phases" id="phases" className="board phases">
         {progressionPackage.phases.map((phase, i) => (
           <Phase
             baseUrl={baseUrl}

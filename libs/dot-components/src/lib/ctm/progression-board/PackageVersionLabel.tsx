@@ -13,6 +13,7 @@ export const PackageVersionLabel = ({
 }: PackageVersionLabelProps) => {
   return (
     <a
+      className="title"
       href={`${baseUrl}/package_detail?id=${package_id}`}
       target="_blank"
       rel="noreferrer"

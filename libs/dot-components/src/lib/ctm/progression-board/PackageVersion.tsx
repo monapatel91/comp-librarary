@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import RevisionRangeLabel from '../ctm-card/RevisionRangeLabel';
-import QualityCorner from '../ctm-card/QualityCorner';
+import QualityCorner, { QCIconProps } from '../ctm-card/QualityCorner';
 import PackageVersionLabel from './PackageVersionLabel';
 import { WorkItem } from '../workitem/WorkItem';
-import { Card, CardIndicators } from '../ctm-card/Card';
+import Card, { CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
 import { PackageType, SelectWorkItem } from './ProgressionBoardInterfaces';
 
@@ -106,7 +106,7 @@ export const ValidPackage = ({
     },
   ].filter(isTruthy);
 
-  const qcicons = [
+  const qcicons: Array<QCIconProps> = [
     risk_show_dashboard_link
       ? {
           id: 'info-solid',
@@ -145,15 +145,14 @@ export const ValidPackage = ({
 
   return (
     <Card
-      url={baseUrl + parseRevURL(rev_from, rev_to_id)}
-      indicators={<CardIndicators indicators={indicators} baseUrl={baseUrl} />}
       bottomLeft={
-        <QualityCorner
-          qcicons={qcicons}
-          version={version}
-          package_name={package_name}
-          package_id={package_id}
-        />
+        qcicons ? (
+          <QualityCorner
+            qcicons={qcicons}
+            version={version}
+            package_name={package_name}
+          />
+        ) : null
       }
       bottomRight={
         <RevisionRangeLabel
@@ -163,15 +162,19 @@ export const ValidPackage = ({
           revToId={rev_to_id}
         />
       }
-      {...packageVer}
+      dataTestId="card"
+      indicators={<CardIndicators indicators={indicators} baseUrl={baseUrl} />}
+      url={baseUrl + parseRevURL(rev_from, rev_to_id)}
+      fullversion_from={packageVer.fullversion_from}
+      fullversion_to={packageVer.fullversion_to}
+      rev_from={packageVer.rev_from}
+      rev_to={packageVer.rev_to}
     >
-      <div className="title">
-        <PackageVersionLabel
-          baseUrl={baseUrl}
-          package_id={package_id}
-          version={version}
-        />
-      </div>
+      <PackageVersionLabel
+        baseUrl={baseUrl}
+        package_id={package_id}
+        version={version}
+      />
       <ul className="workitems">
         {workitems.map((workitem, i) => (
           <WorkItem

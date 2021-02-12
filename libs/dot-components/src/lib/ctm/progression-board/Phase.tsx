@@ -10,7 +10,7 @@ export interface PhaseProps {
 
 export const Phase = ({ baseUrl, phase, selectWorkitemProps }: PhaseProps) => {
   return (
-    <li className="board-column">
+    <li className="board-column" data-testid="phase-columns">
       {phase.packageVersions.map((packageVer, i) =>
         packageVer.rev_from <= packageVer.rev_to ? (
           <ValidPackage
