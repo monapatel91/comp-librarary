@@ -29,7 +29,7 @@ export interface RadioGroupProps extends RadioButtonBaseProps {
   /** The label of the radio button group. */
   groupLabel?: string;
   /** Array of RadioButtonProps used to create the radio buttons */
-  radioButtons?: RadioButtonProps[];
+  radioButtons: RadioButtonProps[];
   /** Icon placed before the children. */
   startIcon?: JSX.Element;
 }
@@ -64,7 +64,6 @@ export function DotRadioGroup({
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
-    console.log(event.target.value);
     onChange(event, event.target.value);
   };
 

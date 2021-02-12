@@ -11,7 +11,6 @@ export default {
   component: DotRadioGroup,
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
-    // defaultValue: { defaultValue: 'item-2' },
     name: { defaultValue: 'dot-radio-group' },
     onChange: {
       action: 'clicked',
