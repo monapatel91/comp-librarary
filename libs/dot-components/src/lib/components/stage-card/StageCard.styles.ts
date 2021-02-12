@@ -1,4 +1,3 @@
-import { CardHeader } from '@material-ui/core';
 import { Timeline } from '@material-ui/lab';
 import styled, { css } from 'styled-components';
 
