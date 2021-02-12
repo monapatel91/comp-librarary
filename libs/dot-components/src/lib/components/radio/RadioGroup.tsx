@@ -64,6 +64,7 @@ export function DotRadioGroup({
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
+    console.log(event.target.value);
     onChange(event, event.target.value);
   };
 
@@ -71,11 +72,11 @@ export function DotRadioGroup({
     ? radioButtons.map(({ label, value, disabled }) => {
         return (
           <DotRadioButton
+            key={value}
             checked={selectedValue === value}
             disabled={disabled || disableGroup}
             label={label}
             labelPlacement={labelPlacement}
-            onChange={handleChange}
             size={size}
             value={value}
           />
