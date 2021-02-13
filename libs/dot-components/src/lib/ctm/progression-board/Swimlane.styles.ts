@@ -79,23 +79,21 @@ export const StyledProgressionSwimlane = styled.div`
               justify-content: space-between;
               padding: 2px 10px 0 0;
 
-              .identity-left {
-                a.identifier {
-                  color: #244451;
-                  position: relative;
-                  margin-left: 30px;
-                  overflow: visible;
-                  text-overflow: ellipsis;
-                  white-space: nowrap;
-                }
-
+              a.identifier {
+                color: #244451;
+                position: relative;
+                padding-left: 30px;
+                overflow: visible;
+                text-overflow: ellipsis;
+                white-space: nowrap;
                 &::before {
                   content: '';
                   width: 24px;
                   height: 24px;
+                  margin-left: -30px;
+                  margin-top: -2px;
                   position: absolute;
                   border-radius: 4px 0 100% 0;
-                  top: -1px;
                   background-color: #7cb0c5;
                 }
               }

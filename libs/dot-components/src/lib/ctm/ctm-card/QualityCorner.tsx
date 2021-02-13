@@ -30,21 +30,16 @@ export const QualityCorner = ({
   </div>
 );
 
-export const QCIcon = ({
-  id,
-  label = '',
-  onHover = null,
-  url,
-}: QCIconProps) => {
+export const QCIcon = ({ id, label, onHover, url }: QCIconProps) => {
   return (
     <a
       href={url}
-      target="_blank"
-      title={label}
       onMouseEnter={onHover}
       rel="noreferrer"
+      target="_blank"
+      title={label}
     >
-      <DotIcon iconId={id} fontSize={'small'} title={label} />
+      <DotIcon fontSize="small" iconId={id} title={label} />
     </a>
   );
 };

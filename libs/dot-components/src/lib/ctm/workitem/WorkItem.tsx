@@ -40,3 +40,5 @@ export const WorkItem = ({
     />
   );
 };
+
+export default WorkItem;

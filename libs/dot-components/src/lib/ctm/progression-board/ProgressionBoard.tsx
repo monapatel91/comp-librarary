@@ -96,17 +96,14 @@ export const DotProgressionBoard = ({
       id="in-progress"
     >
       <BoardHeaders headers={phaseNames} />
-      <div className="progression">
-        {getPackages().map((pkg) => (
-          <SwimLane
-            baseUrl={baseUrl}
-            className="progression"
-            key={pkg.package_id}
-            progressionPackage={pkg}
-            selectWorkitemProps={selectWorkitemProps}
-          />
-        ))}
-      </div>
+      {getPackages().map((pkg, i) => (
+        <SwimLane
+          baseUrl={baseUrl}
+          key={i}
+          progressionPackage={pkg}
+          selectWorkitemProps={selectWorkitemProps}
+        />
+      ))}
     </StyledProgressionBoard>
   );
 };

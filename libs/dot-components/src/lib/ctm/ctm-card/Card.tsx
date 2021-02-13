@@ -37,11 +37,9 @@ export interface CardProps {
 }
 
 export const CardIdentifier = ({ url, title }: CardIdentifierProps) => (
-  <div className="identity-left">
-    <a className="identifier" href={url} target="_blank" rel="noreferrer">
-      {title}
-    </a>
-  </div>
+  <a className="identifier" href={url} target="_blank" rel="noreferrer">
+    {title}
+  </a>
 );
 
 export const CardIndicator = ({

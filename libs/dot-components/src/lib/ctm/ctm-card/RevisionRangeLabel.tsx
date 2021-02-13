@@ -20,9 +20,9 @@ export const RevisionRangeLabel = ({
       Revisions:
       <a
         href={baseUrl + parseRevURL(revFrom, revToId)}
+        rel="noreferrer"
         target="_blank"
         title={revisionRangeLabel}
-        rel="noreferrer"
       >
         {revisionRangeLabel}
       </a>

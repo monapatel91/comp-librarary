@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import RevisionRangeLabel from '../ctm-card/RevisionRangeLabel';
 import QualityCorner, { QCIconProps } from '../ctm-card/QualityCorner';
 import PackageVersionLabel from './PackageVersionLabel';
-import { WorkItem } from '../workitem/WorkItem';
+import WorkItem from '../workitem/WorkItem';
 import Card, { CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
 import { PackageType, SelectWorkItem } from './ProgressionBoardInterfaces';
@@ -13,7 +13,7 @@ export interface PackageDetailProps {
   selectWorkitemProps: SelectWorkItem;
 }
 
-export const parseRevURL = (revFrom: number | null, revToId: string) => {
+export const parseRevURL = (revFrom: number, revToId: string) => {
   return `/flow/package_revision?id=${revToId}&from_revision=${revFrom}`;
 };
 
