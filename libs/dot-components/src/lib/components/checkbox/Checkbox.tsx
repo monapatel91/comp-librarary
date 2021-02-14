@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import { CommonProps } from '../CommonProps';
 import {
   StyledFormControlLabel,
@@ -7,12 +7,12 @@ import {
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 import { StyledCheckbox, rootClassName } from './Checkbox.styles';
-
+import { RadioButtonProps } from '../radio/RadioButton';
 export type CheckboxSize = 'medium' | 'small';
 export type CheckboxLabelPlacement = 'bottom' | 'end' | 'start';
 
 /* eslint-disable-next-line */
-export interface CheckboxProps extends CommonProps {
+export interface CheckboxProps extends RadioButtonProps {
   ariaLabel?: string;
   checked?: boolean;
   dataTestId?: string;
@@ -23,10 +23,11 @@ export interface CheckboxProps extends CommonProps {
   labelPlacement?: CheckboxLabelPlacement;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
+    value: string
   ) => void;
   required?: boolean;
   size?: CheckboxSize;
+  value: string;
 }
 
 export function DotCheckbox({
@@ -42,15 +43,12 @@ export function DotCheckbox({
   onChange,
   required,
   size = 'medium',
+  value,
 }: CheckboxProps) {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-  const [isChecked, setChecked] = useState(checked);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    // if (!radioGroup) {
-    setChecked(!isChecked);
-    // }
-    onChange && onChange(event, event.target.checked);
+    onChange && onChange(event, event.target.value);
   };
 
   return (
@@ -60,7 +58,7 @@ export function DotCheckbox({
       control={
         <StyledCheckbox
           classes={{ root: rootClasses }}
-          checked={isChecked}
+          checked={checked}
           color="primary"
           data-testid={dataTestId}
           disabled={disabled}
@@ -70,6 +68,7 @@ export function DotCheckbox({
           onChange={handleChange}
           required={required}
           size={size}
+          value={value}
         />
       }
       label={label}

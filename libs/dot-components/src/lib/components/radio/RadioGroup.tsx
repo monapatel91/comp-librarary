@@ -15,7 +15,7 @@ import {
   RadioButtonProps,
 } from './RadioButton';
 
-export interface RadioGroupProps extends RadioButtonBaseProps {
+export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   /** The default input element value. Use when the component is not controlled or has a value. */
   defaultValue?: string;
   /** if true makes all radio buttons disabled */
@@ -29,9 +29,17 @@ export interface RadioGroupProps extends RadioButtonBaseProps {
   /** The label of the radio button group. */
   groupLabel?: string;
   /** Array of RadioButtonProps used to create the radio buttons */
-  radioButtons: RadioButtonProps[];
+  options: RadioButtonProps[];
+  /** if the use is required to select an option */
+  required?: boolean;
+  /** changes layout to be horizontal if true */
+  row?: boolean;
   /** Icon placed before the children. */
   startIcon?: JSX.Element;
+}
+export interface RadioGroupProps extends RadioGroupBaseProps {
+  /** A function that should be executed when the value of the radio buttom changes */
+  onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
 }
 
 export function DotRadioGroup({
@@ -48,8 +56,10 @@ export function DotRadioGroup({
   labelPlacement = 'end',
   onChange,
   value,
-  radioButtons,
+  options,
   startIcon,
+  required = false,
+  row = false,
   size = 'medium',
 }: RadioGroupProps) {
   const placement = `${placementClassName}${labelPlacement}`;
@@ -67,8 +77,8 @@ export function DotRadioGroup({
     onChange(event, event.target.value);
   };
 
-  const renderRadioButtons = radioButtons
-    ? radioButtons.map(({ label, value, disabled }) => {
+  const renderOptions = options
+    ? options.map(({ label, value, disabled }) => {
         return (
           <DotRadioButton
             key={value}
@@ -88,6 +98,7 @@ export function DotRadioGroup({
       classes={{ root: rootClasses }}
       error={error}
       component="fieldset"
+      required={required}
     >
       {groupLabel && (
         <FormLabel component="legend">
@@ -104,9 +115,10 @@ export function DotRadioGroup({
         defaultValue={defaultValue}
         name={name}
         onChange={handleChange}
+        row={row}
         value={selectedValue}
       >
-        {renderRadioButtons}
+        {renderOptions}
       </RadioGroup>
       {helperText && <FormHelperText>{helperText}</FormHelperText>}
     </StyledFormControl>

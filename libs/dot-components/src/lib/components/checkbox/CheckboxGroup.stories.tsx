@@ -2,16 +2,20 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import { DotCheckbox, CheckboxProps } from './Checkbox';
-import { DotFormGroup, FormGroupProps } from '../form-group/FromGroup';
+import {
+  DotCheckboxGroup,
+  CheckboxGroupProps,
+} from '../checkbox/CheckboxGroup';
 import DotIcon from '../icon/Icon';
 
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
-  title: 'Experimental/Checkbox',
-  component: DotFormGroup,
+  title: 'Experimental/Checkbox group',
+  component: DotCheckboxGroup,
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
+    selectAll: { defaultValue: true },
     name: { defaultValue: 'dot-checkbox-group' },
     onChange: {
       action: 'clicked',
@@ -19,13 +23,18 @@ export default {
     groupLabel: { defaultValue: 'Group of items' },
     endIcon: { control: { type: 'select', options: iconOptions } },
     startIcon: { control: { type: 'select', options: iconOptions } },
-    checkboxes: {
-      defaultValue: [{ label: 'Label 1-1' }, { label: 'Label 1-2' }],
+    options: {
+      defaultValue: [
+        { label: 'item 1', value: 'item-1' },
+        { label: 'item 2', value: 'item-2' },
+        { label: 'item 3', value: 'item-3' },
+        { label: 'item 4', value: 'item-4' },
+      ],
     },
   },
 } as Meta;
 
-export const CheckboxFormGroup: Story<CheckboxProps> = (args: any) => {
+export const CheckboxFormGroup: Story<CheckboxGroupProps> = (args: any) => {
   const {
     endIcon: endIconId,
     startIcon: startIconId,
@@ -35,10 +44,5 @@ export const CheckboxFormGroup: Story<CheckboxProps> = (args: any) => {
   } = args;
   const endIcon = endIconId && <DotIcon iconId={endIconId} />;
   const startIcon = startIconId && <DotIcon iconId={startIconId} />;
-  return (
-    <DotFormGroup {...args} startIcon={startIcon} endIcon={endIcon}>
-      <DotCheckbox onChange={args.onChange} label="Label 1"></DotCheckbox>
-      <DotCheckbox onChange={args.onChange} label="Label 2"></DotCheckbox>
-    </DotFormGroup>
-  );
+  return <DotCheckboxGroup {...args} startIcon={startIcon} endIcon={endIcon} />;
 };

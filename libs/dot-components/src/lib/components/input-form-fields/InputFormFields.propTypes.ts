@@ -27,7 +27,7 @@ export interface InputProps extends CommonProps {
   /** A function that should be executed when the value of the input changes */
   onChange?: (value: string) => void;
   /** If true, the label is displayed as required and the input element` will be required. */
-  required: boolean;
+  required?: boolean;
   /** Icon placed before the children. */
   startIcon?: JSX.Element;
   /** Size of the input */

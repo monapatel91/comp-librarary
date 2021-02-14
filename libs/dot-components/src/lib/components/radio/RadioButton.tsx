@@ -16,25 +16,25 @@ export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
 export interface RadioButtonBaseProps extends CommonProps {
   /** accessibility label */
   ariaLabel?: string;
-  /** if the radio button is selected */
-  checked?: boolean;
   /** label placement options available 'bottom' | 'end' | 'start' */
   labelPlacement?: RadioLabelPlacement;
   /** name of radio input */
   name?: string;
   /** controls the size of the radio button 'medium', 'small' */
   size?: RadioSize;
-  /** A function that should be executed when the value of the radio buttom changes */
-  onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
   /** unique value for the radio button */
   value?: string;
 }
 
 export interface RadioButtonProps extends RadioButtonBaseProps {
+  /** if the radio button is selected */
+  checked?: boolean;
   /** if true makes the radio button disabled */
   disabled?: boolean;
   /** text displayed next to the radio buttom */
   label?: string;
+  /** A function that should be executed when the value of the radio buttom changes */
+  onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
 }
 
 export function DotRadioButton({
