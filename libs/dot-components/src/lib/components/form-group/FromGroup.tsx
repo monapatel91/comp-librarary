@@ -5,6 +5,8 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { StyledFormGroup } from './FormGroup.styles';
 
 export interface FormGroupProps extends CommonProps {
+  /** accessibility label */
+  ariaLabel?: string;
   /** The text for the button. Button text should be in sentence case. */
   children: JSX.Element | JSX.Element[];
   /** changes layout to be horizontal if true */
@@ -12,6 +14,7 @@ export interface FormGroupProps extends CommonProps {
 }
 
 export function DotFormGroup({
+  ariaLabel,
   className,
   children,
   row = false,
@@ -19,7 +22,12 @@ export function DotFormGroup({
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   return (
-    <StyledFormGroup classes={{ root: rootClasses }} row={row}>
+    <StyledFormGroup
+      aria-label={ariaLabel}
+      classes={{ root: rootClasses }}
+      role="group"
+      row={row}
+    >
       {children}
     </StyledFormGroup>
   );

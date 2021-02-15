@@ -31,6 +31,7 @@ export default {
   },
 } as Meta;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const CheckboxFormGroup: Story<CheckboxGroupProps> = (args: any) => {
   const {
     endIcon: endIconId,

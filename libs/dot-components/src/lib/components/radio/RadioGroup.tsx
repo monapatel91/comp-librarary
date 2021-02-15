@@ -16,6 +16,8 @@ import {
 } from './RadioButton';
 
 export interface RadioGroupBaseProps extends RadioButtonBaseProps {
+  /** accessibility label */
+  ariaLabel?: string;
   /** if true makes all radio buttons disabled */
   disableGroup?: boolean;
   /** Icon placed before the children. */
@@ -34,8 +36,6 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   startIcon?: JSX.Element;
 }
 export interface RadioGroupProps extends RadioGroupBaseProps {
-  /** accessibility label */
-  ariaLabel?: string;
   /** The default input element value. Use when the component is not controlled or has a value. */
   defaultValue?: string;
   /** A function that should be executed when the value of the radio buttom changes */

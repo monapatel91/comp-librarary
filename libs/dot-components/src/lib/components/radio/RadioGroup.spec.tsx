@@ -54,7 +54,7 @@ describe('DotRadioGroup', () => {
     expect(inputs[1].getAttribute('value')).toBe('item-2');
   });
   it('should have ariaLabel', () => {
-    const { baseElement } = render(
+    render(
       <DotRadioGroup
         ariaLabel="test-radio-group"
         options={radioButtons}

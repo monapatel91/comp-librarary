@@ -1,4 +1,4 @@
-import { FormControl, RadioGroup } from '@material-ui/core';
+import { FormControl } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const rootClassName = 'dot-form-group';

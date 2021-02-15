@@ -35,6 +35,7 @@ export interface CheckboxGroupProps extends RadioGroupBaseProps {
 }
 
 export function DotCheckboxGroup({
+  ariaLabel,
   className,
   defaultValues = [],
   disableGroup,
@@ -136,7 +137,11 @@ export function DotCheckboxGroup({
             value="select-all"
           />
         )}
-        <DotFormGroup className={checkboxListClassName} row={row}>
+        <DotFormGroup
+          aria-label={ariaLabel}
+          className={checkboxListClassName}
+          row={row}
+        >
           {renderOptions}
         </DotFormGroup>
         {helperText && <FormHelperText>{helperText}</FormHelperText>}

@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from 'react';
-import { CommonProps } from '../CommonProps';
 import {
   StyledFormControlLabel,
   rootClassName as formRootClassName,
@@ -13,6 +12,7 @@ export type CheckboxLabelPlacement = 'bottom' | 'end' | 'start';
 
 /* eslint-disable-next-line */
 export interface CheckboxProps extends RadioButtonProps {
+  /** if true the checkbox will dispaly with intermediate */
   indeterminate?: boolean;
 }
 
