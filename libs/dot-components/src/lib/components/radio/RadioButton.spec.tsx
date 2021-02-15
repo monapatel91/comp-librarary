@@ -15,7 +15,6 @@ describe('RadioButton', () => {
     it('should render with all props', () => {
       const { baseElement } = render(
         <DotRadioButton
-          ariaLabel="Test label"
           checked
           className="custom-test-class"
           data-testid="test-radio"
@@ -32,7 +31,6 @@ describe('RadioButton', () => {
       const testId = screen.getByTestId('test-radio');
       const formControlLabel = baseElement.querySelector('label');
 
-      expect(input).toHaveAttribute('aria-label', 'Test label');
       expect(input).toHaveAttribute('checked');
       expect(testId).toBeVisible();
       expect(input).toHaveAttribute('disabled');
@@ -50,7 +48,6 @@ describe('RadioButton', () => {
     it('should render with label placed at the bottom', () => {
       const { baseElement } = render(
         <DotRadioButton
-          ariaLabel="Test label"
           checked
           className="custom-test-class"
           data-testid="test-radio"
@@ -70,7 +67,6 @@ describe('RadioButton', () => {
     it('should render medium radio button size', () => {
       const { baseElement } = render(
         <DotRadioButton
-          ariaLabel="Test label"
           checked
           className="custom-test-class"
           data-testid="test-radio"

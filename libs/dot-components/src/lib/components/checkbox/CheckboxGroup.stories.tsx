@@ -1,7 +1,5 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-
-import { DotCheckbox, CheckboxProps } from './Checkbox';
 import {
   DotCheckboxGroup,
   CheckboxGroupProps,
@@ -14,8 +12,6 @@ export default {
   title: 'Experimental/Checkbox group',
   component: DotCheckboxGroup,
   argTypes: {
-    ariaLabel: { defaultValue: 'Accessibility for the win' },
-    selectAll: { defaultValue: true },
     name: { defaultValue: 'dot-checkbox-group' },
     onChange: {
       action: 'clicked',
@@ -31,6 +27,7 @@ export default {
         { label: 'item 4', value: 'item-4' },
       ],
     },
+    showSelectAll: { defaultValue: true },
   },
 } as Meta;
 

@@ -4,6 +4,7 @@ import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import userEvent from '@testing-library/user-event';
 import { DotRadioGroup } from './RadioGroup';
 import DotIcon from '../icon/Icon';
+import { RadioGroup } from '@material-ui/core';
 
 const radioButtons = [
   { label: 'item 1', value: 'item-1' },
@@ -52,6 +53,19 @@ describe('DotRadioGroup', () => {
     expect(inputs[0]).not.toBeChecked();
     expect(inputs[1].getAttribute('value')).toBe('item-2');
   });
+  it('should have ariaLabel', () => {
+    const { baseElement } = render(
+      <DotRadioGroup
+        ariaLabel="test-radio-group"
+        options={radioButtons}
+        data-testid="test-radio-group"
+        value="item-2"
+      />
+    );
+    const radiaGroup = screen.getByRole('radiogroup');
+
+    expect(radiaGroup).toHaveAttribute('aria-label', 'test-radio-group');
+  });
   it('should be checked and have a value of item-2', () => {
     render(
       <DotRadioGroup
@@ -80,7 +94,7 @@ describe('DotRadioGroup', () => {
     });
   });
   it('should have startIcon', () => {
-    const { baseElement } = render(
+    render(
       <DotRadioGroup
         groupLabel="Group label"
         startIcon={<DotIcon data-testid="start-icon" iconId="home" />}

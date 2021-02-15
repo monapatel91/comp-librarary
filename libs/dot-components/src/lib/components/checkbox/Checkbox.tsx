@@ -13,24 +13,10 @@ export type CheckboxLabelPlacement = 'bottom' | 'end' | 'start';
 
 /* eslint-disable-next-line */
 export interface CheckboxProps extends RadioButtonProps {
-  ariaLabel?: string;
-  checked?: boolean;
-  disabled?: boolean;
-  id?: string;
   indeterminate?: boolean;
-  label?: string;
-  labelPlacement?: CheckboxLabelPlacement;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    value: string
-  ) => void;
-  required?: boolean;
-  size?: CheckboxSize;
-  value: string;
 }
 
 export function DotCheckbox({
-  ariaLabel,
   checked,
   className,
   'data-testid': dataTestId,
@@ -41,7 +27,6 @@ export function DotCheckbox({
   labelPlacement,
   name,
   onChange,
-  required,
   size = 'medium',
   value,
 }: CheckboxProps) {
@@ -68,10 +53,8 @@ export function DotCheckbox({
           disabled={disabled}
           id={id}
           indeterminate={indeterminate}
-          inputProps={{ 'aria-label': ariaLabel ? ariaLabel : label }}
           name={name}
           onChange={handleChange}
-          required={required}
           size={size}
           value={value}
         />

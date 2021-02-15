@@ -14,8 +14,8 @@ export type RadioSize = 'medium' | 'small';
 export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
 
 export interface RadioButtonBaseProps extends CommonProps {
-  /** accessibility label */
-  ariaLabel?: string;
+  /** id of checbox' */
+  id?: string;
   /** label placement options available 'bottom' | 'end' | 'start' */
   labelPlacement?: RadioLabelPlacement;
   /** name of radio input */
@@ -38,11 +38,11 @@ export interface RadioButtonProps extends RadioButtonBaseProps {
 }
 
 export function DotRadioButton({
-  ariaLabel,
   checked,
   className,
   'data-testid': dataTestId,
   disabled = false,
+  id,
   label,
   labelPlacement = 'end',
   name,
@@ -68,7 +68,7 @@ export function DotRadioButton({
           color="primary"
           data-testid={dataTestId}
           disabled={disabled}
-          inputProps={{ 'aria-label': ariaLabel ? ariaLabel : label }}
+          id={id}
           name={name}
           onChange={handleChange}
           size={size}
