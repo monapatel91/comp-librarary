@@ -21,6 +21,8 @@ import DotFormGroup from '../form-group/FromGroup';
 import { DotCheckbox, CheckboxProps } from '../checkbox/Checkbox';
 
 export interface CheckboxGroupProps extends RadioGroupBaseProps {
+  /** Array of CheckboxProps to set by default */
+  defaultValues?: CheckboxProps[];
   /** if true use parent for selecting/deselecting all */
   selectAll?: boolean;
   /** A function that should be executed when the value of the radio buttom changes */
@@ -28,21 +30,27 @@ export interface CheckboxGroupProps extends RadioGroupBaseProps {
     event: ChangeEvent<HTMLInputElement>,
     value: CheckboxProps[]
   ) => void;
+  /** Array of CheckboxProps used to create the checkboxes */
+  options: CheckboxProps[];
+  selectAllLabel?: string;
 }
 
 export function DotCheckboxGroup({
   className,
+  defaultValues = [],
   disableGroup,
   endIcon,
   error,
   groupLabel,
   helperText,
+  name,
   labelPlacement,
   onChange,
   options,
   selectAll = false,
   required = false,
   row = false,
+  selectAllLabel = 'Select All',
   startIcon,
   size = 'medium',
 }: CheckboxGroupProps) {
@@ -53,12 +61,12 @@ export function DotCheckboxGroup({
     className,
     placement
   );
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState(defaultValues);
   const [allChecked, setAllChecked] = useState(false);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement>,
-    data: RadioButtonProps
+    data: CheckboxProps
   ) => {
     const newOptions = event.target.checked
       ? [...selectedOptions, data]
@@ -80,11 +88,12 @@ export function DotCheckboxGroup({
           <li className={checkboxListItemClassName}>
             <DotCheckbox
               checked={
-                selectedOptions.find(
+                selectedOptions.some(
                   (option) => option && option.value === value
                 ) || allChecked
               }
               disabled={disabled || disableGroup}
+              name={name}
               label={label}
               labelPlacement={labelPlacement}
               onChange={(event) => handleChange(event, { label, value })}
@@ -123,9 +132,10 @@ export function DotCheckboxGroup({
               selectedOptions.length > 0 &&
               selectedOptions.length < options.length
             }
-            label="Select all"
+            name={`${name}-select-all`}
+            label={selectAllLabel}
             onChange={handleSelectAll}
-            value="all"
+            value="select-all"
           />
         )}
         <ul className={checkboxListClassName}>

@@ -15,7 +15,6 @@ export type CheckboxLabelPlacement = 'bottom' | 'end' | 'start';
 export interface CheckboxProps extends RadioButtonProps {
   ariaLabel?: string;
   checked?: boolean;
-  dataTestId?: string;
   disabled?: boolean;
   id?: string;
   indeterminate?: boolean;
@@ -34,18 +33,23 @@ export function DotCheckbox({
   ariaLabel,
   checked,
   className,
-  dataTestId,
+  'data-testid': dataTestId,
   disabled,
   id,
   indeterminate,
   label,
   labelPlacement,
+  name,
   onChange,
   required,
   size = 'medium',
   value,
 }: CheckboxProps) {
-  const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    formRootClassName,
+    className
+  );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(event, event.target.value);
@@ -53,7 +57,7 @@ export function DotCheckbox({
 
   return (
     <StyledFormControlLabel
-      className={formRootClassName}
+      className={rootClasses}
       labelPlacement={labelPlacement}
       control={
         <StyledCheckbox
@@ -65,6 +69,7 @@ export function DotCheckbox({
           id={id}
           indeterminate={indeterminate}
           inputProps={{ 'aria-label': ariaLabel ? ariaLabel : label }}
+          name={name}
           onChange={handleChange}
           required={required}
           size={size}

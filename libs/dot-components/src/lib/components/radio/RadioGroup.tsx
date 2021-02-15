@@ -8,7 +8,7 @@ import {
   StyledFormControl,
   placementClassName,
   rootClassName,
-} from './RadioGroup.styles';
+} from '../form-controls/FormControl.stytles';
 import {
   RadioButtonBaseProps,
   DotRadioButton,
@@ -16,8 +16,6 @@ import {
 } from './RadioButton';
 
 export interface RadioGroupBaseProps extends RadioButtonBaseProps {
-  /** The default input element value. Use when the component is not controlled or has a value. */
-  defaultValue?: string;
   /** if true makes all radio buttons disabled */
   disableGroup?: boolean;
   /** Icon placed before the children. */
@@ -28,8 +26,6 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   helperText?: string;
   /** The label of the radio button group. */
   groupLabel?: string;
-  /** Array of RadioButtonProps used to create the radio buttons */
-  options: RadioButtonProps[];
   /** if the use is required to select an option */
   required?: boolean;
   /** changes layout to be horizontal if true */
@@ -38,8 +34,12 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   startIcon?: JSX.Element;
 }
 export interface RadioGroupProps extends RadioGroupBaseProps {
+  /** The default input element value. Use when the component is not controlled or has a value. */
+  defaultValue?: string;
   /** A function that should be executed when the value of the radio buttom changes */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+  /** Array of RadioButtonProps used to create the radio buttons */
+  options: RadioButtonProps[];
 }
 
 export function DotRadioGroup({

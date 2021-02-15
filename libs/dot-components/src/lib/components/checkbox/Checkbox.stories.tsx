@@ -8,7 +8,6 @@ export default {
   component: DotCheckbox,
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
-    color: { defaultValue: 'primary' },
     label: { defaultValue: 'Sample Label' },
     name: { defaultValue: 'dot-radio-button' },
     onChange: {
