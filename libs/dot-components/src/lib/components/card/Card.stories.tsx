@@ -33,7 +33,7 @@ const complexHeaderAction = (
     className="expand-button"
     data-testid="card-header-action-button"
     iconId="options"
-    size="small"
+    size="medium"
   />
 );
 
