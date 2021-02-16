@@ -3,7 +3,7 @@ import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { DotRadioButton } from './RadioButton';
 
-describe('RadioButton', () => {
+describe('DotRadioButton', () => {
   describe('Props', () => {
     it('should render the medium size', () => {
       render(<DotRadioButton value="test-value" data-testid="test-radio" />);

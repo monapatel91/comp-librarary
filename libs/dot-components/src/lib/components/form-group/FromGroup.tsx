@@ -17,6 +17,7 @@ export function DotFormGroup({
   ariaLabel,
   className,
   children,
+  'data-testid': dataTestId,
   row = false,
 }: FormGroupProps) {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -24,6 +25,7 @@ export function DotFormGroup({
   return (
     <StyledFormGroup
       aria-label={ariaLabel}
+      data-testid={dataTestId}
       classes={{ root: rootClasses }}
       role="group"
       row={row}
