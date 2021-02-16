@@ -9,7 +9,7 @@ import DotIcon from '../icon/Icon';
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
-  title: 'Components/Checkbox group',
+  title: 'Components/Checkbox Group',
   component: DotCheckboxGroup,
   argTypes: {
     name: { defaultValue: 'dot-checkbox-group' },
@@ -32,7 +32,7 @@ export default {
 } as Meta;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const CheckboxFormGroup: Story<CheckboxGroupProps> = (args: any) => {
+export const Default: Story<CheckboxGroupProps> = (args: any) => {
   const {
     endIcon: endIconId,
     startIcon: startIconId,
