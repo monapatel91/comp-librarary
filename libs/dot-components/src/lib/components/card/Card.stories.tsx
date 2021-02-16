@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Typography, CardHeader, CardMedia } from '@material-ui/core';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import styled from 'styled-components';
 
 import { DotCard, CardProps } from './Card';
 import { DotCardHeader } from './CardHeader';
@@ -8,7 +9,6 @@ import { DotCardContent } from './CardContent';
 import { DotCardFooter } from './CardFooter';
 import DotAvatar from '../avatar/Avatar';
 import DotIconButton from '../button/IconButton';
-import imageFile from '../../assets/logo_digital_ai.svg';
 import DotButton from '../button/Button';
 
 const headerOnly = 'Header only';
@@ -17,6 +17,12 @@ const headerContentAndFooter = 'Header, content and footer';
 const childrenOptions = [headerOnly, headerAndContent, headerContentAndFooter];
 
 const avatar = <DotAvatar text="SE" alt="Chef"></DotAvatar>;
+
+export const StyledDotCard = styled(DotCard)`
+  &.dot-card {
+    width: 400px;
+  }
+`;
 
 const defaultHeader = (
   <DotCardHeader
@@ -38,9 +44,9 @@ const complexHeader = (
   <CardHeader
     avatar={avatar}
     action={complexHeaderAction}
-    title="digital.ai"
+    title="Lorem Picsum"
     titleTypographyProps={{ variant: 'h4' }}
-    subheader="We make digital transformation deliver business value."
+    subheader="A randomly generated image just for you!"
     subheaderTypographyProps={{ variant: 'body2' }}
   ></CardHeader>
 );
@@ -53,11 +59,14 @@ const defaultContent = (
 
 const complexContent = (
   <Fragment>
-    <CardMedia image={imageFile} style={{ height: '200px' }}></CardMedia>
+    <CardMedia
+      image="https://picsum.photos/400"
+      style={{ height: '400px', width: '400px' }}
+    ></CardMedia>
     <DotCardContent>
       <Typography variant="body1">
-        Finally, the intelligence, agility, and security you need to create
-        innovative digital experiences customers trust.
+        The picture on this card may or may not represent the artistic vision of
+        the card designer.
       </Typography>
     </DotCardContent>
   </Fragment>
@@ -149,5 +158,5 @@ export const ComplexCardWithMedia: Story<CardProps> = (args) => {
     default:
       selectedChildren = complexHeaderContentAndFooterChildren;
   }
-  return <DotCard {...args} children={selectedChildren} />;
+  return <StyledDotCard {...args} children={selectedChildren} />;
 };
