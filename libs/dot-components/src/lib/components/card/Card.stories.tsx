@@ -16,7 +16,7 @@ const headerAndContent = 'Header and content';
 const headerContentAndFooter = 'Header, content and footer';
 const childrenOptions = [headerOnly, headerAndContent, headerContentAndFooter];
 
-const avatar = <DotAvatar text="SE" alt="Chef"></DotAvatar>;
+const avatar = <DotAvatar text="SE" alt="Chef" />;
 
 const StyledDotCard = styled(DotCard)`
   &.dot-card {
@@ -25,10 +25,7 @@ const StyledDotCard = styled(DotCard)`
 `;
 
 const defaultHeader = (
-  <DotCardHeader
-    title="Hello World"
-    subheader="Well hello there"
-  ></DotCardHeader>
+  <DotCardHeader title="Hello World" subheader="Well hello there" />
 );
 
 const complexHeaderAction = (
@@ -48,7 +45,7 @@ const complexHeader = (
     titleTypographyProps={{ variant: 'h4' }}
     subheader="A randomly generated image just for you!"
     subheaderTypographyProps={{ variant: 'body2' }}
-  ></CardHeader>
+  />
 );
 
 const defaultContent = (
