@@ -134,6 +134,7 @@ export function DotCheckboxGroup({
             name={`${name}-select-all`}
             label={selectAllLabel}
             onChange={handleSelectAll}
+            size={size}
             value="select-all"
           />
         )}
