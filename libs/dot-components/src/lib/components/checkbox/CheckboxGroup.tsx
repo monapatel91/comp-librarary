@@ -22,15 +22,16 @@ import { DotCheckbox, CheckboxProps } from '../checkbox/Checkbox';
 export interface CheckboxGroupProps extends RadioGroupBaseProps {
   /** Array of CheckboxProps to set by default */
   defaultValues?: CheckboxProps[];
-  /** A function that should be executed when the value of the radio buttom changes */
+  /** A function that should be executed when the value of the checkbox changes */
   onChange?: (
     event: ChangeEvent<HTMLInputElement>,
     value: CheckboxProps[]
   ) => void;
   /** Array of CheckboxProps used to create the checkboxes */
   options: CheckboxProps[];
-  /** if true use parent for selecting/deselecting all */
+  /** select all label */
   selectAllLabel?: string;
+  /** if true use parent for selecting/deselecting all */
   showSelectAll?: boolean;
 }
 

@@ -19,9 +19,11 @@ describe('DotRadioButton', () => {
           className="custom-test-class"
           data-testid="test-radio"
           disabled
+          id="test-id"
           label="Test label"
           labelPlacement="bottom"
           name="test-name"
+          required
           size="small"
           value="test-value"
         />
@@ -34,6 +36,8 @@ describe('DotRadioButton', () => {
       expect(input).toHaveAttribute('checked');
       expect(testId).toBeVisible();
       expect(input).toHaveAttribute('disabled');
+      expect(input).toHaveAttribute('required');
+      expect(input).toHaveAttribute('id', 'test-id');
       expect(formControlLabel).toHaveClass('custom-test-class');
       expect(baseElement.querySelector('svg')).toHaveClass(
         'MuiSvgIcon-fontSizeSmall'

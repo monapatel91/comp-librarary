@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotCheckbox, CheckboxProps } from './Checkbox';
 
 export default {
-  title: 'Experimental/Checkbox',
+  title: 'Components/Checkbox',
   component: DotCheckbox,
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },

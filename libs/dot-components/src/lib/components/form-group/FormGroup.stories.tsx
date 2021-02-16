@@ -9,7 +9,7 @@ import { DotInputText } from '../input-form-fields/InputText';
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
-  title: 'Experimental/Form Group',
+  title: 'Components/Form Group',
   component: DotFormGroup,
   argTypes: {
     row: { defaultValue: false },

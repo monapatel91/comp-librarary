@@ -28,7 +28,7 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   helperText?: string;
   /** The label of the radio button group. */
   groupLabel?: string;
-  /** if the use is required to select an option */
+  /** if true user is required to select an option */
   required?: boolean;
   /** changes layout to be horizontal if true */
   row?: boolean;
@@ -38,7 +38,7 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
 export interface RadioGroupProps extends RadioGroupBaseProps {
   /** The default input element value. Use when the component is not controlled or has a value. */
   defaultValue?: string;
-  /** A function that should be executed when the value of the radio buttom changes */
+  /** A function that should be executed when the value of the radio button changes */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
   /** Array of RadioButtonProps used to create the radio buttons */
   options: RadioButtonProps[];

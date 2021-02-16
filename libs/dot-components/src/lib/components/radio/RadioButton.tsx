@@ -22,6 +22,8 @@ export interface RadioButtonBaseProps extends CommonProps {
   name?: string;
   /** controls the size of the radio button 'medium', 'small' */
   size?: RadioSize;
+  /** if true user is required to select an option */
+  required?: boolean;
   /** unique value for the radio button */
   value?: string;
 }
@@ -47,6 +49,7 @@ export function DotRadioButton({
   labelPlacement = 'end',
   name,
   onChange,
+  required = false,
   size = 'medium',
   value,
 }: RadioButtonProps) {
@@ -71,6 +74,7 @@ export function DotRadioButton({
           id={id}
           name={name}
           onChange={handleChange}
+          required={required}
           size={size}
         />
       }

@@ -9,7 +9,7 @@ import DotIcon from '../icon/Icon';
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
-  title: 'Experimental/Checkbox group',
+  title: 'Components/Checkbox group',
   component: DotCheckboxGroup,
   argTypes: {
     name: { defaultValue: 'dot-checkbox-group' },

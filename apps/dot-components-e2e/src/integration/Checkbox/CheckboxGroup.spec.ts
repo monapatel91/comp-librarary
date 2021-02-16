@@ -1,6 +1,6 @@
 describe('dot-components: CheckboxGroup component', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=experimental-checkbox-group--checkbox-form-group')
+    cy.visit('/iframe.html?id=components-checkbox-group--checkbox-form-group')
   );
 
   it('should have a dot- prefix', () => {

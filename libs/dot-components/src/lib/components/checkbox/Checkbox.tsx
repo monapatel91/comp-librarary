@@ -10,7 +10,6 @@ import { RadioButtonProps } from '../radio/RadioButton';
 export type CheckboxSize = 'medium' | 'small';
 export type CheckboxLabelPlacement = 'bottom' | 'end' | 'start';
 
-/* eslint-disable-next-line */
 export interface CheckboxProps extends RadioButtonProps {
   /** if true the checkbox will dispaly with intermediate */
   indeterminate?: boolean;
@@ -27,6 +26,7 @@ export function DotCheckbox({
   labelPlacement,
   name,
   onChange,
+  required = false,
   size = 'medium',
   value,
 }: CheckboxProps) {
@@ -55,6 +55,7 @@ export function DotCheckbox({
           indeterminate={indeterminate}
           name={name}
           onChange={handleChange}
+          required={required}
           size={size}
           value={value}
         />
