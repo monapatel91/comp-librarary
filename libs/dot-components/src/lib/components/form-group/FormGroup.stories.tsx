@@ -9,7 +9,7 @@ import { DotInputText } from '../input-form-fields/InputText';
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
-  title: 'Components/Form Group',
+  title: 'Experimental/Form Group',
   component: DotFormGroup,
   argTypes: {
     row: { defaultValue: false },
@@ -20,9 +20,14 @@ export default {
 export const Default: Story<FormGroupProps> = (args: any) => {
   return (
     <DotFormGroup {...args}>
-      <DotInputText fullWidth={false} name="input-text" id="input-text" />
-      <DotCheckbox label="item 1" value="item-1" />
-      <DotCheckbox label="item 2" value="item-2" />
+      <DotInputText
+        fullWidth={false}
+        name="input-text"
+        id="input-text"
+        defaultValue="Superman"
+      />
+      <DotCheckbox name="item-1" label="item 1" value="item-1" />
+      <DotCheckbox name="item-2" label="item 2" value="item-2" />
     </DotFormGroup>
   );
 };

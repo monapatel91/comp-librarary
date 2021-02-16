@@ -9,10 +9,11 @@ export default {
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
     label: { defaultValue: 'Sample Label' },
-    name: { defaultValue: 'dot-radio-button' },
+    name: { defaultValue: 'dot-checkbox' },
     onChange: {
       action: 'clicked',
     },
+    value: { defaultValue: 'sample-label' },
   },
 } as Meta;
 

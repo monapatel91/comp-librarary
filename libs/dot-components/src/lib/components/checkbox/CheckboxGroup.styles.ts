@@ -1,4 +1,3 @@
-import { FormGroup } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-checkbox-group';
