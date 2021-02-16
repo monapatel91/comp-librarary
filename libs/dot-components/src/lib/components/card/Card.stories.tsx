@@ -20,7 +20,7 @@ const avatar = <DotAvatar text="SE" alt="Chef" />;
 
 const StyledDotCard = styled(DotCard)`
   &.dot-card {
-    width: 400px;
+    width: 380px;
   }
 `;
 
@@ -41,9 +41,9 @@ const complexHeader = (
   <CardHeader
     avatar={avatar}
     action={complexHeaderAction}
-    title="Lorem Picsum"
+    title="Timeline"
     titleTypographyProps={{ variant: 'h4' }}
-    subheader="A randomly generated image just for you!"
+    subheader="Pick a card, any card!"
     subheaderTypographyProps={{ variant: 'body2' }}
   />
 );
@@ -57,13 +57,12 @@ const defaultContent = (
 const complexContent = (
   <Fragment>
     <CardMedia
-      image="https://picsum.photos/400"
-      style={{ height: '400px', width: '400px' }}
+      image="../../assets/empty-state.svg"
+      style={{ height: '300px' }}
     ></CardMedia>
     <DotCardContent>
       <Typography variant="body1">
-        The picture on this card may or may not represent the artistic vision of
-        the card designer.
+        These were some very good years.
       </Typography>
     </DotCardContent>
   </Fragment>
