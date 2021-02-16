@@ -8,7 +8,7 @@ import {
   StyledFormControl,
   placementClassName,
   rootClassName,
-} from '../form-controls/FormControl.stytles';
+} from '../form-controls/FormControl.styles';
 import {
   RadioButtonBaseProps,
   DotRadioButton,

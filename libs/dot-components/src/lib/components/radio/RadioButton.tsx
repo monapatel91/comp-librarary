@@ -14,7 +14,7 @@ export type RadioSize = 'medium' | 'small';
 export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
 
 export interface RadioButtonBaseProps extends CommonProps {
-  /** id of checbox' */
+  /** id of radio button' */
   id?: string;
   /** label placement options available 'bottom' | 'end' | 'start' */
   labelPlacement?: RadioLabelPlacement;

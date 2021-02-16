@@ -7,7 +7,7 @@ import {
   startAdornmentClassName,
   StyledFormControl,
   rootClassName,
-} from '../form-controls/FormControl.stytles';
+} from '../form-controls/FormControl.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   StyledCheckboxGroup,

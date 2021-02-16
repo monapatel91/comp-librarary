@@ -1,6 +1,6 @@
 import React from 'react';
 import { CommonProps } from '../CommonProps';
-import { rootClassName } from '../form-controls/FormControl.stytles';
+import { rootClassName } from '../form-controls/FormControl.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { StyledFormGroup } from './FormGroup.styles';
 
