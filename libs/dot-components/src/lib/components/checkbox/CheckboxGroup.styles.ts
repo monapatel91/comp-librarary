@@ -11,8 +11,5 @@ export const StyledCheckboxGroup = styled.div`
         margin-top: 0;
         padding-left: ${theme.spacing(2.5)}px;
     }
-    .${checkboxListItemClassName} {
-
-    }
   `}
 `;

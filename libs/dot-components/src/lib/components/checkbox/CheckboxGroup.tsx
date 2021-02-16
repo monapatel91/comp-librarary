@@ -131,7 +131,7 @@ export function DotCheckboxGroup({
               selectedOptions.length > 0 &&
               selectedOptions.length < options.length
             }
-            name={`${name}-select-all`}
+            name={name ? `${name}-select-all` : 'dot-select-all'}
             label={selectAllLabel}
             onChange={handleSelectAll}
             size={size}
