@@ -18,7 +18,7 @@ const childrenOptions = [headerOnly, headerAndContent, headerContentAndFooter];
 
 const avatar = <DotAvatar text="SE" alt="Chef"></DotAvatar>;
 
-export const StyledDotCard = styled(DotCard)`
+const StyledDotCard = styled(DotCard)`
   &.dot-card {
     width: 400px;
   }
