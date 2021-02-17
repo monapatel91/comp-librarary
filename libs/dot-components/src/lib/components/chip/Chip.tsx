@@ -57,7 +57,7 @@ export const DotChip = ({
       color="default"
       data-testid={dataTestId}
       disabled={disabled}
-      icon={startIcon}
+      icon={avatar && avatar['size'] ? null : startIcon}
       label={children}
       onClick={(event) => onClick && onClick(event)}
       onDelete={
