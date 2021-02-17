@@ -8,4 +8,22 @@ describe('dot-components: Button component', () => {
   it('should render the component', () => {
     cy.get('button').should('contain', 'Button');
   });
+
+  describe('style decisions', () => {
+    it('button is correct size', () => {
+      cy.get('button.dot-button')
+        .should('have.css', 'padding-top', '6px')
+        .and('have.css', 'padding-left', '16px')
+        .and('have.css', 'padding-bottom', '6px')
+        .and('have.css', 'padding-right', '16px')
+        .and('have.css', 'min-width', '64px')
+        .and('have.css', 'font-size', '14px');
+    });
+
+    it('primary button has correct color', () => {
+      cy.get('button.dot-button')
+        .should('have.css', 'background-color', 'rgb(61, 108, 158)')
+        .and('have.css', 'color', 'rgb(255, 255, 255)');
+    });
+  });
 });
