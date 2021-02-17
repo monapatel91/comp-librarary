@@ -1,7 +1,5 @@
 describe('dot-components: Inline Edit component', () => {
-  beforeEach(() =>
-    cy.visit('/iframe.html?id=experimental-inline-edit--default')
-  );
+  before(() => cy.visit('/iframe.html?id=experimental-inline-edit--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-inline-edit');
