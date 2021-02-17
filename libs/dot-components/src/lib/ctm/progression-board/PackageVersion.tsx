@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
+import { CommonProps } from '../../components/CommonProps';
 import RevisionRangeLabel from '../ctm-card/RevisionRangeLabel';
 import QualityCorner, { QCIconProps } from '../ctm-card/QualityCorner';
 import PackageVersionLabel from './PackageVersionLabel';
@@ -7,7 +9,7 @@ import Card, { CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
 import { PackageType, SelectWorkItem } from './ProgressionBoardInterfaces';
 
-export interface PackageDetailProps {
+export interface PackageDetailProps extends CommonProps {
   baseUrl: string;
   packageVer: PackageType;
   selectWorkitemProps: SelectWorkItem;
@@ -19,6 +21,8 @@ export const parseRevURL = (revFrom: number, revToId: string) => {
 
 export const ValidPackage = ({
   baseUrl,
+  className,
+  'data-testid': dataTestId,
   packageVer,
   selectWorkitemProps,
 }: PackageDetailProps) => {
@@ -27,7 +31,6 @@ export const ValidPackage = ({
     cardIndicatorStatus,
     control_failed,
     package_id,
-    package_name,
     pending_activity,
     rev_from,
     rev_to,
@@ -48,6 +51,7 @@ export const ValidPackage = ({
     version,
     workitems,
   } = packageVer;
+  const rootClasses = useStylesWithRootClass(className);
 
   const [timeEstLabel, updateTimeEstLabel] = useState('');
   const [
@@ -145,15 +149,7 @@ export const ValidPackage = ({
 
   return (
     <Card
-      bottomLeft={
-        qcicons ? (
-          <QualityCorner
-            qcicons={qcicons}
-            version={version}
-            package_name={package_name}
-          />
-        ) : null
-      }
+      bottomLeft={qcicons ? <QualityCorner qcicons={qcicons} /> : null}
       bottomRight={
         <RevisionRangeLabel
           baseUrl={baseUrl}
@@ -162,7 +158,8 @@ export const ValidPackage = ({
           revToId={rev_to_id}
         />
       }
-      dataTestId="card"
+      className={rootClasses}
+      data-testid="card"
       indicators={<CardIndicators indicators={indicators} baseUrl={baseUrl} />}
       url={baseUrl + parseRevURL(rev_from, rev_to_id)}
       fullversion_from={packageVer.fullversion_from}

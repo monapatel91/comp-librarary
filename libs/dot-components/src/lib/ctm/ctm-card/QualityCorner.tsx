@@ -1,38 +1,47 @@
 import React from 'react';
+import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
+import { CommonProps } from '../../components/CommonProps';
 import { DotIcon } from '../../components/icon/Icon';
 
-export interface QCIconProps {
+export interface QCIconProps extends CommonProps {
   id: string;
   label: string;
   onHover?: () => void;
   url?: string;
 }
 
-export interface QualityCornerProps {
-  package_name: string;
+export interface QualityCornerProps extends CommonProps {
   qcicons: Array<QCIconProps>;
-  version: string;
 }
 
 export const QualityCorner = ({
+  className,
+  'data-testid': dataTestId,
   qcicons,
-  version,
-  package_name,
-}: QualityCornerProps) => (
-  <div
-    className="quality-corner"
-    data-package-name={package_name}
-    data-version={version}
-  >
-    {qcicons.map((icon, i) => (
-      <QCIcon key={i} {...icon} />
-    ))}
-  </div>
-);
+}: QualityCornerProps) => {
+  const rootClasses = useStylesWithRootClass('quality-corner', className);
+  return (
+    <div className={rootClasses} data-testid={dataTestId}>
+      {qcicons.map((icon, i) => (
+        <QCIcon key={i} {...icon} />
+      ))}
+    </div>
+  );
+};
 
-export const QCIcon = ({ id, label, onHover, url }: QCIconProps) => {
+export const QCIcon = ({
+  className,
+  'data-testid': dataTestId,
+  id,
+  label,
+  onHover,
+  url,
+}: QCIconProps) => {
+  const rootClasses = useStylesWithRootClass(className);
   return (
     <a
+      className={rootClasses}
+      data-testid={dataTestId}
       href={url}
       onMouseEnter={onHover}
       rel="noreferrer"

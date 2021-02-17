@@ -1,21 +1,22 @@
 import React from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '../../components/icon/Icon';
+import { CommonProps } from '../../components/CommonProps';
 
 export const shorten = (str: string, length: number) =>
   str.length > length ? `${str.substring(0, length)}...` : str;
 
-export interface CardIdentifierProps {
+export interface CardIdentifierProps extends CommonProps {
   url: string;
   title: string;
 }
 
-export interface CardIndicatorsProps {
+export interface CardIndicatorsProps extends CommonProps {
   baseUrl?: string;
   indicators: Array<CardIndicatorProps>;
 }
 
-export interface CardIndicatorProps {
+export interface CardIndicatorProps extends CommonProps {
   baseUrl?: string;
   id: string;
   label: string;
@@ -23,11 +24,10 @@ export interface CardIndicatorProps {
   url?: string;
 }
 
-export interface CardProps {
+export interface CardProps extends CommonProps {
   bottomLeft: JSX.Element;
   bottomRight: JSX.Element;
   children: JSX.Element | Array<JSX.Element>;
-  dataTestId: string;
   fullversion_from: string;
   fullversion_to: string;
   indicators: JSX.Element;
@@ -36,23 +36,43 @@ export interface CardProps {
   url: string;
 }
 
-export const CardIdentifier = ({ url, title }: CardIdentifierProps) => (
-  <a className="identifier" href={url} target="_blank" rel="noreferrer">
-    {title}
-  </a>
-);
+export const CardIdentifier = ({
+  className,
+  'data-testid': dataTestId,
+  url,
+  title,
+}: CardIdentifierProps) => {
+  const rootClasses = useStylesWithRootClass('identifier', className);
+  return (
+    <a
+      className={rootClasses}
+      data-testid={dataTestId}
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {title}
+    </a>
+  );
+};
 
 export const CardIndicator = ({
   baseUrl,
+  className,
+  'data-testid': dataTestId,
   id,
   label = '',
   onHover,
   url,
 }: CardIndicatorProps) => {
-  const rootClasses = useStylesWithRootClass('action', id);
+  const rootClasses = useStylesWithRootClass('action', id, className);
 
   return (
-    <div className={rootClasses} onMouseEnter={onHover}>
+    <div
+      className={rootClasses}
+      data-testid={dataTestId}
+      onMouseEnter={onHover}
+    >
       {url ? (
         <a href={baseUrl + url} target="_blank" rel="noreferrer" title={label}>
           <DotIcon iconId={id} fontSize="small" title={label} />
@@ -66,6 +86,7 @@ export const CardIndicator = ({
 
 export const CardIndicators = ({
   baseUrl,
+  'data-testid': dataTestId,
   indicators,
 }: CardIndicatorsProps) => (
   <div className="actions-container">
@@ -79,7 +100,8 @@ export const Card = ({
   bottomLeft,
   bottomRight,
   children,
-  dataTestId,
+  className,
+  'data-testid': dataTestId,
   fullversion_from,
   fullversion_to,
   indicators,
@@ -87,8 +109,9 @@ export const Card = ({
   rev_to,
   url,
 }: CardProps) => {
+  const rootClasses = useStylesWithRootClass('card', className);
   return (
-    <div className="card" data-testid={dataTestId}>
+    <div className={rootClasses} data-testid={dataTestId}>
       <div className="identity">
         <CardIdentifier
           title={shorten(
