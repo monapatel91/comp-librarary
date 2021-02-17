@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
+import { DotLink } from '../../components/link/Link';
 
 export interface PackageVersionLabelProps extends CommonProps {
   baseUrl: string;
@@ -17,7 +18,7 @@ export const PackageVersionLabel = ({
 }: PackageVersionLabelProps) => {
   const rootClasses = useStylesWithRootClass('title', className);
   return (
-    <a
+    <DotLink
       className={rootClasses}
       data-testid={dataTestId}
       href={`${baseUrl}/package_detail?id=${package_id}`}
@@ -25,7 +26,7 @@ export const PackageVersionLabel = ({
       rel="noreferrer"
     >
       {version ? version : '(no version)'}
-    </a>
+    </DotLink>
   );
 };
 

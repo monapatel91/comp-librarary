@@ -2,6 +2,7 @@ import React from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import { DotIcon } from '../../components/icon/Icon';
+import { DotLink } from '../../components/link/Link';
 
 export interface QCIconProps extends CommonProps {
   id: string;
@@ -39,7 +40,7 @@ export const QCIcon = ({
 }: QCIconProps) => {
   const rootClasses = useStylesWithRootClass(className);
   return (
-    <a
+    <DotLink
       className={rootClasses}
       data-testid={dataTestId}
       href={url}
@@ -49,7 +50,7 @@ export const QCIcon = ({
       title={label}
     >
       <DotIcon fontSize="small" iconId={id} title={label} />
-    </a>
+    </DotLink>
   );
 };
 

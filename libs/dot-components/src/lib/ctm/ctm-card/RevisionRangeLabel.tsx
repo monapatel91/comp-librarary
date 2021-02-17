@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
+import { DotLink } from '../../components/link/Link';
 import { parseRevURL } from '../progression-board/PackageVersion';
 
 export interface RevisionRangeLabelProps extends CommonProps {
@@ -23,14 +24,14 @@ export const RevisionRangeLabel = ({
   return (
     <div className={rootClasses} data-testid={dataTestId}>
       Revisions:
-      <a
+      <DotLink
         href={baseUrl + parseRevURL(revFrom, revToId)}
         rel="noreferrer"
         target="_blank"
         title={revisionRangeLabel}
       >
         {revisionRangeLabel}
-      </a>
+      </DotLink>
     </div>
   );
 };

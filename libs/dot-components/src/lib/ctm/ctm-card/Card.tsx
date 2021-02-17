@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '../../components/icon/Icon';
+import { DotLink } from '../../components/link/Link';
 import { CommonProps } from '../../components/CommonProps';
 
 export const shorten = (str: string, length: number) =>
@@ -44,7 +45,7 @@ export const CardIdentifier = ({
 }: CardIdentifierProps) => {
   const rootClasses = useStylesWithRootClass('identifier', className);
   return (
-    <a
+    <DotLink
       className={rootClasses}
       data-testid={dataTestId}
       href={url}
@@ -52,7 +53,7 @@ export const CardIdentifier = ({
       rel="noreferrer"
     >
       {title}
-    </a>
+    </DotLink>
   );
 };
 
@@ -74,9 +75,14 @@ export const CardIndicator = ({
       onMouseEnter={onHover}
     >
       {url ? (
-        <a href={baseUrl + url} target="_blank" rel="noreferrer" title={label}>
+        <DotLink
+          href={baseUrl + url}
+          target="_blank"
+          rel="noreferrer"
+          title={label}
+        >
           <DotIcon iconId={id} fontSize="small" title={label} />
-        </a>
+        </DotLink>
       ) : (
         <DotIcon iconId={id} fontSize="small" title={label} />
       )}
@@ -86,15 +92,19 @@ export const CardIndicator = ({
 
 export const CardIndicators = ({
   baseUrl,
+  className,
   'data-testid': dataTestId,
   indicators,
-}: CardIndicatorsProps) => (
-  <div className="actions-container">
-    {indicators.map((indicator, i) => (
-      <CardIndicator baseUrl={baseUrl} key={i} {...indicator} />
-    ))}
-  </div>
-);
+}: CardIndicatorsProps) => {
+  const rootClasses = useStylesWithRootClass('actions-container', className);
+  return (
+    <div className={rootClasses} data-testid={dataTestId}>
+      {indicators.map((indicator, i) => (
+        <CardIndicator baseUrl={baseUrl} key={i} {...indicator} />
+      ))}
+    </div>
+  );
+};
 
 export const Card = ({
   bottomLeft,
