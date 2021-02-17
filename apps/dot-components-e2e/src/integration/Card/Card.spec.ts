@@ -5,14 +5,14 @@ describe('dot-components: Card component', () => {
     cy.get('div').should('have.class', 'dot-card');
   });
 
-  it('should have h4 title', () => {
+  it('should have h2 title', () => {
     cy.get('span').should('contain', 'Hello World');
-    cy.get('span').should('have.class', 'MuiTypography-h4');
+    cy.get('span').should('have.class', 'MuiTypography-h2');
   });
 
-  it('should have body2 subheader', () => {
+  it('should have body1 subheader', () => {
     cy.get('span').eq(1).should('contain', 'Well hello there');
-    cy.get('span').eq(1).should('have.class', 'MuiTypography-body2');
+    cy.get('span').eq(1).should('have.class', 'MuiTypography-body1');
   });
 
   it('should have content', () => {

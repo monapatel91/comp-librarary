@@ -42,9 +42,9 @@ const complexHeader = (
     avatar={avatar}
     action={complexHeaderAction}
     title="Timeline"
-    titleTypographyProps={{ variant: 'h4' }}
+    titleTypographyProps={{ variant: 'h2' }}
     subheader="Pick a card, any card!"
-    subheaderTypographyProps={{ variant: 'body2' }}
+    subheaderTypographyProps={{ variant: 'body1' }}
   />
 );
 
@@ -61,9 +61,7 @@ const complexContent = (
       style={{ height: '300px' }}
     ></CardMedia>
     <DotCardContent>
-      <Typography variant="body1">
-        These were some very good years.
-      </Typography>
+      <Typography variant="body1">These were some very good years.</Typography>
     </DotCardContent>
   </Fragment>
 );

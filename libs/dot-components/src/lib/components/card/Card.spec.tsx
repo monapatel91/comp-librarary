@@ -17,9 +17,9 @@ describe('DotCard', () => {
         <DotCardHeader title="Hello World" subheader="Well hello there" />
       </DotCard>
     );
-    expect(screen.getByText('Hello World')).toHaveClass('MuiTypography-h4');
+    expect(screen.getByText('Hello World')).toHaveClass('MuiTypography-h2');
     expect(screen.getByText('Well hello there')).toHaveClass(
-      'MuiTypography-body2'
+      'MuiTypography-body1'
     );
   });
   it('should have content', () => {
