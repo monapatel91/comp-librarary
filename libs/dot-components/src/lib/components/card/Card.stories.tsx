@@ -10,6 +10,7 @@ import { DotCardFooter } from './CardFooter';
 import DotAvatar from '../avatar/Avatar';
 import DotIconButton from '../button/IconButton';
 import DotButton from '../button/Button';
+import { ReactComponent as CardMediaImage } from '../../assets/empty-state.svg';
 
 const headerOnly = 'Header only';
 const headerAndContent = 'Header and content';
@@ -20,7 +21,7 @@ const avatar = <DotAvatar text="SE" alt="Chef" />;
 
 const StyledDotCard = styled(DotCard)`
   &.dot-card {
-    width: 380px;
+    width: 303px;
   }
 `;
 
@@ -56,10 +57,9 @@ const defaultContent = (
 
 const complexContent = (
   <Fragment>
-    <CardMedia
-      image="../../assets/empty-state.svg"
-      style={{ height: '300px' }}
-    ></CardMedia>
+    <CardMedia>
+      <CardMediaImage />
+    </CardMedia>
     <DotCardContent>
       <Typography variant="body1">These were some very good years.</Typography>
     </DotCardContent>
