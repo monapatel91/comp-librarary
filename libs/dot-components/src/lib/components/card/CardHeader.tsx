@@ -26,28 +26,11 @@ export const DotCardHeader = ({
   titleSize = 'large',
 }: CardHeaderProps) => {
   const rootClasses = useStylesWithRootClass('dot-card-header', className);
-  let titleVariant: 'h4' | 'h3' | 'h2';
-  switch (titleSize) {
-    case 'small':
-      titleVariant = 'h4';
-      break;
-    case 'medium':
-      titleVariant = 'h3';
-      break;
-    case 'large':
-      titleVariant = 'h2';
-      break;
-  }
+  const titleVariant: 'h4' | 'h3' | 'h2' =
+    titleSize === 'small' ? 'h4' : titleSize === 'medium' ? 'h3' : 'h2';
   const titleTypographyProps = { variant: titleVariant };
-  let subheaderVariant: 'body2' | 'body1';
-  switch (subheaderSize) {
-    case 'small':
-      subheaderVariant = 'body2';
-      break;
-    case 'large':
-      subheaderVariant = 'body1';
-      break;
-  }
+  const subheaderVariant: 'body2' | 'body1' =
+    subheaderSize === 'small' ? 'body2' : 'body1';
   const subheaderTypographyProps = { variant: subheaderVariant };
   return (
     <CardHeader
