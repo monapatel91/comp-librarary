@@ -12,6 +12,7 @@
 - **PackageVersion** - convert to functional component
 - **Phase** - convert to functional component
 - **ProgressionBoard** - convert to functional component
+- **ProgressionBoardLegend** - cleaned up DOM structure, converted workitems to icons
 - **RevisionRangeLabel** - convert to functional component
 - **SwimLane** - convert to functional component
 - **WorkItem** - convert to functional component
