@@ -57,6 +57,6 @@ export const DotCardHeader = ({
       subheaderTypographyProps={subheaderTypographyProps}
       title={title}
       titleTypographyProps={titleTypographyProps}
-    ></CardHeader>
+    />
   );
 };
