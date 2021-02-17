@@ -78,8 +78,6 @@ export const ValidPackage = ({
     );
   };
 
-  const isTruthy = (x) => !!x;
-
   const indicators = [
     control_failed || activity_failed
       ? {
@@ -108,7 +106,7 @@ export const ValidPackage = ({
       label: activityCompletionPercentLabel,
       onHover: hoverHandler,
     },
-  ].filter(isTruthy);
+  ].filter((x) => !!x);
 
   const qcicons: Array<QCIconProps> = [
     risk_show_dashboard_link
@@ -145,7 +143,7 @@ export const ValidPackage = ({
           url: risk_coverage_report_url,
         }
       : null,
-  ].filter(isTruthy);
+  ].filter((x) => !!x);
 
   return (
     <Card
@@ -159,7 +157,7 @@ export const ValidPackage = ({
         />
       }
       className={rootClasses}
-      data-testid="card"
+      data-testid={dataTestId}
       indicators={<CardIndicators indicators={indicators} baseUrl={baseUrl} />}
       url={baseUrl + parseRevURL(rev_from, rev_to_id)}
       fullversion_from={packageVer.fullversion_from}

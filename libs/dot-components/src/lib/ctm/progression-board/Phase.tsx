@@ -24,6 +24,7 @@ export const Phase = ({
         packageVer.rev_from <= packageVer.rev_to ? (
           <ValidPackage
             baseUrl={baseUrl}
+            data-testid="card"
             key={i}
             packageVer={packageVer}
             selectWorkitemProps={selectWorkitemProps}
