@@ -7,6 +7,10 @@ type TitleSize = 'small' | 'medium' | 'large';
 type SubheaderSize = 'small' | 'large';
 
 export interface CardHeaderProps extends CommonProps {
+  /** Card header action */
+  action?: JSX.Element;
+  /** Card header avatar */
+  avatar?: JSX.Element;
   /** Card subheader */
   subheader?: string;
   /** Card subheader size */
@@ -18,6 +22,8 @@ export interface CardHeaderProps extends CommonProps {
 }
 
 export const DotCardHeader = ({
+  action,
+  avatar,
   className,
   'data-testid': dataTestId,
   subheader,
@@ -34,6 +40,8 @@ export const DotCardHeader = ({
   const subheaderTypographyProps = { variant: subheaderVariant };
   return (
     <CardHeader
+      action={action}
+      avatar={avatar}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       subheader={subheader}

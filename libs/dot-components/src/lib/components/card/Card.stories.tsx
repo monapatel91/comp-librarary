@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Typography, CardHeader, CardMedia } from '@material-ui/core';
+import { Typography, CardMedia } from '@material-ui/core';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import styled from 'styled-components';
 
@@ -25,10 +25,6 @@ const StyledDotCard = styled(DotCard)`
   }
 `;
 
-const defaultHeader = (
-  <DotCardHeader title="Hello World" subheader="Well hello there" />
-);
-
 const complexHeaderAction = (
   <DotIconButton
     className="expand-button"
@@ -38,14 +34,22 @@ const complexHeaderAction = (
   />
 );
 
+const defaultHeader = (
+  <DotCardHeader
+    title="Hello World"
+    subheader="Well hello there"
+    action={complexHeaderAction}
+  />
+);
+
 const complexHeader = (
-  <CardHeader
+  <DotCardHeader
     avatar={avatar}
     action={complexHeaderAction}
     title="Timeline"
-    titleTypographyProps={{ variant: 'h2' }}
+    titleSize="large"
     subheader="Pick a card, any card!"
-    subheaderTypographyProps={{ variant: 'body1' }}
+    subheaderSize="large"
   />
 );
 
@@ -136,7 +140,7 @@ export const Default: Story<CardProps> = (args) => {
     default:
       selectedChildren = defaultHeaderContentAndFooterChildren;
   }
-  return <DotCard {...args} children={selectedChildren} />;
+  return <StyledDotCard {...args} children={selectedChildren} />;
 };
 
 export const ComplexCardWithMedia: Story<CardProps> = (args) => {
