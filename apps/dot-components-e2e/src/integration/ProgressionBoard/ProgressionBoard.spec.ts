@@ -1,7 +1,55 @@
 describe('dot-components: Progression Board component', () => {
-  beforeEach(() =>
+  before(() =>
     cy.visit('/iframe.html?id=experimental-progressionboard--default')
   );
+
+  describe('style decisions', () => {
+    it('maintain workitems should render as red', () => {
+      cy.get('li').should('have.class', 'maintain');
+      cy.get('li.maintain').should('have.css', 'color', 'rgb(105, 1, 0)');
+    });
+
+    it('improve workitems should render as green', () => {
+      cy.get('li').should('have.class', 'improve');
+      cy.get('li.improve').should('have.css', 'color', 'rgb(70, 127, 27)');
+    });
+
+    it('rogue commit icon should render as yellow', () => {
+      cy.get('i').should('have.class', 'icon-rogue-commits');
+      cy.get('i.icon-rogue-commits').should(
+        'have.css',
+        'color',
+        'rgb(234, 171, 0)'
+      );
+    });
+
+    it('error icon should render as red', () => {
+      cy.get('i').should('have.class', 'icon-error-outlines');
+      cy.get('i.icon-error-outlines').should(
+        'have.css',
+        'color',
+        'rgb(213, 33, 1)'
+      );
+    });
+
+    it('file icon should render as blue', () => {
+      cy.get('i').should('have.class', 'icon-file-dotted');
+      cy.get('i.icon-file-dotted').should(
+        'have.css',
+        'color',
+        'rgb(0, 82, 147)'
+      );
+    });
+
+    it('check icon should render as blue', () => {
+      cy.get('i').should('have.class', 'icon-check-solid');
+      cy.get('i.icon-check-solid').should(
+        'have.css',
+        'color',
+        'rgb(0, 169, 224)'
+      );
+    });
+  });
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-progression-board');
@@ -23,49 +71,5 @@ describe('dot-components: Progression Board component', () => {
       .should('contain', 'api')
       .and('contain', 'database')
       .and('contain', 'webstore');
-  });
-});
-
-describe('dot-components: Progression Board style decisions', () => {
-  it('maintain workitems should render as red', () => {
-    cy.get('li').should('have.class', 'maintain');
-    cy.get('li.maintain').should('have.css', 'color', 'rgb(105, 1, 0)');
-  });
-
-  it('improve workitems should render as green', () => {
-    cy.get('li').should('have.class', 'improve');
-    cy.get('li.improve').should('have.css', 'color', 'rgb(70, 127, 27)');
-  });
-
-  it('rogue commit icon should render as yellow', () => {
-    cy.get('i').should('have.class', 'icon-rogue-commits');
-    cy.get('i.icon-rogue-commits').should(
-      'have.css',
-      'color',
-      'rgb(234, 171, 0)'
-    );
-  });
-
-  it('error icon should render as red', () => {
-    cy.get('i').should('have.class', 'icon-error-outlines');
-    cy.get('i.icon-error-outlines').should(
-      'have.css',
-      'color',
-      'rgb(213, 33, 1)'
-    );
-  });
-
-  it('file icon should render as blue', () => {
-    cy.get('i').should('have.class', 'icon-file-dotted');
-    cy.get('i.icon-file-dotted').should('have.css', 'color', 'rgb(0, 82, 147)');
-  });
-
-  it('check icon should render as blue', () => {
-    cy.get('i').should('have.class', 'icon-check-solid');
-    cy.get('i.icon-check-solid').should(
-      'have.css',
-      'color',
-      'rgb(0, 169, 224)'
-    );
   });
 });
