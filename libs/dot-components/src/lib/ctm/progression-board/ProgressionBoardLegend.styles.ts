@@ -37,11 +37,13 @@ export const StyledProgressionLegend = styled.ul`
         margin-right: 9px;
 
         i {
-          &.icon-error-outlines {
+          &.icon-error-outlines,
+          &.icon-lock {
             color: #d52101;
           }
 
-          &.icon-error-solid {
+          &.icon-error-solid,
+          &.icon-file-dotted {
             color: #005293;
           }
 
@@ -51,10 +53,6 @@ export const StyledProgressionLegend = styled.ul`
 
           &.icon-rogue-commits {
             color: #eaab00;
-          }
-
-          &.icon-file-dotted {
-            color: #005293;
           }
 
           &.icon-pending-clock {
@@ -67,10 +65,6 @@ export const StyledProgressionLegend = styled.ul`
 
           &.icon-thumbs-down {
             color: #6d09a8;
-          }
-
-          &.icon-lock {
-            color: #d52101;
           }
         }
       }
