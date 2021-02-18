@@ -25,9 +25,11 @@ describe('dot-components: Auto Complete component', () => {
     });
 
     it('end adornment is styled correctly', () => {
-      cy.get('div.dot-autocomplete div.MuiAutocomplete-endAdornment')
-        .should('have.css', 'right', '9px')
-        .and('have.css', 'top', '4.81667px');
+      cy.get('div.dot-autocomplete div.MuiAutocomplete-endAdornment').should(
+        'have.css',
+        'right',
+        '9px'
+      );
     });
   });
 });
