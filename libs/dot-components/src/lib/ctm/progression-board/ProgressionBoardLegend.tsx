@@ -21,7 +21,7 @@ export const items: Array<LegendItem> = [
   },
   {
     className: 'maintain',
-    iconId: 'cancel',
+    iconId: 'circle-half-full',
     title: 'Trailing Commits (Defect)',
   },
   {
@@ -31,7 +31,7 @@ export const items: Array<LegendItem> = [
   },
   {
     className: 'improve',
-    iconId: 'cancel',
+    iconId: 'circle-half-full',
     title: 'Trailing Commits (Story)',
   },
   {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const rootClassName = 'dot-legend';
+export const rootClassName = 'dot-progression-board-legend';
 
 export const StyledProgressionLegend = styled.ul`
   &.${rootClassName} {
