@@ -3,6 +3,28 @@ describe('dot-components: Progression Board Legend component', () => {
     cy.visit('/iframe.html?id=experimental-progressionboardlegend--default')
   );
 
+  it('should have a dot- prefix', () => {
+    cy.get('ul').should('have.class', 'dot-progression-board-legend');
+  });
+
+  it('should render the legend items with icons', () => {
+    cy.get('li')
+      .should('contain', 'Defect')
+      .and('contain', 'Trailing Commits (Defect)')
+      .and('contain', 'Story')
+      .and('contain', 'Trailing Commits (Story)')
+      .and('contain', 'Other Workitem')
+      .and('contain', 'Test Coverage')
+      .and('contain', 'Quality Information')
+      .and('contain', 'Rogue Commits')
+      .and('contain', 'Pending Activity')
+      .and('contain', 'Delivery Forecast')
+      .and('contain', 'Activity or Control failed')
+      .and('contain', 'Completed Activities')
+      .and('contain', 'Failing Tests')
+      .and('contain', 'Security Violations');
+  });
+
   describe('style decisions', () => {
     it('maintain workitems should render as red', () => {
       cy.get('li').should('have.class', 'maintain');
@@ -57,27 +79,5 @@ describe('dot-components: Progression Board Legend component', () => {
         'rgb(0, 169, 224)'
       );
     });
-  });
-
-  it('should have a dot- prefix', () => {
-    cy.get('ul').should('have.class', 'dot-progression-board-legend');
-  });
-
-  it('should render the legend items with icons', () => {
-    cy.get('li')
-      .should('contain', 'Defect')
-      .and('contain', 'Trailing Commits (Defect)')
-      .and('contain', 'Story')
-      .and('contain', 'Trailing Commits (Story)')
-      .and('contain', 'Other Workitem')
-      .and('contain', 'Test Coverage')
-      .and('contain', 'Quality Information')
-      .and('contain', 'Rogue Commits')
-      .and('contain', 'Pending Activity')
-      .and('contain', 'Delivery Forecast')
-      .and('contain', 'Activity or Control failed')
-      .and('contain', 'Completed Activities')
-      .and('contain', 'Failing Tests')
-      .and('contain', 'Security Violations');
   });
 });
