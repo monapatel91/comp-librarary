@@ -12,12 +12,14 @@ describe('DotCard', () => {
     const avatar = (
       <DotAvatar alt="Batman" size="small" data-testid="test-avatar" />
     );
+    const action = <span>Do Something</span>;
     render(
       <DotCard className="custom-test-class" data-testid="test-card">
         <Fragment>
           <DotCardHeader
             data-testid="test-card-header"
             className="custom-test-class"
+            action={action}
             avatar={avatar}
             title="Cool Card"
             subheader="Ever so refreshing!"
@@ -43,6 +45,7 @@ describe('DotCard', () => {
     const cardContentTestId = screen.getByTestId('test-card-content');
     const cardFooterTestId = screen.getByTestId('test-card-footer');
     expect(avatarTestId).toBeVisible();
+    expect(screen.getByText('Do Something')).toBeVisible();
     expect(screen.getByText('This is some content')).toBeVisible();
     expect(screen.getByText('This is a footer')).toBeVisible();
     expect(screen.getByText('Cool Card')).toHaveClass('MuiCardHeader-title');
