@@ -15,7 +15,7 @@ import {
   StyledStageTimeline,
 } from './StageCard.styles';
 import { DotIconButton } from '../button/IconButton';
-import { CardMenuOption, DotCard } from '../card/Card';
+import { DotCard } from '../card/Card';
 import { DotStepCard } from '../step-card/StepCard';
 import { DotAvatar } from '../avatar/Avatar';
 import { CategoryType } from '../phase-header/PhaseHeader';
@@ -23,6 +23,11 @@ import { CategoryType } from '../phase-header/PhaseHeader';
 export interface StepObject {
   title: string;
   subheader: string;
+}
+
+export interface CardMenuOption {
+  displayText: string;
+  action: () => void;
 }
 
 export interface StageCardProps extends CommonProps {

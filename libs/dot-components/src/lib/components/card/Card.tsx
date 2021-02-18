@@ -3,10 +3,6 @@ import { Card } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
-export interface CardMenuOption {
-  displayText: string;
-  action: () => void;
-}
 export interface CardProps extends CommonProps {
   children: JSX.Element | string;
 }

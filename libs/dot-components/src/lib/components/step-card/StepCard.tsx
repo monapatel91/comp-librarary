@@ -6,7 +6,8 @@ import { rootClassName } from './StepCard.styles';
 import { DotIcon } from '../icon/Icon';
 import { DotIconButton } from '../button/IconButton';
 import { DotAvatar } from '../avatar/Avatar';
-import { DotCard, CardMenuOption } from '../card/Card';
+import { DotCard } from '../card/Card';
+import { CardMenuOption } from '../stage-card/StageCard';
 
 export interface TeamObject {
   name: string;
