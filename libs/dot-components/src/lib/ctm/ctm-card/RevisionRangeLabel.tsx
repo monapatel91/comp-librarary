@@ -2,7 +2,7 @@ import React from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import { DotLink } from '../../components/link/Link';
-import { parseRevURL } from '../progression-board/PackageVersion';
+import { parseRevURL } from '../progression-board/helper';
 
 export interface RevisionRangeLabelProps extends CommonProps {
   baseUrl: string;

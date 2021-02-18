@@ -8,16 +8,13 @@ import WorkItem from '../workitem/WorkItem';
 import Card, { CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
 import { PackageType, SelectWorkItem } from './ProgressionBoardInterfaces';
+import { parseRevURL } from './helper';
 
 export interface PackageDetailProps extends CommonProps {
   baseUrl: string;
   packageVer: PackageType;
   selectWorkitemProps: SelectWorkItem;
 }
-
-export const parseRevURL = (revFrom: number, revToId: string) => {
-  return `/flow/package_revision?id=${revToId}&from_revision=${revFrom}`;
-};
 
 export const ValidPackage = ({
   baseUrl,
