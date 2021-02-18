@@ -11,7 +11,7 @@ import DotAvatar from '../avatar/Avatar';
 import DotButton from '../button/Button';
 import { ReactComponent as CardMediaImage } from '../../assets/empty-state.svg';
 import { DotMenu, MenuItemProps } from '../menu/Menu';
-import DotIconButton from '../button/IconButton';
+import DotIcon from '../icon/Icon';
 
 const headerOnly = 'Header only';
 const headerAndContent = 'Header and content';
@@ -27,12 +27,13 @@ const StyledDotCard = styled(DotCard)`
 `;
 
 const menuButton = (
-  <DotIconButton
-    className="expand-button"
-    data-testid="card-header-action-button"
-    iconId="options"
-    size="medium"
-  />
+  <div style={{ padding: '10px 0 0' }}>
+    <DotIcon
+      data-testid="card-header-action-button"
+      fontSize="inherit"
+      iconId="options"
+    />
+  </div>
 );
 
 const menuItems: MenuItemProps[] = [
