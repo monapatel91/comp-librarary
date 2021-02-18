@@ -35,7 +35,12 @@ export const StyledIcon = styled(Icon)`
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
-
+        &.icon-check-outlined:before {
+          content: "\\e9c7";
+        }
+        &.icon-circle-half-full:before {
+          content: "\\e9c8";
+        }
         &.icon-host:before {
           content: '\\e9b9';
         }

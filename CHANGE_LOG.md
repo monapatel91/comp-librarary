@@ -12,6 +12,15 @@
 - **RadioGroup**: moved to Components
 - **StageCard**: added `avatar` prop
 
+### Experimental
+
+- **PackageVersion** - convert to functional component
+- **Phase** - convert to functional component
+- **ProgressionBoard** - convert to functional component
+- **RevisionRangeLabel** - convert to functional component
+- **SwimLane** - convert to functional component
+- **WorkItem** - convert to functional component
+
 ## 0.0.0-alpha.8
 
 - **AppToolbar**: fixed postion styles so the AppTollbar is always flush to top, left, and right

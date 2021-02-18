@@ -68,10 +68,11 @@ p {
 main {
   display: flex;
   flex-direction: row;
-  height: 100vh;
-  padding-top: 48px;
-  width: 100vw;
+  height: calc(100vh - 48px);
   overflow: hidden;
+  position: relative;
+  top: 48px;
+  width: 100vw;
 
   section.main-content {
     padding: 8px * 2;

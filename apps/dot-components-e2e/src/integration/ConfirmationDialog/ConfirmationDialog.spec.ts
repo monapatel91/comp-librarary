@@ -1,5 +1,5 @@
 describe('dot-components: Confirmation Dialog component', () => {
-  beforeEach(() =>
+  before(() =>
     cy.visit('/iframe.html?id=experimental-confirmation-dialog--default')
   );
 
