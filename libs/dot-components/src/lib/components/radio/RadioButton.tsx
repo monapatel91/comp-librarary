@@ -14,7 +14,7 @@ export type RadioSize = 'medium' | 'small';
 export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
 
 export interface RadioButtonBaseProps extends CommonProps {
-  /** id of radio button' */
+  /** id of radio button */
   id?: string;
   /** label placement options available 'bottom' | 'end' | 'start' */
   labelPlacement?: RadioLabelPlacement;
@@ -33,7 +33,7 @@ export interface RadioButtonProps extends RadioButtonBaseProps {
   checked?: boolean;
   /** if true makes the radio button disabled */
   disabled?: boolean;
-  /** text displayed next to the radio buttom */
+  /** text displayed next to the radio button */
   label?: string;
   /** A function that should be executed when the value of the radio buttom changes */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
@@ -43,13 +43,13 @@ export function DotRadioButton({
   checked,
   className,
   'data-testid': dataTestId,
-  disabled = false,
+  disabled,
   id,
   label,
   labelPlacement = 'end',
   name,
   onChange,
-  required = false,
+  required,
   size = 'medium',
   value,
 }: RadioButtonProps) {

@@ -23,7 +23,7 @@
 - **RadioButton**: added `required` prop
 - **RadioGroup**: added `required` prop
 - **RadioGroup**: added NEW `RadioGroup` component
-- **RadioGroup**: added `row` prop to be consistent with material-ui and checkboxes and allow for qiuck roup layout change
+- **RadioGroup**: added `row` prop to be consistent with material-ui and checkboxes and allow for group layout change from row to column.
 - **RadioButton**: moved to Components
 - **RadioGroup**: moved to Components
 
