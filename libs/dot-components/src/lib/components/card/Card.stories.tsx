@@ -8,9 +8,10 @@ import { DotCardHeader } from './CardHeader';
 import { DotCardContent } from './CardContent';
 import { DotCardFooter } from './CardFooter';
 import DotAvatar from '../avatar/Avatar';
-import DotIconButton from '../button/IconButton';
 import DotButton from '../button/Button';
 import { ReactComponent as CardMediaImage } from '../../assets/empty-state.svg';
+import { DotMenu, MenuItemProps } from '../menu/Menu';
+import DotIconButton from '../button/IconButton';
 
 const headerOnly = 'Header only';
 const headerAndContent = 'Header and content';
@@ -25,7 +26,7 @@ const StyledDotCard = styled(DotCard)`
   }
 `;
 
-const complexHeaderAction = (
+const menuButton = (
   <DotIconButton
     className="expand-button"
     data-testid="card-header-action-button"
@@ -34,18 +35,32 @@ const complexHeaderAction = (
   />
 );
 
+const menuItems: MenuItemProps[] = [
+  { children: <span>Some option</span> },
+  { children: <span>Some other option</span> },
+];
+
+const headerAction = (
+  <DotMenu
+    id="card-menu"
+    buttonContent={menuButton}
+    menuPlacement="bottom-start"
+    menuItems={menuItems}
+  />
+);
+
 const defaultHeader = (
   <DotCardHeader
     title="Hello World"
     subheader="Well hello there"
-    action={complexHeaderAction}
+    action={headerAction}
   />
 );
 
 const complexHeader = (
   <DotCardHeader
     avatar={avatar}
-    action={complexHeaderAction}
+    action={headerAction}
     title="Timeline"
     titleSize="large"
     subheader="Pick a card, any card!"
