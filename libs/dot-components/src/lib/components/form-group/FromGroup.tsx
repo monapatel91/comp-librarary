@@ -18,7 +18,7 @@ export function DotFormGroup({
   className,
   children,
   'data-testid': dataTestId,
-  row = false,
+  row,
 }: FormGroupProps) {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 

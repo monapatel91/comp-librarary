@@ -49,9 +49,9 @@ export function DotRadioGroup({
   className,
   'data-testid': dataTestId,
   defaultValue,
-  disableGroup = false,
+  disableGroup,
   endIcon,
-  error = false,
+  error,
   helperText,
   groupLabel,
   name,
@@ -60,8 +60,8 @@ export function DotRadioGroup({
   value,
   options,
   startIcon,
-  required = false,
-  row = false,
+  required,
+  row,
   size = 'medium',
 }: RadioGroupProps) {
   const placement = `${placementClassName}${labelPlacement}`;

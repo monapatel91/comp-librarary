@@ -26,7 +26,7 @@ export function DotCheckbox({
   labelPlacement,
   name,
   onChange,
-  required = false,
+  required,
   size = 'medium',
   value,
 }: CheckboxProps) {
