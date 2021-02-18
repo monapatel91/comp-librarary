@@ -8,7 +8,7 @@ import WorkItem from '../workitem/WorkItem';
 import Card, { CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
 import { PackageType, SelectWorkItem } from './ProgressionBoardInterfaces';
-import { parseRevURL } from './helper';
+import { parseRevURL } from './parseRevURL';
 
 export interface PackageDetailProps extends CommonProps {
   baseUrl: string;
