@@ -10,7 +10,6 @@
 - **RadioGroup**: added NEW `RadioGroup` component
 - **RadionButton**: moved to Components
 - **RadioGroup**: moved to Components
-- **StageCard**: added `avatar` prop
 
 ### Experimental
 
@@ -18,6 +17,7 @@
 - **Phase** - convert to functional component
 - **ProgressionBoard** - convert to functional component
 - **RevisionRangeLabel** - convert to functional component
+- **StageCard**: added `avatar` prop
 - **SwimLane** - convert to functional component
 - **WorkItem** - convert to functional component
 
