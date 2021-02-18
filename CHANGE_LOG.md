@@ -10,6 +10,7 @@
 - **RadioGroup**: added NEW `RadioGroup` component
 - **RadionButton**: moved to Components
 - **RadioGroup**: moved to Components
+- **StageCard**: added `avatar` prop
 
 ## 0.0.0-alpha.8
 

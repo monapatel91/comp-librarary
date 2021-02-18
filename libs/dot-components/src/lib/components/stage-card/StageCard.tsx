@@ -17,7 +17,6 @@ import {
 import { DotIconButton } from '../button/IconButton';
 import { DotCard } from '../card/Card';
 import { DotStepCard } from '../step-card/StepCard';
-import { DotAvatar } from '../avatar/Avatar';
 import { CategoryType } from '../phase-header/PhaseHeader';
 
 export interface StepObject {
@@ -31,16 +30,18 @@ export interface CardMenuOption {
 }
 
 export interface StageCardProps extends CommonProps {
+  avatar?: JSX.Element;
+  menuOptions?: Array<CardMenuOption>;
+  phaseColor: CategoryType;
   steps: Array<StepObject>;
   title: string;
-  phaseColor: CategoryType;
-  menuOptions?: Array<CardMenuOption>;
 }
 
 /**
  * @experimental This component is still in development
  */
 export const DotStageCard = ({
+  avatar,
   className,
   'data-testid': dataTestId,
   menuOptions = [],
@@ -114,10 +115,7 @@ export const DotStageCard = ({
             titleTypographyProps={{ variant: 'h4' }}
           />
           <CardActions className="dot-card-actions">
-            <DotAvatar
-              size="small"
-              alt="THIS MUST BE CHANGED ONCE WE HAVE REAL AVATARS HERE"
-            />
+            {avatar}
             {steps.length > 0 && (
               <DotIconButton
                 className={`expand-button ${stepsVisible ? 'visible' : ''}`}
