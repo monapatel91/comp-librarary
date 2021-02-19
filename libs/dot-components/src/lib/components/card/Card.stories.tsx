@@ -69,14 +69,14 @@ const defaultHeader = (
   <DotCardHeader
     title="Hello World"
     subheader="Well hello there"
-    action={<MenuAction/>}
+    action={<MenuAction />}
   />
 );
 
 const complexHeader = (
   <DotCardHeader
     avatar={avatar}
-    action={<MenuAction/>}
+    action={<MenuAction />}
     title="Timeline"
     titleSize="large"
     subheader="Pick a card, any card!"
