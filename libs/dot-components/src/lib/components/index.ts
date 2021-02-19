@@ -5,14 +5,11 @@ export * from './breadcrumbs/Breadcrumbs';
 export * from './button/Button';
 export * from './button/IconButton';
 export * from './card/Card';
-<<<<<<< HEAD
 export * from './card/CardContent';
 export * from './card/CardFooter';
 export * from './card/CardHeader';
-=======
 export * from './checkbox/Checkbox';
 export * from './checkbox/CheckboxGroup';
->>>>>>> 4fcb265 (issueL: #211 change experimental to components, updated change log, fixed unit tests)
 export * from './chip/Chip';
 export * from './confirmation-dialog/ConfirmationDialog';
 export * from './dialog/Dialog';

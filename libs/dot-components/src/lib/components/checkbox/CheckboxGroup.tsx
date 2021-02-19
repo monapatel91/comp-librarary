@@ -48,9 +48,9 @@ export function DotCheckboxGroup({
   labelPlacement,
   onChange,
   options,
-  showSelectAll,
-  required,
-  row,
+  showSelectAll = false,
+  required = false,
+  row = false,
   selectAllLabel = 'Select All',
   startIcon,
   size = 'medium',
@@ -79,8 +79,10 @@ export function DotCheckboxGroup({
   };
 
   const handleSelectAll = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedOptions(event.target.checked ? options : []);
+    const _selectedOptions = event.target.checked ? options : [];
+    setSelectedOptions(_selectedOptions);
     setAllChecked(event.target.checked);
+    onChange(event, _selectedOptions);
   };
 
   const renderOptions = options
@@ -94,9 +96,8 @@ export function DotCheckboxGroup({
               ) || allChecked
             }
             disabled={disabled || disableGroup}
-            key={value}
-            label={label}
             name={name}
+            label={label}
             labelPlacement={labelPlacement}
             onChange={(event) => handleChange(event, { label, value })}
             size={size}

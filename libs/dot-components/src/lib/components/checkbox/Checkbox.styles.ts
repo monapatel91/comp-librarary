@@ -1,10 +1,12 @@
 import { Checkbox } from '@material-ui/core';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-checkbox';
 
 export const StyledCheckbox = styled(Checkbox)`
-  &.${rootClassName} {
-    padding: 8px;
-  }
+  ${({ theme }) => css`
+    &.${rootClassName} {
+      padding: ${theme.spacing(1)}px;
+    }
+  `}
 `;
