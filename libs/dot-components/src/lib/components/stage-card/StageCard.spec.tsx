@@ -3,8 +3,7 @@ import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import { CategoryType } from '../phase-header/PhaseHeader';
-import { CardMenuOption } from '../card/Card';
-import DotStageCard from './StageCard';
+import { DotStageCard, CardMenuOption } from './StageCard';
 
 const dummySteps = [
   { title: 'Batman', subheader: 'Bruce Wayne' },

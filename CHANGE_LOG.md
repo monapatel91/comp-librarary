@@ -2,6 +2,10 @@
 
 ## Current
 
+- **Card**: refactored to be a lightweight wrapper component.
+- **CardContent**: Create the card content component.
+- **CardFooter**: Create the card footer component.
+- **CardHeader**: Create the card header component.
 - **RadionButton**: added NEW `RadioButton` component
 - **RadioGroup**: added NEW `RadioGroup` component
 - **RadionButton**: moved to Components
@@ -13,6 +17,7 @@
 - **Phase** - convert to functional component
 - **ProgressionBoard** - convert to functional component
 - **RevisionRangeLabel** - convert to functional component
+- **StageCard**: added `avatar` prop
 - **SwimLane** - convert to functional component
 - **WorkItem** - convert to functional component
 

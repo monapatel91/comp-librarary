@@ -6,7 +6,8 @@ describe('dot-components: Stage Card component', () => {
   });
 
   it('should render the component', () => {
-    cy.get('h6').should('contain', 'Some name');
+    cy.get('span').should('contain', 'Some name');
+    cy.get('span').should('have.class', 'MuiTypography-h4');
     cy.get('i').should('have.class', 'icon-options');
   });
 });

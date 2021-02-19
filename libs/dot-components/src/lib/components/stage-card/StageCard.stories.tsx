@@ -2,12 +2,16 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import { DotStageCard, StageCardProps } from './StageCard';
+import DotAvatar from '../avatar/Avatar';
 import { CategoryType } from '../phase-header/PhaseHeader';
+
+const avatar = <DotAvatar text="BM" alt="Batman" />;
 
 export default {
   title: 'Experimental/Stage Card',
   component: DotStageCard,
   argTypes: {
+    avatar: { defaultValue: avatar },
     title: { defaultValue: 'Some name' },
     menuOptions: {
       defaultValue: [
