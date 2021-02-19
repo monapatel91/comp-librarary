@@ -8,4 +8,14 @@ describe('dot-components: Progress component', () => {
   it('should render the component', () => {
     cy.get('svg').should('have.class', 'MuiCircularProgress-svg');
   });
+
+  describe('style decisions', () => {
+    it('color', () => {
+      cy.get('div.dot-progress').should(
+        'have.css',
+        'color',
+        'rgb(61, 108, 158)'
+      );
+    });
+  });
 });

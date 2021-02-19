@@ -8,4 +8,12 @@ describe('dot-components: Skeleton component', () => {
   it('should render the component', () => {
     cy.get('span').should('have.class', 'MuiSkeleton-root');
   });
+
+  describe('style decisions', () => {
+    it('container', () => {
+      cy.get('span.dot-skeleton')
+        .should('have.css', 'background-color', 'rgba(59, 72, 92, 0.11)')
+        .and('have.css', 'overflow', 'hidden');
+    });
+  });
 });
