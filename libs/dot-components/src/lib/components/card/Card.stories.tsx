@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import { Typography, CardMedia } from '@material-ui/core';
+import React, { Fragment, MouseEvent, useState } from 'react';
+import { Typography, CardMedia, Menu, MenuItem } from '@material-ui/core';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import styled from 'styled-components';
 
@@ -25,27 +25,58 @@ const StyledDotCard = styled(DotCard)`
   }
 `;
 
-const headerAction = (
-  <DotIconButton
-    className="expand-button"
-    data-testid="card-header-action-button"
-    iconId="options"
-    size="medium"
-  />
-);
+const MenuAction = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [open, setOpen] = useState(false);
+
+  const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(true);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setOpen(false);
+  };
+
+  return (
+    <Fragment>
+      <DotIconButton
+        className="expand-button"
+        data-testid="card-header-action-button"
+        iconId="options"
+        size="medium"
+        onClick={handleMenuClick}
+      />
+      <Menu
+        anchorEl={anchorEl}
+        keepMounted
+        open={open}
+        onClose={handleMenuClose}
+      >
+        <MenuItem key="opt1" onClick={handleMenuClose}>
+          Some option
+        </MenuItem>
+        <MenuItem key="opt2" onClick={handleMenuClose}>
+          Some other option
+        </MenuItem>
+      </Menu>
+    </Fragment>
+  );
+};
 
 const defaultHeader = (
   <DotCardHeader
     title="Hello World"
     subheader="Well hello there"
-    action={headerAction}
+    action={<MenuAction/>}
   />
 );
 
 const complexHeader = (
   <DotCardHeader
     avatar={avatar}
-    action={headerAction}
+    action={<MenuAction/>}
     title="Timeline"
     titleSize="large"
     subheader="Pick a card, any card!"
