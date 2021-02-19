@@ -16,6 +16,7 @@
 - **PackageVersion** - convert to functional component
 - **Phase** - convert to functional component
 - **ProgressionBoard** - convert to functional component
+- **ProgressionBoardLegend** - cleaned up DOM structure, converted workitems to icons
 - **RevisionRangeLabel** - convert to functional component
 - **StageCard**: added `avatar` prop
 - **SwimLane** - convert to functional component
