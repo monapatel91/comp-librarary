@@ -1,20 +1,31 @@
 ---
-name: Component review
-about: 'Review & refactor component'
-title: 'Component Review: '
-labels: UX, refactor
-assignees: BojanKocijan, CWSites
+name: New/Existing Component Review
+about: 'review component request, ensure standards are met and if new component gather requirements'
+title: 'Component: '
+labels:
+assignees:
 ---
 
-The `[COMPONENT]` component is an existing component that needs to be converted to be a styled component, its API needs to be updated to be consistent with other components in the library, and it needs to go through a UX review to make sure that it matches up with design specifications.
+## New Component
 
-- [ ] Convert to styled components
+`[COMPONENT]` doesn't currently exist and no other component currently meets our needs.
+
+### Acceptance Criteria
+
+- [ ] What is needed for this component to address needs
+- [ ] Functionality requirements
+- [ ] Formatting requirements
+- [ ] Component matches mockup (need link from UX)
+
+## Existing Component
+
+The existing `[COMPONENT]` component needs to be reviewed and updated to follow our standards.
+
+# Component Standards
+
+- [ ] Styles should be added via styled component
 - [ ] Review API and make sure that it is consistent with other components and ensure it is documented accurately
-- [ ] UX review based on [mockups](https://www.figma.com/file/Ol8PQ9xs58n7I5uWJr9xNa/dot-components-library)
-- [ ] Add commonProps for each component
+- [ ] Component props should expand commonProps
 - [ ] Update change log with updates made
-- [ ] Move the component into the Component section in Storybook
-- [ ] Remove the experimental comment above the component implementation
-
-### UX Acceptance Criteria
-- [ ] Need @BojanKocijan's review
+- [ ] Component should be in proper section `Components` or `Experimental`
+- [ ] UX review to ensure design matches mockup (need link from UX)
