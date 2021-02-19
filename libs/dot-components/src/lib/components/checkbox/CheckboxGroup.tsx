@@ -97,6 +97,7 @@ export function DotCheckboxGroup({
             }
             disabled={disabled || disableGroup}
             name={name}
+            key={value}
             label={label}
             labelPlacement={labelPlacement}
             onChange={(event) => handleChange(event, { label, value })}
