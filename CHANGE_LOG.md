@@ -14,7 +14,6 @@
 - **CardHeader**: Create the card header component.
 - **Checkbox**: added NEW `Checkbox` component
 - **CheckboxGroup**: added NEW `CheckboxGroup` component
-- **CheckboxGroup**: added NEW `CheckboxGroup` component
 - **FormGroup**: added NEW `FormGroup` component
 - **InputFormFields**: changed `required` from being a required prop to optional
 - **InputText**: added comments to interface
