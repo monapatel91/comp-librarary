@@ -79,7 +79,7 @@ export const legendItems: Array<LegendItem> = [
 
 export interface ProgressionBoardLegendProps extends CommonProps {
   /** Array of legend items to display */
-  items: Array<LegendItem>;
+  items?: Array<LegendItem>;
 }
 
 export const DotProgressionBoardLegend = ({
