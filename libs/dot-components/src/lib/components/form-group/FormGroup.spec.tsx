@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 
-import { DotFormGroup } from './FromGroup';
+import { DotFormGroup } from './FormGroup';
 
 describe('FormGroup', () => {
   describe('Props', () => {

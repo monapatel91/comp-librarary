@@ -16,7 +16,7 @@ import {
   checkboxListItemClassName,
 } from './CheckboxGroup.styles';
 import { RadioGroupBaseProps } from '../radio/RadioGroup';
-import DotFormGroup from '../form-group/FromGroup';
+import DotFormGroup from '../form-group/FormGroup';
 import { DotCheckbox, CheckboxProps } from '../checkbox/Checkbox';
 
 export interface CheckboxGroupProps extends RadioGroupBaseProps {
@@ -94,8 +94,9 @@ export function DotCheckboxGroup({
               ) || allChecked
             }
             disabled={disabled || disableGroup}
-            name={name}
+            key={value}
             label={label}
+            name={name}
             labelPlacement={labelPlacement}
             onChange={(event) => handleChange(event, { label, value })}
             size={size}

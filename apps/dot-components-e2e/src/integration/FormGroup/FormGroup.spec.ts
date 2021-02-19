@@ -1,5 +1,5 @@
 describe('dot-components: CheckboxGroup component', () => {
-  beforeEach(() => cy.visit('/iframe.html?id=components-form-group--default'));
+  before(() => cy.visit('/iframe.html?id=components-form-group--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('label').should('have.class', 'dot-form-control-label');

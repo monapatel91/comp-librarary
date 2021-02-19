@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { DotFormGroup, FormGroupProps } from './FromGroup';
+import { DotFormGroup, FormGroupProps } from './FormGroup';
 import DotIcon from '../icon/Icon';
 import { DotCheckbox } from '../checkbox/Checkbox';
 import { DotInputText } from '../input-form-fields/InputText';
