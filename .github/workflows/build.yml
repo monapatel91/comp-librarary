@@ -8,6 +8,7 @@ on:
 jobs:
   get-version:
     name: Get Version Number for Build
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     outputs:
       version-string: ${{ steps.get_version.outputs.VERSION }}
