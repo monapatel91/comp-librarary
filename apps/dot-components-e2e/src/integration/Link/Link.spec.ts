@@ -11,9 +11,7 @@ describe('dot-components: Link component', () => {
 
   describe('style decisions', () => {
     it('font format', () => {
-      cy.get('a.dot-link')
-        .should('have.css', 'color', 'rgb(61, 108, 158)')
-        .and('have.css', 'text-decoration', 'underline rgb(61, 108, 158)');
+      cy.get('a.dot-link').should('have.css', 'color', 'rgb(61, 108, 158)');
     });
   });
 });
