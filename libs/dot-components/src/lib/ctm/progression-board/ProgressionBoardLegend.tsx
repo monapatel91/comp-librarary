@@ -13,7 +13,7 @@ interface LegendItem {
   title: string;
 }
 
-export const items: Array<LegendItem> = [
+export const legendItems: Array<LegendItem> = [
   {
     className: 'maintain',
     iconId: 'circle',
@@ -85,7 +85,7 @@ export interface ProgressionBoardLegendProps extends CommonProps {
 export const DotProgressionBoardLegend = ({
   className,
   'data-testid': dataTestId,
-  items,
+  items = legendItems,
 }: ProgressionBoardLegendProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   return (

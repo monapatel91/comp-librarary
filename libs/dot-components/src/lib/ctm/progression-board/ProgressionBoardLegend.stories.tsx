@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react/types-6-0';
 
 import {
   DotProgressionBoardLegend,
-  items as sampleItems,
+  legendItems,
   ProgressionBoardLegendProps,
 } from './ProgressionBoardLegend';
 
@@ -11,7 +11,7 @@ export default {
   title: 'Experimental/ProgressionBoardLegend',
   component: DotProgressionBoardLegend,
   argTypes: {
-    items: { defaultValue: sampleItems },
+    items: { defaultValue: legendItems },
   },
 } as Meta;
 
