@@ -1,6 +1,6 @@
 # Change Log
 
-## Current
+## 0.0.0-alpha.9
 
 > **BREAKING CHANGE: RadioButton** removed unneeded `ariaLabel` prop
 
