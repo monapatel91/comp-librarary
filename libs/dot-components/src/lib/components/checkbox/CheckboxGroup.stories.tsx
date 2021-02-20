@@ -1,37 +1,38 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-
-import { DotRadioGroup, RadioGroupProps } from './RadioGroup';
+import {
+  DotCheckboxGroup,
+  CheckboxGroupProps,
+} from '../checkbox/CheckboxGroup';
 import DotIcon from '../icon/Icon';
 
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
-  title: 'Components/Radio Group',
-  component: DotRadioGroup,
+  title: 'Components/Checkbox Group',
+  component: DotCheckboxGroup,
   argTypes: {
-    ariaLabel: { defaultValue: 'Accessibility for the win' },
-    name: { defaultValue: 'dot-radio-group' },
+    name: { defaultValue: 'dot-checkbox-group' },
     onChange: {
       action: 'clicked',
     },
-    value: { defaultValue: 'item-2' },
     groupLabel: { defaultValue: 'Group of items' },
+    endIcon: { control: { type: 'select', options: iconOptions } },
+    startIcon: { control: { type: 'select', options: iconOptions } },
     options: {
       defaultValue: [
         { label: 'item 1', value: 'item-1' },
         { label: 'item 2', value: 'item-2' },
         { label: 'item 3', value: 'item-3' },
-        { label: 'item 4', value: 'item-4', disabled: true },
+        { label: 'item 4', value: 'item-4' },
       ],
     },
-    endIcon: { control: { type: 'select', options: iconOptions } },
-    startIcon: { control: { type: 'select', options: iconOptions } },
+    showSelectAll: { defaultValue: true },
   },
 } as Meta;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Default: Story<RadioGroupProps> = (args: any) => {
+export const Default: Story<CheckboxGroupProps> = (args: any) => {
   const {
     endIcon: endIconId,
     startIcon: startIconId,
@@ -41,5 +42,5 @@ export const Default: Story<RadioGroupProps> = (args: any) => {
   } = args;
   const endIcon = endIconId && <DotIcon iconId={endIconId} />;
   const startIcon = startIconId && <DotIcon iconId={startIconId} />;
-  return <DotRadioGroup {...args} startIcon={startIcon} endIcon={endIcon} />;
+  return <DotCheckboxGroup {...args} startIcon={startIcon} endIcon={endIcon} />;
 };

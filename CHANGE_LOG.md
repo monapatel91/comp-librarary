@@ -2,13 +2,28 @@
 
 ## Current
 
+> **BREAKING CHANGE: RadioButton** removed unneeded `ariaLabel` prop
+
+  <br />
+  
+  > **BREAKING CHANGE: RadioGroup** `radioButtons` prop to `options` to use base props for `RadioGroup` and `CheckboxGroup`
+
 - **Card**: refactored to be a lightweight wrapper component.
 - **CardContent**: Create the card content component.
 - **CardFooter**: Create the card footer component.
 - **CardHeader**: Create the card header component.
-- **RadionButton**: added NEW `RadioButton` component
+- **Checkbox**: added NEW `Checkbox` component
+- **CheckboxGroup**: added NEW `CheckboxGroup` component
+- **FormGroup**: added NEW `FormGroup` component
+- **InputFormFields**: changed `required` from being a required prop to optional
+- **InputText**: added comments to interface
+- **RadioButton**: added NEW `RadioButton` component
+- **RadioButton**: added `id` prop
+- **RadioButton**: added `required` prop
+- **RadioGroup**: added `required` prop
 - **RadioGroup**: added NEW `RadioGroup` component
-- **RadionButton**: moved to Components
+- **RadioGroup**: added `row` prop to be consistent with material-ui and checkboxes and allow for group layout change from row to column.
+- **RadioButton**: moved to Components
 - **RadioGroup**: moved to Components
 
 ### Experimental

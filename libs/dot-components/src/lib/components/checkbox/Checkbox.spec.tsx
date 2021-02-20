@@ -1,43 +1,39 @@
 import React from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { DotRadioButton } from './RadioButton';
+import { DotCheckbox } from './Checkbox';
 
-describe('DotRadioButton', () => {
+describe('DotCheckbox', () => {
+  it('should render the medium size', () => {
+    render(<DotCheckbox value="test-value" data-testid="test-checkbox" />);
+
+    expect(
+      screen.getByTestId('test-checkbox').querySelector('svg')
+    ).not.toHaveClass('MuiSvgIcon-fontSizeSmall');
+  });
   describe('Props', () => {
-    it('should render the medium size', () => {
-      render(<DotRadioButton value="test-value" data-testid="test-radio" />);
-
-      expect(
-        screen.getByTestId('test-radio').querySelector('svg')
-      ).not.toHaveClass('MuiSvgIcon-fontSizeSmall');
-    });
     it('should render with all props', () => {
       const { baseElement } = render(
-        <DotRadioButton
+        <DotCheckbox
           checked
           className="custom-test-class"
-          data-testid="test-radio"
+          data-testid="test-checkbox"
           disabled
-          id="test-id"
           label="Test label"
           labelPlacement="bottom"
           name="test-name"
-          required
           size="small"
           value="test-value"
         />
       );
 
-      const input = screen.getByRole('radio');
-      const testId = screen.getByTestId('test-radio');
+      const input = screen.getByRole('checkbox');
+      const testId = screen.getByTestId('test-checkbox');
       const formControlLabel = baseElement.querySelector('label');
 
       expect(input).toHaveAttribute('checked');
       expect(testId).toBeVisible();
       expect(input).toHaveAttribute('disabled');
-      expect(input).toHaveAttribute('required');
-      expect(input).toHaveAttribute('id', 'test-id');
       expect(formControlLabel).toHaveClass('custom-test-class');
       expect(baseElement.querySelector('svg')).toHaveClass(
         'MuiSvgIcon-fontSizeSmall'
@@ -51,10 +47,10 @@ describe('DotRadioButton', () => {
     });
     it('should render with label placed at the bottom', () => {
       const { baseElement } = render(
-        <DotRadioButton
+        <DotCheckbox
           checked
           className="custom-test-class"
-          data-testid="test-radio"
+          data-testid="test-checkbox"
           disabled
           label="Test label"
           labelPlacement="start"
@@ -68,12 +64,12 @@ describe('DotRadioButton', () => {
         'MuiFormControlLabel-labelPlacementStart'
       );
     });
-    it('should render medium radio button size', () => {
+    it('should render medium checkbox button size', () => {
       const { baseElement } = render(
-        <DotRadioButton
+        <DotCheckbox
           checked
           className="custom-test-class"
-          data-testid="test-radio"
+          data-testid="test-checkbox"
           disabled
           label="Test label"
           labelPlacement="start"

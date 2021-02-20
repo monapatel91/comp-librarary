@@ -10,8 +10,11 @@ import {
 } from './InputFormFields.styles';
 
 export interface InputTextProps extends InputProps {
+  /** if multiline it wil render multiple lines */
   multiline?: boolean;
+  /** number of rows for multiline line */
   rows?: number;
+  /** max of rows for multiline line */
   rowsMax?: number;
 }
 
