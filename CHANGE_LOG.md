@@ -1,6 +1,6 @@
 # Change Log
 
-- **CheckboxGroup**: fixed harded coded select all state to be dynamic
+- **CheckboxGroup**: fixed hardcoded coded select all state to be dynamic.
 
 ## 0.0.0-alpha.9
 
