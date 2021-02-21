@@ -1,5 +1,7 @@
 # Change Log
 
+- **CheckboxGroup**: fixed harded coded select all state to be dynamic
+
 ## 0.0.0-alpha.9
 
 > **BREAKING CHANGE: RadioButton** removed unneeded `ariaLabel` prop
