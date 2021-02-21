@@ -7,7 +7,7 @@
   <br />
   
   > **BREAKING CHANGE: RadioGroup** `radioButtons` prop to `options` to use base props for `RadioGroup` and `CheckboxGroup`
-
+- **ActionToolbar**: added to index exports
 - **Card**: refactored to be a lightweight wrapper component.
 - **CardContent**: Create the card content component.
 - **CardFooter**: Create the card footer component.
@@ -17,6 +17,7 @@
 - **FormGroup**: added NEW `FormGroup` component
 - **InputFormFields**: changed `required` from being a required prop to optional
 - **InputText**: added comments to interface
+- **InputText**: added missing `value` prop
 - **RadioButton**: added NEW `RadioButton` component
 - **RadioButton**: added `id` prop
 - **RadioButton**: added `required` prop
