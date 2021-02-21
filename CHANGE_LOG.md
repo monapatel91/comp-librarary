@@ -1,5 +1,10 @@
 # Change Log
 
+## Current
+
+- **ActionToolbar**: added to index exports
+- **InputText**: added missing `value` prop
+
 ## 0.0.0-alpha.9
 
 > **BREAKING CHANGE: RadioButton** removed unneeded `ariaLabel` prop
