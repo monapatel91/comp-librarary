@@ -9,9 +9,6 @@ export default {
   title: 'Components/Chip',
   component: DotChip,
   argTypes: {
-    avatar: {
-      defaultValue: <DotAvatar alt="Batman" size="small" />,
-    },
     children: { defaultValue: 'Hello World' },
     disabled: { defaultValue: false },
     isClickable: { defaultValue: true },
@@ -23,8 +20,16 @@ export default {
       action: 'deleted',
     },
     size: { defaultValue: 'medium' },
-    startIcon: { defaultValue: <DotIcon iconId="home" /> },
   },
 } as Meta;
 
-export const Default: Story<ChipProps> = (args) => <DotChip {...args} />;
+export const Default: Story<ChipProps> = (args) => (
+  <DotChip
+    avatar={<DotAvatar alt="Batman" size="small" />}
+    startIcon={null}
+    {...args}
+  />
+);
+export const ChipWithIcon: Story<ChipProps> = (args) => (
+  <DotChip avatar={null} startIcon={<DotIcon iconId="home" />} {...args} />
+);
