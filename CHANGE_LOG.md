@@ -1,6 +1,6 @@
 # Change Log
 
-## Current
+## 0.0.0-alpha.10
 
 - **ActionToolbar**: added to index exports
 - **InputText**: added missing `value` prop
