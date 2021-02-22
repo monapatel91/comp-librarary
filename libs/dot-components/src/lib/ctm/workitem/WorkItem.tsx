@@ -5,7 +5,7 @@ import {
   SelectWorkItem,
   WorkItemType,
 } from '../progression-board/ProgressionBoardInterfaces';
-import { Tooltip } from '@material-ui/core';
+import WorkItemTooltip from './WorkItemTooltip';
 
 export interface WorkItemProps extends CommonProps {
   baseUrl: string;
@@ -34,33 +34,26 @@ export const WorkItem = ({
     selectWorkitem(_id);
   };
 
-  const truncate = (str: string) => {
-    return str.length > 20 ? str.substring(0, 17) + '...' : str;
-  }
-
-  const buildTooLtip = () => {
-    const truncated_title = truncate(title)
-    return(
-      <div>
-        ({value_goal}) {external_key}
-        <br />
-        {truncated_title}
-      </div>
-    )
-  }
+  const workItem = (
+    <li
+      className={rootClasses}
+      data-testid={dataTestId}
+      onClick={() =>
+        window.open(baseUrl + `/flow/workitem_detail?id=${_id}`, '_blank')
+      }
+      onMouseEnter={hoverThing}
+      onMouseLeave={deSelectWorkitem}
+    />
+  );
 
   return (
-    <Tooltip title={buildTooLtip()}>
-        <li
-          className={rootClasses}
-          data-testid={dataTestId}
-          onClick={() =>
-            window.open(baseUrl + `/flow/workitem_detail?id=${_id}`, '_blank')
-          }
-          onMouseEnter={hoverThing}
-          onMouseLeave={deSelectWorkitem}
-        />
-    </Tooltip>
+    <WorkItemTooltip
+      child={workItem}
+      isSplit={isSplit}
+      value_goal={value_goal}
+      title={title}
+      external_key={external_key}
+    />
   );
 };
 
