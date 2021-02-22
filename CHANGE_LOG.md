@@ -3,6 +3,7 @@
 ## Current
 
 ### Components
+
 - **CheckboxGroup**: fixed hardcoded coded select all state to be dynamic.
 
 ## 0.0.0-alpha.10
@@ -18,9 +19,7 @@
 
 > **BREAKING CHANGE: RadioButton** removed unneeded `ariaLabel` prop
 
-  <br />
-  
-  > **BREAKING CHANGE: RadioGroup** `radioButtons` prop to `options` to use base props for `RadioGroup` and `CheckboxGroup`
+> **BREAKING CHANGE: RadioGroup** `radioButtons` prop to `options` to use base props for `RadioGroup` and `CheckboxGroup`
 
 - **Card**: refactored to be a lightweight wrapper component.
 - **CardContent**: Create the card content component.
