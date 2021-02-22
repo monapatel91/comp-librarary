@@ -28,14 +28,14 @@ export interface AppToolbarProps extends CommonProps {
 }
 
 export const DotAppToolbar = ({
-  avatar = null,
+  avatar,
   borderColor,
   appName,
-  children = null,
+  children,
   className,
   'data-testid': dataTestId,
   navItems = [],
-  mainMenu = null,
+  mainMenu,
 }: AppToolbarProps) => {
   const rootClasses = useStylesWithRootClass(
     rootClassName,
