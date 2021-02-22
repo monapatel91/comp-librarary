@@ -9,8 +9,8 @@ export const StyledChip = styled(Chip)`
       &.MuiChip-sizeSmall {
         .dot-icon,
         .dot-avatar {
-          width: 18px !important;
-          height: 18px !important;
+          width: 18px;
+          height: 18px;
         }
       }
 
@@ -25,17 +25,6 @@ export const StyledChip = styled(Chip)`
       .MuiChip-deleteIcon {
         width: 18px;
         height: 18px;
-      }
-
-      .dot-icon {
-        height: 24px;
-        margin: 0 -8px 0 4px;
-        padding: 0;
-        width: 24px;
-      }
-
-      .dot-avatar .dot-icon {
-        margin: 0;
       }
     }
   `}

@@ -2,6 +2,8 @@
 
 ## Current
 
+### Components
+
 - **Chip**: removed `iconId` prop
 - **Chip**: added `startIcon` prop
 - **Chip**: changed data type of `avatar` prop to accept `DotAvatar` component
@@ -12,8 +14,6 @@
 - **Chip**: added `error` prop
 - **Chip**: removed `variant` prop
 - **Chip**: removed `color` prop
-- **Chip**: fixed styles per UX review
-- **Chip**: moved to Components
 
 ## 0.0.0-alpha.10
 
