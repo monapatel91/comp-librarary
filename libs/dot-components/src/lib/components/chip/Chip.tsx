@@ -68,5 +68,3 @@ export const DotChip = ({
     />
   );
 };
-
-export default DotChip;

@@ -2,7 +2,7 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import DotChip from './Chip';
+import { DotChip, ChipProps } from './Chip';
 import DotAvatar from '../avatar/Avatar';
 import { DotIcon } from '../icon/Icon';
 
@@ -11,6 +11,36 @@ describe('DotChip', () => {
     <DotAvatar alt="Batman" size="small" data-testid="test-avatar" />
   );
   const startIcon = <DotIcon iconId="home" data-testid="test-icon" />;
+
+  it('should have unchanged API', () => {
+    const onClick = jest.fn();
+    const onDelete = jest.fn();
+    const props = {
+      avatar: avatar,
+      children: 'My Chip',
+      isClickable: true,
+      isDeletable: true,
+      disabled: false,
+      error: false,
+      onClick: onClick,
+      onDelete: onDelete,
+      size: 'medium',
+      startIcon: <DotIcon iconId="home" />,
+    };
+    const chipProps: ChipProps = {
+      avatar: avatar,
+      children: 'My Chip',
+      isClickable: true,
+      isDeletable: true,
+      disabled: false,
+      error: false,
+      onClick: onClick,
+      onDelete: onDelete,
+      size: 'medium',
+      startIcon: <DotIcon iconId="home" />,
+    };
+    expect(chipProps).toEqual(props);
+  });
 
   it('should render with all props', () => {
     render(
