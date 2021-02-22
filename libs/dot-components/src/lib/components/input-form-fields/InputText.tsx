@@ -20,9 +20,6 @@ export interface InputTextProps extends InputProps {
   value?: string;
 }
 
-/**
- * @experimental This component is still in development
- */
 export const DotInputText = ({
   autoFocus,
   className,

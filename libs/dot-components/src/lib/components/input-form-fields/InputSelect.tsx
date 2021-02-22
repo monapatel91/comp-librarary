@@ -13,9 +13,6 @@ export interface InputSelectProps extends InputProps {
   options: Array<string>;
 }
 
-/**
- * @experimental This component is still in development
- */
 export const DotInputSelect = ({
   autoFocus,
   className,
