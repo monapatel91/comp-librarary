@@ -1,46 +1,50 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { CommonProps } from '../../components/CommonProps';
+import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { BoardHeaders } from './BoardHeaders';
 import {
   rootClassName,
   StyledProgressionBoard,
 } from './ProgressionBoard.styles';
-import { hydratePhases } from './hydrate_phases';
-import { pbState, ProgressionBoardProps } from './ProgressionBoardInterfaces';
+import { PhaseType } from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
 
-export class DotProgressionBoard extends Component<ProgressionBoardProps> {
-  water = () => {
-    const phases = hydratePhases(this.props.phases);
-    return phases;
-  };
-
-  render() {
-    return (
-      <ProgressionBoard phases={this.water()} baseUrl={this.props.baseUrl} />
-    );
-  }
+export interface ProgressionBoardProps extends CommonProps {
+  baseUrl?: string;
+  phases: Array<PhaseType>;
 }
 
-export class ProgressionBoard extends Component<
-  ProgressionBoardProps,
-  pbState
-> {
-  constructor(props, state) {
-    super(props, state);
-    this.state = { selectedWorkitem: '' };
-  }
+export const DotProgressionBoard = ({
+  baseUrl,
+  className,
+  'data-testid': dataTestId,
+  phases,
+}: ProgressionBoardProps) => {
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    'columns-wrapper',
+    className
+  );
+  const [selectedWI, updateSelectedWorkitem] = useState('');
 
-  selectWorkitem = (id) => {
-    this.setState({ selectedWorkitem: id });
+  const selectWorkitem = (id: string) => {
+    updateSelectedWorkitem(id);
   };
 
-  deSelectWorkitem = () => {
-    this.setState({ selectedWorkitem: '' });
+  const deSelectWorkitem = () => {
+    updateSelectedWorkitem('');
   };
 
-  getPackages = () => {
+  const phaseNames = phases.map((phase) => phase.name);
+  const selectWorkitemProps = {
+    selectWorkitem: selectWorkitem,
+    deSelectWorkitem: deSelectWorkitem,
+    selectedWorkitem: selectedWI,
+  };
+
+  const getPackages = () => {
     return (
-      this.props.phases
+      phases
         // create an array of packages included in each phase
         .map((phase) =>
           phase.packageVersions.map((version) => ({
@@ -57,22 +61,20 @@ export class ProgressionBoard extends Component<
           );
         })
         // sort alphabetically in ascending order
-        .sort((packageA, packageB) => {
-          const nameA = packageA.package_name.toUpperCase();
-          const nameB = packageB.package_name.toUpperCase();
+        .sort((a, b) => {
+          const nameA = a.package_name.toUpperCase();
+          const nameB = b.package_name.toUpperCase();
           if (nameA < nameB) {
             return -1;
           }
           if (nameA > nameB) {
             return 1;
           }
-
-          // names must be equal
           return 0;
         })
         // add phases to each package containing only packageVersions related to the package
         .map((pkg) => {
-          const phases = this.props.phases.map((phase) => ({
+          const packagePhases = phases.map((phase) => ({
             ...phase,
             packageVersions: phase.packageVersions.filter(
               (version) => version.package_id === pkg.package_id
@@ -81,39 +83,29 @@ export class ProgressionBoard extends Component<
 
           return {
             ...pkg,
-            phases,
+            phases: packagePhases,
           };
         })
     );
   };
 
-  render() {
-    const packages = this.getPackages();
-    const phaseNames = this.props.phases.map((phase) => phase.name);
-    const selectWorkitemProps = {
-      selectWorkitem: this.selectWorkitem,
-      deSelectWorkitem: this.deSelectWorkitem,
-      selectedWorkitem: this.state.selectedWorkitem,
-    };
-    const baseUrl = this.props.baseUrl;
-    return (
-      <StyledProgressionBoard
-        id="in-progress"
-        className={`${rootClassName} columns-wrapper`}
-      >
-        <BoardHeaders headers={phaseNames} />
-        <div className="progression">
-          {packages.map((pkg) => (
-            <SwimLane
-              className="progression"
-              key={pkg.package_id}
-              package={pkg}
-              selectWorkitemProps={selectWorkitemProps}
-              baseUrl={baseUrl}
-            />
-          ))}
-        </div>
-      </StyledProgressionBoard>
-    );
-  }
-}
+  return (
+    <StyledProgressionBoard
+      className={rootClasses}
+      data-testid={dataTestId}
+      id="in-progress"
+    >
+      <BoardHeaders headers={phaseNames} />
+      {getPackages().map((pkg, i) => (
+        <SwimLane
+          baseUrl={baseUrl}
+          key={i}
+          progressionPackage={pkg}
+          selectWorkitemProps={selectWorkitemProps}
+        />
+      ))}
+    </StyledProgressionBoard>
+  );
+};
+
+export default DotProgressionBoard;

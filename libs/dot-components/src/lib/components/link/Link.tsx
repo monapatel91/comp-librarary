@@ -23,10 +23,16 @@ export interface LinkProps extends CommonProps {
   href?: string;
   /** event callback */
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  /** mouse enter event callback */
+  onMouseEnter?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  /** specifies the relationship between the current document and the linked document */
+  rel?: string;
   /** tab order for the link */
   tabIndex?: number;
   /** where to open the link */
   target?: LinkTarget;
+  /** tooltip text displayed on hover, useful for screen readers */
+  title?: string;
   /**  underline the link */
   underline?: LinkUnderline;
 }
@@ -38,8 +44,11 @@ export const DotLink = ({
   'data-testid': dataTestId,
   href,
   onClick = null,
+  onMouseEnter = null,
+  rel = 'noreferrer',
   tabIndex = 0,
   target,
+  title,
   underline = 'always',
 }: LinkProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -51,8 +60,11 @@ export const DotLink = ({
       data-testid={dataTestId}
       href={onClick ? '#' : href}
       onClick={(event) => onClick && onClick(event)}
+      onMouseEnter={(event) => onMouseEnter && onMouseEnter(event)}
+      rel={rel}
       tabIndex={tabIndex}
       target={target}
+      title={title}
       underline={underline}
     >
       {children}

@@ -85,10 +85,8 @@ export const StyledProgressionBoard = styled.div`
             padding: 8px 0;
           }
 
-          .environments-content {
-            a {
-              display: block;
-            }
+          .environments-content a {
+            display: block;
           }
         }
       }

@@ -8,14 +8,12 @@ export default {
   component: DotRadioButton,
   argTypes: {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
-    color: { defaultValue: 'primary' },
     label: { defaultValue: 'Sample Label' },
     name: { defaultValue: 'dot-radio-button' },
     onChange: {
       action: 'clicked',
     },
     value: { defaultValue: 'sample-label' },
-    selectedValue: { defaultValue: 'sample-label' },
   },
 } as Meta;
 

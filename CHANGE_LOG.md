@@ -14,10 +14,48 @@
 - **Chip**: removed `color` prop
 - **Chip**: fixed styles per UX review
 - **Chip**: moved to Components
-- **RadionButton**: added NEW `RadioButton` component
+
+## 0.0.0-alpha.10
+
+- **ActionToolbar**: added to index exports
+- **InputText**: added missing `value` prop
+
+## 0.0.0-alpha.9
+
+> **BREAKING CHANGE: RadioButton** removed unneeded `ariaLabel` prop
+
+  <br />
+  
+  > **BREAKING CHANGE: RadioGroup** `radioButtons` prop to `options` to use base props for `RadioGroup` and `CheckboxGroup`
+
+- **Card**: refactored to be a lightweight wrapper component.
+- **CardContent**: Create the card content component.
+- **CardFooter**: Create the card footer component.
+- **CardHeader**: Create the card header component.
+- **Checkbox**: added NEW `Checkbox` component
+- **CheckboxGroup**: added NEW `CheckboxGroup` component
+- **FormGroup**: added NEW `FormGroup` component
+- **InputFormFields**: changed `required` from being a required prop to optional
+- **InputText**: added comments to interface
+- **RadioButton**: added NEW `RadioButton` component
+- **RadioButton**: added `id` prop
+- **RadioButton**: added `required` prop
+- **RadioGroup**: added `required` prop
 - **RadioGroup**: added NEW `RadioGroup` component
-- **RadionButton**: moved to Components
+- **RadioGroup**: added `row` prop to be consistent with material-ui and checkboxes and allow for group layout change from row to column.
+- **RadioButton**: moved to Components
 - **RadioGroup**: moved to Components
+
+### Experimental
+
+- **PackageVersion** - convert to functional component
+- **Phase** - convert to functional component
+- **ProgressionBoard** - convert to functional component
+- **ProgressionBoardLegend** - cleaned up DOM structure, converted workitems to icons
+- **RevisionRangeLabel** - convert to functional component
+- **StageCard**: added `avatar` prop
+- **SwimLane** - convert to functional component
+- **WorkItem** - convert to functional component
 
 ## 0.0.0-alpha.8
 

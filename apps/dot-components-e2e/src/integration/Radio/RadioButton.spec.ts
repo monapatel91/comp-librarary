@@ -1,7 +1,5 @@
 describe('dot-components: Radio Button component', () => {
-  beforeEach(() =>
-    cy.visit('/iframe.html?id=components-radio-button--default')
-  );
+  before(() => cy.visit('/iframe.html?id=components-radio-button--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('label').should('have.class', 'dot-form-control-label');

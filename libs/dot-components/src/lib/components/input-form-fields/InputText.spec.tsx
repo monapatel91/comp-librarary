@@ -29,6 +29,22 @@ describe('DotInputText', () => {
     userEvent.type(inputField, 'Something super awesome!!!');
     expect(onChange).toHaveBeenCalled();
   });
+  it('should value of "test value"', () => {
+    const onChange = jest.fn();
+    render(
+      <DotInputText
+        id="id-test"
+        label="Test"
+        name="test"
+        required={false}
+        onChange={onChange}
+        data-testid="test-input"
+        value="test value"
+      />
+    );
+    const inputField = screen.getByTestId('test-input');
+    expect(inputField.getAttribute('value')).toBe('test value');
+  });
 
   it('should be multiline', () => {
     render(

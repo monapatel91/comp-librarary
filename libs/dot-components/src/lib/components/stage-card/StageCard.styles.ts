@@ -1,20 +1,8 @@
 import { Timeline } from '@material-ui/lab';
-import { DotCard } from '../card/Card';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-stage-card';
 export const rootTimelineClassName = 'stage-timeline';
-
-export const StyledStageCard = styled(DotCard)`
-  ${({ theme }) => css`
-    &.dot-stage-card .phase-color {
-      border-radius: 4px;
-      height: 18px;
-      margin-right: ${theme.spacing(1)}px;
-      width: ${theme.spacing(1)}px;
-    }
-  `}
-`;
 
 export const StyledStageTimeline = styled(Timeline)`
   ${({ theme }) => css`

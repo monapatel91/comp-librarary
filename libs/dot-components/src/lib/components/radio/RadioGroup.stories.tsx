@@ -17,7 +17,7 @@ export default {
     },
     value: { defaultValue: 'item-2' },
     groupLabel: { defaultValue: 'Group of items' },
-    radioButtons: {
+    options: {
       defaultValue: [
         { label: 'item 1', value: 'item-1' },
         { label: 'item 2', value: 'item-2' },

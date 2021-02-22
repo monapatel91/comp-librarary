@@ -10,9 +10,14 @@ import {
 } from './InputFormFields.styles';
 
 export interface InputTextProps extends InputProps {
+  /** if multiline it wil render multiple lines */
   multiline?: boolean;
+  /** number of rows for multiline line */
   rows?: number;
+  /** max of rows for multiline line */
   rowsMax?: number;
+  /** value of the InputText */
+  value?: string;
 }
 
 /**
@@ -38,6 +43,7 @@ export const DotInputText = ({
   startIcon,
   size = 'small',
   type = 'text',
+  value,
   warning = false,
 }: InputTextProps) => {
   const hasWarning = !error && warning ? warningClassName : '';
@@ -88,6 +94,7 @@ export const DotInputText = ({
       size={size}
       type={type}
       variant="outlined"
+      value={value}
     />
   );
 };

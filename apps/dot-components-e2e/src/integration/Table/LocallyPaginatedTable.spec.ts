@@ -1,5 +1,5 @@
 describe('dot-components: Locally Paginated Table component', () => {
-  beforeEach(() =>
+  before(() =>
     cy.visit('/iframe.html?id=experimental-paginated-table-local--default')
   );
 

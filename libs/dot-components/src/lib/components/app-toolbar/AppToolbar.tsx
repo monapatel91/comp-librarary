@@ -5,6 +5,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotNavigation } from '../navigation/Navigation';
 import { NavigationItemProps } from '../navigation/NavItem';
 import { DotIconButton } from '../button/IconButton';
+import { DotLink } from '../link/Link';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
 import {
   rootClassName,
@@ -67,9 +68,9 @@ export const DotAppToolbar = ({
         </Fragment>
       )}
       <div className={`dot-branding ${mainMenu ? 'hamburger' : ''}`}>
-        <a href="/">
+        <DotLink href="/">
           <LogoDigitalAiWhite title="digital.ai" />
-        </a>
+        </DotLink>
         {appName && (
           <Typography className="dot-product-name">{appName}</Typography>
         )}
