@@ -16,6 +16,7 @@ assignees:
 - [ ] Functionality requirements
 - [ ] Formatting requirements
 - [ ] Component matches mockup (need link from UX)
+- [ ] Unit test for testing the component API
 
 ## Existing Component
 

@@ -2,10 +2,31 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import DotEmptyState from './EmptyState';
+import DotEmptyState, { EmptyStateProps } from './EmptyState';
 import { ReactComponent as EmptyStateImage } from '../assets/empty-state.svg';
 
 describe(' EmptyState', () => {
+  it('should have unchanged API', () => {
+    const buttonProps = {
+      children: 'I am the button',
+    };
+    const props = {
+      buttonProps: buttonProps,
+      image: EmptyStateImage,
+      imageAltText: 'image alt text',
+      subtitle: 'subtitle',
+      title: 'title',
+    };
+    const emptyStateProps: EmptyStateProps = {
+      buttonProps: buttonProps,
+      image: EmptyStateImage,
+      imageAltText: 'image alt text',
+      subtitle: 'subtitle',
+      title: 'title',
+    };
+    expect(emptyStateProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     const { baseElement } = render(<DotEmptyState title="Hello World" />);
     expect(baseElement).toBeTruthy();

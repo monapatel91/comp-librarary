@@ -1,9 +1,19 @@
 import React from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { DotCheckbox } from './Checkbox';
+import { DotCheckbox, CheckboxProps } from './Checkbox';
 
 describe('DotCheckbox', () => {
+  it('should have unchanged API', () => {
+    const props = {
+      indeterminate: false,
+    };
+    const checkboxProps: CheckboxProps = {
+      indeterminate: false,
+    };
+    expect(checkboxProps).toEqual(props);
+  });
+
   it('should render the medium size', () => {
     render(<DotCheckbox value="test-value" data-testid="test-checkbox" />);
 

@@ -1,8 +1,10 @@
 import React from 'react';
+import { Input } from '@material-ui/core';
 import { screen } from '@testing-library/dom';
 import { renderWithRouter } from '../../testing-utils/RenderWithRouter';
 import { DotAvatar } from '../avatar/Avatar';
-import { DotAppToolbar } from './AppToolbar';
+import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
+import { DotSidebar } from '../sidebar/Sidebar';
 
 const menuItems = [];
 const userAvatar = (
@@ -10,6 +12,26 @@ const userAvatar = (
 );
 
 describe(' AppToolbar', () => {
+  it('should have unchanged API', () => {
+    const props = {
+      appName: 'Batman',
+      avatar: userAvatar,
+      borderColor: '#1abc9c',
+      children: <Input type="text" placeholder="search" />,
+      mainMenu: <DotSidebar />,
+      navItems: [],
+    };
+    const appToolbarProps: AppToolbarProps = {
+      appName: 'Batman',
+      avatar: userAvatar,
+      borderColor: '#1abc9c',
+      children: <Input type="text" placeholder="search" />,
+      mainMenu: <DotSidebar />,
+      navItems: [],
+    };
+    expect(appToolbarProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     const { baseElement } = renderWithRouter(
       <DotAppToolbar navItems={menuItems} />

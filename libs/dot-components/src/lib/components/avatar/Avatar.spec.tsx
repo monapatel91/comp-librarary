@@ -2,9 +2,34 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 
-import { DotAvatar } from './Avatar';
+import { DotAvatar, AvatarProps } from './Avatar';
 
 describe('DotAvatar', () => {
+  it('should have unchanged API', () => {
+    const onClick = jest.fn();
+    const props = {
+      alt: 'Avatar alt text',
+      iconId: 'home',
+      imageSrc: './somewhere',
+      onClick: onClick,
+      size: 'small',
+      text: 'BM',
+      type: 'image',
+      variant: 'circle',
+    };
+    const avatarProps: AvatarProps = {
+      alt: 'Avatar alt text',
+      iconId: 'home',
+      imageSrc: './somewhere',
+      onClick: onClick,
+      size: 'small',
+      text: 'BM',
+      type: 'image',
+      variant: 'circle',
+    };
+    expect(avatarProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     const { baseElement } = render(<DotAvatar alt="test alt text" />);
     expect(baseElement).toBeTruthy();

@@ -2,9 +2,8 @@ import React from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import userEvent from '@testing-library/user-event';
-import { DotRadioGroup } from './RadioGroup';
+import { DotRadioGroup, RadioGroupProps } from './RadioGroup';
 import DotIcon from '../icon/Icon';
-import { RadioGroup } from '@material-ui/core';
 
 const radioButtons = [
   { label: 'item 1', value: 'item-1' },
@@ -14,6 +13,39 @@ const radioButtons = [
 ];
 
 describe('DotRadioGroup', () => {
+  it('should have unchanged API', () => {
+    const onChange = jest.fn();
+    const props = {
+      ariaLabel: 'aria label',
+      defaultValue: 'the default',
+      disableGroup: false,
+      endIcon: <DotIcon iconId="save" />,
+      error: false,
+      groupLabel: 'My Button Group',
+      helperText: 'a little help here?',
+      onChange: onChange,
+      options: radioButtons,
+      required: true,
+      row: true,
+      startIcon: <DotIcon iconId="save" />,
+    };
+    const radioGroupProps: RadioGroupProps = {
+      ariaLabel: 'aria label',
+      defaultValue: 'the default',
+      disableGroup: false,
+      endIcon: <DotIcon iconId="save" />,
+      error: false,
+      groupLabel: 'My Button Group',
+      helperText: 'a little help here?',
+      onChange: onChange,
+      options: radioButtons,
+      required: true,
+      row: true,
+      startIcon: <DotIcon iconId="save" />,
+    };
+    expect(radioGroupProps).toEqual(props);
+  });
+
   describe('Props', () => {
     it('should be checked and have a value of item-1', () => {
       render(
