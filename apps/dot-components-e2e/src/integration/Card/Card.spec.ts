@@ -26,12 +26,8 @@ describe('dot-components: Card component', () => {
   describe('style decisions', () => {
     it('size and spacing is correct', () => {
       cy.get('div.dot-card')
-        .should('have.css', 'color', 'rgb(102, 115, 133)')
-        .and('have.css', 'font-size', '12px')
-        .and('have.css', 'padding-left', '16px')
-        .and('have.css', 'padding-right', '16px')
-        .and('have.css', 'padding-top', '16px')
-        .and('have.css', 'padding-bottom', '16px');
+        .should('have.css', 'color', 'rgb(59, 72, 92)')
+        .and('have.css', 'font-size', '12px');
     });
   });
 });

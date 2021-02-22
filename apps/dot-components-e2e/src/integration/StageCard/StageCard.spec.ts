@@ -14,11 +14,9 @@ describe('dot-components: Stage Card component', () => {
   describe('style decisions', () => {
     it('card', () => {
       cy.get('div.dot-stage-card')
-        .should('have.css', 'color', 'rgb(102, 115, 133)')
+        .should('have.css', 'color', 'rgb(59, 72, 92)')
         .and('have.css', 'font-size', '12px')
-        .and('have.css', 'line-height', '14px')
-        .and('have.css', 'padding-top', '16px')
-        .and('have.css', 'padding-left', '16px');
+        .and('have.css', 'line-height', '16px');
     });
   });
 });
