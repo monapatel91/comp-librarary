@@ -10,9 +10,6 @@ export default {
   component: DotChip,
   argTypes: {
     children: { defaultValue: 'Hello World' },
-    disabled: { defaultValue: false },
-    isClickable: { defaultValue: true },
-    isDeletable: { defaultValue: true },
     onClick: {
       action: 'clicked',
     },
