@@ -26,8 +26,8 @@ describe('dot-components: Chip component', () => {
 
     it('delete icon size and spacing is correct', () => {
       cy.get('div.dot-chip svg.MuiChip-deleteIcon')
-        .should('have.css', 'height', '22px')
-        .and('have.css', 'width', '22px')
+        .should('have.css', 'height', '18px')
+        .and('have.css', 'width', '18px')
         .and('have.css', 'margin-right', '5px');
     });
   });
