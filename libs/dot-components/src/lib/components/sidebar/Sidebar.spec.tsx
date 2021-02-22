@@ -1,11 +1,12 @@
 import React from 'react';
 import '@testing-library/jest-dom';
+import { TextField } from '@material-ui/core';
 import { screen } from '@testing-library/dom';
 import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithRouter } from '../../testing-utils/RenderWithRouter';
 import { NavigationItemProps } from '../navigation/NavItem';
-import { DotSidebar } from './Sidebar';
+import { DotSidebar, SidebarProps } from './Sidebar';
 
 const navItems: Array<NavigationItemProps> = [
   {
@@ -21,6 +22,33 @@ const navItems: Array<NavigationItemProps> = [
 ];
 
 describe(' Sidebar', () => {
+  it('should have unchanged API', () => {
+    const titleAvatarProps = { alt: 'avatar alt text', text: 'BM' };
+    const props = {
+      backItem: navItems,
+      brandDesc: 'best brand',
+      children: <TextField placeholder="search" variant="outlined" />,
+      collapsable: true,
+      displayBrand: true,
+      goBack: false,
+      navItems: navItems,
+      title: 'Captain Sidebar',
+      titleAvatarProps: titleAvatarProps,
+    };
+    const sidebarProps: SidebarProps = {
+      backItem: navItems,
+      brandDesc: 'best brand',
+      children: <TextField placeholder="search" variant="outlined" />,
+      collapsable: true,
+      displayBrand: true,
+      goBack: false,
+      navItems: navItems,
+      title: 'Captain Sidebar',
+      titleAvatarProps: titleAvatarProps,
+    };
+    expect(sidebarProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     const { baseElement } = renderWithRouter(
       <DotSidebar navItems={navItems} goBack={false} />

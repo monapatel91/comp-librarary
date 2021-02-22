@@ -1,8 +1,29 @@
 import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import DotDrawer from './Drawer';
+import DotDrawer, { DrawerProps } from './Drawer';
 
 describe('Drawer', () => {
+  it('should have unchanged API', () => {
+    const onClose = jest.fn();
+    const props = {
+      anchor: 'bottom',
+      children: 'I am a drawer',
+      onClose: onClose,
+      open: true,
+      variant: 'persistent',
+      width: '512px',
+    };
+    const drawerProps: DrawerProps = {
+      anchor: 'bottom',
+      children: 'I am a drawer',
+      onClose: onClose,
+      open: true,
+      variant: 'persistent',
+      width: '512px',
+    };
+    expect(drawerProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     const { baseElement } = render(
       <DotDrawer open={true}>

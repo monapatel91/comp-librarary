@@ -1,10 +1,32 @@
 import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
-import DotSwitch from './Switch';
+import DotSwitch, { SwitchProps } from './Switch';
 import userEvent from '@testing-library/user-event';
 
 describe('Switch', () => {
+  it('should have unchanged API', () => {
+    const props = {
+      ariaLabel: 'aria label',
+      checked: false,
+      color: 'primary',
+      disabled: false,
+      label: 'My Switch',
+      labelPlacement: 'end',
+      size: 'small',
+    };
+    const switchProps: SwitchProps = {
+      ariaLabel: 'aria label',
+      checked: false,
+      color: 'primary',
+      disabled: false,
+      label: 'My Switch',
+      labelPlacement: 'end',
+      size: 'small',
+    };
+    expect(switchProps).toEqual(props);
+  });
+
   it('should render the medium switch size', () => {
     render(<DotSwitch data-testid="test-switch" size="medium"></DotSwitch>);
 

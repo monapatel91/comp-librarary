@@ -2,9 +2,24 @@ import React from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 
-import { DotFormGroup } from './FormGroup';
+import { DotFormGroup, FormGroupProps } from './FormGroup';
 
 describe('FormGroup', () => {
+  it('should have unchanged API', () => {
+    const children = <span>My Button</span>;
+    const props = {
+      ariaLabel: 'accessibility label',
+      children: children,
+      row: true,
+    };
+    const formGroupProps: FormGroupProps = {
+      ariaLabel: 'accessibility label',
+      children: children,
+      row: true,
+    };
+    expect(formGroupProps).toEqual(props);
+  });
+
   describe('Props', () => {
     it('should render successfully', () => {
       const { baseElement } = render(

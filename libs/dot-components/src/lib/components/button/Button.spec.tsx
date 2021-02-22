@@ -2,10 +2,41 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import DotButton from './Button';
+import DotButton, { ButtonProps } from './Button';
 import DotIcon from '../icon/Icon';
 
 describe('DotButton', () => {
+  it('should have unchanged API', () => {
+    const onClick = jest.fn();
+    const props = {
+      children: 'My Button',
+      disabled: false,
+      disableRipple: false,
+      endIcon: <DotIcon iconId="save" />,
+      fullWidth: true,
+      isSubmit: true,
+      onClick: onClick,
+      size: 'small',
+      startIcon: <DotIcon iconId="home" />,
+      titleTooltip: 'click here',
+      type: 'text',
+    };
+    const buttonProps: ButtonProps = {
+      children: 'My Button',
+      disabled: false,
+      disableRipple: false,
+      endIcon: <DotIcon iconId="save" />,
+      fullWidth: true,
+      isSubmit: true,
+      onClick: onClick,
+      size: 'small',
+      startIcon: <DotIcon iconId="home" />,
+      titleTooltip: 'click here',
+      type: 'text',
+    };
+    expect(buttonProps).toEqual(props);
+  });
+
   it('should render a primary button', () => {
     render(
       <DotButton

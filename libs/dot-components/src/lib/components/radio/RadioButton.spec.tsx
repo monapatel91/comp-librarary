@@ -1,9 +1,38 @@
 import React from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { DotRadioButton } from './RadioButton';
+import { DotRadioButton, RadioButtonProps } from './RadioButton';
 
 describe('DotRadioButton', () => {
+  it('should have unchanged API', () => {
+    const onChange = jest.fn();
+    const props = {
+      checked: false,
+      disabled: false,
+      id: 'button-id',
+      label: 'My Label',
+      labelPlacement: 'bottom',
+      name: 'button-name',
+      onChange: onChange,
+      size: 'medium',
+      required: true,
+      value: 'x',
+    };
+    const radioButtonProps: RadioButtonProps = {
+      checked: false,
+      disabled: false,
+      id: 'button-id',
+      label: 'My Label',
+      labelPlacement: 'bottom',
+      name: 'button-name',
+      onChange: onChange,
+      size: 'medium',
+      required: true,
+      value: 'x',
+    };
+    expect(radioButtonProps).toEqual(props);
+  });
+
   describe('Props', () => {
     it('should render the medium size', () => {
       render(<DotRadioButton value="test-value" data-testid="test-radio" />);

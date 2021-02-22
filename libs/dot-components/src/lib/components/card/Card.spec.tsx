@@ -1,18 +1,60 @@
 import React, { Fragment } from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
-import { DotCard } from './Card';
-import { DotCardHeader } from './CardHeader';
-import { DotCardContent } from './CardContent';
-import { DotCardFooter } from './CardFooter';
+import { DotCard, CardProps } from './Card';
+import { DotCardHeader, CardHeaderProps } from './CardHeader';
+import { DotCardContent, CardContentProps } from './CardContent';
+import { DotCardFooter, CardFooterProps } from './CardFooter';
 import DotAvatar from '../avatar/Avatar';
 
 describe('DotCard', () => {
+  const avatar = (
+    <DotAvatar alt="Batman" size="small" data-testid="test-avatar" />
+  );
+  const action = <span>Do Something</span>;
+
+  it('should have unchanged API', () => {
+    const hProps = {
+      action: action,
+      avatar: avatar,
+      subheader: 'I am a subheader',
+      subheaderSize: 'large',
+      title: 'I am a title',
+      titleSize: 'large',
+    };
+    const headerProps: CardHeaderProps = {
+      action: action,
+      avatar: avatar,
+      subheader: 'I am a subheader',
+      subheaderSize: 'large',
+      title: 'I am a title',
+      titleSize: 'large',
+    };
+    expect(headerProps).toEqual(hProps);
+    const cProps = {
+      children: 'This is some content',
+    };
+    const contentProps = {
+      children: 'This is some content',
+    };
+    expect(contentProps).toEqual(cProps);
+    const fProps = {
+      children: 'This is a footer',
+    };
+    const footerProps = {
+      children: 'This is a footer',
+    };
+    expect(footerProps).toEqual(fProps);
+    const props = {
+      children: 'I am a card!',
+    };
+    const cardProps = {
+      children: 'I am a card!',
+    };
+    expect(props).toEqual(cardProps);
+  });
+
   it('should render with all props', () => {
-    const avatar = (
-      <DotAvatar alt="Batman" size="small" data-testid="test-avatar" />
-    );
-    const action = <span>Do Something</span>;
     render(
       <DotCard className="custom-test-class" data-testid="test-card">
         <Fragment>

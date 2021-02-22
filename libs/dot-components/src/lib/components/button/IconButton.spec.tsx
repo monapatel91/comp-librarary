@@ -2,9 +2,30 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import DotIconButton from './IconButton';
+import DotIconButton, { IconButtonProps } from './IconButton';
 
 describe('DotIconButton', () => {
+  it('should have unchanged API', () => {
+    const onClick = jest.fn();
+    const props = {
+      color: 'primary',
+      disabled: false,
+      iconId: 'save',
+      onClick: onClick,
+      size: 'small',
+      titleTooltip: 'click here',
+    };
+    const iconButtonProps: IconButtonProps = {
+      color: 'primary',
+      disabled: false,
+      iconId: 'save',
+      onClick: onClick,
+      size: 'small',
+      titleTooltip: 'click here',
+    };
+    expect(iconButtonProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     const { baseElement } = render(<DotIconButton iconId="script" />);
     expect(baseElement).toBeTruthy();
