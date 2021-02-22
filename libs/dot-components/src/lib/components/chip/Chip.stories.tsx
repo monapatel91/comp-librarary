@@ -2,18 +2,14 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import { DotChip, ChipProps } from './Chip';
+import { DotAvatar } from '../avatar/Avatar';
+import { DotIcon } from '../icon/Icon';
 
 export default {
-  title: 'Experimental/Chip',
+  title: 'Components/Chip',
   component: DotChip,
   argTypes: {
-    avatar: { defaultValue: true },
-    clickable: { defaultValue: true },
-    color: { defaultValue: 'default' },
-    deletable: { defaultValue: true },
-    disabled: { defaultValue: false },
-    iconId: { defaultValue: 'home' },
-    label: { defaultValue: 'Hello World' },
+    children: { defaultValue: 'Hello World' },
     onClick: {
       action: 'clicked',
     },
@@ -21,8 +17,16 @@ export default {
       action: 'deleted',
     },
     size: { defaultValue: 'medium' },
-    variant: { defaultValue: 'outlined' },
   },
 } as Meta;
 
-export const Default: Story<ChipProps> = (args) => <DotChip {...args} />;
+export const Default: Story<ChipProps> = (args) => (
+  <DotChip
+    avatar={<DotAvatar alt="Batman" size="small" />}
+    startIcon={null}
+    {...args}
+  />
+);
+export const ChipWithIcon: Story<ChipProps> = (args) => (
+  <DotChip avatar={null} startIcon={<DotIcon iconId="home" />} {...args} />
+);

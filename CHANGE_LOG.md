@@ -4,6 +4,16 @@
 
 ### Components
 
+- **Chip**: removed `iconId` prop
+- **Chip**: added `startIcon` prop
+- **Chip**: changed data type of `avatar` prop to accept `DotAvatar` component
+- **Chip**: changed `clickable` to `isClickable`
+- **Chip**: changed `deletable` to `isDeletable`
+- **Chip**: removed `label` prop
+- **Chip**: added `children` prop
+- **Chip**: added `error` prop
+- **Chip**: removed `variant` prop
+- **Chip**: removed `color` prop
 - **CheckboxGroup**: fixed hardcoded coded select all state to be dynamic.
 
 ## 0.0.0-alpha.10
