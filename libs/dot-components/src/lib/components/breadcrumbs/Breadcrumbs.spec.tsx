@@ -2,7 +2,7 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import DotBreadcrumbs, { BreadcrumbItem } from './Breadcrumbs';
+import DotBreadcrumbs, { BreadcrumbProps, BreadcrumbItem } from './Breadcrumbs';
 
 describe('Breadcrumbs', () => {
   const onClick = jest.fn();
@@ -11,6 +11,18 @@ describe('Breadcrumbs', () => {
     { href: '#', onClick: onClick, text: 'Link 2' },
     { href: '#', onClick: onClick, text: 'Link 3' },
   ];
+
+  it('should have unchanged API', () => {
+    const props = {
+      items: dummyItems,
+      maxItems: 5,
+    };
+    const breadcrumbProps: BreadcrumbProps = {
+      items: dummyItems,
+      maxItems: 5,
+    };
+    expect(breadcrumbProps).toEqual(props);
+  });
 
   it('should render successfully', () => {
     const { baseElement } = render(<DotBreadcrumbs items={dummyItems} />);

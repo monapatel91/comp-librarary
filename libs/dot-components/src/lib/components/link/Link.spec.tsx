@@ -2,10 +2,39 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import DotLink from './Link';
+import DotLink, { LinkProps } from './Link';
 
 describe('Link', () => {
   const onClick = jest.fn();
+
+  it('should have unchanged API', () => {
+    const onMouseEnter = jest.fn();
+    const props = {
+      children: 'My Link',
+      color: 'primary',
+      href: 'http://somewhere',
+      onClick: onClick,
+      onMouseEnter: onMouseEnter,
+      rel: 'second cousin',
+      tabIndex: 0,
+      target: '_self',
+      title: 'Sir Link',
+      underline: 'always',
+    };
+    const linkProps: LinkProps = {
+      children: 'My Link',
+      color: 'primary',
+      href: 'http://somewhere',
+      onClick: onClick,
+      onMouseEnter: onMouseEnter,
+      rel: 'second cousin',
+      tabIndex: 0,
+      target: '_self',
+      title: 'Sir Link',
+      underline: 'always',
+    };
+    expect(linkProps).toEqual(props);
+  });
 
   it('should render successfully', () => {
     const { baseElement } = render(<DotLink>Sample Link</DotLink>);

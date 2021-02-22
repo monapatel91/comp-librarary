@@ -3,7 +3,7 @@ import { renderWithRouter } from '../../testing-utils/RenderWithRouter';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 
-import DotNavigation from './Navigation';
+import DotNavigation, { NavigationProps } from './Navigation';
 import { NavigationItemProps } from './NavItem';
 
 const onClick = jest.fn();
@@ -30,6 +30,24 @@ const mockNavItems: Array<NavigationItemProps> = [
 ];
 
 describe(' Navigation', () => {
+  it('should have unchanged API', () => {
+    const props = {
+      ariaLabel: 'aria label',
+      direction: 'vertical',
+      iconSize: 'small',
+      isOpen: false,
+      items: mockNavItems,
+    };
+    const navigationProps: NavigationProps = {
+      ariaLabel: 'aria label',
+      direction: 'vertical',
+      iconSize: 'small',
+      isOpen: false,
+      items: mockNavItems,
+    };
+    expect(navigationProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     const { baseElement } = renderWithRouter(
       <DotNavigation items={mockNavItems} />

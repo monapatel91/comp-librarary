@@ -14,19 +14,22 @@
 - **Chip**: added `error` prop
 - **Chip**: removed `variant` prop
 - **Chip**: removed `color` prop
+- **CheckboxGroup**: fixed hardcoded coded select all state to be dynamic.
 
 ## 0.0.0-alpha.10
+
+### Components
 
 - **ActionToolbar**: added to index exports
 - **InputText**: added missing `value` prop
 
 ## 0.0.0-alpha.9
 
+### Components
+
 > **BREAKING CHANGE: RadioButton** removed unneeded `ariaLabel` prop
 
-  <br />
-  
-  > **BREAKING CHANGE: RadioGroup** `radioButtons` prop to `options` to use base props for `RadioGroup` and `CheckboxGroup`
+> **BREAKING CHANGE: RadioGroup** `radioButtons` prop to `options` to use base props for `RadioGroup` and `CheckboxGroup`
 
 - **Card**: refactored to be a lightweight wrapper component.
 - **CardContent**: Create the card content component.
@@ -58,6 +61,8 @@
 - **WorkItem** - convert to functional component
 
 ## 0.0.0-alpha.8
+
+### Components
 
 - **AppToolbar**: fixed postion styles so the AppTollbar is always flush to top, left, and right
 - **InputSelect**: added `InputSelect` to the list of exported component from the library

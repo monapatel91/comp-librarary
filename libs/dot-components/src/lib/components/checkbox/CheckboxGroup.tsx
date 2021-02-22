@@ -130,7 +130,7 @@ export function DotCheckboxGroup({
         )}
         {showSelectAll && (
           <DotCheckbox
-            checked={selectedOptions.length === 4}
+            checked={selectedOptions.length === options.length}
             indeterminate={
               selectedOptions.length > 0 &&
               selectedOptions.length < options.length

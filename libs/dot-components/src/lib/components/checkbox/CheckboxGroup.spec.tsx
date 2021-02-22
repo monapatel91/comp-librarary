@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import userEvent from '@testing-library/user-event';
-import { DotCheckboxGroup } from './CheckboxGroup';
+import { DotCheckboxGroup, CheckboxGroupProps } from './CheckboxGroup';
 import DotIcon from '../icon/Icon';
 
 const options = [
@@ -18,6 +18,25 @@ const defaultValues = [
 ];
 
 describe('DotCheckbox', () => {
+  it('should have unchanged API', () => {
+    const onChange = jest.fn();
+    const props = {
+      defaultValues: defaultValues,
+      onChange: onChange,
+      options: options,
+      selectAllLabel: 'select all',
+      showSelectAll: true,
+    };
+    const checkboxGroupProps: CheckboxGroupProps = {
+      defaultValues: defaultValues,
+      onChange: onChange,
+      options: options,
+      selectAllLabel: 'select all',
+      showSelectAll: true,
+    };
+    expect(checkboxGroupProps).toEqual(props);
+  });
+
   describe('Props', () => {
     it('should be checked and have a value of item-1', () => {
       render(
