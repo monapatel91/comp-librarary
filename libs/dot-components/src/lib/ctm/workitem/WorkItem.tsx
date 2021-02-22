@@ -5,6 +5,7 @@ import {
   SelectWorkItem,
   WorkItemType,
 } from '../progression-board/ProgressionBoardInterfaces';
+import { Tooltip } from '@material-ui/core';
 
 export interface WorkItemProps extends CommonProps {
   baseUrl: string;
@@ -19,7 +20,7 @@ export const WorkItem = ({
   selectWorkItem,
   workitem,
 }: WorkItemProps) => {
-  const { _id, isSplit, isEmphasized, value_goal } = workitem;
+  const { _id, isSplit, isEmphasized, value_goal, title, external_key } = workitem;
   const { deSelectWorkitem, selectedWorkitem, selectWorkitem } = selectWorkItem;
   const rootClasses = useStylesWithRootClass(
     className,
@@ -33,16 +34,33 @@ export const WorkItem = ({
     selectWorkitem(_id);
   };
 
+  const truncate = (str: string) => {
+    return str.length > 20 ? str.substring(0, 17) + '...' : str;
+  }
+
+  const buildTooLtip = () => {
+    const truncated_title = truncate(title)
+    return(
+      <div>
+        ({value_goal}) {external_key}
+        <br />
+        {truncated_title}
+      </div>
+    )
+  }
+
   return (
-    <li
-      className={rootClasses}
-      data-testid={dataTestId}
-      onClick={() =>
-        window.open(baseUrl + `/flow/workitem_detail?id=${_id}`, '_blank')
-      }
-      onMouseEnter={hoverThing}
-      onMouseLeave={deSelectWorkitem}
-    />
+    <Tooltip title={buildTooLtip()}>
+        <li
+          className={rootClasses}
+          data-testid={dataTestId}
+          onClick={() =>
+            window.open(baseUrl + `/flow/workitem_detail?id=${_id}`, '_blank')
+          }
+          onMouseEnter={hoverThing}
+          onMouseLeave={deSelectWorkitem}
+        />
+    </Tooltip>
   );
 };
 
