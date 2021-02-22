@@ -8,4 +8,13 @@ describe('dot-components: Icon component', () => {
   it('should render the component', () => {
     cy.get('i').should('have.class', 'icon-script');
   });
+
+  describe('style decisions', () => {
+    it('spacing and sizing', () => {
+      cy.get('span.dot-icon')
+        .should('have.css', 'width', '24px')
+        .and('have.css', 'height', '24px')
+        .and('have.css', 'font-size', '20px');
+    });
+  });
 });

@@ -4,10 +4,10 @@ export const rootClassName = 'dot-phase-header';
 
 export const StyledPhaseHeader = styled.div`
   ${({ theme }) => css`
-    &.dot-phase-header {
+    &.${rootClassName} {
       background: ${theme.palette.grey[600]};
       border-radius: 4px;
-      color: ${theme.palette.grey[0]};
+      color: ${theme.palette.background.default};
       display: flex;
       flex-wrap: nowrap;
       height: 44px;
@@ -54,16 +54,16 @@ export const StyledPhaseHeader = styled.div`
 
             .MuiFormControl-root {
               margin: 0;
-            }
 
-            .MuiInputBase-root {
-              color: ${theme.palette.grey[0]};
+              .MuiInputBase-root {
+                color: ${theme.palette.background.default};
 
-              .MuiInputBase-input {
-                font-size: 14px;
-              }
-              .MuiOutlinedInput-notchedOutline {
-                border: none;
+                .MuiInputBase-input {
+                  font-size: 14px;
+                }
+                .MuiOutlinedInput-notchedOutline {
+                  border: none;
+                }
               }
             }
 
@@ -80,7 +80,7 @@ export const StyledPhaseHeader = styled.div`
 
               .MuiInputBase-root {
                 background: ${theme.palette.grey[0]};
-                color: ${theme.palette.grey[700]};
+                color: ${theme.palette.background.default};
               }
             }
           }
@@ -90,7 +90,7 @@ export const StyledPhaseHeader = styled.div`
       .delete-btn {
         align-self: center;
         background: transparent;
-        color: ${theme.palette.grey[0]};
+        color: ${theme.palette.background.default};
         cursor: pointer;
         display: none;
 
@@ -107,7 +107,7 @@ export const StyledPhaseHeader = styled.div`
       li.phase-color-option {
         text-transform: capitalize;
         font-size: 14px;
-        color: ${theme.palette.grey[700]};
+        color: ${theme.palette.background.default};
 
         i {
           border-radius: 50%;

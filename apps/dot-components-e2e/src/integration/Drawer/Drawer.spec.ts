@@ -8,4 +8,15 @@ describe('dot-components: Drawer component', () => {
   it('should render the component', () => {
     cy.get('div').should('contain', 'Batman');
   });
+
+  describe('style decisions', () => {
+    it('spacing and sizing', () => {
+      cy.get('div.dot-drawer-paper')
+        .should('have.css', 'width', '256px')
+        .and('have.css', 'padding-left', '16px')
+        .and('have.css', 'padding-right', '16px')
+        .and('have.css', 'padding-top', '16px')
+        .and('have.css', 'padding-bottom', '16px');
+    });
+  });
 });

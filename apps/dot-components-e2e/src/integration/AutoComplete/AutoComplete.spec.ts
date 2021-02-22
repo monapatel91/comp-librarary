@@ -8,4 +8,28 @@ describe('dot-components: Auto Complete component', () => {
   it('should render the component', () => {
     cy.get('input').should('have.class', 'MuiAutocomplete-input');
   });
+
+  describe('style decisions', () => {
+    it('sizing is correct', () => {
+      cy.get('div.dot-autocomplete div.MuiAutocomplete-inputRoot')
+        .should('have.css', 'padding-right', '39px')
+        .and('have.css', 'margin-bottom', '4px');
+    });
+
+    it('border is correct', () => {
+      cy.get('div.dot-autocomplete div.MuiAutocomplete-inputRoot').should(
+        'have.css',
+        'padding-right',
+        '39px'
+      );
+    });
+
+    it('end adornment is styled correctly', () => {
+      cy.get('div.dot-autocomplete div.MuiAutocomplete-endAdornment').should(
+        'have.css',
+        'right',
+        '9px'
+      );
+    });
+  });
 });

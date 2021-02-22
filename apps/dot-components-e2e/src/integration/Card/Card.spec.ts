@@ -22,4 +22,16 @@ describe('dot-components: Card component', () => {
   it('should have footer', () => {
     cy.get('div').should('contain', 'This is a footer');
   });
+
+  describe('style decisions', () => {
+    it('size and spacing is correct', () => {
+      cy.get('div.dot-card')
+        .should('have.css', 'color', 'rgb(102, 115, 133)')
+        .and('have.css', 'font-size', '12px')
+        .and('have.css', 'padding-left', '16px')
+        .and('have.css', 'padding-right', '16px')
+        .and('have.css', 'padding-top', '16px')
+        .and('have.css', 'padding-bottom', '16px');
+    });
+  });
 });
