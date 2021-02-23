@@ -30,19 +30,4 @@ declare module '@material-ui/core/styles/createPalette' {
     rogueCommits?: string;
     thumbsDown?: string;
   }
-
-  interface IconPaletteColor {
-    checkOutline: '#1E88E5';
-    checkSolid: '#1E88E5';
-    errorOutlines: '#EA1C0D';
-    errorSolid: '#3949AB';
-    fileDotted: '#3949AB';
-    improve: '#3D8B40';
-    infoSolid: '#3DB840';
-    lock: '#EA1C0D';
-    maintain: '#EA1C0D';
-    pendingClock: '#244451';
-    rogueCommits: '#FFB300';
-    thumbsDown: '#8E24AA';
-  }
 }

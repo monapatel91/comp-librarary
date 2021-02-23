@@ -49,7 +49,7 @@ describe('dot-components: Progression Board Legend component', () => {
       cy.get('i.icon-rogue-commits').should(
         'have.css',
         'color',
-        'rgb(235, 179, 0)'
+        'rgb(255, 179, 0)'
       );
     });
 
