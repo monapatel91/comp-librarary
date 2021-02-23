@@ -50,7 +50,7 @@ If you're using the `DotIcon` component then you do not need to pass in the `ico
 
 ## Contributing
 
-TBD
+[Learn about how to contribute](https://github.com/digital-ai/dot-components/blob/master/CONTRIBUTING.md)
 
 ## Change Log
 
