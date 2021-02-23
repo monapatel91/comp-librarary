@@ -6,6 +6,7 @@ import {
   rootClassName,
   StyledProgressionLegend,
 } from './ProgressionBoardLegend.styles';
+import { ProgressionBoardThemeProvider, ThemeOptions } from './ThemeProvider';
 
 interface LegendItem {
   className?: string;
@@ -80,23 +81,27 @@ export const legendItems: Array<LegendItem> = [
 export interface ProgressionBoardLegendProps extends CommonProps {
   /** Array of legend items to display */
   items?: Array<LegendItem>;
+  theme?: ThemeOptions;
 }
 
 export const DotProgressionBoardLegend = ({
   className,
   'data-testid': dataTestId,
   items = legendItems,
+  theme,
 }: ProgressionBoardLegendProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   return (
-    <StyledProgressionLegend className={rootClasses} data-testid={dataTestId}>
-      {items.map((item, index) => (
-        <li className={item.className ? item.className : null} key={index}>
-          <DotIcon fontSize="small" iconId={item.iconId} />
-          {item.title}
-        </li>
-      ))}
-    </StyledProgressionLegend>
+    <ProgressionBoardThemeProvider theme={theme}>
+      <StyledProgressionLegend className={rootClasses} data-testid={dataTestId}>
+        {items.map((item, index) => (
+          <li className={item.className ? item.className : null} key={index}>
+            <DotIcon fontSize="small" iconId={item.iconId} />
+            {item.title}
+          </li>
+        ))}
+      </StyledProgressionLegend>
+    </ProgressionBoardThemeProvider>
   );
 };
 

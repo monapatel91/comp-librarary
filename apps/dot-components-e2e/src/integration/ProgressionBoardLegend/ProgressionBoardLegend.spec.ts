@@ -31,7 +31,7 @@ describe('dot-components: Progression Board Legend component', () => {
       cy.get('li.maintain i.icon-circle').should(
         'have.css',
         'color',
-        'rgb(153, 1, 0)'
+        'rgb(234, 28, 13)'
       );
     });
 
@@ -40,7 +40,7 @@ describe('dot-components: Progression Board Legend component', () => {
       cy.get('li.improve i.icon-circle').should(
         'have.css',
         'color',
-        'rgb(89, 161, 33)'
+        'rgb(61, 139, 64)'
       );
     });
 
@@ -49,7 +49,7 @@ describe('dot-components: Progression Board Legend component', () => {
       cy.get('i.icon-rogue-commits').should(
         'have.css',
         'color',
-        'rgb(234, 171, 0)'
+        'rgb(255, 179, 0)'
       );
     });
 
@@ -58,7 +58,7 @@ describe('dot-components: Progression Board Legend component', () => {
       cy.get('i.icon-error-outlines').should(
         'have.css',
         'color',
-        'rgb(213, 33, 1)'
+        'rgb(234, 28, 13)'
       );
     });
 
@@ -67,7 +67,7 @@ describe('dot-components: Progression Board Legend component', () => {
       cy.get('i.icon-file-dotted').should(
         'have.css',
         'color',
-        'rgb(0, 82, 147)'
+        'rgb(57, 73, 171)'
       );
     });
 
@@ -76,7 +76,7 @@ describe('dot-components: Progression Board Legend component', () => {
       cy.get('i.icon-check-solid').should(
         'have.css',
         'color',
-        'rgb(0, 169, 224)'
+        'rgb(30, 136, 229)'
       );
     });
   });

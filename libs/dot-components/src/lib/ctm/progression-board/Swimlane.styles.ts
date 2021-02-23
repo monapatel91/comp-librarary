@@ -10,13 +10,13 @@ export const StyledProgressionSwimlane = styled.div`
         font-weight: 700;
         font-size: 1.25em;
         position: sticky;
-        top: 36px; // stops the swimline header just below the main header
+        top: 42px; // stops the swimline header just below the main header
         z-index: 1;
         display: flex;
         flex-flow: row nowrap;
         margin: 0;
         overflow-x: visible;
-        color: #244451;
+        color: ${theme.palette.text.primary};
 
         .icon-button {
           margin-left: ${theme.spacing(0.5)}px;
@@ -28,12 +28,12 @@ export const StyledProgressionSwimlane = styled.div`
           flex: 1;
           font-weight: 700;
           margin: 0 3px;
-          font-size: 1.25em;
+          font-size: 14px;
           text-align: left;
-          padding: 8px 20px 5px 20px;
+          padding: ${theme.spacing(0.5, 2)};
           word-break: break-word;
-          background: #c3dbe4;
-          color: #244451;
+          background: ${theme.palette.primary['200']};
+          color: ${theme.palette.text.primary};
         }
 
         .swimlane-subheader {
@@ -50,19 +50,19 @@ export const StyledProgressionSwimlane = styled.div`
         overflow-x: visible;
 
         .board-column {
-          background-color: #e6f0f4;
+          background-color: ${theme.palette.primary['100']};
           display: flex;
           flex: 1;
           flex-flow: column wrap;
           margin: 0 3px;
           min-height: 30px;
           min-width: 285px;
-          padding: 10px;
+          padding: ${theme.spacing(1)}px;
 
           .card {
             min-width: 110px;
             font-size: 0.857em;
-            border: 1px solid #7cb0c5;
+            border: 1px solid ${theme.palette.primary['50']};
             margin: ${theme.spacing(1)}px;
             position: relative;
             border-radius: 4px;
@@ -74,13 +74,13 @@ export const StyledProgressionSwimlane = styled.div`
             }
 
             .identity {
-              color: #356679;
+              color: ${theme.palette.text.primary};
               display: flex;
               justify-content: space-between;
               padding: 2px 10px 0 0;
 
               a.identifier {
-                color: #244451;
+                color: ${theme.palette.text.primary};
                 position: relative;
                 padding-left: 30px;
                 overflow: visible;
@@ -94,7 +94,7 @@ export const StyledProgressionSwimlane = styled.div`
                   margin-top: -2px;
                   position: absolute;
                   border-radius: 4px 0 100% 0;
-                  background-color: #7cb0c5;
+                  background-color: ${theme.palette.primary['500']};
                 }
               }
 
@@ -107,7 +107,7 @@ export const StyledProgressionSwimlane = styled.div`
               padding: ${theme.spacing(1)}px;
 
               a.title {
-                color: #244451;
+                color: ${theme.palette.text.primary};
                 display: block;
                 font-size: 18px;
                 font-weight: 700;
@@ -133,7 +133,7 @@ export const StyledProgressionSwimlane = styled.div`
                 text-align: right;
 
                 a {
-                  color: #244451;
+                  color: ${theme.palette.text.primary};
                   margin-left: 2px;
                 }
               }
@@ -153,7 +153,7 @@ export const StyledProgressionSwimlane = styled.div`
                 font-weight: 700;
                 border-radius: 50%;
                 line-height: 21px;
-                color: #61666e;
+                color: ${theme.palette.text.primary};
               }
 
               & > li {
@@ -174,18 +174,18 @@ export const StyledProgressionSwimlane = styled.div`
                 }
 
                 &.improve {
-                  color: #467f1b;
+                  color: ${theme.palette.icon.improve};
 
                   &.hover {
-                    color: #5da924;
+                    color: darken(${theme.palette.icon.improve});
                   }
                 }
 
                 &.maintain {
-                  color: #690100;
+                  color: ${theme.palette.icon.maintain};
 
                   &.hover {
-                    color: #bc0100;
+                    color: darken(${theme.palette.icon.maintain});
                   }
                 }
 
@@ -217,39 +217,39 @@ export const StyledProgressionSwimlane = styled.div`
 
       .dot-icon i {
         &.icon-error-outlines {
-          color: #d52101;
+          color: ${theme.palette.icon.errorOutlines};
         }
 
         &.icon-error-solid {
-          color: #005293;
+          color: ${theme.palette.icon.errorSolid};
         }
 
         &.icon-info-solid {
-          color: #69be28;
+          color: ${theme.palette.icon.infoSolid};
         }
 
         &.icon-rogue-commits {
-          color: #eaab00;
+          color: ${theme.palette.icon.rogueCommits};
         }
 
         &.icon-file-dotted {
-          color: #005293;
+          color: ${theme.palette.icon.fileDotted};
         }
 
         &.icon-pending-clock {
-          color: #244451;
+          color: ${theme.palette.text.primary};
         }
 
         &.icon-check-solid {
-          color: #00a9e0;
+          color: ${theme.palette.icon.checkSolid};
         }
 
         &.icon-thumbs-down {
-          color: #6d09a8;
+          color: ${theme.palette.icon.thumbsDown};
         }
 
         &.icon-lock {
-          color: #d52101;
+          color: ${theme.palette.icon.lock};
         }
       }
     }

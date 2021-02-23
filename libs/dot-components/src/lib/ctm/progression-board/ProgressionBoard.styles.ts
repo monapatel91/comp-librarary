@@ -13,6 +13,7 @@ export const StyledProgressionBoard = styled.div`
 
       .board-headers {
         background-color: ${theme.palette.background.default};
+        border-bottom: 2px solid #fff;
         display: flex;
         flex-flow: row nowrap;
         margin: 0;
@@ -24,15 +25,15 @@ export const StyledProgressionBoard = styled.div`
         z-index: 2;
 
         .board-column-header {
-          background-color: #e6f0f4;
+          background-color: ${theme.palette.primary['100']};
           border-radius: 4px 4px 0 0;
           color: #244451;
           display: flex;
           flex: 1;
           flex-flow: column wrap;
           font-weight: 700;
-          font-size: 1.5em;
-          padding: 12px 20px 10px 20px;
+          font-size: 16px;
+          padding: ${theme.spacing(1.5, 2)};
           margin: 0 3px;
           min-width: 285px;
           text-align: left;
