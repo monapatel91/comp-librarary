@@ -20,7 +20,14 @@ export const WorkItem = ({
   selectWorkItem,
   workitem,
 }: WorkItemProps) => {
-  const { _id, isSplit, isEmphasized, value_goal, title, external_key } = workitem;
+  const {
+    _id,
+    isSplit,
+    isEmphasized,
+    value_goal,
+    title,
+    external_key,
+  } = workitem;
   const { deSelectWorkitem, selectedWorkitem, selectWorkitem } = selectWorkItem;
   const rootClasses = useStylesWithRootClass(
     className,
