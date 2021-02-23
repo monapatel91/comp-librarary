@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { createMuiTheme } from '@material-ui/core';
+import { ThemeProvider } from 'styled-components';
 import { CommonProps } from '../../components/CommonProps';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { BoardHeaders } from './BoardHeaders';
@@ -8,6 +10,30 @@ import {
 } from './ProgressionBoard.styles';
 import { PhaseType } from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
+
+const progressionBoardTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+    background: {
+      default: '#fff',
+    },
+    primary: {
+      '50': '#E6F0F4',
+      '100': '#C3DBE4',
+      '200': '#9FC5D5',
+      '300': '#589BB6',
+    },
+    error: {
+      main: '#EA1C0D',
+    },
+    success: {
+      main: '#3D8B40',
+    },
+    text: {
+      primary: '#244451',
+    },
+  },
+});
 
 export interface ProgressionBoardProps extends CommonProps {
   baseUrl?: string;
@@ -90,21 +116,23 @@ export const DotProgressionBoard = ({
   };
 
   return (
-    <StyledProgressionBoard
-      className={rootClasses}
-      data-testid={dataTestId}
-      id="in-progress"
-    >
-      <BoardHeaders headers={phaseNames} />
-      {getPackages().map((pkg, i) => (
-        <SwimLane
-          baseUrl={baseUrl}
-          key={i}
-          progressionPackage={pkg}
-          selectWorkitemProps={selectWorkitemProps}
-        />
-      ))}
-    </StyledProgressionBoard>
+    <ThemeProvider theme={progressionBoardTheme}>
+      <StyledProgressionBoard
+        className={rootClasses}
+        data-testid={dataTestId}
+        id="in-progress"
+      >
+        <BoardHeaders headers={phaseNames} />
+        {getPackages().map((pkg, i) => (
+          <SwimLane
+            baseUrl={baseUrl}
+            key={i}
+            progressionPackage={pkg}
+            selectWorkitemProps={selectWorkitemProps}
+          />
+        ))}
+      </StyledProgressionBoard>
+    </ThemeProvider>
   );
 };
 

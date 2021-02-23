@@ -16,7 +16,7 @@ export const StyledProgressionSwimlane = styled.div`
         flex-flow: row nowrap;
         margin: 0;
         overflow-x: visible;
-        color: #244451;
+        color: ${theme.palette.text.primary};
 
         .icon-button {
           margin-left: ${theme.spacing(0.5)}px;
@@ -32,8 +32,8 @@ export const StyledProgressionSwimlane = styled.div`
           text-align: left;
           padding: 8px 20px 5px 20px;
           word-break: break-word;
-          background: #c3dbe4;
-          color: #244451;
+          background: ${theme.palette.primary['100']};
+          color: ${theme.palette.text.primary};
         }
 
         .swimlane-subheader {
@@ -50,7 +50,7 @@ export const StyledProgressionSwimlane = styled.div`
         overflow-x: visible;
 
         .board-column {
-          background-color: #e6f0f4;
+          background-color: ${theme.palette.primary['100']};
           display: flex;
           flex: 1;
           flex-flow: column wrap;
@@ -62,7 +62,7 @@ export const StyledProgressionSwimlane = styled.div`
           .card {
             min-width: 110px;
             font-size: 0.857em;
-            border: 1px solid #7cb0c5;
+            border: 1px solid ${theme.palette.primary['50']};
             margin: ${theme.spacing(1)}px;
             position: relative;
             border-radius: 4px;
@@ -74,13 +74,13 @@ export const StyledProgressionSwimlane = styled.div`
             }
 
             .identity {
-              color: #356679;
+              color: ${theme.palette.text.primary};
               display: flex;
               justify-content: space-between;
               padding: 2px 10px 0 0;
 
               a.identifier {
-                color: #244451;
+                color: ${theme.palette.text.primary};
                 position: relative;
                 padding-left: 30px;
                 overflow: visible;
@@ -94,7 +94,7 @@ export const StyledProgressionSwimlane = styled.div`
                   margin-top: -2px;
                   position: absolute;
                   border-radius: 4px 0 100% 0;
-                  background-color: #7cb0c5;
+                  background-color: ${theme.palette.primary['300']};
                 }
               }
 
@@ -107,7 +107,7 @@ export const StyledProgressionSwimlane = styled.div`
               padding: ${theme.spacing(1)}px;
 
               a.title {
-                color: #244451;
+                color: ${theme.palette.text.primary};
                 display: block;
                 font-size: 18px;
                 font-weight: 700;
@@ -133,7 +133,7 @@ export const StyledProgressionSwimlane = styled.div`
                 text-align: right;
 
                 a {
-                  color: #244451;
+                  color: ${theme.palette.text.primary};
                   margin-left: 2px;
                 }
               }
@@ -153,7 +153,7 @@ export const StyledProgressionSwimlane = styled.div`
                 font-weight: 700;
                 border-radius: 50%;
                 line-height: 21px;
-                color: #61666e;
+                color: ${theme.palette.text.primary};
               }
 
               & > li {
@@ -174,7 +174,7 @@ export const StyledProgressionSwimlane = styled.div`
                 }
 
                 &.improve {
-                  color: #467f1b;
+                  color: ${theme.palette.success.main};
 
                   &.hover {
                     color: #5da924;
@@ -182,7 +182,7 @@ export const StyledProgressionSwimlane = styled.div`
                 }
 
                 &.maintain {
-                  color: #690100;
+                  color: ${theme.palette.error.main};
 
                   &.hover {
                     color: #bc0100;
@@ -237,7 +237,7 @@ export const StyledProgressionSwimlane = styled.div`
         }
 
         &.icon-pending-clock {
-          color: #244451;
+          color: ${theme.palette.text.primary};
         }
 
         &.icon-check-solid {
