@@ -9,6 +9,15 @@ describe('dot-components: Progression Board component', () => {
       cy.get('li.maintain').should('have.css', 'color', 'rgb(234, 28, 13)');
     });
 
+    it('should have red icon in tooltip', () => {
+      cy.get('li.maintain')
+        .first()
+        .trigger('mouseover')
+        .within(() => {
+          cy.get('.hover').should('be.visible');
+        });
+    });
+
     it('improve workitems should render as green', () => {
       cy.get('li').should('have.class', 'improve');
       cy.get('li.improve').should('have.css', 'color', 'rgb(61, 139, 64)');
