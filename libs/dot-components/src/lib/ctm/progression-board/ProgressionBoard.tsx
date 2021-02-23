@@ -6,13 +6,14 @@ import {
   rootClassName,
   StyledProgressionBoard,
 } from './ProgressionBoard.styles';
-import { ProgressionBoardThemeProvider } from './ThemeProvider';
+import { ProgressionBoardThemeProvider, ThemeOptions } from './ThemeProvider';
 import { PhaseType } from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
 
 export interface ProgressionBoardProps extends CommonProps {
   baseUrl?: string;
   phases: Array<PhaseType>;
+  theme?: ThemeOptions;
 }
 
 export const DotProgressionBoard = ({
@@ -20,6 +21,7 @@ export const DotProgressionBoard = ({
   className,
   'data-testid': dataTestId,
   phases,
+  theme,
 }: ProgressionBoardProps) => {
   const rootClasses = useStylesWithRootClass(
     rootClassName,
@@ -91,7 +93,7 @@ export const DotProgressionBoard = ({
   };
 
   return (
-    <ProgressionBoardThemeProvider>
+    <ProgressionBoardThemeProvider theme={theme}>
       <StyledProgressionBoard
         className={rootClasses}
         data-testid={dataTestId}
