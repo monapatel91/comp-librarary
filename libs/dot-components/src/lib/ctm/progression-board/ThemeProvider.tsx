@@ -24,8 +24,9 @@ const lightTheme = createMuiTheme({
     },
     primary: {
       '50': '#E6F0F4',
-      '100': '#C3DBE4',
-      '200': '#9FC5D5',
+      '100': '#C3DBE4', // board column
+      '200': '#FFF', // card background
+      '300': '#9FC5D5', // swimlane column
       '500': '#589BB6',
     },
     text: {
@@ -56,8 +57,9 @@ const darkTheme = createMuiTheme({
     },
     primary: {
       '50': '#050A0A',
-      '100': '#244451',
-      '200': '#336275',
+      '100': '#244451', // board column
+      '200': '#336275', // card background
+      '300': '#336275', // swimlane column
       '500': '#9FC5D5',
     },
     text: {

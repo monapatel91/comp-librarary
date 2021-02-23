@@ -6,7 +6,7 @@ export const StyledProgressionSwimlane = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
       .swimlane-header {
-        background: transparent;
+        background: ${theme.palette.background.default};
         font-weight: 700;
         font-size: 1.25em;
         position: sticky;
@@ -32,7 +32,7 @@ export const StyledProgressionSwimlane = styled.div`
           text-align: left;
           padding: ${theme.spacing(0.5, 2)};
           word-break: break-word;
-          background: ${theme.palette.primary['200']};
+          background: ${theme.palette.primary['300']};
           color: ${theme.palette.text.primary};
         }
 
@@ -66,7 +66,7 @@ export const StyledProgressionSwimlane = styled.div`
             margin: ${theme.spacing(1)}px;
             position: relative;
             border-radius: 4px;
-            background: ${theme.palette.background.default};
+            background: ${theme.palette.primary['200']};
             box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 
             a {
@@ -129,7 +129,7 @@ export const StyledProgressionSwimlane = styled.div`
               }
 
               .revision-range-label {
-                color: black;
+                color: ${theme.palette.text.primary};
                 text-align: right;
 
                 a {
