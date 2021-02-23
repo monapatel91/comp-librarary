@@ -13,6 +13,7 @@ const lightTheme = createMuiTheme({
       '100': '#C3DBE4',
       '200': '#9FC5D5',
       '300': '#589BB6',
+      '500': '#589BB6',
     },
     error: {
       main: '#EA1C0D',
@@ -37,6 +38,7 @@ const darkTheme = createMuiTheme({
       '100': '#244451',
       '200': '#336275',
       '300': '#9FC5D5',
+      '500': '#9FC5D5',
     },
     error: {
       main: '#F77066',
