@@ -6,12 +6,12 @@ describe('dot-components: Progression Board component', () => {
   describe('style decisions', () => {
     it('maintain workitems should render as red', () => {
       cy.get('li').should('have.class', 'maintain');
-      cy.get('li.maintain').should('have.css', 'color', 'rgb(105, 1, 0)');
+      cy.get('li.maintain').should('have.css', 'color', 'rgb(234, 28, 13)');
     });
 
     it('improve workitems should render as green', () => {
       cy.get('li').should('have.class', 'improve');
-      cy.get('li.improve').should('have.css', 'color', 'rgb(70, 127, 27)');
+      cy.get('li.improve').should('have.css', 'color', 'rgb(61, 139, 64)');
     });
 
     it('rogue commit icon should render as yellow', () => {
@@ -19,7 +19,7 @@ describe('dot-components: Progression Board component', () => {
       cy.get('i.icon-rogue-commits').should(
         'have.css',
         'color',
-        'rgb(234, 171, 0)'
+        'rgb(255, 179, 0)'
       );
     });
 
@@ -28,7 +28,7 @@ describe('dot-components: Progression Board component', () => {
       cy.get('i.icon-error-outlines').should(
         'have.css',
         'color',
-        'rgb(213, 33, 1)'
+        'rgb(234, 28, 13)'
       );
     });
 
@@ -37,7 +37,7 @@ describe('dot-components: Progression Board component', () => {
       cy.get('i.icon-file-dotted').should(
         'have.css',
         'color',
-        'rgb(0, 82, 147)'
+        'rgb(57, 73, 171)'
       );
     });
 
@@ -46,7 +46,7 @@ describe('dot-components: Progression Board component', () => {
       cy.get('i.icon-check-solid').should(
         'have.css',
         'color',
-        'rgb(0, 169, 224)'
+        'rgb(30, 136, 229)'
       );
     });
   });
