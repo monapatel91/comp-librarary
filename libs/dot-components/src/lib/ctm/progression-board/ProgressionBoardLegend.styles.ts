@@ -22,11 +22,11 @@ export const StyledProgressionLegend = styled.ul`
         width: 48%;
 
         &.improve .dot-icon i {
-          color: ${theme.palette.success.main};
+          color: ${theme.palette.icon.improve};
         }
 
         &.maintain .dot-icon i {
-          color: ${theme.palette.error.main};
+          color: ${theme.palette.icon.maintain};
         }
 
         &.unknown .dot-icon i {
@@ -38,34 +38,40 @@ export const StyledProgressionLegend = styled.ul`
           margin-right: 9px;
 
           i {
-            &.icon-error-outlines,
-            &.icon-lock {
-              color: #d52101;
+            &.icon-error-outlines {
+              color: ${theme.palette.icon.errorOutlines};
             }
 
-            &.icon-error-solid,
-            &.icon-file-dotted {
-              color: #005293;
+            &.icon-error-solid {
+              color: ${theme.palette.icon.errorSolid};
             }
 
             &.icon-info-solid {
-              color: #69be28;
+              color: ${theme.palette.icon.infoSolid};
             }
 
             &.icon-rogue-commits {
-              color: #eaab00;
+              color: ${theme.palette.icon.rogueCommits};
+            }
+
+            &.icon-file-dotted {
+              color: ${theme.palette.icon.fileDotted};
             }
 
             &.icon-pending-clock {
-              color: #244451;
+              color: ${theme.palette.text.primary};
             }
 
             &.icon-check-solid {
-              color: #00a9e0;
+              color: ${theme.palette.icon.checkSolid};
             }
 
             &.icon-thumbs-down {
-              color: #6d09a8;
+              color: ${theme.palette.icon.thumbsDown};
+            }
+
+            &.icon-lock {
+              color: ${theme.palette.icon.lock};
             }
           }
         }

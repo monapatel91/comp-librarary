@@ -8,18 +8,25 @@ const lightTheme = createMuiTheme({
     background: {
       default: '#fff',
     },
+    icon: {
+      checkOutline: '#1E88E5',
+      checkSolid: '#1E88E5',
+      errorOutlines: '#EA1C0D',
+      errorSolid: '#3949AB',
+      fileDotted: '#3949AB',
+      improve: '#3D8B40',
+      infoSolid: '#3DB840',
+      lock: '#EA1C0D',
+      maintain: '#EA1C0D',
+      pendingClock: '#244451',
+      rogueCommits: '#FFB300',
+      thumbsDown: '#8E24AA',
+    },
     primary: {
       '50': '#E6F0F4',
       '100': '#C3DBE4',
       '200': '#9FC5D5',
-      '300': '#589BB6',
       '500': '#589BB6',
-    },
-    error: {
-      main: '#EA1C0D',
-    },
-    success: {
-      main: '#3D8B40',
     },
     text: {
       primary: '#244451',
@@ -33,18 +40,25 @@ const darkTheme = createMuiTheme({
     background: {
       default: '#14262E',
     },
+    icon: {
+      checkOutline: '#42A5F5',
+      checkSolid: '#42A5F5',
+      errorOutlines: '#F77066',
+      errorSolid: '#9FA8DA',
+      fileDotted: '#9FA8DA',
+      improve: '#6EC071',
+      infoSolid: '#6EC071',
+      lock: '#F77066',
+      maintain: '#F77066',
+      pendingClock: '#FFFFFF',
+      rogueCommits: '#FFB300',
+      thumbsDown: '#CE93D8',
+    },
     primary: {
       '50': '#050A0A',
       '100': '#244451',
       '200': '#336275',
-      '300': '#9FC5D5',
       '500': '#9FC5D5',
-    },
-    error: {
-      main: '#F77066',
-    },
-    success: {
-      main: '#6EC071',
     },
     text: {
       primary: '#fff',
