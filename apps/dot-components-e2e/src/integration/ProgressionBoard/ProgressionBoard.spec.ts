@@ -10,17 +10,22 @@ describe('dot-components: Progression Board component', () => {
     });
 
     it('should have red icon in tooltip', () => {
-      cy.get('li.maintain')
-        .first()
-        .trigger('mouseover')
-        .within(() => {
-          cy.get('.hover').should('be.visible');
-        });
+      cy.get('li.maintain').first().trigger('mouseover');
+      cy.get('.dot-icon.maintain i')
+        .should('be.visible')
+        .and('have.css', 'color', 'rgb(105, 1, 0)');
     });
 
     it('improve workitems should render as green', () => {
       cy.get('li').should('have.class', 'improve');
       cy.get('li.improve').should('have.css', 'color', 'rgb(61, 139, 64)');
+    });
+
+    it('should have green icon in tooltip', () => {
+      cy.get('li.improve').first().trigger('mouseover');
+      cy.get('.dot-icon.improve i')
+        .should('be.visible')
+        .and('have.css', 'color', 'rgb(70, 127, 27)');
     });
 
     it('rogue commit icon should render as yellow', () => {
