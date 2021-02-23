@@ -53,7 +53,7 @@ export const DotButton = ({
   let variant: 'contained' | 'outlined' | 'text';
   switch (type) {
     case 'destructive':
-      color = 'secondary';
+      color = disabled ? 'default' : 'secondary';
       variant = 'contained';
       break;
     case 'primary':
