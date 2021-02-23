@@ -27,7 +27,7 @@ export const WorkItemTooltip = ({
     return str.length > 20 ? str.substring(0, 17) + '...' : str;
   };
 
-  const buildTooLtip = (isSplit: boolean) => {
+  const populateTooltip = (isSplit: boolean) => {
     const truncated_title = truncate(title);
     return (
       <StyledTooltipTitle className={rootClassName}>
@@ -48,7 +48,7 @@ export const WorkItemTooltip = ({
     <Tooltip
       data-testid={dataTestId}
       className={rootClasses}
-      title={buildTooLtip(isSplit)}
+      title={populateTooltip(isSplit)}
     >
       {child}
     </Tooltip>
