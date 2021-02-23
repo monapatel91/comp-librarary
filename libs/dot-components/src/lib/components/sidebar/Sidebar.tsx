@@ -35,7 +35,7 @@ export interface SidebarProps extends CommonProps {
 export const DotSidebar = ({
   backItem = [],
   brandDesc,
-  children = null,
+  children,
   className,
   collapsable = false,
   'data-testid': dataTestId,

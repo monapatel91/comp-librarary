@@ -1,5 +1,5 @@
 describe('dot-components: Input Text Field component', () => {
-  before(() => cy.visit('/iframe.html?id=experimental-input-text--default'));
+  before(() => cy.visit('/iframe.html?id=components-input-text--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-text-field');
