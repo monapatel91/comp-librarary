@@ -1,7 +1,5 @@
 import React from 'react';
-import { addDecorator } from '@storybook/react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import { ProgressionBoardThemeProvider } from './ThemeProvider';
 import { DotProgressionBoard, ProgressionBoardProps } from './ProgressionBoard';
 import samplePhases from './sampleData';
 
@@ -15,19 +13,5 @@ export default {
 } as Meta;
 
 export const Default: Story<ProgressionBoardProps> = (args) => (
-  <ProgressionBoardThemeProvider>
-    <DotProgressionBoard {...args} />
-  </ProgressionBoardThemeProvider>
+  <DotProgressionBoard {...args} />
 );
-
-// export const withTheme = () => {
-//   return (
-//     <ProgressionBoardThemeProvider>
-//       <DotProgressionBoard
-//         phases={samplePhases}
-//         baseUrl="http://localhost:8080"
-//       />
-//     </ProgressionBoardThemeProvider>
-//   );
-// };
-// addDecorator(withTheme);
