@@ -12,8 +12,8 @@ export const StyledProgressionBoard = styled.div`
       }
 
       .board-headers {
-        background-color: ${theme.palette.background.default};
-        border-bottom: 2px solid #fff;
+        background-color: ${theme.palette.layer['0']};
+        border-bottom: 2px solid ${theme.palette.layer['0']};
         display: flex;
         flex-flow: row nowrap;
         margin: 0;
@@ -25,9 +25,9 @@ export const StyledProgressionBoard = styled.div`
         z-index: 2;
 
         .board-column-header {
-          background-color: ${theme.palette.primary['100']};
+          background-color: ${theme.palette.layer['100']};
           border-radius: 4px 4px 0 0;
-          color: #244451;
+          color: ${theme.palette.text.primary};
           display: flex;
           flex: 1;
           flex-flow: column wrap;
@@ -82,7 +82,7 @@ export const StyledProgressionBoard = styled.div`
             justify-content: center;
             font-size: 18px;
             font-weight: 700;
-            color: #00457c;
+            color: ${theme.palette.text.primary};
             padding: 8px 0;
           }
 
