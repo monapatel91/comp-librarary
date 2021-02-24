@@ -21,7 +21,7 @@ const agilityLightTheme = createMuiTheme({
       rogueCommits: '#FFB300',
       thumbsDown: '#8E24AA',
       unknown: '#4B626D',
-      unknownHover: '#4B626D',
+      unknownHover: '#71828B',
     },
     layer: {
       '0': '#FFF',
@@ -59,7 +59,7 @@ const agilityDarkTheme = createMuiTheme({
       rogueCommits: '#FFB300',
       thumbsDown: '#CE93D8',
       unknown: '#B7C6CD',
-      unknownHover: '#B7C6CD',
+      unknownHover: '#88979D',
     },
     layer: {
       '0': '#050A0A',
