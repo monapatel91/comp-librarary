@@ -10,7 +10,7 @@ export const StyledTooltipTitle = styled.div`
         align-items: center;
 
         .dot-icon.unknown i {
-          color: #b7bcc4;
+          color: ${theme.palette.icon.unknown};
         }
         .dot-icon.improve i {
           color: ${theme.palette.icon.improve};
