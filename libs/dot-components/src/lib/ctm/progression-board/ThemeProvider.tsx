@@ -2,12 +2,9 @@ import React from 'react';
 import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from 'styled-components';
 
-const lightTheme = createMuiTheme({
+const agilityLightTheme = createMuiTheme({
   palette: {
     type: 'light',
-    background: {
-      default: '#fff',
-    },
     icon: {
       checkOutline: '#1E88E5',
       checkSolid: '#1E88E5',
@@ -15,19 +12,24 @@ const lightTheme = createMuiTheme({
       errorSolid: '#3949AB',
       fileDotted: '#3949AB',
       improve: '#3D8B40',
+      improveHover: '#6BA568',
       infoSolid: '#3DB840',
       lock: '#EA1C0D',
       maintain: '#EA1C0D',
+      maintainHover: '#F96244',
       pendingClock: '#244451',
       rogueCommits: '#FFB300',
       thumbsDown: '#8E24AA',
+      unknown: '#4B626D',
+      unknownHover: '#4B626D',
     },
-    primary: {
+    layer: {
+      '0': '#FFF',
       '50': '#E6F0F4',
-      '100': '#C3DBE4', // board column
-      '200': '#FFF', // card background
-      '300': '#9FC5D5', // swimlane column
-      '500': '#589BB6',
+      '100': '#C3DBE4',
+      '200': '#9FC5D5',
+      '300': '#589BB6',
+      card: '#FFF',
     },
     text: {
       primary: '#244451',
@@ -35,7 +37,7 @@ const lightTheme = createMuiTheme({
   },
 });
 
-const darkTheme = createMuiTheme({
+const agilityDarkTheme = createMuiTheme({
   palette: {
     type: 'dark',
     background: {
@@ -48,19 +50,24 @@ const darkTheme = createMuiTheme({
       errorSolid: '#9FA8DA',
       fileDotted: '#9FA8DA',
       improve: '#6EC071',
+      improveHover: '#1A6D25',
       infoSolid: '#6EC071',
       lock: '#F77066',
       maintain: '#F77066',
+      maintainHover: '#C50000',
       pendingClock: '#FFFFFF',
       rogueCommits: '#FFB300',
       thumbsDown: '#CE93D8',
+      unknown: '#B7C6CD',
+      unknownHover: '#B7C6CD',
     },
-    primary: {
+    layer: {
+      '0': '#050A0A',
       '50': '#050A0A',
-      '100': '#244451', // board column
-      '200': '#336275', // card background
-      '300': '#336275', // swimlane column
-      '500': '#9FC5D5',
+      '100': '#244451',
+      '200': '#336275',
+      '300': '#9FC5D5',
+      card: '#336275',
     },
     text: {
       primary: '#fff',
@@ -82,13 +89,13 @@ export function ProgressionBoardThemeProvider({
   const getTheme = () => {
     switch (theme) {
       case 'dark':
-        return darkTheme;
+        return agilityDarkTheme;
       case 'agility-dark':
-        return darkTheme;
+        return agilityDarkTheme;
       case 'agility-light':
-        return lightTheme;
+        return agilityLightTheme;
       default:
-        return lightTheme;
+        return agilityLightTheme;
     }
   };
 

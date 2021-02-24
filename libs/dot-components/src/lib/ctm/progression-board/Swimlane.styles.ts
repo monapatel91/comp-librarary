@@ -6,7 +6,7 @@ export const StyledProgressionSwimlane = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
       .swimlane-header {
-        background: ${theme.palette.background.default};
+        background: ${theme.palette.layer['0']};
         font-weight: 700;
         font-size: 1.25em;
         position: sticky;
@@ -32,7 +32,7 @@ export const StyledProgressionSwimlane = styled.div`
           text-align: left;
           padding: ${theme.spacing(0.5, 2)};
           word-break: break-word;
-          background: ${theme.palette.primary['300']};
+          background: ${theme.palette.layer['200']};
           color: ${theme.palette.text.primary};
         }
 
@@ -46,11 +46,11 @@ export const StyledProgressionSwimlane = styled.div`
         flex-flow: row nowrap;
         margin: 0;
         padding: 0;
-        background-color: ${theme.palette.background.default};
+        background-color: ${theme.palette.layer['0']};
         overflow-x: visible;
 
         .board-column {
-          background-color: ${theme.palette.primary['100']};
+          background-color: ${theme.palette.layer['100']};
           display: flex;
           flex: 1;
           flex-flow: column wrap;
@@ -62,11 +62,11 @@ export const StyledProgressionSwimlane = styled.div`
           .card {
             min-width: 110px;
             font-size: 0.857em;
-            border: 1px solid ${theme.palette.primary['50']};
+            border: 1px solid ${theme.palette.layer['50']};
             margin: ${theme.spacing(1)}px;
             position: relative;
             border-radius: 4px;
-            background: ${theme.palette.primary['200']};
+            background: ${theme.palette.layer.card};
             box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 
             a {
@@ -94,7 +94,7 @@ export const StyledProgressionSwimlane = styled.div`
                   margin-top: -2px;
                   position: absolute;
                   border-radius: 4px 0 100% 0;
-                  background-color: ${theme.palette.primary['500']};
+                  background-color: ${theme.palette.layer['300']};
                 }
               }
 
@@ -163,22 +163,22 @@ export const StyledProgressionSwimlane = styled.div`
                 height: 20px;
                 width: 20px;
                 cursor: pointer;
-                color: #b7bcc4;
+                color: ${theme.palette.icon.unknown};
                 background-color: currentColor;
                 border: 1px solid currentColor;
                 border-radius: 50%;
                 transition: 0.2s all linear;
 
                 &.hover {
-                  color: #bec2c9;
                   border: 1px solid #fff;
+                  color: ${theme.palette.icon.unknownHover};
                 }
 
                 &.improve {
                   color: ${theme.palette.icon.improve};
 
                   &.hover {
-                    color: darken(${theme.palette.icon.improve});
+                    color: ${theme.palette.icon.improveHover};
                   }
                 }
 
@@ -186,7 +186,7 @@ export const StyledProgressionSwimlane = styled.div`
                   color: ${theme.palette.icon.maintain};
 
                   &.hover {
-                    color: darken(${theme.palette.icon.maintain});
+                    color: ${theme.palette.icon.maintainHover};
                   }
                 }
 
