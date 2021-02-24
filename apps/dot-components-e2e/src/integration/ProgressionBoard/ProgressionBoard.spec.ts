@@ -13,7 +13,7 @@ describe('dot-components: Progression Board component', () => {
       cy.get('li.maintain').first().trigger('mouseover');
       cy.get('.dot-icon.maintain i')
         .should('be.visible')
-        .and('have.css', 'color', 'rgb(105, 1, 0)');
+        .and('have.css', 'color', 'rgb(234, 28, 13)');
     });
 
     it('improve workitems should render as green', () => {
@@ -25,7 +25,7 @@ describe('dot-components: Progression Board component', () => {
       cy.get('li.improve').first().trigger('mouseover');
       cy.get('.dot-icon.improve i')
         .should('be.visible')
-        .and('have.css', 'color', 'rgb(70, 127, 27)');
+        .and('have.css', 'color', 'rgb(61, 139, 64)');
     });
 
     it('rogue commit icon should render as yellow', () => {
