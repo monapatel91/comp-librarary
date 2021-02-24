@@ -1,7 +1,7 @@
 import React from 'react';
-import { CircularProgress } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { StyledCircularProgress, rootClassName } from './Progress.styles';
 
 export type progressColorOptions = 'inherit' | 'primary' | 'secondary';
 export type progressVariantOptions = 'determinate' | 'indeterminate' | 'static';
@@ -21,11 +21,8 @@ export interface ProgressProps extends CommonProps {
   variant?: progressVariantOptions;
 }
 
-/**
- * @experimental This component is still in development
- */
 export const DotProgress = ({
-  color = 'primary',
+  color = 'secondary',
   className,
   'data-testid': dataTestId,
   size = 40,
@@ -34,10 +31,10 @@ export const DotProgress = ({
   value,
   variant = 'indeterminate',
 }: ProgressProps) => {
-  const rootClasses = useStylesWithRootClass('dot-progress', className);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   return (
-    <CircularProgress
+    <StyledCircularProgress
       classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}

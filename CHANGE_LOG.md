@@ -15,6 +15,7 @@
 - **Chip**: removed `variant` prop
 - **Chip**: removed `color` prop
 - **CheckboxGroup**: fixed hardcoded coded select all state to be dynamic.
+- **Progress**: moved to Components
 
 ## 0.0.0-alpha.10
 
