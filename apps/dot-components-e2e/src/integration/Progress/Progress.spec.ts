@@ -12,7 +12,7 @@ describe('dot-components: Progress component', () => {
   it('should be rotating', () => {
     cy.get('div').should('have.class', 'MuiCircularProgress-indeterminate');
   });
-  
+
   describe('style decisions', () => {
     it('color', () => {
       cy.get('div.dot-progress').should(
