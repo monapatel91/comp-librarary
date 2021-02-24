@@ -5,6 +5,7 @@ import {
   SelectWorkItem,
   WorkItemType,
 } from '../progression-board/ProgressionBoardInterfaces';
+import WorkItemTooltip from './WorkItemTooltip';
 
 export interface WorkItemProps extends CommonProps {
   baseUrl: string;
@@ -19,7 +20,14 @@ export const WorkItem = ({
   selectWorkItem,
   workitem,
 }: WorkItemProps) => {
-  const { _id, isSplit, isEmphasized, value_goal } = workitem;
+  const {
+    _id,
+    isSplit,
+    isEmphasized,
+    value_goal,
+    title,
+    external_key,
+  } = workitem;
   const { deSelectWorkitem, selectedWorkitem, selectWorkitem } = selectWorkItem;
   const rootClasses = useStylesWithRootClass(
     className,
@@ -33,7 +41,7 @@ export const WorkItem = ({
     selectWorkitem(_id);
   };
 
-  return (
+  const workItem = (
     <li
       className={rootClasses}
       data-testid={dataTestId}
@@ -42,6 +50,16 @@ export const WorkItem = ({
       }
       onMouseEnter={hoverThing}
       onMouseLeave={deSelectWorkitem}
+    />
+  );
+
+  return (
+    <WorkItemTooltip
+      child={workItem}
+      isSplit={isSplit}
+      value_goal={value_goal}
+      title={title}
+      external_key={external_key}
     />
   );
 };

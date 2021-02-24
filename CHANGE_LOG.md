@@ -16,6 +16,11 @@
 - **Chip**: removed `color` prop
 - **CheckboxGroup**: fixed hardcoded coded select all state to be dynamic.
 
+### Experimental
+
+- **WorkItem**: Reafactored to return with new WorkItemTooltip.
+- **WorkItemTooltip**: Created the new tooltip component.
+
 ## 0.0.0-alpha.10
 
 ### Components

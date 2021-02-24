@@ -171,6 +171,7 @@ export const StyledProgressionSwimlane = styled.div`
 
                 &.hover {
                   color: #bec2c9;
+                  border: 1px solid #fff;
                 }
 
                 &.improve {
