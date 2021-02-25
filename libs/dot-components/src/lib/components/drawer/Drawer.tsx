@@ -29,7 +29,7 @@ export const DotDrawer = ({
   onClose,
   open,
   variant = 'temporary',
-  width,
+  width = '256px',
 }: DrawerProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   return (

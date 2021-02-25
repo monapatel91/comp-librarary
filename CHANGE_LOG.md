@@ -1,5 +1,11 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **DotDrawer**: added default value of 256px to `width` prop
+
 ## 0.0.0-alpha.11
 
 ### Components
