@@ -10,9 +10,7 @@
 
 For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot-components/blob/master/CONTRIBUTING.md) guide.
 
-**PLEASE REMOVE TEMPLATE ABOVE LINE BEFORE SUBMITTING**
-
----
+**PLEASE REMOVE TEMPLATE ABOVE "Changes Made" BEFORE SUBMITTING**
 
 ## Changes Made
 
@@ -20,14 +18,15 @@ For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot
 
 ## Author Checklist
 
-- [ ] `unit` test coverage updated
-- [ ] `e2e` test coverage updated
-- [ ] Storybook configurations up-to-date
+- [ ] Checklist of changes made added to PR description
+- [ ] If new component, ensure it is being exported
 - [ ] Component is a styled component
 - [ ] Component props extends `commonProps`
+- [ ] Storybook configurations up-to-date
+- [ ] `unit` test coverage updated
+- [ ] `e2e` test coverage updated
 - [ ] `CHANGE_LOG.md` updated
 - [ ] Related issue linked to PR
-- [ ] Checklist of changes made added to PR description
 
 ## Reviewer Checklist
 
