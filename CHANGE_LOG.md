@@ -4,7 +4,17 @@
 
 ### Components
 
+- **AutoComplete** - onChange signature changed to match material-ui
+- **AutoComplete** - AutoCompleteOption.category changed to AutoCompletionOption.group and made optional
+- **AutoComplete** - defaultValue prop type changed to accept an AutoCompleteOption or an AutoCompleteOption array
+- **AutoComplete** - value prop type changed to accept an AutoCompleteOption or an AutoCompleteOption array
+- **AutoComplete** - added helperText prop
+- **AutoComplete** - added inputId prop
+- **AutoComplete** - added error prop and styling
+- **AutoComplete** - use outlined version of chips
+- **Chip** - fixed colors for border, close icon and hover
 - **DotDrawer**: added default value of 256px to `width` prop
+- **InputText** - added placeholder prop
 
 ## 0.0.0-alpha.11
 
@@ -20,7 +30,7 @@
 - **Chip**: added `error` prop
 - **Chip**: removed `variant` prop
 - **Chip**: removed `color` prop
-- **CheckboxGroup**: fixed hardcoded coded select all state to be dynamic.
+- **CheckboxGroup**: fixed hardcoded coded select all state to be dynamic
 - **Progress**: moved to Components
 
 ### Experimental

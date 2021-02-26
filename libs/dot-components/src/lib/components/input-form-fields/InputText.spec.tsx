@@ -2,9 +2,31 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { DotInputText } from './InputText';
+import { DotInputText, InputTextProps } from './InputText';
 
 describe('DotInputText', () => {
+  it('should have unchanged API', () => {
+    const props = {
+      id: 'text-id',
+      multiline: true,
+      name: 'my-text',
+      placeholder: 'Enter something',
+      required: true,
+      rows: 5,
+      rowsMax: 15,
+    };
+    const inputTextProps: InputTextProps = {
+      id: 'text-id',
+      multiline: true,
+      name: 'my-text',
+      placeholder: 'Enter something',
+      required: true,
+      rows: 5,
+      rowsMax: 15,
+    };
+    expect(inputTextProps).toEqual(props);
+  });
+
   it('renders successfully', () => {
     const { baseElement } = render(
       <DotInputText id="test-id" label="Test" name="test" required={false} />

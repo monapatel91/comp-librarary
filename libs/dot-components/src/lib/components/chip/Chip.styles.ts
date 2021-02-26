@@ -6,6 +6,8 @@ export const rootClassName = 'dot-chip';
 export const StyledChip = styled(Chip)`
   ${({ theme }) => css`
     &.${rootClassName} {
+      border-color: ${theme.palette.grey[300]};
+
       &.MuiChip-sizeSmall {
         .dot-icon,
         .dot-avatar {
@@ -22,9 +24,22 @@ export const StyledChip = styled(Chip)`
         }
       }
 
+      &:not(.Mui-error) {
+        &:hover {
+          background-color: ${theme.palette.grey[50]};
+        }
+
+        .MuiChip-deleteIcon {
+          &:hover {
+            color: ${theme.palette.grey[400]};
+          }
+        }
+      }
+
       .MuiChip-deleteIcon {
         width: 18px;
         height: 18px;
+        color: ${theme.palette.grey[300]};
       }
     }
   `}

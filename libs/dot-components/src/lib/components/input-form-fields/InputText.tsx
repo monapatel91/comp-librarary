@@ -12,6 +12,7 @@ import {
 export interface InputTextProps extends InputProps {
   /** if multiline it wil render multiple lines */
   multiline?: boolean;
+  placeholder?: string;
   /** number of rows for multiline line */
   rows?: number;
   /** max of rows for multiline line */
@@ -34,6 +35,7 @@ export const DotInputText = ({
   multiline = false,
   name,
   onChange,
+  placeholder,
   required = false,
   rows,
   rowsMax,
@@ -85,6 +87,7 @@ export const DotInputText = ({
       multiline={multiline}
       name={name}
       onChange={(event) => onChange && onChange(event.target.value)}
+      placeholder={placeholder}
       required={required}
       rows={multiline ? rows : null}
       rowsMax={multiline ? rowsMax : null}

@@ -1,5 +1,5 @@
 describe('dot-components: Auto Complete component', () => {
-  before(() => cy.visit('/iframe.html?id=experimental-auto-complete--default'));
+  before(() => cy.visit('/iframe.html?id=components-auto-complete--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-autocomplete');
@@ -12,7 +12,7 @@ describe('dot-components: Auto Complete component', () => {
   describe('style decisions', () => {
     it('sizing is correct', () => {
       cy.get('div.dot-autocomplete div.MuiAutocomplete-inputRoot')
-        .should('have.css', 'padding-right', '39px')
+        .should('have.css', 'padding-right', '12px')
         .and('have.css', 'margin-bottom', '4px');
     });
 
@@ -20,7 +20,7 @@ describe('dot-components: Auto Complete component', () => {
       cy.get('div.dot-autocomplete div.MuiAutocomplete-inputRoot').should(
         'have.css',
         'padding-right',
-        '39px'
+        '12px'
       );
     });
 

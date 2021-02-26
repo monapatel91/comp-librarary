@@ -5,24 +5,62 @@ import userEvent from '@testing-library/user-event';
 import {
   AutoCompleteOption,
   DotAutoComplete,
+  AutoCompleteProps,
   parseAutoCompleteValue,
 } from './AutoComplete';
 
 describe('AutoComplete', () => {
   const dummyOptions: Array<AutoCompleteOption> = [
-    { category: 'Marvel', title: 'Hulk' },
-    { category: 'Marvel', title: 'Thor' },
-    { category: 'Marvel', title: 'Ironman' },
-    { category: 'Marvel', title: 'Spiderman' },
-    { category: 'D.C.', title: 'Batman' },
-    { category: 'D.C.', title: 'Flash' },
-    { category: 'D.C.', title: 'Aquaman' },
-    { category: 'D.C.', title: 'Wonderwoman' },
+    { group: 'Marvel', title: 'Hulk' },
+    { group: 'Marvel', title: 'Thor' },
+    { group: 'Marvel', title: 'Ironman' },
+    { group: 'Marvel', title: 'Spiderman' },
+    { group: 'D.C.', title: 'Batman', error: true },
+    { group: 'D.C.', title: 'Flash', error: false },
+    { group: 'D.C.', title: 'Aquaman' },
+    { group: 'D.C.', title: 'Wonderwoman' },
+    { title: 'Underdog' },
   ];
+
+  it('should have unchanged API', () => {
+    const onChange = jest.fn();
+    const props = {
+      defaultValue: dummyOptions[0],
+      error: false,
+      freesolo: false,
+      group: true,
+      helperText: 'a little help here?',
+      inputId: 'input-id',
+      label: 'My Label',
+      multiple: false,
+      onChange: onChange,
+      options: dummyOptions,
+      placeholder: 'Select a hero',
+      size: 'medium',
+      value: dummyOptions[1],
+    };
+    const autoCompleteProps: AutoCompleteProps = {
+      defaultValue: dummyOptions[0],
+      error: false,
+      freesolo: false,
+      group: true,
+      helperText: 'a little help here?',
+      inputId: 'input-id',
+      label: 'My Label',
+      multiple: false,
+      onChange: onChange,
+      options: dummyOptions,
+      placeholder: 'Select a hero',
+      size: 'medium',
+      value: dummyOptions[1],
+    };
+    expect(autoCompleteProps).toEqual(props);
+  });
 
   it('should render successfully', () => {
     const { baseElement } = render(
       <DotAutoComplete
+        inputId="input-id"
         label="Label"
         options={dummyOptions}
         placeholder="Choose your hero"
@@ -31,11 +69,44 @@ describe('AutoComplete', () => {
     expect(baseElement).toBeTruthy();
   });
 
+  it('should display chips with correct error styling', () => {
+    render(
+      <DotAutoComplete
+        data-testid="autocomplete-input-field"
+        group={true}
+        inputId="input-id"
+        label="Label"
+        options={dummyOptions}
+        placeholder="Choose your hero"
+      />
+    );
+    const textField = screen.getByRole('textbox');
+    // error = true
+    userEvent.click(textField);
+    const batmanOption = screen.getByText('Batman');
+    userEvent.click(batmanOption);
+    const batmanChip = screen.getByText('Batman');
+    expect(batmanChip.closest('div')).toHaveClass('Mui-error');
+    // error = false
+    userEvent.click(textField);
+    const flashOption = screen.getByText('Flash');
+    userEvent.click(flashOption);
+    const flashChip = screen.getByText('Flash');
+    expect(flashChip.closest('div')).not.toHaveClass('Mui-error');
+    // error not provided
+    userEvent.click(textField);
+    const aquamanOption = screen.getByText('Aquaman');
+    userEvent.click(aquamanOption);
+    const aquamanChip = screen.getByText('Aquaman');
+    expect(aquamanChip.closest('div')).not.toHaveClass('Mui-error');
+  });
+
   it('should display categories when grouping enabled', () => {
     render(
       <DotAutoComplete
         data-testid="autocomplete-input-field"
         group={true}
+        inputId="input-id"
         label="Label"
         options={dummyOptions}
         placeholder="Choose your hero"
@@ -46,6 +117,10 @@ describe('AutoComplete', () => {
 
     const listBox = screen.getByRole('listbox');
     expect(listBox).toHaveTextContent('Marvel');
+    // option with group provided
+    expect(listBox).toHaveTextContent('Spiderman');
+    // option with no group provided
+    expect(listBox).toHaveTextContent('Underdog');
   });
 
   it('should allow arbitrary value when enabled', () => {
@@ -54,6 +129,7 @@ describe('AutoComplete', () => {
       <DotAutoComplete
         data-testid="autocomplete-input-field"
         group={true}
+        inputId="input-id"
         label="Label"
         onChange={onChange}
         options={dummyOptions}
@@ -66,7 +142,11 @@ describe('AutoComplete', () => {
     userEvent.type(textField, 'Bob');
     expect(textField).toHaveValue('Bob');
     userEvent.type(textField, '{enter}');
-    expect(onChange).toHaveBeenCalledWith(['Bob'], 'create-option');
+    expect(onChange).toHaveBeenCalledWith(
+      expect.anything(),
+      ['Bob'],
+      'create-option'
+    );
   });
 
   it('should trigger the onChange event if one is provided', () => {
@@ -75,6 +155,7 @@ describe('AutoComplete', () => {
       <DotAutoComplete
         data-testid="autocomplete-input-field"
         group={true}
+        inputId="input-id"
         label="Label"
         onChange={onChange}
         options={dummyOptions}
@@ -86,7 +167,11 @@ describe('AutoComplete', () => {
     userEvent.type(textField, 'Hulk');
     userEvent.type(textField, '{enter}');
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith(['Hulk'], 'create-option');
+    expect(onChange).toHaveBeenCalledWith(
+      expect.anything(),
+      ['Hulk'],
+      'create-option'
+    );
   });
 });
 
