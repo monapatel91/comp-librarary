@@ -10,12 +10,6 @@ npm install @digital-ai/dot-components
 yarn add @digital-ai/dot-components
 ```
 
-The library ships with a CSS file that will bring in its styles and font-icons. To import the styles into your application simply include the following import in one of the top component in your application.
-
-```js
-import '@digital-ai/dot-components/dot-components.esm.css';
-```
-
 ### Theme Provider
 
 The `DotThemeProvider` provides the theme for the components in this library. When using this library you will need to wrap your application with it like this:
