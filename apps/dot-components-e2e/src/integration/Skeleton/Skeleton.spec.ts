@@ -1,5 +1,5 @@
 describe('dot-components: Skeleton component', () => {
-  before(() => cy.visit('/iframe.html?id=experimental-skeleton--default'));
+  before(() => cy.visit('/iframe.html?id=components-skeleton--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('span').should('have.class', 'dot-skeleton');
@@ -12,7 +12,7 @@ describe('dot-components: Skeleton component', () => {
   describe('style decisions', () => {
     it('container', () => {
       cy.get('span.dot-skeleton')
-        .should('have.css', 'background-color', 'rgba(59, 72, 92, 0.11)')
+        .should('have.css', 'background-color', 'rgb(227, 229, 232)')
         .and('have.css', 'overflow', 'hidden');
     });
   });

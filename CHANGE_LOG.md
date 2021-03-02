@@ -15,6 +15,10 @@
 - **Chip** - fixed colors for border, close icon and hover
 - **DotDrawer**: added default value of 256px to `width` prop
 - **InputText** - added placeholder prop
+- **Skeleton** - hard-coded `animation` to `wave` and removed `animation` prop
+- **Skeleton** - changed background color to #e3e5e8
+- **Skeleton** - removed default export
+- **Skeleton** - moved to Components
 
 ## 0.0.0-alpha.11
 
