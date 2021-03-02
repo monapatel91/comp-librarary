@@ -13,10 +13,11 @@ describe('dot-components: Step Card component', () => {
 
   describe('style decisions', () => {
     it('card', () => {
-      cy.get('div.dot-step-card')
-        .should('have.css', 'color', 'rgb(59, 72, 92)')
-        .and('have.css', 'font-size', '12px')
-        .and('have.css', 'line-height', '16px');
+      cy.get('div.dot-step-card').should(
+        'have.css',
+        'color',
+        'rgb(59, 72, 92)'
+      );
     });
   });
 });

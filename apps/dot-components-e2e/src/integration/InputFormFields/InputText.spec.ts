@@ -12,7 +12,7 @@ describe('dot-components: Input Text Field component', () => {
   describe('style decisions', () => {
     it('label', () => {
       cy.get('label.MuiFormLabel-root')
-        .should('have.css', 'color', 'rgba(0, 0, 0, 0.54)')
+        .should('have.css', 'color', 'rgb(59, 72, 92)')
         .and('have.css', 'font-size', '14px')
         .and('have.css', 'margin-bottom', '4px');
     });

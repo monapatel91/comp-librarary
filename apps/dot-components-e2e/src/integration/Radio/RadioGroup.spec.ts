@@ -12,7 +12,7 @@ describe('dot-components: Switch component', () => {
   describe('style decisions', () => {
     it('group label', () => {
       cy.get('legend')
-        .should('have.css', 'color', 'rgba(0, 0, 0, 0.54)')
+        .should('have.css', 'color', 'rgb(59, 72, 92)')
         .and('have.css', 'line-height', '24px')
         .and('have.css', 'margin-bottom', '4px')
         .and('have.css', 'font-size', '14px');

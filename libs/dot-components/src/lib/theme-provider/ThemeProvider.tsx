@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import {
   createMuiTheme,
-  CssBaseline,
   MuiThemeProvider,
   StylesProvider,
 } from '@material-ui/core';
@@ -125,6 +124,7 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: 'Lato, sans-serif',
     allVariants: {
+      color: lightColors.n700,
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontFeatureSettings: 'liga off',
@@ -228,7 +228,6 @@ export function DotThemeProvider({ children }: ThemeProviderProps) {
     <StylesProvider injectFirst>
       <MuiThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <CssBaseline />
           <GlobalFonts />
           {children}
         </ThemeProvider>

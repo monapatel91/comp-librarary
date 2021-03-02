@@ -27,7 +27,7 @@ describe('dot-components: Inline Edit component', () => {
 
     it('helper text', () => {
       cy.get('p.MuiFormHelperText-contained')
-        .should('have.css', 'color', 'rgba(0, 0, 0, 0.54)')
+        .should('have.css', 'color', 'rgb(59, 72, 92)')
         .and('have.css', 'font-size', '10px')
         .and('have.css', 'margin-left', '14px')
         .and('have.css', 'margin-right', '14px');
