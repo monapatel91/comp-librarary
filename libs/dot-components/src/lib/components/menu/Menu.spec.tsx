@@ -1,51 +1,59 @@
 import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
-import DotMenu from './Menu';
+import DotMenu, { MenuProps, MenuItemProps } from './Menu';
 
 describe('Menu', () => {
+  it('should have unchanged API', () => {
+    const onLeave = jest.fn();
+    const mProps = {
+      anchorEl: null,
+      id: 'menu-id',
+      menuItems: [{ children: 'opt 1' }],
+      menuPlacement: 'bottom',
+      open: true,
+      onLeave: onLeave,
+    };
+    const menuProps: MenuProps = {
+      anchorEl: null,
+      id: 'menu-id',
+      menuItems: [{ children: 'opt 1' }],
+      menuPlacement: 'bottom',
+      open: true,
+      onLeave: onLeave,
+    };
+    expect(menuProps).toEqual(mProps);
+    const onClick = jest.fn();
+    const iProps = {
+      children: 'opt 1',
+      classes: 'menu-item-class',
+      key: 'opt1',
+      onClick: onClick,
+    };
+    const menuItemProps: MenuItemProps = {
+      children: 'opt 1',
+      classes: 'menu-item-class',
+      key: 'opt1',
+      onClick: onClick,
+    };
+    expect(menuItemProps).toEqual(iProps);
+  });
+
   const dummyMenuItems = [
     { children: <span>Batman</span> },
     { children: <span>Robin</span> },
     { children: <span>Bat Girl</span> },
   ];
 
-  it('should render successfully', () => {
-    const { baseElement } = render(
-      <DotMenu
-        buttonContent="Toggle Menu"
-        id="foo_bar"
-        menuItems={dummyMenuItems}
-      />
-    );
-    expect(baseElement).toBeTruthy();
-  });
-
-  it('should open when button is clicked', () => {
-    render(
-      <DotMenu
-        buttonContent="Toggle Menu"
-        id="foo_bar"
-        menuItems={dummyMenuItems}
-      />
-    );
-    userEvent.click(screen.getByRole('button'));
-    expect(screen.getByText('Batman')).toBeVisible();
-  });
-
-  it('should close when a menu item is clicked', () => {
-    render(
-      <DotMenu
-        buttonContent="Toggle Menu"
-        id="foo_bar"
-        menuItems={dummyMenuItems}
-      />
-    );
-    userEvent.click(screen.getByRole('button'));
-
+  it('should show menu items when open', () => {
+    render(<DotMenu id="foo_bar" menuItems={dummyMenuItems} open={true} />);
     const menuItem = screen.getByText('Batman');
-    userEvent.click(menuItem);
-    expect(menuItem).not.toBeVisible();
+    expect(menuItem).toBeVisible();
+  });
+
+  it('should not show menu items when not open', () => {
+    render(<DotMenu id="foo_bar" menuItems={dummyMenuItems} />);
+    const menuItem = screen.queryByText('Batman');
+    expect(menuItem).toBeNull();
   });
 });

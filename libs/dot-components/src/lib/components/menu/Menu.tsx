@@ -1,15 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import {
-  Button,
   ClickAwayListener,
   Grow,
   MenuItem,
   MenuList,
   Paper,
-  Popper,
 } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { rootClassName, StyledPopper } from './Menu.styles';
 
 export type PopperPlacement =
   | 'bottom-end'
@@ -27,127 +26,104 @@ export type PopperPlacement =
 
 /* eslint-disable-next-line */
 export interface MenuProps extends CommonProps {
-  buttonContent: JSX.Element | string;
+  /** Element that menu is attached to */
+  anchorEl?: HTMLElement;
   /** Unique ID that ties a particular menu to a specific element */
   id: string;
   /** Array of items to be displayed inside the menu */
   menuItems: Array<MenuItemProps>;
   /** Determines the placement of the menu */
   menuPlacement?: PopperPlacement;
+  /** If true, the menu is open. */
+  open?: boolean;
+  /** Event callback when leaving menu via tab or clicking away */
+  onLeave?: (event: KeyboardEvent | MouseEvent) => void;
 }
 
 export interface MenuItemProps {
   /** The text displayed on the item */
-  children?: JSX.Element;
+  children?: JSX.Element | string;
   /** Space delimited CSS classes to be attributed to the menu item */
   classes?: string;
+  /** A key that can be used to determine which item was clicked */
+  key?: string;
   /** Event callback on click */
-  onClick?: (event: MouseEvent) => void;
+  onClick?: (event: MouseEvent, menuId: string, menuItemKey: string) => void;
 }
 
-/**
- * @experimental This component is still in development
- */
 export function DotMenu({
-  buttonContent,
+  anchorEl,
   className,
   'data-testid': dataTestId,
   id,
   menuItems = [],
   menuPlacement = 'bottom',
+  onLeave,
+  open = false,
 }: MenuProps) {
-  const rootClasses = useStylesWithRootClass('dot-menu', className);
-  const [open, setOpen] = useState(false);
-  const anchorRef = useRef(null);
-
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   const handleItemClick = (event, item) => {
-    if (item.onClick) {
-      item.onClick(event);
-    }
-
-    handleClose(event);
+    item.onClick && item.onClick(event, id, item.key);
   };
-
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = useRef(open);
-  useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
 
   function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
+    if (onLeave && event.key === 'Tab') {
       event.preventDefault();
-      handleClose(event);
+      onLeave(event);
+    }
+  }
+
+  function handleClickAway(event) {
+    if (onLeave && (!anchorEl || !anchorEl.contains(event.target))) {
+      onLeave(event);
     }
   }
 
   return (
-    <div className={rootClasses} data-testid={dataTestId}>
-      <Button
-        ref={anchorRef}
-        aria-controls={open ? id : undefined}
-        aria-haspopup="true"
-        onClick={handleToggle}
-      >
-        {buttonContent}
-      </Button>
-      <Popper
-        anchorEl={anchorRef.current}
-        disablePortal={true}
-        open={open}
-        placement={menuPlacement}
-        role={undefined}
-        transition={true}
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id={id}
-                  onKeyDown={handleListKeyDown}
-                >
-                  {menuItems.map((item, index: number) => {
-                    return (
-                      <MenuItem
-                        className={item.classes}
-                        onClick={(event) => handleItemClick(event, item)}
-                        key={index}
-                      >
-                        {item.children}
-                      </MenuItem>
-                    );
-                  })}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-    </div>
+    <StyledPopper
+      anchorEl={anchorEl}
+      className={rootClasses}
+      data-testid={dataTestId}
+      disablePortal={true}
+      open={open}
+      placement={menuPlacement}
+      role={undefined}
+      transition={true}
+    >
+      {({ TransitionProps, placement }) => (
+        <Grow
+          {...TransitionProps}
+          style={{
+            transformOrigin:
+              placement === 'bottom' ? 'center top' : 'center bottom',
+          }}
+        >
+          <Paper>
+            <ClickAwayListener onClickAway={handleClickAway}>
+              <MenuList
+                autoFocusItem={open}
+                dense={true}
+                id={id}
+                onKeyDown={handleListKeyDown}
+              >
+                {menuItems.map((item, index: number) => {
+                  return (
+                    <MenuItem
+                      className={item.classes}
+                      onClick={(event) => handleItemClick(event, item)}
+                      key={index}
+                    >
+                      {item.children}
+                    </MenuItem>
+                  );
+                })}
+              </MenuList>
+            </ClickAwayListener>
+          </Paper>
+        </Grow>
+      )}
+    </StyledPopper>
   );
 }
 

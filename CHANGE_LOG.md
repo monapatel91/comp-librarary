@@ -15,6 +15,14 @@
 - **Chip** - fixed colors for border, close icon and hover
 - **DotDrawer**: added default value of 256px to `width` prop
 - **InputText** - added placeholder prop
+- **Menu** - removed `buttonContent` prop (and button)
+- **Menu** - added `anchorEl` prop
+- **Menu** - added `open` prop
+- **Menu** - added `onLeave` callback prop
+- **Menu** - added `key` to MenuItemProps
+- **Menu** - added `menuId` and `menuItemKey` params to MenuItemProps `onClick` callback signature
+- **Menu** - styled for min-width (112px), max-width (280px) and scrollability
+- **Menu** - moved to Components
 - **Skeleton** - hard-coded `animation` to `wave` and removed `animation` prop
 - **Skeleton** - changed background color to #e3e5e8
 - **Skeleton** - removed default export
