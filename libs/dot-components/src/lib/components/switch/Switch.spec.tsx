@@ -5,6 +5,7 @@ import DotSwitch, { SwitchProps } from './Switch';
 import userEvent from '@testing-library/user-event';
 
 describe('Switch', () => {
+  const onChange = jest.fn();
   it('should have unchanged API', () => {
     const props = {
       ariaLabel: 'aria label',
@@ -13,6 +14,7 @@ describe('Switch', () => {
       disabled: false,
       label: 'My Switch',
       labelPlacement: 'end',
+      onChange: onChange,
       size: 'small',
     };
     const switchProps: SwitchProps = {
@@ -22,6 +24,7 @@ describe('Switch', () => {
       disabled: false,
       label: 'My Switch',
       labelPlacement: 'end',
+      onChange: onChange,
       size: 'small',
     };
     expect(switchProps).toEqual(props);
@@ -59,23 +62,30 @@ describe('Switch', () => {
 });
 
 it('should toggle when enabled', () => {
-  render(<DotSwitch data-testid="test-switch" checked={false}></DotSwitch>);
+  const onChange = jest.fn();
+  render(
+    <DotSwitch
+      data-testid="test-switch"
+      checked={false}
+      onChange={onChange}
+    ></DotSwitch>
+  );
   userEvent.click(screen.getByTestId('test-switch'));
-  expect(screen.getByTestId('test-switch')).toHaveClass('Mui-checked');
-  userEvent.click(screen.getByTestId('test-switch'));
-  expect(screen.getByTestId('test-switch')).not.toHaveClass('Mui-checked');
+  expect(onChange).toHaveBeenCalledTimes(1);
 });
 
 it('should not toggle when disabled', () => {
+  const onChange = jest.fn();
   render(
     <DotSwitch
       data-testid="test-switch"
       checked={true}
       disabled={true}
+      onChange={onChange}
     ></DotSwitch>
   );
   userEvent.click(screen.getByTestId('test-switch'));
-  expect(screen.getByTestId('test-switch')).toHaveClass('Mui-checked');
+  expect(onChange).toHaveBeenCalledTimes(0);
 });
 
 it('label should be placed at start', () => {

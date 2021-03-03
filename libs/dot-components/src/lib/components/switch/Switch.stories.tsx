@@ -10,6 +10,9 @@ export default {
     ariaLabel: { defaultValue: 'Accessibility for the win' },
     color: { defaultValue: 'primary' },
     label: { defaultValue: 'Sample Label' },
+    onChange: {
+      action: 'clicked',
+    },
   },
 } as Meta;
 

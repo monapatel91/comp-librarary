@@ -27,6 +27,7 @@
 - **Skeleton** - changed background color to #e3e5e8
 - **Skeleton** - removed default export
 - **Skeleton** - moved to Components
+- **Switch** - added `onChange` callback prop
 - **ThemeProvider** - remove `CssBaseline` to prevent style hoisting, attempted `ScopedCssBaseline` but appears that MUI has let this go stale.
 
 ## 0.0.0-alpha.11

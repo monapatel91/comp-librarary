@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
@@ -24,26 +24,28 @@ export interface SwitchProps extends CommonProps {
   label?: string;
   /** label placement options available 'bottom', 'end', 'start', 'top' */
   labelPlacement?: SwitchLabelPlacement;
+  /** A function that should be executed when the value of the switch changes */
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   /** controls the size of the switch 'medium', 'small' */
   size?: SwitchSize;
 }
 
 export const DotSwitch = ({
   ariaLabel,
-  checked = false,
+  checked,
   className,
   color = 'primary',
   'data-testid': dataTestId,
   disabled = false,
   label,
   labelPlacement = 'end',
+  onChange,
   size = 'medium',
 }: SwitchProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-  const [isChecked, updateChecked] = useState(checked);
 
-  const handleChange = () => {
-    updateChecked(!isChecked);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange && onChange(event);
   };
 
   return (
@@ -53,7 +55,7 @@ export const DotSwitch = ({
       control={
         <StyledSwitch
           classes={{ root: rootClasses }}
-          checked={isChecked}
+          checked={checked}
           color={color}
           data-testid={dataTestId}
           disabled={disabled}
