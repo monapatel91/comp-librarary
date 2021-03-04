@@ -16,3 +16,7 @@ export default {
 export const Default: Story<ProgressionBoardProps> = (args) => (
   <DotProgressionBoard {...args} />
 );
+
+export const withDrawer: Story<ProgressionBoardProps> = (args) => (
+  <DotProgressionBoard displayDrawer={true} {...args} />
+);

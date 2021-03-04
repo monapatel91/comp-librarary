@@ -29,6 +29,7 @@ export interface CardProps extends CommonProps {
   bottomLeft: JSX.Element;
   bottomRight: JSX.Element;
   children: JSX.Element | Array<JSX.Element>;
+  isSelected: boolean;
   fullversion_from: string;
   fullversion_to: string;
   indicators: JSX.Element;
@@ -115,11 +116,16 @@ export const Card = ({
   fullversion_from,
   fullversion_to,
   indicators,
+  isSelected,
   rev_from,
   rev_to,
   url,
 }: CardProps) => {
-  const rootClasses = useStylesWithRootClass('card', className);
+  const rootClasses = useStylesWithRootClass(
+    'card',
+    className,
+    isSelected ? 'selected' : ''
+  );
   return (
     <div className={rootClasses} data-testid={dataTestId}>
       <div className="identity">

@@ -2,13 +2,23 @@ import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-progression-board';
 
-export const StyledProgressionBoard = styled.div`
-  ${({ theme }) => css`
+interface ProgressionBoardProps {
+  offsetLeft: number;
+}
+
+export const StyledProgressionBoard = styled.div<ProgressionBoardProps>`
+  ${({ theme, offsetLeft }) => css`
     &.${rootClassName} {
       &.columns-wrapper {
         display: table;
         flex: 1;
         width: 100%;
+        position: relative;
+      }
+
+      .translate-left {
+        transform: translateX(-${offsetLeft}px);
+        transition: transform 200ms ease-in-out;
       }
 
       .board-headers {

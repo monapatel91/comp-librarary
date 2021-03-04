@@ -1,5 +1,16 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **DotDrawer**: added `ModalProps` optional prop, which serves as an object containing props applied to the Modal element
+
+### Experimental
+
+- **ProgressionBoard** - added `displayDrawer` prop which controls display of workitem details drawer
+- **ProgressionBoard** - added `drawerWidth` prop which controls drawer width (if enabled)
+
 ## 0.0.0-alpha.12
 
 ### Components

@@ -4,14 +4,20 @@ import { CommonProps } from '../../components/CommonProps';
 
 export interface BoardHeaderProps extends CommonProps {
   headers: Array<string>;
+  isOffsetLeft?: boolean;
 }
 
 export const BoardHeaders = ({
   className,
   'data-testid': dataTestId,
   headers,
+  isOffsetLeft = false,
 }: BoardHeaderProps) => {
-  const rootClasses = useStylesWithRootClass('board-headers', className);
+  const rootClasses = useStylesWithRootClass(
+    'board-headers',
+    className,
+    isOffsetLeft ? 'translate-left' : ''
+  );
   return (
     <div className={rootClasses} data-testid={dataTestId}>
       {headers.map((header, i) => (

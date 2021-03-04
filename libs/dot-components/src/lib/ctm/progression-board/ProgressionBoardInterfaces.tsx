@@ -59,9 +59,18 @@ export interface SwimLanepkg {
 }
 
 export interface SelectWorkItem {
-  deSelectWorkitem: () => void;
-  selectedWorkitem: string;
-  selectWorkitem: (id: string) => void;
+  deSelectWorkItem: () => void;
+  displayDrawer: boolean;
+  hoverWorkItem: (id: string) => void;
+  hoveredWorkItem: string;
+  selectedWorkItem: SelectedWorkItem;
+  selectWorkItem: (workItem: SelectedWorkItem) => void;
+  unHoverWorkItem: () => void;
+}
+
+export interface SelectedWorkItem extends WorkItemType {
+  wiClientRectRight: number;
+  boardColumnRectRight: number;
 }
 
 export interface WorkItemType {

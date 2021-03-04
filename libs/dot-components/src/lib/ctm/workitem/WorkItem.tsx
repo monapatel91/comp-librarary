@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MutableRefObject, useRef, MouseEvent } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import {
@@ -9,59 +9,87 @@ import WorkItemTooltip from './WorkItemTooltip';
 
 export interface WorkItemProps extends CommonProps {
   baseUrl: string;
+  isFaded: boolean;
+  isSelected: boolean;
   selectWorkItem: SelectWorkItem;
   workitem: WorkItemType;
 }
 
-export const WorkItem = ({
-  baseUrl,
-  className,
-  'data-testid': dataTestId,
-  selectWorkItem,
-  workitem,
-}: WorkItemProps) => {
-  const {
-    _id,
-    isSplit,
-    isEmphasized,
-    value_goal,
-    title,
-    external_key,
-  } = workitem;
-  const { deSelectWorkitem, selectedWorkitem, selectWorkitem } = selectWorkItem;
-  const rootClasses = useStylesWithRootClass(
-    className,
-    value_goal,
-    isEmphasized ? 'emphasized' : '',
-    isSplit ? 'split' : '',
-    _id === selectedWorkitem ? 'hover' : ''
-  );
+export const WorkItem = React.forwardRef(
+  (
+    {
+      baseUrl,
+      className,
+      'data-testid': dataTestId,
+      isFaded,
+      isSelected,
+      selectWorkItem,
+      workitem,
+    }: WorkItemProps,
+    ref: MutableRefObject<HTMLElement>
+  ) => {
+    const {
+      _id,
+      isSplit,
+      isEmphasized,
+      value_goal,
+      title,
+      external_key,
+    } = workitem;
+    const {
+      displayDrawer,
+      selectWorkItem: selectItem,
+      hoverWorkItem,
+      hoveredWorkItem,
+      unHoverWorkItem,
+    } = selectWorkItem;
+    const rootClasses = useStylesWithRootClass(
+      className,
+      value_goal,
+      isEmphasized ? 'emphasized' : '',
+      isSplit ? 'split' : '',
+      _id === hoveredWorkItem ? 'hover' : '',
+      isSelected ? 'selected' : '',
+      isFaded ? 'fade' : ''
+    );
 
-  const hoverThing = () => {
-    selectWorkitem(_id);
-  };
+    const workItemElem = useRef(null);
 
-  const workItem = (
-    <li
-      className={rootClasses}
-      data-testid={dataTestId}
-      onClick={() =>
-        window.open(baseUrl + `/flow/workitem_detail?id=${_id}`, '_blank')
+    const onItemMouseEnter = () => hoverWorkItem(_id);
+    const onItemMouseLeave = () => unHoverWorkItem();
+    const onItemClick = (e: MouseEvent<HTMLLIElement>): void => {
+      if (displayDrawer) {
+        selectItem({
+          ...workitem,
+          wiClientRectRight: e.currentTarget.getBoundingClientRect().right,
+          boardColumnRectRight: ref.current.getBoundingClientRect().right,
+        });
+      } else {
+        window.open(baseUrl + `/flow/workitem_detail?id=${_id}`, '_blank');
       }
-      onMouseEnter={hoverThing}
-      onMouseLeave={deSelectWorkitem}
-    />
-  );
+    };
 
-  return (
-    <WorkItemTooltip
-      child={workItem}
-      isSplit={isSplit}
-      value_goal={value_goal}
-      title={title}
-      external_key={external_key}
-    />
-  );
-};
+    const workItem = (
+      <li
+        className={rootClasses}
+        data-testid={dataTestId}
+        onMouseEnter={onItemMouseEnter}
+        onMouseLeave={onItemMouseLeave}
+        ref={workItemElem}
+        onClick={onItemClick}
+      />
+    );
+
+    return (
+      <WorkItemTooltip
+        child={workItem}
+        isSplit={isSplit}
+        value_goal={value_goal}
+        title={title}
+        external_key={external_key}
+      />
+    );
+  }
+);
 
 export default WorkItem;

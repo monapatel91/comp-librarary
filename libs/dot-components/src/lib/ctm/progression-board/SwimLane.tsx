@@ -9,6 +9,7 @@ export interface SwimLaneProps extends CommonProps {
   baseUrl: string;
   progressionPackage: SwimLanepkg;
   selectWorkitemProps: SelectWorkItem;
+  isOffsetLeft?: boolean;
 }
 
 export const SwimLane = ({
@@ -17,9 +18,14 @@ export const SwimLane = ({
   'data-testid': dataTestId,
   progressionPackage,
   selectWorkitemProps,
+  isOffsetLeft = false,
 }: SwimLaneProps) => {
   const phases = progressionPackage.phases;
-  const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    className,
+    isOffsetLeft ? 'translate-left' : ''
+  );
 
   return (
     <StyledProgressionSwimlane className={rootClasses} data-testid={dataTestId}>

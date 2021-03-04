@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { darken } from '@material-ui/core';
 
 export const rootClassName = 'dot-progression-swimlane';
 
@@ -71,6 +72,11 @@ export const StyledProgressionSwimlane = styled.div`
 
             a {
               text-decoration: none;
+            }
+
+            &.selected {
+              border: 1px solid ${theme.palette.layer['300']};
+              box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.5);
             }
 
             .identity {
@@ -174,11 +180,24 @@ export const StyledProgressionSwimlane = styled.div`
                   color: ${theme.palette.icon.unknownHover};
                 }
 
+                &.selected {
+                  border: 1px solid ${theme.palette.common.white};
+                  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+                }
+
+                &.fade {
+                  opacity: 0.5;
+                }
+
                 &.improve {
                   color: ${theme.palette.icon.improve};
 
                   &.hover {
                     color: ${theme.palette.icon.improveHover};
+                  }
+
+                  &.selected {
+                    color: ${darken(theme.palette.icon.improve, 0.1)};
                   }
                 }
 
@@ -187,6 +206,10 @@ export const StyledProgressionSwimlane = styled.div`
 
                   &.hover {
                     color: ${theme.palette.icon.maintainHover};
+                  }
+
+                  &.selected {
+                    color: ${darken(theme.palette.icon.maintain, 0.1)};
                   }
                 }
 

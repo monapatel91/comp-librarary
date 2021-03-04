@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import ValidPackage from './PackageVersion';
@@ -18,8 +18,9 @@ export const Phase = ({
   selectWorkitemProps,
 }: PhaseProps) => {
   const rootClasses = useStylesWithRootClass('board-column', className);
+  const boardColumnRef = useRef(null);
   return (
-    <li className={rootClasses} data-testid={dataTestId}>
+    <li className={rootClasses} data-testid={dataTestId} ref={boardColumnRef}>
       {phase.packageVersions.map((packageVer, i) =>
         packageVer.rev_from <= packageVer.rev_to ? (
           <ValidPackage
@@ -28,6 +29,7 @@ export const Phase = ({
             key={i}
             packageVer={packageVer}
             selectWorkitemProps={selectWorkitemProps}
+            ref={boardColumnRef}
           />
         ) : null
       )}
