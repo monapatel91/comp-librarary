@@ -10,6 +10,15 @@ import GlobalFonts from '../fonts/fonts';
 import * as lightColors from './colors/light-theme-colors';
 
 const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 720,
+      md: 1024,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   palette: {
     type: 'light',
     background: {

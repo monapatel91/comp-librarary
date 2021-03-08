@@ -2,6 +2,8 @@
 
 ## Current
 
+- **ThemeProvider**: updated `breakpoints` in `theme` object to `xs: 0`, `sm: 720`, `md: 1024`, `lg: 1280`, `xl: 1920`,
+
 ### Components
 
 - **DotDrawer**: added `ModalProps` optional prop, which serves as an object containing props applied to the Modal element

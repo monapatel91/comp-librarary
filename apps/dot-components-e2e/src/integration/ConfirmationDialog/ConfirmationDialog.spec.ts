@@ -22,7 +22,7 @@ describe('dot-components: Confirmation Dialog component', () => {
 
     it('dialog sizing', () => {
       cy.get('div.MuiDialog-paper')
-        .should('have.css', 'max-width', '600px')
+        .should('have.css', 'max-width', '720px')
         .and('have.css', 'margin-left', '32px');
     });
 
