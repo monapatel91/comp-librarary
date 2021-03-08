@@ -85,7 +85,6 @@ export function DotMenu({
       anchorEl={anchorEl}
       className={rootClasses}
       data-testid={dataTestId}
-      disablePortal={true}
       open={open}
       placement={menuPlacement}
       role={undefined}
