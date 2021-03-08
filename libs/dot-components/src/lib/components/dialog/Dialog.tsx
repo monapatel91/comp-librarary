@@ -1,5 +1,10 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
-import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Typography,
+} from '@material-ui/core';
 import { ButtonProps, ButtonType, DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
 import { CommonProps } from '../CommonProps';
@@ -87,7 +92,7 @@ export const DotDialog = ({
         aria-labelledby="MuiDialogTitle-root"
       >
         <DialogTitle disableTypography={true}>
-          <h2>{title}</h2>
+          <Typography variant="h2">{title}</Typography>
           <DotIconButton iconId="close" onClick={handleClose} size="small" />
         </DialogTitle>
         <DialogContent classes={{ root: `dot-dialog-content` }}>

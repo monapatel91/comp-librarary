@@ -8,21 +8,274 @@ import { ThemeProvider } from 'styled-components';
 import GlobalFonts from '../fonts/fonts';
 
 import * as lightColors from './colors/light-theme-colors';
+import { BreakpointsOptions } from '@material-ui/core/styles/createBreakpoints';
+import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 
-const theme = createMuiTheme({
+export type ThemeOptions = 'light' | 'dark' | 'agility-light' | 'agility-dark';
+
+const typographyOptions: TypographyOptions = {
+  fontFamily: 'Lato, sans-serif',
+  allVariants: {
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontFeatureSettings: 'liga off',
+    fontVariantLigatures: 'none',
+  },
+  h1: {
+    fontSize: 24,
+    fontFamily: 'LatoBold, sans-serif',
+    fontWeight: 700,
+    lineHeight: '30px',
+  },
+  h2: {
+    fontSize: 20,
+    fontFamily: 'LatoBold, sans-serif',
+    fontWeight: 700,
+    lineHeight: '26px',
+    letterSpacing: '0.02em',
+  },
+  h3: {
+    fontSize: 17,
+    fontFamily: 'LatoBold, sans-serif',
+    fontWeight: 700,
+    lineHeight: '24px',
+    letterSpacing: '0.02em',
+  },
+  h4: {
+    fontSize: 14,
+    fontFamily: 'LatoBold, sans-serif',
+    fontWeight: 700,
+    lineHeight: '18px',
+    letterSpacing: '0.03em',
+  },
+  h5: {
+    fontSize: 12,
+    fontFamily: 'LatoBold, sans-serif',
+    fontWeight: 700,
+    lineHeight: '18px',
+    letterSpacing: '0.03em',
+  },
+  subtitle1: {
+    fontSize: 17,
+    fontFamily: 'LatoBold, sans-serif',
+    fontWeight: 700,
+    lineHeight: '23px',
+    letterSpacing: '0.03em',
+    marginBottom: 1,
+  },
+  subtitle2: {
+    fontSize: 14,
+    fontFamily: 'LatoBold, sans-serif',
+    fontWeight: 700,
+    lineHeight: '20px',
+    letterSpacing: '0.03em',
+    marginBottom: 1,
+  },
+  body1: {
+    fontSize: 14,
+    fontWeight: 400,
+    lineHeight: '20px',
+    letterSpacing: '0.03em',
+    marginBottom: 4,
+  },
+  body2: {
+    fontSize: 12,
+    fontWeight: 400,
+    lineHeight: '16px',
+    letterSpacing: '0.02em',
+    marginBottom: 3,
+  },
+  caption: {
+    fontSize: 10,
+    fontFamily: 'LatoBold, sans-serif',
+    fontWeight: 700,
+    lineHeight: '16px',
+    letterSpacing: '0.03em',
+    marginBottom: 3,
+  },
+  overline: {
+    fontSize: 9,
+    fontWeight: 400,
+    lineHeight: '14px',
+    letterSpacing: '0.03em',
+    textTransform: 'uppercase',
+    marginBottom: 3,
+  },
+  button: {
+    fontSize: 14,
+    fontWeight: 400,
+    letterSpacing: '0.03em',
+    textTransform: 'none',
+  },
+};
+
+const breakpointOptions: BreakpointsOptions = {
+  values: {
+    xs: 0,
+    sm: 720,
+    md: 1024,
+    lg: 1280,
+    xl: 1920,
+  },
+};
+
+const agilityLightTheme = createMuiTheme({
   breakpoints: {
-    values: {
-      xs: 0,
-      sm: 720,
-      md: 1024,
-      lg: 1280,
-      xl: 1920,
+    ...breakpointOptions,
+  },
+  palette: {
+    type: 'light',
+    icon: {
+      checkOutline: '#1E88E5',
+      checkSolid: '#1E88E5',
+      errorOutlines: '#EA1C0D',
+      errorSolid: '#3949AB',
+      fileDotted: '#3949AB',
+      improve: '#3D8B40',
+      improveHover: '#6BA568',
+      infoSolid: '#3DB840',
+      lock: '#EA1C0D',
+      maintain: '#EA1C0D',
+      maintainHover: '#F96244',
+      pendingClock: '#244451',
+      rogueCommits: '#FFB300',
+      thumbsDown: '#8E24AA',
+      unknown: '#4B626D',
+      unknownHover: '#71828B',
     },
+    progressionBoard: {
+      board: lightColors.n0,
+      boardColumn: '#C3DBE4',
+      boardColumnHeader: '#C3DBE4',
+      card: lightColors.n0,
+      cardBorder: '#E6F0F4',
+      cardCorner: '#589BB6',
+      cardSelectedBorder: '#E6F0F4',
+      swimlaneColumnHeader: '#9FC5D5',
+    },
+  },
+  typography: {
+    ...typographyOptions,
+    allVariants: {
+      ...typographyOptions.allVariants,
+      color: '#244451',
+    },
+  },
+});
+
+const agilityDarkTheme = createMuiTheme({
+  breakpoints: {
+    ...breakpointOptions,
+  },
+  palette: {
+    type: 'dark',
+    background: {
+      default: '#14262E',
+    },
+    icon: {
+      checkOutline: '#42A5F5',
+      checkSolid: '#42A5F5',
+      errorOutlines: '#F77066',
+      errorSolid: '#9FA8DA',
+      fileDotted: '#9FA8DA',
+      improve: '#6EC071',
+      improveHover: '#1A6D25',
+      infoSolid: '#6EC071',
+      lock: '#F77066',
+      maintain: '#F77066',
+      maintainHover: '#C50000',
+      pendingClock: '#FFFFFF',
+      rogueCommits: '#FFB300',
+      thumbsDown: '#CE93D8',
+      unknown: '#B7C6CD',
+      unknownHover: '#88979D',
+    },
+    progressionBoard: {
+      board: '#050A0A',
+      boardColumn: '#244451',
+      boardColumnHeader: '#244451',
+      card: '#336275',
+      cardBorder: '#050A0A',
+      cardCorner: '#9FC5D5',
+      cardSelectedBorder: '#050A0A',
+      swimlaneColumnHeader: '#336275',
+    },
+  },
+  typography: {
+    ...typographyOptions,
+    allVariants: {
+      ...typographyOptions.allVariants,
+      color: lightColors.n0,
+    },
+  },
+});
+
+const darkTheme = createMuiTheme({
+  breakpoints: {
+    ...breakpointOptions,
+  },
+  palette: {
+    type: 'dark',
+    icon: {
+      checkOutline: lightColors.b500,
+      checkSolid: lightColors.b500,
+      errorOutlines: lightColors.r500,
+      errorSolid: lightColors.r500,
+      fileDotted: lightColors.b500,
+      improve: lightColors.g500,
+      improveHover: lightColors.g300,
+      infoSolid: lightColors.g500,
+      lock: lightColors.r500,
+      maintain: lightColors.r500,
+      maintainHover: lightColors.r300,
+      pendingClock: lightColors.b500,
+      rogueCommits: lightColors.o500,
+      thumbsDown: lightColors.p500,
+      unknown: lightColors.n300,
+      unknownHover: lightColors.n100,
+    },
+    progressionBoard: {
+      board: '#0D1017',
+      boardColumn: '#171B22',
+      boardColumnHeader: '#21272D',
+      card: '#21272D',
+      cardBorder: '#30363D',
+      cardCorner: '#30363D',
+      cardSelectedBorder: '#A9AEB3',
+      swimlaneColumnHeader: '#30363D',
+    },
+    layer: {
+      n0: lightColors.n0, // text-0
+      n100: '#B8C0C7', // text-1
+      n200: lightColors.n300, // text-2
+      n300: '#A9AEB3', // text-3
+      n400: '#727A83',
+      n600: '#30363D', // level-3
+      n700: '#21272D', // level-2
+      n800: '#171B22', // level-1
+      n900: '#0D1017', // level-0
+    },
+    text: {
+      primary: lightColors.n0,
+    },
+  },
+  typography: {
+    ...typographyOptions,
+    allVariants: {
+      ...typographyOptions.allVariants,
+      color: lightColors.n0,
+    },
+  },
+});
+
+export const lightTheme = createMuiTheme({
+  breakpoints: {
+    ...breakpointOptions,
   },
   palette: {
     type: 'light',
     background: {
-      default: '#fff',
+      default: lightColors.n0,
     },
     primary: {
       main: lightColors.b500,
@@ -125,118 +378,87 @@ const theme = createMuiTheme({
       A400: lightColors.nA400,
       A700: lightColors.nA700,
     },
+    layer: {
+      n0: lightColors.n0, // level-0
+      n50: lightColors.n50, // level-1
+      n100: lightColors.n100, // level-2
+      n200: lightColors.n200, // level-3
+      n300: lightColors.n300,
+      n400: lightColors.n400, // text-3
+      n500: lightColors.n500, // text-2
+      n600: lightColors.n600, // text-1
+      n700: lightColors.n700, // text-0
+      n800: lightColors.n800,
+      n900: lightColors.n900,
+    },
+    icon: {
+      checkOutline: lightColors.b500,
+      checkSolid: lightColors.b500,
+      errorOutlines: lightColors.r500,
+      errorSolid: lightColors.r500,
+      fileDotted: lightColors.b500,
+      improve: lightColors.g500,
+      improveHover: lightColors.g300,
+      infoSolid: lightColors.g500,
+      lock: lightColors.r500,
+      maintain: lightColors.r500,
+      maintainHover: lightColors.r300,
+      pendingClock: lightColors.b500,
+      rogueCommits: lightColors.o500,
+      thumbsDown: lightColors.p500,
+      unknown: lightColors.n300,
+      unknownHover: lightColors.n100,
+    },
+    progressionBoard: {
+      board: lightColors.n0,
+      boardColumn: lightColors.n50,
+      boardColumnHeader: lightColors.n100,
+      card: lightColors.n0,
+      cardBorder: lightColors.n200,
+      cardCorner: lightColors.n200,
+      cardSelectedBorder: lightColors.n300,
+      swimlaneColumnHeader: lightColors.n200,
+    },
     text: {
       primary: lightColors.n700,
     },
     tonalOffset: 0.2,
   },
   typography: {
-    fontFamily: 'Lato, sans-serif',
+    ...typographyOptions,
     allVariants: {
+      ...typographyOptions.allVariants,
       color: lightColors.n700,
-      fontStyle: 'normal',
-      fontWeight: 'normal',
-      fontFeatureSettings: 'liga off',
-      fontVariantLigatures: 'none',
-    },
-    h1: {
-      fontSize: 24,
-      fontFamily: 'LatoBold, sans-serif',
-      fontWeight: 700,
-      lineHeight: '30px',
-    },
-    h2: {
-      fontSize: 20,
-      fontFamily: 'LatoBold, sans-serif',
-      fontWeight: 700,
-      lineHeight: '26px',
-      letterSpacing: '0.02em',
-    },
-    h3: {
-      fontSize: 17,
-      fontFamily: 'LatoBold, sans-serif',
-      fontWeight: 700,
-      lineHeight: '24px',
-      letterSpacing: '0.02em',
-    },
-    h4: {
-      fontSize: 14,
-      fontFamily: 'LatoBold, sans-serif',
-      fontWeight: 700,
-      lineHeight: '18px',
-      letterSpacing: '0.03em',
-    },
-    h5: {
-      fontSize: 12,
-      fontFamily: 'LatoBold, sans-serif',
-      fontWeight: 700,
-      lineHeight: '18px',
-      letterSpacing: '0.03em',
-    },
-    subtitle1: {
-      fontSize: 17,
-      fontFamily: 'LatoBold, sans-serif',
-      fontWeight: 700,
-      lineHeight: '23px',
-      letterSpacing: '0.03em',
-      marginBottom: 1,
-    },
-    subtitle2: {
-      fontSize: 14,
-      fontFamily: 'LatoBold, sans-serif',
-      fontWeight: 700,
-      lineHeight: '20px',
-      letterSpacing: '0.03em',
-      marginBottom: 1,
-    },
-    body1: {
-      fontSize: 14,
-      fontWeight: 400,
-      lineHeight: '20px',
-      letterSpacing: '0.03em',
-      marginBottom: 4,
-    },
-    body2: {
-      fontSize: 12,
-      fontWeight: 400,
-      lineHeight: '16px',
-      letterSpacing: '0.02em',
-      marginBottom: 3,
-    },
-    caption: {
-      fontSize: 10,
-      fontFamily: 'LatoBold, sans-serif',
-      fontWeight: 700,
-      lineHeight: '16px',
-      letterSpacing: '0.03em',
-      marginBottom: 3,
-    },
-    overline: {
-      fontSize: 9,
-      fontWeight: 400,
-      lineHeight: '14px',
-      letterSpacing: '0.03em',
-      textTransform: 'uppercase',
-      marginBottom: 3,
-    },
-    button: {
-      fontSize: 14,
-      fontWeight: 400,
-      letterSpacing: '0.03em',
-      textTransform: 'none',
     },
   },
 });
 
 interface ThemeProviderProps {
   children: ReactNode;
+  theme?: ThemeOptions;
 }
 
-export function DotThemeProvider({ children }: ThemeProviderProps) {
+export function DotThemeProvider({
+  children,
+  theme = 'light',
+}: ThemeProviderProps) {
+  let userTheme = lightTheme;
+  switch (theme) {
+    case 'dark':
+      userTheme = darkTheme;
+      break;
+    case 'agility-dark':
+      userTheme = agilityDarkTheme;
+      break;
+    case 'agility-light':
+      userTheme = agilityLightTheme;
+      break;
+  }
+
   return (
     <StylesProvider injectFirst>
-      <MuiThemeProvider theme={theme}>
-        <ThemeProvider theme={theme}>
+      <MuiThemeProvider theme={userTheme}>
+        <ThemeProvider theme={userTheme}>
           <GlobalFonts />
           {children}
         </ThemeProvider>

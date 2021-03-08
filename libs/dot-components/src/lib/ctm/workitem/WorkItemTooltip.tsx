@@ -4,10 +4,6 @@ import { CommonProps } from '../../components/CommonProps';
 import { DotIcon } from '../../components';
 import { rootClassName, StyledTooltipTitle } from './WorkItemTooltip.styles';
 import { Tooltip } from '@material-ui/core';
-import {
-  ProgressionBoardThemeProvider,
-  ThemeOptions,
-} from '../progression-board/ThemeProvider';
 
 export interface WorkItemTooltipProps extends CommonProps {
   isSplit: boolean;
@@ -15,7 +11,6 @@ export interface WorkItemTooltipProps extends CommonProps {
   title: string;
   external_key: string;
   child: JSX.Element;
-  theme?: ThemeOptions;
 }
 
 export const WorkItemTooltip = ({
@@ -26,7 +21,6 @@ export const WorkItemTooltip = ({
   title,
   external_key,
   child,
-  theme,
 }: WorkItemTooltipProps) => {
   const rootClasses = useStylesWithRootClass(className);
   const truncate = (str: string) => {
@@ -36,19 +30,17 @@ export const WorkItemTooltip = ({
   const populateTooltip = (isSplit: boolean) => {
     const truncated_title = truncate(title);
     return (
-      <ProgressionBoardThemeProvider theme={theme}>
-        <StyledTooltipTitle className={rootClassName}>
-          <div className="tooltip-header">
-            <DotIcon
-              className={value_goal}
-              iconId={isSplit ? 'circle-half-full' : 'circle'}
-              fontSize="small"
-            />
-            {external_key}
-          </div>
-          {truncated_title}
-        </StyledTooltipTitle>
-      </ProgressionBoardThemeProvider>
+      <StyledTooltipTitle className={rootClassName}>
+        <div className="tooltip-header">
+          <DotIcon
+            className={value_goal}
+            iconId={isSplit ? 'circle-half-full' : 'circle'}
+            fontSize="small"
+          />
+          {external_key}
+        </div>
+        {truncated_title}
+      </StyledTooltipTitle>
     );
   };
 

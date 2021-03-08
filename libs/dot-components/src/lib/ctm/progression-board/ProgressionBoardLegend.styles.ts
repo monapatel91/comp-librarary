@@ -59,7 +59,7 @@ export const StyledProgressionLegend = styled.ul`
             }
 
             &.icon-pending-clock {
-              color: ${theme.palette.text.primary};
+              color: ${theme.palette.icon.pendingClock};
             }
 
             &.icon-check-solid {

@@ -7,26 +7,26 @@ describe('dot-components: Progression Board component', () => {
     describe('style decisions', () => {
       it('maintain workitems should render as red', () => {
         cy.get('li').should('have.class', 'maintain');
-        cy.get('li.maintain').should('have.css', 'color', 'rgb(234, 28, 13)');
+        cy.get('li.maintain').should('have.css', 'color', 'rgb(214, 31, 33)');
       });
 
       it('should have red icon in tooltip', () => {
         cy.get('li.maintain').first().trigger('mouseover');
         cy.get('.dot-icon.maintain i')
           .should('be.visible')
-          .and('have.css', 'color', 'rgb(234, 28, 13)');
+          .and('have.css', 'color', 'rgb(214, 31, 33)');
       });
 
       it('improve workitems should render as green', () => {
         cy.get('li').should('have.class', 'improve');
-        cy.get('li.improve').should('have.css', 'color', 'rgb(61, 139, 64)');
+        cy.get('li.improve').should('have.css', 'color', 'rgb(73, 133, 0)');
       });
 
       it('should have green icon in tooltip', () => {
         cy.get('li.improve').first().trigger('mouseover');
         cy.get('.dot-icon.improve i')
           .should('be.visible')
-          .and('have.css', 'color', 'rgb(61, 139, 64)');
+          .and('have.css', 'color', 'rgb(73, 133, 0)');
       });
 
       it('rogue commit icon should render as yellow', () => {
@@ -34,7 +34,7 @@ describe('dot-components: Progression Board component', () => {
         cy.get('i.icon-rogue-commits').should(
           'have.css',
           'color',
-          'rgb(255, 179, 0)'
+          'rgb(255, 158, 73)'
         );
       });
 
@@ -43,7 +43,7 @@ describe('dot-components: Progression Board component', () => {
         cy.get('i.icon-error-outlines').should(
           'have.css',
           'color',
-          'rgb(234, 28, 13)'
+          'rgb(214, 31, 33)'
         );
       });
 
@@ -52,7 +52,7 @@ describe('dot-components: Progression Board component', () => {
         cy.get('i.icon-file-dotted').should(
           'have.css',
           'color',
-          'rgb(57, 73, 171)'
+          'rgb(61, 108, 158)'
         );
       });
 
@@ -61,7 +61,7 @@ describe('dot-components: Progression Board component', () => {
         cy.get('i.icon-check-solid').should(
           'have.css',
           'color',
-          'rgb(30, 136, 229)'
+          'rgb(61, 108, 158)'
         );
       });
     });
@@ -88,6 +88,14 @@ describe('dot-components: Progression Board component', () => {
         .and('contain', 'webstore');
     });
 
+    it('should use Lato', () => {
+      cy.get('.board-column-header h3').should(
+        'have.css',
+        'font-family',
+        'LatoBold, sans-serif'
+      );
+    });
+
     it('should open new tab when work-item is clicked', () => {
       cy.window()
         .then((win) => cy.stub(win, 'open'))
@@ -103,6 +111,26 @@ describe('dot-components: Progression Board component', () => {
     it('should display drawer when work-item is clicked', () => {
       cy.get('li.improve').first().click();
       cy.get('.dot-drawer-paper').should('be.visible');
+    });
+
+    describe('style decisions', () => {
+      it('should use Typography for text', () => {
+        cy.get('.drawer-content h2.MuiTypography-root').should(
+          'have.css',
+          'font-family',
+          'LatoBold, sans-serif'
+        );
+        cy.get('.drawer-content h3.MuiTypography-root').should(
+          'have.css',
+          'font-family',
+          'LatoBold, sans-serif'
+        );
+        cy.get('.drawer-content p.MuiTypography-root').should(
+          'have.css',
+          'font-family',
+          'Lato, sans-serif'
+        );
+      });
     });
   });
 });

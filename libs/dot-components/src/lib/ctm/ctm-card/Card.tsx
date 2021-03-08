@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '../../components/icon/Icon';
 import { DotLink } from '../../components/link/Link';
@@ -53,7 +54,7 @@ export const CardIdentifier = ({
       target="_blank"
       rel="noreferrer"
     >
-      {title}
+      <Typography variant="body2">{title}</Typography>
     </DotLink>
   );
 };

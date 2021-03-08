@@ -10,6 +10,7 @@ module.exports = {
   },
   moduleNameMapper: {
     '\\.svg': '<rootDir>/../testing-utils/src/lib/file-mock.ts',
+    '\\.woff': '<rootDir>/../testing-utils/src/lib/file-mock.ts',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/dot-components',

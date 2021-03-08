@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import { rootClassName, StyledProgressionSwimlane } from './Swimlane.styles';
@@ -33,7 +34,13 @@ export const SwimLane = ({
         {/* TO-DO: better way to evaluate this */}
         {phases.map((phase, i) => (
           <div className="swimlane-column" key={i}>
-            {i === 0 ? progressionPackage.package_name : ''}
+            {i === 0 ? (
+              <Typography variant="subtitle2">
+                {progressionPackage.package_name}
+              </Typography>
+            ) : (
+              ''
+            )}
           </div>
         ))}
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '../../components/icon/Icon';
 import { CommonProps } from '../../components/CommonProps';
@@ -6,7 +7,6 @@ import {
   rootClassName,
   StyledProgressionLegend,
 } from './ProgressionBoardLegend.styles';
-import { ProgressionBoardThemeProvider, ThemeOptions } from './ThemeProvider';
 
 interface LegendItem {
   className?: string;
@@ -81,27 +81,23 @@ export const legendItems: Array<LegendItem> = [
 export interface ProgressionBoardLegendProps extends CommonProps {
   /** Array of legend items to display */
   items?: Array<LegendItem>;
-  theme?: ThemeOptions;
 }
 
 export const DotProgressionBoardLegend = ({
   className,
   'data-testid': dataTestId,
   items = legendItems,
-  theme,
 }: ProgressionBoardLegendProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   return (
-    <ProgressionBoardThemeProvider theme={theme}>
-      <StyledProgressionLegend className={rootClasses} data-testid={dataTestId}>
-        {items.map((item, index) => (
-          <li className={item.className ? item.className : null} key={index}>
-            <DotIcon fontSize="small" iconId={item.iconId} />
-            {item.title}
-          </li>
-        ))}
-      </StyledProgressionLegend>
-    </ProgressionBoardThemeProvider>
+    <StyledProgressionLegend className={rootClasses} data-testid={dataTestId}>
+      {items.map((item, index) => (
+        <li className={item.className ? item.className : null} key={index}>
+          <DotIcon fontSize="small" iconId={item.iconId} />
+          <Typography variant="body2">{item.title}</Typography>
+        </li>
+      ))}
+    </StyledProgressionLegend>
   );
 };
 

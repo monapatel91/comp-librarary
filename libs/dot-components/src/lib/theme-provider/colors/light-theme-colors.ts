@@ -37,6 +37,7 @@ export const gA700 = '#4fff08';
 //Neutral color
 //https://zeroheight.com/4a9ac476a/p/22005a-color/t/44d174
 
+export const n0 = '#ffffff';
 export const n50 = '#f3f5f6';
 export const n100 = '#e3e5e8';
 export const n200 = '#c1c6cd';

@@ -1,4 +1,5 @@
 import React, { MutableRefObject, useState } from 'react';
+import { Typography } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import RevisionRangeLabel from '../ctm-card/RevisionRangeLabel';
@@ -192,14 +193,20 @@ export const ValidPackage = React.forwardRef(
         rev_from={packageVer.rev_from}
         rev_to={packageVer.rev_to}
       >
-        <PackageVersionLabel
-          baseUrl={baseUrl}
-          package_id={package_id}
-          version={version}
-        />
+        <Typography variant="h3">
+          <PackageVersionLabel
+            baseUrl={baseUrl}
+            package_id={package_id}
+            version={version}
+          />
+        </Typography>
         <ul className="workitems">
           {renderWorkItems(workitems)}
-          {workitems.length > 0 ? <li>{workitems.length}</li> : null}
+          {workitems.length > 0 ? (
+            <li>
+              <Typography variant="body1">{workitems.length}</Typography>
+            </li>
+          ) : null}
         </ul>
       </Card>
     );

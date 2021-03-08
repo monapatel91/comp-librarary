@@ -2,7 +2,6 @@ import React from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { ProgressionBoardDrawer } from './ProgressionBoardDrawer';
-import { ProgressionBoardThemeProvider } from './ThemeProvider';
 
 const onPbDrawerClose = () => console.log('Closed');
 const workItem = {
@@ -17,24 +16,20 @@ const workItem = {
 
 describe('ProgressionBoardDrawer', () => {
   let dataTestId;
-  let baseElem;
 
   beforeEach(() => {
     dataTestId = 'test-pb-drawer';
-    const { baseElement } = render(
-      <ProgressionBoardThemeProvider>
-        <ProgressionBoardDrawer
-          onClose={onPbDrawerClose}
-          workItem={workItem}
-          data-testid={dataTestId}
-        />
-      </ProgressionBoardThemeProvider>
+    render(
+      <ProgressionBoardDrawer
+        onClose={onPbDrawerClose}
+        workItem={workItem}
+        data-testid={dataTestId}
+      />
     );
-    baseElem = baseElement;
   });
 
   it('should render successfully', () => {
-    expect(baseElem).toBeTruthy();
+    expect(screen).toBeTruthy();
   });
 
   it('should render work item circle with appropriate class', () => {

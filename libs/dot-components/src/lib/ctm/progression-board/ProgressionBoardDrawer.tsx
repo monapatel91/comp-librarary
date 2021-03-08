@@ -71,10 +71,14 @@ export const ProgressionBoardDrawer = ({
             />
           </div>
           <div className="drawer-content">
-            <h2 className="drawer-content-title">{workItem.title}</h2>
-            <h3>Description</h3>
+            <Typography className="drawer-content-title" variant="h2">
+              {workItem.title}
+            </Typography>
+            <Typography variant="h3">Description</Typography>
             <div className="drawer-content-description">
-              <em>To be implemented</em>
+              <Typography variant="body1">
+                <em>To be implemented</em>
+              </Typography>
             </div>
           </div>
         </>

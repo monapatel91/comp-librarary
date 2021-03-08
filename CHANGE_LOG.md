@@ -6,7 +6,11 @@
 
 ### Components
 
-- **DotDrawer**: added `ModalProps` optional prop, which serves as an object containing props applied to the Modal element
+> **BREAKING CHANGE: ProgressionBoardThemeProvider** removed in favor of setting the theme at the global level
+
+- **DotDrawer** - added `ModalProps` optional prop, which serves as an object containing props applied to the Modal element
+- **ThemeProvider** - add `layer` object to global theme provider to match with UX mockups.
+- **ThemeProvider** - moved themes to global theme provider, `light`, `dark`, `agilityLight` and `agilityDark`
 
 ### Experimental
 

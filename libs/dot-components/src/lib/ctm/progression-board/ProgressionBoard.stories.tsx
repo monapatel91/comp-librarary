@@ -7,7 +7,6 @@ export default {
   title: 'Experimental/ProgressionBoard',
   component: DotProgressionBoard,
   argTypes: {
-    theme: { defaultValue: 'agility-light' },
     phases: { defaultValue: samplePhases },
     baseUrl: { defaultValue: 'http://localhost:8080' },
   },

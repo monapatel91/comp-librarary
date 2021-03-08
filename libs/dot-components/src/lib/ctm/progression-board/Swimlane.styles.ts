@@ -7,9 +7,7 @@ export const StyledProgressionSwimlane = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
       .swimlane-header {
-        background: ${theme.palette.layer['0']};
-        font-weight: 700;
-        font-size: 1.25em;
+        background: ${theme.palette.progressionBoard.board};
         position: sticky;
         top: 42px; // stops the swimline header just below the main header
         z-index: 1;
@@ -17,7 +15,6 @@ export const StyledProgressionSwimlane = styled.div`
         flex-flow: row nowrap;
         margin: 0;
         overflow-x: visible;
-        color: ${theme.palette.text.primary};
 
         .icon-button {
           margin-left: ${theme.spacing(0.5)}px;
@@ -27,18 +24,11 @@ export const StyledProgressionSwimlane = styled.div`
           display: flex;
           flex-flow: column wrap;
           flex: 1;
-          font-weight: 700;
           margin: 0 3px;
-          font-size: 14px;
           text-align: left;
           padding: ${theme.spacing(0.5, 2)};
           word-break: break-word;
-          background: ${theme.palette.layer['200']};
-          color: ${theme.palette.text.primary};
-        }
-
-        .swimlane-subheader {
-          font-size: 12px;
+          background: ${theme.palette.progressionBoard.swimlaneColumnHeader};
         }
       }
 
@@ -47,11 +37,11 @@ export const StyledProgressionSwimlane = styled.div`
         flex-flow: row nowrap;
         margin: 0;
         padding: 0;
-        background-color: ${theme.palette.layer['0']};
+        background-color: ${theme.palette.progressionBoard.board};
         overflow-x: visible;
 
         .board-column {
-          background-color: ${theme.palette.layer['100']};
+          background-color: ${theme.palette.progressionBoard.boardColumn};
           display: flex;
           flex: 1;
           flex-flow: column wrap;
@@ -62,12 +52,12 @@ export const StyledProgressionSwimlane = styled.div`
 
           .card {
             min-width: 110px;
-            font-size: 0.857em;
-            border: 1px solid ${theme.palette.layer['50']};
+            border: 1px solid ${theme.palette.progressionBoard.cardBorder};
             margin: ${theme.spacing(1)}px;
             position: relative;
             border-radius: 4px;
-            background: ${theme.palette.layer.card};
+            background: ${theme.palette.progressionBoard.card};
+            /* light theme = no box-shadow */
             box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 
             a {
@@ -75,18 +65,17 @@ export const StyledProgressionSwimlane = styled.div`
             }
 
             &.selected {
-              border: 1px solid ${theme.palette.layer['300']};
+              border: 1px solid
+                ${theme.palette.progressionBoard.cardSelectedBorder};
               box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.5);
             }
 
             .identity {
-              color: ${theme.palette.text.primary};
               display: flex;
               justify-content: space-between;
               padding: 2px 10px 0 0;
 
               a.identifier {
-                color: ${theme.palette.text.primary};
                 position: relative;
                 padding-left: 30px;
                 overflow: visible;
@@ -100,7 +89,8 @@ export const StyledProgressionSwimlane = styled.div`
                   margin-top: -2px;
                   position: absolute;
                   border-radius: 4px 0 100% 0;
-                  background-color: ${theme.palette.layer['300']};
+                  background-color: ${theme.palette.progressionBoard
+                    .cardCorner};
                 }
               }
 
@@ -115,8 +105,6 @@ export const StyledProgressionSwimlane = styled.div`
               a.title {
                 color: ${theme.palette.text.primary};
                 display: block;
-                font-size: 18px;
-                font-weight: 700;
                 margin: 5px;
                 overflow: hidden;
                 padding-bottom: 0.5em;
@@ -135,7 +123,6 @@ export const StyledProgressionSwimlane = styled.div`
               }
 
               .revision-range-label {
-                color: ${theme.palette.text.primary};
                 text-align: right;
 
                 a {
@@ -153,13 +140,10 @@ export const StyledProgressionSwimlane = styled.div`
 
               li:last-child {
                 background: transparent;
-                font-size: 12px;
                 text-align: center;
                 border: 0 solid currentColor;
-                font-weight: 700;
                 border-radius: 50%;
                 line-height: 21px;
-                color: ${theme.palette.text.primary};
               }
 
               & > li {
@@ -261,7 +245,7 @@ export const StyledProgressionSwimlane = styled.div`
         }
 
         &.icon-pending-clock {
-          color: ${theme.palette.text.primary};
+          color: ${theme.palette.icon.pendingClock};
         }
 
         &.icon-check-solid {

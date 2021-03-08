@@ -3,7 +3,7 @@ import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import {
   DotProgressionBoardLegend,
-  items as sampleItems,
+  legendItems as sampleItems,
 } from './ProgressionBoardLegend';
 
 describe('ProgressionBoardLegend', () => {

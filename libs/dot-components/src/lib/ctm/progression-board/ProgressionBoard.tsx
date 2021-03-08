@@ -6,7 +6,6 @@ import {
   rootClassName,
   StyledProgressionBoard,
 } from './ProgressionBoard.styles';
-import { ProgressionBoardThemeProvider, ThemeOptions } from './ThemeProvider';
 import { PhaseType, WorkItemType } from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
 import { ProgressionBoardDrawer } from './ProgressionBoardDrawer';
@@ -14,7 +13,6 @@ import { ProgressionBoardDrawer } from './ProgressionBoardDrawer';
 export interface ProgressionBoardProps extends CommonProps {
   baseUrl?: string;
   phases: Array<PhaseType>;
-  theme?: ThemeOptions;
   displayDrawer?: boolean;
   drawerWidth?: number;
 }
@@ -24,7 +22,6 @@ export const DotProgressionBoard = ({
   className,
   'data-testid': dataTestId,
   phases,
-  theme,
   displayDrawer = false,
   drawerWidth = 320,
 }: ProgressionBoardProps) => {
@@ -148,19 +145,17 @@ export const DotProgressionBoard = ({
   };
 
   return (
-    <ProgressionBoardThemeProvider theme={theme}>
-      <StyledProgressionBoard
-        className={rootClasses}
-        data-testid={dataTestId}
-        id="in-progress"
-        offsetLeft={offsetLeft}
-        ref={pbRef}
-      >
-        <BoardHeaders headers={phaseNames} isOffsetLeft={offsetLeft > 0} />
-        {renderSwimLanesFromPackages(getPackages())}
-        {renderProgressionBoardDrawer()}
-      </StyledProgressionBoard>
-    </ProgressionBoardThemeProvider>
+    <StyledProgressionBoard
+      className={rootClasses}
+      data-testid={dataTestId}
+      id="in-progress"
+      offsetLeft={offsetLeft}
+      ref={pbRef}
+    >
+      <BoardHeaders headers={phaseNames} isOffsetLeft={offsetLeft > 0} />
+      {renderSwimLanesFromPackages(getPackages())}
+      {renderProgressionBoardDrawer()}
+    </StyledProgressionBoard>
   );
 };
 

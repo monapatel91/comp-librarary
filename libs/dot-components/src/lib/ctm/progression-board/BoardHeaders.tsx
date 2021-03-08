@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 
@@ -22,7 +23,7 @@ export const BoardHeaders = ({
     <div className={rootClasses} data-testid={dataTestId}>
       {headers.map((header, i) => (
         <div key={i} className="board-column-header">
-          {header}
+          <Typography variant="h3">{header}</Typography>
         </div>
       ))}
     </div>
