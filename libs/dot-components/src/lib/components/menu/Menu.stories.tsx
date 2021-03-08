@@ -75,7 +75,7 @@ export const Default: Story<MenuProps> = (args) => {
 
 // Menu with a button anchor
 export const ButtonMenu: Story<MenuProps> = (args) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [open, setOpen] = useState(false);
   const handleToggle = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -84,9 +84,6 @@ export const ButtonMenu: Story<MenuProps> = (args) => {
   const onItemClick = (evt, menuId, menuItemKey) => {
     alert(menuItemKey + ' rules!');
     setOpen(false);
-  };
-  const handleLeave = (evt) => {
-    onLeave(evt, setOpen);
   };
 
   // return focus to the button when we transitioned from !open -> open
@@ -122,7 +119,7 @@ export const ButtonMenu: Story<MenuProps> = (args) => {
 
 // Menu shared by multiple icon buttons in a table
 export const TableMenu: Story<MenuProps> = (args) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(null);
   const handleToggle = (event, menuId: string) => {

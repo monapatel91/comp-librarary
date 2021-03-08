@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import {
   ClickAwayListener,
   Grow,
@@ -27,7 +27,7 @@ export type PopperPlacement =
 /* eslint-disable-next-line */
 export interface MenuProps extends CommonProps {
   /** Element that menu is attached to */
-  anchorEl?: HTMLElement;
+  anchorEl?: Element;
   /** Unique ID that ties a particular menu to a specific element */
   id: string;
   /** Array of items to be displayed inside the menu */
