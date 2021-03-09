@@ -6,6 +6,7 @@ import DotMenu, { MenuProps, MenuItemProps } from './Menu';
 describe('Menu', () => {
   it('should have unchanged API', () => {
     const onLeave = jest.fn();
+    const onSelect = jest.fn();
     const mProps = {
       anchorEl: null,
       id: 'menu-id',
@@ -13,6 +14,7 @@ describe('Menu', () => {
       menuPlacement: 'bottom',
       open: true,
       onLeave: onLeave,
+      onSelect: onSelect,
     };
     const menuProps: MenuProps = {
       anchorEl: null,
@@ -21,6 +23,7 @@ describe('Menu', () => {
       menuPlacement: 'bottom',
       open: true,
       onLeave: onLeave,
+      onSelect: onSelect,
     };
     expect(menuProps).toEqual(mProps);
     const onClick = jest.fn();
@@ -28,13 +31,11 @@ describe('Menu', () => {
       children: 'opt 1',
       classes: 'menu-item-class',
       key: 'opt1',
-      onClick: onClick,
     };
     const menuItemProps: MenuItemProps = {
       children: 'opt 1',
       classes: 'menu-item-class',
       key: 'opt1',
-      onClick: onClick,
     };
     expect(menuItemProps).toEqual(iProps);
   });

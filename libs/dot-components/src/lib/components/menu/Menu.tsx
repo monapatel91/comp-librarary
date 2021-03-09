@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { KeyboardEvent, MouseEvent } from 'react';
 import {
   ClickAwayListener,
   Grow,
@@ -36,6 +36,8 @@ export interface MenuProps extends CommonProps {
   menuPlacement?: PopperPlacement;
   /** If true, the menu is open. */
   open?: boolean;
+  /** Callback when menu item is selected */
+  onSelect?: (event: MouseEvent, menuId: string, itemKey: string) => void;
   /** Event callback when leaving menu via tab or clicking away */
   onLeave?: (event: KeyboardEvent | MouseEvent) => void;
 }
@@ -47,8 +49,6 @@ export interface MenuItemProps {
   classes?: string;
   /** A key that can be used to determine which item was clicked */
   key?: string;
-  /** Event callback on click */
-  onClick?: (event: MouseEvent, menuId: string, menuItemKey: string) => void;
 }
 
 export function DotMenu({
@@ -59,12 +59,14 @@ export function DotMenu({
   menuItems = [],
   menuPlacement = 'bottom',
   onLeave,
+  onSelect,
   open = false,
 }: MenuProps) {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-  const handleItemClick = (event, item) => {
-    item.onClick && item.onClick(event, id, item.key);
+  const handleSelect = (event, itemKey) => {
+    onLeave && onLeave(event);
+    onSelect && onSelect(event, id, itemKey);
   };
 
   function handleListKeyDown(event) {
@@ -110,7 +112,7 @@ export function DotMenu({
                   return (
                     <MenuItem
                       className={item.classes}
-                      onClick={(event) => handleItemClick(event, item)}
+                      onClick={(event) => handleSelect(event, item.key)}
                       key={index}
                     >
                       {item.children}

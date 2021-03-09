@@ -5,10 +5,6 @@ import { DotMenu, MenuProps } from './Menu';
 import DotButton from '../button/Button';
 import DotIconButton from '../button/IconButton';
 
-const onClick = (evt, menuId, menuItemKey) => {
-  alert(menuItemKey);
-};
-
 const onLeave = (evt, setOpen) => {
   setOpen(false);
 };
@@ -20,46 +16,6 @@ export default {
     id: {
       defaultValue: 'foobar',
     },
-    menuItems: {
-      defaultValue: [
-        { children: 'Batman', key: 'batman', onClick: onClick },
-        { children: 'Robin', key: 'robin', onClick: onClick },
-        { children: 'Bat Girl', key: 'bat-girl', onClick: onClick },
-        { children: 'Mister Mxyzptlk', key: 'mxy', onClick: onClick },
-        { children: 'Option Five', key: '5', onClick: onClick },
-        { children: 'Option Six', key: '6', onClick: onClick },
-        { children: 'Option Seven', key: '7', onClick: onClick },
-        { children: 'Option Eight', key: '8', onClick: onClick },
-        { children: 'Option Nine', key: '9', onClick: onClick },
-        { children: 'Option Ten', key: '10', onClick: onClick },
-        { children: 'Option Eleven', key: '11', onClick: onClick },
-        { children: 'Option Twelve', key: '12', onClick: onClick },
-        { children: 'Option Thirteen', key: '13', onClick: onClick },
-        { children: 'Option Fourteen', key: '14', onClick: onClick },
-        { children: 'Option Fifteen', key: '15', onClick: onClick },
-        { children: 'Option Sixteen', key: '16', onClick: onClick },
-        { children: 'Option Seventeen', key: '17', onClick: onClick },
-        { children: 'Option Eighteen', key: '18', onClick: onClick },
-        { children: 'Option Nineteen', key: '19', onClick: onClick },
-        { children: 'Option Twenty', key: '20', onClick: onClick },
-        { children: 'Option Twenty-one', key: '21', onClick: onClick },
-        { children: 'Option Twenty-two', key: '22', onClick: onClick },
-        { children: 'Option Twenty-three', key: '23', onClick: onClick },
-        { children: 'Option Twenty-four', key: '24', onClick: onClick },
-        { children: 'Option Twenty-five', key: '25', onClick: onClick },
-        { children: 'Option Twenty-six', key: '26', onClick: onClick },
-        { children: 'Option Twenty-seven', key: '27', onClick: onClick },
-        { children: 'Option Twenty-eight', key: '28', onClick: onClick },
-        { children: 'Option Twenty-nine', key: '29', onClick: onClick },
-        {
-          children: 'Option Seven Thousand Four Hundred and Seventy-six',
-          key: '7476',
-          onClick: onClick,
-        },
-        { children: 'Last Option', key: '&', onClick: onClick },
-      ],
-      name: 'Menu Items',
-    },
     menuPlacement: {
       defaultValue: 'bottom',
       name: 'Menu Placement',
@@ -67,10 +23,62 @@ export default {
   },
 } as Meta;
 
-// Default story shows menu all the time and has many
-// options so as to require scrolling
 export const Default: Story<MenuProps> = (args) => {
-  return <DotMenu open={true} {...args} />;
+  const [open, setOpen] = useState(true);
+  const onItemSelect = (event, menuId, itemKey) => {
+    alert(
+      itemKey +
+        " selected. Click the 'open' toggle in Controls to redisplay menu."
+    );
+  };
+  const handleLeave = (evt) => {
+    setOpen(false);
+  };
+  const menuItems = [
+    { children: 'Batman', key: 'batman' },
+    { children: 'Robin', key: 'robin' },
+    { children: 'Bat Girl', key: 'bat-girl' },
+    { children: 'Mister Mxyzptlk', key: 'mxy' },
+    { children: 'Option Five', key: '5' },
+    { children: 'Option Six', key: '6' },
+    { children: 'Option Seven', key: '7' },
+    { children: 'Option Eight', key: '8' },
+    { children: 'Option Nine', key: '9' },
+    { children: 'Option Ten', key: '10' },
+    { children: 'Option Eleven', key: '11' },
+    { children: 'Option Twelve', key: '12' },
+    { children: 'Option Thirteen', key: '13' },
+    { children: 'Option Fourteen', key: '14' },
+    { children: 'Option Fifteen', key: '15' },
+    { children: 'Option Sixteen', key: '16' },
+    { children: 'Option Seventeen', key: '17' },
+    { children: 'Option Eighteen', key: '18' },
+    { children: 'Option Nineteen', key: '19' },
+    { children: 'Option Twenty', key: '20' },
+    { children: 'Option Twenty-one', key: '21' },
+    { children: 'Option Twenty-two', key: '22' },
+    { children: 'Option Twenty-three', key: '23' },
+    { children: 'Option Twenty-four', key: '24' },
+    { children: 'Option Twenty-five', key: '25' },
+    { children: 'Option Twenty-six', key: '26' },
+    { children: 'Option Twenty-seven', key: '27' },
+    { children: 'Option Twenty-eight', key: '28' },
+    { children: 'Option Twenty-nine', key: '29' },
+    {
+      children: 'Option Seven Thousand Four Hundred and Seventy-six',
+      key: '7476',
+    },
+    { children: 'Last Option', key: '&' },
+  ];
+  return (
+    <DotMenu
+      {...args}
+      menuItems={menuItems}
+      onLeave={handleLeave}
+      onSelect={onItemSelect}
+      open={open}
+    />
+  );
 };
 
 // Menu with a button anchor
@@ -81,9 +89,8 @@ export const ButtonMenu: Story<MenuProps> = (args) => {
     setAnchorEl(event.currentTarget);
     setOpen(!open);
   };
-  const onItemClick = (evt, menuId, menuItemKey) => {
-    alert(menuItemKey + ' rules!');
-    setOpen(false);
+  const onItemSelect = (event, menuId, itemKey) => {
+    alert(itemKey + ' rules!');
   };
 
   // return focus to the button when we transitioned from !open -> open
@@ -97,9 +104,9 @@ export const ButtonMenu: Story<MenuProps> = (args) => {
   }, [open]);
 
   const menuItems = [
-    { children: 'Batman', key: 'Batman', onClick: onItemClick },
-    { children: 'Robin', key: 'Robin', onClick: onItemClick },
-    { children: 'Bat Girl', key: 'Bat Girl', onClick: onItemClick },
+    { children: 'Batman', key: 'Batman' },
+    { children: 'Robin', key: 'Robin' },
+    { children: 'Bat Girl', key: 'Bat Girl' },
   ];
   return (
     <div>
@@ -111,6 +118,7 @@ export const ButtonMenu: Story<MenuProps> = (args) => {
         anchorEl={anchorEl}
         menuItems={menuItems}
         onLeave={(event) => onLeave(event, setOpen)}
+        onSelect={onItemSelect}
         open={open}
       ></DotMenu>
     </div>
@@ -127,26 +135,23 @@ export const TableMenu: Story<MenuProps> = (args) => {
     setAnchorEl(event.currentTarget);
     setOpen(!open);
   };
-  const onItemClick = (evt, menuId, menuItemKey) => {
+  const onItemSelect = (event, menuId, itemKey) => {
     const correct =
-      (menuId === 'batman' && menuItemKey === 'gotham') ||
-      (menuId === 'superman' && menuItemKey === 'metropolis') ||
-      (menuId === 'spidey' && menuItemKey === 'ny');
+      (menuId === 'batman' && itemKey === 'gotham') ||
+      (menuId === 'superman' && itemKey === 'metropolis') ||
+      (menuId === 'spidey' && itemKey === 'ny');
     alert(correct ? 'Correct!' : 'Wrong!');
-    handleToggle(evt.target, null);
   };
   const menuItems = [
-    { children: 'Gotham City', key: 'gotham', onClick: onItemClick },
-    { children: 'The Big Apple', key: 'ny', onClick: onItemClick },
+    { children: 'Gotham City', key: 'gotham' },
+    { children: 'The Big Apple', key: 'ny' },
     {
       children: 'Metropolis',
       key: 'metropolis',
-      onClick: onItemClick,
     },
     {
       children: <span>Arcos de la Frontera</span>,
       key: 'arcos',
-      onClick: onItemClick,
     },
   ];
   return (
@@ -199,6 +204,7 @@ export const TableMenu: Story<MenuProps> = (args) => {
         menuItems={menuItems}
         menuPlacement="bottom-start"
         onLeave={(event) => onLeave(event, setOpen)}
+        onSelect={onItemSelect}
         open={open}
       ></DotMenu>
     </div>
