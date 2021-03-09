@@ -44,8 +44,8 @@ If you're using the `DotIcon` component then you do not need to pass in the `ico
 
 ## Contributing
 
-[Learn about how to contribute](https://github.com/digital-ai/dot-components/blob/master/CONTRIBUTING.md)
+[Learn about how to contribute](https://zeroheight.com/4a9ac476a/p/50279a-developers/b/255d47)
 
 ## Change Log
 
-[Learn about the latest improvements](https://zeroheight.com/4a9ac476a/p/1087aa-change-log).
+[Learn about the latest improvements](https://zeroheight.com/4a9ac476a/p/50279a-developers/b/95a7cc).
