@@ -10,8 +10,13 @@
 
 > **BREAKING CHANGE: ProgressionBoardThemeProvider** removed in favor of setting the theme at the global level
 
+> **BREAKING CHANGE: InputSelect** - removed `onChange` from InputSelectProps
+
+> **BREAKING CHANGE: InputText** - removed `onChange` from InputTextProps
+
 - **Menu** - added `onSelect` prop
 - **DotDrawer** - added `ModalProps` optional prop, which serves as an object containing props applied to the Modal element
+- **DotInputSelect**: added the value prop to DotSelect so that whichever option is selected is passed to the value prop
 - **ThemeProvider** - add `layer` object to global theme provider to match with UX mockups.
 - **ThemeProvider** - moved themes to global theme provider, `light`, `dark`, `agilityLight` and `agilityDark`
 

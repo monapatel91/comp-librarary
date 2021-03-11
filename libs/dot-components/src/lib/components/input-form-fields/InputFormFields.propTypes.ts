@@ -25,7 +25,9 @@ export interface InputProps extends CommonProps {
   /** The name of input element */
   name: string;
   /** A function that should be executed when the value of the input changes */
-  onChange?: (value: string) => void;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   /** If true, the label is displayed as required and the input element` will be required. */
   required?: boolean;
   /** Icon placed before the children. */

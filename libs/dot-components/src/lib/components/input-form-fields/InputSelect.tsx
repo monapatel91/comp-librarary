@@ -11,6 +11,8 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export interface InputSelectProps extends InputProps {
   options: Array<string>;
+  value: string;
+  defaultValue?: string;
 }
 
 export const DotInputSelect = ({
@@ -27,6 +29,7 @@ export const DotInputSelect = ({
   onChange,
   options = [],
   defaultValue = options[0],
+  value,
   required,
   startIcon,
   size = 'small',
@@ -41,6 +44,7 @@ export const DotInputSelect = ({
       autoFocus={autoFocus}
       className={`${rootStyles} ${hasWarning}`}
       defaultValue={defaultValue}
+      value={value}
       error={error}
       fullWidth={fullWidth}
       helperText={helperText}
@@ -69,7 +73,7 @@ export const DotInputSelect = ({
       label={label}
       multiline={false}
       name={name}
-      onChange={(event) => onChange && onChange(event.target.value)}
+      onChange={onChange}
       required={required}
       select={true}
       SelectProps={{

@@ -6,7 +6,7 @@ import {
   DotSidebar,
   NavigationItemProps,
 } from '@digital-ai/dot-components';
-import DemoProgressionBoard from '../demo-components/DemoProgressionBoard';
+import { Routes } from '../app/routes/Routes';
 
 import './app.scss';
 
@@ -239,8 +239,7 @@ export const App = () => {
           title="FedEx"
         />
         <section className="main-content">
-          <h1>dot-components demo app</h1>
-          <DemoProgressionBoard />
+          <Routes />
         </section>
       </main>
     </BrowserRouter>

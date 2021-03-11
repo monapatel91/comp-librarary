@@ -86,7 +86,7 @@ export const DotInputText = ({
       label={label}
       multiline={multiline}
       name={name}
-      onChange={(event) => onChange && onChange(event.target.value)}
+      onChange={onChange}
       placeholder={placeholder}
       required={required}
       rows={multiline ? rows : null}
