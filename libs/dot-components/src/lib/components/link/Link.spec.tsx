@@ -68,7 +68,6 @@ describe('Link', () => {
     );
     expect(
       screen.getByText('Sample Link').closest('a').getAttributeNode('href')
-        .value
-    ).toEqual('#');
+    ).toEqual(null);
   });
 });

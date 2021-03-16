@@ -11,6 +11,11 @@ describe('Breadcrumbs', () => {
     { href: '#', onClick: onClick, text: 'Link 2' },
     { href: '#', onClick: onClick, text: 'Link 3' },
   ];
+  const dummyItemsNoOnClick: Array<BreadcrumbItem> = [
+    { href: '#', text: 'Link 1' },
+    { href: '#', text: 'Link 2' },
+    { href: '#', text: 'Link 3' },
+  ];
 
   it('should have unchanged API', () => {
     const props = {
@@ -30,7 +35,7 @@ describe('Breadcrumbs', () => {
   });
 
   it('should hide additional breadcrumbs when more than maxItems', () => {
-    render(<DotBreadcrumbs items={dummyItems} maxItems={2} />);
+    render(<DotBreadcrumbs items={dummyItemsNoOnClick} maxItems={2} />);
     const links = screen.getAllByRole('link');
 
     expect(links.length).toEqual(2);

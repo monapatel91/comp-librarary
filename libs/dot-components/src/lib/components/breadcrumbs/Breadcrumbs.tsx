@@ -49,7 +49,7 @@ export const DotBreadcrumbs = ({
               color="inherit"
               href={href}
               key={index}
-              onClick={(event) => onClick && onClick(event)}
+              onClick={onClick}
               tabIndex={0}
               underline={underline}
             >
