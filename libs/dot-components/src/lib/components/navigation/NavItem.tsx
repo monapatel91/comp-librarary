@@ -1,4 +1,4 @@
-import React, { Fragment, MouseEvent, useState } from 'react';
+import React, { ElementType, Fragment, MouseEvent, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, MenuItem, Typography } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
@@ -21,8 +21,16 @@ export interface NavigationItemProps extends CommonProps {
   btnSize?: ButtonSize;
   /** The type of button */
   btnType?: ButtonType;
+  /** If true the list item will render as a div */
+  button?: boolean;
+  /** The component used for the root node. Either a string to use a HTML element or a component. */
+  component?: ElementType;
   /** determines the direction of the nav items 'horizontal' or 'vertical' */
   direction?: DirectionType;
+  /** If true the list item will with a divider */
+  divider?: boolean;
+  /** URL which the nav item links to */
+  href?: string;
   /** The ID of the icon to display on the nav item */
   iconId?: string;
   /** Determines the size of the button and padding around the icon */
@@ -47,9 +55,7 @@ export interface NavigationItemProps extends CommonProps {
   textClasses?: string;
   /** The tooltip text displayed on the nav item icon hover */
   title?: string;
-  /** Specify what type of navigation item "divider", "link", "button" */
-  type?: NavItemType;
-  /** URL which the nav item links to */
+  type?: 'button' | 'divider' | 'link';
   url?: string;
 }
 
@@ -59,9 +65,9 @@ export const DotNavItem = ({
   className,
   'data-testid': dataTestId,
   direction = 'horizontal',
-  iconId,
-  iconBtnSize = 'small',
+  iconBtnSize,
   iconClasses,
+  iconId,
   iconPlacement = 'first',
   iconSize,
   items = [],

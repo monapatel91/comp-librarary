@@ -22,6 +22,7 @@ export * from './inline-edit/InlineEdit';
 export * from './input-form-fields/InputText';
 export * from './input-form-fields/InputSelect';
 export * from './link/Link';
+export * from './list/List';
 export * from './menu/Menu';
 export * from './navigation/Navigation';
 export * from './navigation/NavItem';
