@@ -18,6 +18,7 @@
 
 - **Menu** - added `onSelect` prop
 - **DotDrawer** - added `ModalProps` optional prop, which serves as an object containing props applied to the Modal element
+- **DotDrawer** - added `PaperProps` optional prop, which serves as an object containing props applied to the Paper element
 - **DotInputSelect**: added the value prop to DotSelect so that whichever option is selected is passed to the value prop
 - **ThemeProvider** - add `layer` object to global theme provider to match with UX mockups.
 - **ThemeProvider** - moved themes to global theme provider, `light`, `dark`, `agilityLight` and `agilityDark`
@@ -26,6 +27,12 @@
 
 - **ProgressionBoard** - added `displayDrawer` prop which controls display of workitem details drawer
 - **ProgressionBoard** - added `drawerWidth` prop which controls drawer width (if enabled)
+- **ProgressionBoard** - added `workItemSelection` optional prop which represents an object containing data for custom workitem selection implementation
+- **ProgressionBoard** - removed `displayDrawer` optional prop
+- **ProgressionBoard** - removed `drawerWidth` optional prop
+- **ProgressionBoardDrawer** - moved outside of `ProgressionBoard` component, can be used separately in custom wrapper component
+- **ProgressionBoardDrawer** - added `drawerPaperProps` optional prop, which serves as an object containing props applied to the drawer's Paper element
+- **ProgressionBoardDrawer** - added `workItemDetails` optional prop, object which contains detail data about workitem (fetched asynchronously)
 
 ## 0.0.0-alpha.12
 

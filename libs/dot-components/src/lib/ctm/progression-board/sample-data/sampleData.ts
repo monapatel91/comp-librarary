@@ -1,4 +1,4 @@
-import { PhaseType } from './ProgressionBoardInterfaces';
+import { PhaseType } from '../ProgressionBoardInterfaces';
 
 export const samplePhases: Array<PhaseType> = [
   {
@@ -629,7 +629,7 @@ export const samplePhases: Array<PhaseType> = [
             external_id: '10293',
             external_key: 'API-94',
             title:
-              'UI - User edit dialog able to issue/refresh an API auth token',
+              'UI - User edit dialog able to issue/refresh an API auth token [~accountid:xxxxxxxxxxxxxxxxxxxxxxxx]',
             value_goal: 'improve',
           },
           {

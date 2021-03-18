@@ -42,6 +42,7 @@ export interface PackageType {
   version: string;
   workitem_count: number;
   workitems: Array<WorkItemType>;
+  workitemsDetails?: Array<WorkItemDetailsType>;
 }
 
 export interface PhaseType {
@@ -59,8 +60,7 @@ export interface SwimLanepkg {
 }
 
 export interface SelectWorkItem {
-  deSelectWorkItem: () => void;
-  displayDrawer: boolean;
+  allowSelection: boolean;
   hoverWorkItem: (id: string) => void;
   hoveredWorkItem: string;
   selectedWorkItem: SelectedWorkItem;
@@ -68,8 +68,18 @@ export interface SelectWorkItem {
   unHoverWorkItem: () => void;
 }
 
+export interface WorkItemSelection {
+  /* Extended workitem data object */
+  selectedWorkItem: SelectedWorkItem;
+  /* Callback function which will execute upon workitem change event */
+  onWorkItemChange: (workItem: WorkItemType) => void;
+  /* Width of the drawer in pixels */
+  drawerWidth: number;
+  /* Optional value which can be set if drawer is offset from progression board */
+  drawerOffsetFromBoard?: number;
+}
+
 export interface SelectedWorkItem extends WorkItemType {
-  wiClientRectRight: number;
   boardColumnRectRight: number;
 }
 
@@ -83,4 +93,22 @@ export interface WorkItemType {
   isSplit?: boolean;
   title: string;
   value_goal: string;
+}
+
+export interface ProgressionBoardData {
+  workItemDetails?: WorkItemDetailsType;
+  onWorkItemChange?: (workItemId: string) => void;
+}
+
+export interface WorkItemDetailsType {
+  /* Workitem's ID */
+  id: string;
+  /* Workitem's description */
+  description: string;
+  /* Workitem owner's first and last name */
+  owner: string;
+  /* Workitem's source system name (ie: Jira, Github, Gitlab, ...) */
+  sourceSystemName: string;
+  /* Workitem's source system URL */
+  sourceSystemUrl: string;
 }

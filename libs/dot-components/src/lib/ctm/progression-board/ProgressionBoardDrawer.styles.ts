@@ -19,6 +19,8 @@ export const StyledDotDrawer = styled(DotDrawer)`
 export const StyledProgressionBoardDrawer = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
+      height: 100%;
+
       .drawer-header {
         padding: 0 10px 0 16px;
         display: flex;
@@ -35,7 +37,7 @@ export const StyledProgressionBoardDrawer = styled.div`
 
         .work-item-type-circle {
           flex-shrink: 0;
-          margin-right: 16px;
+          margin: ${theme.spacing(0, 2, 0, 0)};
 
           &.improve {
             background-color: ${lighten(theme.palette.icon.improve, 0.8)};
@@ -61,16 +63,70 @@ export const StyledProgressionBoardDrawer = styled.div`
       }
 
       .drawer-content {
-        padding: 0 10px 0 16px;
+        overflow-y: auto;
+        height: 100%;
+        padding: ${theme.spacing(2, 2)};
+        word-break: break-word;
 
         .drawer-content-title {
-          font-size: 17px;
-          line-height: 24px;
+          margin: ${theme.spacing(0, 0, 3)};
         }
 
         .drawer-content-description {
-          font-size: 15px;
-          line-height: 22px;
+          margin: ${theme.spacing(2, 0, 0)};
+          padding: ${theme.spacing(0, 2, 3)};
+        }
+
+        .content-divider {
+          background-color: ${theme.palette.grey[200]};
+          margin: ${theme.spacing(0, -2)};
+        }
+
+        .drawer-content-owner-title {
+          margin: ${theme.spacing(3, 0, 0)};
+        }
+
+        .drawer-content-owner {
+          padding: ${theme.spacing(2, 0, 0)};
+          display: flex;
+          align-items: center;
+
+          .owner-avatar {
+            background-color: ${theme.palette.layer['50']};
+          }
+
+          .owner-name {
+            margin: ${theme.spacing(0, 0, 0, 2)};
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+
+        .drawer-content-source-title {
+          margin: ${theme.spacing(3, 0, 0)};
+        }
+
+        .drawer-content-source {
+          margin: ${theme.spacing(2, 0, 3)};
+          display: flex;
+          align-items: center;
+
+          .source-avatar-icon {
+            background-color: ${theme.palette.layer['50']};
+          }
+
+          .source-body {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin: ${theme.spacing(0, 0, 0, 2)};
+            flex-grow: 1;
+          }
+
+          .source-open-btn {
+            flex-shrink: 0;
+          }
         }
       }
   `}

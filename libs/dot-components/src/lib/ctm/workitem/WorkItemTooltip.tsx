@@ -2,7 +2,11 @@ import React from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import { DotIcon } from '../../components';
-import { rootClassName, StyledTooltipTitle } from './WorkItemTooltip.styles';
+import {
+  rootClassName,
+  StyledTooltipTitle,
+  StyledTypography,
+} from './WorkItemTooltip.styles';
 import { Tooltip } from '@material-ui/core';
 
 export interface WorkItemTooltipProps extends CommonProps {
@@ -24,7 +28,7 @@ export const WorkItemTooltip = ({
 }: WorkItemTooltipProps) => {
   const rootClasses = useStylesWithRootClass(className);
   const truncate = (str: string) => {
-    return str.length > 20 ? str.substring(0, 17) + '...' : str;
+    return str.length > 30 ? str.substring(0, 27) + '...' : str;
   };
 
   const populateTooltip = (isSplit: boolean) => {
@@ -35,11 +39,10 @@ export const WorkItemTooltip = ({
           <DotIcon
             className={value_goal}
             iconId={isSplit ? 'circle-half-full' : 'circle'}
-            fontSize="small"
           />
-          {external_key}
+          <StyledTypography variant="body2">{external_key}</StyledTypography>
         </div>
-        {truncated_title}
+        <StyledTypography variant="body2">{truncated_title}</StyledTypography>
       </StyledTooltipTitle>
     );
   };

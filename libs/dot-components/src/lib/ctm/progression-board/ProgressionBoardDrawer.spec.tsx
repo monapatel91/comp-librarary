@@ -1,7 +1,8 @@
 import React from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { ProgressionBoardDrawer } from './ProgressionBoardDrawer';
+import { DotProgressionBoardDrawer } from './ProgressionBoardDrawer';
+import { WorkItemDetailsType } from './ProgressionBoardInterfaces';
 
 const onPbDrawerClose = () => console.log('Closed');
 const workItem = {
@@ -14,15 +15,24 @@ const workItem = {
   value_goal: 'improve',
 };
 
+const workItemDetails: WorkItemDetailsType = {
+  id: workItem._id,
+  description: 'Test description',
+  owner: 'John Smith',
+  sourceSystemName: 'Jira',
+  sourceSystemUrl: `http://localhost:8080/id=${workItem._id}`,
+};
+
 describe('ProgressionBoardDrawer', () => {
   let dataTestId;
 
   beforeEach(() => {
     dataTestId = 'test-pb-drawer';
     render(
-      <ProgressionBoardDrawer
+      <DotProgressionBoardDrawer
         onClose={onPbDrawerClose}
         workItem={workItem}
+        workItemDetails={workItemDetails}
         data-testid={dataTestId}
       />
     );
@@ -58,5 +68,31 @@ describe('ProgressionBoardDrawer', () => {
     const { title } = workItem;
     const wiTitleElem = screen.getByText(title);
     expect(wiTitleElem).toHaveClass('drawer-content-title');
+  });
+
+  it('should render correct description', () => {
+    const { description } = workItemDetails;
+    const wiDescElem = screen.getByText(description).closest('div');
+    expect(wiDescElem).toHaveClass('drawer-content-description');
+  });
+
+  it('should render owner name with correct title and content', () => {
+    const { owner } = workItemDetails;
+    const wiOwnerSpanElem = screen.getByText(owner);
+    expect(wiOwnerSpanElem).toHaveAttribute('title', owner);
+  });
+
+  it('should render source system name with correct title and content', () => {
+    const { sourceSystemName } = workItemDetails;
+    const wiOwnerSpanElem = screen.getByText(sourceSystemName);
+    expect(wiOwnerSpanElem).toHaveAttribute('title', sourceSystemName);
+  });
+
+  it('should render source system button element', () => {
+    const wiSourceUrlButton = screen.getByTestId(
+      `${dataTestId}-source-open-icon-button`
+    );
+    expect(wiSourceUrlButton).toHaveClass('source-open-btn');
+    expect(wiSourceUrlButton).toBeEnabled();
   });
 });

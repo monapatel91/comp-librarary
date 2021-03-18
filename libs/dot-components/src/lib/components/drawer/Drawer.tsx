@@ -6,6 +6,7 @@ import { rootClassName, StyledDrawer } from './Drawer.styles';
 export type DrawerAnchor = 'bottom' | 'left' | 'right' | 'top';
 export type DrawerVariant = 'permanent' | 'persistent' | 'temporary';
 export type DrawerModalProps = { container?: Element; style?: CSSProperties };
+export type DrawerPaperProps = { style?: CSSProperties };
 
 export interface DrawerProps extends CommonProps {
   /** Side from which the drawer will appear 'bottom', 'left', 'right', 'top' */
@@ -14,6 +15,8 @@ export interface DrawerProps extends CommonProps {
   children?: string | JSX.Element | JSX.Element[];
   /** Props applied to the Modal element. */
   ModalProps?: DrawerModalProps;
+  /** Props applied to the Paper element. */
+  PaperProps?: DrawerPaperProps;
   /** Callback fired when the component requests to be closed. */
   onClose?: (event: MouseEvent | KeyboardEvent) => void;
   /** If true, the drawer is open. */
@@ -32,6 +35,7 @@ export const DotDrawer = ({
   ModalProps,
   onClose,
   open,
+  PaperProps,
   variant = 'temporary',
   width = '256px',
 }: DrawerProps) => {
@@ -42,6 +46,7 @@ export const DotDrawer = ({
       anchor={anchor}
       classes={{ root: rootClasses, paper: 'dot-drawer-paper' }}
       ModalProps={ModalProps}
+      PaperProps={PaperProps}
       onClose={(event: MouseEvent) => onClose && onClose(event)}
       open={open}
       variant={variant}

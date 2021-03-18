@@ -6,15 +6,22 @@ import {
   rootClassName,
   StyledProgressionBoard,
 } from './ProgressionBoard.styles';
-import { PhaseType, WorkItemType } from './ProgressionBoardInterfaces';
+import { calculateProgressionBoardOffset } from './progressionBoardHelper';
+import {
+  PhaseType,
+  SelectedWorkItem,
+  SwimLanepkg,
+  WorkItemSelection,
+} from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
-import { ProgressionBoardDrawer } from './ProgressionBoardDrawer';
 
 export interface ProgressionBoardProps extends CommonProps {
+  /* Base URL on which user will be redirected when item selection is made */
   baseUrl?: string;
+  /* Array of progression phases */
   phases: Array<PhaseType>;
-  displayDrawer?: boolean;
-  drawerWidth?: number;
+  /* Object which can be used when custom work-item selection is implemented */
+  workItemSelection?: WorkItemSelection;
 }
 
 export const DotProgressionBoard = ({
@@ -22,47 +29,52 @@ export const DotProgressionBoard = ({
   className,
   'data-testid': dataTestId,
   phases,
-  displayDrawer = false,
-  drawerWidth = 320,
+  workItemSelection = null,
 }: ProgressionBoardProps) => {
   const rootClasses = useStylesWithRootClass(
     rootClassName,
     'columns-wrapper',
     className
   );
-  const [selectedWorkItem, setSelectedWorkItem] = useState(null);
+
   const [hoveredWorkItem, setHoveredWorkItem] = useState('');
   const [offsetLeft, setOffsetLeft] = useState(0);
 
+  const { selectedWorkItem, drawerWidth, drawerOffsetFromBoard = 0 } =
+    workItemSelection || {};
+  const { boardColumnRectRight } = selectedWorkItem || {};
+
+  /* Used for PB's data offset calculation when used in combination with drawer */
   useEffect(() => {
-    if (!displayDrawer) return;
+    if (!drawerWidth) return;
     if (!selectedWorkItem) {
       setOffsetLeft(0);
       return;
     }
-    const { wiClientRectRight, boardColumnRectRight } = selectedWorkItem;
-    if (wiClientRectRight && boardColumnRectRight && pbRef.current) {
-      const pbOffsetX = pbRef.current.offsetWidth;
-      const toleranceX = 10;
-      const widthTillColumnEnd = boardColumnRectRight - wiClientRectRight;
-      const diff = wiClientRectRight + toleranceX - (pbOffsetX - drawerWidth);
-      diff >= 0 && setOffsetLeft(diff + widthTillColumnEnd - toleranceX);
+    if (boardColumnRectRight && pbRef.current) {
+      const offset = calculateProgressionBoardOffset({
+        progressionBoardElement: pbRef.current,
+        boardColumnRectRight,
+        drawerWidth,
+        drawerOffsetFromBoard,
+      });
+      offset > 0 && setOffsetLeft(offset);
     } else {
       setOffsetLeft(0);
     }
   }, [selectedWorkItem]);
 
-  const selectWorkItem = (workItem: WorkItemType) =>
-    setSelectedWorkItem(workItem);
-  const deSelectWorkItem = () => setSelectedWorkItem('');
+  const selectWorkItem = (workItem: SelectedWorkItem) => {
+    workItemSelection?.onWorkItemChange(workItem);
+  };
+
   const hoverWorkItem = (id: string) => setHoveredWorkItem(id);
   const unHoverWorkItem = () => setHoveredWorkItem('');
 
   const phaseNames = phases.map((phase) => phase.name);
   const selectWorkitemProps = {
-    displayDrawer,
+    allowSelection: !!workItemSelection,
     selectWorkItem,
-    deSelectWorkItem,
     hoverWorkItem,
     hoveredWorkItem,
     unHoverWorkItem,
@@ -116,23 +128,9 @@ export const DotProgressionBoard = ({
     );
   };
 
-  const onCloseButtonClick = () => deSelectWorkItem();
   const pbRef = useRef(null);
 
-  const renderProgressionBoardDrawer = () => {
-    if (displayDrawer) {
-      return (
-        <ProgressionBoardDrawer
-          onClose={onCloseButtonClick}
-          width={drawerWidth}
-          workItem={selectedWorkItem}
-        />
-      );
-    }
-    return null;
-  };
-
-  const renderSwimLanesFromPackages = (packages) => {
+  const renderSwimLanesFromPackages = (packages: Array<SwimLanepkg>) => {
     return packages?.map((pkg, i) => (
       <SwimLane
         baseUrl={baseUrl}
@@ -154,7 +152,6 @@ export const DotProgressionBoard = ({
     >
       <BoardHeaders headers={phaseNames} isOffsetLeft={offsetLeft > 0} />
       {renderSwimLanesFromPackages(getPackages())}
-      {renderProgressionBoardDrawer()}
     </StyledProgressionBoard>
   );
 };

@@ -37,7 +37,7 @@ export const WorkItem = React.forwardRef(
       external_key,
     } = workitem;
     const {
-      displayDrawer,
+      allowSelection,
       selectWorkItem: selectItem,
       hoverWorkItem,
       hoveredWorkItem,
@@ -57,11 +57,10 @@ export const WorkItem = React.forwardRef(
 
     const onItemMouseEnter = () => hoverWorkItem(_id);
     const onItemMouseLeave = () => unHoverWorkItem();
-    const onItemClick = (e: MouseEvent<HTMLLIElement>): void => {
-      if (displayDrawer) {
+    const onItemClick = (_: MouseEvent<HTMLLIElement>): void => {
+      if (allowSelection) {
         selectItem({
           ...workitem,
-          wiClientRectRight: e.currentTarget.getBoundingClientRect().right,
           boardColumnRectRight: ref.current.getBoundingClientRect().right,
         });
       } else {
