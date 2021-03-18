@@ -2,6 +2,7 @@
 
 ## Current
 
+- **Pill** - introduced a new Pill Component to the Component Library
 - **List** - added new component
 - **ListItem** - added new component
 - **ThemeProvider** updated `breakpoints` in `theme` object to `xs: 0`, `sm: 720`, `md: 1024`, `lg: 1280`, `xl: 1920`,
