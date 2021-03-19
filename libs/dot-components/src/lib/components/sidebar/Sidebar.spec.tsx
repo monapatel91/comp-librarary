@@ -4,20 +4,20 @@ import { TextField } from '@material-ui/core';
 import { screen } from '@testing-library/dom';
 import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithRouter } from '../../testing-utils/RenderWithRouter';
-import { NavigationItemProps } from '../navigation/NavItem';
+import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
+import { ListItemProps } from '../list/ListItem';
 import { DotSidebar, SidebarProps } from './Sidebar';
 
-const navItems: Array<NavigationItemProps> = [
+const navItems: Array<ListItemProps> = [
   {
     iconId: 'block',
-    title: 'Home',
-    url: '/',
+    text: 'Home',
+    href: '/',
   },
   {
     iconId: 'change',
-    title: 'Changes',
-    url: '/',
+    text: 'Changes',
+    href: '/',
   },
 ];
 
@@ -50,14 +50,14 @@ describe(' Sidebar', () => {
   });
 
   it('should render successfully', () => {
-    const { baseElement } = renderWithRouter(
+    const { baseElement } = render(
       <DotSidebar navItems={navItems} goBack={false} />
     );
     expect(baseElement).toBeTruthy();
   });
 
   xit('navigation expands/collapses as expected', async () => {
-    renderWithRouter(<DotSidebar />);
+    render(<DotSidebar />);
     const primaryNav = screen.getByTestId('primaryNav');
 
     await waitFor(() => {
@@ -72,14 +72,14 @@ describe(' Sidebar', () => {
   });
 
   xit('navigation is expanded by default', () => {
-    renderWithRouter(<DotSidebar navItems={navItems} />);
+    render(<DotSidebar navItems={navItems} />);
 
     const primaryNav = screen.getByTestId('primaryNav');
     expect(primaryNav).toHaveClass('expanded');
   });
 
   xit('displays top level navigation when back button clicked', async () => {
-    renderWithRouter(<DotSidebar navItems={navItems} />);
+    render(<DotSidebar navItems={navItems} />);
     const primaryNav = screen.getByTestId('primaryNav');
     await waitFor(() => {
       expect(primaryNav.innerHTML).toContain('Batman');

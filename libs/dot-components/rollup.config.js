@@ -25,7 +25,6 @@ module.exports = (config) => {
       globals: {
         ...config.output.globals,
         react: 'React',
-        'react-router-dom': 'ReactRouterDom',
         '@material-ui/core': 'MuiCore',
         '@material-ui/lab': 'MuiLab',
         'styled-components': 'styled',

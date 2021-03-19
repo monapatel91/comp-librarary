@@ -15,18 +15,15 @@ describe('dot-components: Sidebar component', () => {
     });
 
     it('nav items', () => {
-      cy.get('nav.side-nav')
-        .should('have.css', 'flex-grow', '2')
-        .and('have.css', 'overflow-x', 'hidden')
+      cy.get('.side-nav')
+        .should('have.css', 'overflow-x', 'hidden')
         .and('have.css', 'overflow-y', 'auto');
     });
 
     it('nav divider', () => {
-      cy.get('li.divider').should('have.css', 'margin-top', '8px');
-
-      cy.get('li.divider h5')
-        .should('have.css', 'font-size', '12px')
-        .and('have.css', 'line-height', '36px');
+      cy.get('hr.MuiDivider-root')
+        .should('have.css', 'margin-top', '8px')
+        .and('have.css', 'background-color', 'rgb(227, 229, 232)');
     });
 
     it('toggle nav', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from '@material-ui/core';
 import { screen } from '@testing-library/dom';
-import { renderWithRouter } from '../../testing-utils/RenderWithRouter';
+import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { DotSidebar } from '../sidebar/Sidebar';
@@ -33,21 +33,17 @@ describe(' AppToolbar', () => {
   });
 
   it('should render successfully', () => {
-    const { baseElement } = renderWithRouter(
-      <DotAppToolbar navItems={menuItems} />
-    );
+    const { baseElement } = render(<DotAppToolbar navItems={menuItems} />);
     expect(baseElement).toBeTruthy();
   });
 
   it('should display the application name', () => {
-    renderWithRouter(<DotAppToolbar appName="Lisbon" navItems={menuItems} />);
+    render(<DotAppToolbar appName="Lisbon" navItems={menuItems} />);
     expect(screen.getByText('Lisbon')).toBeVisible();
   });
 
   it('should display avatar if available', () => {
-    renderWithRouter(
-      <DotAppToolbar avatar={userAvatar} navItems={menuItems} />
-    );
+    render(<DotAppToolbar avatar={userAvatar} navItems={menuItems} />);
     expect(screen.getByText('BW')).toBeVisible();
   });
 });

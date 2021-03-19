@@ -1,7 +1,7 @@
 import React from 'react';
-import { Input } from '@material-ui/core';
 import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { DotAvatar } from '../avatar/Avatar';
+import { DotButton } from '../button/Button';
 import { DotSidebar } from '../sidebar/Sidebar';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -21,7 +21,7 @@ export default {
       defaultValue: 'Batman',
     },
     children: {
-      defaultValue: <Input type="text" placeholder="search" />,
+      defaultValue: <DotButton>Activate Bat Signal</DotButton>,
     },
     items: {
       defaultValue: [
@@ -57,74 +57,96 @@ export default {
             {
               iconId: 'process-template',
               text: 'Progressions',
-              url: '/progressions',
+              href: '/progressions',
             },
             {
               iconId: 'satellite-group',
               text: 'Pipelines',
-              url: '/pipelines',
+              href: '/pipelines',
             },
             {
               iconId: 'dashboard',
               text: 'Insights',
-              url: '/insights',
+              href: '/insights',
             },
             {
               text: 'Workflow',
-              type: 'divider',
+              divider: true,
             },
             {
               iconId: 'block',
               text: 'Packages',
-              url: '/packages',
+              href: '/packages',
             },
             {
               iconId: 'flag',
               text: 'Features',
-              url: '/features',
+              href: '/features',
             },
             {
               iconId: 'collection',
               text: 'Projects',
-              url: '/projects',
+              href: '/projects',
             },
             {
               iconId: 'file-lines',
               text: 'Workitems',
-              url: '/workitems',
+              href: '/workitems',
             },
             {
               iconId: 'change',
               text: 'Changes',
-              url: '/changes',
+              href: '/changes',
             },
             {
               iconId: 'square-settings',
               text: 'Artifacts',
-              url: '/artifacts',
+              href: '/artifacts',
             },
             {
               text: 'System',
-              type: 'divider',
+              divider: true,
             },
             {
               iconId: 'monitor-gears',
               text: 'Tasks',
-              url: '/tasks',
+              href: '/tasks',
             },
             {
               iconId: 'archive',
               text: 'Buckets',
-              url: '/buckets',
+              href: '/buckets',
             },
             {
               iconId: 'monitor',
               text: 'Environment',
-              url: '/environment',
+              href: '/environment',
             },
           ]}
         />
       ),
+    },
+    navItems: {
+      defaultValue: [
+        {
+          iconId: 'notification-bell',
+          titleTooltip: 'Alerts',
+        },
+        {
+          iconId: 'help',
+          titleTooltip: 'Help',
+        },
+        {
+          iconId: 'apps',
+          titleTooltip: 'Admin',
+        },
+        {
+          iconId: 'dark',
+          onClick: () => console.log('theme clicked'),
+          size: 'small',
+          titleTooltip: 'Toggle Theme',
+        },
+      ],
     },
   },
 } as Meta;

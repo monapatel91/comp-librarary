@@ -17,14 +17,24 @@ export const StyledIcon = styled(Icon)`
         font-size: 28px;
         height: 35px;
         width: 35px;
+
+        i {
+          height: 28px
+        }
       }
       &.MuiIcon-fontSizeSmall {
         font-size: 16px;
         height: 20px;
         width: 20px;
+
+        i {
+          height: 16px
+        }
       }
 
       i {
+        height: 20px;
+
         &:before {
           font-family: 'dot' !important;
           font-style: normal;
@@ -640,5 +650,4 @@ export const StyledIcon = styled(Icon)`
         }
       }
     }
-  }
-`;
+  }`;

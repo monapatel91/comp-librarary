@@ -2,27 +2,34 @@
 
 ## Current
 
-- **Pill** - introduced a new Pill Component to the Component Library
-- **List** - added new component
-- **ListItem** - added new component
-- **ThemeProvider** updated `breakpoints` in `theme` object to `xs: 0`, `sm: 720`, `md: 1024`, `lg: 1280`, `xl: 1920`,
-
 ### Components
 
 > **BREAKING CHANGE: Menu** - removed MenuItem `onClick` prop
 
+> **BREAKING CHANGE: Navigation** - removed in favor of `List` component
+
+> **BREAKING CHANGE: NavItem** - removed in favor of `ListItem` component
+
 > **BREAKING CHANGE: ProgressionBoardThemeProvider** removed in favor of setting the theme at the global level
+
+> **BREAKING CHANGE: Sidebar** - replaced use of `Navigation` with `List`
 
 > **BREAKING CHANGE: InputSelect** - removed `onChange` from InputSelectProps
 
 > **BREAKING CHANGE: InputText** - removed `onChange` from InputTextProps
 
-- **Menu** - added `onSelect` prop
+> **BREAKING CHANGE: react-router-dom** - removed peer dependency on `react-router-dom`
+
 - **DotDrawer** - added `ModalProps` optional prop, which serves as an object containing props applied to the Modal element
 - **DotDrawer** - added `PaperProps` optional prop, which serves as an object containing props applied to the Paper element
 - **DotInputSelect**: added the value prop to DotSelect so that whichever option is selected is passed to the value prop
+- **Menu** - added `onSelect` prop
+- **Pill** - introduced a new Pill Component to the Component Library
+- **List** - added new component
+- **ListItem** - added new component
 - **ThemeProvider** - add `layer` object to global theme provider to match with UX mockups.
 - **ThemeProvider** - moved themes to global theme provider, `light`, `dark`, `agilityLight` and `agilityDark`
+- **ThemeProvider** updated `breakpoints` in `theme` object to `xs: 0`, `sm: 720`, `md: 1024`, `lg: 1280`, `xl: 1920`,
 
 ### Experimental
 

@@ -2,9 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Typography } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { DotNavigation } from '../navigation/Navigation';
-import { NavigationItemProps } from '../navigation/NavItem';
-import { DotIconButton } from '../button/IconButton';
+import { DotIconButton, IconButtonProps } from '../button/IconButton';
 import { DotLink } from '../link/Link';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
 import {
@@ -22,7 +20,7 @@ export interface AppToolbarProps extends CommonProps {
   /** JSX Element that is displayed between the logo and right nav */
   children?: JSX.Element;
   /** Array of nav items to be displayed on the right side */
-  navItems?: Array<NavigationItemProps>;
+  navItems?: Array<IconButtonProps>;
   /** If provided will display a hamburger main menu drawer */
   mainMenu?: JSX.Element;
 }
@@ -76,11 +74,20 @@ export const DotAppToolbar = ({
         )}
       </div>
       {children}
-      <DotNavigation
-        className="dot-admin-nav"
-        direction="horizontal"
-        items={navItems}
-      />
+      {navItems.length > 0 && (
+        <nav className="dot-admin-nav">
+          {navItems.map((item, index) => (
+            <DotIconButton
+              className={item.className}
+              iconId={item.iconId}
+              onClick={(event) => item.onClick && item.onClick(event)}
+              key={index}
+              size={item.size}
+              titleTooltip={item.titleTooltip}
+            />
+          ))}
+        </nav>
+      )}
       {avatar}
     </StyledAppToolbar>
   );

@@ -64,10 +64,10 @@ export const DemoForm = () => {
   };
 
   const formValidation = () => {
-    let hasError: boolean = false;
-    let formErrors: ErrorState = {};
+    let hasError = false;
+    const formErrors: ErrorState = {};
 
-    Object.keys(initialFormState).map((keyVal) => {
+    Object.keys(initialFormState).forEach((keyVal) => {
       // if field is blank, throw an error
       if (formValues[keyVal] === '') {
         hasError = true;

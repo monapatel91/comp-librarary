@@ -1,4 +1,4 @@
-import React, { ElementType, useState } from 'react';
+import React, { ElementType, MouseEvent, useState } from 'react';
 import {
   Collapse,
   ListItemIcon,
@@ -10,7 +10,6 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
 import { DotLink } from '../link/Link';
 import { DotList } from '../list/List';
-import { NavigationItemProps } from '../navigation/NavItem';
 import { rootClassName, StyledListItem } from './ListItem.styles';
 
 export interface ListItemProps extends CommonProps {
@@ -23,8 +22,12 @@ export interface ListItemProps extends CommonProps {
   /** If provided, the icon ID which is displayed on the front of the list item */
   iconId?: string;
   /** If provided, the menu item will display a nested list */
-  items?: Array<NavigationItemProps>;
+  items?: Array<ListItemProps>;
+  /** Event callback */
+  onClick?: (event: MouseEvent) => void;
   /** Text which is displayed in the list item */
+  text?: string;
+  /** The tooltip text displayed on hover */
   title?: string;
 }
 
@@ -35,7 +38,9 @@ export const DotListItem = ({
   divider = false,
   href,
   iconId,
+  onClick,
   items = [],
+  text,
   title,
 }: ListItemProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -63,13 +68,19 @@ export const DotListItem = ({
         )}
         {href ? (
           <Typography variant={textVariant}>
-            <DotLink color="inherit" href={href} underline="none">
-              {title}
+            <DotLink
+              color="inherit"
+              href={onClick ? '#' : href}
+              onClick={(event) => onClick && onClick(event)}
+              underline="none"
+              title={title}
+            >
+              {text}
             </DotLink>
           </Typography>
         ) : (
           <ListItemText
-            primary={title}
+            primary={text}
             primaryTypographyProps={{ variant: textVariant }}
           />
         )}

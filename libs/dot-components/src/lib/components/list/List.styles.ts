@@ -10,6 +10,21 @@ export const StyledList = styled(List)`
         &.dot-nested-list .dot-list-item {
           padding-left: ${theme.spacing(4)}px;
         }
+
+        .dot-list-item {
+          p.MuiTypography-root {
+            margin-bottom: 0;
+          }
+        }
+
+        .MuiListSubheader-root {
+          padding: 0;
+          border-bottom: 1px solid ${theme.palette.grey[100]};
+
+          .MuiTypography-root {
+            padding: ${theme.spacing(1)}px;
+          }
+        }
       }
     `}
 ` as typeof List;

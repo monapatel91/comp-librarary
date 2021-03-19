@@ -76,12 +76,6 @@ export const StyledAppToolbar = styled.header`
         display: flex;
         flex-grow: 2;
         justify-content: flex-end;
-
-        ul.horizontal li a {
-          background: transparent;
-          color: ${theme.palette.grey[100]};
-          padding: 0;
-        }
       }
 
       .dot-avatar {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { NavigationItemProps } from '../navigation/NavItem';
+import { ListItemProps } from './ListItem';
 import { DotList, ListProps } from './List';
 import userEvent from '@testing-library/user-event';
 
-const mockListItems: Array<NavigationItemProps> = [
+const mockListItems: Array<ListItemProps> = [
   {
     text: 'Pipelines',
     href: '/pipelines',

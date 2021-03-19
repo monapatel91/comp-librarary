@@ -31,7 +31,6 @@
     "styled-components": "^5.2.1"
   },
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react": "^16.13.1"
   }
 }

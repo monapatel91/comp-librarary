@@ -2,17 +2,17 @@ import React, { Fragment, useState } from 'react';
 import { Typography } from '@material-ui/core';
 import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 import { DotIconButton } from '../button/IconButton';
-import { DotNavigation } from '../navigation/Navigation';
+import { DotList } from '../list/List';
+import { ListItemProps } from '../list/ListItem';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { NavigationItemProps } from '../navigation/NavItem';
 import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
 import { ReactComponent as LogoDigitalAi } from '../../assets/logo_digital_ai.svg';
 import { rootClassName, StyledSidebar } from './Sidebar.styles';
 
 export interface SidebarProps extends CommonProps {
   /** Component passed for back nav item */
-  backItem?: Array<NavigationItemProps>;
+  backItem?: Array<ListItemProps>;
   /** If displayBrand is true this text will be displayed above the Digital.ai branding */
   brandDesc?: string;
   /** If provided will display below the navItems */
@@ -24,7 +24,7 @@ export interface SidebarProps extends CommonProps {
   /** If true will display the go back nav item at the top of the sidebar */
   goBack?: boolean;
   /** Array of nav items */
-  navItems?: Array<NavigationItemProps>;
+  navItems?: Array<ListItemProps>;
   /** The text that is displayed at the top of the sidebar */
   title?: string;
   /** If provided, will display an avatar next to the title text */
@@ -57,31 +57,24 @@ export const DotSidebar = ({
       data-testid={`primaryNav ${dataTestId}`}
     >
       {title && (
-        <Typography variant="h3">
+        <header>
           {open ? (
             <Fragment>
               <DotAvatar {...titleAvatarProps} />
-              {title}
+              <Typography variant="h4">{title}</Typography>
             </Fragment>
           ) : (
             <DotAvatar {...titleAvatarProps} />
           )}
-        </Typography>
+        </header>
       )}
-      {goBack && (
-        <DotNavigation
-          className="go-back"
-          direction="vertical"
-          items={backItem}
-        />
-      )}
+      {goBack && <DotList className="go-back" items={backItem} />}
       {navItems.length > 0 && (
-        <DotNavigation
+        <DotList
           ariaLabel="left navigation"
-          className="side-nav dense"
+          className={`side-nav ${open}`}
           data-testid="sideNav"
-          direction="vertical"
-          isOpen={open}
+          dense={true}
           items={navItems}
         />
       )}
@@ -96,7 +89,9 @@ export const DotSidebar = ({
       )}
       {displayBrand && (
         <div className="powered-by">
-          <span className="desc">{brandDesc}</span>
+          <Typography className="desc" variant="body2">
+            {brandDesc}
+          </Typography>
           <LogoDigitalAi className="company-name" title="digital.ai" />
           <LogoD className="d-icon" title="digital.ai" />
         </div>

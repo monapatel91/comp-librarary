@@ -1,129 +1,124 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import {
   DotAvatar,
   DotAppToolbar,
   DotSidebar,
-  NavigationItemProps,
+  ListItemProps,
+  IconButtonProps,
 } from '@digital-ai/dot-components';
 import { Routes } from '../app/routes/Routes';
 
 import './app.scss';
 
-const topNavItems: Array<NavigationItemProps> = [
+const topNavItems: Array<IconButtonProps> = [
   {
     iconId: 'notification-bell',
-    title: 'Alerts',
-    type: 'button',
+    titleTooltip: 'Alerts',
   },
   {
     iconId: 'help',
-    title: 'Help',
-    type: 'button',
+    titleTooltip: 'Help',
   },
   {
     iconId: 'apps',
-    title: 'Admin',
-    type: 'button',
+    titleTooltip: 'Admin',
   },
   {
     iconId: 'dark',
-    iconSize: 'small',
     onClick: () => console.log('theme clicked'),
-    text: 'Theme',
-    title: 'Toggle Theme',
-    type: 'button',
+    size: 'small',
+    titleTooltip: 'Toggle Theme',
   },
 ];
 
-const mainMenuNavItems: Array<NavigationItemProps> = [
+const mainMenuNavItems: Array<ListItemProps> = [
   {
     iconId: 'process-template',
     text: 'Progressions',
-    url: '/progressions',
+    href: '/progressions',
   },
   {
     iconId: 'satellite-group',
     text: 'Pipelines',
-    url: '/pipelines',
+    href: '/pipelines',
   },
   {
     iconId: 'dashboard',
     text: 'Insights',
-    url: '/insights',
+    href: '/insights',
   },
   {
     text: 'Workflow',
-    type: 'divider',
+    divider: true,
   },
   {
     iconId: 'block',
     text: 'Packages',
-    url: '/packages',
+    href: '/packages',
   },
   {
     iconId: 'flag',
     text: 'Features',
-    url: '/features',
+    href: '/features',
   },
   {
     iconId: 'collection',
     text: 'Projects',
-    url: '/projects',
+    href: '/projects',
   },
   {
     iconId: 'file-lines',
     text: 'Workitems',
-    url: '/workitems',
+    href: '/workitems',
   },
   {
     iconId: 'change',
     text: 'Changes',
-    url: '/changes',
+    href: '/changes',
   },
   {
     iconId: 'square-settings',
     text: 'Artifacts',
-    url: '/artifacts',
+    href: '/artifacts',
   },
   {
     text: 'System',
-    type: 'divider',
+    divider: true,
   },
   {
     iconId: 'monitor-gears',
     text: 'Tasks',
-    url: '/tasks',
+    href: '/tasks',
   },
   {
     iconId: 'archive',
     text: 'Buckets',
-    url: '/buckets',
+    href: '/buckets',
   },
   {
     iconId: 'monitor',
     text: 'Environment',
-    url: '/environment',
+    href: '/environment',
   },
 ];
 
-const sideNavItems: Array<NavigationItemProps> = [
+const sideNavItems: Array<ListItemProps> = [
   {
     iconId: 'process-template',
     items: [
       {
         iconId: 'process-template',
         text: 'Package Progression',
-        url: '/package-progression',
+        href: '/package-progression',
       },
       {
         iconId: 'process-template',
         text: 'Feature Progression',
-        url: '/feature-progression',
+        href: '/feature-progression',
       },
     ],
     text: 'Progressions',
-    url: '/progressions',
+    href: '/progressions',
   },
   {
     iconId: 'satellite-group',
@@ -131,77 +126,77 @@ const sideNavItems: Array<NavigationItemProps> = [
       {
         iconId: 'satellite-group',
         text: 'Groups',
-        url: '/pipeline-groups',
+        href: '/pipeline-groups',
       },
       {
         iconId: 'satellite-group',
         text: 'Instances',
-        url: '/pipeline-instance',
+        href: '/pipeline-instance',
       },
     ],
     text: 'Pipelines',
-    url: '/pipelines',
+    href: '/pipelines',
   },
   {
     iconId: 'dashboard',
     text: 'Insights',
-    url: '/insights',
+    href: '/insights',
   },
   {
     text: 'Workflow',
-    type: 'divider',
+    divider: true,
   },
   {
     iconId: 'block',
     text: 'Packages',
-    url: '/packages',
+    href: '/packages',
   },
   {
     iconId: 'flag',
     text: 'Features',
-    url: '/features',
+    href: '/features',
   },
   {
     iconId: 'collection',
     text: 'Projects',
-    url: '/projects',
+    href: '/projects',
   },
   {
-    type: 'divider',
+    divider: true,
   },
   {
     iconId: 'file-lines',
     text: 'Workitems',
-    url: '/workitems',
+    href: '/workitems',
   },
   {
     iconId: 'change',
     text: 'Changes',
-    url: '/changes',
+    href: '/changes',
   },
   {
     iconId: 'square-settings',
     text: 'Artifacts',
-    url: '/artifacts',
+    href: '/artifacts',
   },
   {
     text: 'System',
-    type: 'divider',
+    divider: true,
   },
   {
     iconId: 'monitor-gears',
     text: 'Tasks',
-    url: '/tasks',
+    href: '/tasks',
   },
   {
     iconId: 'archive',
     text: 'Buckets',
-    url: '/buckets',
+    href: '/buckets',
   },
   {
     iconId: 'monitor',
     text: 'Environment',
-    url: '/environment',
+    href: '/environment',
   },
 ];
 
@@ -212,18 +207,18 @@ const userAvatar = (
 );
 
 export const App = () => {
-  const backItem: Array<NavigationItemProps> = [
+  const backItem: Array<ListItemProps> = [
     {
       iconId: 'back',
       onClick: () => console.log('go back clicked'),
       text: 'Home',
       title: `Go Back to Home`,
-      url: '/',
+      href: '/',
     },
   ];
 
   return (
-    <BrowserRouter>
+    <>
       <DotAppToolbar
         avatar={userAvatar}
         appName="Continuum"
@@ -242,7 +237,7 @@ export const App = () => {
           <Routes />
         </section>
       </main>
-    </BrowserRouter>
+    </>
   );
 };
 

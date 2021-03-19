@@ -21,12 +21,11 @@ export const StyledSidebar = styled.aside`
       -webkit-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
       transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
-      h3 {
+      header {
         align-items: center;
         border-bottom: 1px solid ${theme.palette.grey[100]};
         display: flex;
         flex-shrink: 0;
-        font-size: 14px;
         overflow: hidden;
         padding: ${theme.spacing(1, 2)};
         white-space: nowrap;
@@ -36,87 +35,19 @@ export const StyledSidebar = styled.aside`
         }
       }
 
-      nav.go-back {
+      .go-back {
         border-bottom: 1px solid ${theme.palette.grey[100]};
-
-        li a {
-          color: ${theme.palette.grey[700]};
-          font-size: 16px;
-          padding: ${theme.spacing(1)}px;
-        }
       }
 
-      nav.side-nav {
+      hr.MuiDivider-root {
+        background-color: ${theme.palette.grey[100]};
+        margin: ${theme.spacing(1, 0)};
+      }
+
+      ul.side-nav {
         flex-grow: 2;
         overflow-x: hidden;
         overflow-y: auto;
-
-        li {
-          flex-grow: 2;
-
-          &.divider {
-            border-bottom: 1px solid ${theme.palette.grey[100]};
-            margin: ${theme.spacing(1, 0, 0)};
-
-            h5 {
-              font-size: 12px;
-              font-weight: normal;
-              line-height: 36px;
-              margin: 0;
-              padding: 0 ${theme.spacing(2)}px;
-            }
-          }
-
-          .dot-button {
-            border-radius: 0;
-            height: 44px;
-            padding: 6px;
-
-            &.active,
-            &:hover,
-            &:focus,
-            &.Mui-focusVisible {
-              background: ${theme.palette.grey[100]};
-              color: ${theme.palette.grey[700]};
-            }
-
-            .MuiButton-label {
-              .MuiButton-startIcon {
-                margin: ${theme.spacing(0, 3, 0, 0)};
-                padding-left: 10px;
-              }
-
-              .dot-icon {
-                padding: 0;
-              }
-            }
-          }
-
-          a {
-            height: 44px;
-            padding: 6px;
-
-            &.active,
-            &:hover,
-            &:focus {
-              background: ${theme.palette.grey[100]};
-              color: ${theme.palette.grey[700]};
-            }
-
-            p {
-              flex-grow: 1;
-            }
-
-            .dot-icon {
-              padding: 0;
-
-              &.first {
-                margin-right: ${theme.spacing(3)}px;
-                padding-left: 10px;
-              }
-            }
-          }
-        }
       }
 
       .toggle-nav {
@@ -144,7 +75,7 @@ export const StyledSidebar = styled.aside`
         overflow: hidden;
         padding: ${theme.spacing(1)}px;
 
-        span.desc {
+        p.desc {
           white-space: nowrap;
         }
 
@@ -164,19 +95,12 @@ export const StyledSidebar = styled.aside`
         -webkit-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
-        h3 {
+        header {
           padding: ${theme.spacing(1)}px;
         }
 
-        nav li {
-          .dot-button {
-            /* needed to ensure the start icon aligns properly when collapsed */
-            min-width: 240px;
-          }
-
-          &.divider h5 {
-            opacity: 0;
-          }
+        ul.side-nav li.MuiListSubheader-root .MuiTypography-root {
+          opacity: 0;
         }
 
         .toggle-nav {
@@ -195,7 +119,7 @@ export const StyledSidebar = styled.aside`
           align-items: center;
 
           .company-name,
-          span.desc {
+          p.desc {
             display: none;
           }
 
@@ -206,7 +130,7 @@ export const StyledSidebar = styled.aside`
       }
     }
 
-    .dot-flyout {
+    /* .dot-flyout {
       margin: 10px 0 0 190px;
       width: 248px;
 
@@ -232,6 +156,6 @@ export const StyledSidebar = styled.aside`
           background: transparent;
         }
       }
-    }
+    } */
   `}
 `;

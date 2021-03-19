@@ -1,9 +1,9 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { NavigationItemProps } from '../navigation/NavItem';
+import { ListItemProps } from './ListItem';
 import { DotList, ListProps } from './List';
 
-const mockListItems: Array<NavigationItemProps> = [
+const mockListItems: Array<ListItemProps> = [
   {
     text: 'Pipelines',
     href: '/?path=/story/experimental-list--default',
