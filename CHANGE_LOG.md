@@ -1,5 +1,11 @@
 # Change Log
 
+## Current
+
+### Components
+
+> **BREAKING CHANGE: InputSelect** - removed initial value for `defaultValue`
+
 ## 0.0.0-alpha.13
 
 ### Components

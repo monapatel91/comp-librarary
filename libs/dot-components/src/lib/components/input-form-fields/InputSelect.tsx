@@ -28,7 +28,7 @@ export const DotInputSelect = ({
   name,
   onChange,
   options = [],
-  defaultValue = options[0],
+  defaultValue,
   value,
   required,
   startIcon,

@@ -16,7 +16,7 @@ interface FormState {
   lastName: string;
   devType: '' | 'React Dev' | 'Angular Dev' | 'Other Dev';
   superHero: string;
-  favTrait: Array<string>;
+  favTrait: Array<CheckboxProps>;
   childhoodHero: boolean;
   commentField: string;
 }
@@ -42,7 +42,7 @@ const initialFormState: FormState = {
 export const DemoForm = () => {
   const [formValues, setFormValues] = useState<FormState>(initialFormState);
   const [errors, updateErrors] = useState<ErrorState>({});
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(null);
 
   const {
     firstName,
@@ -76,7 +76,10 @@ export const DemoForm = () => {
     });
 
     if (!hasError) {
-      setMessage('Great! Successfully Submitted form!');
+      const valOfForm = formValues;
+      setMessage(
+        `Great! Successfully Submitted form! ${JSON.stringify(valOfForm)}`
+      );
       updateErrors({});
       resetForm();
     } else {
@@ -97,13 +100,13 @@ export const DemoForm = () => {
   const handleCheckboxChange = (values: Array<CheckboxProps>) => {
     setFormValues((formValues) => ({
       ...formValues,
-      favTrait: values.map((value) => value.value),
+      favTrait: values,
     }));
   };
 
   return (
     <>
-      <DotCard>{message}</DotCard>
+      {message && <DotCard>{message}</DotCard>}
       <form onSubmit={handleOnSubmit}>
         <DotInputText
           helperText={errors.firstName}
@@ -158,6 +161,7 @@ export const DemoForm = () => {
         />
 
         <DotCheckboxGroup
+          defaultValues={favTrait}
           groupLabel="Select Reason:"
           required
           onChange={(_event, values) => handleCheckboxChange(values)}
