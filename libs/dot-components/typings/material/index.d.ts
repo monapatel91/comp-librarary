@@ -1,4 +1,3 @@
-import { Theme } from '@material-ui/core';
 import '@material-ui/core/styles/createPalette';
 
 declare module '@material-ui/core/styles/createPalette' {
