@@ -6,6 +6,16 @@
 
 > **BREAKING CHANGE: InputSelect** - removed initial value for `defaultValue`
 
+- **Table** - removed `page` prop
+- **Table** - removed `handleRequestSort` callback
+- **Table** - removed `setRowsPerPage` callback
+- **Table** - removed `setPage` callback
+- **Table** - added `toolbar` prop
+- **Table** - added `onUpdateData` callback
+- **Table** - added `onRowClick` callback
+- **Table** - moved to Components
+- **TablePagination** - added new component
+
 ## 0.0.0-alpha.13
 
 ### Components

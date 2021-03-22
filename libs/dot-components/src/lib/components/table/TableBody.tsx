@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { TableBody } from '@material-ui/core';
 
-import { Cell, CreateUUID } from './TableCell';
+import { CreateUUID } from '../createUUID';
 import { DotTableRow, EmptyDotRow } from './TableRow';
+import { Header } from './TableHeader';
+import { TableRowProps } from './Table';
+import { CommonProps } from '../CommonProps';
 
 export type Order = 'asc' | 'desc';
 
-export interface TableBodyProps {
-  cols: number;
+export interface TableBodyProps extends CommonProps {
+  /** The table column headers */
+  columns: Array<Header>;
   /** The table body row data */
-  data: Array<Cell>;
+  data: Array<TableRowProps>;
+  /** Message to show if no data */
   emptyMessage?: string;
-  /** The order of data which is being sorted by */
-  order?: Order;
-  /** The ID of the column that you are sorting by */
-  orderBy?: string;
-  /** Determines if sorting is enabled */
-  sortable?: boolean;
+  /** Empty rows to show */
+  emptyRows?: number;
+  /** Row click event callback */
+  onRowClick?: (event: MouseEvent, id: string) => void;
 }
 
 /**
@@ -24,25 +27,40 @@ export interface TableBodyProps {
  * to determine the functionality of the table.
  */
 export const DotTableBody = ({
-  cols,
+  columns,
   data,
   emptyMessage,
-  order,
-  orderBy,
-  sortable = false,
+  emptyRows,
+  onRowClick,
 }: TableBodyProps) => {
   if (data.length === 0) {
     return (
       <TableBody>
-        <EmptyDotRow cols={cols} message={emptyMessage} />
+        <EmptyDotRow cols={columns.length} message={emptyMessage} />
       </TableBody>
     );
   }
-
+  const emptyRowArray = [];
+  if (emptyRows) {
+    for (let i = 0; i < emptyRows; i++) {
+      emptyRowArray.push(<EmptyDotRow cols={columns.length} message="" />);
+    }
+  }
   return (
     <TableBody>
       {data.map((row) => {
-        return <DotTableRow data={row} key={CreateUUID()} />;
+        return (
+          <DotTableRow
+            columns={columns}
+            data={row}
+            key={CreateUUID()}
+            onClick={onRowClick}
+            selected={row.selected}
+          />
+        );
+      })}
+      {emptyRowArray.map((emptyRow) => {
+        return emptyRow;
       })}
     </TableBody>
   );

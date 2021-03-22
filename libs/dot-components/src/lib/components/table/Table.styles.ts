@@ -1,44 +1,65 @@
-import styled from 'styled-components';
+import { Paper, TableContainer } from '@material-ui/core';
+import styled, { css } from 'styled-components';
 
-export const rootClassName = 'dot-table-container';
+export const rootClassName = 'dot-table';
 
-export const StyledTableContainer = styled.div`
-  .dot-table-container {
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+export const StyledPaper = styled(Paper)`
+  ${({ theme }) => css`
+    &.dot-table {
+      border: 1px solid ${theme.palette.grey[300]};
 
-    // while loading, change opacity and disable pointer events
-    &.loading {
-      .progress-container {
-        display: block;
-      }
-
-      .dot-table,
-      .dot-table-pagination {
+      // while loading, change opacity, disable pointer events
+      // and hide pagination.
+      &.loading {
         opacity: 0.4;
         pointer-events: none;
+        .dot-table-pagination {
+          display: none;
+        }
       }
     }
+  `}
+`;
 
-    .progress-container {
-      align-self: center;
-      display: none;
-      flex-grow: 1;
-      position: absolute;
-      z-index: 10;
-    }
+export const StyledTableContainer = styled(TableContainer)`
+  ${({ theme }) => css`
+    &.dot-table-container {
+      border-radius: 4px;
+      align-items: stretch;
+      flex-direction: column;
+      justify-content: center;
 
-    .dot-table {
-      thead,
-      th {
-        font-weight: bold;
+      tr:hover {
+        background-color: ${theme.palette.grey[50]};
       }
 
-      .empty-row td {
-        text-align: center;
+      table {
+        thead,
+        th {
+          font-weight: 700;
+        }
+
+        .empty-row td {
+          text-align: center;
+        }
+
+        .Mui-selected:not(:hover) {
+          background-color: ${theme.palette.grey[200]};
+        }
+
+        .MuiTableRow-head {
+          height: 56px;
+        }
+
+        .MuiTableRow-root {
+          height: 52px;
+        }
+
+        .MuiTableCell-body {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
       }
     }
-  }
+  `}
 `;

@@ -6,17 +6,19 @@ import {
   TableSortLabel,
 } from '@material-ui/core';
 import { Order } from './TableBody';
-import { CreateUUID } from './TableCell';
+import { CreateUUID } from '../createUUID';
 
 export interface Header {
+  align?: string;
   id: string;
   label?: string;
-  numeric?: boolean;
+  sortable?: boolean;
+  width?: string;
 }
 
 export interface HeaderProps {
   columns: Array<Header>;
-  onRequestSort: (event: MouseEvent<unknown>, property: string) => void;
+  onRequestSort: (property: string) => void;
   order?: Order;
   /** The ID of the column that you are sorting by */
   orderBy?: string;
@@ -39,7 +41,9 @@ export interface HeaderCellProps {
   /** The UID of the cell, if not provided then a randomly generated hash will be created using
    * CreateUUID() */
   uid: string;
-  value?: string;
+  value?: string | JSX.Element;
+  /** The width of the column */
+  width?: string;
 }
 
 /**
@@ -56,23 +60,24 @@ export const DotHeaderRow = ({
   const createSortHandler = (property: string) => (
     event: MouseEvent<unknown>
   ) => {
-    onRequestSort(event, property);
+    onRequestSort(property);
   };
   return (
     <TableHead>
       <TableRow>
         {columns.map((cell: Header) => (
           <DotHeaderCell
-            align={cell.numeric}
+            align={cell.align === 'right'}
             createSortHandler={createSortHandler}
             id={cell.id}
             key={CreateUUID()}
             order={order}
             orderBy={orderBy}
-            sortable={sortable}
+            sortable={sortable && cell.sortable}
             sortDirection={orderBy === cell.id ? order : undefined}
             uid={CreateUUID()}
             value={cell.label}
+            width={cell.width}
           />
         ))}
       </TableRow>
@@ -80,7 +85,6 @@ export const DotHeaderRow = ({
   );
 };
 
-// TO-DO: numeric alignment only works on header
 /**
  * A wrapper component around the TableCell component from @material-ui. This component should only
  * be used inside of DotHeaderRow.
@@ -91,19 +95,23 @@ export const DotHeaderCell = ({
   id,
   order,
   orderBy,
-  sortable = false,
+  sortable = true,
   sortDirection,
   uid,
   value,
+  width,
 }: HeaderCellProps) => {
+  const headerAlign = align ? 'right' : 'left';
+  const headerTitle = typeof value === 'string' ? value : null;
   if (sortable) {
     const orderById: boolean = orderBy === id;
     return (
       <TableCell
-        align={align ? 'right' : 'left'}
+        align={headerAlign}
         key={uid}
         sortDirection={sortDirection}
-        title={value}
+        style={{ width: width ? width : '' }}
+        title={headerTitle}
       >
         <TableSortLabel
           active={orderById}
@@ -117,7 +125,7 @@ export const DotHeaderCell = ({
   }
 
   return (
-    <TableCell align={align ? 'right' : 'left'} key={uid} title={value}>
+    <TableCell align={headerAlign} key={uid} title={headerTitle}>
       {value}
     </TableCell>
   );

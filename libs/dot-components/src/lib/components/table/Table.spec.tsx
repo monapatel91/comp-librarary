@@ -1,28 +1,70 @@
 import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen } from '@testing-library/dom';
+import DotActionToolbar from '../action-toolbar/ActionToolbar';
 
-import DotTable from './Table';
+import { DotTable, TableProps } from './Table';
+
+const mockFunc = jest.fn();
+
+it('should have unchanged API', () => {
+  const columns = [{ id: 'title', label: 'Title' }];
+  const data = [
+    { id: 'boss', rowData: { title: 'boss', label: 'Big Cheese' } },
+  ];
+  const tProps = {
+    ariaLabel: 'aria label',
+    columns: columns,
+    count: 12,
+    data: data,
+    emptyMessage: 'nothing to see here',
+    loading: false,
+    maxHeight: '500px',
+    order: 'asc',
+    orderBy: 'title',
+    onRowClick: mockFunc,
+    onUpdateData: mockFunc,
+    rowsPerPage: 10,
+    sortable: true,
+    stickyHeader: true,
+    toolbar: <DotActionToolbar>Test</DotActionToolbar>,
+  };
+  const tableProps: TableProps = {
+    ariaLabel: 'aria label',
+    columns: columns,
+    count: 12,
+    data: data,
+    emptyMessage: 'nothing to see here',
+    loading: false,
+    maxHeight: '500px',
+    order: 'asc',
+    orderBy: 'title',
+    onRowClick: mockFunc,
+    onUpdateData: mockFunc,
+    rowsPerPage: 10,
+    sortable: true,
+    stickyHeader: true,
+    toolbar: <DotActionToolbar>Test</DotActionToolbar>,
+  };
+  expect(tableProps).toEqual(tProps);
+});
 
 const testCols = [
   { id: 'name', label: 'Name' },
   { id: 'type', label: 'Type' },
 ];
 const testData = [
-  { name: 'Ironman', type: 'BITBUCKET' },
-  { name: 'Batman', type: 'GITHUB' },
-  { name: 'Captain Marvel', type: 'GITLAB' },
-  { name: 'Superman', type: 'TEAMFORGE' },
-  { name: 'Spiderman', type: 'BITBUCKET' },
-  { name: 'Black Widow', type: 'GITHUB' },
-  { name: 'Hulk', type: 'GITLAB' },
-  { name: 'Flash', type: 'TEAMFORGE' },
-  { name: 'Luke Cage', type: 'GITHUB' },
-  { name: 'Jessica Jones', type: 'GITLAB' },
-  { name: 'Aquaman', type: 'BITBUCKET' },
+  { id: 'ironman', rowData: { name: 'Ironman', type: 'BITBUCKET' } },
+  { id: 'batman', rowData: { name: 'Batman', type: 'GITHUB' } },
+  { id: 'marvel', rowData: { name: 'Captain Marvel', type: 'GITLAB' } },
+  { id: 'superman', rowData: { name: 'Superman', type: 'TEAMFORGE' } },
+  { id: 'spiderman', rowData: { name: 'Spiderman', type: 'BITBUCKET' } },
+  { id: 'widow', rowData: { name: 'Black Widow', type: 'GITHUB' } },
+  { id: 'hulk', rowData: { name: 'Hulk', type: 'GITLAB' } },
+  { id: 'flash', rowData: { name: 'Flash', type: 'TEAMFORGE' } },
+  { id: 'cage', rowData: { name: 'Luke Cage', type: 'GITHUB' } },
+  { id: 'jones', rowData: { name: 'Jessica Jones', type: 'GITLAB' } },
+  { id: 'fishface', rowData: { name: 'Aquaman', type: 'BITBUCKET' } },
 ];
-
-const mockFunc = jest.fn();
 
 describe(' Table', () => {
   it('should render successfully', () => {
@@ -30,52 +72,10 @@ describe(' Table', () => {
       <DotTable
         ariaLabel="super heroes!"
         columns={testCols}
-        count={testData.length}
         data={testData}
-        handleRequestSort={mockFunc}
         loading={false}
-        page={1}
-        rowsPerPage={10}
-        setRowsPerPage={mockFunc}
-        setPage={mockFunc}
       />
     );
     expect(baseElement).toBeTruthy();
-  });
-
-  xit('should display loading icon while waiting for data', async () => {
-    const { rerender } = render(
-      <DotTable
-        ariaLabel="super heroes!"
-        columns={testCols}
-        count={testData.length}
-        data={testData}
-        handleRequestSort={mockFunc}
-        loading={true}
-        page={1}
-        rowsPerPage={10}
-        setRowsPerPage={mockFunc}
-        setPage={mockFunc}
-      />
-    );
-    const loadingContainer = screen.getByTitle('loading data');
-
-    expect(loadingContainer).toBeVisible();
-
-    rerender(
-      <DotTable
-        ariaLabel="super heroes!"
-        columns={testCols}
-        count={testData.length}
-        data={testData}
-        handleRequestSort={mockFunc}
-        loading={false}
-        page={1}
-        rowsPerPage={10}
-        setRowsPerPage={mockFunc}
-        setPage={mockFunc}
-      />
-    );
-    expect(loadingContainer).not.toBeVisible();
   });
 });
