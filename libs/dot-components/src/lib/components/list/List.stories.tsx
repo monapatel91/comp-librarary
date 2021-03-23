@@ -1,7 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { ListItemProps } from './ListItem';
-import { DotList, ListProps } from './List';
+import { DotList, ListItemProps, ListProps } from './List';
 
 const mockListItems: Array<ListItemProps> = [
   {
@@ -85,6 +84,9 @@ export default {
   title: 'Experimental/List',
   component: DotList,
   argTypes: {
+    component: {
+      defaultValue: 'ul',
+    },
     items: {
       defaultValue: mockListItems,
     },

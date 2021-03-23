@@ -1,8 +1,7 @@
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { ListItemProps } from './ListItem';
-import { DotList, ListProps } from './List';
+import { DotList, ListItemProps, ListProps } from './List';
 import userEvent from '@testing-library/user-event';
 
 const mockListItems: Array<ListItemProps> = [

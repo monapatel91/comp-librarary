@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
-import { List } from '@material-ui/core';
+import { List, ListItem } from '@material-ui/core';
 
 export const rootClassName = 'dot-list';
+export const listItemRootClass = 'dot-list-item';
 
 export const StyledList = styled(List)`
   ${({ theme }) =>
@@ -28,3 +29,21 @@ export const StyledList = styled(List)`
       }
     `}
 ` as typeof List;
+
+export const StyledListItem = styled(ListItem)`
+  ${({ theme }) =>
+    css`
+      &.${listItemRootClass} {
+        display: flex;
+        justify-content: space-between;
+
+        .MuiTypography-root {
+          flex-grow: 2;
+        }
+
+        .dot-icon i:before {
+          color: ${theme.palette.text.primary};
+        }
+      }
+    `}
+` as typeof ListItem;
