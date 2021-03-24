@@ -41,5 +41,3 @@ export const DotEmptyState = ({
     </StyledEmptyState>
   );
 };
-
-export default DotEmptyState;

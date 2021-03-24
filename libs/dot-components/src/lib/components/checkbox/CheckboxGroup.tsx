@@ -16,7 +16,7 @@ import {
   checkboxListItemClassName,
 } from './CheckboxGroup.styles';
 import { RadioGroupBaseProps } from '../radio/RadioGroup';
-import DotFormGroup from '../form-group/FormGroup';
+import { DotFormGroup } from '../form-group/FormGroup';
 import { DotCheckbox, CheckboxProps } from '../checkbox/Checkbox';
 
 export interface CheckboxGroupProps extends RadioGroupBaseProps {
@@ -154,5 +154,3 @@ export function DotCheckboxGroup({
     </StyledCheckboxGroup>
   );
 }
-
-export default DotCheckboxGroup;

@@ -121,5 +121,3 @@ export const DotStepCard = ({
     </DotCard>
   );
 };
-
-export default DotStepCard;

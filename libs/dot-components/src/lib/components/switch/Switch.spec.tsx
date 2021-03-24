@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
-import DotSwitch, { SwitchProps } from './Switch';
+import { DotSwitch, SwitchProps } from './Switch';
 import userEvent from '@testing-library/user-event';
 
 describe('Switch', () => {

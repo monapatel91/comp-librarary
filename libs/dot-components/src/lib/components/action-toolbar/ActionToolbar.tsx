@@ -11,10 +11,10 @@ export interface DotActionBarProps extends CommonProps {
   variant?: DotActionBarVarient;
 }
 
-export function DotActionToolbar({
+export const DotActionToolbar = ({
   children,
   variant = 'dense',
-}: DotActionBarProps) {
+}: DotActionBarProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName);
 
   return (
@@ -22,6 +22,4 @@ export function DotActionToolbar({
       {children}
     </StyledToolbar>
   );
-}
-
-export default DotActionToolbar;
+};

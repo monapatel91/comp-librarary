@@ -100,5 +100,3 @@ export const DotProgressionBoardLegend = ({
     </StyledProgressionLegend>
   );
 };
-
-export default DotProgressionBoardLegend;

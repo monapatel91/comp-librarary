@@ -63,5 +63,3 @@ export function DotCheckbox({
     />
   );
 }
-
-export default DotCheckbox;

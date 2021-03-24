@@ -68,5 +68,3 @@ export const DotSwitch = ({
     />
   );
 };
-
-export default DotSwitch;

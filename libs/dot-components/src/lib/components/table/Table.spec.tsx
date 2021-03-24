@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import DotActionToolbar from '../action-toolbar/ActionToolbar';
-
+import { DotActionToolbar } from '../action-toolbar/ActionToolbar';
 import { DotTable, TableProps } from './Table';
 
 const mockFunc = jest.fn();

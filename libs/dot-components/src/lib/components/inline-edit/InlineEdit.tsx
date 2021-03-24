@@ -163,5 +163,3 @@ export const DotInlineEdit = ({
     </StyledInlineEdit>
   );
 };
-
-export default DotInlineEdit;

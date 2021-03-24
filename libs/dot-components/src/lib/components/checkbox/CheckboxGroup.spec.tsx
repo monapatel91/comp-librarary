@@ -3,7 +3,7 @@ import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import userEvent from '@testing-library/user-event';
 import { DotCheckboxGroup, CheckboxGroupProps } from './CheckboxGroup';
-import DotIcon from '../icon/Icon';
+import { DotIcon } from '../icon/Icon';
 
 const options = [
   { label: 'item 1', value: 'item-1' },

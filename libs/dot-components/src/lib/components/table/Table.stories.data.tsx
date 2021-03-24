@@ -1,5 +1,5 @@
 import React from 'react';
-import DotIconButton from '../button/IconButton';
+import { DotIconButton } from '../button/IconButton';
 
 const deleteIcon = <DotIconButton iconId="delete" />;
 

@@ -5,7 +5,7 @@ import {
   SelectWorkItem,
   WorkItemType,
 } from '../progression-board/ProgressionBoardInterfaces';
-import WorkItemTooltip from './WorkItemTooltip';
+import { WorkItemTooltip } from './WorkItemTooltip';
 
 export interface WorkItemProps extends CommonProps {
   baseUrl: string;
@@ -90,5 +90,3 @@ export const WorkItem = React.forwardRef(
     );
   }
 );
-
-export default WorkItem;

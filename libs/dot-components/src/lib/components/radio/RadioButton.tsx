@@ -82,5 +82,3 @@ export function DotRadioButton({
     />
   );
 }
-
-export default DotRadioButton;

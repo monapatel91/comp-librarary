@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import DotDrawer, { DrawerProps } from './Drawer';
+import { DotDrawer, DrawerProps } from './Drawer';
 
 describe('Drawer', () => {
   it('should have unchanged API', () => {

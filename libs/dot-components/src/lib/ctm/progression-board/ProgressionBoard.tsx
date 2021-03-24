@@ -155,5 +155,3 @@ export const DotProgressionBoard = ({
     </StyledProgressionBoard>
   );
 };
-
-export default DotProgressionBoard;

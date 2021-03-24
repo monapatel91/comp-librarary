@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
-import { DotCard, CardProps } from './Card';
+import { DotCard } from './Card';
 import { DotCardHeader, CardHeaderProps } from './CardHeader';
-import { DotCardContent, CardContentProps } from './CardContent';
-import { DotCardFooter, CardFooterProps } from './CardFooter';
-import DotAvatar from '../avatar/Avatar';
+import { DotCardContent } from './CardContent';
+import { DotCardFooter } from './CardFooter';
+import { DotAvatar } from '../avatar/Avatar';
 
 describe('DotCard', () => {
   const avatar = (

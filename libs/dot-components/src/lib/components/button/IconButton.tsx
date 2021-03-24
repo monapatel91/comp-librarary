@@ -54,5 +54,3 @@ export const DotIconButton = ({
     </StyledIconButton>
   );
 };
-
-export default DotIconButton;

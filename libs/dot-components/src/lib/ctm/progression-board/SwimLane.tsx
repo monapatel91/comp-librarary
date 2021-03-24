@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import { rootClassName, StyledProgressionSwimlane } from './Swimlane.styles';
-import Phase from './Phase';
+import { Phase } from './Phase';
 import { SelectWorkItem, SwimLanepkg } from './ProgressionBoardInterfaces';
 
 export interface SwimLaneProps extends CommonProps {

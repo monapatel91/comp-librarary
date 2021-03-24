@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react';
-import DotIcon from '../icon/Icon';
+import { DotIcon } from '../icon/Icon';
 import { DotLink, LinkUnderline } from '../link/Link';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -61,5 +61,3 @@ export const DotBreadcrumbs = ({
     </StyledBreadcrumbs>
   );
 };
-
-export default DotBreadcrumbs;

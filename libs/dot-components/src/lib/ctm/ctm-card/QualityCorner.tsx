@@ -53,5 +53,3 @@ export const QCIcon = ({
     </DotLink>
   );
 };
-
-export default QualityCorner;

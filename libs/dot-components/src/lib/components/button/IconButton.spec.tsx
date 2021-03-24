@@ -2,7 +2,7 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import DotIconButton, { IconButtonProps } from './IconButton';
+import { DotIconButton, IconButtonProps } from './IconButton';
 
 describe('DotIconButton', () => {
   it('should have unchanged API', () => {

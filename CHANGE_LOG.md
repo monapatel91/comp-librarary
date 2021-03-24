@@ -6,6 +6,8 @@
 
 > **BREAKING CHANGE: InputSelect** - removed initial value for `defaultValue`
 
+> **BREAKING CHANGE: All Components** - removed `default` exports from all components
+
 > **BREAKING CHANGE: Sidebar** - changed `backItem` prop to be a single `ListItemProps` instead of an array
 
 - **Menu** - added `disablePortal` prop

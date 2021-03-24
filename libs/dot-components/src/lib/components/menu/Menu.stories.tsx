@@ -2,8 +2,8 @@ import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import { DotMenu, MenuProps } from './Menu';
-import DotButton from '../button/Button';
-import DotIconButton from '../button/IconButton';
+import { DotButton } from '../button/Button';
+import { DotIconButton } from '../button/IconButton';
 
 const onLeave = (evt, setOpen) => {
   setOpen(false);

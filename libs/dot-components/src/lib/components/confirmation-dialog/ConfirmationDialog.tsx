@@ -57,5 +57,3 @@ export const DotConfirmationDialog = ({
     </DotDialog>
   );
 };
-
-export default DotConfirmationDialog;

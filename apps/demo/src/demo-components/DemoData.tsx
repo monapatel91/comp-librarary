@@ -1,5 +1,5 @@
 // Demo data so that we can provide a constant example.
-const phasesData = [
+export const phasesData = [
   {
     name: 'Build',
     packageVersions: [],
@@ -2333,5 +2333,3 @@ const phasesData = [
     packageVersions: [],
   },
 ];
-
-export default phasesData;

@@ -2344,5 +2344,3 @@ export const samplePhases: Array<PhaseType> = [
     packageVersions: [],
   },
 ];
-
-export default samplePhases;

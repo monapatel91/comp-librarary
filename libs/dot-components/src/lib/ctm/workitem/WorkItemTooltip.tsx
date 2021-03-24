@@ -57,5 +57,3 @@ export const WorkItemTooltip = ({
     </Tooltip>
   );
 };
-
-export default WorkItemTooltip;

@@ -126,5 +126,3 @@ export function DotRadioGroup({
     </StyledFormControl>
   );
 }
-
-export default DotRadioGroup;

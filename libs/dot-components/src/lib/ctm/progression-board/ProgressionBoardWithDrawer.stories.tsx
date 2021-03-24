@@ -6,7 +6,7 @@ import { DotProgressionBoardDrawer } from './ProgressionBoardDrawer';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { WorkItemSelection, WorkItemType } from './ProgressionBoardInterfaces';
 import { sampleDetailsData } from './sample-data/sampleDetailsData';
-import samplePhases from './sample-data/sampleData';
+import { samplePhases } from './sample-data/sampleData';
 
 export default {
   title: 'Experimental/ProgressionBoardWithDrawer',

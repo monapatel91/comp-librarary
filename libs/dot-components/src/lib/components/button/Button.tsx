@@ -90,5 +90,3 @@ export const DotButton = ({
     </StyledButton>
   );
 };
-
-export default DotButton;

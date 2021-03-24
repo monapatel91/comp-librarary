@@ -34,5 +34,3 @@ export function DotFormGroup({
     </StyledFormGroup>
   );
 }
-
-export default DotFormGroup;

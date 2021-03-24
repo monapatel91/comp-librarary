@@ -82,5 +82,3 @@ export const DotAvatar = ({
     </StyledAvatar>
   );
 };
-
-export default DotAvatar;

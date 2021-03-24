@@ -105,5 +105,3 @@ export const DotRow = ({
     </StyledRow>
   );
 };
-
-export default DotRow;

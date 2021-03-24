@@ -29,5 +29,3 @@ export const PackageVersionLabel = ({
     </DotLink>
   );
 };
-
-export default PackageVersionLabel;

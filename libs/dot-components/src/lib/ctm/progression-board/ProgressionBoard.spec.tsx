@@ -2,7 +2,7 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import { DotProgressionBoard } from './ProgressionBoard';
-import samplePhases from './sample-data/sampleData';
+import { samplePhases } from './sample-data/sampleData';
 
 describe('ProgressionBoard', () => {
   it('should render successfully', () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import DotBreadcrumbs, { BreadcrumbProps, BreadcrumbItem } from './Breadcrumbs';
+import { BreadcrumbProps, BreadcrumbItem, DotBreadcrumbs } from './Breadcrumbs';
 
 describe('Breadcrumbs', () => {
   const onClick = jest.fn();

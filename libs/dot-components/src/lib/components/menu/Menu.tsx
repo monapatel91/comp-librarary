@@ -53,7 +53,7 @@ export interface MenuItemProps {
   key?: string;
 }
 
-export function DotMenu({
+export const DotMenu = ({
   anchorEl,
   className,
   'data-testid': dataTestId,
@@ -64,7 +64,7 @@ export function DotMenu({
   onLeave,
   onSelect,
   open = false,
-}: MenuProps) {
+}: MenuProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   const handleSelect = (event, itemKey) => {
@@ -130,6 +130,4 @@ export function DotMenu({
       )}
     </StyledPopper>
   );
-}
-
-export default DotMenu;
+};

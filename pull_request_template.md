@@ -19,7 +19,8 @@ For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot
 ## Author Checklist
 
 - [ ] Checklist of changes made added to PR description
-- [ ] If new component, ensure it is being exported
+- [ ] If new component, ensure it is being exported from library
+- [ ] Make sure there are no `default` exports
 - [ ] Component is a styled component
 - [ ] Component props extends `commonProps`
 - [ ] Storybook configurations up-to-date

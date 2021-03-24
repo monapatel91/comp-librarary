@@ -7,10 +7,10 @@ import { DotCard, CardProps } from './Card';
 import { DotCardHeader } from './CardHeader';
 import { DotCardContent } from './CardContent';
 import { DotCardFooter } from './CardFooter';
-import DotAvatar from '../avatar/Avatar';
-import DotButton from '../button/Button';
+import { DotAvatar } from '../avatar/Avatar';
+import { DotButton } from '../button/Button';
 import { ReactComponent as CardMediaImage } from '../../assets/empty-state.svg';
-import DotIconButton from '../button/IconButton';
+import { DotIconButton } from '../button/IconButton';
 
 const headerOnly = 'Header only';
 const headerAndContent = 'Header and content';

@@ -71,5 +71,3 @@ export const DotLink = ({
     </StyledLink>
   );
 };
-
-export default DotLink;

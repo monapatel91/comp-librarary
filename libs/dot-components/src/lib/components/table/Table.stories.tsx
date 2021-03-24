@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-
+import { Typography } from '@material-ui/core';
 import { DotTable, TableProps, stableSort, getComparator } from './Table';
 import {
   defaultColumns,
@@ -9,10 +9,9 @@ import {
   paginatedData,
 } from './Table.stories.data';
 import { Order } from './TableBody';
-import DotActionToolbar from '../action-toolbar/ActionToolbar';
-import { Typography } from '@material-ui/core';
+import { DotActionToolbar } from '../action-toolbar/ActionToolbar';
 import { DotInputText } from '../input-form-fields/InputText';
-import DotIcon from '../icon/Icon';
+import { DotIcon } from '../icon/Icon';
 
 export default {
   title: 'Components/Table',

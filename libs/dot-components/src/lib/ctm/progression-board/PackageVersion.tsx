@@ -2,11 +2,11 @@ import React, { MutableRefObject, useState } from 'react';
 import { Typography } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
-import RevisionRangeLabel from '../ctm-card/RevisionRangeLabel';
-import QualityCorner, { QCIconProps } from '../ctm-card/QualityCorner';
-import PackageVersionLabel from './PackageVersionLabel';
-import WorkItem from '../workitem/WorkItem';
-import Card, { CardIndicators } from '../ctm-card/Card';
+import { RevisionRangeLabel } from '../ctm-card/RevisionRangeLabel';
+import { QCIconProps, QualityCorner } from '../ctm-card/QualityCorner';
+import { PackageVersionLabel } from './PackageVersionLabel';
+import { WorkItem } from '../workitem/WorkItem';
+import { Card, CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
 import { PackageType, SelectWorkItem } from './ProgressionBoardInterfaces';
 import { parseRevURL } from './parseRevURL';
@@ -212,5 +212,3 @@ export const ValidPackage = React.forwardRef(
     );
   }
 );
-
-export default ValidPackage;

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
-import ValidPackage from './PackageVersion';
+import { ValidPackage } from './PackageVersion';
 import { PhaseType, SelectWorkItem } from './ProgressionBoardInterfaces';
 
 export interface PhaseProps extends CommonProps {
@@ -36,5 +36,3 @@ export const Phase = ({
     </li>
   );
 };
-
-export default Phase;

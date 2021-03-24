@@ -56,5 +56,3 @@ export const DotDrawer = ({
     </StyledDrawer>
   );
 };
-
-export default DotDrawer;

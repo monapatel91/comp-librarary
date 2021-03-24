@@ -46,5 +46,3 @@ export const DotProgress = ({
     />
   );
 };
-
-export default DotProgress;

@@ -152,5 +152,3 @@ export const DotStageCard = ({
     </Fragment>
   );
 };
-
-export default DotStageCard;

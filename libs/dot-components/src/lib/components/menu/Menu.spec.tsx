@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
-import DotMenu, { MenuProps, MenuItemProps } from './Menu';
+import { DotMenu, MenuProps, MenuItemProps } from './Menu';
 
 describe('Menu', () => {
   it('should have unchanged API', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { DotProgressionBoard } from '@digital-ai/dot-components';
-import phasesData from './DemoData';
+import { phasesData } from './DemoData';
 
 export const DemoProgressionBoard = () => {
   // this is an example of how to use the api
@@ -29,5 +29,3 @@ export const DemoProgressionBoard = () => {
     <DotProgressionBoard phases={phasesData} baseUrl="http://localhost:8080" />
   );
 };
-
-export default DemoProgressionBoard;

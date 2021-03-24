@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import { DotRadioGroup, RadioGroupProps } from './RadioGroup';
-import DotIcon from '../icon/Icon';
+import { DotIcon } from '../icon/Icon';
 
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 

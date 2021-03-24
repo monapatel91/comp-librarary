@@ -36,5 +36,3 @@ export const DotIcon = ({
     </StyledIcon>
   );
 };
-
-export default DotIcon;

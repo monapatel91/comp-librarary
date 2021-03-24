@@ -38,5 +38,3 @@ export const RevisionRangeLabel = ({
     </div>
   );
 };
-
-export default RevisionRangeLabel;

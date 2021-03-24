@@ -145,5 +145,3 @@ export const InfiniteScrollTable = ({
     </Fragment>
   );
 };
-
-export default InfiniteScrollTable;

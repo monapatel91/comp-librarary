@@ -3,22 +3,22 @@ import { fireEvent } from '@testing-library/react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import PhaseHeader from './PhaseHeader';
+import { DotPhaseHeader } from './PhaseHeader';
 
 describe('PhaseHeader', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<PhaseHeader label="Test Label" />);
+    const { baseElement } = render(<DotPhaseHeader label="Test Label" />);
     expect(baseElement).toBeTruthy();
   });
 
   it('display delete button', () => {
-    render(<PhaseHeader label="Delete Label" canDelete={true} />);
+    render(<DotPhaseHeader label="Delete Label" canDelete={true} />);
     const deleteButton = screen.getByTestId('phase-icon-delete-0');
     expect(deleteButton).toBeTruthy();
   });
 
   it('display edit button and popup', () => {
-    render(<PhaseHeader label="Edit Label" canEdit={true} />);
+    render(<DotPhaseHeader label="Edit Label" canEdit={true} />);
     const editButton = screen.getByTestId('phase-header-color-picker');
     expect(editButton).toBeTruthy();
 
@@ -30,7 +30,7 @@ describe('PhaseHeader', () => {
   it('display popup and select option', () => {
     const categoryChange = jest.fn();
     render(
-      <PhaseHeader
+      <DotPhaseHeader
         label="Edit Label"
         canEdit={true}
         canDelete={true}
@@ -59,7 +59,7 @@ describe('PhaseHeader', () => {
   it('display label changes buttons and fires edits', () => {
     const labelChange = jest.fn();
     render(
-      <PhaseHeader
+      <DotPhaseHeader
         label="Edit Label"
         canEdit={true}
         canDelete={true}
@@ -76,7 +76,7 @@ describe('PhaseHeader', () => {
   xit('display delete dialog, then delete', () => {
     const deleteFunction = jest.fn();
     render(
-      <PhaseHeader
+      <DotPhaseHeader
         label="Delete Label"
         canDelete={true}
         onDelete={deleteFunction}
@@ -99,7 +99,7 @@ describe('PhaseHeader', () => {
   xit('display delete dialog, then cancel', () => {
     const deleteFunction = jest.fn();
     render(
-      <PhaseHeader
+      <DotPhaseHeader
         label="Delete Label"
         canDelete={true}
         onDelete={deleteFunction}

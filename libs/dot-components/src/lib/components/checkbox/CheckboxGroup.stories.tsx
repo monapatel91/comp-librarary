@@ -4,7 +4,7 @@ import {
   DotCheckboxGroup,
   CheckboxGroupProps,
 } from '../checkbox/CheckboxGroup';
-import DotIcon from '../icon/Icon';
+import { DotIcon } from '../icon/Icon';
 
 const iconOptions = [null, 'warning-solid', 'error-solid'];
 
