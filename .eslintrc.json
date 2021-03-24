@@ -5,25 +5,8 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "parserOptions": {
-        "project": "./tsconfig.*?.json",
-        "createDefaultProgram": true
-      },
-      "rules": {
-        "@nrwl/nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
-              }
-            ]
-          }
-        ]
-      }
+      "parserOptions": {},
+      "rules": {}
     },
     {
       "files": ["*.ts", "*.tsx"],
@@ -36,9 +19,7 @@
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nrwl/nx/javascript"],
-      "rules": {
-        "@typescript-eslint/no-var-requires": "off"
-      }
+      "rules": {}
     }
   ]
 }
