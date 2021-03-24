@@ -8,6 +8,7 @@
 
 > **BREAKING CHANGE: Sidebar** - changed `backItem` prop to be a single `ListItemProps` instead of an array
 
+- **Menu** - added `disablePortal` prop
 - **Sidebar** - back button is now a custom component with icon button instead of a list item.
 - **Sidebar** - back button now uses `backItemProps` with `text` and `onClick` required
 - **Table** - removed `page` prop

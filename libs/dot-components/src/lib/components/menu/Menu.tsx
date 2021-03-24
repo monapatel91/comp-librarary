@@ -28,6 +28,8 @@ export type PopperPlacement =
 export interface MenuProps extends CommonProps {
   /** Element that menu is attached to */
   anchorEl?: Element;
+  /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
+  disablePortal?: boolean;
   /** Unique ID that ties a particular menu to a specific element */
   id: string;
   /** Array of items to be displayed inside the menu */
@@ -55,6 +57,7 @@ export function DotMenu({
   anchorEl,
   className,
   'data-testid': dataTestId,
+  disablePortal,
   id,
   menuItems = [],
   menuPlacement = 'bottom',
@@ -87,6 +90,7 @@ export function DotMenu({
       anchorEl={anchorEl}
       className={rootClasses}
       data-testid={dataTestId}
+      disablePortal={disablePortal}
       open={open}
       placement={menuPlacement}
       role={undefined}

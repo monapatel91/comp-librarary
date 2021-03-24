@@ -9,6 +9,7 @@ describe('Menu', () => {
     const onSelect = jest.fn();
     const mProps = {
       anchorEl: null,
+      disablePortal: true,
       id: 'menu-id',
       menuItems: [{ children: 'opt 1' }],
       menuPlacement: 'bottom',
@@ -18,6 +19,7 @@ describe('Menu', () => {
     };
     const menuProps: MenuProps = {
       anchorEl: null,
+      disablePortal: true,
       id: 'menu-id',
       menuItems: [{ children: 'opt 1' }],
       menuPlacement: 'bottom',
