@@ -45,6 +45,26 @@ export const StyledIcon = styled(Icon)`
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
+        &.icon-package:before {
+          content: "\\e9c9";
+        }
+        &.icon-security-off:before {
+          content: "\\e9ca";
+        }
+
+        &.icon-security-on:before {
+          content: "\\e9cb";
+        }
+
+        &.icon-marker-check:before {
+          content: "\\e9cc";
+        }
+
+        &.icon-restore:before {
+          content: "\\e9cd";
+        }
+
+
         &.icon-check-outlined:before {
           content: "\\e9c7";
         }
