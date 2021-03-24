@@ -6,6 +6,10 @@
 
 > **BREAKING CHANGE: InputSelect** - removed initial value for `defaultValue`
 
+> **BREAKING CHANGE: Sidebar** - changed `backItem` prop to be a single `ListItemProps` instead of an array
+
+- **Sidebar** - back button is now a custom component with icon button instead of a list item.
+- **Sidebar** - back button now uses `backItemProps` with `text` and `onClick` required
 - **Table** - removed `page` prop
 - **Table** - removed `handleRequestSort` callback
 - **Table** - removed `setRowsPerPage` callback

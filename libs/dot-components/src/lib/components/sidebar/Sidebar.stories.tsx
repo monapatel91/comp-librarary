@@ -8,15 +8,12 @@ export default {
   component: DotSidebar,
   argTypes: {
     backItem: {
-      defaultValue: [
-        {
-          iconId: 'back',
-          onClick: () => console.log('go back clicked'),
-          text: 'Home',
-          title: `Go Back to Home`,
-          href: '/',
-        },
-      ],
+      defaultValue: {
+        iconId: 'back',
+        onClick: () => console.log('go back clicked'),
+        text: 'Home',
+        title: `Go Back to Home`,
+      },
     },
     brandDesc: {
       defaultValue: 'Release orchestration powered by',
@@ -28,7 +25,7 @@ export default {
       defaultValue: true,
     },
     goBack: {
-      defaultValue: false,
+      defaultValue: true,
     },
     navItems: {
       defaultValue: [

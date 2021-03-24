@@ -1,13 +1,7 @@
-import { getGreeting } from '../support/app.po';
-
 describe('demo', () => {
   before(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
-
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('dot-components demo app');
+  it('should contain the sidebar', () => {
+    cy.get('aside').should('have.class', 'dot-sidebar');
   });
 });

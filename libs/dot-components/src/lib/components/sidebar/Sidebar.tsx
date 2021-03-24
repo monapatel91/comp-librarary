@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, MouseEvent, useState } from 'react';
 import { Typography } from '@material-ui/core';
 import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 import { DotIconButton } from '../button/IconButton';
@@ -9,9 +9,20 @@ import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
 import { ReactComponent as LogoDigitalAi } from '../../assets/logo_digital_ai.svg';
 import { rootClassName, StyledSidebar } from './Sidebar.styles';
 
+export interface BackItemProps extends CommonProps {
+  /** If provided, the icon ID which is displayed on the front of the list item */
+  iconId?: string;
+  /** Event callback */
+  onClick: (event: MouseEvent) => void;
+  /** Text which is displayed in the list item */
+  text: string;
+  /** The tooltip text displayed on hover */
+  title?: string;
+}
+
 export interface SidebarProps extends CommonProps {
-  /** Component passed for back nav item */
-  backItem?: Array<ListItemProps>;
+  /** props used by the back item */
+  backItem?: BackItemProps;
   /** If displayBrand is true this text will be displayed above the Digital.ai branding */
   brandDesc?: string;
   /** If provided will display below the navItems */
@@ -32,14 +43,14 @@ export interface SidebarProps extends CommonProps {
 
 /** This is a custom component which is used for the sidebar */
 export const DotSidebar = ({
-  backItem = [],
+  backItem,
   brandDesc,
   children,
   className,
   collapsable = false,
   'data-testid': dataTestId,
   displayBrand = true,
-  goBack,
+  goBack = false,
   navItems = [],
   title,
   titleAvatarProps,
@@ -67,7 +78,16 @@ export const DotSidebar = ({
           )}
         </header>
       )}
-      {goBack && <DotList className="go-back" items={backItem} />}
+      {goBack && backItem && (
+        <div className="go-back">
+          <DotIconButton
+            iconId={backItem.iconId ? backItem.iconId : 'back'}
+            onClick={backItem.onClick}
+            titleTooltip={backItem.title || backItem.text}
+          />
+          <Typography variant="h4">{backItem.text}</Typography>
+        </div>
+      )}
       {navItems.length > 0 && (
         <DotList
           ariaLabel="left navigation"

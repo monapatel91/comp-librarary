@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  BackItemProps,
   DotAvatar,
   DotAppToolbar,
   DotSidebar,
@@ -207,15 +208,12 @@ const userAvatar = (
 );
 
 export const App = () => {
-  const backItem: Array<ListItemProps> = [
-    {
-      iconId: 'back',
-      onClick: () => console.log('go back clicked'),
-      text: 'Home',
-      title: `Go Back to Home`,
-      href: '/',
-    },
-  ];
+  const backItem: BackItemProps = {
+    iconId: 'back',
+    onClick: () => console.log('go back clicked'),
+    text: 'Home',
+    title: `Go Back to Home`,
+  };
 
   return (
     <>

@@ -6,7 +6,14 @@ import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { ListItemProps } from '../list/List';
-import { DotSidebar, SidebarProps } from './Sidebar';
+import { BackItemProps, DotSidebar, SidebarProps } from './Sidebar';
+
+const backItem: BackItemProps = {
+  iconId: 'back',
+  onClick: () => console.log('go back clicked'),
+  text: 'Home',
+  title: `Go Back to Home`,
+};
 
 const navItems: Array<ListItemProps> = [
   {
@@ -25,7 +32,7 @@ describe(' Sidebar', () => {
   it('should have unchanged API', () => {
     const titleAvatarProps = { alt: 'avatar alt text', text: 'BM' };
     const props = {
-      backItem: navItems,
+      backItem: backItem,
       brandDesc: 'best brand',
       children: <TextField placeholder="search" variant="outlined" />,
       collapsable: true,
@@ -36,7 +43,7 @@ describe(' Sidebar', () => {
       titleAvatarProps: titleAvatarProps,
     };
     const sidebarProps: SidebarProps = {
-      backItem: navItems,
+      backItem: backItem,
       brandDesc: 'best brand',
       children: <TextField placeholder="search" variant="outlined" />,
       collapsable: true,

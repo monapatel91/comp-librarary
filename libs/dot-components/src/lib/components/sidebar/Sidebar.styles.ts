@@ -36,7 +36,14 @@ export const StyledSidebar = styled.aside`
       }
 
       .go-back {
+        align-items: center;
         border-bottom: 1px solid ${theme.palette.grey[100]};
+        display: flex;
+        padding: 6px;
+
+        .dot-icon-btn {
+          margin-right: ${theme.spacing(1)}px;
+        }
       }
 
       hr.MuiDivider-root {
@@ -97,6 +104,10 @@ export const StyledSidebar = styled.aside`
 
         header {
           padding: ${theme.spacing(1)}px;
+        }
+
+        .go-back .MuiTypography-root {
+          display: none;
         }
 
         ul.side-nav li.MuiListSubheader-root .MuiTypography-root {
