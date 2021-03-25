@@ -101,21 +101,23 @@ export const DotPhaseHeader = ({
         aria-controls="simple-menu"
         aria-haspopup="true"
         data-testid="phase-header-color-picker"
-        className={`phase-color ${phaseColor} ${canEdit ? 'clickable' : ''}`}
+        className={`dot-button phase-color ${phaseColor} ${
+          canEdit ? 'clickable' : ''
+        }`}
         onClick={(event: MouseEvent<HTMLElement>) =>
           canEdit ? openColorPicker(event) : null
         }
       />
       <Menu
         anchorEl={anchorEl}
-        classes={{ list: 'phase-color-picker' }}
+        classes={{ list: 'dot-ul phase-color-picker' }}
         onClose={handleClose}
         open={Boolean(anchorEl)}
       >
         {Object.values(CategoryType).map((phase, index) => {
           return (
             <MenuItem
-              classes={{ root: 'phase-color-option' }}
+              classes={{ root: 'dot-li phase-color-option' }}
               key={index}
               onClick={() => (canEdit ? handleColorSelect(phase) : null)}
             >

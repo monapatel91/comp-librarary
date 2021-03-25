@@ -1,14 +1,20 @@
 describe('dot-components: Table component', () => {
-  before(() => cy.visit('/iframe.html?id=components-table--default'));
+  before(() => cy.visit('/iframe.html?id=components-table--paginated-table'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-table');
   });
 
   it('should render the component', () => {
+    cy.get('table').should('have.class', 'dot-table');
     cy.get('thead').should('have.class', 'MuiTableHead-root');
+    cy.get('thead').should('have.class', 'dot-thead');
     cy.get('tbody').should('have.class', 'MuiTableBody-root');
-    cy.get('th').should('contain', 'Title');
+    cy.get('tbody').should('have.class', 'dot-tbody');
+    cy.get('th').should('contain', 'Name');
+    cy.get('th').should('have.class', 'dot-th');
+    cy.get('tr').should('have.class', 'dot-tr');
+    cy.get('td').should('have.class', 'dot-td');
   });
 
   describe('style decisions', () => {
@@ -27,5 +33,10 @@ describe('dot-components: Table component', () => {
         .and('have.css', 'font-size', '12px')
         .and('have.css', 'margin-bottom', '3px');
     });
+  });
+
+  it('should have a pagination caption with a dot- prefix', () => {
+    cy.get('p').should('contain', 'Rows per page:');
+    cy.get('p').should('have.class', 'dot-typography');
   });
 });

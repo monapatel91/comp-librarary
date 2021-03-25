@@ -32,7 +32,7 @@ export const DotIcon = ({
       fontSize={fontSize}
       title={title}
     >
-      <i className={`icon-${iconId}`} />
+      <i className={`icon-${iconId} dot-i`} />
     </StyledIcon>
   );
 };

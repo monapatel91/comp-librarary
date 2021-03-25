@@ -92,7 +92,9 @@ export const DotDialog = ({
         aria-labelledby="MuiDialogTitle-root"
       >
         <DialogTitle disableTypography={true}>
-          <Typography variant="h2">{title}</Typography>
+          <Typography classes={{ root: 'dot-typography' }} variant="h2">
+            {title}
+          </Typography>
           <DotIconButton iconId="close" onClick={handleClose} size="small" />
         </DialogTitle>
         <DialogContent classes={{ root: `dot-dialog-content` }}>

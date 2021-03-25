@@ -1,5 +1,8 @@
 describe('dot-components: Phase Header component', () => {
-  before(() => cy.visit('/iframe.html?id=experimental-phase-header--default'));
+  before(() => {
+    cy.visit('/iframe.html?id=experimental-phase-header--default');
+    cy.get('button').first().click();
+  });
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-phase-header');
@@ -8,6 +11,9 @@ describe('dot-components: Phase Header component', () => {
   it('should render the component', () => {
     cy.get('button').should('have.class', 'phase-color');
     cy.get('button').should('have.class', 'delete-btn');
+    cy.get('button').should('have.class', 'dot-button');
+    cy.get('ul').should('have.class', 'dot-ul');
+    cy.get('li').should('have.class', 'dot-li');
   });
 
   describe('style decisions', () => {

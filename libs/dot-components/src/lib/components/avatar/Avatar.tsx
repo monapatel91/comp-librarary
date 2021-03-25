@@ -58,7 +58,7 @@ export const DotAvatar = ({
     <StyledAvatar
       alt={alt}
       className={size}
-      classes={{ root: rootClasses }}
+      classes={{ root: rootClasses, img: 'dot-img' }}
       data-testid={dataTestId}
       onClick={(event) => (onClick ? onClick(event) : null)}
       src={type === 'image' ? imageSrc : null}
@@ -75,6 +75,7 @@ export const DotAvatar = ({
           variant={
             size === 'small' ? 'caption' : size === 'large' ? 'h1' : 'h3'
           }
+          classes={{ root: 'dot-typography' }}
         >
           {parsedText()}
         </Typography>

@@ -108,6 +108,7 @@ export const DotMenu = ({
             <ClickAwayListener onClickAway={handleClickAway}>
               <MenuList
                 autoFocusItem={open}
+                className="dot-ul"
                 dense={true}
                 id={id}
                 onKeyDown={handleListKeyDown}
@@ -115,7 +116,7 @@ export const DotMenu = ({
                 {menuItems.map((item, index: number) => {
                   return (
                     <MenuItem
-                      className={item.classes}
+                      className={`dot-li ${item.classes ? item.classes : ''}`}
                       onClick={(event) => handleSelect(event, item.key)}
                       key={index}
                     >

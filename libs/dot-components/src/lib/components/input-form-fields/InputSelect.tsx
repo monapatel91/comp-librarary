@@ -51,6 +51,7 @@ export const DotInputSelect = ({
       id={id}
       inputProps={{
         'data-testid': dataTestId,
+        className: 'dot-select',
       }}
       InputProps={{
         startAdornment: startIcon && (
@@ -83,7 +84,7 @@ export const DotInputSelect = ({
       variant="outlined"
     >
       {options.map((option) => (
-        <option key={option} value={option}>
+        <option className="dot-option" key={option} value={option}>
           {option}
         </option>
       ))}

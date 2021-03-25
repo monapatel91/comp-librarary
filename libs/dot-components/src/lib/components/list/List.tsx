@@ -79,7 +79,12 @@ export const DotList = ({
             <Divider key={index} />
           ) : (
             <ListSubheader key={index}>
-              <Typography variant="subtitle2">{item.text}</Typography>
+              <Typography
+                classes={{ root: 'dot-typography' }}
+                variant="subtitle2"
+              >
+                {item.text}
+              </Typography>
             </ListSubheader>
           )
         ) : (
@@ -137,7 +142,10 @@ export const DotListItem = ({
           </ListItemIcon>
         )}
         {href ? (
-          <Typography variant={textVariant}>
+          <Typography
+            classes={{ root: 'dot-typography' }}
+            variant={textVariant}
+          >
             <DotLink
               color="inherit"
               href={onClick ? '#' : href}

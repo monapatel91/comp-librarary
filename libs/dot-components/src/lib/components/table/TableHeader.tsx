@@ -63,8 +63,8 @@ export const DotHeaderRow = ({
     onRequestSort(property);
   };
   return (
-    <TableHead>
-      <TableRow>
+    <TableHead classes={{ root: 'dot-thead' }}>
+      <TableRow classes={{ root: 'dot-tr' }}>
         {columns.map((cell: Header) => (
           <DotHeaderCell
             align={cell.align === 'right'}
@@ -108,6 +108,7 @@ export const DotHeaderCell = ({
     return (
       <TableCell
         align={headerAlign}
+        classes={{ root: 'dot-th' }}
         key={uid}
         sortDirection={sortDirection}
         style={{ width: width ? width : '' }}

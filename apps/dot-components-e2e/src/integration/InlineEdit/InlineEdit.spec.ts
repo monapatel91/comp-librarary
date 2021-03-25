@@ -7,6 +7,7 @@ describe('dot-components: Inline Edit component', () => {
 
   it('should render the component', () => {
     cy.get('input').should('have.class', 'MuiOutlinedInput-inputAdornedEnd');
+    cy.get('input').should('have.class', 'dot-input');
   });
 
   describe('style decisions', () => {

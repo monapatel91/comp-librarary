@@ -28,7 +28,11 @@ export const DotBreadcrumbs = ({
   return (
     <StyledBreadcrumbs
       aria-label="breadcrumb"
-      classes={{ root: rootClasses }}
+      classes={{
+        root: rootClasses,
+        ol: 'dot-ol',
+        li: 'dot-li',
+      }}
       data-testid={dataTestId}
       itemsAfterCollapse={2}
       maxItems={maxItems}

@@ -71,7 +71,9 @@ export const DotSidebar = ({
           {open ? (
             <Fragment>
               <DotAvatar {...titleAvatarProps} />
-              <Typography variant="h4">{title}</Typography>
+              <Typography classes={{ root: 'dot-typography' }} variant="h4">
+                {title}
+              </Typography>
             </Fragment>
           ) : (
             <DotAvatar {...titleAvatarProps} />
@@ -108,7 +110,11 @@ export const DotSidebar = ({
       )}
       {displayBrand && (
         <div className="powered-by">
-          <Typography className="desc" variant="body2">
+          <Typography
+            classes={{ root: 'dot-typography' }}
+            className="desc"
+            variant="body2"
+          >
             {brandDesc}
           </Typography>
           <LogoDigitalAi className="company-name" title="digital.ai" />

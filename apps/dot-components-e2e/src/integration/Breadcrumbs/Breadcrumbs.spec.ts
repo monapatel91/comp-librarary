@@ -5,6 +5,14 @@ describe('dot-components: Breadcrumbs component', () => {
     cy.get('nav').should('have.class', 'dot-breadcrumbs');
   });
 
+  it('should have ol with a dot- prefix', () => {
+    cy.get('ol').should('have.class', 'dot-ol');
+  });
+
+  it('should have li with a dot- prefix', () => {
+    cy.get('li').should('have.class', 'dot-li');
+  });
+
   it('should render the component', () => {
     cy.get('div').should('contain', 'Link 1');
     cy.get('div').should('contain', 'Link 5');

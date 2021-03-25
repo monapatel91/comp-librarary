@@ -20,6 +20,28 @@ The `DotThemeProvider` provides the theme for the components in this library. Wh
 </DotThemeProvider>
 ```
 
+### Resolving Style Conflicts
+
+It is possible that existing application styles might target native elements in ways that will conflict with styles from `dot-components`.
+
+Because `dot-` classes are applied to native elements that are part of `dot-components`, such conflicts can be resolved by making minor changes to the application styles.
+
+For example, suppose the application includes global styling like this:
+
+```css
+input {
+  background-color: red !important;
+}
+```
+
+To override this styling for `dot-components`, this could be changed to:
+
+```css
+input:not(.dot-input) {
+  background-color: red !important;
+}
+```
+
 ### Updating
 
 When you're ready to pull in the latest version of the `dot-components` package run the following command.

@@ -76,18 +76,30 @@ describe('DotAvatar', () => {
     expect(avatarIcon).toHaveClass('icon-delete');
   });
 
-  it('should display the "user" icon if type is image by no source provided', () => {
+  it('should display the "user" icon if type is image but no source provided', () => {
     render(<DotAvatar data-testid="test-avatar" alt="test" type="image" />);
     const avatarIcon = screen
       .getByTestId('test-avatar-icon')
       .querySelector('i');
     expect(avatarIcon).toHaveClass('icon-user');
   });
-  it('should display the "user" icon if type is icon by no icon ID provided', () => {
+  it('should display the "user" icon if type is icon but no icon ID provided', () => {
     render(<DotAvatar data-testid="test-avatar" alt="test" type="icon" />);
     const avatarIcon = screen
       .getByTestId('test-avatar-icon')
       .querySelector('i');
     expect(avatarIcon).toHaveClass('icon-user');
+  });
+  it('should display the image if type is image and source is provided', () => {
+    render(
+      <DotAvatar
+        data-testid="test-avatar"
+        alt="test"
+        type="image"
+        imageSrc="https://cdn1-www.superherohype.com/assets/uploads/2013/11/batmane3-1.jpg"
+      />
+    );
+    const avatarImage = screen.getByAltText('test');
+    expect(avatarImage).toHaveClass('dot-img');
   });
 });

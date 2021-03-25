@@ -125,7 +125,10 @@ export const DotInlineEdit = ({
         error={error}
         fullWidth={fullWidth}
         helperText={helperText}
-        inputProps={{ 'data-testid': dataTestId }}
+        inputProps={{
+          'data-testid': dataTestId,
+          className: 'dot-input',
+        }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

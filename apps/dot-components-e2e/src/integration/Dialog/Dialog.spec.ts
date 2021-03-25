@@ -5,6 +5,10 @@ describe('dot-components: Dialog component', () => {
     cy.get('div').should('have.class', 'dot-dialog');
   });
 
+  it('should have header with a dot- prefix', () => {
+    cy.get('h2').should('have.class', 'dot-typography');
+  });
+
   it('should render the component', () => {
     cy.get('h2').should('contain', 'Superheros');
   });

@@ -7,6 +7,7 @@ describe('dot-components: Input Text Field component', () => {
 
   it('should render the component', () => {
     cy.get('input').should('have.class', 'MuiInputBase-input');
+    cy.get('input').should('have.class', 'dot-input');
   });
 
   describe('style decisions', () => {

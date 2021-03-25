@@ -180,6 +180,7 @@ export const DotTable = ({
       >
         <Table
           aria-label={ariaLabel}
+          className="dot-table"
           padding="default"
           stickyHeader={stickyHeader}
         >

@@ -3,6 +3,8 @@ describe('dot-components: Menu component', () => {
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-menu');
+    cy.get('ul').should('have.class', 'dot-ul');
+    cy.get('li').should('have.class', 'dot-li');
   });
 
   it('should not have children within parent DOM hierarchy', () => {

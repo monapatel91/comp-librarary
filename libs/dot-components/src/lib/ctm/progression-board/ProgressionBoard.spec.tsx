@@ -46,10 +46,10 @@ describe('ProgressionBoard', () => {
 
     expect(cards[0]).toContainHTML(`<div class="actions-container">`);
 
-    expect(cards[0]).toContainHTML(`<i class="icon-error-outlines">`);
-    expect(cards[0]).toContainHTML(`<i class="icon-file-dotted">`);
-    expect(cards[0]).toContainHTML(`<i class="icon-check-solid">`);
-    expect(cards[0]).toContainHTML(`<i class="icon-rogue-commits">`);
+    expect(cards[0]).toContainHTML(`<i class="icon-error-outlines dot-i">`);
+    expect(cards[0]).toContainHTML(`<i class="icon-file-dotted dot-i">`);
+    expect(cards[0]).toContainHTML(`<i class="icon-check-solid dot-i">`);
+    expect(cards[0]).toContainHTML(`<i class="icon-rogue-commits dot-i">`);
 
     expect(list[1]).toContainHTML(`<li class="maintain">`);
     expect(list[1]).toContainHTML(`<li class="improve">`);

@@ -44,7 +44,12 @@ export const DotTablePagination = ({
 
   return (
     <StyledTablePagination
-      classes={{ root: rootClasses }}
+      classes={{
+        root: rootClasses,
+        selectIcon: 'dot-icon',
+        caption: 'dot-typography',
+        menuItem: 'dot-li',
+      }}
       component="div"
       count={count}
       data-testid={dataTestId}

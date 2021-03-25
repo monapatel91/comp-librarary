@@ -34,7 +34,12 @@ export const DotTableRow = ({ columns, data, onClick, selected }: RowProps) => {
     onClick && onClick(event, id.toString());
   };
   return (
-    <TableRow key={CreateUUID()} onClick={handleOnClick} selected={selected}>
+    <TableRow
+      classes={{ root: 'dot-tr' }}
+      key={CreateUUID()}
+      onClick={handleOnClick}
+      selected={selected}
+    >
       {columns.map((column) => {
         return (
           <DotBodyCell

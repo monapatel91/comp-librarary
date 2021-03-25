@@ -29,6 +29,7 @@ export const DotBodyCell = ({
   return (
     <TableCell
       align={align ? 'right' : 'left'}
+      classes={{ root: 'dot-td' }}
       colSpan={colspan}
       key={id}
       title={title}

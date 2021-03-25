@@ -47,7 +47,7 @@ export const DotTableBody = ({
     }
   }
   return (
-    <TableBody>
+    <TableBody classes={{ root: 'dot-tbody' }}>
       {data.map((row) => {
         return (
           <DotTableRow

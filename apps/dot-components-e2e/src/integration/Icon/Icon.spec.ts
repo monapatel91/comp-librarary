@@ -7,6 +7,7 @@ describe('dot-components: Icon component', () => {
 
   it('should render the component', () => {
     cy.get('i').should('have.class', 'icon-script');
+    cy.get('i').should('have.class', 'dot-i');
   });
 
   describe('style decisions', () => {

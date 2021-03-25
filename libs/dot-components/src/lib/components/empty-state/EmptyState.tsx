@@ -35,8 +35,14 @@ export const DotEmptyState = ({
           title={imageAltText || title}
         />
       )}
-      <Typography variant="h2">{title}</Typography>
-      {subtitle && <Typography variant="body1">{subtitle}</Typography>}
+      <Typography classes={{ root: 'dot-typography' }} variant="h2">
+        {title}
+      </Typography>
+      {subtitle && (
+        <Typography classes={{ root: 'dot-typography' }} variant="body1">
+          {subtitle}
+        </Typography>
+      )}
       {buttonProps && <DotButton {...buttonProps} />}
     </StyledEmptyState>
   );

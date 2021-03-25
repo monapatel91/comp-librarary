@@ -64,6 +64,7 @@ export const DotInputText = ({
       helperText={helperText}
       inputProps={{
         'data-testid': dataTestId,
+        className: 'dot-input',
       }}
       InputProps={{
         startAdornment: startIcon && (

@@ -8,7 +8,9 @@ describe('dot-components: Empty State component', () => {
   it('should render the component', () => {
     cy.get('svg').should('have.class', 'empty-state-image');
     cy.get('h2').should('contain', 'No Data');
+    cy.get('h2').should('have.class', 'dot-typography');
     cy.get('p').should('contain', 'That is unexpected');
+    cy.get('p').should('have.class', 'dot-typography');
     cy.get('button').should('contain', 'Add Data');
   });
 

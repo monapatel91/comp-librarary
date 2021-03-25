@@ -3,6 +3,7 @@ describe('dot-components: List component', () => {
 
   it('should have a dot- prefix', () => {
     cy.get('ul').should('have.class', 'dot-list');
+    cy.get('p').should('have.class', 'dot-typography');
   });
 
   it('should render the component', () => {
