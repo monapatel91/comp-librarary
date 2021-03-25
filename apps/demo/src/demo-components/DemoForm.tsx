@@ -107,7 +107,7 @@ export const DemoForm = () => {
   return (
     <>
       {message && <DotCard>{message}</DotCard>}
-      <form onSubmit={handleOnSubmit}>
+      <form noValidate onSubmit={handleOnSubmit}>
         <DotInputText
           helperText={errors.firstName}
           id="firstName"
