@@ -4,10 +4,12 @@ import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { DotList, ListItemProps, ListProps } from './List';
 import userEvent from '@testing-library/user-event';
 
+const onClick = jest.fn();
+
 const mockListItems: Array<ListItemProps> = [
   {
     text: 'Pipelines',
-    href: '/pipelines',
+    onClick: onClick,
   },
   {
     iconId: 'process-template',
@@ -72,5 +74,27 @@ describe('List', () => {
 
     userEvent.click(item[1]);
     expect(screen.getByText(nestedItemText)).toBeVisible();
+  });
+
+  it('should have an href is one is passed', () => {
+    render(<DotList items={mockListItems} />);
+    expect(
+      screen.getByText('Progressions').closest('a').getAttributeNode('href')
+        .value
+    ).toEqual('/progressions');
+  });
+
+  it('should not have an href if onClick is passed', () => {
+    render(<DotList items={mockListItems} />);
+    expect(
+      screen.getByText('Pipelines').closest('a').getAttributeNode('href')
+    ).toEqual(null);
+  });
+
+  it('should call onClick if one is passed down as a prop', () => {
+    render(<DotList items={mockListItems} />);
+
+    userEvent.click(screen.getByText('Pipelines'));
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

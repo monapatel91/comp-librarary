@@ -141,15 +141,15 @@ export const DotListItem = ({
             <DotIcon iconId={iconId} />
           </ListItemIcon>
         )}
-        {href ? (
+        {href || onClick ? (
           <Typography
             classes={{ root: 'dot-typography' }}
             variant={textVariant}
           >
             <DotLink
               color="inherit"
-              href={onClick ? '#' : href}
-              onClick={(event) => onClick && onClick(event)}
+              href={href}
+              onClick={onClick}
               underline="none"
               title={title}
             >
