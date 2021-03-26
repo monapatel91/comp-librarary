@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import { Typography } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
@@ -10,6 +9,7 @@ import {
   StyledAppToolbar,
   StyledMainMenu,
 } from './AppToolbar.styles';
+import { DotTypography } from '../typography/Typography';
 export interface AppToolbarProps extends CommonProps {
   /** User avatar component */
   avatar?: JSX.Element;
@@ -70,7 +70,7 @@ export const DotAppToolbar = ({
           <LogoDigitalAiWhite title="digital.ai" />
         </DotLink>
         {appName && (
-          <Typography className="dot-product-name">{appName}</Typography>
+          <DotTypography className="dot-product-name">{appName}</DotTypography>
         )}
       </div>
       {children}

@@ -27,6 +27,7 @@
 - **Table** - locally paginated table (no `onUpdateData` provided) handles sorting and paging internally.
 - **Table** - moved to Components
 - **TablePagination** - added new component
+- **Typography** - added new component
 
 ## 0.0.0-alpha.13
 

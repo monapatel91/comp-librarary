@@ -1,5 +1,4 @@
 import React, { Fragment, MouseEvent, useState } from 'react';
-import { Typography } from '@material-ui/core';
 import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 import { DotIconButton } from '../button/IconButton';
 import { DotList, ListItemProps } from '../list/List';
@@ -8,6 +7,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
 import { ReactComponent as LogoDigitalAi } from '../../assets/logo_digital_ai.svg';
 import { rootClassName, StyledSidebar } from './Sidebar.styles';
+import { DotTypography } from '../typography/Typography';
 
 export interface BackItemProps extends CommonProps {
   /** If provided, the icon ID which is displayed on the front of the list item */
@@ -71,9 +71,7 @@ export const DotSidebar = ({
           {open ? (
             <Fragment>
               <DotAvatar {...titleAvatarProps} />
-              <Typography classes={{ root: 'dot-typography' }} variant="h4">
-                {title}
-              </Typography>
+              <DotTypography variant="h4">{title}</DotTypography>
             </Fragment>
           ) : (
             <DotAvatar {...titleAvatarProps} />
@@ -87,7 +85,7 @@ export const DotSidebar = ({
             onClick={backItem.onClick}
             titleTooltip={backItem.title || backItem.text}
           />
-          <Typography variant="h4">{backItem.text}</Typography>
+          <DotTypography variant="h4">{backItem.text}</DotTypography>
         </div>
       )}
       {navItems.length > 0 && (
@@ -110,13 +108,9 @@ export const DotSidebar = ({
       )}
       {displayBrand && (
         <div className="powered-by">
-          <Typography
-            classes={{ root: 'dot-typography' }}
-            className="desc"
-            variant="body2"
-          >
+          <DotTypography className="desc" variant="body2">
             {brandDesc}
-          </Typography>
+          </DotTypography>
           <LogoDigitalAi className="company-name" title="digital.ai" />
           <LogoD className="d-icon" title="digital.ai" />
         </div>

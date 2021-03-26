@@ -1,9 +1,9 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 import { ButtonProps, DotButton } from '../button/Button';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledEmptyState } from './EmptyState.styles';
+import { DotTypography } from '../typography/Typography';
 
 export interface EmptyStateProps extends CommonProps {
   buttonProps?: ButtonProps;
@@ -35,14 +35,8 @@ export const DotEmptyState = ({
           title={imageAltText || title}
         />
       )}
-      <Typography classes={{ root: 'dot-typography' }} variant="h2">
-        {title}
-      </Typography>
-      {subtitle && (
-        <Typography classes={{ root: 'dot-typography' }} variant="body1">
-          {subtitle}
-        </Typography>
-      )}
+      <DotTypography variant="h2">{title}</DotTypography>
+      {subtitle && <DotTypography variant="body1">{subtitle}</DotTypography>}
       {buttonProps && <DotButton {...buttonProps} />}
     </StyledEmptyState>
   );

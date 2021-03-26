@@ -5,7 +5,6 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
-  Typography,
 } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -17,6 +16,7 @@ import {
   StyledList,
   StyledListItem,
 } from './List.styles';
+import { DotTypography } from '../typography/Typography';
 
 export interface ListProps extends CommonProps {
   /** aria-label passed to the list component */
@@ -79,12 +79,7 @@ export const DotList = ({
             <Divider key={index} />
           ) : (
             <ListSubheader key={index}>
-              <Typography
-                classes={{ root: 'dot-typography' }}
-                variant="subtitle2"
-              >
-                {item.text}
-              </Typography>
+              <DotTypography variant="subtitle2">{item.text}</DotTypography>
             </ListSubheader>
           )
         ) : (
@@ -142,10 +137,7 @@ export const DotListItem = ({
           </ListItemIcon>
         )}
         {href || onClick ? (
-          <Typography
-            classes={{ root: 'dot-typography' }}
-            variant={textVariant}
-          >
+          <DotTypography variant={textVariant}>
             <DotLink
               color="inherit"
               href={href}
@@ -155,7 +147,7 @@ export const DotListItem = ({
             >
               {text}
             </DotLink>
-          </Typography>
+          </DotTypography>
         ) : (
           <ListItemText
             primary={text}

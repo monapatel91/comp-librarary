@@ -1,5 +1,5 @@
 import React, { Fragment, MouseEvent, useState } from 'react';
-import { Typography, CardMedia, Menu, MenuItem } from '@material-ui/core';
+import { CardMedia, Menu, MenuItem } from '@material-ui/core';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import styled from 'styled-components';
 
@@ -11,6 +11,7 @@ import { DotAvatar } from '../avatar/Avatar';
 import { DotButton } from '../button/Button';
 import { ReactComponent as CardMediaImage } from '../../assets/empty-state.svg';
 import { DotIconButton } from '../button/IconButton';
+import { DotTypography } from '../typography/Typography';
 
 const headerOnly = 'Header only';
 const headerAndContent = 'Header and content';
@@ -86,7 +87,9 @@ const complexHeader = (
 
 const defaultContent = (
   <DotCardContent>
-    <Typography variant="body1">Do you come to this card often?</Typography>
+    <DotTypography variant="body1">
+      Do you come to this card often?
+    </DotTypography>
   </DotCardContent>
 );
 
@@ -96,14 +99,16 @@ const complexContent = (
       <CardMediaImage />
     </CardMedia>
     <DotCardContent>
-      <Typography variant="body1">These were some very good years.</Typography>
+      <DotTypography variant="body1">
+        These were some very good years.
+      </DotTypography>
     </DotCardContent>
   </Fragment>
 );
 
 const defaultFooter = (
   <DotCardFooter>
-    <Typography variant="body1">This is a footer</Typography>
+    <DotTypography variant="body1">This is a footer</DotTypography>
   </DotCardFooter>
 );
 

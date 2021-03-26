@@ -38,3 +38,4 @@ export * from './switch/Switch';
 export * from './table/Table';
 export * from './table/TableDataWithPagination';
 export * from './table/TablePagination';
+export * from './typography/Typography';

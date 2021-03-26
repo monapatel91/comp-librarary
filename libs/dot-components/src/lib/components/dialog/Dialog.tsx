@@ -1,15 +1,11 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
-import {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Typography,
-} from '@material-ui/core';
+import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { ButtonProps, ButtonType, DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDialog } from './Dialog.styles';
+import { DotTypography } from '../typography/Typography';
 
 export interface DialogButtonProps {
   /** Space delimited CSS classes to be attributed to the button */
@@ -92,9 +88,7 @@ export const DotDialog = ({
         aria-labelledby="MuiDialogTitle-root"
       >
         <DialogTitle disableTypography={true}>
-          <Typography classes={{ root: 'dot-typography' }} variant="h2">
-            {title}
-          </Typography>
+          <DotTypography variant="h2">{title}</DotTypography>
           <DotIconButton iconId="close" onClick={handleClose} size="small" />
         </DialogTitle>
         <DialogContent classes={{ root: `dot-dialog-content` }}>

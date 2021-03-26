@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotActionToolbar, DotActionBarProps } from './ActionToolbar';
-import Typography from '@material-ui/core/Typography';
+import { DotTypography } from '../typography/Typography';
 
 export default {
   title: 'Components/ActionToolbar',
@@ -13,8 +13,8 @@ export default {
 
 export const Default: Story<DotActionBarProps> = (args) => (
   <DotActionToolbar {...args}>
-    <Typography component="h1" variant="h4">
+    <DotTypography component="h1" variant="h4">
       Action toolbar
-    </Typography>
+    </DotTypography>
   </DotActionToolbar>
 );

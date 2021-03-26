@@ -1,9 +1,9 @@
 import React, { MouseEvent } from 'react';
-import { Typography } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledAvatar } from './Avatar.styles';
 import { DotIcon } from '../icon/Icon';
+import { DotTypography } from '../typography/Typography';
 
 type AvatarSize = 'small' | 'medium' | 'large';
 type AvatarType = 'image' | 'text' | 'icon';
@@ -71,14 +71,13 @@ export const DotAvatar = ({
           fontSize={size === 'small' ? size : 'default'}
         />
       ) : type === 'text' ? (
-        <Typography
+        <DotTypography
           variant={
             size === 'small' ? 'caption' : size === 'large' ? 'h1' : 'h3'
           }
-          classes={{ root: 'dot-typography' }}
         >
           {parsedText()}
-        </Typography>
+        </DotTypography>
       ) : null}
     </StyledAvatar>
   );

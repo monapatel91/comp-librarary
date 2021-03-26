@@ -1,6 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Typography } from '@material-ui/core';
 import { DotTable, TableProps, stableSort, getComparator } from './Table';
 import {
   defaultColumns,
@@ -12,6 +11,7 @@ import { Order } from './TableBody';
 import { DotActionToolbar } from '../action-toolbar/ActionToolbar';
 import { DotInputText } from '../input-form-fields/InputText';
 import { DotIcon } from '../icon/Icon';
+import { DotTypography } from '../typography/Typography';
 
 export default {
   title: 'Components/Table',
@@ -68,9 +68,9 @@ export const Default: Story<TableProps> = (args) => {
   const toolbar = (
     <DotActionToolbar>
       <div style={{ width: '50%' }}>
-        <Typography component="h1" variant="h4">
+        <DotTypography component="h1" variant="h4">
           Favorite Heroes
-        </Typography>
+        </DotTypography>
       </div>
       <div style={{ width: '50%' }}>
         <div style={{ float: 'right' }}>
