@@ -1,3 +1,4 @@
+export * from './accordion/Accordion';
 export * from './action-toolbar/ActionToolbar';
 export * from './app-toolbar/AppToolbar';
 export * from './auto-complete/AutoComplete';

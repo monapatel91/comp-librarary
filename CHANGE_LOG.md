@@ -4,6 +4,8 @@
 
 ### Components
 
+> **BREAKING CHANGE: Accordion** - removed unused `id` prop from component
+
 > **BREAKING CHANGE: InputSelect** - removed initial value for `defaultValue`
 
 > **BREAKING CHANGE: All Components** - removed `default` exports from all components
