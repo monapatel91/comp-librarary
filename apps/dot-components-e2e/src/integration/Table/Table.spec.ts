@@ -1,5 +1,7 @@
 describe('dot-components: Table component', () => {
-  before(() => cy.visit('/iframe.html?id=components-table--paginated-table'));
+  before(() =>
+    cy.visit('/iframe.html?id=components-table--locally-paginated-table')
+  );
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-table');

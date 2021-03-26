@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Typography } from '@material-ui/core';
 import { DotTable, TableProps, stableSort, getComparator } from './Table';
@@ -99,7 +99,22 @@ export const Default: Story<TableProps> = (args) => {
   );
 };
 
-export const PaginatedTable: Story<TableProps> = (args) => {
+export const LocallyPaginatedTable: Story<TableProps> = (args) => {
+  return (
+    <DotTable
+      {...args}
+      columns={paginatedColumns}
+      count={paginatedData.length}
+      data={paginatedData}
+      maxHeight="500px"
+      order="asc"
+      orderBy="name"
+      rowsPerPage={10}
+    />
+  );
+};
+
+export const RemotelyPaginatedTable: Story<TableProps> = (args) => {
   const [sortedTableData, setSortedData] = useState(
     stableSort(paginatedData, getComparator('asc', 'name'))
   );
@@ -107,16 +122,23 @@ export const PaginatedTable: Story<TableProps> = (args) => {
     stableSort(paginatedData, getComparator('asc', 'name')).slice(0, 10)
   );
 
-  const onRowClick = (evt, id) => {
-    console.log(id + ' clicked! (cell ' + evt.target.cellIndex + ')');
-  };
-
   const onUpdateData = (
     order: Order,
     orderBy: string,
     page: number,
     rowsPerPage: number
   ) => {
+    console.log(
+      'onUpdateData(order: ' +
+        order +
+        ', orderBy: ' +
+        orderBy +
+        ', page: ' +
+        page +
+        ', rowsPerPage: ' +
+        rowsPerPage +
+        ')'
+    );
     const newData = stableSort(
       paginatedData,
       getComparator(order, orderBy)
@@ -124,11 +146,15 @@ export const PaginatedTable: Story<TableProps> = (args) => {
     setData(newData);
   };
 
+  const onRowClick = (evt: MouseEvent, id: string) => {
+    console.log(id + ' clicked!');
+  };
+
   return (
     <DotTable
       {...args}
       columns={paginatedColumns}
-      count={26}
+      count={paginatedData.length}
       data={data}
       maxHeight="500px"
       onRowClick={onRowClick}
@@ -136,6 +162,6 @@ export const PaginatedTable: Story<TableProps> = (args) => {
       order="asc"
       orderBy="name"
       rowsPerPage={10}
-    ></DotTable>
+    />
   );
 };

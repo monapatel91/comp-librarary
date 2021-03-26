@@ -24,6 +24,7 @@
 - **Table** - added `toolbar` prop
 - **Table** - added `onUpdateData` callback
 - **Table** - added `onRowClick` callback
+- **Table** - locally paginated table (no `onUpdateData` provided) handles sorting and paging internally.
 - **Table** - moved to Components
 - **TablePagination** - added new component
 

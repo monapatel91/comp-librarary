@@ -29,26 +29,36 @@ export interface TableProps extends CommonProps {
   columns: Array<Header>;
   /** Total number of items for paginated table */
   count?: number;
-  /** The table body row data */
+  /** The table body row data.
+      If paging/sorting are managed by consumer (onUpdateData callback provided) this is the data for the current page.
+      If paging/sorting are managed internally (no onUpdateData callback) this is all the data. */
   data: Array<TableRowProps>;
+  /** Message that is shown if data is empty */
   emptyMessage?: string;
+  /** Table is loading */
   loading?: boolean;
-  /** The sort order of table data 'asc', 'desc' */
+  /** Maximum height of table container */
   maxHeight?: string;
+  /** The sort order of table data 'asc', 'desc' */
   order?: Order;
   /** The ID of the column that you are sorting by */
   orderBy?: string;
   /** Row click event callback */
   onRowClick?: (event: MouseEvent, id: string) => void;
+  /** Update data callback if data is managed by consumer */
   onUpdateData?: (
     order: Order,
     orderBy: string,
     page: number,
     rowsPerPage: number
   ) => void;
+  /** Rows per page for paginated table */
   rowsPerPage?: RowsPerPageOption;
+  /** Table is sortable */
   sortable?: boolean;
+  /** Table header is sticky */
   stickyHeader?: boolean;
+  /** Toolbar displayed above column headers */
   toolbar?: JSX.Element;
 }
 
@@ -114,6 +124,14 @@ export const DotTable = ({
   const [tableOrderBy, setOrderBy] = useState(orderBy);
   const [tablePage, setPage] = useState(0);
   const [tableRowsPerPage, setRowsPerPage] = useState(rowsPerPage);
+  const getSortedData = () => {
+    return onUpdateData
+      ? data
+      : stableSort(data, getComparator(order, orderBy));
+  };
+  const [pageData, setPageData] = useState(
+    getSortedData().slice(0, rowsPerPage ? rowsPerPage : data.length)
+  );
 
   const rootClasses = useStylesWithRootClass(
     rootClassName,
@@ -121,19 +139,39 @@ export const DotTable = ({
     loading ? 'loading' : ''
   );
 
+  const updateData = (
+    newOrder: Order,
+    newOrderBy: string,
+    newPage: number,
+    newRowsPerPage: number
+  ) => {
+    const newData = stableSort(data, getComparator(newOrder, newOrderBy));
+    setPageData(
+      newRowsPerPage
+        ? newData.slice(
+            newPage * newRowsPerPage,
+            newPage * newRowsPerPage + newRowsPerPage
+          )
+        : newData
+    );
+  };
+
   const onSortRequest = (property: string) => {
     const isAsc: boolean = tableOrderBy === property && tableOrder === 'asc';
     const dataOrder = isAsc ? 'desc' : 'asc';
     setOrder(dataOrder);
     setOrderBy(property);
     setPage(0);
-    onUpdateData && onUpdateData(dataOrder, property, 0, tableRowsPerPage);
+    onUpdateData
+      ? onUpdateData(dataOrder, property, 0, tableRowsPerPage)
+      : updateData(dataOrder, property, 0, tableRowsPerPage);
   };
 
   const onChangePage = (newPage: number) => {
     setPage(newPage);
-    onUpdateData &&
-      onUpdateData(tableOrder, tableOrderBy, newPage, tableRowsPerPage);
+    onUpdateData
+      ? onUpdateData(tableOrder, tableOrderBy, newPage, tableRowsPerPage)
+      : updateData(tableOrder, tableOrderBy, newPage, tableRowsPerPage);
   };
 
   const onChangeRowsPerPage = (
@@ -145,7 +183,9 @@ export const DotTable = ({
     ) as RowsPerPageOption;
     setRowsPerPage(newRowsPerPage);
     setPage(0);
-    onUpdateData && onUpdateData(tableOrder, tableOrderBy, 0, newRowsPerPage);
+    onUpdateData
+      ? onUpdateData(tableOrder, tableOrderBy, 0, newRowsPerPage)
+      : updateData(tableOrder, tableOrderBy, 0, newRowsPerPage);
   };
 
   const getSkeletonData = () => {
@@ -165,7 +205,7 @@ export const DotTable = ({
   };
 
   const getData = () => {
-    return loading ? getSkeletonData() : data;
+    return loading ? getSkeletonData() : onUpdateData ? data : pageData;
   };
 
   const emptyRows = rowsPerPage ? tableRowsPerPage - data.length : 0;
