@@ -1,5 +1,4 @@
 import React from 'react';
-import '@testing-library/jest-dom';
 import { TextField } from '@material-ui/core';
 import { screen } from '@testing-library/dom';
 import { waitFor } from '@testing-library/react';

@@ -83,6 +83,7 @@ describe('DotAvatar', () => {
       .querySelector('i');
     expect(avatarIcon).toHaveClass('icon-user');
   });
+
   it('should display the "user" icon if type is icon but no icon ID provided', () => {
     render(<DotAvatar data-testid="test-avatar" alt="test" type="icon" />);
     const avatarIcon = screen
@@ -90,6 +91,7 @@ describe('DotAvatar', () => {
       .querySelector('i');
     expect(avatarIcon).toHaveClass('icon-user');
   });
+
   it('should display the image if type is image and source is provided', () => {
     render(
       <DotAvatar

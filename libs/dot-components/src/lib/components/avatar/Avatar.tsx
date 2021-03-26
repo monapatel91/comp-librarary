@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, CSSProperties } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledAvatar } from './Avatar.styles';
@@ -25,6 +25,8 @@ export interface AvatarProps extends CommonProps {
   type?: AvatarType;
   /** The shape of the avatar */
   variant?: 'circle' | 'square';
+  /** To be used to override syles inline */
+  style?: CSSProperties;
 }
 
 export const DotAvatar = ({
@@ -38,6 +40,7 @@ export const DotAvatar = ({
   text,
   type = 'image',
   variant = 'circle',
+  style,
 }: AvatarProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
@@ -63,6 +66,7 @@ export const DotAvatar = ({
       onClick={(event) => (onClick ? onClick(event) : null)}
       src={type === 'image' ? imageSrc : null}
       variant={variant}
+      style={style}
     >
       {type === 'icon' || (type === 'image' && !imageSrc) ? (
         <DotIcon

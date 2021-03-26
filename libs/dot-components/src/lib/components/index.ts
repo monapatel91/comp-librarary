@@ -3,6 +3,7 @@ export * from './action-toolbar/ActionToolbar';
 export * from './app-toolbar/AppToolbar';
 export * from './auto-complete/AutoComplete';
 export * from './avatar/Avatar';
+export * from './avatar-group/AvatarGroup';
 export * from './breadcrumbs/Breadcrumbs';
 export * from './button/Button';
 export * from './button/IconButton';

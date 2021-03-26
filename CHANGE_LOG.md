@@ -14,6 +14,7 @@
 
 > **`dot-` classes applied to native elements** - applied `dot-` classes to native elements to enable usage of `:not` to avoid style conflicts
 
+- **AvatarGroup** - added new component
 - **Menu** - added `disablePortal` prop
 - **Sidebar** - back button is now a custom component with icon button instead of a list item.
 - **Sidebar** - back button now uses `backItemProps` with `text` and `onClick` required
