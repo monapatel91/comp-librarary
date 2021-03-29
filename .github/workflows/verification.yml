@@ -2,41 +2,40 @@ name: Dot Components Verification
 
 on:
   pull_request:
+    types: [ready_for_review]
 
 jobs:
-
   get-version:
     name: Get Version Number for Build
     runs-on: ubuntu-latest
     outputs:
-        version-string: ${{ steps.get_version.outputs.VERSION }}
-    
+      version-string: ${{ steps.get_version.outputs.VERSION }}
+
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: pr-number-action
-      id: get_pr
-      uses: kkak10/pr-number-action@v1.3
-      if: github.event_name == 'pull_request'
+      - name: pr-number-action
+        id: get_pr
+        uses: kkak10/pr-number-action@v1.3
+        if: github.event_name == 'pull_request'
 
-    - name: Get the version
-      id: get_version
-      shell: bash
-      run: |
-        if [ $GITHUB_EVENT_NAME == "pull_request" ]
-        then
-            echo ::set-output name=VERSION::0.0.0.${{ steps.get_pr.outputs.pr }}
-        
-        elif [ $GITHUB_EVENT_NAME == "release" ]
-        then
-            x=${GITHUB_REF/refs\/tags\//}
-            y=${x/-nightly/}
-            echo ::set-output name=VERSION::$y
+      - name: Get the version
+        id: get_version
+        shell: bash
+        run: |
+          if [ $GITHUB_EVENT_NAME == "pull_request" ]
+          then
+              echo ::set-output name=VERSION::0.0.0.${{ steps.get_pr.outputs.pr }}
 
-        else
-            echo ::set-output name=VERSION::0.0.1.0
-        fi      
+          elif [ $GITHUB_EVENT_NAME == "release" ]
+          then
+              x=${GITHUB_REF/refs\/tags\//}
+              y=${x/-nightly/}
+              echo ::set-output name=VERSION::$y
 
+          else
+              echo ::set-output name=VERSION::0.0.1.0
+          fi
 
   verification:
     name: Verification
@@ -87,26 +86,24 @@ jobs:
         env:
           CI: true
 
-
   build-preview:
     needs: [get-version]
     name: Build and Publish Preview Image
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Build and push Docker images for Storybook
-      uses: kciter/aws-ecr-action@v1
-      with:
-        access_key_id: ${{ secrets.GH_AWS_ACCESS_KEY_ID }}
-        secret_access_key: ${{ secrets.GH_AWS_SECRET_ACCESS_KEY }}
-        account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-        repo: storybook
-        region: ${{ secrets.AWS_REGION }}
-        dockerfile: Dockerfile
-        tags: ${{needs.get-version.outputs.version-string}}
-
+      - name: Build and push Docker images for Storybook
+        uses: kciter/aws-ecr-action@v1
+        with:
+          access_key_id: ${{ secrets.GH_AWS_ACCESS_KEY_ID }}
+          secret_access_key: ${{ secrets.GH_AWS_SECRET_ACCESS_KEY }}
+          account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+          repo: storybook
+          region: ${{ secrets.AWS_REGION }}
+          dockerfile: Dockerfile
+          tags: ${{needs.get-version.outputs.version-string}}
 
   deploy-pr:
     needs: [build-preview, get-version, verification]
@@ -117,30 +114,29 @@ jobs:
       url: https://ux-pr${{ steps.get_pr.outputs.pr }}.lisbon-dev.com/
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: pr-number-action
-      id: get_pr
-      uses: kkak10/pr-number-action@v1.3
-      if: github.event_name == 'pull_request'
+      - name: pr-number-action
+        id: get_pr
+        uses: kkak10/pr-number-action@v1.3
+        if: github.event_name == 'pull_request'
 
-    - name: AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.EKS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.EKS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
+      - name: AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.EKS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.EKS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: helm deploy storybook
-      uses: koslibpro/helm-eks-action@v1.4.10
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.EKS_CONFIG }}
-      with:
-        command: helm upgrade ux-pr${{ steps.get_pr.outputs.pr }} --install --create-namespace --namespace=ux-pr${{ steps.get_pr.outputs.pr }} --set image.tag=${{needs.get-version.outputs.version-string}} --set image.sha=${{github.sha}} build/helm/storybook
+      - name: helm deploy storybook
+        uses: koslibpro/helm-eks-action@v1.4.10
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.EKS_CONFIG }}
+        with:
+          command: helm upgrade ux-pr${{ steps.get_pr.outputs.pr }} --install --create-namespace --namespace=ux-pr${{ steps.get_pr.outputs.pr }} --set image.tag=${{needs.get-version.outputs.version-string}} --set image.sha=${{github.sha}} build/helm/storybook
 
-    - name: Add comment to PR
-      uses: github-actions-up-and-running/pr-comment@v1.0.1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        message: 'SHA: ${{github.sha}} has been built and deployed to the test environment. Storybook URL: https://ux-pr${{ steps.get_pr.outputs.pr }}.lisbon-dev.com/ '
-
+      - name: Add comment to PR
+        uses: github-actions-up-and-running/pr-comment@v1.0.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message: 'SHA: ${{github.sha}} has been built and deployed to the test environment. Storybook URL: https://ux-pr${{ steps.get_pr.outputs.pr }}.lisbon-dev.com/ '
