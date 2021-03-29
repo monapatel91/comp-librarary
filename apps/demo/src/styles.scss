@@ -75,6 +75,7 @@ main {
   width: 100vw;
 
   section.main-content {
+    overflow: auto;
     padding: 8px * 2;
     width: 100%;
   }
