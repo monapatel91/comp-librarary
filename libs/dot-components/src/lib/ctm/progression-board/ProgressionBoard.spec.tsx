@@ -44,8 +44,6 @@ describe('ProgressionBoard', () => {
     expect(links[2]).toContainHTML('3.1');
     expect(links[3]).toContainHTML('83 - 100');
 
-    expect(cards[0]).toContainHTML(`<div class="actions-container">`);
-
     expect(cards[0]).toContainHTML(`<i class="icon-error-outlines dot-i">`);
     expect(cards[0]).toContainHTML(`<i class="icon-file-dotted dot-i">`);
     expect(cards[0]).toContainHTML(`<i class="icon-check-solid dot-i">`);
