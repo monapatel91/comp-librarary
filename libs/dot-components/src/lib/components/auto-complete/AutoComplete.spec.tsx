@@ -25,7 +25,9 @@ describe('AutoComplete', () => {
   it('should have unchanged API', () => {
     const onChange = jest.fn();
     const props = {
+      autoFocus: true,
       defaultValue: dummyOptions[0],
+      disabled: true,
       error: false,
       freesolo: false,
       group: true,
@@ -36,11 +38,14 @@ describe('AutoComplete', () => {
       onChange: onChange,
       options: dummyOptions,
       placeholder: 'Select a hero',
+      readOnly: true,
       size: 'medium',
       value: dummyOptions[1],
     };
     const autoCompleteProps: AutoCompleteProps = {
+      autoFocus: true,
       defaultValue: dummyOptions[0],
+      disabled: true,
       error: false,
       freesolo: false,
       group: true,
@@ -51,6 +56,7 @@ describe('AutoComplete', () => {
       onChange: onChange,
       options: dummyOptions,
       placeholder: 'Select a hero',
+      readOnly: true,
       size: 'medium',
       value: dummyOptions[1],
     };
@@ -121,6 +127,22 @@ describe('AutoComplete', () => {
     expect(listBox).toHaveTextContent('Spiderman');
     // option with no group provided
     expect(listBox).toHaveTextContent('Underdog');
+  });
+
+  it('should be disabled', () => {
+    render(
+      <DotAutoComplete
+        data-testid="autocomplete-input-field"
+        disabled={true}
+        group={true}
+        inputId="input-id"
+        label="Label"
+        options={dummyOptions}
+        placeholder="Choose your hero"
+      />
+    );
+    const textField = screen.getByRole('textbox');
+    expect(textField).toBeDisabled();
   });
 
   it('should allow arbitrary value when enabled', () => {

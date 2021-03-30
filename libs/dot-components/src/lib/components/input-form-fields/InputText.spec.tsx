@@ -3,26 +3,59 @@ import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import { DotInputText, InputTextProps } from './InputText';
+import { DotIcon } from '../icon/Icon';
+
+const mockFunc = jest.fn();
 
 describe('DotInputText', () => {
   it('should have unchanged API', () => {
     const props = {
+      autoFocus: true,
+      defaultValue: 'Batman',
+      disabled: true,
+      endIcon: <DotIcon iconId="save" />,
+      error: true,
+      fullWidth: true,
+      helperText: 'help me',
       id: 'text-id',
+      label: 'text label',
       multiline: true,
       name: 'my-text',
+      onChange: mockFunc,
       placeholder: 'Enter something',
+      readOnly: true,
       required: true,
       rows: 5,
       rowsMax: 15,
+      size: 'small',
+      startIcon: <DotIcon iconId="save" />,
+      type: 'text',
+      value: 'Batman',
+      warning: false,
     };
     const inputTextProps: InputTextProps = {
+      autoFocus: true,
+      defaultValue: 'Batman',
+      disabled: true,
+      endIcon: <DotIcon iconId="save" />,
+      error: true,
+      fullWidth: true,
+      helperText: 'help me',
       id: 'text-id',
+      label: 'text label',
       multiline: true,
       name: 'my-text',
+      onChange: mockFunc,
       placeholder: 'Enter something',
+      readOnly: true,
       required: true,
       rows: 5,
       rowsMax: 15,
+      size: 'small',
+      startIcon: <DotIcon iconId="save" />,
+      type: 'text',
+      value: 'Batman',
+      warning: false,
     };
     expect(inputTextProps).toEqual(props);
   });
@@ -114,5 +147,32 @@ describe('DotInputText', () => {
     const input = screen.getByTestId('test-input');
     expect(input.tagName).not.toBe('TEXTAREA');
     expect(input.tagName).toBe('INPUT');
+  });
+
+  it('should be enabled', () => {
+    render(
+      <DotInputText
+        data-testid="test-input"
+        id="id-test"
+        label="Test"
+        name="test"
+      />
+    );
+    const inputField = screen.getByTestId('test-input');
+    expect(inputField).toBeEnabled();
+  });
+
+  it('should be disabled', () => {
+    render(
+      <DotInputText
+        disabled={true}
+        data-testid="test-input"
+        id="id-test"
+        label="Test"
+        name="test"
+      />
+    );
+    const inputField = screen.getByTestId('test-input');
+    expect(inputField).toBeDisabled();
   });
 });

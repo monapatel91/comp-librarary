@@ -7,6 +7,8 @@ export interface InputProps extends CommonProps {
   autoFocus?: boolean;
   /** default value of the input element */
   defaultValue?: string;
+  /** If true, the input will be disabled. */
+  disabled?: boolean;
   /** Icon placed after the children. */
   endIcon?: JSX.Element;
   /** If true, the label will be displayed in an error state. */

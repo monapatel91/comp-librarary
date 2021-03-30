@@ -1,5 +1,21 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **AutoComplete** - added `disabled` prop
+- **AutoComplete** - added `autoFocus` prop
+- **InputSelect** - added `disabled` prop
+- **InputText** - added `disabled` prop
+- **InputText** - added `readOnly` prop
+- **InputText** - hard coded `autoComplete` to `off`
+
+### Experimental
+
+- **InlineEdit** - added `readOnly` prop
+- **InlineEdit** - hard coded `autoComplete` to `off`
+
 ## 0.0.0-alpha.14
 
 ### Components

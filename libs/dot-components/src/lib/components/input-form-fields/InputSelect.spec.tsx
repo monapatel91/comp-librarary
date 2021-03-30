@@ -3,11 +3,55 @@ import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen, fireEvent } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 
-import { DotInputSelect } from './InputSelect';
+import { DotInputSelect, InputSelectProps } from './InputSelect';
+import { DotIcon } from '../icon/Icon';
 
 const sampleOptions = ['Batman', 'Ironman', 'Superman'];
+const mockFunc = jest.fn();
 
 describe('DotInputSelect', () => {
+  it('should have unchanged API', () => {
+    const props = {
+      autoFocus: true,
+      defaultValue: 'Batman',
+      disabled: true,
+      endIcon: <DotIcon iconId="save" />,
+      error: true,
+      fullWidth: true,
+      helperText: 'help me',
+      id: 'text-id',
+      label: 'select label',
+      name: 'my-text',
+      onChange: mockFunc,
+      options: ['Batman', 'Superman'],
+      required: true,
+      size: 'small',
+      startIcon: <DotIcon iconId="save" />,
+      value: 'Batman',
+      warning: false,
+    };
+    const inputSelectProps: InputSelectProps = {
+      autoFocus: true,
+      defaultValue: 'Batman',
+      disabled: true,
+      endIcon: <DotIcon iconId="save" />,
+      error: true,
+      fullWidth: true,
+      helperText: 'help me',
+      id: 'text-id',
+      label: 'select label',
+      name: 'my-text',
+      onChange: mockFunc,
+      options: ['Batman', 'Superman'],
+      required: true,
+      size: 'small',
+      startIcon: <DotIcon iconId="save" />,
+      value: 'Batman',
+      warning: false,
+    };
+    expect(inputSelectProps).toEqual(props);
+  });
+
   it('renders successfully', () => {
     const { baseElement } = render(
       <DotInputSelect
@@ -16,6 +60,7 @@ describe('DotInputSelect', () => {
         name="bar"
         required={false}
         options={sampleOptions}
+        value="Batman"
       />
     );
     expect(baseElement).toBeTruthy();
@@ -29,6 +74,7 @@ describe('DotInputSelect', () => {
         name="foo"
         required={false}
         options={sampleOptions}
+        value="Batman"
       />
     );
 
@@ -46,11 +92,43 @@ describe('DotInputSelect', () => {
         required={false}
         options={sampleOptions}
         onChange={onChange}
+        value="Batman"
       />
     );
     const inputField = screen.getByRole('combobox');
 
     fireEvent.change(inputField, { targe: { value: 'Ironman' } });
     expect(onChange).toHaveBeenCalled();
+  });
+
+  it('should be enabled', () => {
+    render(
+      <DotInputSelect
+        id="test-id"
+        label="Foo Bar"
+        name="foo"
+        required={false}
+        options={sampleOptions}
+        value="Batman"
+      />
+    );
+    const inputField = screen.getByRole('combobox');
+    expect(inputField).toBeEnabled();
+  });
+
+  it('should be disabled', () => {
+    render(
+      <DotInputSelect
+        disabled={true}
+        id="test-id"
+        label="Foo Bar"
+        name="foo"
+        required={false}
+        options={sampleOptions}
+        value="Batman"
+      />
+    );
+    const inputField = screen.getByRole('combobox');
+    expect(inputField).toBeDisabled();
   });
 });

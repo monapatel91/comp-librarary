@@ -18,6 +18,7 @@ interface FormState {
   superHero: string;
   favTrait: Array<CheckboxProps>;
   childhoodHero: boolean;
+  cartoonComments: string;
   commentField: string;
 }
 
@@ -36,6 +37,7 @@ const initialFormState: FormState = {
   superHero: '',
   favTrait: [],
   childhoodHero: false,
+  cartoonComments: '',
   commentField: '',
 };
 
@@ -51,6 +53,7 @@ export const DemoForm = () => {
     superHero,
     favTrait,
     childhoodHero,
+    cartoonComments,
     commentField,
   } = formValues;
 
@@ -68,8 +71,12 @@ export const DemoForm = () => {
     const formErrors: ErrorState = {};
 
     Object.keys(initialFormState).forEach((keyVal) => {
-      // if field is blank, throw an error
-      if (formValues[keyVal] === '') {
+      // if field is blank and required, throw an error
+      if (
+        keyVal !== 'cartoonComments' &&
+        keyVal !== 'commentField' &&
+        formValues[keyVal] === ''
+      ) {
         hasError = true;
         formErrors[keyVal] = `Must not be blank`;
       }
@@ -184,6 +191,16 @@ export const DemoForm = () => {
               childhoodHero: event.target.checked,
             }))
           }
+        />
+
+        <DotInputText
+          disabled={!childhoodHero}
+          id="cartoonComments"
+          label="Cartoon Comments"
+          name="cartoonComments"
+          size="small"
+          value={cartoonComments}
+          onChange={(event) => handleChange(event)}
         />
 
         <DotInputText

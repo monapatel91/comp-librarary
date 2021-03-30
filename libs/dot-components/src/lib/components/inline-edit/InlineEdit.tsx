@@ -27,6 +27,8 @@ export interface InlineEditProps extends CommonProps {
   onEditStateChange?: (editing: boolean) => void;
   /** A function that informs the parent when label is being updated */
   onLabelChange?: (name: string) => Promise<string | null>;
+  /** If true, the input will be read-only. */
+  readOnly?: boolean;
   /** If true, the input will be required and label will display accordingly */
   required: boolean;
   /** Size of the input */
@@ -49,6 +51,7 @@ export const DotInlineEdit = ({
   name,
   onEditStateChange = undefined,
   onLabelChange = undefined,
+  readOnly = false,
   required = false,
   size = 'small',
   value = '',
@@ -120,6 +123,7 @@ export const DotInlineEdit = ({
     >
       <TextField
         aria-label={name}
+        autoComplete="off"
         autoFocus={autoFocus}
         disabled={disabled}
         error={error}
@@ -128,6 +132,7 @@ export const DotInlineEdit = ({
         inputProps={{
           'data-testid': dataTestId,
           className: 'dot-input',
+          readOnly: readOnly,
         }}
         InputProps={{
           endAdornment: (

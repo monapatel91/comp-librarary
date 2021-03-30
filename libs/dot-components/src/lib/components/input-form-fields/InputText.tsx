@@ -12,7 +12,10 @@ import {
 export interface InputTextProps extends InputProps {
   /** if multiline it wil render multiple lines */
   multiline?: boolean;
+  /** Placeholder text always displayed inside the input field */
   placeholder?: string;
+  /** If true, the input will be read-only. */
+  readOnly?: boolean;
   /** number of rows for multiline line */
   rows?: number;
   /** max of rows for multiline line */
@@ -26,6 +29,7 @@ export const DotInputText = ({
   className,
   defaultValue,
   'data-testid': dataTestId,
+  disabled = false,
   error = false,
   fullWidth = true,
   helperText,
@@ -36,6 +40,7 @@ export const DotInputText = ({
   name,
   onChange,
   placeholder,
+  readOnly = false,
   required = false,
   rows,
   rowsMax,
@@ -56,15 +61,18 @@ export const DotInputText = ({
     <StyledTextField
       id={id}
       aria-label={name}
+      autoComplete="off"
       autoFocus={autoFocus}
       classes={{ root: rootStyles }}
       defaultValue={defaultValue}
+      disabled={disabled}
       error={error}
       fullWidth={fullWidth}
       helperText={helperText}
       inputProps={{
         'data-testid': dataTestId,
         className: 'dot-input',
+        readOnly: readOnly,
       }}
       InputProps={{
         startAdornment: startIcon && (

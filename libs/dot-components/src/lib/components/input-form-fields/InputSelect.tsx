@@ -19,6 +19,7 @@ export const DotInputSelect = ({
   autoFocus,
   className,
   'data-testid': dataTestId,
+  disabled = false,
   endIcon,
   error = false,
   fullWidth = true,
@@ -44,6 +45,7 @@ export const DotInputSelect = ({
       autoFocus={autoFocus}
       className={`${rootStyles} ${hasWarning}`}
       defaultValue={defaultValue}
+      disabled={disabled}
       value={value}
       error={error}
       fullWidth={fullWidth}

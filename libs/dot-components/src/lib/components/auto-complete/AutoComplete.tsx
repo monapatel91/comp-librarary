@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { Autocomplete } from '@material-ui/lab';
+import { Autocomplete, AutocompleteRenderInputParams } from '@material-ui/lab';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotChip } from '../chip/Chip';
@@ -37,8 +37,12 @@ export const parseAutoCompleteValue = (value) => {
 };
 
 export interface AutoCompleteProps extends CommonProps {
+  /** This prop helps users to fill forms faster */
+  autoFocus?: boolean;
   /** default option that is selected */
   defaultValue?: AutoCompleteOption | AutoCompleteOption[];
+  /** If true, the input will be disabled. */
+  disabled?: boolean;
   /** If true, the input will be displayed in an error state. */
   error?: boolean;
   /** If true, any arbitrary value can be typed in the field */
@@ -60,6 +64,8 @@ export interface AutoCompleteProps extends CommonProps {
   options: Array<AutoCompleteOption>;
   /** Placeholder text always displayed inside the input field */
   placeholder?: string;
+  /** If true, the input will be read-only. */
+  readOnly?: boolean;
   /** Determines the padding within the input field 'medium' or 'small' */
   size?: autoCompleteSize;
   /** value if this is a controlled component */
@@ -67,9 +73,11 @@ export interface AutoCompleteProps extends CommonProps {
 }
 
 export const DotAutoComplete = ({
+  autoFocus,
   className,
   'data-testid': dataTestId,
   defaultValue,
+  disabled = false,
   error = false,
   freesolo = true,
   group = false,
@@ -80,6 +88,7 @@ export const DotAutoComplete = ({
   onChange,
   options,
   placeholder,
+  readOnly = false,
   size = 'small',
   value,
 }: AutoCompleteProps) => {
@@ -109,10 +118,17 @@ export const DotAutoComplete = ({
         })
       : options;
   };
+  // Add readOnly to inputProps already used to support Autocomplete
+  const getInputProps = (params: AutocompleteRenderInputParams) => {
+    params.inputProps['readOnly'] = readOnly;
+    return params.inputProps;
+  };
+
   return (
     <Autocomplete
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
+      disabled={disabled}
       multiple={multiple}
       options={sortOptions()}
       defaultValue={defaultValue}
@@ -145,10 +161,12 @@ export const DotAutoComplete = ({
 
         <StyledTextField
           {...params}
+          autoFocus={autoFocus}
           classes={{ root: textFieldRootClasses }}
           error={error}
           helperText={helperText}
           id={inputId}
+          inputProps={getInputProps({ ...params })}
           label={label}
           name={label}
           placeholder={showPlaceholder ? placeholder : undefined}
