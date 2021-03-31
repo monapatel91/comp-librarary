@@ -30,7 +30,7 @@ For example, suppose the application includes global styling like this:
 
 ```css
 input {
-  background-color: red !important;
+  background-color: red;
 }
 ```
 
@@ -38,7 +38,7 @@ To override this styling for `dot-components`, this could be changed to:
 
 ```css
 input:not(.dot-input) {
-  background-color: red !important;
+  background-color: red;
 }
 ```
 
@@ -66,7 +66,7 @@ If you're using the `DotIcon` component then you do not need to pass in the `ico
 
 ## Contributing
 
-[Learn about how to contribute](https://zeroheight.com/4a9ac476a/p/50279a-developers/b/255d47)
+[Learn about how to contribute](https://zeroheight.com/4a9ac476a/p/50279a-developers/b/631dc3)
 
 ## Change Log
 
