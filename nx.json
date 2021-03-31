@@ -45,6 +45,13 @@
     },
     "testing-utils": {
       "tags": []
+    },
+    "vsm-hub": {
+      "tags": []
+    },
+    "vsm-hub-e2e": {
+      "tags": [],
+      "implicitDependencies": ["vsm-hub"]
     }
   }
 }

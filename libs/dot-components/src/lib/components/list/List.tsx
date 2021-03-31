@@ -46,6 +46,8 @@ export interface ListItemProps extends CommonProps {
   items?: Array<ListItemProps>;
   /** Event callback */
   onClick?: (event: MouseEvent) => void;
+  /** Selected list item */
+  selected?: boolean;
   /** Text which is displayed in the list item */
   text?: string;
   /** The tooltip text displayed on hover */
@@ -78,7 +80,7 @@ export const DotList = ({
           !item.text ? (
             <Divider key={index} />
           ) : (
-            <ListSubheader key={index}>
+            <ListSubheader disableSticky key={index}>
               <DotTypography variant="subtitle2">{item.text}</DotTypography>
             </ListSubheader>
           )
@@ -91,6 +93,7 @@ export const DotList = ({
             items={item.items}
             onClick={item.onClick}
             key={index}
+            selected={item.selected}
             text={item.text}
             title={item.title}
           />
@@ -110,6 +113,7 @@ export const DotListItem = ({
   iconId,
   onClick,
   items = [],
+  selected,
   text,
   title,
 }: ListItemProps) => {
@@ -136,6 +140,7 @@ export const DotListItem = ({
         data-testid={dataTestId}
         divider={divider}
         onClick={handleClick}
+        selected={selected}
       >
         {href || onClick ? (
           <DotLink

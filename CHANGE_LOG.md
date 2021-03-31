@@ -10,6 +10,7 @@
 - **InputText** - added `disabled` prop
 - **InputText** - added `readOnly` prop
 - **InputText** - hard coded `autoComplete` to `off`
+- **ListItem** - added `selected` prop
 
 ### Experimental
 
