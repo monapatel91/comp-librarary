@@ -131,6 +131,19 @@ const agilityLightTheme = createMuiTheme({
       unknown: '#4B626D',
       unknownHover: '#71828B',
     },
+    layer: {
+      n0: '#E6F0F4', // level-0
+      n50: lightColors.n0, // level-1
+      n100: '#C3DBE4', // level-2
+      n200: '#9FC5D5', // level-3
+      n300: '#7CB0C5',
+      n400: '#589BB6', // text-3
+      n500: '#438098', // text-2
+      n600: '#326174', // text-1
+      n700: '#244451', // text-0
+      n800: '#14262E',
+      n900: '#000',
+    },
     progressionBoard: {
       board: lightColors.n0,
       boardColumn: '#C3DBE4',
@@ -177,6 +190,19 @@ const agilityDarkTheme = createMuiTheme({
       thumbsDown: '#CE93D8',
       unknown: '#B7C6CD',
       unknownHover: '#88979D',
+    },
+    layer: {
+      n0: '#050A0A', // level-0
+      n50: '#14262E', // level-1
+      n100: '#244451', // level-2
+      n200: '#336275', // level-3
+      n300: '#7CB0C5',
+      n400: '#9FC5D5', // text-3
+      n500: '#E6F0F4', // text-2
+      n600: '#C3DBE4', // text-1
+      n700: lightColors.n0, // text-0
+      n800: lightColors.n0,
+      n900: lightColors.n0,
     },
     progressionBoard: {
       board: '#050A0A',

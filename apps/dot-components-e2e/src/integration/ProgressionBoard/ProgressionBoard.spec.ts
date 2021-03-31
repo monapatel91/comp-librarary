@@ -9,6 +9,10 @@ describe('dot-components: Progression Board component', () => {
       cy.get('li.maintain').should('have.css', 'color', 'rgb(214, 31, 33)');
     });
 
+    it('should have correct text color in tooltip', () => {
+      cy.get('.wi-tooltip').should('have.css', 'color', 'rgb(255, 255, 255)');
+    });
+
     it('should have red icon in tooltip', () => {
       cy.get('li.maintain').first().trigger('mouseover');
       cy.get('.dot-icon.maintain i')

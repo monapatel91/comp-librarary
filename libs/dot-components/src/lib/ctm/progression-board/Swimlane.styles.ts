@@ -208,6 +208,8 @@ export const StyledProgressionSwimlane = styled.div`
                   }
                 }
 
+                // instead of #fff, need to use theme.palette.progressionBoard.card
+                // will be resolved when updated to icon instead of gradient
                 &.split {
                   background: linear-gradient(
                     -45deg,
