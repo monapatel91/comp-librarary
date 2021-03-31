@@ -121,6 +121,12 @@ export const DotListItem = ({
     setOpen(!open);
   };
 
+  const startIcon = (
+    <ListItemIcon>
+      <DotIcon iconId={iconId} />
+    </ListItemIcon>
+  );
+
   return (
     <>
       <StyledListItem
@@ -131,28 +137,25 @@ export const DotListItem = ({
         divider={divider}
         onClick={handleClick}
       >
-        {iconId && (
-          <ListItemIcon>
-            <DotIcon iconId={iconId} />
-          </ListItemIcon>
-        )}
         {href || onClick ? (
-          <DotTypography variant={textVariant}>
-            <DotLink
-              color="inherit"
-              href={href}
-              onClick={onClick}
-              underline="none"
-              title={title}
-            >
-              {text}
-            </DotLink>
-          </DotTypography>
+          <DotLink
+            color="inherit"
+            href={href}
+            onClick={onClick}
+            underline="none"
+            title={title}
+          >
+            {iconId && startIcon}
+            <DotTypography variant={textVariant}>{text}</DotTypography>
+          </DotLink>
         ) : (
-          <ListItemText
-            primary={text}
-            primaryTypographyProps={{ variant: textVariant }}
-          />
+          <>
+            {iconId && startIcon}
+            <ListItemText
+              primary={text}
+              primaryTypographyProps={{ variant: textVariant }}
+            />
+          </>
         )}
         {items.length > 0 && (
           <DotIcon

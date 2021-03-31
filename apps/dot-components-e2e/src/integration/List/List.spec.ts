@@ -12,7 +12,7 @@ describe('dot-components: List component', () => {
 
   describe('style decisions', () => {
     it('font format', () => {
-      cy.get('a.dot-link').should('have.css', 'color', 'rgb(59, 72, 92)');
+      cy.get('a.dot-link p').should('have.css', 'color', 'rgb(59, 72, 92)');
     });
   });
 });

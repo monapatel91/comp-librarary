@@ -260,10 +260,12 @@ const darkTheme = createMuiTheme({
     },
     layer: {
       n0: lightColors.n0, // text-0
+      n50: lightColors.n0, // TBD - UX
       n100: '#B8C0C7', // text-1
       n200: lightColors.n300, // text-2
       n300: '#A9AEB3', // text-3
       n400: '#727A83',
+      n500: '#30363D', // TBD - UX
       n600: '#30363D', // level-3
       n700: '#21272D', // level-2
       n800: '#171B22', // level-1

@@ -34,11 +34,9 @@ export const StyledListItem = styled(ListItem)`
   ${({ theme }) =>
     css`
       &.${listItemRootClass} {
-        display: flex;
-        justify-content: space-between;
-
-        .MuiTypography-root {
-          flex-grow: 2;
+        .dot-link {
+          align-items: center;
+          display: flex;
         }
 
         .dot-icon i:before {
