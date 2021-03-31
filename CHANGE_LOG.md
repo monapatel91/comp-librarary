@@ -32,6 +32,7 @@
 
 - **AvatarGroup** - added new component
 - **Menu** - added `disablePortal` prop
+- **Pill**: added `Pill` to the list of exported component from the library
 - **Sidebar** - back button is now a custom component with icon button instead of a list item.
 - **Sidebar** - back button now uses `backItemProps` with `text` and `onClick` required
 - **Table** - removed `page` prop

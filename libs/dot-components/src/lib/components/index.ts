@@ -27,6 +27,7 @@ export * from './link/Link';
 export * from './list/List';
 export * from './menu/Menu';
 export * from './phase-header/PhaseHeader';
+export * from './pill/Pill';
 export * from './progress/Progress';
 export * from './radio/RadioButton';
 export * from './radio/RadioGroup';
