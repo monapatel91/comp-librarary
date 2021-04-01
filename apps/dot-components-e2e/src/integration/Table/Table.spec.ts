@@ -20,6 +20,14 @@ describe('dot-components: Table component', () => {
   });
 
   describe('style decisions', () => {
+    it('table container', () => {
+      cy.get('.MuiPaper-root').should(
+        'have.css',
+        'border',
+        '1px solid rgb(193, 198, 205)'
+      );
+    });
+
     it('table header', () => {
       cy.get('.MuiTableCell-head')
         .should('have.css', 'color', 'rgb(59, 72, 92)')

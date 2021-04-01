@@ -6,7 +6,7 @@ export const rootClassName = 'dot-table';
 export const StyledPaper = styled(Paper)`
   ${({ theme }) => css`
     &.dot-table {
-      border: 1px solid ${theme.palette.grey[300]};
+      border: 1px solid ${theme.palette.grey[200]};
 
       // while loading, change opacity, disable pointer events
       // and hide pagination.
@@ -33,6 +33,10 @@ export const StyledTableContainer = styled(TableContainer)`
         background-color: ${theme.palette.grey[50]};
       }
 
+      table:not(.dot-table-paginated) tr:last-child td {
+        border-bottom: none;
+      }
+
       table {
         thead,
         th {
@@ -49,6 +53,10 @@ export const StyledTableContainer = styled(TableContainer)`
 
         .MuiTableRow-head {
           height: 56px;
+        }
+
+        .MuiTableCell-root {
+          border-bottom: 1px solid ${theme.palette.grey[200]};
         }
 
         .MuiTableRow-root {

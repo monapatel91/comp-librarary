@@ -209,6 +209,10 @@ export const DotTable = ({
   };
 
   const emptyRows = rowsPerPage ? tableRowsPerPage - data.length : 0;
+  const tableClasses = useStylesWithRootClass(
+    'dot-table',
+    rowsPerPage ? 'dot-table-paginated' : ''
+  );
 
   return (
     <StyledPaper className={rootClasses} elevation={0}>
@@ -220,7 +224,7 @@ export const DotTable = ({
       >
         <Table
           aria-label={ariaLabel}
-          className="dot-table"
+          className={tableClasses}
           padding="default"
           stickyHeader={stickyHeader}
         >
