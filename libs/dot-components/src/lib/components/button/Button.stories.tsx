@@ -1,7 +1,9 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-
+import { DotIcon } from '../icon/Icon';
 import { DotButton, ButtonProps } from './Button';
+
+const iconOptions = [null, 'notification-bell', 'help'];
 
 export default {
   title: 'Components/Button',
@@ -10,11 +12,15 @@ export default {
     children: {
       defaultValue: 'Button',
     },
+    endIcon: {
+      control: { type: 'select', options: iconOptions },
+    },
     onClick: {
       action: 'clicked',
     },
-    iconId: {
-      defaultValue: '',
+    startIcon: {
+      control: { type: 'select', options: iconOptions },
+      defaultValue: 'help',
     },
     type: {
       defaultValue: 'primary',
@@ -22,4 +28,11 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<ButtonProps> = (args) => <DotButton {...args} />;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Default: Story<ButtonProps> = (args: any) => {
+  const { endIcon: endIconId } = args;
+  const { startIcon: startIconId } = args;
+  const startIcon = startIconId && <DotIcon iconId={startIconId} />;
+  const endIcon = endIconId && <DotIcon iconId={endIconId} />;
+  return <DotButton {...args} endIcon={endIcon} startIcon={startIcon} />;
+};

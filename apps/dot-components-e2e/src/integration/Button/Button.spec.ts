@@ -10,6 +10,10 @@ describe('dot-components: Button component', () => {
   });
 
   describe('style decisions', () => {
+    it('icon should be vertically centered', () => {
+      cy.get('.dot-icon i').should('have.css', 'height', '35px');
+    });
+
     it('button is correct size', () => {
       cy.get('button.dot-button')
         .should('have.css', 'padding-top', '6px')

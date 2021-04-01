@@ -20,6 +20,10 @@ export const StyledButton = styled(Button)`
 
     span.dot-icon {
       padding: 0;
+
+      i {
+        height: auto;
+      }
     }
   `}
 `;
