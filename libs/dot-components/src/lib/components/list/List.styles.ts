@@ -37,6 +37,7 @@ export const StyledListItem = styled(ListItem)`
         .dot-link {
           align-items: center;
           display: flex;
+          flex-grow: 2;
         }
 
         .dot-icon i:before {

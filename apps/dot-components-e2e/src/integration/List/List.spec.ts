@@ -1,3 +1,5 @@
+import { grey } from '@material-ui/core/colors';
+
 describe('dot-components: List component', () => {
   before(() => cy.visit('/iframe.html?id=experimental-list--default'));
 
@@ -11,6 +13,10 @@ describe('dot-components: List component', () => {
   });
 
   describe('style decisions', () => {
+    it('toggle icon is pushed to the right', () => {
+      cy.get('a.dot-link').should('have.css', 'flex-grow', '2');
+    });
+
     it('font format', () => {
       cy.get('a.dot-link p').should('have.css', 'color', 'rgb(59, 72, 92)');
     });
