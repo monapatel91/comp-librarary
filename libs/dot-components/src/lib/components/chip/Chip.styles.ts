@@ -8,6 +8,10 @@ export const StyledChip = styled(Chip)`
     &.${rootClassName} {
       border-color: ${theme.palette.grey[300]};
 
+      .dot-icon i {
+        height: auto;
+      }
+
       &.MuiChip-sizeSmall {
         .dot-icon,
         .dot-avatar {

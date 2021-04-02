@@ -37,7 +37,7 @@ export const DotAvatar = ({
   imageSrc,
   onClick,
   size = 'medium',
-  text,
+  text = alt,
   type = 'image',
   variant = 'circle',
   style,

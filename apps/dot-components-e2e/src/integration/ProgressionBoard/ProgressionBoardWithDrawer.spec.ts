@@ -1,4 +1,4 @@
-describe('dot-components: Progression Board component', () => {
+xdescribe('dot-components: Progression Board component', () => {
   const drawerPaperClass = '.dot-drawer-paper';
   const drawerContentDescription = '.drawer-content-description';
   const drawerContentOwner = '.drawer-content-owner';

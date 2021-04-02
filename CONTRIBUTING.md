@@ -1,6 +1,7 @@
 # Contributing to @digital-ai/dot-components
 
 - [Getting Started](#getting-started)
+  - [Running on Windows](#running-on-windows)
   - [Run demo application](#run-demo-application)
   - [Run Storybook](#run-storybook)
 - [Code Styleguide](#code-styleguide)
@@ -33,6 +34,10 @@
     - [Publish Storybook Site](#publish-storybook-site)
 
 # Getting Started
+
+## Running on Windows
+
+You may run into an issue with our `pre-commit` hook, if so please follow these [directions](https://typicode.github.io/husky/#/?id=yarn-on-windows)
 
 ## Run demo application
 

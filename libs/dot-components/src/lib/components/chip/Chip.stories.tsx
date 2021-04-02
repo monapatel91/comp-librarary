@@ -20,13 +20,13 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<ChipProps> = (args) => (
+export const Default: Story<ChipProps> = (args) => <DotChip {...args} />;
+export const ChipWithAvatar: Story<ChipProps> = (args) => (
   <DotChip
-    avatar={<DotAvatar alt="Batman" size="small" />}
-    startIcon={null}
+    avatar={<DotAvatar alt="Batman" size="small" type="text" />}
     {...args}
   />
 );
 export const ChipWithIcon: Story<ChipProps> = (args) => (
-  <DotChip avatar={null} startIcon={<DotIcon iconId="home" />} {...args} />
+  <DotChip startIcon={<DotIcon iconId="home" />} {...args} />
 );

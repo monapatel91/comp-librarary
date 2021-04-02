@@ -1,5 +1,3 @@
-import { grey } from '@material-ui/core/colors';
-
 describe('dot-components: List component', () => {
   before(() => cy.visit('/iframe.html?id=experimental-list--default'));
 

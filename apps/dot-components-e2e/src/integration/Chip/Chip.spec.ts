@@ -6,18 +6,10 @@ describe('dot-components: Chip component', () => {
   });
 
   it('should render the component', () => {
-    cy.get('div').should('have.class', 'MuiAvatar-root');
     cy.get('div').should('contain', 'Hello World');
   });
 
   describe('style decisions', () => {
-    it('avatar size and spacing is correct', () => {
-      cy.get('div.dot-chip div.dot-avatar')
-        .should('have.css', 'height', '24px')
-        .and('have.css', 'width', '24px')
-        .and('have.css', 'margin-left', '4px');
-    });
-
     it('label size and spacing is correct', () => {
       cy.get('div.dot-chip span.MuiChip-label')
         .should('have.css', 'padding-left', '12px')
@@ -29,6 +21,19 @@ describe('dot-components: Chip component', () => {
         .should('have.css', 'height', '18px')
         .and('have.css', 'width', '18px')
         .and('have.css', 'margin-right', '5px');
+    });
+  });
+});
+
+xdescribe('dot-components: Chip component with Avatar', () => {
+  before(() => cy.visit('/iframe.html?id=components-chip--chip-with-avatar'));
+  describe('style decisions', () => {
+    it('avatar size and spacing is correct', () => {
+      cy.get('div').should('have.class', 'MuiAvatar-root');
+      cy.get('div.dot-chip div.dot-avatar')
+        .should('have.css', 'height', '24px')
+        .and('have.css', 'width', '24px')
+        .and('have.css', 'margin-left', '4px');
     });
   });
 });
