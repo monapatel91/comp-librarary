@@ -3,7 +3,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledSkeleton } from './Skeleton.styles';
 
-export type SkeletonVariantType = 'circle' | 'rect' | 'text';
+export type SkeletonVariantType = 'circular' | 'rectangular' | 'text';
 
 export interface SkeletonProps extends CommonProps {
   /** component(s) inside a skeleton will constrain the size/shape */
@@ -12,7 +12,7 @@ export interface SkeletonProps extends CommonProps {
   height?: number | string;
   /** Determine width of skeleton */
   width?: number | string;
-  /** Control shape of skeleton 'circle', 'rect', 'text' */
+  /** Control shape of skeleton */
   variant?: SkeletonVariantType;
 }
 
@@ -25,6 +25,14 @@ export const DotSkeleton = ({
   variant,
 }: SkeletonProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
+  // When we upgrade to Material UI v5 this must be removed!
+  const skeletonVariant = variant
+    ? variant === 'circular'
+      ? 'circle'
+      : variant === 'rectangular'
+      ? 'rect'
+      : variant
+    : null;
   return (
     <StyledSkeleton
       animation="wave"
@@ -32,7 +40,7 @@ export const DotSkeleton = ({
       data-testid={dataTestId}
       height={height}
       width={width}
-      variant={variant}
+      variant={skeletonVariant}
     >
       {children}
     </StyledSkeleton>

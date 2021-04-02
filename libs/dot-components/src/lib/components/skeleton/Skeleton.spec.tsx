@@ -8,13 +8,13 @@ describe('Skeleton', () => {
       children: <div></div>,
       height: 50,
       width: 50,
-      variant: 'rect',
+      variant: 'rectangular',
     };
     const skeletonProps: SkeletonProps = {
       children: <div></div>,
       height: 50,
       width: 50,
-      variant: 'rect',
+      variant: 'rectangular',
     };
     expect(skeletonProps).toEqual(props);
   });

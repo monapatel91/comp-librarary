@@ -6,6 +6,8 @@
 
 > **BREAKING CHANGE: Avatar** - update `variant` prop to accept `circular` instead of `circle` as per it being deprecated in v5.
 
+> **BREAKING CHANGE: Skeleton** - changed `variant` prop to take `circular` and `rectangular` rather than `circle` and `rect`
+
 - **AutoComplete** - added `disabled` prop
 - **AutoComplete** - added `autoFocus` prop
 - **InputSelect** - added `disabled` prop

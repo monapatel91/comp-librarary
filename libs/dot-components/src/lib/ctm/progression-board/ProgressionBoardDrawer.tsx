@@ -98,7 +98,7 @@ export const DotProgressionBoardDrawer = ({
         data-testid={`${dataTestId}-owner-avatar`}
       />
     ) : (
-      <DotSkeleton variant="circle" width="40px" height="40px" />
+      <DotSkeleton variant="circular" width="40px" height="40px" />
     );
 
   const renderOwner = (): JSX.Element =>
@@ -122,7 +122,7 @@ export const DotProgressionBoardDrawer = ({
         iconId="branch"
       />
     ) : (
-      <DotSkeleton variant="circle" width="40px" height="40px" />
+      <DotSkeleton variant="circular" width="40px" height="40px" />
     );
 
   const renderSourceText = (): JSX.Element =>
@@ -153,7 +153,7 @@ export const DotProgressionBoardDrawer = ({
         />
       )
     ) : (
-      <DotSkeleton variant="circle" width="16px" height="16px" />
+      <DotSkeleton variant="circular" width="16px" height="16px" />
     );
 
   const renderDrawerContent = (): JSX.Element => {
