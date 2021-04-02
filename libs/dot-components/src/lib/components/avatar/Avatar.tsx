@@ -7,6 +7,7 @@ import { DotTypography } from '../typography/Typography';
 
 type AvatarSize = 'small' | 'medium' | 'large';
 type AvatarType = 'image' | 'text' | 'icon';
+type AvatarVariant = 'circular' | 'square';
 
 export interface AvatarProps extends CommonProps {
   /** Text displayed on hover */
@@ -24,7 +25,7 @@ export interface AvatarProps extends CommonProps {
   /** The type of the avatar */
   type?: AvatarType;
   /** The shape of the avatar */
-  variant?: 'circle' | 'square';
+  variant?: AvatarVariant;
   /** To be used to override syles inline */
   style?: CSSProperties;
 }
@@ -39,7 +40,7 @@ export const DotAvatar = ({
   size = 'medium',
   text = alt,
   type = 'image',
-  variant = 'circle',
+  variant = 'circular',
   style,
 }: AvatarProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);

@@ -15,7 +15,7 @@ describe('DotAvatar', () => {
       size: 'small',
       text: 'BM',
       type: 'image',
-      variant: 'circle',
+      variant: 'circular',
     };
     const avatarProps: AvatarProps = {
       alt: 'Avatar alt text',
@@ -25,7 +25,7 @@ describe('DotAvatar', () => {
       size: 'small',
       text: 'BM',
       type: 'image',
-      variant: 'circle',
+      variant: 'circular',
     };
     expect(avatarProps).toEqual(props);
   });

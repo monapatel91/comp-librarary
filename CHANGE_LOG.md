@@ -4,6 +4,8 @@
 
 ### Components
 
+> **BREAKING CHANGE: Avatar** - update `variant` prop to accept `circular` instead of `circle` as per it being deprecated in v5.
+
 - **AutoComplete** - added `disabled` prop
 - **AutoComplete** - added `autoFocus` prop
 - **InputSelect** - added `disabled` prop
