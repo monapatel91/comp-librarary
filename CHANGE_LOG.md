@@ -1,5 +1,11 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **InputSelect** - made `value` prop optional
+
 ## 0.0.0-alpha.15
 
 ### Components
