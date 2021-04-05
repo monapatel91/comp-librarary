@@ -20,6 +20,9 @@
 - **InputText** - added `disabled` prop
 - **InputText** - added `readOnly` prop
 - **InputText** - hard coded `autoComplete` to `off`
+- **Table** - fixed `stickyHeader` to work without requiring `maxHeight`
+- **Table** - fixed `NaN` in pagination total rows count
+- **TableHeader** - export `DotColumnHeader` interface
 - **ListItem** - added `selected` prop
 
 ### Experimental

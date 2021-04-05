@@ -9,7 +9,7 @@ import {
 } from './Table.styles';
 
 import { DotTableBody, Order } from './TableBody';
-import { DotHeaderRow, Header } from './TableHeader';
+import { DotHeaderRow, DotColumnHeader } from './TableHeader';
 import { DotSkeleton } from '../skeleton/Skeleton';
 import { DotTablePagination, RowsPerPageOption } from './TablePagination';
 
@@ -26,8 +26,10 @@ export interface TableRowProps extends CommonProps {
 export interface TableProps extends CommonProps {
   ariaLabel: string;
   /** The table header columns */
-  columns: Array<Header>;
-  /** Total number of items for paginated table */
+  columns: Array<DotColumnHeader>;
+  /** Total number of items for paginated table.
+      Prop is ignored for non-paginated tables (no rowsPerPage)
+      and for tables with internally managed sorting (no onUpdateData). */
   count?: number;
   /** The table body row data.
       If paging/sorting are managed by consumer (onUpdateData callback provided) this is the data for the current page.
@@ -210,7 +212,43 @@ export const DotTable = ({
     return loading ? getSkeletonData() : onUpdateData ? data : pageData;
   };
 
-  const emptyRows = rowsPerPage ? tableRowsPerPage - data.length : 0;
+  // If table is not paginated (rowsPerPage prop not provided), ignore 'count'.
+  // If paging is managed externally (onUpdateData callback provided) then use
+  // the 'count' prop for total row count if it is provided, otherwise use
+  // -1 (unknown). If paging is managed internally (onUpdateData not provided)
+  // ignore 'count' prop and use the length of the provided 'data' for the
+  // total row count.
+  const total = rowsPerPage
+    ? onUpdateData
+      ? count
+        ? count
+        : -1
+      : data.length
+    : null;
+  const emptyRows = rowsPerPage
+    ? Math.min(tableRowsPerPage - data.length, 10)
+    : 0;
+
+  if (count && !rowsPerPage) {
+    console.warn(
+      "'count' prop is ignored as table is not paginated (no 'rowsPerPage' prop provided)"
+    );
+  }
+  if (count && !onUpdateData) {
+    console.warn(
+      "'count' prop is ignored as it can be determined by 'data.length' for internally paginated table (no 'onUpdateData' callback provided)"
+    );
+  }
+
+  // If maxHeight is provided, make this the max height for the
+  // table container. If it is not provided but stickyHeader is true,
+  // calculate a max height based on screen size.
+  const maxHeightStyle = maxHeight
+    ? maxHeight
+    : stickyHeader
+    ? 'calc(100vh - 76px)'
+    : '';
+
   const tableClasses = useStylesWithRootClass(
     'dot-table',
     rowsPerPage ? 'dot-table-paginated' : ''
@@ -222,7 +260,7 @@ export const DotTable = ({
       <StyledTableContainer
         className="dot-table-container"
         data-testid={dataTestId}
-        style={{ maxHeight: maxHeight ? maxHeight : '' }}
+        style={{ maxHeight: maxHeightStyle }}
       >
         <Table
           aria-label={ariaLabel}
@@ -248,7 +286,7 @@ export const DotTable = ({
       </StyledTableContainer>
       {rowsPerPage && (
         <DotTablePagination
-          count={count}
+          count={total}
           onChangePage={onChangePage}
           onChangeRowsPerPage={onChangeRowsPerPage}
           page={tablePage}

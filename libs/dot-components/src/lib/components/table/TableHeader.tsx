@@ -8,7 +8,7 @@ import {
 import { Order } from './TableBody';
 import { CreateUUID } from '../createUUID';
 
-export interface Header {
+export interface DotColumnHeader {
   align?: string;
   id: string;
   label?: string;
@@ -17,7 +17,7 @@ export interface Header {
 }
 
 export interface HeaderProps {
-  columns: Array<Header>;
+  columns: Array<DotColumnHeader>;
   onRequestSort: (property: string) => void;
   order?: Order;
   /** The ID of the column that you are sorting by */
@@ -65,7 +65,7 @@ export const DotHeaderRow = ({
   return (
     <TableHead classes={{ root: 'dot-thead' }}>
       <TableRow classes={{ root: 'dot-tr' }}>
-        {columns.map((cell: Header) => (
+        {columns.map((cell: DotColumnHeader) => (
           <DotHeaderCell
             align={cell.align === 'right'}
             createSortHandler={createSortHandler}

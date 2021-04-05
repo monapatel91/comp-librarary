@@ -3,7 +3,7 @@ import { TableBody } from '@material-ui/core';
 
 import { CreateUUID } from '../createUUID';
 import { DotTableRow, EmptyDotRow } from './TableRow';
-import { Header } from './TableHeader';
+import { DotColumnHeader } from './TableHeader';
 import { TableRowProps } from './Table';
 import { CommonProps } from '../CommonProps';
 
@@ -11,7 +11,7 @@ export type Order = 'asc' | 'desc';
 
 export interface TableBodyProps extends CommonProps {
   /** The table column headers */
-  columns: Array<Header>;
+  columns: Array<DotColumnHeader>;
   /** The table body row data */
   data: Array<TableRowProps>;
   /** Message to show if no data */

@@ -3,7 +3,7 @@ import { TableRow } from '@material-ui/core';
 
 import { DotBodyCell } from './TableCell';
 import { CreateUUID } from '../createUUID';
-import { Header } from './TableHeader';
+import { DotColumnHeader } from './TableHeader';
 import { CommonProps } from '../CommonProps';
 import { TableRowProps } from './Table';
 
@@ -14,7 +14,7 @@ export interface EmptyRowProps {
 
 export interface RowProps extends CommonProps {
   /** The table column headers */
-  columns: Array<Header>;
+  columns: Array<DotColumnHeader>;
   /** The table body row data */
   data: TableRowProps;
   /** Event callback */

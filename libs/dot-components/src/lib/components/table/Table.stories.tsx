@@ -104,9 +104,7 @@ export const LocallyPaginatedTable: Story<TableProps> = (args) => {
     <DotTable
       {...args}
       columns={paginatedColumns}
-      count={paginatedData.length}
       data={paginatedData}
-      maxHeight="500px"
       order="asc"
       orderBy="name"
       rowsPerPage={10}

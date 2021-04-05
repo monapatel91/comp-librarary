@@ -115,7 +115,6 @@ describe(' Table', () => {
       <DotTable
         ariaLabel="super heroes!"
         columns={testCols}
-        count={11}
         data={testData}
         orderBy="name"
         rowsPerPage={10}
@@ -124,6 +123,8 @@ describe(' Table', () => {
     waitFor(() => {
       const paginationText = screen.getByText('Rows per page:');
       expect(paginationText).toBeVisible();
+      const rowsShownText = screen.getByText('1-10 of 11');
+      expect(rowsShownText).toBeVisible();
     });
     const nextPage = screen.getByTitle('Next page');
     userEvent.click(nextPage);
@@ -133,6 +134,21 @@ describe(' Table', () => {
       const tr = baseElement.querySelectorAll('tr');
       expect(tr.length).toEqual(2); // Header and 1 row of data
     });
+  });
+
+  it("should show 'more than n' when count is unknown", () => {
+    render(
+      <DotTable
+        ariaLabel="super heroes!"
+        columns={testCols}
+        data={testData}
+        onUpdateData={mockFunc}
+        orderBy="name"
+        rowsPerPage={10}
+      />
+    );
+    const rowsShownText = screen.getByText('1-10 of more than 10');
+    expect(rowsShownText).toBeVisible();
   });
 
   it('should call onUpdateData when sort or page changes', () => {
@@ -147,6 +163,8 @@ describe(' Table', () => {
         rowsPerPage={10}
       />
     );
+    const rowsShownText = screen.getByText('1-10 of 11');
+    expect(rowsShownText).toBeVisible();
     const nextPage = screen.getByTitle('Next page');
     userEvent.click(nextPage);
     waitFor(() => {
