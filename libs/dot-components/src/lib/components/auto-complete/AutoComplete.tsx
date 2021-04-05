@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { Autocomplete, AutocompleteRenderInputParams } from '@material-ui/lab';
+import { Autocomplete, AutocompleteGetTagProps } from '@material-ui/lab';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotChip } from '../chip/Chip';
@@ -9,20 +9,23 @@ import {
 } from '../input-form-fields/InputFormFields.styles';
 
 export type autoCompleteSize = 'medium' | 'small';
+export type AutoCompleteValue =
+  | string
+  | AutoCompleteOption
+  | AutoCompleteOption[];
 
 export interface AutoCompleteOption {
   group?: string;
   title: string;
   error?: boolean;
+  length: number;
 }
 
 // takes multiple types of data from autocomplete selection
 // parses value and returns a string which is saved to state
-export const parseAutoCompleteValue = (value) => {
+export const parseAutoCompleteValue = (value: AutoCompleteValue) => {
   if (typeof value === 'string') {
     return value;
-  } else if (value && value.title) {
-    return value.title;
   } else if (Array.isArray(value)) {
     let titles = '';
     value.forEach((val, index) => {
@@ -32,6 +35,8 @@ export const parseAutoCompleteValue = (value) => {
       titles += val.title ? val.title : val;
     });
     return titles;
+  } else if (value && value.title) {
+    return value.title;
   }
   return '';
 };
@@ -40,7 +45,7 @@ export interface AutoCompleteProps extends CommonProps {
   /** This prop helps users to fill forms faster */
   autoFocus?: boolean;
   /** default option that is selected */
-  defaultValue?: AutoCompleteOption | AutoCompleteOption[];
+  defaultValue?: AutoCompleteValue;
   /** If true, the input will be disabled. */
   disabled?: boolean;
   /** If true, the input will be displayed in an error state. */
@@ -59,19 +64,20 @@ export interface AutoCompleteProps extends CommonProps {
   multiple?: boolean;
   /** A function that should be executed when the value of the input changes */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange?: (event: ChangeEvent<unknown>, value: any, reason: string) => void;
+  onChange?: (
+    event: ChangeEvent<unknown>,
+    value: AutoCompleteValue,
+    reason: string
+  ) => void;
   /** pre-defined options available to the user */
   options: Array<AutoCompleteOption>;
   /** Placeholder text always displayed inside the input field */
   placeholder?: string;
-  /** If true, the input will be read-only. */
-  readOnly?: boolean;
   /** Determines the padding within the input field 'medium' or 'small' */
   size?: autoCompleteSize;
   /** value if this is a controlled component */
-  value?: AutoCompleteOption | AutoCompleteOption[] | string;
+  value?: AutoCompleteValue;
 }
-
 export const DotAutoComplete = ({
   autoFocus,
   className,
@@ -88,7 +94,6 @@ export const DotAutoComplete = ({
   onChange,
   options,
   placeholder,
-  readOnly = false,
   size = 'small',
   value,
 }: AutoCompleteProps) => {
@@ -97,7 +102,11 @@ export const DotAutoComplete = ({
     textFieldRootClassName,
     className
   );
-  const getChips = (values, getTagProps) => {
+  const getChips = (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    values: any[],
+    getTagProps: AutocompleteGetTagProps
+  ) => {
     return values.map((option, index) => (
       <DotChip error={option.error} {...getTagProps({ index })}>
         {option.title ? option.title : option}
@@ -105,7 +114,15 @@ export const DotAutoComplete = ({
     ));
   };
   let showPlaceholder = !value && !defaultValue;
-  const valuesChanged = (_event, val, reason) => {
+  const valuesChanged = ({
+    _event,
+    val,
+    reason,
+  }: {
+    _event: ChangeEvent<unknown>;
+    val: AutoCompleteValue;
+    reason: string;
+  }) => {
     onChange && onChange(_event, val, reason);
     showPlaceholder = !val || val.length === 0;
   };
@@ -117,11 +134,6 @@ export const DotAutoComplete = ({
           return -bGroup.localeCompare(aGroup);
         })
       : options;
-  };
-  // Add readOnly to inputProps already used to support Autocomplete
-  const getInputProps = (params: AutocompleteRenderInputParams) => {
-    params.inputProps['readOnly'] = readOnly;
-    return params.inputProps;
   };
 
   return (
@@ -135,7 +147,9 @@ export const DotAutoComplete = ({
       filterSelectedOptions={true}
       freeSolo={freesolo}
       getOptionLabel={(option) => parseAutoCompleteValue(option)}
-      onChange={(_event, val, reason) => valuesChanged(_event, val, reason)}
+      onChange={(_event, val: AutoCompleteValue, reason) =>
+        valuesChanged({ _event, val, reason })
+      }
       groupBy={group ? (option: AutoCompleteOption) => option.group : undefined}
       renderInput={(params) => (
         // We are not using DotInputText here because the {...params} spread
@@ -148,17 +162,6 @@ export const DotAutoComplete = ({
         // functionality be added to DotInputText we will have to make a
         // decision about if/how to expose it here.
 
-        // <DotInputText
-        //   {...params}
-        //   error={error}
-        //   helperText={helperText}
-        //   id={inputId}
-        //   label={label}
-        //   name={label}
-        //   placeholder={showPlaceholder ? placeholder : undefined}
-        //   required={false}
-        // />
-
         <StyledTextField
           {...params}
           autoFocus={autoFocus}
@@ -166,7 +169,6 @@ export const DotAutoComplete = ({
           error={error}
           helperText={helperText}
           id={inputId}
-          inputProps={getInputProps({ ...params })}
           label={label}
           name={label}
           placeholder={showPlaceholder ? placeholder : undefined}

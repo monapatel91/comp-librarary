@@ -35,6 +35,7 @@
 
 > **`dot-` classes applied to native elements** - applied `dot-` classes to native elements to enable usage of `:not` to avoid style conflicts
 
+- **AutoComplete** - `string` data type acceptable for defaultValue
 - **AvatarGroup** - added new component
 - **Menu** - added `disablePortal` prop
 - **Pill**: added `Pill` to the list of exported component from the library

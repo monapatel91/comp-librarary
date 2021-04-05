@@ -5,7 +5,7 @@ import {
   StylesProvider,
 } from '@material-ui/core';
 import { ThemeProvider } from 'styled-components';
-import GlobalFonts from '../fonts/fonts';
+import { GlobalFonts } from '../fonts/fonts';
 
 import * as lightColors from './colors/light-theme-colors';
 import { BreakpointsOptions } from '@material-ui/core/styles/createBreakpoints';

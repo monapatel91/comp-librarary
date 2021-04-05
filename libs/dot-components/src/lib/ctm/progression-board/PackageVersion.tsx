@@ -8,7 +8,11 @@ import { PackageVersionLabel } from './PackageVersionLabel';
 import { WorkItem } from '../workitem/WorkItem';
 import { Card, CardIndicators } from '../ctm-card/Card';
 import { getMostSignificantLabel } from './duration';
-import { PackageType, SelectWorkItem } from './ProgressionBoardInterfaces';
+import {
+  PackageType,
+  SelectWorkItem,
+  WorkItemType,
+} from './ProgressionBoardInterfaces';
 import { parseRevURL } from './parseRevURL';
 
 export interface PackageDetailProps extends CommonProps {
@@ -151,7 +155,7 @@ export const ValidPackage = React.forwardRef(
         : null,
     ].filter((x) => !!x);
 
-    const renderWorkItems = (items) => {
+    const renderWorkItems = (items: WorkItemType[]) => {
       return items.map((item, i) => {
         const isSelected = item._id === selectedWorkItem?._id;
         const isFaded = isCardSelected && !isSelected;

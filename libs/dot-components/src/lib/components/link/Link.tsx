@@ -59,8 +59,8 @@ export const DotLink = ({
       color={color}
       data-testid={dataTestId}
       href={onClick ? null : href}
-      onClick={(event) => onClick && onClick(event)}
-      onMouseEnter={(event) => onMouseEnter && onMouseEnter(event)}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
       rel={rel}
       tabIndex={tabIndex}
       target={target}

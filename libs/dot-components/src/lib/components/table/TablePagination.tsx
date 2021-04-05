@@ -38,7 +38,9 @@ export const DotTablePagination = ({
     onChangePage && onChangePage(newPage);
   };
 
-  const handleChangeRowsPerPage = (evt) => {
+  const handleChangeRowsPerPage = (
+    evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     onChangeRowsPerPage && onChangeRowsPerPage(evt);
   };
 

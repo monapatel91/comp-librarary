@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { useState, FormEvent } from 'react';
 import {
   DotInputText,
@@ -23,11 +23,7 @@ interface FormState {
 }
 
 interface ErrorState {
-  firstName?: string;
-  lastName?: string;
-  devType?: string;
-  superHero?: string;
-  favTrait?: string;
+  [key: string]: string;
 }
 
 const initialFormState: FormState = {
@@ -70,13 +66,9 @@ export const DemoForm = () => {
     let hasError = false;
     const formErrors: ErrorState = {};
 
-    Object.keys(initialFormState).forEach((keyVal) => {
-      // if field is blank and required, throw an error
-      if (
-        keyVal !== 'cartoonComments' &&
-        keyVal !== 'commentField' &&
-        formValues[keyVal] === ''
-      ) {
+    Object.keys(initialFormState).forEach((keyVal: keyof FormState) => {
+      // if field is blank, throw an error
+      if (formValues[keyVal] === '') {
         hasError = true;
         formErrors[keyVal] = `Must not be blank`;
       }
@@ -94,7 +86,9 @@ export const DemoForm = () => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const name = event.target.name;
     const value = event.target.value;
 
@@ -123,7 +117,7 @@ export const DemoForm = () => {
           required
           size="small"
           value={firstName}
-          onChange={(event) => handleChange(event)}
+          onChange={handleChange}
           error={errors.firstName && errors.firstName !== ''}
         />
 
@@ -135,7 +129,7 @@ export const DemoForm = () => {
           required
           size="small"
           value={lastName}
-          onChange={(event) => handleChange(event)}
+          onChange={handleChange}
           error={errors.lastName && errors.lastName !== ''}
         />
 
@@ -146,7 +140,7 @@ export const DemoForm = () => {
           required
           size="small"
           value={devType}
-          onChange={(event) => handleChange(event)}
+          onChange={handleChange}
           options={['', 'React Dev', 'Angular Dev', 'Other Dev']}
           error={errors.devType && errors.devType !== ''}
         />
@@ -157,7 +151,7 @@ export const DemoForm = () => {
           value={superHero}
           groupLabel="Select Your Favorite Superhero"
           required
-          onChange={(event) => handleChange(event)}
+          onChange={handleChange}
           options={[
             { label: 'None', value: 'None' },
             { label: 'Batman', value: 'Batman' },
@@ -211,7 +205,7 @@ export const DemoForm = () => {
           multiline={true}
           rows={4}
           value={commentField}
-          onChange={(event) => handleChange(event)}
+          onChange={handleChange}
         />
 
         <DotButton type="outlined" onClick={resetForm}>

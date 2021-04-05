@@ -4,7 +4,7 @@ import LatoRegular from './Lato-Regular.woff';
 import LatoBold from './Lato-Bold.woff';
 import Dot from './dot.woff';
 
-export default createGlobalStyle`
+export const GlobalFonts = createGlobalStyle`
   @font-face {
     font-family: 'Lato';
     font-weight: 400;

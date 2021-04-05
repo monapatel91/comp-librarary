@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useState, ReactNode } from 'react';
 import { Table } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -190,7 +190,9 @@ export const DotTable = ({
 
   const getSkeletonData = () => {
     const skeletonData = [];
-    const skeletonRow = { rowData: {} };
+    const skeletonRow: { rowData: { [key: string]: ReactNode } } = {
+      rowData: {},
+    };
     columns.forEach((column) => {
       skeletonRow.rowData[column.id] = (
         <DotSkeleton width="300">

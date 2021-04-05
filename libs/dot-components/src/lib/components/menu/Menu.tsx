@@ -39,7 +39,11 @@ export interface MenuProps extends CommonProps {
   /** If true, the menu is open. */
   open?: boolean;
   /** Callback when menu item is selected */
-  onSelect?: (event: MouseEvent, menuId: string, itemKey: string) => void;
+  onSelect?: (
+    event: MouseEvent | KeyboardEvent,
+    menuId: string,
+    itemKey: string
+  ) => void;
   /** Event callback when leaving menu via tab or clicking away */
   onLeave?: (event: KeyboardEvent | MouseEvent) => void;
 }
@@ -67,23 +71,24 @@ export const DotMenu = ({
 }: MenuProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-  const handleSelect = (event, itemKey) => {
+  const handleSelect = (event: MouseEvent | KeyboardEvent, itemKey: string) => {
     onLeave && onLeave(event);
     onSelect && onSelect(event, id, itemKey);
   };
 
-  function handleListKeyDown(event) {
+  const handleListKeyDown = (event: KeyboardEvent<Element>) => {
     if (onLeave && event.key === 'Tab') {
       event.preventDefault();
       onLeave(event);
     }
-  }
+  };
 
-  function handleClickAway(event) {
-    if (onLeave && (!anchorEl || !anchorEl.contains(event.target))) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleClickAway = (event: MouseEvent<any>) => {
+    if (onLeave && (!anchorEl || !anchorEl.contains(event.currentTarget))) {
       onLeave(event);
     }
-  }
+  };
 
   return (
     <StyledPopper

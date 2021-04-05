@@ -3,8 +3,9 @@
   "compilerOptions": {
     "jsx": "react",
     "allowJs": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
     "typeRoots": ["typings"]
   },
   "files": [],

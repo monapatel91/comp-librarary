@@ -38,7 +38,6 @@ describe('AutoComplete', () => {
       onChange: onChange,
       options: dummyOptions,
       placeholder: 'Select a hero',
-      readOnly: true,
       size: 'medium',
       value: dummyOptions[1],
     };
@@ -56,7 +55,6 @@ describe('AutoComplete', () => {
       onChange: onChange,
       options: dummyOptions,
       placeholder: 'Select a hero',
-      readOnly: true,
       size: 'medium',
       value: dummyOptions[1],
     };
