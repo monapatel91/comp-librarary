@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Autocomplete, AutocompleteGetTagProps } from '@material-ui/lab';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -18,7 +18,6 @@ export interface AutoCompleteOption {
   group?: string;
   title: string;
   error?: boolean;
-  length: number;
 }
 
 // takes multiple types of data from autocomplete selection
@@ -97,6 +96,9 @@ export const DotAutoComplete = ({
   size = 'small',
   value,
 }: AutoCompleteProps) => {
+  const [showPlaceholder, setShowPlaceholder] = useState(
+    !value && !defaultValue
+  );
   const rootClasses = useStylesWithRootClass('dot-autocomplete', className);
   const textFieldRootClasses = useStylesWithRootClass(
     textFieldRootClassName,
@@ -113,7 +115,6 @@ export const DotAutoComplete = ({
       </DotChip>
     ));
   };
-  let showPlaceholder = !value && !defaultValue;
   const valuesChanged = ({
     _event,
     val,
@@ -124,7 +125,7 @@ export const DotAutoComplete = ({
     reason: string;
   }) => {
     onChange && onChange(_event, val, reason);
-    showPlaceholder = !val || val.length === 0;
+    setShowPlaceholder(parseAutoCompleteValue(val) === '');
   };
   const sortOptions = () => {
     return group

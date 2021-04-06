@@ -54,11 +54,11 @@ export const WithError: Story<AutoCompleteProps> = (args) => {
   };
   return (
     <DotAutoComplete
+      {...args}
       defaultValue={defaultValueWithError}
       error={error}
       helperText={helperText}
       onChange={onChange}
-      {...args}
     />
   );
 };
