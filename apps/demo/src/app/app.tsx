@@ -144,6 +144,11 @@ const sideNavItems: Array<ListItemProps> = [
     href: '/insights',
   },
   {
+    iconId: 'package',
+    text: 'Progression',
+    href: '/progression',
+  },
+  {
     text: 'Workflow',
     divider: true,
   },

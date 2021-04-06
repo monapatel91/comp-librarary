@@ -1,6 +1,6 @@
-import { WorkItemDetailsType } from '../ProgressionBoardInterfaces';
+import { WorkItemDetailsType } from '@digital-ai/dot-components';
 
-export const sampleDetailsData: Array<WorkItemDetailsType> = [
+export const pbWorkItemDetailsData: Array<WorkItemDetailsType> = [
   {
     id: '59f196572979930319b9ab50',
     description:

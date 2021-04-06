@@ -112,3 +112,82 @@ export interface WorkItemDetailsType {
   /* Workitem's source system URL */
   sourceSystemUrl: string;
 }
+
+export interface ApplicationAPI {
+  sourceControls: Array<SourceControlAPI>;
+  ticketSystems: Array<TicketSystemsAPI>;
+}
+
+export interface SourceControlAPI {
+  id: string;
+  title: string;
+  servers: Array<SourceControlServerAPI>;
+}
+
+export interface SourceControlServerAPI {
+  id: string;
+  title: string;
+  isdefault?: boolean;
+  name?: string;
+  owner?: string;
+  team_id?: string | null;
+  token?: string;
+  url?: string;
+}
+
+export interface TicketSystemsAPI {
+  id: string;
+  title: string;
+  servers: Array<TicketSystemServerAPI>;
+}
+
+export interface TicketSystemServerAPI {
+  id: string;
+  title: string;
+  improve_types?: string;
+  isdefault?: boolean;
+  maintain_types?: string;
+  name?: string;
+  password?: string;
+  team_id?: string | null;
+  token?: string;
+  url?: string;
+  user?: string;
+}
+
+export interface PBApplication {
+  /* API data needed to populate PB's application controls */
+  apiData: ApplicationAPI;
+  /* Flag which indicates whether application drawer is opened */
+  isDrawerOpened: boolean;
+  /* Callback function which will be called when drawer needs to close */
+  onDrawerClose: () => void;
+  /* Callback function which will be called when form's 'Cancel' button is clicked */
+  onFormCancel: () => void;
+  /* Callback function which executes upon new application form submission */
+  onFormSubmit: (applicationFormData: ApplicationFormOutput) => void;
+}
+
+export interface ApplicationFormOutput {
+  applicationName: string;
+  createAnother: boolean;
+  sourceControls: Array<SourceControl>;
+  ticketSystem: TicketSystem;
+}
+
+export interface ApplicationForm extends ApplicationFormOutput {
+  activeSourceControl: SourceControl;
+}
+
+export interface AutoCompleteControl {
+  id: string;
+  title: string;
+}
+
+export interface SourceControl extends AutoCompleteControl {
+  servers: Array<AutoCompleteControl>;
+}
+
+export interface TicketSystem extends AutoCompleteControl {
+  servers: Array<AutoCompleteControl>;
+}

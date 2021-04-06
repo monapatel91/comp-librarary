@@ -1,10 +1,10 @@
 import React from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { DotProgressionBoardDrawer } from './ProgressionBoardDrawer';
+import { DotProgressionBoardWorkItemDrawer } from './ProgressionBoardWorkItemDrawer';
 import { WorkItemDetailsType } from './ProgressionBoardInterfaces';
 
-const onPbDrawerClose = () => console.log('Closed');
+const onPbWorkItemDrawerClose = () => console.log('Closed');
 const workItem = {
   _id: '5b9c4fc12979930dbb0f13c5',
   change_count: 1,
@@ -27,10 +27,10 @@ describe('ProgressionBoardDrawer', () => {
   let dataTestId;
 
   beforeEach(() => {
-    dataTestId = 'test-pb-drawer';
+    dataTestId = 'test-pb-workitem-drawer';
     render(
-      <DotProgressionBoardDrawer
-        onClose={onPbDrawerClose}
+      <DotProgressionBoardWorkItemDrawer
+        onClose={onPbWorkItemDrawerClose}
         workItem={workItem}
         workItemDetails={workItemDetails}
         data-testid={dataTestId}
@@ -52,7 +52,7 @@ describe('ProgressionBoardDrawer', () => {
     const { external_key } = workItem;
     const externalKeyElem = screen
       .getByTestId(dataTestId)
-      .querySelector('.wi-external-key');
+      .querySelector('.wi-external-key span');
     expect(externalKeyElem).toBeVisible();
     expect(externalKeyElem).toHaveTextContent(external_key);
     expect(externalKeyElem).toHaveAttribute('title', external_key);

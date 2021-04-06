@@ -63,6 +63,12 @@
 - **TablePagination** - added new component
 - **Typography** - added new component
 
+### Experimental
+
+- **ProgressionBoardDrawer** - is no longer exported component
+- **ProgressionBoardApplicationDrawer** - new component which can be used in combination with `ProgressionBoard` for adding new application
+- **ProgressionBoardWorkItemDrawer** - new component which can be used in combination with `ProgressionBoard` for displaying workitem's data
+
 ## 0.0.0-alpha.13
 
 ### Components

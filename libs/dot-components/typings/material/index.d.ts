@@ -41,6 +41,7 @@ declare module '@material-ui/core/styles/createPalette' {
   interface IconPaletteColorOptions {
     checkOutline: string;
     checkSolid: string;
+    emphasized: string;
     errorOutlines: string;
     errorSolid: string;
     fileDotted: string;

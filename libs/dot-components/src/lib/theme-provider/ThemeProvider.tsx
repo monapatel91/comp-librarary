@@ -116,6 +116,7 @@ const agilityLightTheme = createMuiTheme({
     icon: {
       checkOutline: '#1E88E5',
       checkSolid: '#1E88E5',
+      emphasized: '#C6F1FF',
       errorOutlines: '#EA1C0D',
       errorSolid: '#3949AB',
       fileDotted: '#3949AB',
@@ -176,6 +177,7 @@ const agilityDarkTheme = createMuiTheme({
     icon: {
       checkOutline: '#42A5F5',
       checkSolid: '#42A5F5',
+      emphasized: '#C6F1FF',
       errorOutlines: '#F77066',
       errorSolid: '#9FA8DA',
       fileDotted: '#9FA8DA',
@@ -233,6 +235,7 @@ const darkTheme = createMuiTheme({
     icon: {
       checkOutline: lightColors.b500,
       checkSolid: lightColors.b500,
+      emphasized: lightColors.b300,
       errorOutlines: lightColors.r500,
       errorSolid: lightColors.r500,
       fileDotted: lightColors.b500,
@@ -410,6 +413,7 @@ export const lightTheme = createMuiTheme({
     icon: {
       checkOutline: lightColors.b500,
       checkSolid: lightColors.b500,
+      emphasized: lightColors.b300,
       errorOutlines: lightColors.r500,
       errorSolid: lightColors.r500,
       fileDotted: lightColors.b500,
