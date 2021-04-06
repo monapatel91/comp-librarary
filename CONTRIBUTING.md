@@ -37,7 +37,7 @@
 
 ## Running on Windows
 
-You may run into an issue with our `pre-commit` hook, if so please follow these [directions](https://typicode.github.io/husky/#/?id=yarn-on-windows)
+You may run into an issue with our `pre-commit` or `pre-push` hook, if so please follow these [directions](https://typicode.github.io/husky/#/?id=yarn-on-windows)
 
 ## Run demo application
 
