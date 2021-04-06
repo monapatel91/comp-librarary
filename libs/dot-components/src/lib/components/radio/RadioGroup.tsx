@@ -76,7 +76,7 @@ export function DotRadioGroup({
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
-    onChange(event, event.target.value);
+    onChange && onChange(event, event.target.value);
   };
 
   const renderOptions = options

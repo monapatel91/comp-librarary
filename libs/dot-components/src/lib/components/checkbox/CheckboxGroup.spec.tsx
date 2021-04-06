@@ -261,5 +261,21 @@ describe('DotCheckbox', () => {
       userEvent.click(inputs[0]);
       expect(onChange).toHaveBeenCalledTimes(1);
     });
+
+    it('should not throw exception if no onChange callback', () => {
+      render(
+        <DotCheckboxGroup
+          groupLabel="Group label"
+          helperText="Helper test"
+          name="test-checkbox-name"
+          labelPlacement="bottom"
+          options={options}
+          data-testid="test-checkbox-group"
+          value="item-2"
+        />
+      );
+      const inputs = screen.getAllByRole('checkbox');
+      userEvent.click(inputs[0]);
+    });
   });
 });

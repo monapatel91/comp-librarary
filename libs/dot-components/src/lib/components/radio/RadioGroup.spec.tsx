@@ -292,5 +292,21 @@ describe('DotRadioGroup', () => {
       userEvent.click(inputs[0]);
       expect(onChange).toHaveBeenCalledTimes(1);
     });
+
+    it('should not throw exception if no onChange callback', () => {
+      render(
+        <DotRadioGroup
+          groupLabel="Group label"
+          helperText="Helper test"
+          name="test-radio-name"
+          labelPlacement="bottom"
+          options={radioButtons}
+          data-testid="test-radio-group"
+          value="item-2"
+        />
+      );
+      const inputs = screen.getAllByRole('radio');
+      userEvent.click(inputs[0]);
+    });
   });
 });

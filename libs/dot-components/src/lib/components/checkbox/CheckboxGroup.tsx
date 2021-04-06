@@ -75,14 +75,14 @@ export function DotCheckboxGroup({
     setSelectedOptions(newOptions);
 
     setAllChecked(newOptions.length === options.length);
-    onChange(event, newOptions);
+    onChange && onChange(event, newOptions);
   };
 
   const handleSelectAll = (event: ChangeEvent<HTMLInputElement>) => {
     const _selectedOptions = event.target.checked ? options : [];
     setSelectedOptions(_selectedOptions);
     setAllChecked(event.target.checked);
-    onChange(event, _selectedOptions);
+    onChange && onChange(event, _selectedOptions);
   };
 
   const renderOptions = options
