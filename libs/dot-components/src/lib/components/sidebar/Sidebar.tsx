@@ -1,4 +1,4 @@
-import React, { Fragment, MouseEvent, useState } from 'react';
+import React, { Fragment, MouseEvent, useEffect, useState } from 'react';
 import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 import { DotIconButton } from '../button/IconButton';
 import { DotList, ListItemProps } from '../list/List';
@@ -35,6 +35,8 @@ export interface SidebarProps extends CommonProps {
   goBack?: boolean;
   /** Array of nav items */
   navItems?: Array<ListItemProps>;
+  /** If true, the sidebar is open. */
+  open?: boolean;
   /** The text that is displayed at the top of the sidebar */
   title?: string;
   /** If provided, will display an avatar next to the title text */
@@ -52,13 +54,19 @@ export const DotSidebar = ({
   displayBrand = true,
   goBack = false,
   navItems = [],
+  open = true,
   title,
   titleAvatarProps,
 }: SidebarProps) => {
-  const [open, updateOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(open);
+
+  useEffect(() => {
+    setIsOpen(open);
+  }, [open]);
+
   const rootClasses = useStylesWithRootClass(
     rootClassName,
-    `${!open ? 'collapsed' : 'expanded'} ${className}`
+    `${!isOpen ? 'collapsed' : 'expanded'} ${className}`
   );
 
   return (
@@ -68,7 +76,7 @@ export const DotSidebar = ({
     >
       {title && (
         <header>
-          {open ? (
+          {isOpen ? (
             <Fragment>
               <DotAvatar {...titleAvatarProps} />
               <DotTypography variant="h4">{title}</DotTypography>
@@ -91,7 +99,7 @@ export const DotSidebar = ({
       {navItems.length > 0 && (
         <DotList
           ariaLabel="left navigation"
-          className={`side-nav ${open}`}
+          className={`side-nav ${isOpen}`}
           data-testid="sideNav"
           dense={true}
           items={navItems}
@@ -102,7 +110,7 @@ export const DotSidebar = ({
         <div className="toggle-nav">
           <DotIconButton
             iconId="chevron-left"
-            onClick={() => updateOpen(!open)}
+            onClick={() => setIsOpen(!isOpen)}
           />
         </div>
       )}

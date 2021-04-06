@@ -5,6 +5,7 @@
 ### Components
 
 - **InputSelect** - made `value` prop optional
+- **Sidebar** - added `open` prop
 
 ## 0.0.0-alpha.15
 
