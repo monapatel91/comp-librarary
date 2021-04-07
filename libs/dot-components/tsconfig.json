@@ -5,12 +5,10 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "noImplicitAny": true,
-    "typeRoots": ["typings"]
+    "noImplicitAny": true
   },
   "files": [],
   "include": [],
-  "exclude": ["typings"],
   "references": [
     {
       "path": "./tsconfig.lib.json"
