@@ -43,7 +43,6 @@ export interface SidebarProps extends CommonProps {
   titleAvatarProps?: AvatarProps;
 }
 
-/** This is a custom component which is used for the sidebar */
 export const DotSidebar = ({
   backItem,
   brandDesc,
