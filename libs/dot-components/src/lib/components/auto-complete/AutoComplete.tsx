@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, Ref } from 'react';
 import { Autocomplete, AutocompleteGetTagProps } from '@material-ui/lab';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -57,6 +57,8 @@ export interface AutoCompleteProps extends CommonProps {
   helperText?: string;
   /** The id for the input field. */
   inputId: string;
+  /** pass a ref to the input element */
+  inputRef?: Ref<HTMLInputElement>;
   /** Label displayed above the input field */
   label?: string;
   /** If true, will allow the user to select multiple options */
@@ -88,6 +90,7 @@ export const DotAutoComplete = ({
   group = false,
   helperText,
   inputId,
+  inputRef,
   label,
   multiple = true,
   onChange,
@@ -170,6 +173,7 @@ export const DotAutoComplete = ({
           error={error}
           helperText={helperText}
           id={inputId}
+          inputRef={inputRef}
           label={label}
           name={label}
           placeholder={showPlaceholder ? placeholder : undefined}

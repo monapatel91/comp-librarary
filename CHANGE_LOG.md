@@ -1,5 +1,17 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **AutoComplete** - added `inputRef` prop
+- **Checkbox** - added `inputRef` prop
+- **InputSelect** - added `inputRef` prop
+- **InputText** - added `inputRef` prop
+- **RadioButton** - added `inputRef` prop
+- **Switch** - added `inputRef` prop
+- **Switch** - added `id` prop
+
 ## 0.0.0-alpha.16
 
 ### Components

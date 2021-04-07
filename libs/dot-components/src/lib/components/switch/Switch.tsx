@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, Ref } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
@@ -20,6 +20,10 @@ export interface SwitchProps extends CommonProps {
   color?: SwitchColor;
   /** if true makes the switch disabled */
   disabled?: boolean;
+  /** id to identify the element */
+  id?: string;
+  /** pass a ref to the input element */
+  inputRef?: Ref<HTMLInputElement>;
   /** text displayed next to the switch */
   label?: string;
   /** label placement options available 'bottom', 'end', 'start', 'top' */
@@ -37,6 +41,8 @@ export const DotSwitch = ({
   color = 'primary',
   'data-testid': dataTestId,
   disabled = false,
+  id,
+  inputRef,
   label,
   labelPlacement = 'end',
   onChange,
@@ -59,6 +65,8 @@ export const DotSwitch = ({
           color={color}
           data-testid={dataTestId}
           disabled={disabled}
+          id={id}
+          inputRef={inputRef}
           inputProps={{ 'aria-label': ariaLabel ? ariaLabel : label }}
           onChange={handleChange}
           size={size}

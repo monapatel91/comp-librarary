@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen, fireEvent } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
@@ -8,6 +8,7 @@ import { DotIcon } from '../icon/Icon';
 
 const sampleOptions = ['Batman', 'Ironman', 'Superman'];
 const mockFunc = jest.fn();
+const inputRef = createRef<HTMLInputElement>();
 
 describe('DotInputSelect', () => {
   it('should have unchanged API', () => {
@@ -20,6 +21,7 @@ describe('DotInputSelect', () => {
       fullWidth: true,
       helperText: 'help me',
       id: 'text-id',
+      inputRef: inputRef,
       label: 'select label',
       name: 'my-text',
       onChange: mockFunc,
@@ -39,6 +41,7 @@ describe('DotInputSelect', () => {
       fullWidth: true,
       helperText: 'help me',
       id: 'text-id',
+      inputRef: inputRef,
       label: 'select label',
       name: 'my-text',
       onChange: mockFunc,

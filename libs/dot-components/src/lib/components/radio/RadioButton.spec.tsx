@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { DotRadioButton, RadioButtonProps } from './RadioButton';
@@ -6,10 +6,12 @@ import { DotRadioButton, RadioButtonProps } from './RadioButton';
 describe('DotRadioButton', () => {
   it('should have unchanged API', () => {
     const onChange = jest.fn();
+    const inputRef = createRef<HTMLInputElement>();
     const props = {
       checked: false,
       disabled: false,
       id: 'button-id',
+      inputRef: inputRef,
       label: 'My Label',
       labelPlacement: 'bottom',
       name: 'button-name',
@@ -22,6 +24,7 @@ describe('DotRadioButton', () => {
       checked: false,
       disabled: false,
       id: 'button-id',
+      inputRef: inputRef,
       label: 'My Label',
       labelPlacement: 'bottom',
       name: 'button-name',

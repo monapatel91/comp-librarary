@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
@@ -6,6 +6,7 @@ import { DotInputText, InputTextProps } from './InputText';
 import { DotIcon } from '../icon/Icon';
 
 const mockFunc = jest.fn();
+const inputRef = createRef<HTMLInputElement>();
 
 describe('DotInputText', () => {
   it('should have unchanged API', () => {
@@ -18,6 +19,7 @@ describe('DotInputText', () => {
       fullWidth: true,
       helperText: 'help me',
       id: 'text-id',
+      inputRef: inputRef,
       label: 'text label',
       multiline: true,
       name: 'my-text',
@@ -42,6 +44,7 @@ describe('DotInputText', () => {
       fullWidth: true,
       helperText: 'help me',
       id: 'text-id',
+      inputRef: inputRef,
       label: 'text label',
       multiline: true,
       name: 'my-text',

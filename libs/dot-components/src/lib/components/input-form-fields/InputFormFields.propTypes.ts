@@ -1,3 +1,4 @@
+import { Ref } from 'react';
 import { CommonProps } from '../CommonProps';
 
 export type inputSizeOptions = 'small' | 'medium';
@@ -22,6 +23,8 @@ export interface InputProps extends CommonProps {
    * values while it's optional, it is considered required for accessiblity best practice.
    */
   id: string;
+  /** pass a ref to the input element */
+  inputRef?: Ref<HTMLInputElement>;
   /** The label content. */
   label?: string;
   /** The name of input element */

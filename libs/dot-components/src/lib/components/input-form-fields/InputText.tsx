@@ -35,6 +35,7 @@ export const DotInputText = ({
   helperText,
   endIcon,
   id,
+  inputRef,
   label,
   multiline = false,
   name,
@@ -92,6 +93,7 @@ export const DotInputText = ({
           </StyledAdornment>
         ),
       }}
+      inputRef={inputRef}
       label={label}
       multiline={multiline}
       name={name}

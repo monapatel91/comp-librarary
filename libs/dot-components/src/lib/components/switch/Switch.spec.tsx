@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import { DotSwitch, SwitchProps } from './Switch';
@@ -6,12 +6,15 @@ import userEvent from '@testing-library/user-event';
 
 describe('Switch', () => {
   const onChange = jest.fn();
+  const inputRef = createRef<HTMLInputElement>();
   it('should have unchanged API', () => {
     const props = {
       ariaLabel: 'aria label',
       checked: false,
       color: 'primary',
       disabled: false,
+      id: 'id',
+      inputRef: inputRef,
       label: 'My Switch',
       labelPlacement: 'end',
       onChange: onChange,
@@ -22,6 +25,8 @@ describe('Switch', () => {
       checked: false,
       color: 'primary',
       disabled: false,
+      id: 'id',
+      inputRef: inputRef,
       label: 'My Switch',
       labelPlacement: 'end',
       onChange: onChange,

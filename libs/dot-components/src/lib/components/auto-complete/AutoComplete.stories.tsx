@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { createRef, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import {
   DotAutoComplete,
   AutoCompleteProps,
   parseAutoCompleteValue,
+  AutoCompleteValue,
 } from './AutoComplete';
 
 const batman = { group: 'D.C.', title: 'Batman', error: true };
@@ -34,6 +35,7 @@ export default {
     placeholder: {
       defaultValue: 'Select a hero',
     },
+    onChange: { action: 'on change' },
   },
 } as Meta;
 
@@ -41,16 +43,27 @@ export const Default: Story<AutoCompleteProps> = (args) => (
   <DotAutoComplete {...args} />
 );
 
-export const WithError: Story<AutoCompleteProps> = (args) => {
+export const WithError: Story<AutoCompleteProps> = ({ onChange, ...args }) => {
   const [helperText, setHelperText] = useState('No Batman without Robin!');
   const [error, setError] = useState(true);
-  const onChange = (_event, value, reason) => {
+  const ref = createRef<HTMLInputElement>();
+  const handleOnChange = (
+    _event: React.ChangeEvent<unknown>,
+    value: AutoCompleteValue,
+    reason: string
+  ) => {
     const parsedValue = parseAutoCompleteValue(value);
     batman.error =
       parsedValue.indexOf('Batman') !== -1 &&
       parsedValue.indexOf('Robin') === -1;
     setError(batman.error);
     setHelperText(batman.error ? 'No Batman without Robin!' : null);
+    console.log('type: ' + ref.current.getAttribute('type'));
+    console.log('autocomplete: ' + ref.current.getAttribute('autocomplete'));
+    console.log(
+      'aria-autocomplete: ' + ref.current.getAttribute('aria-autocomplete')
+    );
+    onChange(_event, value, reason);
   };
   return (
     <DotAutoComplete
@@ -58,7 +71,8 @@ export const WithError: Story<AutoCompleteProps> = (args) => {
       defaultValue={defaultValueWithError}
       error={error}
       helperText={helperText}
-      onChange={onChange}
+      inputRef={ref}
+      onChange={handleOnChange}
     />
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
@@ -24,6 +24,7 @@ describe('AutoComplete', () => {
 
   it('should have unchanged API', () => {
     const onChange = jest.fn();
+    const inputRef = createRef<HTMLInputElement>();
     const props = {
       autoFocus: true,
       defaultValue: dummyOptions[0],
@@ -33,6 +34,7 @@ describe('AutoComplete', () => {
       group: true,
       helperText: 'a little help here?',
       inputId: 'input-id',
+      inputRef: inputRef,
       label: 'My Label',
       multiple: false,
       onChange: onChange,
@@ -50,6 +52,7 @@ describe('AutoComplete', () => {
       group: true,
       helperText: 'a little help here?',
       inputId: 'input-id',
+      inputRef: inputRef,
       label: 'My Label',
       multiple: false,
       onChange: onChange,

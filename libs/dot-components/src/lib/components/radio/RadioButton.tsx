@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, Ref } from 'react';
 import {
   rootClassName,
   StyledFormControlLabel,
@@ -16,6 +16,8 @@ export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
 export interface RadioButtonBaseProps extends CommonProps {
   /** id of radio button */
   id?: string;
+  /** pass a ref to the input element */
+  inputRef?: Ref<HTMLInputElement>;
   /** label placement options available 'bottom' | 'end' | 'start' */
   labelPlacement?: RadioLabelPlacement;
   /** name of radio input */
@@ -45,6 +47,7 @@ export function DotRadioButton({
   'data-testid': dataTestId,
   disabled,
   id,
+  inputRef,
   label,
   labelPlacement = 'end',
   name,
@@ -72,6 +75,7 @@ export function DotRadioButton({
           data-testid={dataTestId}
           disabled={disabled}
           id={id}
+          inputRef={inputRef}
           name={name}
           onChange={handleChange}
           required={required}

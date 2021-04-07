@@ -25,6 +25,7 @@ export const DotInputSelect = ({
   fullWidth = true,
   helperText,
   id,
+  inputRef,
   label,
   name,
   onChange,
@@ -73,6 +74,7 @@ export const DotInputSelect = ({
           </StyledAdornment>
         ),
       }}
+      inputRef={inputRef}
       label={label}
       multiline={false}
       name={name}

@@ -25,6 +25,7 @@ export function DotCheckbox({
   disabled,
   id,
   indeterminate,
+  inputRef,
   label,
   labelPlacement,
   name,
@@ -52,6 +53,7 @@ export function DotCheckbox({
           disabled={disabled}
           id={id}
           indeterminate={indeterminate}
+          inputRef={inputRef}
           name={name}
           onChange={handleChange}
           required={required}
