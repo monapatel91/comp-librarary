@@ -1,7 +1,14 @@
 import styled, { css } from 'styled-components';
 import { lighten } from '@material-ui/core';
+import { DotTypography } from '../../components/typography/Typography';
 
 export const rootClassName = 'pb-workitem-drawer';
+
+export const StyledTooltipContent = styled(DotTypography)`
+  ${({ theme }) => css`
+    color: ${theme.palette.layer.n0};
+  `}
+`;
 
 export const StyledProgressionBoardWorkItemDrawer = styled.div`
   ${({ theme }) => css`

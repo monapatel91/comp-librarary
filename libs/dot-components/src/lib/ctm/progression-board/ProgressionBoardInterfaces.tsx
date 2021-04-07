@@ -105,8 +105,8 @@ export interface WorkItemDetailsType {
   id: string;
   /* Workitem's description */
   description: string;
-  /* Workitem owner's first and last name */
-  owner: string;
+  /* Array of workitem owner's first and last name. Can be one or multiple values inside of array. */
+  owner: Array<string>;
   /* Workitem's source system name (ie: Jira, Github, Gitlab, ...) */
   sourceSystemName: string;
   /* Workitem's source system URL */

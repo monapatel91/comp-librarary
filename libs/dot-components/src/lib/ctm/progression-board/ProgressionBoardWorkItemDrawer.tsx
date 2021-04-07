@@ -1,8 +1,10 @@
 import React from 'react';
-import { Divider } from '@material-ui/core';
+import { Divider, Tooltip } from '@material-ui/core';
 import { CommonProps } from '../../components/CommonProps';
 import {
+  AvatarProps,
   DotAvatar,
+  DotAvatarGroup,
   DotIconButton,
   DotSkeleton,
   DotTypography,
@@ -16,6 +18,7 @@ import {
 } from './ProgressionBoardInterfaces';
 import {
   rootClassName,
+  StyledTooltipContent,
   StyledProgressionBoardWorkItemDrawer,
 } from './ProgressionBoardWorkItemDrawer.styles';
 
@@ -90,27 +93,61 @@ export const DotProgressionBoardWorkItemDrawer = ({
     );
   };
 
-  const renderOwnerAvatar = (): JSX.Element =>
-    areItemDetailsAvailable ? (
-      <DotAvatar
-        alt="Owner Avatar"
-        className="owner-avatar"
-        data-testid={`${dataTestId}-owner-avatar`}
-      />
-    ) : (
-      <DotSkeleton variant="circular" width="40px" height="40px" />
-    );
+  const renderOwnerAvatar = (): JSX.Element => {
+    const owners = workItemDetails?.owner || [];
+    if (!areItemDetailsAvailable) {
+      return <DotSkeleton variant="circular" width="40px" height="40px" />;
+    }
+    if (owners.length <= 1) {
+      return (
+        <DotAvatar
+          alt="Owner Avatar"
+          className="owner-avatar"
+          data-testid={`${dataTestId}-owner-avatar`}
+        />
+      );
+    } else {
+      const avatars: Array<AvatarProps> = owners.map((owner) => ({
+        alt: 'avatar alt text',
+        'data-testid': 'test-avatar',
+        text: owner,
+        type: 'text',
+      }));
+      return (
+        <Tooltip
+          data-testid={`${dataTestId}-owner-group-tooltip`}
+          title={
+            <StyledTooltipContent variant="body2">
+              {owners.join(', ')}
+            </StyledTooltipContent>
+          }
+        >
+          <div>
+            <DotAvatarGroup
+              avatars={avatars}
+              data-testid={`${dataTestId}-owner-avatar-group`}
+              max={3}
+            />
+          </div>
+        </Tooltip>
+      );
+    }
+  };
 
-  const renderOwner = (): JSX.Element =>
-    areItemDetailsAvailable ? (
-      workItemDetails.owner ? (
-        <span title={workItemDetails.owner}>{workItemDetails.owner}</span>
-      ) : (
-        <em>No owner defined</em>
-      )
+  const renderOwner = (): JSX.Element => {
+    const owners = workItemDetails?.owner || [];
+    if (!areItemDetailsAvailable) {
+      return <DotSkeleton width="150px" />;
+    }
+    // If one owner - render name, if multiple do not display anything (avatar group will handle it)
+    return owners.length > 0 ? (
+      owners.length === 1 ? (
+        <span title={owners[0]}>{owners[0]}</span>
+      ) : null
     ) : (
-      <DotSkeleton width="150px" />
+      <em>No owner defined</em>
     );
+  };
 
   const renderSourceIcon = (): JSX.Element =>
     areItemDetailsAvailable ? (
