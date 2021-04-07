@@ -1,6 +1,6 @@
 # Change Log
 
-## Current
+## 0.0.0-alpha.17
 
 ### Components
 
@@ -12,16 +12,16 @@
 - **Switch** - added `inputRef` prop
 - **Switch** - added `id` prop
 
+### Experimental
+
+- **ProgressionBoardWorkItemDrawer** - `owner` property type (of `WorkItemDetailsType` interface) changed from `string` to `Array<string>` to support multiple owners
+
 ## 0.0.0-alpha.16
 
 ### Components
 
 - **InputSelect** - made `value` prop optional
 - **Sidebar** - added `open` prop
-
-### Experimental
-
-- **ProgressionBoardWorkItemDrawer** - `owner` property type (of `WorkItemDetailsType` interface) changed from `string` to `Array<string>` to support multiple owners
 
 ## 0.0.0-alpha.15
 
