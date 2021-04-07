@@ -35,16 +35,13 @@ export default {
             {
               iconId: 'process-template',
               text: 'Package Progression',
-              href: '/package-progression',
             },
             {
               iconId: 'process-template',
               text: 'Feature Progression',
-              href: '/feature-progression',
             },
           ],
           text: 'Progressions',
-          href: '/progressions',
         },
         {
           iconId: 'satellite-group',
@@ -52,21 +49,17 @@ export default {
             {
               iconId: 'satellite-group',
               text: 'Groups',
-              href: '/pipeline-groups',
             },
             {
               iconId: 'satellite-group',
               text: 'Instances',
-              href: '/pipeline-instance',
             },
           ],
           text: 'Pipelines',
-          href: '/pipelines',
         },
         {
           iconId: 'dashboard',
           text: 'Insights',
-          href: '/insights',
         },
         {
           text: 'Workflow',
@@ -75,17 +68,14 @@ export default {
         {
           iconId: 'block',
           text: 'Packages',
-          href: '/packages',
         },
         {
           iconId: 'flag',
           text: 'Features',
-          href: '/features',
         },
         {
           iconId: 'collection',
           text: 'Projects',
-          href: '/projects',
         },
         {
           divider: true,
@@ -93,17 +83,14 @@ export default {
         {
           iconId: 'file-lines',
           text: 'Workitems',
-          href: '/workitems',
         },
         {
           iconId: 'change',
           text: 'Changes',
-          href: '/changes',
         },
         {
           iconId: 'square-settings',
           text: 'Artifacts',
-          href: '/artifacts',
         },
         {
           text: 'System',
@@ -112,17 +99,14 @@ export default {
         {
           iconId: 'monitor-gears',
           text: 'Tasks',
-          href: '/tasks',
         },
         {
           iconId: 'archive',
           text: 'Buckets',
-          href: '/buckets',
         },
         {
           iconId: 'monitor',
           text: 'Environment',
-          href: '/environment',
         },
       ],
     },
