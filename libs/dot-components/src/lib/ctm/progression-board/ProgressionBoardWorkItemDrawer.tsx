@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Divider, Tooltip } from '@material-ui/core';
 import { CommonProps } from '../../components/CommonProps';
 import {
@@ -72,14 +72,14 @@ export const DotProgressionBoardWorkItemDrawer = ({
     workItemDetails.sourceSystemName &&
     workItemDetails.sourceSystemUrl;
 
-  const generateTextBlockSkeleton = (numberOfRows: number): JSX.Element[] => {
+  const generateTextBlockSkeleton = (numberOfRows: number): ReactNode[] => {
     if (!Number.isFinite(numberOfRows) || numberOfRows <= 0) return null;
     return [...Array(numberOfRows)].map((_, index: number) => (
       <DotSkeleton variant="text" key={index} />
     ));
   };
 
-  const renderWorkItemDescription = (): JSX.Element => {
+  const renderWorkItemDescription = (): ReactNode => {
     return areItemDetailsAvailable ? (
       <DotTypography variant="body1">
         {workItemDetails.description ? (
@@ -93,7 +93,7 @@ export const DotProgressionBoardWorkItemDrawer = ({
     );
   };
 
-  const renderOwnerAvatar = (): JSX.Element => {
+  const renderOwnerAvatar = (): ReactNode => {
     const owners = workItemDetails?.owner || [];
     if (!areItemDetailsAvailable) {
       return <DotSkeleton variant="circular" width="40px" height="40px" />;
@@ -134,7 +134,7 @@ export const DotProgressionBoardWorkItemDrawer = ({
     }
   };
 
-  const renderOwner = (): JSX.Element => {
+  const renderOwner = (): ReactNode => {
     const owners = workItemDetails?.owner || [];
     if (!areItemDetailsAvailable) {
       return <DotSkeleton width="150px" />;
@@ -149,7 +149,7 @@ export const DotProgressionBoardWorkItemDrawer = ({
     );
   };
 
-  const renderSourceIcon = (): JSX.Element =>
+  const renderSourceIcon = (): ReactNode =>
     areItemDetailsAvailable ? (
       <DotAvatar
         alt="Source Icon"
@@ -162,7 +162,7 @@ export const DotProgressionBoardWorkItemDrawer = ({
       <DotSkeleton variant="circular" width="40px" height="40px" />
     );
 
-  const renderSourceText = (): JSX.Element =>
+  const renderSourceText = (): ReactNode =>
     areItemDetailsAvailable ? (
       isSourceSystemDataDefined ? (
         <>
@@ -178,7 +178,7 @@ export const DotProgressionBoardWorkItemDrawer = ({
       <DotSkeleton width="150px" />
     );
 
-  const renderSourceOpenButton = (): JSX.Element =>
+  const renderSourceOpenButton = (): ReactNode =>
     areItemDetailsAvailable ? (
       isSourceSystemDataDefined && (
         <DotIconButton
@@ -193,7 +193,7 @@ export const DotProgressionBoardWorkItemDrawer = ({
       <DotSkeleton variant="circular" width="16px" height="16px" />
     );
 
-  const renderDrawerContent = (): JSX.Element => {
+  const renderDrawerContent = (): ReactNode => {
     if (workItem) {
       const { isSplit } = workItem;
       return (

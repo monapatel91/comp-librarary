@@ -61,7 +61,7 @@ export interface TableProps extends CommonProps {
   /** Table header is sticky */
   stickyHeader?: boolean;
   /** Toolbar displayed above column headers */
-  toolbar?: JSX.Element;
+  toolbar?: ReactNode;
 }
 
 export const sortComparator = (

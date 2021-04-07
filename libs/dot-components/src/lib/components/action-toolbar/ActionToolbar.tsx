@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { CommonProps } from '../CommonProps';
 import { rootClassName, StyledToolbar } from './ActionToolbar.styles';
@@ -6,7 +6,7 @@ import { rootClassName, StyledToolbar } from './ActionToolbar.styles';
 export type DotActionBarVarient = 'regular' | 'dense';
 export interface DotActionBarProps extends CommonProps {
   /** string or JSX element that is displayed inside the toolbar */
-  children?: string | JSX.Element | JSX.Element[];
+  children?: ReactNode;
   /** DotActionBarVarient dense and regular for toolbar height */
   variant?: DotActionBarVarient;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 
 import { VsmHub } from '../vsm-hub/VsmHub';
 
@@ -11,7 +11,7 @@ export function App() {
   const [navList, setNavList] = useState<ListItemProps[]>(mainLevelNav);
   const [_backItem, setBackItem] = useState<BackItemProps>(backItem);
   const [goBack, setGoBack] = useState<boolean>();
-  const [branding, setBranding] = useState<JSX.Element>(
+  const [branding, setBranding] = useState<ReactNode>(
     <DotBranding title="Admin" />
   );
 

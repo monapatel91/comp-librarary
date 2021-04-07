@@ -1,4 +1,4 @@
-import React, { ElementType, MouseEvent, useState } from 'react';
+import React, { ElementType, MouseEvent, ReactNode, useState } from 'react';
 import {
   Collapse,
   Divider,
@@ -22,7 +22,7 @@ export interface ListProps extends CommonProps {
   /** aria-label passed to the list component */
   ariaLabel?: string;
   /** string or JSX element that is displayed inside the toolbar */
-  children?: JSX.Element;
+  children?: ReactNode;
   /** The component used for the root node. Either a string to use a HTML element or a component. */
   component?: ElementType;
   /** If true, compact vertical padding designed for keyboard and mouse input will be used for the list and list items. */

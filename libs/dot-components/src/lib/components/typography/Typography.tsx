@@ -22,7 +22,7 @@ export type TypographyVariant =
 
 export interface TypographyProps extends CommonProps {
   /** The content of the component. */
-  children: ReactNode | string;
+  children: ReactNode;
   /** The component used for the root node. Either a string to use a HTML element or a component. */
   component?: ElementType;
   /** Applies the theme typography styles. */

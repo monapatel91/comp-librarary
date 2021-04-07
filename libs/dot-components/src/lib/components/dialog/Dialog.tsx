@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, MouseEvent } from 'react';
+import React, { KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { ButtonProps, ButtonType, DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
@@ -24,7 +24,7 @@ export interface DialogProps extends CommonProps {
   /** props passed down to the cancel button */
   cancelButtonProps?: DialogButtonProps;
   /** components or string that is displayed in the dialog body */
-  children?: string | JSX.Element[] | JSX.Element;
+  children?: ReactNode;
   /** The callback to be executed when the action is cancelled */
   onCancel: (event: unknown) => void;
   /** The callback to be executed when the action is submitted */
@@ -34,7 +34,7 @@ export interface DialogProps extends CommonProps {
   /** props passed down to the submit button */
   submitButtonProps?: DialogButtonProps;
   /** dialog heading */
-  title: string | JSX.Element;
+  title: ReactNode;
 }
 
 /**

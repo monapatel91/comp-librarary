@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, MouseEvent } from 'react';
+import React, { KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import {
   ClickAwayListener,
   Grow,
@@ -50,7 +50,7 @@ export interface MenuProps extends CommonProps {
 
 export interface MenuItemProps {
   /** The text displayed on the item */
-  children?: JSX.Element | string;
+  children?: ReactNode;
   /** Space delimited CSS classes to be attributed to the menu item */
   classes?: string;
   /** A key that can be used to determine which item was clicked */

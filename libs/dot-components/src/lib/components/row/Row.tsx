@@ -1,4 +1,10 @@
-import React, { Fragment, KeyboardEvent, MouseEvent, useState } from 'react';
+import React, {
+  Fragment,
+  KeyboardEvent,
+  MouseEvent,
+  ReactNode,
+  useState,
+} from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledRow } from './Row.styles';
@@ -14,7 +20,7 @@ export interface RowProps extends CommonProps {
   /** The title of the delete confirmation dialog */
   deleteTitle?: string;
   /** The body for the delete confirmation dialog, accepts HTML */
-  deleteBodyText?: string | JSX.Element;
+  deleteBodyText?: ReactNode;
   /** The text of the delete confirmation dialog button  */
   deleteButtonText?: string;
   /** The text of the  */

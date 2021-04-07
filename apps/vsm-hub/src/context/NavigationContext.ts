@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import { ReactNode } from 'react';
 import { createContext, useContext } from 'react';
 import { BackItemProps, ListItemProps } from '@digital-ai/dot-components';
-import { mainLevelNav, backItem, productLevelNav } from '../routes/routes';
+import { mainLevelNav, backItem } from '../routes/routes';
 
 export type NavList = {
   navList: Array<ListItemProps>;
   backItem: BackItemProps;
   goBack: boolean;
-  branding: JSX.Element;
+  branding: ReactNode;
   setNavList: (navList: Array<ListItemProps>) => void;
   setBackItem: (navList: BackItemProps) => void;
   setGoBack: (value: boolean) => void;
-  setBranding: (branding: JSX.Element) => void;
+  setBranding: (branding: ReactNode) => void;
 };
 export const NavListContext = createContext<NavList>({
   navList: mainLevelNav,

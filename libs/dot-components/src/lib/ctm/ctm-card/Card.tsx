@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Typography } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '../../components/icon/Icon';
@@ -27,13 +27,13 @@ export interface CardIndicatorProps extends CommonProps {
 }
 
 export interface CardProps extends CommonProps {
-  bottomLeft: JSX.Element;
-  bottomRight: JSX.Element;
-  children: JSX.Element | Array<JSX.Element>;
+  bottomLeft: ReactNode;
+  bottomRight: ReactNode;
+  children: ReactNode;
   isSelected: boolean;
   fullversion_from: string;
   fullversion_to: string;
-  indicators: JSX.Element;
+  indicators: ReactNode;
   rev_from: number;
   rev_to: number;
   url: string;

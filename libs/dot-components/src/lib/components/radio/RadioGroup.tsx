@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, ReactNode } from 'react';
 import { FormHelperText, FormLabel } from '@material-ui/core';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
@@ -22,7 +22,7 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   /** if true makes all radio buttons disabled */
   disableGroup?: boolean;
   /** Icon placed before the children. */
-  endIcon?: JSX.Element;
+  endIcon?: ReactNode;
   /** If true, the label should be displayed in an error state. */
   error?: boolean;
   /** The helper text content. */
@@ -34,7 +34,7 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   /** changes layout to be horizontal if true */
   row?: boolean;
   /** Icon placed before the children. */
-  startIcon?: JSX.Element;
+  startIcon?: ReactNode;
 }
 
 export interface RadioGroupProps extends RadioGroupBaseProps {

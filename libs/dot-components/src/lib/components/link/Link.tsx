@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledLink } from './Link.styles';
@@ -16,7 +16,7 @@ export type LinkTarget = '_blank' | '_self';
 
 export interface LinkProps extends CommonProps {
   /** text for the link. */
-  children: JSX.Element | JSX.Element[] | string;
+  children: ReactNode;
   /** link color */
   color?: LinkColor;
   /** href for the link. */

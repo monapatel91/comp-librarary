@@ -10,6 +10,7 @@
 1. **Use functional components over class**, which allows us to use React hooks.
 1. **Prop names should follow existing APIs**, which follows our existing patterns.
 1. **Use `<Fragment>` or `<>` over `<div>` or `<span>`**, to avoid additional markup in the DOM.
+1. **Use `ReactNode` over `JSX.Element`**.
 
 ## Suggestions
 

@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import {
   TableCell,
   TableHead,
@@ -41,7 +41,7 @@ export interface HeaderCellProps {
   /** The UID of the cell, if not provided then a randomly generated hash will be created using
    * CreateUUID() */
   uid: string;
-  value?: string | JSX.Element;
+  value?: ReactNode;
   /** The width of the column */
   width?: string;
 }

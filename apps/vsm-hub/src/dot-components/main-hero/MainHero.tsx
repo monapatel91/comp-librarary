@@ -1,6 +1,6 @@
 import { DotButton } from '@digital-ai/dot-components';
 import { Typography } from '@material-ui/core';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { StyledMainHero, rootClassName } from './MainHero.styles';
 
 export interface MainHeroProps {
@@ -9,11 +9,11 @@ export interface MainHeroProps {
   ctaLabel?: string;
   ctaAction?: () => void;
   useCta?: boolean;
-  children?: React.ReactNode | JSX.Element;
+  children?: ReactNode;
   className?: string;
   leftBackgroundImage?: string;
   rightBackgroundImage?: string;
-  actionToolbarContent?: JSX.Element;
+  actionToolbarContent?: ReactNode;
   height?: number;
   marginBottom?: number;
 }

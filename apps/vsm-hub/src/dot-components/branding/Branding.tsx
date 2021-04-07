@@ -1,9 +1,9 @@
 import { Typography } from '@material-ui/core';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { StyledBranding, rootClassName } from './Branding.styles';
 import { ReactComponent as LogoD } from '../../assets/svg/logo_d.svg';
 export interface BrandingProps {
-  svg?: JSX.Element;
+  svg?: ReactNode;
   title?: string;
 }
 

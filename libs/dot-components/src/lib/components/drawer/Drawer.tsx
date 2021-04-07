@@ -1,4 +1,4 @@
-import React, { MouseEvent, CSSProperties } from 'react';
+import React, { MouseEvent, ReactNode, CSSProperties } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDrawer } from './Drawer.styles';
@@ -12,7 +12,7 @@ export interface DrawerProps extends CommonProps {
   /** Side from which the drawer will appear 'bottom', 'left', 'right', 'top' */
   anchor?: DrawerAnchor;
   /** string or JSX element that is displayed inside the drawer */
-  children?: string | JSX.Element | JSX.Element[];
+  children?: ReactNode;
   /** Props applied to the Modal element. */
   ModalProps?: DrawerModalProps;
   /** Props applied to the Paper element. */

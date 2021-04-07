@@ -1,4 +1,10 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FormEvent,
+  ReactNode,
+  useEffect,
+  useState,
+} from 'react';
 import { Divider } from '@material-ui/core';
 import {
   DotAutoComplete,
@@ -200,7 +206,7 @@ export const DotProgressionBoardApplicationDrawer = ({
     setSourceControlServers([]);
   };
 
-  const renderSelectedSourceControls = (): JSX.Element => {
+  const renderSelectedSourceControls = (): ReactNode => {
     const servers: Array<AutoCompleteControl> = [];
     formData.sourceControls.forEach((sourceControl: SourceControl) =>
       servers.push(...sourceControl.servers)
@@ -237,7 +243,7 @@ export const DotProgressionBoardApplicationDrawer = ({
     );
   };
 
-  const renderDrawerContent = (): JSX.Element => {
+  const renderDrawerContent = (): ReactNode => {
     return (
       <>
         <div className="drawer-header">

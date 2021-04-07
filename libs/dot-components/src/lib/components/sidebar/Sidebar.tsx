@@ -1,4 +1,10 @@
-import React, { Fragment, MouseEvent, useEffect, useState } from 'react';
+import React, {
+  Fragment,
+  MouseEvent,
+  ReactNode,
+  useEffect,
+  useState,
+} from 'react';
 import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 import { DotIconButton } from '../button/IconButton';
 import { DotList, ListItemProps } from '../list/List';
@@ -26,7 +32,7 @@ export interface SidebarProps extends CommonProps {
   /** If displayBrand is true this text will be displayed above the Digital.ai branding */
   brandDesc?: string;
   /** If provided will display below the navItems */
-  children?: JSX.Element;
+  children?: ReactNode;
   /** If true will display the expand/collapse icon button */
   collapsable?: boolean;
   /** If true will display Digital.ai branding at the bottom */

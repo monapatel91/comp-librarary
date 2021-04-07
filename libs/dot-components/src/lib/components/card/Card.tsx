@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Card } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export interface CardProps extends CommonProps {
-  children: JSX.Element | string;
+  children: ReactNode;
 }
 
 export const DotCard = ({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { CommonProps } from '../CommonProps';
 import { rootClassName } from '../form-controls/FormControl.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -8,7 +8,7 @@ export interface FormGroupProps extends CommonProps {
   /** accessibility label */
   ariaLabel?: string;
   /** The text for the button. Button text should be in sentence case. */
-  children: JSX.Element | JSX.Element[];
+  children: ReactNode;
   /** changes layout to be horizontal if true */
   row?: boolean;
 }

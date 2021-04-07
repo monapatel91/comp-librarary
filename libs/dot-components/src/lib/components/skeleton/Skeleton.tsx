@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledSkeleton } from './Skeleton.styles';
@@ -7,7 +7,7 @@ export type SkeletonVariantType = 'circular' | 'rectangular' | 'text';
 
 export interface SkeletonProps extends CommonProps {
   /** component(s) inside a skeleton will constrain the size/shape */
-  children?: JSX.Element[] | JSX.Element;
+  children?: ReactNode;
   /** Determine height of skeleton */
   height?: number | string;
   /** Determine width of skeleton */

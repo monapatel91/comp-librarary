@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledButton } from './Button.styles';
@@ -8,13 +8,13 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 
 export interface ButtonProps extends CommonProps {
   /** The text for the button. Button text should be in sentence case. */
-  children: JSX.Element | string;
+  children: ReactNode;
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** If true, the ripple effect will be disabled. */
   disableRipple?: boolean;
   /** Icon placed after the children. */
-  endIcon?: JSX.Element;
+  endIcon?: ReactNode;
   /** If true, the button will take up the full width of its container.  */
   fullWidth?: boolean;
   /** Is this a submit button */
@@ -24,7 +24,7 @@ export interface ButtonProps extends CommonProps {
   /** The size of the button */
   size?: ButtonSize;
   /** Icon placed before the children. */
-  startIcon?: JSX.Element;
+  startIcon?: ReactNode;
   /** Help text to be displayed on hover */
   titleTooltip?: string;
   /** The type of button */

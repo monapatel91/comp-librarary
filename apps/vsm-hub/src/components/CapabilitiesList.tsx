@@ -8,7 +8,7 @@ import {
   DotIcon,
 } from '@digital-ai/dot-components';
 import { Typography } from '@material-ui/core';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { StyledCapabilities, rootClassName } from './CapabilitiesList.styles';
 import { SimpleStatus, VsmHubSimpleStatus } from './simple-status/SimpleStatus';
 
@@ -25,7 +25,7 @@ export interface CapabilitiesProps {
   title?: string;
   capabilityItems: Array<Capability>;
   onClick?: (type: string, value: Capability) => void;
-  actions?: JSX.Element;
+  actions?: ReactNode;
 }
 
 export const VsmHubCapabilities = ({

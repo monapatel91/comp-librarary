@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, ReactNode, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
@@ -12,17 +12,17 @@ import {
 import { DotTypography } from '../typography/Typography';
 export interface AppToolbarProps extends CommonProps {
   /** User avatar component */
-  avatar?: JSX.Element;
+  avatar?: ReactNode;
   /** Control the bottom border of the toolbar, accepts any valid  */
   borderColor?: string;
   /** Product name displayed next to Digital.ai logo */
   appName?: string;
   /** JSX Element that is displayed between the logo and right nav */
-  children?: JSX.Element;
+  children?: ReactNode;
   /** Array of nav items to be displayed on the right side */
   navItems?: Array<IconButtonProps>;
   /** If provided will display a hamburger main menu drawer */
-  mainMenu?: JSX.Element;
+  mainMenu?: ReactNode;
 }
 
 export const DotAppToolbar = ({

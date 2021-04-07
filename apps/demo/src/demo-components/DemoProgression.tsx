@@ -1,4 +1,4 @@
-import React, { CSSProperties, Fragment, useState } from 'react';
+import React, { CSSProperties, Fragment, ReactNode, useState } from 'react';
 import styled from 'styled-components';
 import {
   DotButton,
@@ -110,7 +110,7 @@ export const ProgressionDemo = () => {
     onDrawerClose: onApplicationDrawerClose,
   };
 
-  const renderSourceControlListItems = (sourceControl): JSX.Element =>
+  const renderSourceControlListItems = (sourceControl): ReactNode =>
     sourceControl.servers.map((server) => (
       <DotListItem
         key={server.id}
@@ -120,7 +120,7 @@ export const ProgressionDemo = () => {
       />
     ));
 
-  const renderTicketSystemListItems = (ticketSystem): JSX.Element =>
+  const renderTicketSystemListItems = (ticketSystem): ReactNode =>
     ticketSystem.servers.map((server) => (
       <DotListItem
         key={server.id}
@@ -130,7 +130,7 @@ export const ProgressionDemo = () => {
       />
     ));
 
-  const renderFormResults = (): JSX.Element => {
+  const renderFormResults = (): ReactNode => {
     if (!formResult) return null;
     const {
       applicationName,

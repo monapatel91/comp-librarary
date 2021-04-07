@@ -1,4 +1,4 @@
-import React, { Fragment, MouseEvent, useState } from 'react';
+import React, { Fragment, MouseEvent, ReactNode, useState } from 'react';
 import { CardHeader, CardActions, Menu, MenuItem } from '@material-ui/core';
 import {
   TimelineConnector,
@@ -30,7 +30,7 @@ export interface CardMenuOption {
 }
 
 export interface StageCardProps extends CommonProps {
-  avatar?: JSX.Element;
+  avatar?: ReactNode;
   menuOptions?: Array<CardMenuOption>;
   phaseColor: CategoryType;
   steps: Array<StepObject>;

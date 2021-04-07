@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '@digital-ai/dot-components';
 import {
@@ -17,12 +17,12 @@ import {
 import { CommonProps } from '../CommonProps';
 
 export interface AccordionProps extends CommonProps {
-  actions?: JSX.Element | string;
-  children: JSX.Element | string;
+  actions?: ReactNode;
+  children: ReactNode;
   defaultExpanded?: boolean;
   disabled?: boolean;
-  startIcon?: JSX.Element;
-  summary: JSX.Element | string;
+  startIcon?: ReactNode;
+  summary: ReactNode;
 }
 
 export const DotAccordion = ({

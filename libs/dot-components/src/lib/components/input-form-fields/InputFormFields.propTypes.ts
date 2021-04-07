@@ -1,4 +1,4 @@
-import { Ref } from 'react';
+import { ReactNode, Ref } from 'react';
 import { CommonProps } from '../CommonProps';
 
 export type inputSizeOptions = 'small' | 'medium';
@@ -11,7 +11,7 @@ export interface InputProps extends CommonProps {
   /** If true, the input will be disabled. */
   disabled?: boolean;
   /** Icon placed after the children. */
-  endIcon?: JSX.Element;
+  endIcon?: ReactNode;
   /** If true, the label will be displayed in an error state. */
   error?: boolean;
   /** If true, the input will take up the full width of its container */
@@ -36,7 +36,7 @@ export interface InputProps extends CommonProps {
   /** If true, the label is displayed as required and the input element` will be required. */
   required?: boolean;
   /** Icon placed before the children. */
-  startIcon?: JSX.Element;
+  startIcon?: ReactNode;
   /** Size of the input */
   size?: inputSizeOptions;
   /**

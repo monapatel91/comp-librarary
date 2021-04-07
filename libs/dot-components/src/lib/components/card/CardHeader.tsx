@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { CardHeader } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -8,9 +8,9 @@ type SubheaderSize = 'small' | 'large';
 
 export interface CardHeaderProps extends CommonProps {
   /** Card header action */
-  action?: JSX.Element;
+  action?: ReactNode;
   /** Card header avatar */
-  avatar?: JSX.Element;
+  avatar?: ReactNode;
   /** Card subheader */
   subheader?: string;
   /** Card subheader size */

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDiv } from './CardFooter.styles';
 
 export interface CardFooterProps extends CommonProps {
-  children: JSX.Element | string;
+  children: ReactNode;
 }
 
 export const DotCardFooter = ({

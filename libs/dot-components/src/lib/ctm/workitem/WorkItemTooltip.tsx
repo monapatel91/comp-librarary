@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import { DotIcon } from '../../components';
@@ -14,7 +14,7 @@ export interface WorkItemTooltipProps extends CommonProps {
   value_goal: string;
   title: string;
   external_key: string;
-  child: JSX.Element;
+  child: ReactElement;
 }
 
 export const WorkItemTooltip = ({

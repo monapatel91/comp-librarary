@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import {
@@ -12,7 +12,7 @@ const DRAWER_MIN_WIDTH = 320;
 
 export interface ProgressionBoardDrawerProps extends CommonProps {
   /* Component's children */
-  children: JSX.Element;
+  children: ReactNode;
   /** Props applied to the drawer's Paper element. */
   drawerPaperProps?: DrawerPaperProps;
   /* Flag which indicates whether drawer is opened */

@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, ReactElement } from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { CommonProps } from '../CommonProps';
 import { rootClassName, StyledChip } from './Chip.styles';
@@ -7,7 +7,7 @@ export type ChipSize = 'medium' | 'small';
 
 export interface ChipProps extends CommonProps {
   /** If provided, will display an avatar which takes precedence over icon */
-  avatar?: JSX.Element;
+  avatar?: ReactElement;
   /** The text for the chip. */
   children: string;
   /** If true, the chip is clickable */
@@ -25,7 +25,7 @@ export interface ChipProps extends CommonProps {
   /** Determines the size of the chip 'medium' or 'small' */
   size?: ChipSize;
   /** The icon to display on the chip */
-  startIcon?: JSX.Element;
+  startIcon?: ReactElement;
 }
 
 export const DotChip = ({

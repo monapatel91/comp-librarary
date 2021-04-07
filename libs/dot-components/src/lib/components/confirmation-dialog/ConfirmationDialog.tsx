@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, MouseEvent } from 'react';
+import React, { KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DialogButtonProps, DotDialog } from '../dialog/Dialog';
@@ -7,7 +7,7 @@ export interface ConfirmationDialogProps extends CommonProps {
   /** Cancel button properties */
   cancelBtnProps?: DialogButtonProps;
   /** The dialog message */
-  message?: string | JSX.Element;
+  message?: ReactNode;
   /** The callback to be executed when the action is cancelled */
   onCancel?: () => void;
   /** The callback to be executed when the action is confirmed */
@@ -17,7 +17,7 @@ export interface ConfirmationDialogProps extends CommonProps {
   /** Submit button properties */
   submitBtnProps?: DialogButtonProps;
   /** The dialog title */
-  title?: string | JSX.Element;
+  title?: ReactNode;
 }
 
 /**
