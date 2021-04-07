@@ -20,6 +20,7 @@
 
 ### Components
 
+- **Form** - created new component
 - **InputSelect** - made `value` prop optional
 - **Sidebar** - added `open` prop
 

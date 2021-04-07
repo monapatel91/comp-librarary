@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import { FormHelperText, FormLabel, RadioGroup } from '@material-ui/core';
+import { FormHelperText, FormLabel } from '@material-ui/core';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   endAdornmentClassName,
@@ -14,6 +14,7 @@ import {
   DotRadioButton,
   RadioButtonProps,
 } from './RadioButton';
+import { groupClassName, StyledRadioGroup } from './RadioGroup.styles';
 
 export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   /** accessibility label */
@@ -35,6 +36,7 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   /** Icon placed before the children. */
   startIcon?: JSX.Element;
 }
+
 export interface RadioGroupProps extends RadioGroupBaseProps {
   /** The default input element value. Use when the component is not controlled or has a value. */
   defaultValue?: string;
@@ -44,7 +46,7 @@ export interface RadioGroupProps extends RadioGroupBaseProps {
   options: RadioButtonProps[];
 }
 
-export function DotRadioGroup({
+export const DotRadioGroup = ({
   ariaLabel,
   className,
   'data-testid': dataTestId,
@@ -63,7 +65,7 @@ export function DotRadioGroup({
   required,
   row,
   size = 'medium',
-}: RadioGroupProps) {
+}: RadioGroupProps) => {
   const placement = `${placementClassName}${labelPlacement}`;
   const rootClasses = useStylesWithRootClass(
     rootClassName,
@@ -111,8 +113,9 @@ export function DotRadioGroup({
           {endIcon && <span className={endAdornmentClassName}>{endIcon}</span>}
         </FormLabel>
       )}
-      <RadioGroup
+      <StyledRadioGroup
         aria-label={ariaLabel}
+        className={groupClassName}
         data-testid={dataTestId}
         defaultValue={defaultValue}
         name={name}
@@ -121,8 +124,8 @@ export function DotRadioGroup({
         value={selectedValue}
       >
         {renderOptions}
-      </RadioGroup>
+      </StyledRadioGroup>
       {helperText && <FormHelperText>{helperText}</FormHelperText>}
     </StyledFormControl>
   );
-}
+};

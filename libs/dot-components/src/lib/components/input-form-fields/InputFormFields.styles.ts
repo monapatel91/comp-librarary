@@ -35,10 +35,8 @@ export const StyledTextField = styled(TextField)`
       .MuiSelect-select:focus {
         background-color: transparent;
       }
-      .Mui-error {
-        .${adornmentIconClassName} {
+      .Mui-error.${adornmentIconClassName} {
           color: ${theme.palette.error[500]};
-        }
       }
       .MuiSelect-icon {
         right: ${InputProps.endAdornment ? `44px` : `12px`};
@@ -69,5 +67,5 @@ export const StyledTextField = styled(TextField)`
           color: ${theme.palette.grey[700]};
         }
     }
-`}
+  `}
 `;

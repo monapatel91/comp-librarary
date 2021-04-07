@@ -55,6 +55,10 @@ export const StyledSidebar = styled.aside`
         flex-grow: 2;
         overflow-x: hidden;
         overflow-y: auto;
+
+        li.dot-list-item .dot-typography {
+          white-space: nowrap;
+        }
       }
 
       .toggle-nav {

@@ -9,7 +9,7 @@ export const Routes = () => {
   return (
     <Router>
       <Route path="/" exact component={DemoProgressionBoard} />
-      <Route path="/insights" exact component={DemoForm} />
+      <Route path="/demo-form" exact component={DemoForm} />
       <Route path="/progression" exact component={ProgressionDemo} />
     </Router>
   );

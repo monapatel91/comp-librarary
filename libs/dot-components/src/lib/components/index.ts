@@ -18,6 +18,7 @@ export * from './confirmation-dialog/ConfirmationDialog';
 export * from './dialog/Dialog';
 export * from './drawer/Drawer';
 export * from './empty-state/EmptyState';
+export * from './form/Form';
 export * from './form-group/FormGroup';
 export * from './icon/Icon';
 export * from './inline-edit/InlineEdit';

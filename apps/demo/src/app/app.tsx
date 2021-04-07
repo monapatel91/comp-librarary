@@ -32,78 +32,17 @@ const topNavItems: Array<IconButtonProps> = [
   },
 ];
 
-const mainMenuNavItems: Array<ListItemProps> = [
-  {
-    iconId: 'process-template',
-    text: 'Progressions',
-    href: '/progressions',
-  },
-  {
-    iconId: 'satellite-group',
-    text: 'Pipelines',
-    href: '/pipelines',
-  },
-  {
-    iconId: 'dashboard',
-    text: 'Insights',
-    href: '/insights',
-  },
-  {
-    text: 'Workflow',
-    divider: true,
-  },
-  {
-    iconId: 'block',
-    text: 'Packages',
-    href: '/packages',
-  },
-  {
-    iconId: 'flag',
-    text: 'Features',
-    href: '/features',
-  },
-  {
-    iconId: 'collection',
-    text: 'Projects',
-    href: '/projects',
-  },
-  {
-    iconId: 'file-lines',
-    text: 'Workitems',
-    href: '/workitems',
-  },
-  {
-    iconId: 'change',
-    text: 'Changes',
-    href: '/changes',
-  },
-  {
-    iconId: 'square-settings',
-    text: 'Artifacts',
-    href: '/artifacts',
-  },
-  {
-    text: 'System',
-    divider: true,
-  },
-  {
-    iconId: 'monitor-gears',
-    text: 'Tasks',
-    href: '/tasks',
-  },
-  {
-    iconId: 'archive',
-    text: 'Buckets',
-    href: '/buckets',
-  },
-  {
-    iconId: 'monitor',
-    text: 'Environment',
-    href: '/environment',
-  },
-];
-
 const sideNavItems: Array<ListItemProps> = [
+  {
+    iconId: 'home',
+    text: 'Home',
+    href: '/',
+  },
+  {
+    iconId: 'comment',
+    text: 'Demo Form',
+    href: '/demo-form',
+  },
   {
     iconId: 'process-template',
     items: [
@@ -206,7 +145,7 @@ const sideNavItems: Array<ListItemProps> = [
   },
 ];
 
-const mainMenu = <DotSidebar navItems={mainMenuNavItems} />;
+const mainMenu = <DotSidebar navItems={sideNavItems} />;
 
 const userAvatar = (
   <DotAvatar alt="Batman" text="BW" size="small" type="text" />

@@ -1,14 +1,27 @@
-import { FormControl } from '@material-ui/core';
+import { FormControl, RadioGroup } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { rootClassName as formControlLabelClass } from '../form-controls/FormControlLabel.styles';
 
+export const groupClassName = 'dot-radio-group';
 export const rootClassName = 'dot-radio-control';
 export const groupLabelClassName = 'dot-radio-group-label';
 export const startAdornmentClassName = 'dot-start-adornment';
 export const endAdornmentClassName = 'dot-end-adornment';
 export const placementClassName = 'dot-';
 
-export const StyledFormControl = styled(FormControl)`
+export const StyledRadioGroup = styled(RadioGroup)`
   ${({ theme }) => css`{
+    &.${groupClassName} {
+      padding-left: ${theme.spacing(2.5)}px;
+
+      .${formControlLabelClass} {
+        margin: 0;
+      }
+    }
+  `}
+`;
+
+export const StyledFormControl = styled(FormControl)`
   &.${rootClassName} {
     .MuiFormLabel-root {
       width: 100%;
@@ -38,5 +51,4 @@ export const StyledFormControl = styled(FormControl)`
       }
     }
   }
-    `}
 ` as typeof FormControl;

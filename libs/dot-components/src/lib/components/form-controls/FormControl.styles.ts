@@ -5,7 +5,6 @@ export const rootClassName = 'dot-form-group';
 export const groupLabelClassName = 'dot-form-group-label';
 export const startAdornmentClassName = 'dot-start-adornment';
 export const endAdornmentClassName = 'dot-end-adornment';
-
 export const placementClassName = 'dot-';
 
 export const StyledFormControl = styled(FormControl)`
