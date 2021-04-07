@@ -4,7 +4,7 @@
   - [Running on Windows](#running-on-windows)
   - [Run demo application](#run-demo-application)
   - [Run Storybook](#run-storybook)
-- [Code Styleguide](#code-styleguide)
+- [Commits & Pull Requests](#commits--pull-requests)
   - [Commit Messages](#commit-messages)
   - [Submitting Pull Requests](#submitting-pull-requests)
     - [General Author Checklist](#general-author-checklist)
@@ -21,6 +21,7 @@
     - [Sidebar](#sidebar)
 - [Updating `dot` font icon](#updating-dot-font-icon)
 - [Running Tests & Formatters](#running-tests-and-formatters)
+  - [`git` hooks with `husky`](#git-hooks-with-husky)
   - [Running unit tests](#running-unit-tests)
   - [Running end-to-end tests](#running-end-to-end-tests)
   - [Running linter](#running-linter)
@@ -47,9 +48,7 @@ To run the demo application run `yarn start`. You can then see the running appli
 
 To run Storybook locally run `yarn storybook`. You can then see Storybook running at <http://localhost:4400/>.
 
-# Code Styleguide
-
-- Order all props alphabetically, this allows for easier maintenance of larger components.
+# Commits & Pull Requests
 
 ## Commit Messages
 
@@ -181,28 +180,16 @@ describe('DotButton', () => {
     const props = {
       children: 'My Button',
       disabled: false,
-      disableRipple: false,
-      endIcon: <DotIcon iconId="save" />,
       fullWidth: true,
-      isSubmit: true,
       onClick: onClick,
-      size: 'small',
-      startIcon: <DotIcon iconId="home" />,
-      titleTooltip: 'click here',
       type: 'text',
     };
 
     const buttonProps: ButtonProps = {
       children: 'My Button',
       disabled: false,
-      disableRipple: false,
-      endIcon: <DotIcon iconId="save" />,
       fullWidth: true,
-      isSubmit: true,
       onClick: onClick,
-      size: 'small',
-      startIcon: <DotIcon iconId="home" />,
-      titleTooltip: 'click here',
       type: 'text',
     };
     expect(buttonProps).toEqual(props);
@@ -283,6 +270,13 @@ It's important to adjust the copied styles so that they match the following form
 ```
 
 # Running Tests and Formatters
+
+We have done our best to automate this as much as possible using git hooks and GitHub Actions.
+
+## `git` hooks with `husky`
+
+- The `pre-commit` hook automatically runs `yarn format` locally and includes the changes as part of your commit.
+- The `pre-push` hook automatically flags any issues with `yarn lint` and will prevent you from pushing if any tests are failed with `yarn test`.
 
 ## Running unit tests
 

@@ -58,7 +58,7 @@ yarn upgrade @digital-ai/dot-components@latest
 
 Find which icon you would like to use by going to [.dot design system](https://zeroheight.com/4a9ac476a/p/13a447-icons/b/43c8ca)
 
-Follow the code example [shown here](https://zeroheight.com/4a9ac476a/p/13a447-icons/b/52c5a5)
+Follow the code example [shown here](https://storybook.lisbon-dev.com/?path=/docs/components-icon--default)
 
 Note: You can use search in the upper right corner to search for an icon if you know its name.
 
@@ -67,6 +67,10 @@ If you're using the `DotIcon` component then you do not need to pass in the `ico
 ## Contributing
 
 [Learn about how to contribute](https://zeroheight.com/4a9ac476a/p/50279a-developers/b/631dc3)
+
+## Code Style Guide
+
+[Learn about our code style guide](https://zeroheight.com/4a9ac476a/p/50279a-developers/b/75551c)
 
 ## Change Log
 

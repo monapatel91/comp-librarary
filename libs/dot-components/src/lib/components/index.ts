@@ -38,7 +38,7 @@ export * from './stage-card/StageCard';
 export * from './step-card/StepCard';
 export * from './switch/Switch';
 export * from './table/Table';
-export { DotColumnHeader } from './table/TableHeader';
+export * from './table/TableHeader';
 export * from './table/TableDataWithPagination';
 export * from './table/TablePagination';
 export * from './typography/Typography';
