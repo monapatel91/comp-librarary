@@ -44,6 +44,11 @@ const sideNavItems: Array<ListItemProps> = [
     href: '/demo-form',
   },
   {
+    iconId: 'visibility-off',
+    text: 'Demo Form Uncontrolled',
+    href: '/demo-form-uncontrolled',
+  },
+  {
     iconId: 'process-template',
     items: [
       {
