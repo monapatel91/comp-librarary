@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.0.0-alpha.18
+
+### Components
+
+- **AppToolbar** - ensure that `avatar` is always on the right side of the AppToolbar component
+
+### Experimental
+
+- **ProgressionBoard** - changed `WorkItem` to use `DotIcon` instead of `ul`
+
 ## 0.0.0-alpha.17
 
 ### Components
@@ -14,7 +24,6 @@
 
 ### Experimental
 
-- **ProgressionBoard** - changed `WorkItem` to use `DotIcon` instead of `ul`
 - **ProgressionBoardWorkItemDrawer** - `owner` property type (of `WorkItemDetailsType` interface) changed from `string` to `Array<string>` to support multiple owners
 
 ## 0.0.0-alpha.16
