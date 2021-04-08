@@ -98,34 +98,38 @@ export const DotRadioGroup = ({
     : null;
 
   return (
-    <StyledFormControl
-      classes={{ root: rootClasses }}
-      error={error}
-      component="fieldset"
-      required={required}
-    >
-      {groupLabel && (
-        <FormLabel component="legend">
-          {startIcon && (
-            <span className={startAdornmentClassName}>{startIcon}</span>
-          )}
-          <span className={groupLabelClassName}>{groupLabel}</span>
-          {endIcon && <span className={endAdornmentClassName}>{endIcon}</span>}
-        </FormLabel>
-      )}
-      <StyledRadioGroup
-        aria-label={ariaLabel}
-        className={groupClassName}
-        data-testid={dataTestId}
-        defaultValue={defaultValue}
-        name={name}
-        onChange={handleChange}
-        row={row}
-        value={selectedValue}
+    <div>
+      <StyledFormControl
+        classes={{ root: rootClasses }}
+        error={error}
+        component="fieldset"
+        required={required}
       >
-        {renderOptions}
-      </StyledRadioGroup>
-      {helperText && <FormHelperText>{helperText}</FormHelperText>}
-    </StyledFormControl>
+        {groupLabel && (
+          <FormLabel component="legend">
+            {startIcon && (
+              <span className={startAdornmentClassName}>{startIcon}</span>
+            )}
+            <span className={groupLabelClassName}>{groupLabel}</span>
+            {endIcon && (
+              <span className={endAdornmentClassName}>{endIcon}</span>
+            )}
+          </FormLabel>
+        )}
+        <StyledRadioGroup
+          aria-label={ariaLabel}
+          className={groupClassName}
+          data-testid={dataTestId}
+          defaultValue={defaultValue}
+          name={name}
+          onChange={handleChange}
+          row={row}
+          value={selectedValue}
+        >
+          {renderOptions}
+        </StyledRadioGroup>
+        {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      </StyledFormControl>
+    </div>
   );
 };
