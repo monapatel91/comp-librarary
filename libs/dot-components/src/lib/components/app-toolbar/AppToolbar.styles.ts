@@ -72,7 +72,7 @@ export const StyledAppToolbar = styled.header`
         padding: ${theme.spacing(1.5)}px;
       }
 
-      nav.dot-admin-nav {
+      div.dot-right-side {
         display: flex;
         flex-grow: 2;
         justify-content: flex-end;

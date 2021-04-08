@@ -74,21 +74,23 @@ export const DotAppToolbar = ({
         )}
       </div>
       {children}
-      {navItems.length > 0 && (
-        <nav className="dot-admin-nav">
-          {navItems.map((item, index) => (
-            <DotIconButton
-              className={item.className}
-              iconId={item.iconId}
-              onClick={(event) => item.onClick && item.onClick(event)}
-              key={index}
-              size={item.size}
-              titleTooltip={item.titleTooltip}
-            />
-          ))}
-        </nav>
-      )}
-      {avatar}
+      <div className="dot-right-side">
+        {navItems.length > 0 && (
+          <nav>
+            {navItems.map((item, index) => (
+              <DotIconButton
+                className={item.className}
+                iconId={item.iconId}
+                onClick={(event) => item.onClick && item.onClick(event)}
+                key={index}
+                size={item.size}
+                titleTooltip={item.titleTooltip}
+              />
+            ))}
+          </nav>
+        )}
+        {avatar}
+      </div>
     </StyledAppToolbar>
   );
 };
