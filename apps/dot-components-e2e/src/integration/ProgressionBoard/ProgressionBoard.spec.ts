@@ -3,10 +3,52 @@ describe('dot-components: Progression Board component', () => {
     cy.visit('/iframe.html?id=experimental-progressionboard--default')
   );
 
+  it('should have a dot- prefix', () => {
+    cy.get('div').should('have.class', 'dot-progression-board');
+  });
+
+  it('should render the board headers', () => {
+    cy.get('div').should('have.class', 'board-headers');
+    cy.get('div.board-headers')
+      .should('contain', 'Build')
+      .and('contain', 'Acceptance Test')
+      .and('contain', 'Performance Test')
+      .and('contain', 'Ready for Delivery')
+      .and('contain', 'Canary Release');
+  });
+
+  it('should render the swimlane headers', () => {
+    cy.get('div').should('have.class', 'swimlane-header');
+    cy.get('div.swimlane-column')
+      .should('contain', 'api')
+      .and('contain', 'database')
+      .and('contain', 'webstore');
+  });
+
+  it('should display work-item as an icon', () => {
+    cy.get('div.workitems span.improve .dot-icon').should('be.visible');
+  });
+
+  it('should open new tab when work-item is clicked', () => {
+    cy.window()
+      .then((win) => cy.stub(win, 'open'))
+      .as('popup');
+    cy.get('div.workitems span.improve').first().click();
+    cy.get('@popup').should('be.called');
+  });
+
   describe('style decisions', () => {
+    it('should use Lato', () => {
+      cy.get('.board-column-header h3').should(
+        'have.css',
+        'font-family',
+        'LatoBold, sans-serif'
+      );
+    });
+
     it('maintain workitems should render as red', () => {
-      cy.get('li').should('have.class', 'maintain');
-      cy.get('li.maintain').should('have.css', 'color', 'rgb(214, 31, 33)');
+      cy.get('span').should('have.class', 'maintain');
+      cy.get('span.maintain').should('have.css', 'color', 'rgb(214, 31, 33)');
     });
 
     it('should have correct text color in tooltip', () => {
@@ -14,19 +56,19 @@ describe('dot-components: Progression Board component', () => {
     });
 
     it('should have red icon in tooltip', () => {
-      cy.get('li.maintain').first().trigger('mouseover');
+      cy.get('span.maintain').first().trigger('mouseover');
       cy.get('.dot-icon.maintain i')
         .should('be.visible')
         .and('have.css', 'color', 'rgb(214, 31, 33)');
     });
 
     it('improve workitems should render as green', () => {
-      cy.get('li').should('have.class', 'improve');
-      cy.get('li.improve').should('have.css', 'color', 'rgb(73, 133, 0)');
+      cy.get('span').should('have.class', 'improve');
+      cy.get('span.improve').should('have.css', 'color', 'rgb(73, 133, 0)');
     });
 
     it('should have green icon in tooltip', () => {
-      cy.get('li.improve').first().trigger('mouseover');
+      cy.get('span.improve').first().trigger('mouseover');
       cy.get('.dot-icon.improve i')
         .should('be.visible')
         .and('have.css', 'color', 'rgb(73, 133, 0)');
@@ -67,43 +109,5 @@ describe('dot-components: Progression Board component', () => {
         'rgb(61, 108, 158)'
       );
     });
-  });
-
-  it('should have a dot- prefix', () => {
-    cy.get('div').should('have.class', 'dot-progression-board');
-  });
-
-  it('should render the board headers', () => {
-    cy.get('div').should('have.class', 'board-headers');
-    cy.get('div.board-headers')
-      .should('contain', 'Build')
-      .and('contain', 'Acceptance Test')
-      .and('contain', 'Performance Test')
-      .and('contain', 'Ready for Delivery')
-      .and('contain', 'Canary Release');
-  });
-
-  it('should render the swimlane headers', () => {
-    cy.get('div').should('have.class', 'swimlane-header');
-    cy.get('div.swimlane-column')
-      .should('contain', 'api')
-      .and('contain', 'database')
-      .and('contain', 'webstore');
-  });
-
-  it('should use Lato', () => {
-    cy.get('.board-column-header h3').should(
-      'have.css',
-      'font-family',
-      'LatoBold, sans-serif'
-    );
-  });
-
-  it('should open new tab when work-item is clicked', () => {
-    cy.window()
-      .then((win) => cy.stub(win, 'open'))
-      .as('popup');
-    cy.get('li.improve').first().click();
-    cy.get('@popup').should('be.called');
   });
 });

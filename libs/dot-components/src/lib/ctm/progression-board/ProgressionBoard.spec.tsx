@@ -38,18 +38,16 @@ describe('ProgressionBoard', () => {
     render(<DotProgressionBoard phases={samplePhases} />);
     const cards = screen.getAllByTestId('card');
     const links = screen.getAllByRole('link');
-    const list = screen.getAllByRole('list');
 
-    expect(links[0]).toContainHTML('3.1.83 - 3.1.100');
-    expect(links[2]).toContainHTML('3.1');
-    expect(links[3]).toContainHTML('83 - 100');
+    const firstCard = cards[0];
 
-    expect(cards[0]).toContainHTML(`<i class="icon-error-outlines dot-i">`);
-    expect(cards[0]).toContainHTML(`<i class="icon-file-dotted dot-i">`);
-    expect(cards[0]).toContainHTML(`<i class="icon-check-solid dot-i">`);
-    expect(cards[0]).toContainHTML(`<i class="icon-rogue-commits dot-i">`);
+    expect(links[0]).toHaveTextContent('3.1.83 - 3.1.100');
+    expect(links[2]).toHaveTextContent('3.1');
+    expect(links[3]).toHaveTextContent('83 - 100');
 
-    expect(list[1]).toContainHTML(`<li class="maintain">`);
-    expect(list[1]).toContainHTML(`<li class="improve">`);
+    expect(firstCard).toContainHTML(`<i class="icon-error-outlines dot-i">`);
+    expect(firstCard).toContainHTML(`<i class="icon-file-dotted dot-i">`);
+    expect(firstCard).toContainHTML(`<i class="icon-check-solid dot-i">`);
+    expect(firstCard).toContainHTML(`<i class="icon-rogue-commits dot-i">`);
   });
 });

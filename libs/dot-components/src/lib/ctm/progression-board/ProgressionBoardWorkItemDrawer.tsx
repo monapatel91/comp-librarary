@@ -50,11 +50,7 @@ export const DotProgressionBoardWorkItemDrawer = ({
     rootClassName,
     'work-item-type-circle',
     ...(workItem
-      ? [
-          workItem.value_goal,
-          workItem.isSplit ? 'split' : '',
-          workItem.isEmphasized ? 'emphasized' : '',
-        ]
+      ? [workItem.value_goal, workItem.isEmphasized ? 'emphasized' : '']
       : [])
   );
 

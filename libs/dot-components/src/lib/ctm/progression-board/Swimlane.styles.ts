@@ -132,40 +132,48 @@ export const StyledProgressionSwimlane = styled.div`
               }
             }
 
-            ul.workitems {
-              display: block;
-              margin: 0;
+            .workitems {
+              display: flex;
+              flex-wrap: wrap;
               overflow: auto;
               padding: 0 5px;
 
-              li:last-child {
-                background: transparent;
+              p {
                 text-align: center;
-                border: 0 solid currentColor;
-                border-radius: 50%;
-                line-height: 21px;
+                line-height: 24px;
+                margin: 0;
+                min-width: 24px;
               }
 
-              & > li {
-                display: block;
-                float: left;
-                margin: 1px;
-                height: 20px;
-                width: 20px;
+              & > span {
                 cursor: pointer;
-                color: ${theme.palette.icon.unknown};
-                background-color: currentColor;
-                border: 1px solid currentColor;
-                border-radius: 50%;
-                transition: 0.2s all linear;
+                display: flex;
 
-                &.hover {
-                  border: 1px solid #fff;
+                .dot-icon {
+                  font-size: 28px;
+
+                  i.dot-i {
+                    height: 100%;
+                    position: relative;
+                    top: -2px;
+                    transition: 0.2s all linear;
+                  }
+                }
+
+                &:hover {
                   color: ${theme.palette.icon.unknownHover};
+
+                  .dot-icon {
+                    font-size: 26px;
+
+                    i.dot-i {
+                      top: -1px;
+                    }
+                  }
                 }
 
                 &.selected {
-                  border: 1px solid ${theme.palette.common.white};
+                  border-radius: 50%;
                   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
                 }
 
@@ -176,7 +184,7 @@ export const StyledProgressionSwimlane = styled.div`
                 &.improve {
                   color: ${theme.palette.icon.improve};
 
-                  &.hover {
+                  &:hover {
                     color: ${theme.palette.icon.improveHover};
                   }
 
@@ -188,7 +196,7 @@ export const StyledProgressionSwimlane = styled.div`
                 &.maintain {
                   color: ${theme.palette.icon.maintain};
 
-                  &.hover {
+                  &:hover {
                     color: ${theme.palette.icon.maintainHover};
                   }
 
@@ -202,22 +210,10 @@ export const StyledProgressionSwimlane = styled.div`
                   &.emphasized {
                     color: #c6f1ff;
 
-                    &.hover {
+                    &:hover {
                       color: #d1f3ff;
                     }
                   }
-                }
-
-                // instead of #fff, need to use theme.palette.progressionBoard.card
-                // will be resolved when updated to icon instead of gradient
-                &.split {
-                  background: linear-gradient(
-                    -45deg,
-                    #fff 0%,
-                    #fff 50%,
-                    currentColor 0%,
-                    currentColor 100%
-                  );
                 }
               }
             }

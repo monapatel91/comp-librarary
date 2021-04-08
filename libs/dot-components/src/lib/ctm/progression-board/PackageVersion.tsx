@@ -204,14 +204,12 @@ export const ValidPackage = React.forwardRef(
             version={version}
           />
         </Typography>
-        <ul className="workitems">
+        <div className="workitems">
           {renderWorkItems(workitems)}
-          {workitems.length > 0 ? (
-            <li>
-              <Typography variant="body1">{workitems.length}</Typography>
-            </li>
-          ) : null}
-        </ul>
+          {workitems.length > 0 && (
+            <Typography variant="body1">{workitems.length}</Typography>
+          )}
+        </div>
       </Card>
     );
   }

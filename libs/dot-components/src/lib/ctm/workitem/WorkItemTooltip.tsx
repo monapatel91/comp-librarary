@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { Tooltip } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import { DotIcon } from '../../components';
@@ -7,7 +8,6 @@ import {
   StyledTooltipTitle,
   StyledTypography,
 } from './WorkItemTooltip.styles';
-import { Tooltip } from '@material-ui/core';
 
 export interface WorkItemTooltipProps extends CommonProps {
   isSplit: boolean;

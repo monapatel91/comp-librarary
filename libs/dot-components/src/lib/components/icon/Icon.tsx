@@ -14,7 +14,6 @@ export interface IconProps extends CommonProps {
   title?: string;
 }
 
-/** This component wraps the Icon component from @material-ui. */
 export const DotIcon = ({
   className,
   'data-testid': dataTestId,

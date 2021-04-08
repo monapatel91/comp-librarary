@@ -1,6 +1,7 @@
 import React, { MutableRefObject, useRef, MouseEvent } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
+import { DotIcon } from '../../components';
 import {
   SelectWorkItem,
   WorkItemType,
@@ -47,8 +48,6 @@ export const WorkItem = React.forwardRef(
       className,
       value_goal,
       isEmphasized ? 'emphasized' : '',
-      isSplit ? 'split' : '',
-      _id === hoveredWorkItem ? 'hover' : '',
       isSelected ? 'selected' : '',
       isFaded ? 'fade' : ''
     );
@@ -69,14 +68,19 @@ export const WorkItem = React.forwardRef(
     };
 
     const workItem = (
-      <li
+      <span
         className={rootClasses}
         data-testid={dataTestId}
+        onClick={onItemClick}
         onMouseEnter={onItemMouseEnter}
         onMouseLeave={onItemMouseLeave}
         ref={workItemElem}
-        onClick={onItemClick}
-      />
+      >
+        <DotIcon
+          fontSize="inherit"
+          iconId={isSplit ? 'circle-half-full' : 'circle'}
+        />
+      </span>
     );
 
     return (
