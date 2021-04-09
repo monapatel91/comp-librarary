@@ -11,19 +11,19 @@ describe('DotConfirmationDialog', () => {
   const confirmFunc = () => console.log('Submitted');
 
   it('should render successfully', () => {
-    const { baseElement } = render(<DotConfirmationDialog showDialog={true} />);
+    const { baseElement } = render(<DotConfirmationDialog open={true} />);
 
     expect(baseElement).toBeTruthy();
   });
 
   it('should render the cancel button successfully', () => {
-    render(<DotConfirmationDialog title="Dialog Title" showDialog={true} />);
+    render(<DotConfirmationDialog title="Dialog Title" open={true} />);
 
     expect(screen.getByRole('button', { name: /cancel/i })).toBeVisible();
   });
 
   it('should render the ok button successfully', () => {
-    render(<DotConfirmationDialog title="Dialog Title" showDialog={true} />);
+    render(<DotConfirmationDialog title="Dialog Title" open={true} />);
 
     expect(screen.getByRole('button', { name: /ok/i })).toBeVisible();
   });
@@ -33,9 +33,9 @@ describe('DotConfirmationDialog', () => {
     render(
       <DotConfirmationDialog
         title="Dialog Title"
-        showDialog={true}
+        open={true}
         onCancel={cancelMock}
-        onConfirm={confirmFunc}
+        onSubmit={confirmFunc}
       />
     );
 
@@ -48,24 +48,24 @@ describe('DotConfirmationDialog', () => {
     render(
       <DotConfirmationDialog
         title="Dialog Title"
-        showDialog={true}
+        open={true}
         onCancel={cancelMock}
-        onConfirm={confirmFunc}
+        onSubmit={confirmFunc}
       />
     );
 
-    userEvent.type(screen.getByRole('button', { name: /ok/i }), '{esc}');
+    userEvent.type(screen.getByText('Dialog Title'), '{esc}');
     expect(cancelMock).toHaveBeenCalledTimes(1);
   });
 
-  it('should execute onConfirm when the submit button is clicked', () => {
+  it('should execute onSubmit when the submit button is clicked', () => {
     const submitMock = jest.fn();
     render(
       <DotConfirmationDialog
         title="Dialog Title"
-        showDialog={true}
+        open={true}
         onCancel={cancelFunc}
-        onConfirm={submitMock}
+        onSubmit={submitMock}
       />
     );
 
@@ -78,9 +78,9 @@ describe('DotConfirmationDialog', () => {
       <DotConfirmationDialog
         title="Dialog Title"
         message="Hello World"
-        showDialog={true}
+        open={true}
         onCancel={cancelFunc}
-        onConfirm={confirmFunc}
+        onSubmit={confirmFunc}
       />
     );
 
@@ -91,9 +91,9 @@ describe('DotConfirmationDialog', () => {
     render(
       <DotConfirmationDialog
         title="Dialog Title"
-        showDialog={true}
+        open={true}
         onCancel={cancelFunc}
-        onConfirm={confirmFunc}
+        onSubmit={confirmFunc}
       />
     );
 
@@ -104,9 +104,9 @@ describe('DotConfirmationDialog', () => {
     render(
       <DotConfirmationDialog
         title="Please confirm"
-        showDialog={true}
+        open={true}
         onCancel={cancelFunc}
-        onConfirm={confirmFunc}
+        onSubmit={confirmFunc}
       />
     );
 

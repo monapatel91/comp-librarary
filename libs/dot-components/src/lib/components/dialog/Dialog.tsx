@@ -1,23 +1,30 @@
-import React, { KeyboardEvent, MouseEvent, ReactNode } from 'react';
+import React, {
+  KeyboardEvent,
+  MouseEvent,
+  ReactNode,
+  useState,
+  useEffect,
+} from 'react';
 import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
-import { ButtonProps, ButtonType, DotButton } from '../button/Button';
+import { DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDialog } from './Dialog.styles';
 import { DotTypography } from '../typography/Typography';
 
-export interface DialogButtonProps {
-  /** Space delimited CSS classes to be attributed to the button */
-  classes?: string;
+export interface DialogButtonProps extends CommonProps {
   /** If true, the button will be disabled. */
   disabled?: boolean;
   /** The text displayed on the button */
-  children: string;
+  label?: string;
   /** The icon to display on the button */
-  iconId?: string;
+  startIcon?: string;
+}
+
+export interface SubmitButtonProps extends DialogButtonProps {
   /** The type of button to be used */
-  type?: ButtonType;
+  type: 'primary' | 'destructive';
 }
 
 export interface DialogProps extends CommonProps {
@@ -25,26 +32,29 @@ export interface DialogProps extends CommonProps {
   cancelButtonProps?: DialogButtonProps;
   /** components or string that is displayed in the dialog body */
   children?: ReactNode;
+  /** boolean that toggles visibility of close icon on top right of dialog header*/
+  closeIconVisible?: boolean;
   /** The callback to be executed when the action is cancelled */
-  onCancel: (event: unknown) => void;
+  onCancel?: (event: KeyboardEvent | MouseEvent) => void;
   /** The callback to be executed when the action is submitted */
-  onSubmit: (event: KeyboardEvent | MouseEvent) => void;
+  onSubmit?: (event: KeyboardEvent | MouseEvent) => void;
   /** if true, the dialog is visible to the user */
   open: boolean;
+  /** boolean if true then the dialog will not close*/
+  closeOnClickAway?: boolean;
   /** props passed down to the submit button */
-  submitButtonProps?: DialogButtonProps;
+  submitButtonProps?: SubmitButtonProps;
   /** dialog heading */
   title: ReactNode;
 }
 
-/**
- * @experimental This component is still in development
- */
 export const DotDialog = ({
   cancelButtonProps,
   className,
   'data-testid': dataTestId,
   children,
+  closeIconVisible,
+  closeOnClickAway = true,
   onCancel,
   onSubmit,
   open,
@@ -52,28 +62,52 @@ export const DotDialog = ({
   title,
 }: DialogProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-  const handleClose = (event: unknown) => {
-    onCancel(event);
+  const [isOpen, setIsOpen] = useState<boolean>(open);
+
+  const cancelDisabled = cancelButtonProps?.disabled || false,
+    cancelLabel = cancelButtonProps?.label || 'Cancel',
+    cancelStartIcon = cancelButtonProps?.startIcon || null;
+
+  const submitDisabled = submitButtonProps?.disabled || false,
+    submitLabel = submitButtonProps?.label || 'OK',
+    submitStartIcon = submitButtonProps?.startIcon || null,
+    submitType = submitButtonProps?.type || 'primary';
+
+  useEffect(() => {
+    setIsOpen(open);
+  }, [open]);
+
+  const handleCancel = (event: KeyboardEvent | MouseEvent) => {
+    if (onCancel) {
+      onCancel(event);
+    }
+
+    handleClose();
   };
 
-  const cancelButtonPropsWithDefaults: ButtonProps = {
-    children: 'Cancel',
-    type: 'text',
-    onClick: handleClose,
-    ...cancelButtonProps,
+  const handleClickAway = (event: KeyboardEvent | MouseEvent) => {
+    if (closeOnClickAway) {
+      handleCancel(event);
+    }
   };
 
-  const submitButtonPropsWithDefaults: ButtonProps = {
-    children: 'OK',
-    onClick: onSubmit,
-    ...submitButtonProps,
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleSubmit = (event: KeyboardEvent | MouseEvent) => {
+    if (onSubmit) {
+      onSubmit(event);
+    }
+
+    handleClose();
   };
 
   const onKeyPress = (event: KeyboardEvent): void => {
     const inputWrapper = event.target;
 
     if (event.key === 'Enter') {
-      onSubmit(event);
+      handleSubmit(event);
       (inputWrapper as HTMLElement).blur();
     }
   };
@@ -83,13 +117,15 @@ export const DotDialog = ({
       <StyledDialog
         classes={{ root: rootClasses }}
         data-testid={dataTestId}
-        open={open}
-        onClose={handleClose}
+        open={isOpen}
+        onClose={handleClickAway}
         aria-labelledby="MuiDialogTitle-root"
       >
         <DialogTitle disableTypography={true}>
           <DotTypography variant="h2">{title}</DotTypography>
-          <DotIconButton iconId="close" onClick={handleClose} size="small" />
+          {closeIconVisible && (
+            <DotIconButton iconId="close" onClick={handleCancel} size="small" />
+          )}
         </DialogTitle>
         <DialogContent classes={{ root: `dot-dialog-content` }}>
           {children}
@@ -97,9 +133,21 @@ export const DotDialog = ({
         <DialogActions classes={{ root: `dot-dialog-actions` }}>
           <DotButton
             className="cancel-button"
-            {...cancelButtonPropsWithDefaults}
-          />
-          <DotButton {...submitButtonPropsWithDefaults} />
+            disabled={cancelDisabled}
+            startIcon={cancelStartIcon}
+            onClick={handleCancel}
+            type="text"
+          >
+            {cancelLabel}
+          </DotButton>
+          <DotButton
+            disabled={submitDisabled}
+            startIcon={submitStartIcon}
+            onClick={handleSubmit}
+            type={submitType}
+          >
+            {submitLabel}
+          </DotButton>
         </DialogActions>
       </StyledDialog>
     </div>

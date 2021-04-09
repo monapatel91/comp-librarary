@@ -1,5 +1,5 @@
 describe('dot-components: Dialog component', () => {
-  before(() => cy.visit('/iframe.html?id=experimental-dialog--default'));
+  before(() => cy.visit('/iframe.html?id=components-dialog--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-dialog');
@@ -24,7 +24,7 @@ describe('dot-components: Dialog component', () => {
 
     it('dialog sizing', () => {
       cy.get('div.MuiDialog-paper')
-        .should('have.css', 'max-width', '720px')
+        .should('have.css', 'max-width', '800px')
         .and('have.css', 'margin-left', '32px');
     });
 
@@ -50,6 +50,13 @@ describe('dot-components: Dialog component', () => {
         .and('have.css', 'padding-left', '8px')
         .and('have.css', 'padding-right', '8px')
         .and('have.css', 'padding-bottom', '8px');
+    });
+
+    it('should have a min-width of 280px', () => {
+      cy.get('div.MuiPaper-root')
+        .should('have.css', 'min-width', '280px')
+        .and('have.css', 'max-width', '800px')
+        .and('have.css', 'max-height', '528px');
     });
   });
 });

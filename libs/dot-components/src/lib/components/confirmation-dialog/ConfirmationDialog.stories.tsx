@@ -7,12 +7,18 @@ import {
 } from './ConfirmationDialog';
 
 export default {
-  title: 'Experimental/Confirmation Dialog',
+  title: 'Components/Confirmation Dialog',
   component: DotConfirmationDialog,
   argTypes: {
     message: { defaultValue: 'something useful' },
+    onCancel: {
+      action: 'cancelled',
+    },
+    onSubmit: {
+      action: 'submitted',
+    },
+    open: { defaultValue: true },
     title: { defaultValue: 'Please confirm' },
-    showDialog: { defaultValue: true },
   },
 } as Meta;
 

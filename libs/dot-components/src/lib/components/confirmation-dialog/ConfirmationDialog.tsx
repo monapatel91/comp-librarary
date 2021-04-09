@@ -1,37 +1,38 @@
 import React, { KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { DialogButtonProps, DotDialog } from '../dialog/Dialog';
+import {
+  DialogButtonProps,
+  DotDialog,
+  SubmitButtonProps,
+} from '../dialog/Dialog';
 
 export interface ConfirmationDialogProps extends CommonProps {
   /** Cancel button properties */
-  cancelBtnProps?: DialogButtonProps;
+  cancelButtonProps?: DialogButtonProps;
   /** The dialog message */
   message?: ReactNode;
   /** The callback to be executed when the action is cancelled */
-  onCancel?: () => void;
+  onCancel?: (event: KeyboardEvent | MouseEvent) => void;
   /** The callback to be executed when the action is confirmed */
-  onConfirm?: (event: MouseEvent | KeyboardEvent) => void;
+  onSubmit?: (event: MouseEvent | KeyboardEvent) => void;
   /** If true the dialog will be visible */
-  showDialog: boolean;
+  open: boolean;
   /** Submit button properties */
-  submitBtnProps?: DialogButtonProps;
+  submitButtonProps?: SubmitButtonProps;
   /** The dialog title */
   title?: ReactNode;
 }
 
-/**
- * @experimental This component is still in development
- */
 export const DotConfirmationDialog = ({
-  cancelBtnProps,
+  cancelButtonProps,
   className,
   'data-testid': dataTestId,
   message = '',
-  onCancel = undefined,
-  onConfirm = undefined,
-  submitBtnProps,
-  showDialog,
+  onCancel,
+  onSubmit,
+  submitButtonProps,
+  open,
   title = '',
 }: ConfirmationDialogProps) => {
   const rootClasses = useStylesWithRootClass(
@@ -44,13 +45,13 @@ export const DotConfirmationDialog = ({
 
   return (
     <DotDialog
-      cancelButtonProps={cancelBtnProps}
+      cancelButtonProps={cancelButtonProps}
       className={rootClasses}
       data-testid={dataTestId}
-      onCancel={() => onCancel && onCancel()}
-      onSubmit={(event) => onConfirm && onConfirm(event)}
-      open={showDialog}
-      submitButtonProps={submitBtnProps}
+      onCancel={onCancel}
+      onSubmit={onSubmit}
+      open={open}
+      submitButtonProps={submitButtonProps}
       title={title}
     >
       {message}

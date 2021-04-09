@@ -150,11 +150,11 @@ export const DotPhaseHeader = ({
               </div>
             }
             onCancel={() => setDeleteDialogIsOpen(false)}
-            onConfirm={(event) => handleConfirm(event)}
+            onSubmit={(event) => handleConfirm(event)}
             title={`Delete phase "${label}"?`}
-            showDialog={deleteDialogIsOpen}
-            submitBtnProps={{
-              children: 'Delete phase',
+            open={deleteDialogIsOpen}
+            submitButtonProps={{
+              label: 'Delete phase',
               type: 'destructive',
             }}
           />

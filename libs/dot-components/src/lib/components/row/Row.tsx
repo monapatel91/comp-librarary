@@ -90,11 +90,11 @@ export const DotRow = ({
             <DotConfirmationDialog
               message={deleteBodyText}
               onCancel={() => setDeleteDialogIsOpen(false)}
-              onConfirm={(event) => handleConfirm(event)}
+              onSubmit={(event) => handleConfirm(event)}
               title={deleteTitle}
-              showDialog={deleteDialogIsOpen}
-              submitBtnProps={{
-                children: deleteButtonText,
+              open={deleteDialogIsOpen}
+              submitButtonProps={{
+                label: deleteButtonText,
                 type: 'destructive',
               }}
             />

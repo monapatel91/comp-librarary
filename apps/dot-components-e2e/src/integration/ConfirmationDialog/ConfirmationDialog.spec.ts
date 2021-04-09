@@ -1,6 +1,6 @@
 describe('dot-components: Confirmation Dialog component', () => {
   before(() =>
-    cy.visit('/iframe.html?id=experimental-confirmation-dialog--default')
+    cy.visit('/iframe.html?id=components-confirmation-dialog--default')
   );
 
   it('should have a dot- prefix', () => {
@@ -22,7 +22,7 @@ describe('dot-components: Confirmation Dialog component', () => {
 
     it('dialog sizing', () => {
       cy.get('div.MuiDialog-paper')
-        .should('have.css', 'max-width', '720px')
+        .should('have.css', 'max-width', '800px')
         .and('have.css', 'margin-left', '32px');
     });
 

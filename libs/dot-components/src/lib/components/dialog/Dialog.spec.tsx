@@ -2,13 +2,40 @@ import React from 'react';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { DotDialog } from './../dialog/Dialog';
+import { DialogProps, DotDialog } from './../dialog/Dialog';
 
 describe('DotDialog', () => {
   const cancelFunc = () => {
     console.log('Cancelled');
   };
   const submitFunc = () => console.log('Submitted');
+
+  it('should have unchanged API', () => {
+    const onClick = jest.fn();
+    const props = {
+      cancelButtonProps: {},
+      children: 'Hello World',
+      closeIconVisible: true,
+      onCancel: onClick,
+      onSubmit: onClick,
+      open: true,
+      closeOnClickAway: true,
+      submitButtonProps: { type: 'primary' },
+      title: 'Goodbye',
+    };
+    const dialogProps: DialogProps = {
+      cancelButtonProps: {},
+      children: 'Hello World',
+      closeIconVisible: true,
+      onCancel: onClick,
+      onSubmit: onClick,
+      open: true,
+      closeOnClickAway: true,
+      submitButtonProps: { type: 'primary' },
+      title: 'Goodbye',
+    };
+    expect(dialogProps).toEqual(props);
+  });
 
   it('should render successfully', () => {
     const { baseElement } = render(
@@ -85,7 +112,7 @@ describe('DotDialog', () => {
       </DotDialog>
     );
 
-    userEvent.type(screen.getByRole('button', { name: /ok/i }), '{esc}');
+    userEvent.type(screen.getByText('Hello World'), '{esc}');
     expect(cancelMock).toHaveBeenCalledTimes(1);
   });
 

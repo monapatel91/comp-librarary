@@ -5,13 +5,18 @@ export const rootClassName = 'dot-dialog';
 
 export const StyledDialog = styled(Dialog)`
   ${({ theme }) => css`
-    &.dot-dialog {
+    &.${rootClassName} {
+      .MuiPaper-root {
+        min-width: 280px;
+        max-height: 80vh;
+        max-width: 80vw;
+      }
+
       .MuiDialogTitle-root {
         align-items: center;
         display: flex;
         flex-wrap: nowrap;
         padding: ${theme.spacing(1, 2)};
-
         h2 {
           flex-grow: 1;
         }
@@ -23,6 +28,7 @@ export const StyledDialog = styled(Dialog)`
 
       .dot-dialog-content {
         padding: ${theme.spacing(1, 2)};
+        overflow-y: auto;
       }
 
       .dot-dialog-actions {

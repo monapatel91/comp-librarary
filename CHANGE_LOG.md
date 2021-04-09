@@ -14,8 +14,22 @@
 
 ### Components
 
+> **BREAKING CHANGE: ConfirmationDialog** - renamed `cancelBtnProps` to `cancelButtonProps`
+
+> **BREAKING CHANGE: ConfirmationDialog** - renamed `submitBtnProps` to `submitButtonProps`
+
+> **BREAKING CHANGE: ConfirmationDialog** - renamed `onConfirm` to `onSubmit`
+
+> **BREAKING CHANGE: ConfirmationDialog** - renamed `showDialog` to `open`
+
+> **BREAKING CHANGE: Dialog** - updated `SubmitButtonProps` to only allow `type: 'primary' | 'destructive'`
+
 - **AutoComplete** - added `inputRef` prop
 - **Checkbox** - added `inputRef` prop
+- **ConfirmationDialog** - is now a stable component
+- **Dialog** - is now a stable component
+- **Dialog** - hard-coded cancel button to `type="text"`
+- **Dialog** - added `closeIconVisible`, `closeOnClickAway` prop
 - **InputSelect** - added `inputRef` prop
 - **InputText** - added `inputRef` prop
 - **RadioButton** - added `inputRef` prop
