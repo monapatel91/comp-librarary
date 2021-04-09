@@ -33,7 +33,7 @@ export const StyledTableContainer = styled(TableContainer)`
         background-color: ${theme.palette.grey[50]};
       }
 
-      table:not(.dot-table-paginated) tr:last-child td {
+      tr:last-child td {
         border-bottom: none;
       }
 

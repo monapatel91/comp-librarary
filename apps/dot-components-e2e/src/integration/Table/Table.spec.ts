@@ -43,6 +43,14 @@ describe('dot-components: Table component', () => {
         .and('have.css', 'font-size', '12px')
         .and('have.css', 'margin-bottom', '3px');
     });
+
+    it('table footer', () => {
+      cy.get('.MuiTablePagination-root').should(
+        'have.css',
+        'border-top',
+        '1px solid rgb(193, 198, 205)'
+      );
+    });
   });
 
   it('should have a pagination caption with a dot- prefix', () => {
