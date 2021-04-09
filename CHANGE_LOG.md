@@ -1,5 +1,11 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **AppToolbar** - added `mainMenuWidth` prop
+
 ## 0.0.0-alpha.18
 
 ### Components

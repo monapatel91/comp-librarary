@@ -1,5 +1,8 @@
 describe('dot-components: AppToolbar component', () => {
-  before(() => cy.visit('/iframe.html?id=components-apptoolbar--default'));
+  before(() => {
+    cy.visit('/iframe.html?id=components-apptoolbar--default');
+    cy.get('button.dot-icon-btn.hamburger').click();
+  });
 
   it('should have a dot- prefix', () => {
     cy.get('header').should('have.class', 'dot-app-toolbar');
@@ -32,6 +35,10 @@ describe('dot-components: AppToolbar component', () => {
         'color',
         'rgb(227, 229, 232)'
       );
+    });
+
+    it('hamburger menu has correct width', () => {
+      cy.get('div.MuiPaper-root').should('have.css', 'width', '240px');
     });
   });
 });

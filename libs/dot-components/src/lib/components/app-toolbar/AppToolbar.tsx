@@ -23,6 +23,8 @@ export interface AppToolbarProps extends CommonProps {
   navItems?: Array<IconButtonProps>;
   /** If provided will display a hamburger main menu drawer */
   mainMenu?: ReactNode;
+  /** Width of main menu drawer if mainMenu provided, defaults to 240px */
+  mainMenuWidth?: number;
 }
 
 export const DotAppToolbar = ({
@@ -34,6 +36,7 @@ export const DotAppToolbar = ({
   'data-testid': dataTestId,
   navItems = [],
   mainMenu,
+  mainMenuWidth = 240,
 }: AppToolbarProps) => {
   const rootClasses = useStylesWithRootClass(
     rootClassName,
@@ -60,6 +63,7 @@ export const DotAppToolbar = ({
             className="dot-main-menu"
             onClose={() => updateMenuOpen(false)}
             open={menuOpen}
+            width={mainMenuWidth + 'px'}
           >
             {mainMenu}
           </StyledMainMenu>

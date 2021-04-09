@@ -4,9 +4,10 @@ import { screen } from '@testing-library/dom';
 import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
+import { IconButtonProps } from '../button/IconButton';
 import { DotSidebar } from '../sidebar/Sidebar';
 
-const menuItems = [];
+const menuItems = new Array<IconButtonProps>();
 const userAvatar = (
   <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
 );
@@ -19,7 +20,8 @@ describe(' AppToolbar', () => {
       borderColor: '#1abc9c',
       children: <Input type="text" placeholder="search" />,
       mainMenu: <DotSidebar />,
-      navItems: [],
+      mainMenuWidth: 240,
+      navItems: menuItems,
     };
     const appToolbarProps: AppToolbarProps = {
       appName: 'Batman',
@@ -27,7 +29,8 @@ describe(' AppToolbar', () => {
       borderColor: '#1abc9c',
       children: <Input type="text" placeholder="search" />,
       mainMenu: <DotSidebar />,
-      navItems: [],
+      mainMenuWidth: 240,
+      navItems: menuItems,
     };
     expect(appToolbarProps).toEqual(props);
   });
