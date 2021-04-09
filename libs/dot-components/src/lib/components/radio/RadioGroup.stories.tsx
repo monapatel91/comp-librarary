@@ -27,6 +27,7 @@ export default {
     },
     endIcon: { control: { type: 'select', options: iconOptions } },
     startIcon: { control: { type: 'select', options: iconOptions } },
+    required: { defaultValue: true },
   },
 } as Meta;
 

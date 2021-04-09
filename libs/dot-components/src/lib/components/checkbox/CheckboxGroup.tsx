@@ -12,6 +12,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   StyledCheckboxGroup,
   rootClassName as checkboxRootClassName,
+  wrapperClassName,
   checkboxListClassName,
   checkboxListItemClassName,
 } from './CheckboxGroup.styles';
@@ -109,7 +110,7 @@ export function DotCheckboxGroup({
     : null;
 
   return (
-    <StyledCheckboxGroup>
+    <StyledCheckboxGroup className={wrapperClassName}>
       <StyledFormControl
         classes={{ root: rootClasses }}
         disabled={disableGroup}

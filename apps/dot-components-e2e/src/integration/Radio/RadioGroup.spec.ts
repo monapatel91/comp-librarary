@@ -9,6 +9,10 @@ describe('dot-components: Switch component', () => {
     cy.get('legend').should('contain', 'Group of items');
   });
 
+  it('should have label and required asterisk on same line', () => {
+    cy.get('legend').invoke('height').should('eq', 24);
+  });
+
   describe('style decisions', () => {
     it('group label', () => {
       cy.get('legend')

@@ -14,7 +14,12 @@ import {
   DotRadioButton,
   RadioButtonProps,
 } from './RadioButton';
-import { groupClassName, StyledRadioGroup } from './RadioGroup.styles';
+import {
+  wrapperClassName,
+  groupClassName,
+  StyledRadioGroupWrapper,
+  StyledRadioGroup,
+} from './RadioGroup.styles';
 
 export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   /** accessibility label */
@@ -98,7 +103,7 @@ export const DotRadioGroup = ({
     : null;
 
   return (
-    <div>
+    <StyledRadioGroupWrapper className={wrapperClassName}>
       <StyledFormControl
         classes={{ root: rootClasses }}
         error={error}
@@ -130,6 +135,6 @@ export const DotRadioGroup = ({
         </StyledRadioGroup>
         {helperText && <FormHelperText>{helperText}</FormHelperText>}
       </StyledFormControl>
-    </div>
+    </StyledRadioGroupWrapper>
   );
 };

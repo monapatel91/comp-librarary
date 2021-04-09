@@ -28,6 +28,7 @@ export default {
       ],
     },
     showSelectAll: { defaultValue: true },
+    required: { defaultValue: true },
   },
 } as Meta;
 

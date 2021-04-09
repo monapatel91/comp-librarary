@@ -15,4 +15,8 @@ describe('dot-components: CheckboxGroup component', () => {
   it('should render the component', () => {
     cy.get('legend').should('contain', 'Group of items');
   });
+
+  it('should have label and required asterisk on same line', () => {
+    cy.get('legend').invoke('height').should('eq', 24);
+  });
 });
