@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Typography } from '@material-ui/core';
+import { DotTypography } from '@digital-ai/dot-components';
 
 export default {
   title: 'Typography',
@@ -8,54 +8,29 @@ export default {
 
 export const Default: Story = () => {
   return (
-    <Fragment>
+    <>
+      <DotTypography variant="h1">Headline 1 - Main title</DotTypography>
+      <DotTypography variant="h2">
+        Headline 2 - Page section title
+      </DotTypography>
+      <DotTypography variant="h3">
+        Headline 3 - Page section title
+      </DotTypography>
+      <DotTypography variant="h4">Headline 4</DotTypography>
+      <DotTypography variant="h5">Headline 5</DotTypography>
+      <DotTypography variant="subtitle1">Subtitle 1</DotTypography>
+      <DotTypography variant="subtitle2">Subtitle 2</DotTypography>
+      <DotTypography variant="body1">Body 1</DotTypography>
+      <DotTypography variant="body2">Body 2</DotTypography>
       <div>
-        <Typography variant="h1">Headline 1 - Main title</Typography>
+        <DotTypography variant="caption">Caption</DotTypography>
       </div>
-
       <div>
-        <Typography variant="h2">Headline 2 - Page section title</Typography>
+        <DotTypography variant="overline">Overline</DotTypography>
       </div>
-
       <div>
-        <Typography variant="h3">Headline 3 - Page section title</Typography>
+        <DotTypography variant="button">Button</DotTypography>
       </div>
-
-      <div>
-        <Typography variant="h4">Headline 4</Typography>
-      </div>
-
-      <div>
-        <Typography variant="h5">Headline 5</Typography>
-      </div>
-
-      <div>
-        <Typography variant="subtitle1">Subtitle 1</Typography>
-      </div>
-
-      <div>
-        <Typography variant="subtitle2">Subtitle 2</Typography>
-      </div>
-
-      <div>
-        <Typography variant="body1">Body 1</Typography>
-      </div>
-
-      <div>
-        <Typography variant="body2">Body 2</Typography>
-      </div>
-
-      <div>
-        <Typography variant="caption">Caption</Typography>
-      </div>
-
-      <div>
-        <Typography variant="overline">Overline</Typography>
-      </div>
-
-      <div>
-        <Typography variant="button">Button</Typography>
-      </div>
-    </Fragment>
+    </>
   );
 };
