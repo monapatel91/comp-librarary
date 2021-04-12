@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import { DemoProgressionBoard } from '../../demo-components/DemoProgressionBoard';
 import { DemoForm } from '../../demo-components/DemoForm';
@@ -8,7 +8,7 @@ import { ProgressionDemo } from '../../demo-components/DemoProgression';
 
 export const Routes = () => {
   return (
-    <Router>
+    <Switch>
       <Route path="/" exact component={DemoProgressionBoard} />
       <Route path="/demo-form" exact component={DemoForm} />
       <Route
@@ -17,6 +17,6 @@ export const Routes = () => {
         component={DemoFormUncontrolled}
       />
       <Route path="/progression" exact component={ProgressionDemo} />
-    </Router>
+    </Switch>
   );
 };

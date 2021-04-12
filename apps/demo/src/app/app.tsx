@@ -10,6 +10,7 @@ import {
 import { Routes } from '../app/routes/Routes';
 
 import './app.scss';
+import { Link } from 'react-router-dom';
 
 const topNavItems: Array<IconButtonProps> = [
   {
@@ -36,117 +37,30 @@ const sideNavItems: Array<ListItemProps> = [
   {
     iconId: 'home',
     text: 'Home',
-    href: '/',
+    component: React.forwardRef((props, ref) => (
+      <Link {...props} to="/" ref={ref} />
+    )),
   },
   {
     iconId: 'comment',
     text: 'Demo Form',
-    href: '/demo-form',
+    component: React.forwardRef((props, ref) => (
+      <Link {...props} to="/demo-form" ref={ref} />
+    )),
   },
   {
     iconId: 'visibility-off',
     text: 'Demo Form Uncontrolled',
-    href: '/demo-form-uncontrolled',
-  },
-  {
-    iconId: 'process-template',
-    items: [
-      {
-        iconId: 'process-template',
-        text: 'Package Progression',
-        href: '/package-progression',
-      },
-      {
-        iconId: 'process-template',
-        text: 'Feature Progression',
-        href: '/feature-progression',
-      },
-    ],
-    text: 'Progressions',
-    href: '/progressions',
-  },
-  {
-    iconId: 'satellite-group',
-    items: [
-      {
-        iconId: 'satellite-group',
-        text: 'Groups',
-        href: '/pipeline-groups',
-      },
-      {
-        iconId: 'satellite-group',
-        text: 'Instances',
-        href: '/pipeline-instance',
-      },
-    ],
-    text: 'Pipelines',
-    href: '/pipelines',
-  },
-  {
-    iconId: 'dashboard',
-    text: 'Insights',
-    href: '/insights',
+    component: React.forwardRef((props, ref) => (
+      <Link {...props} to="/demo-form-uncontrolled" ref={ref} />
+    )),
   },
   {
     iconId: 'package',
     text: 'Progression',
-    href: '/progression',
-  },
-  {
-    text: 'Workflow',
-    divider: true,
-  },
-  {
-    iconId: 'block',
-    text: 'Packages',
-    href: '/packages',
-  },
-  {
-    iconId: 'flag',
-    text: 'Features',
-    href: '/features',
-  },
-  {
-    iconId: 'collection',
-    text: 'Projects',
-    href: '/projects',
-  },
-  {
-    divider: true,
-  },
-  {
-    iconId: 'file-lines',
-    text: 'Workitems',
-    href: '/workitems',
-  },
-  {
-    iconId: 'change',
-    text: 'Changes',
-    href: '/changes',
-  },
-  {
-    iconId: 'square-settings',
-    text: 'Artifacts',
-    href: '/artifacts',
-  },
-  {
-    text: 'System',
-    divider: true,
-  },
-  {
-    iconId: 'monitor-gears',
-    text: 'Tasks',
-    href: '/tasks',
-  },
-  {
-    iconId: 'archive',
-    text: 'Buckets',
-    href: '/buckets',
-  },
-  {
-    iconId: 'monitor',
-    text: 'Environment',
-    href: '/environment',
+    component: React.forwardRef((props, ref) => (
+      <Link {...props} to="/progression" ref={ref} />
+    )),
   },
 ];
 
