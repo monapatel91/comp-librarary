@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
+import { render } from '../../testing-utils';
 import { DotTypography, TypographyProps } from './Typography';
 
 describe('DotTypography', () => {

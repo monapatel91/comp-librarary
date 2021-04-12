@@ -169,6 +169,12 @@ describe('dot-components: Button component', () => {
 
 We use [`testing-library`](https://github.com/testing-library) for all of our unit tests.
 
+Please import from our `testing-utils` first so that our `ThemeProvider` is used.
+
+```typescript
+import { render, screen } from '../../testing-utils';
+```
+
 All components must have at a _minimum_ one unit test which validates that the API is unchanged. **Every** prop in the API needs to be evaluated in this test.
 
 **`Button.spec.tsx`**

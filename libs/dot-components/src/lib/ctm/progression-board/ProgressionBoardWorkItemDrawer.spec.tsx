@@ -1,7 +1,6 @@
 import React from 'react';
-import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
+import { render, screen } from '../../testing-utils';
 import { DotProgressionBoardWorkItemDrawer } from './ProgressionBoardWorkItemDrawer';
 import {
   WorkItemDetailsType,

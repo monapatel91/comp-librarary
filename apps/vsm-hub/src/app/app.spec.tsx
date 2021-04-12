@@ -1,6 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-
+import { render } from '@digital-ai/dot-components';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from './app';
@@ -14,15 +13,5 @@ describe('App', () => {
     );
 
     expect(baseElement).toBeTruthy();
-  });
-
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
-
-    expect(getByText('Welcome to vsm-hub!')).toBeTruthy();
   });
 });

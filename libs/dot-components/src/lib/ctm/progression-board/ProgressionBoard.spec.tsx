@@ -1,6 +1,5 @@
 import React from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen } from '@testing-library/dom';
+import { render, screen } from '../../testing-utils';
 import { DotProgressionBoard } from './ProgressionBoard';
 import { samplePhases } from './sample-data/sampleData';
 

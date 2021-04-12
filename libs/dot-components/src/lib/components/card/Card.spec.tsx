@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen } from '@testing-library/dom';
+import { render, screen } from '../../testing-utils';
 import { DotCard } from './Card';
 import { DotCardHeader, CardHeaderProps } from './CardHeader';
 import { DotCardContent } from './CardContent';

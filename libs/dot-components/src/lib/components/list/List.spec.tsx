@@ -1,8 +1,7 @@
 import React from 'react';
-import { screen, waitFor } from '@testing-library/react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { DotList, ListItemProps, ListProps } from './List';
 import userEvent from '@testing-library/user-event';
+import { render, screen, waitFor } from '../../testing-utils';
+import { DotList, ListItemProps, ListProps } from './List';
 
 const onClick = jest.fn();
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen } from '@testing-library/dom';
+import { render, screen } from '../../testing-utils';
 import { DotMenu, MenuProps, MenuItemProps } from './Menu';
 
 describe('Menu', () => {

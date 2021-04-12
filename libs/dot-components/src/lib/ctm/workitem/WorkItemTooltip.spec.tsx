@@ -1,6 +1,5 @@
 import React from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { fireEvent, screen, waitFor } from '@testing-library/dom';
+import { fireEvent, render, screen, waitFor } from '../../testing-utils';
 import { WorkItemTooltip } from './WorkItemTooltip';
 
 const testTip = (

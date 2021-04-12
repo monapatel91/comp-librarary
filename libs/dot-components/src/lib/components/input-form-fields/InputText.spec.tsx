@@ -1,7 +1,6 @@
 import React, { createRef } from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
+import { render, screen } from '../../testing-utils';
 import { DotInputText, InputTextProps } from './InputText';
 import { DotIcon } from '../icon/Icon';
 

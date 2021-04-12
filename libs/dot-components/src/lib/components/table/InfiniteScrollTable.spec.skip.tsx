@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import { screen } from '@testing-library/dom';
+import { fireEvent, render, screen, waitFor } from '../../testing-utils';
 import { InfiniteScrollTable, OnTableUpdate } from './InfiniteScrollTable';
 import { Order } from './TableBody';
 

@@ -1,9 +1,7 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
-import { screen } from '@testing-library/dom';
-import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
+import { render, screen } from '../../testing-utils';
 import { ListItemProps } from '../list/List';
 import { BackItemProps, DotSidebar, SidebarProps } from './Sidebar';
 

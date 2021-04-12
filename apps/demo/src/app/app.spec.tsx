@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderWithTheme as render } from '../RenderWithTheme';
 import { BrowserRouter as Router } from 'react-router-dom';
-
 import { App } from './app';
 
 describe('App', () => {

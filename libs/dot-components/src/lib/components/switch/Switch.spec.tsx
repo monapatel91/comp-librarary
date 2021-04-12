@@ -1,8 +1,7 @@
 import React, { createRef } from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen } from '@testing-library/dom';
-import { DotSwitch, SwitchProps } from './Switch';
 import userEvent from '@testing-library/user-event';
+import { render, screen } from '../../testing-utils';
+import { DotSwitch, SwitchProps } from './Switch';
 
 describe('Switch', () => {
   const onChange = jest.fn();

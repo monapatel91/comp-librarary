@@ -1,7 +1,6 @@
 import React from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
+import { render, screen } from '../../testing-utils';
 import { ButtonProps, DotButton } from './Button';
 import { DotIcon } from '../icon/Icon';
 

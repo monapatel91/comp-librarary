@@ -1,8 +1,6 @@
 import React from 'react';
-import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { within } from '@testing-library/react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
+import { render, screen, within } from '../../testing-utils';
 import { DotProgressionBoardApplicationDrawer } from './ProgressionBoardApplicationDrawer';
 
 const onDrawerClose = () => console.log('Closed');

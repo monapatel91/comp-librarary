@@ -1,6 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/dom';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
+import { render, screen } from '../../testing-utils';
 import { DotCheckbox, CheckboxProps } from './Checkbox';
 
 describe('DotCheckbox', () => {

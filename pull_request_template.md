@@ -26,6 +26,7 @@ For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot
 - [ ] Storybook configurations up-to-date
 - [ ] `unit` test coverage updated
 - [ ] `e2e` test coverage updated
+- [ ] `testing-library` imports are from `testing-utils`
 - [ ] `CHANGE_LOG.md` updated
 - [ ] Related issue linked to PR
 

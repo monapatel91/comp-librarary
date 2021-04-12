@@ -1,8 +1,6 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen } from '../../testing-utils';
 import { DotPhaseHeader } from './PhaseHeader';
 
 describe('PhaseHeader', () => {

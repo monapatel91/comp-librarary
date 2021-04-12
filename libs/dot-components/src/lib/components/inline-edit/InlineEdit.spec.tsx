@@ -1,9 +1,6 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-
+import { fireEvent, render, screen, waitFor } from '../../testing-utils';
 import { DotInlineEdit } from './InlineEdit';
 
 const inlineEditName = 'inline-edit-wrapper';

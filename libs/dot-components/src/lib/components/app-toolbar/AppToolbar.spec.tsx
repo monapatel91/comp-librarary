@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input } from '@material-ui/core';
-import { screen } from '@testing-library/dom';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
+import { render, screen } from '../../testing-utils';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { IconButtonProps } from '../button/IconButton';

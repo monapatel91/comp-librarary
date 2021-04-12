@@ -1,7 +1,6 @@
 import React from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
+import { render, screen } from '../../testing-utils';
 import { DotChip, ChipProps } from './Chip';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotIcon } from '../icon/Icon';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
+import { render } from '../../testing-utils';
 import { DotInputText } from '../input-form-fields/InputText';
 import { DotForm } from './Form';
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import { screen } from '@testing-library/dom';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
 import userEvent from '@testing-library/user-event';
+import { render, screen } from '../../testing-utils';
 import { DotRadioGroup, RadioGroupProps } from './RadioGroup';
 import { DotIcon } from '../icon/Icon';
 

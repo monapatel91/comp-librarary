@@ -1,8 +1,6 @@
 import React, { createRef } from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen, fireEvent } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-
+import { fireEvent, render, screen } from '../../testing-utils';
 import { DotInputSelect, InputSelectProps } from './InputSelect';
 import { DotIcon } from '../icon/Icon';
 

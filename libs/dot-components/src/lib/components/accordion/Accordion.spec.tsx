@@ -1,7 +1,5 @@
 import React from 'react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-import { screen, waitFor } from '@testing-library/dom';
-
+import { render, screen, waitFor } from '../../testing-utils';
 import { DotAccordion, AccordionProps } from './Accordion';
 import { DotIcon } from '../icon/Icon';
 

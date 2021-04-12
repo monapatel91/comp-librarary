@@ -1,7 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
-import { renderWithTheme as render } from '../../testing-utils/RenderWithTheme';
-
+import { render, screen } from '../../testing-utils';
 import { DotAvatar, AvatarProps } from './Avatar';
 
 describe('DotAvatar', () => {
