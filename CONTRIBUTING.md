@@ -104,6 +104,29 @@ yarn generate:comp:dry --name=[name of component] --export --pascalCaseFiles --s
 yarn generate:comp --name=[name of component] --export --pascalCaseFiles --style=styled-components --directory=components
 ```
 
+### Component Structure
+
+Most of the files will live under the directory with the component. The only exception is the `e2e` test which is located inside of the `dot-components-e2e` application.
+
+```sh
+|-- apps
+|   |-- dot-components-e2e
+|       |-- src
+|           |-- integration
+|               |-- AutoComplete
+|                   |-- AutoComplete.spec.ts          #e2e test
+|-- libs
+    |-- dot-components
+        |-- src
+            |-- lib
+                |-- components
+                    |-- auto-complete
+                        |-- AutoComplete.spec.tsx     #unit test
+                        |-- AutoComplete.stories.tsx  #storybook
+                        |-- AutoComplete.styles.tsx   #styles
+                        |-- AutoComplete.tsx          #component
+```
+
 ## Using Storybook
 
 You should make sure that all actions are setup properly on Storybook so that users can experiment with the various options.
