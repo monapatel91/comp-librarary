@@ -1,12 +1,16 @@
 # Change Log
 
-## Current
+## 0.0.0-alpha.19
 
 ### Components
 
 > **BREAKING CHANGE: EmptyState** - renamed `image` to `imageSrc` and set it to accept a string representing the path to the image source
 
 - **AppToolbar** - added `mainMenuWidth` prop
+
+### Experimental
+
+- **ProgressionBoardApplicationDrawer** - added `payloadUrl` property to `ApplicationAPI` interface
 
 ## 0.0.0-alpha.18
 
@@ -46,7 +50,6 @@
 
 ### Experimental
 
-- **ProgressionBoardApplicationDrawer** - added `payloadUrl` property to `ApplicationAPI` interface
 - **ProgressionBoardWorkItemDrawer** - `owner` property type (of `WorkItemDetailsType` interface) changed from `string` to `Array<string>` to support multiple owners
 
 ## 0.0.0-alpha.16
