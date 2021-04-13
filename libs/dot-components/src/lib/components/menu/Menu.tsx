@@ -24,7 +24,6 @@ export type PopperPlacement =
   | 'top-start'
   | 'top';
 
-/* eslint-disable-next-line */
 export interface MenuProps extends CommonProps {
   /** Element that menu is attached to */
   anchorEl?: Element;
@@ -83,8 +82,7 @@ export const DotMenu = ({
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleClickAway = (event: MouseEvent<any>) => {
+  const handleClickAway = (event: MouseEvent<never>) => {
     if (onLeave && (!anchorEl || !anchorEl.contains(event.currentTarget))) {
       onLeave(event);
     }

@@ -64,7 +64,6 @@ export interface AutoCompleteProps extends CommonProps {
   /** If true, will allow the user to select multiple options */
   multiple?: boolean;
   /** A function that should be executed when the value of the input changes */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange?: (
     event: ChangeEvent<unknown>,
     value: AutoCompleteValue,
@@ -108,15 +107,20 @@ export const DotAutoComplete = ({
     className
   );
   const getChips = (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    values: any[],
+    values: Array<AutoCompleteOption | string>,
     getTagProps: AutocompleteGetTagProps
   ) => {
-    return values.map((option, index) => (
-      <DotChip error={option.error} {...getTagProps({ index })}>
-        {option.title ? option.title : option}
-      </DotChip>
-    ));
+    return values.map((option, index) => {
+      if (typeof option === 'string') {
+        return <DotChip {...getTagProps({ index })}>{option}</DotChip>;
+      } else {
+        return (
+          <DotChip error={option.error} {...getTagProps({ index })}>
+            {option.title}
+          </DotChip>
+        );
+      }
+    });
   };
   const valuesChanged = ({
     _event,
@@ -182,7 +186,10 @@ export const DotAutoComplete = ({
         />
       )}
       renderTags={
-        multiple ? (values, getTagProps) => getChips(values, getTagProps) : null
+        multiple
+          ? (values: Array<AutoCompleteOption | string>, getTagProps) =>
+              getChips(values, getTagProps)
+          : null
       }
       size={size}
       value={value}
