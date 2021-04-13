@@ -2,7 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
 import { DotEmptyState, EmptyStateProps } from './EmptyState';
-import { ReactComponent as EmptyStateImage } from '../assets/empty-state.svg';
+import EmptyStateImage from '../assets/empty-state.svg';
 
 describe(' EmptyState', () => {
   it('should have unchanged API', () => {
@@ -11,14 +11,14 @@ describe(' EmptyState', () => {
     };
     const props = {
       buttonProps: buttonProps,
-      image: EmptyStateImage,
+      imageSrc: EmptyStateImage,
       imageAltText: 'image alt text',
       subtitle: 'subtitle',
       title: 'title',
     };
     const emptyStateProps: EmptyStateProps = {
       buttonProps: buttonProps,
-      image: EmptyStateImage,
+      imageSrc: EmptyStateImage,
       imageAltText: 'image alt text',
       subtitle: 'subtitle',
       title: 'title',
@@ -35,7 +35,7 @@ describe(' EmptyState', () => {
     render(
       <DotEmptyState
         title="Hello World"
-        image={EmptyStateImage}
+        imageSrc={EmptyStateImage}
         imageAltText="Test Name"
       />
     );

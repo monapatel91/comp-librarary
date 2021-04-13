@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { ReactComponent as EmptyState } from '../../assets/empty-state.svg';
+import EmptyState from '../../assets/empty-state.svg';
 import { DotEmptyState, EmptyStateProps } from './EmptyState';
 
 export default {
@@ -16,7 +16,7 @@ export default {
         type: 'primary',
       },
     },
-    image: {
+    imageSrc: {
       defaultValue: EmptyState,
     },
     imageAltText: {

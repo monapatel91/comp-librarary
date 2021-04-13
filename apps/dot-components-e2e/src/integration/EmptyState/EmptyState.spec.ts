@@ -6,7 +6,7 @@ describe('dot-components: Empty State component', () => {
   });
 
   it('should render the component', () => {
-    cy.get('svg').should('have.class', 'empty-state-image');
+    cy.get('img').should('have.class', 'empty-state-image');
     cy.get('h2').should('contain', 'No Data');
     cy.get('h2').should('have.class', 'dot-typography');
     cy.get('p').should('contain', 'That is unexpected');
@@ -22,7 +22,7 @@ describe('dot-components: Empty State component', () => {
     });
 
     it('graphic spacing and sizing', () => {
-      cy.get('svg.empty-state-image')
+      cy.get('img.empty-state-image')
         .should('have.css', 'min-height', '239px')
         .and('have.css', 'margin-bottom', '40px');
     });

@@ -4,6 +4,8 @@
 
 ### Components
 
+> **BREAKING CHANGE: EmptyState** - renamed `image` to `imageSrc` and set it to accept a string representing the path to the image source
+
 - **AppToolbar** - added `mainMenuWidth` prop
 
 ## 0.0.0-alpha.18

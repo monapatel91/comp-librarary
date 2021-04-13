@@ -7,9 +7,7 @@ import { DotTypography } from '../typography/Typography';
 
 export interface EmptyStateProps extends CommonProps {
   buttonProps?: ButtonProps;
-  image?: React.FunctionComponent<
-    React.SVGProps<SVGSVGElement> & { title?: string }
-  >;
+  imageSrc?: string;
   imageAltText?: string;
   subtitle?: string;
   title: string;
@@ -19,8 +17,8 @@ export const DotEmptyState = ({
   buttonProps,
   className,
   'data-testid': dataTestId,
-  image: Image,
   imageAltText,
+  imageSrc,
   subtitle,
   title,
 }: EmptyStateProps) => {
@@ -29,10 +27,11 @@ export const DotEmptyState = ({
   return (
     <StyledEmptyState className={rootClasses} data-testid={dataTestId}>
       {Image && (
-        <Image
+        <img
           className="empty-state-image"
-          role="img"
           title={imageAltText || title}
+          alt={imageAltText || title}
+          src={imageSrc}
         />
       )}
       <DotTypography variant="h2">{title}</DotTypography>
