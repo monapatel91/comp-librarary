@@ -18,9 +18,9 @@ import {
 } from './ProgressionBoardInterfaces';
 import {
   rootClassName,
-  StyledTooltipContent,
   StyledProgressionBoardWorkItemDrawer,
 } from './ProgressionBoardWorkItemDrawer.styles';
+import { StyledTooltipContent } from './ProgressionBoardDrawer.styles';
 
 export interface ProgressionBoardDrawerProps extends CommonProps {
   /* Callback function which executes upon drawer being closed */

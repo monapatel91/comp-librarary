@@ -1,7 +1,14 @@
 import styled, { css } from 'styled-components';
 import { DotDrawer } from '../../components/drawer/Drawer';
+import { DotTypography } from '../../components/typography/Typography';
 
 export const rootClassName = 'pb-drawer';
+
+export const StyledTooltipContent = styled(DotTypography)`
+  ${({ theme }) => css`
+    color: ${theme.palette.layer.n0};
+  `}
+`;
 
 export const StyledDotDrawer = styled(DotDrawer)`
   ${({ theme }) => css`

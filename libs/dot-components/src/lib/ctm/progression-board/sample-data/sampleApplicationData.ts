@@ -1,6 +1,7 @@
 import { ApplicationAPI } from '../ProgressionBoardInterfaces';
 
 export const sampleApplicationAPIData: ApplicationAPI = {
+  payloadUrl: 'https://pl.com/api/submit_change?token=<api-token>&toproject=',
   sourceControls: [
     {
       id: '111111',

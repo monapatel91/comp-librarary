@@ -1,4 +1,5 @@
 export interface ApplicationAPIData {
+  payloadUrl: string;
   sourceControls: Array<{
     id: string;
     title: string;
@@ -33,6 +34,7 @@ export interface ApplicationAPIData {
 }
 
 export const pbApplicationAPIData: ApplicationAPIData = {
+  payloadUrl: 'https://pl.com/api/submit_change?token=<api-token>&toproject=',
   sourceControls: [
     {
       id: 'e35f9c3091ee11eb81fd0b485fd3e296',

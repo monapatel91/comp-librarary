@@ -1,32 +1,35 @@
 import {
-  areActiveSourceControlFieldsEmpty,
-  getAllNonSelectedSourceControlServers,
+  areActiveSCFieldsEmpty,
+  getAllNonSelectedSCServers,
   getApplicationFormOutputData,
-  getExistingSourceControlIndex,
-  getFormDataWithNewSourceControlServerAdded,
-  getFormDataWithSourceControlServerRemoved,
-  getFormDataWithSourceControlServerSet,
-  getFormDataWithSourceControlSet,
+  getExistingSCIndex,
+  getFormDataWithNewSCServerAdded,
+  getFormDataWithSCServerRemoved,
+  getFormDataWithSCServerSet,
+  getFormDataWithSCSet,
   getFormDataWithTicketSystemServerSet,
   getFormDataWithTicketSystemSet,
-  getSourceControlById,
-  getSourceControlServerById,
+  getFullPayloadUrl,
+  getSCServerById,
+  getSelectedSCServers,
+  getSCById,
   getTicketSystemById,
   getTicketSystemServerById,
-  isActiveSourceControlServerValid,
-  isActiveSourceControlValid,
+  isActiveSCServerValid,
+  isActiveSCValid,
   isApplicationNameValid,
-  isAtLeastOneSourceControlServerSelected,
+  isAtLeastOneSCServerSelected,
   isCreateAnotherValid,
+  isSCArrayValid,
+  isSCServerAlreadySelected,
   isServerArrayValid,
-  isSourceControlsArrayValid,
-  isSourceControlServerAlreadySelected,
   isTicketSystemServerValid,
   isTicketSystemValid,
 } from './applicationFormHelper';
 import {
   ApplicationForm,
   ApplicationFormOutput,
+  SourceControl,
 } from '../ProgressionBoardInterfaces';
 
 describe('applicationFormHelper', () => {
@@ -41,7 +44,7 @@ describe('applicationFormHelper', () => {
     },
   ];
 
-  const emptySourceControls = [
+  const emptySourceControls: Array<SourceControl> = [
     {
       id: '',
       title: '',
@@ -64,21 +67,28 @@ describe('applicationFormHelper', () => {
     },
   ];
 
-  const sampleFormData = {
+  const sampleScServers = [
+    {
+      id: '1111',
+      title: 'Gitlab - Server 1',
+      payloadUrl: 'http://www.gl1.com',
+    },
+    {
+      id: '2222',
+      title: 'Gitlab - Server 1',
+      payloadUrl: 'http://www.gl2.com',
+    },
+  ];
+
+  const sampleFormData: ApplicationForm = {
+    activeSourceControl: {} as SourceControl,
+    applicationName: 'Test app',
+    createAnother: false,
     sourceControls: [
       {
         id: '12345',
         title: 'GitLab',
-        servers: [
-          {
-            id: '1111',
-            title: 'Gitlab - Server 1',
-          },
-          {
-            id: '2222',
-            title: 'Gitlab - Server 1',
-          },
-        ],
+        servers: [...sampleScServers],
       },
     ],
     ticketSystem: {
@@ -95,6 +105,16 @@ describe('applicationFormHelper', () => {
         },
       ],
     },
+  };
+
+  const sampleFormWithEmptySC = {
+    ...sampleFormData,
+    sourceControls: [] as Array<SourceControl>,
+  };
+
+  const sampleFormWithNullSC = {
+    ...sampleFormData,
+    sourceControls: null as Array<SourceControl>,
   };
 
   const sampleTicketSystems = [
@@ -151,66 +171,62 @@ describe('applicationFormHelper', () => {
     });
   });
 
-  describe('isActiveSourceControlValid function', () => {
+  describe('isActiveSCValid function', () => {
     it('should return false if null value passed as argument', () => {
-      expect(isActiveSourceControlValid(null)).toBe(false);
+      expect(isActiveSCValid(null)).toBe(false);
     });
     it('should return false if undefined value passed as argument', () => {
-      expect(isActiveSourceControlValid(undefined)).toBe(false);
-    });
-    it('should return false if no argument is passed in', () => {
-      expect(isActiveSourceControlValid()).toBe(false);
+      expect(isActiveSCValid(undefined)).toBe(false);
     });
     it('should return false if incorrect data structure is passed in', () => {
-      expect(
-        isActiveSourceControlValid(incorrectObjectStructure as never)
-      ).toBe(false);
+      expect(isActiveSCValid(incorrectObjectStructure as never)).toBe(false);
     });
     it('should return false if ID or title properties are empty strings', () => {
       const formData = {
+        ...sampleFormData,
         activeSourceControl: {
           id: '',
           title: '',
         },
       };
-      expect(isActiveSourceControlValid(formData as never)).toBe(false);
+      expect(isActiveSCValid(formData as never)).toBe(false);
     });
     it('should return true on correct data structure with values', () => {
       const formData = {
+        ...sampleFormData,
         activeSourceControl: {
           id: '123',
           title: 'Test title',
         },
       };
-      expect(isActiveSourceControlValid(formData as never)).toBe(true);
+      expect(isActiveSCValid(formData as never)).toBe(true);
     });
   });
 
-  describe('isActiveSourceControlServerValid function', () => {
+  describe('isActiveSCServerValid function', () => {
     it('should return false if null value passed as argument', () => {
-      expect(isActiveSourceControlServerValid(null)).toBe(false);
+      expect(isActiveSCServerValid(null)).toBe(false);
     });
     it('should return false if undefined value passed as argument', () => {
-      expect(isActiveSourceControlServerValid(undefined)).toBe(false);
-    });
-    it('should return false if no argument is passed in', () => {
-      expect(isActiveSourceControlServerValid()).toBe(false);
+      expect(isActiveSCServerValid(undefined)).toBe(false);
     });
     it('should return false if incorrect data structure is passed in', () => {
-      expect(
-        isActiveSourceControlServerValid(incorrectObjectStructure as never)
-      ).toBe(false);
+      expect(isActiveSCServerValid(incorrectObjectStructure as never)).toBe(
+        false
+      );
     });
     it('should return false on empty properties', () => {
       const formData = {
+        ...sampleFormData,
         activeSourceControl: {
           servers: [...emptyServers],
         },
       };
-      expect(isActiveSourceControlServerValid(formData as never)).toBe(false);
+      expect(isActiveSCServerValid(formData as never)).toBe(false);
     });
     it('should return true on correct data structure with values', () => {
       const formData = {
+        ...sampleFormData,
         activeSourceControl: {
           servers: [
             {
@@ -220,88 +236,72 @@ describe('applicationFormHelper', () => {
           ],
         },
       };
-      expect(isActiveSourceControlServerValid(formData as never)).toBe(true);
+      expect(isActiveSCServerValid(formData as never)).toBe(true);
     });
   });
 
-  describe('isAtLeastOneSourceControlServerSelected function', () => {
+  describe('isAtLeastOneSCServerSelected function', () => {
     it('should return false if null value passed as argument', () => {
-      expect(isAtLeastOneSourceControlServerSelected(null)).toBe(false);
+      expect(isAtLeastOneSCServerSelected(null)).toBe(false);
     });
     it('should return false if undefined value passed as argument', () => {
-      expect(isAtLeastOneSourceControlServerSelected(undefined)).toBe(false);
-    });
-    it('should return false if no argument is passed in', () => {
-      expect(isAtLeastOneSourceControlServerSelected()).toBe(false);
+      expect(isAtLeastOneSCServerSelected(undefined)).toBe(false);
     });
     it('should return false if incorrect data structure is passed in', () => {
       const formData = {
-        ...sampleFormData,
-        sourceControls: null,
+        ...sampleFormWithNullSC,
       };
-      expect(isAtLeastOneSourceControlServerSelected(formData as never)).toBe(
-        false
-      );
+      expect(isAtLeastOneSCServerSelected(formData as never)).toBe(false);
     });
     it('should return false on empty source control array', () => {
       const formData = {
-        ...sampleFormData,
-        sourceControls: [],
+        ...sampleFormWithEmptySC,
       };
-      expect(isAtLeastOneSourceControlServerSelected(formData as never)).toBe(
-        false
-      );
+      expect(isAtLeastOneSCServerSelected(formData as never)).toBe(false);
     });
     it('should return true if more than one source control defined', () => {
       const formData = {
         ...sampleFormData,
         sourceControls: [{ id: '1' }, { id: '2' }],
       };
-      expect(isAtLeastOneSourceControlServerSelected(formData as never)).toBe(
-        true
-      );
+      expect(isAtLeastOneSCServerSelected(formData as never)).toBe(true);
     });
   });
 
-  describe('areActiveSourceControlFieldsEmpty function', () => {
+  describe('areActiveSCFieldsEmpty function', () => {
     it('should return true if null value passed as argument', () => {
-      expect(areActiveSourceControlFieldsEmpty(null)).toBe(true);
+      expect(areActiveSCFieldsEmpty(null)).toBe(true);
     });
     it('should return true if undefined value passed as argument', () => {
-      expect(areActiveSourceControlFieldsEmpty(undefined)).toBe(true);
-    });
-    it('should return true if no argument is passed in', () => {
-      expect(areActiveSourceControlFieldsEmpty()).toBe(true);
+      expect(areActiveSCFieldsEmpty(undefined)).toBe(true);
     });
     it('should return true if incorrect data structure is passed in', () => {
-      expect(
-        areActiveSourceControlFieldsEmpty(incorrectObjectStructure as never)
-      ).toBe(true);
+      expect(areActiveSCFieldsEmpty(incorrectObjectStructure as never)).toBe(
+        true
+      );
     });
     it('should return true if activeSourceControl property is null', () => {
       const formData = {
         ...sampleFormData,
-        activeSourceControl: null,
+        activeSourceControl: null as Array<SourceControl>,
       };
-      expect(areActiveSourceControlFieldsEmpty(formData as never)).toBe(true);
+      expect(areActiveSCFieldsEmpty(formData as never)).toBe(true);
     });
     it('should return true if activeSourceControl property is empty object', () => {
       const formData = {
         ...sampleFormData,
         activeSourceControl: {},
       };
-      expect(areActiveSourceControlFieldsEmpty(formData as never)).toBe(true);
+      expect(areActiveSCFieldsEmpty(formData as never)).toBe(true);
     });
     it('should return true if activeSourceControl property has empty properties', () => {
       const formData = {
         ...sampleFormData,
         activeSourceControl: {
-          id: '',
-          title: '',
-          servers: [],
-        },
+          ...emptySourceControls[0],
+        } as SourceControl,
       };
-      expect(areActiveSourceControlFieldsEmpty(formData as never)).toBe(true);
+      expect(areActiveSCFieldsEmpty(formData as never)).toBe(true);
     });
     it('should return false if all activeSourceControl properties are set', () => {
       const formData = {
@@ -310,7 +310,7 @@ describe('applicationFormHelper', () => {
           ...sampleFormData.sourceControls,
         },
       };
-      expect(areActiveSourceControlFieldsEmpty(formData as never)).toBe(false);
+      expect(areActiveSCFieldsEmpty(formData as never)).toBe(false);
     });
   });
 
@@ -320,9 +320,6 @@ describe('applicationFormHelper', () => {
     });
     it('should return false if undefined value passed as argument', () => {
       expect(isApplicationNameValid(undefined)).toBe(false);
-    });
-    it('should return false if no argument is passed in', () => {
-      expect(isApplicationNameValid()).toBe(false);
     });
     it('should return false if incorrect data structure is passed in', () => {
       expect(isApplicationNameValid(incorrectObjectStructure as never)).toBe(
@@ -345,45 +342,38 @@ describe('applicationFormHelper', () => {
     });
   });
 
-  describe('isSourceControlsArrayValid function', () => {
+  describe('isSCArrayValid function', () => {
     it('should return false if null value passed as argument', () => {
-      expect(isSourceControlsArrayValid(null)).toBe(false);
+      expect(isSCArrayValid(null)).toBe(false);
     });
     it('should return false if undefined value passed as argument', () => {
-      expect(isSourceControlsArrayValid(undefined)).toBe(false);
-    });
-    it('should return false if no argument is passed in', () => {
-      expect(isSourceControlsArrayValid()).toBe(false);
+      expect(isSCArrayValid(undefined)).toBe(false);
     });
     it('should return false if incorrect data structure is passed in', () => {
-      expect(
-        isSourceControlsArrayValid(incorrectObjectStructure as never)
-      ).toBe(false);
+      expect(isSCArrayValid(incorrectObjectStructure as never)).toBe(false);
     });
     it('should return false if sourceControls property is null value', () => {
       const formData = {
-        ...sampleFormData,
-        sourceControls: null,
+        ...sampleFormWithNullSC,
       };
-      expect(isSourceControlsArrayValid(formData as never)).toBe(false);
+      expect(isSCArrayValid(formData as never)).toBe(false);
     });
     it('should return true if sourceControls property is empty array', () => {
       const formData = {
-        ...sampleFormData,
-        sourceControls: [],
+        ...sampleFormWithEmptySC,
       };
-      expect(isSourceControlsArrayValid(formData as never)).toBe(true);
+      expect(isSCArrayValid(formData as never)).toBe(true);
     });
     it('should return false if any object inside of sourceControls array has empty property', () => {
       const formData = {
         ...sampleFormData,
         sourceControls: [...emptySourceControls],
       };
-      expect(isSourceControlsArrayValid(formData as never)).toBe(false);
+      expect(isSCArrayValid(formData as never)).toBe(false);
     });
     it('should return true if sourceControls array is not empty and data is set correctly', () => {
       const formData = { ...sampleFormData };
-      expect(isSourceControlsArrayValid(formData as never)).toBe(true);
+      expect(isSCArrayValid(formData as never)).toBe(true);
     });
   });
 
@@ -394,9 +384,6 @@ describe('applicationFormHelper', () => {
     it('should return false if undefined value passed as argument', () => {
       expect(isTicketSystemValid(undefined)).toBe(false);
     });
-    it('should return false if no argument is passed in', () => {
-      expect(isTicketSystemValid()).toBe(false);
-    });
     it('should return false if incorrect data structure is passed in', () => {
       expect(isTicketSystemValid(incorrectObjectStructure as never)).toBe(
         false
@@ -405,7 +392,7 @@ describe('applicationFormHelper', () => {
     it('should return false if ticketSystem property is null value', () => {
       const formData = {
         ...sampleFormData,
-        ticketSystem: null,
+        ticketSystem: null as never,
       };
       expect(isTicketSystemValid(formData as never)).toBe(false);
     });
@@ -428,9 +415,6 @@ describe('applicationFormHelper', () => {
     });
     it('should return false if undefined value passed as argument', () => {
       expect(isTicketSystemServerValid(undefined)).toBe(false);
-    });
-    it('should return false if no argument is passed in', () => {
-      expect(isTicketSystemServerValid()).toBe(false);
     });
     it('should return false if incorrect data structure is passed in', () => {
       expect(isTicketSystemServerValid(incorrectObjectStructure as never)).toBe(
@@ -460,9 +444,6 @@ describe('applicationFormHelper', () => {
     it('should return false if undefined value passed as argument', () => {
       expect(isCreateAnotherValid(undefined)).toBe(false);
     });
-    it('should return false if no argument is passed in', () => {
-      expect(isCreateAnotherValid()).toBe(false);
-    });
     it('should return false if incorrect data structure is passed in', () => {
       expect(isCreateAnotherValid(incorrectObjectStructure as never)).toBe(
         false
@@ -471,7 +452,7 @@ describe('applicationFormHelper', () => {
     it('should return false if property is set to null', () => {
       const formData = {
         ...sampleFormData,
-        createAnother: null,
+        createAnother: null as never,
       };
       expect(isCreateAnotherValid(formData as never)).toBe(false);
     });
@@ -491,21 +472,16 @@ describe('applicationFormHelper', () => {
     });
   });
 
-  describe('isSourceControlServerAlreadySelected function', () => {
+  describe('isSCServerAlreadySelected function', () => {
     it('should return false if null value passed as argument', () => {
-      expect(isSourceControlServerAlreadySelected(null, null)).toBe(false);
+      expect(isSCServerAlreadySelected(null, null)).toBe(false);
     });
     it('should return false if undefined value passed as argument', () => {
-      expect(isSourceControlServerAlreadySelected(undefined, undefined)).toBe(
-        false
-      );
-    });
-    it('should return false if no argument is passed in', () => {
-      expect(isSourceControlServerAlreadySelected()).toBe(false);
+      expect(isSCServerAlreadySelected(undefined, undefined)).toBe(false);
     });
     it('should return false if incorrect data structure is passed in', () => {
       expect(
-        isSourceControlServerAlreadySelected(
+        isSCServerAlreadySelected(
           23 as never,
           incorrectObjectStructure as never
         )
@@ -513,72 +489,56 @@ describe('applicationFormHelper', () => {
     });
     it('should return false if sourceControls property is null value', () => {
       const formData = {
-        ...sampleFormData,
-        sourceControls: null,
+        ...sampleFormWithNullSC,
       };
-      expect(
-        isSourceControlServerAlreadySelected('23', formData as never)
-      ).toBe(false);
+      expect(isSCServerAlreadySelected('23', formData as never)).toBe(false);
     });
     it('should return false if server ID is NOT already selected', () => {
       const formData = {
         ...sampleFormData,
         createAnother: false,
       };
-      expect(
-        isSourceControlServerAlreadySelected('99999', formData as never)
-      ).toBe(false);
+      expect(isSCServerAlreadySelected('99999', formData as never)).toBe(false);
     });
     it('should return true if server ID is already selected', () => {
       const formData = {
         ...sampleFormData,
         createAnother: false,
       };
-      expect(
-        isSourceControlServerAlreadySelected('1111', formData as never)
-      ).toBe(true);
+      expect(isSCServerAlreadySelected('1111', formData as never)).toBe(true);
     });
   });
 
-  describe('getExistingSourceControlIndex function', () => {
+  describe('getExistingSCIndex function', () => {
     it('should return -1 if null value passed as argument', () => {
-      expect(getExistingSourceControlIndex(null, null)).toBe(-1);
+      expect(getExistingSCIndex(null, null)).toBe(-1);
     });
     it('should return -1 if undefined value passed as argument', () => {
-      expect(getExistingSourceControlIndex(undefined, undefined)).toBe(-1);
-    });
-    it('should return -1 if no argument is passed in', () => {
-      expect(getExistingSourceControlIndex()).toBe(-1);
+      expect(getExistingSCIndex(undefined, undefined)).toBe(-1);
     });
     it('should return -1 if incorrect data structure is passed in', () => {
       expect(
-        getExistingSourceControlIndex(
-          23 as never,
-          incorrectObjectStructure as never
-        )
+        getExistingSCIndex(23 as never, incorrectObjectStructure as never)
       ).toBe(-1);
     });
     it('should return -1 if sourceControls property is null value', () => {
       const formData = {
-        ...sampleFormData,
-        sourceControls: null,
+        ...sampleFormWithNullSC,
       };
-      expect(getExistingSourceControlIndex('23', formData as never)).toBe(-1);
+      expect(getExistingSCIndex('23', formData as never)).toBe(-1);
     });
 
     it('should return -1 if index not found', () => {
       const formData = {
         ...sampleFormData,
       };
-      expect(getExistingSourceControlIndex('99999', formData as never)).toBe(
-        -1
-      );
+      expect(getExistingSCIndex('99999', formData as never)).toBe(-1);
     });
     it('should return correct index number when source control exists', () => {
       const formData = {
         ...sampleFormData,
       };
-      expect(getExistingSourceControlIndex('12345', formData as never)).toBe(0);
+      expect(getExistingSCIndex('12345', formData as never)).toBe(0);
     });
   });
 
@@ -634,7 +594,7 @@ describe('applicationFormHelper', () => {
         ...formData,
         ticketSystem: {
           ...ticketSystem,
-          servers: [],
+          servers: [] as never,
         },
       };
       expect(
@@ -643,59 +603,56 @@ describe('applicationFormHelper', () => {
     });
   });
 
-  describe('getSourceControlById function', () => {
+  describe('getSCById function', () => {
     it('should return null if null value passed as argument', () => {
-      expect(getSourceControlById(null, null)).toBe(null);
+      expect(getSCById(null, null)).toBe(null);
     });
     it('should return null if undefined value passed as argument', () => {
-      expect(getSourceControlById(undefined, undefined)).toBe(null);
+      expect(getSCById(undefined, undefined)).toBe(null);
     });
     it('should return null if incorrect data structure is passed in', () => {
-      expect(
-        getSourceControlById(23 as never, incorrectObjectStructure as never)
-      ).toBe(null);
+      expect(getSCById(23 as never, incorrectObjectStructure as never)).toBe(
+        null
+      );
     });
     it('should return null if ID value is not found in the array', () => {
-      expect(getSourceControlById('444', sampleSourceControls)).toBe(null);
+      expect(getSCById('444', sampleSourceControls as never)).toBe(null);
     });
     it('should return correct source control for given ID value', () => {
-      expect(getSourceControlById('123', sampleSourceControls)).toBe(
+      expect(getSCById('123', sampleSourceControls as never)).toBe(
         sampleSourceControls[0]
       );
     });
   });
 
-  describe('getSourceControlServerById function', () => {
+  describe('getSCServerById function', () => {
     it('should return null if null value passed as argument', () => {
-      expect(getSourceControlServerById(null, null)).toBe(null);
+      expect(getSCServerById(null, null)).toBe(null);
     });
     it('should return null if undefined value passed as argument', () => {
-      expect(getSourceControlServerById(undefined, undefined)).toBe(null);
+      expect(getSCServerById(undefined, undefined)).toBe(null);
     });
     it('should return null if incorrect data structure is passed in', () => {
       expect(
-        getSourceControlServerById(
-          23 as never,
-          incorrectObjectStructure as never
-        )
+        getSCServerById(23 as never, incorrectObjectStructure as never)
       ).toBe(null);
     });
     it('should return null if ID value is not found in the array', () => {
-      expect(getSourceControlServerById('77', sampleServers)).toBe(null);
+      expect(getSCServerById('77', sampleServers as never)).toBe(null);
     });
     it('should return correct source control server for given ID value', () => {
-      expect(getSourceControlServerById('1', sampleServers)).toBe(
+      expect(getSCServerById('1', sampleServers as never)).toBe(
         sampleServers[0]
       );
     });
   });
 
-  describe('getFormDataWithSourceControlSet function', () => {
+  describe('getFormDataWithSCSet function', () => {
     it('should return null if null value passed as arguments', () => {
-      expect(getFormDataWithSourceControlSet(null, null)).toBe(null);
+      expect(getFormDataWithSCSet(null, null)).toBe(null);
     });
     it('should return false if undefined value passed as argument', () => {
-      expect(getFormDataWithSourceControlSet(undefined, undefined)).toBe(null);
+      expect(getFormDataWithSCSet(undefined, undefined)).toBe(null);
     });
     it('should return correct form data when passed in source control object as null value', () => {
       const formData = {
@@ -706,9 +663,9 @@ describe('applicationFormHelper', () => {
         ...formData,
         activeSourceControl: {},
       };
-      expect(
-        getFormDataWithSourceControlSet(null, formData as never)
-      ).toStrictEqual(expectedFormData);
+      expect(getFormDataWithSCSet(null, formData as never)).toStrictEqual(
+        expectedFormData
+      );
     });
     it('should return correct form data when passed in source control object', () => {
       const sourceControl = { ...sampleSourceControls[0] };
@@ -720,23 +677,21 @@ describe('applicationFormHelper', () => {
         ...formData,
         activeSourceControl: {
           ...sourceControl,
-          servers: [],
+          servers: [] as never,
         },
       };
       expect(
-        getFormDataWithSourceControlSet(sourceControl, formData as never)
+        getFormDataWithSCSet(sourceControl as never, formData as never)
       ).toStrictEqual(expectedFormData);
     });
   });
 
-  describe('getFormDataWithSourceControlServerSet function', () => {
+  describe('getFormDataWithSCServerSet function', () => {
     it('should return null if null value passed as arguments', () => {
-      expect(getFormDataWithSourceControlServerSet(null, null)).toBe(null);
+      expect(getFormDataWithSCServerSet(null, null)).toBe(null);
     });
     it('should return false if undefined value passed as argument', () => {
-      expect(getFormDataWithSourceControlServerSet(undefined, undefined)).toBe(
-        null
-      );
+      expect(getFormDataWithSCServerSet(undefined, undefined)).toBe(null);
     });
     it('should return correct form data when passed in source control server object as null value', () => {
       const sourceControl = { ...sampleSourceControls[0] };
@@ -744,12 +699,12 @@ describe('applicationFormHelper', () => {
         ...sampleFormData,
         activeSourceControl: {
           ...sourceControl,
-          servers: [],
+          servers: [] as never,
         },
       };
-      expect(
-        getFormDataWithSourceControlServerSet(null, formData as never)
-      ).toStrictEqual(formData);
+      expect(getFormDataWithSCServerSet(null, formData as never)).toStrictEqual(
+        formData
+      );
     });
     it('should return correct form data when passed in source control server object', () => {
       const sourceControl = { ...sampleSourceControls[0] };
@@ -757,7 +712,7 @@ describe('applicationFormHelper', () => {
         ...sampleFormData,
         activeSourceControl: {
           ...sourceControl,
-          servers: [],
+          servers: [] as never,
         },
       };
       const expectedFormData = {
@@ -768,7 +723,7 @@ describe('applicationFormHelper', () => {
         },
       };
       expect(
-        getFormDataWithSourceControlServerSet(sourceControl, formData as never)
+        getFormDataWithSCServerSet(sourceControl as never, formData as never)
       ).toStrictEqual(expectedFormData);
     });
   });
@@ -813,7 +768,7 @@ describe('applicationFormHelper', () => {
         ...sampleFormData,
         ticketSystem: {
           ...ticketSystem,
-          servers: [],
+          servers: [] as never,
         },
       };
       expect(
@@ -827,7 +782,7 @@ describe('applicationFormHelper', () => {
         ...sampleFormData,
         ticketSystem: {
           ...ticketSystem,
-          servers: [],
+          servers: [] as never,
         },
       };
       const expectedFormData = {
@@ -843,18 +798,16 @@ describe('applicationFormHelper', () => {
     });
   });
 
-  describe('getAllNonSelectedSourceControlServers function', () => {
+  describe('getAllNonSelectedSCServers function', () => {
     it('should return null if null value passed as argument', () => {
-      expect(getAllNonSelectedSourceControlServers(null, null)).toBe(null);
+      expect(getAllNonSelectedSCServers(null, null)).toBe(null);
     });
     it('should return null if undefined value passed as argument', () => {
-      expect(getAllNonSelectedSourceControlServers(undefined, undefined)).toBe(
-        null
-      );
+      expect(getAllNonSelectedSCServers(undefined, undefined)).toBe(null);
     });
     it('should return null if incorrect data structure is passed in', () => {
       expect(
-        getAllNonSelectedSourceControlServers(
+        getAllNonSelectedSCServers(
           23 as never,
           incorrectObjectStructure as never
         )
@@ -862,11 +815,10 @@ describe('applicationFormHelper', () => {
     });
     it('should return all passed in servers when no server is already selected', () => {
       const formData = {
-        ...sampleFormData,
-        sourceControls: [],
+        ...sampleFormWithEmptySC,
       };
       expect(
-        getAllNonSelectedSourceControlServers(sampleServers, formData as never)
+        getAllNonSelectedSCServers(sampleServers as never, formData as never)
       ).toStrictEqual(sampleServers);
     });
     it('should filter passed in servers and return only NON selected ones', () => {
@@ -876,34 +828,26 @@ describe('applicationFormHelper', () => {
       };
       const expectedServers = sampleServers.slice(2);
       expect(
-        getAllNonSelectedSourceControlServers(sampleServers, formData as never)
+        getAllNonSelectedSCServers(sampleServers as never, formData as never)
       ).toStrictEqual(expectedServers);
     });
   });
 
-  describe('getFormDataWithSourceControlServerRemoved function', () => {
+  describe('getFormDataWithSCServerRemoved function', () => {
     it('should return null if null value passed as argument', () => {
-      expect(getFormDataWithSourceControlServerRemoved(null, null)).toBe(null);
+      expect(getFormDataWithSCServerRemoved(null, null)).toBe(null);
     });
     it('should return null if undefined value passed as argument', () => {
-      expect(
-        getFormDataWithSourceControlServerRemoved(undefined, undefined)
-      ).toBe(null);
+      expect(getFormDataWithSCServerRemoved(undefined, undefined)).toBe(null);
     });
     it('should return null if source control server ID value is not a string ', () => {
       expect(
-        getFormDataWithSourceControlServerRemoved(
-          23 as never,
-          sampleFormData as never
-        )
+        getFormDataWithSCServerRemoved(23 as never, sampleFormData as never)
       ).toBe(null);
     });
     it('should return same form data as passed in form data if source control server ID is not found', () => {
       expect(
-        getFormDataWithSourceControlServerRemoved(
-          '999999',
-          sampleFormData as never
-        )
+        getFormDataWithSCServerRemoved('999999', sampleFormData as never)
       ).toStrictEqual(sampleFormData);
     });
     it('should return form data with source control server removed if source control server ID is found', () => {
@@ -924,19 +868,17 @@ describe('applicationFormHelper', () => {
         ],
       };
       expect(
-        getFormDataWithSourceControlServerRemoved('1', inputFormData as never)
+        getFormDataWithSCServerRemoved('1', inputFormData as never)
       ).toStrictEqual(expectedData);
     });
   });
 
-  describe('getFormDataWithNewSourceControlServerAdded function', () => {
+  describe('getFormDataWithNewSCServerAdded function', () => {
     it('should return null if null value passed as argument', () => {
-      expect(getFormDataWithNewSourceControlServerAdded(null)).toBe(null);
+      expect(getFormDataWithNewSCServerAdded(null)).toBe(null);
     });
     it('should return undefined if undefined value passed as argument', () => {
-      expect(getFormDataWithNewSourceControlServerAdded(undefined)).toBe(
-        undefined
-      );
+      expect(getFormDataWithNewSCServerAdded(undefined)).toBe(undefined);
     });
     it('should return form data with new source control added as a separate object in the array', () => {
       const formData = {
@@ -950,18 +892,16 @@ describe('applicationFormHelper', () => {
       const expectedData = {
         ...sampleFormData,
         activeSourceControl: {
-          id: '',
-          title: '',
-          servers: [],
+          ...emptySourceControls[0],
         },
         sourceControls: [
           ...sampleFormData.sourceControls,
           formData.activeSourceControl,
         ],
       };
-      expect(
-        getFormDataWithNewSourceControlServerAdded(formData as never)
-      ).toStrictEqual(expectedData);
+      expect(getFormDataWithNewSCServerAdded(formData as never)).toStrictEqual(
+        expectedData
+      );
     });
     it('should return form data with new source control server added to the servers array of existing source control', () => {
       const server = {
@@ -987,15 +927,64 @@ describe('applicationFormHelper', () => {
       const expectedData = {
         ...formData,
         activeSourceControl: {
-          id: '',
-          title: '',
-          servers: [],
+          ...emptySourceControls[0],
         },
         sourceControls: expectedSourceControls,
       };
-      expect(
-        getFormDataWithNewSourceControlServerAdded(formData as never)
-      ).toStrictEqual(expectedData);
+      expect(getFormDataWithNewSCServerAdded(formData as never)).toStrictEqual(
+        expectedData
+      );
+    });
+
+    describe('getFullPayloadUrl function', () => {
+      it('should return empty string when arguments are null values', () => {
+        expect(getFullPayloadUrl(null, null, null)).toBe('');
+      });
+      it('should return empty string when arguments are undefined values', () => {
+        expect(getFullPayloadUrl(undefined, undefined, undefined)).toBe('');
+      });
+      it('should return empty string when arguments are empty strings', () => {
+        expect(getFullPayloadUrl('', '', '')).toBe('');
+      });
+      it('should return empty string when applicationName argument is not a string', () => {
+        expect(getFullPayloadUrl(123 as never, '', '')).toBe('');
+      });
+      it('should return empty string when basePayloadUrl argument is not a string', () => {
+        expect(getFullPayloadUrl('123', 123 as never, '123')).toBe('');
+      });
+      it('should return empty string when serverId argument is not a string', () => {
+        expect(getFullPayloadUrl('123', '234', 123 as never)).toBe('');
+      });
+      it('should return correct string when applicationName, basePayloadUrl and serverId are set', () => {
+        const appName = 'App name 01';
+        const serverId = '123';
+        const basePayloadUrl = `https://gl-s1.com/api/submit_change?token=<api-token>&toproject=`;
+        const expectedUrl = `${basePayloadUrl}App%20name%2001-source-${serverId}`;
+        expect(getFullPayloadUrl(appName, basePayloadUrl, serverId)).toBe(
+          expectedUrl
+        );
+      });
+    });
+
+    describe('getSelectedSCServers function', () => {
+      it('should return null if null value passed as argument', () => {
+        expect(getSelectedSCServers(null)).toBe(null);
+      });
+      it('should return null if undefined value passed as argument', () => {
+        expect(getSelectedSCServers(undefined)).toBe(null);
+      });
+      it('should return empty array when no selected source control servers', () => {
+        const formData = {
+          ...sampleFormWithEmptySC,
+        };
+        expect(getSelectedSCServers(formData)).toStrictEqual([]);
+      });
+      it('should return array with correct data when at least one selected source control', () => {
+        const formData = {
+          ...sampleFormData,
+        };
+        expect(getSelectedSCServers(formData)).toStrictEqual(sampleScServers);
+      });
     });
   });
 
@@ -1017,10 +1006,8 @@ describe('applicationFormHelper', () => {
         applicationName: 'Test',
         createAnother: false,
         activeSourceControl: {
-          id: '',
-          title: '',
-          servers: [],
-        },
+          ...emptySourceControls[0],
+        } as SourceControl,
       };
       const expectedData: ApplicationFormOutput = {
         applicationName: formData.applicationName,

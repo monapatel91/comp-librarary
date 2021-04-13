@@ -30,13 +30,9 @@ export const StyledProgressionBoardApplicationDrawer = styled.div`
         overflow-y: auto;
         padding: ${theme.spacing(3, 2)};
 
-        .dot-text-field.application-name,
-        .dot-autocomplete.source-control,
-        .dot-autocomplete.source-control-server,
-        .dot-autocomplete.ticket-system,
-        .dot-autocomplete.ticket-system-server,
         .dot-form-control-label.add-another-cb,
-        .selected-source-controls {
+        .selected-source-controls,
+        .dot-text-field {
           padding: ${theme.spacing(0, 0, 2)};
         }
 

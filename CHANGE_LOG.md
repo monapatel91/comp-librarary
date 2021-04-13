@@ -46,6 +46,7 @@
 
 ### Experimental
 
+- **ProgressionBoardApplicationDrawer** - added `payloadUrl` property to `ApplicationAPI` interface
 - **ProgressionBoardWorkItemDrawer** - `owner` property type (of `WorkItemDetailsType` interface) changed from `string` to `Array<string>` to support multiple owners
 
 ## 0.0.0-alpha.16

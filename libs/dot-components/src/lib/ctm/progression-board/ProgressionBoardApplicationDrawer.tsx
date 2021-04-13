@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { Divider } from '@material-ui/core';
+import { Divider, Tooltip } from '@material-ui/core';
 import {
   DotAutoComplete,
   DotAvatar,
@@ -30,30 +30,34 @@ import {
   ApplicationForm,
   ApplicationFormOutput,
   AutoCompleteControl,
+  SCServer,
   SourceControl,
   TicketSystem,
 } from './ProgressionBoardInterfaces';
 import {
-  areActiveSourceControlsFieldsValid,
-  getAllNonSelectedSourceControlServers,
+  areActiveSCFieldsValid,
+  getAllNonSelectedSCServers,
   getApplicationFormOutputData,
-  getFormDataWithNewSourceControlServerAdded,
-  getFormDataWithSourceControlServerRemoved,
-  getFormDataWithSourceControlServerSet,
-  getFormDataWithSourceControlSet,
+  getFormDataWithNewSCServerAdded,
+  getFormDataWithSCServerRemoved,
+  getFormDataWithSCServerSet,
+  getFormDataWithSCSet,
   getFormDataWithTicketSystemServerSet,
   getFormDataWithTicketSystemSet,
-  getSourceControlById,
-  getSourceControlServerById,
+  getFullPayloadUrl,
+  getSCById,
+  getSCServerById,
   getTicketSystemById,
   getTicketSystemServerById,
   isApplicationNameValid,
   isCreateAnotherValid,
-  isSourceControlDataValidForSubmission,
-  isSourceControlsArrayValid,
+  isSCArrayValid,
+  isSCDataValidForSubmission,
   isTicketSystemServerValid,
   isTicketSystemValid,
 } from './application/applicationFormHelper';
+import { copyTextToClipboard } from './helper';
+import { StyledTooltipContent } from './ProgressionBoardDrawer.styles';
 
 export interface PBAppDrawerProps extends CommonProps {
   /* Progression's application data coming from the API */
@@ -96,9 +100,12 @@ export const DotProgressionBoardApplicationDrawer = ({
   const ticketSystems = apiData?.ticketSystems;
   const [formData, setFormData] = useState<ApplicationForm>(INITIAL_FORM_DATA);
   const [isFormValid, setIsFormValid] = useState<boolean>();
-  const [sourceControlServers, setSourceControlServers] = useState<
-    Array<AutoCompleteControl>
-  >([]);
+  const [
+    isInputCopyTooltipVisible,
+    setIsInputCopyTooltipVisible,
+  ] = useState<boolean>(false);
+  const [visibleSCTooltips, setVisibleSCTooltips] = useState<Array<string>>([]);
+  const [SCServers, setSCServers] = useState<Array<SCServer>>([]);
   const [ticketSystemServers, setTicketSystemServers] = useState<
     Array<AutoCompleteControl>
   >([]);
@@ -111,25 +118,23 @@ export const DotProgressionBoardApplicationDrawer = ({
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-
     const data = {
       ...formData,
       [name]: value,
     };
-
     setFormData(data);
   };
 
   const checkIfFormDataValid = (data: ApplicationForm): boolean =>
     isApplicationNameValid(data) &&
-    isSourceControlDataValidForSubmission(data) &&
-    isSourceControlsArrayValid(data) &&
+    isSCDataValidForSubmission(data) &&
+    isSCArrayValid(data) &&
     isTicketSystemValid(data) &&
     isTicketSystemServerValid(data) &&
     isCreateAnotherValid(data);
 
   const isAddMoreButtonDisabled = (data: ApplicationForm): boolean =>
-    !areActiveSourceControlsFieldsValid(data);
+    !areActiveSCFieldsValid(data);
 
   const onApplicationFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -141,8 +146,6 @@ export const DotProgressionBoardApplicationDrawer = ({
     clearForm();
     onFormCancel();
   };
-
-  const clearForm = (): void => setFormData(INITIAL_FORM_DATA);
 
   const onTicketSystemChange = (
     _: ChangeEvent<HTMLInputElement>,
@@ -171,26 +174,59 @@ export const DotProgressionBoardApplicationDrawer = ({
     _: ChangeEvent<HTMLInputElement>,
     value: AutoCompleteControl
   ): void => {
-    const sourceControl = getSourceControlById(value?.id, sourceControls);
-    setFormData(getFormDataWithSourceControlSet(sourceControl, formData));
+    const sourceControl = getSCById(value?.id, sourceControls);
+    setFormData(getFormDataWithSCSet(sourceControl, formData));
     const servers = sourceControl?.servers;
-    setSourceControlServers(
-      servers ? getAllNonSelectedSourceControlServers(servers, formData) : []
-    );
+    setSCServers(servers ? getAllNonSelectedSCServers(servers, formData) : []);
   };
 
-  const onSourceControlServerChange = (
+  const onSCServerChange = (
     _: ChangeEvent<HTMLInputElement>,
     value: AutoCompleteControl
   ): void => {
-    const sourceControlServer = getSourceControlServerById(
-      value?.id,
-      sourceControlServers
-    );
-    setFormData(
-      getFormDataWithSourceControlServerSet(sourceControlServer, formData)
-    );
+    const currentSCServer = getSCServerById(value?.id, SCServers);
+    setFormData(getFormDataWithSCServerSet(currentSCServer, formData));
   };
+
+  const onSourceControlDelete = (serverId: string): (() => void) => (): void =>
+    setFormData(getFormDataWithSCServerRemoved(serverId, formData));
+
+  const onSourceControlPayloadCopy = (
+    serverName: string
+  ): (() => void) => async (): Promise<void> => {
+    try {
+      await copyTextToClipboard(
+        getFullPayloadUrl(
+          formData.applicationName,
+          apiData.payloadUrl,
+          serverName
+        )
+      );
+      setVisibleSCTooltips([
+        ...visibleSCTooltips,
+        ...(visibleSCTooltips.indexOf(serverName) === -1 ? [serverName] : []),
+      ]);
+    } catch (_) {
+      return;
+    }
+  };
+
+  const onCopyPayloadUrlClick = (
+    serverName: string
+  ): (() => void) => async (): Promise<void> => {
+    if (!serverName) return;
+    try {
+      await copyTextToClipboard(getPayloadUrl(serverName));
+      setIsInputCopyTooltipVisible(true);
+    } catch (_) {
+      return;
+    }
+  };
+
+  const onSCListTooltipClose = (serverName: string): (() => void) => () =>
+    setVisibleSCTooltips(
+      visibleSCTooltips.filter((name) => name !== serverName)
+    );
 
   const onCreateAnotherChange = (e: ChangeEvent<HTMLInputElement>): void =>
     setFormData({
@@ -198,28 +234,92 @@ export const DotProgressionBoardApplicationDrawer = ({
       createAnother: e.target.checked,
     });
 
-  const onSourceControlDelete = (serverId: string) => (): void =>
-    setFormData(getFormDataWithSourceControlServerRemoved(serverId, formData));
+  const onInputCopyTooltipClose = (): void =>
+    setIsInputCopyTooltipVisible(false);
 
   const onAddMoreButtonClick = (): void => {
-    setFormData(getFormDataWithNewSourceControlServerAdded(formData));
-    setSourceControlServers([]);
+    setFormData(getFormDataWithNewSCServerAdded(formData));
+    setSCServers([]);
+  };
+
+  const clearForm = (): void => {
+    setFormData(INITIAL_FORM_DATA);
+    setSCServers([]);
+    setTicketSystemServers([]);
+  };
+
+  const getPayloadUrl = (serverName: string): string => {
+    const { applicationName } = formData || {};
+    return serverName && applicationName
+      ? getFullPayloadUrl(applicationName, apiData.payloadUrl, serverName)
+      : '';
+  };
+
+  const isSCListTooltipOpened = (serverName: string): boolean =>
+    visibleSCTooltips.indexOf(serverName) !== -1;
+
+  const renderSourceControlCopyButton = (
+    serverName: string,
+    isActive = false
+  ): ReactNode => {
+    const tooltipTestId = `${dataTestId}${
+      isActive
+        ? '-payload-copy-tooltip'
+        : `-sc-payload-copy-tooltip-${serverName}`
+    }`;
+    const testId = `${dataTestId}${
+      isActive ? '-payload-copy-btn' : `-sc-payload-copy-btn-${serverName}`
+    }`;
+    const iconId = isActive ? 'duplicate' : 'webhook';
+    const onIconClick = isActive
+      ? onCopyPayloadUrlClick(serverName)
+      : onSourceControlPayloadCopy(serverName);
+    const isDisabled = !serverName || !getPayloadUrl(serverName);
+    const iconSize = isActive ? 'small' : 'medium';
+    return (
+      <Tooltip
+        data-testid={tooltipTestId}
+        leaveDelay={400}
+        onClose={
+          isActive ? onInputCopyTooltipClose : onSCListTooltipClose(serverName)
+        }
+        open={
+          isActive
+            ? isInputCopyTooltipVisible
+            : isSCListTooltipOpened(serverName)
+        }
+        title={
+          <StyledTooltipContent variant="body2">
+            URL Copied!
+          </StyledTooltipContent>
+        }
+      >
+        <span>
+          <DotIconButton
+            data-testid={testId}
+            disabled={isDisabled}
+            iconId={iconId}
+            size={iconSize}
+            titleTooltip="Click to copy to clipboard"
+            onClick={onIconClick}
+          />
+        </span>
+      </Tooltip>
+    );
   };
 
   const renderSelectedSourceControls = (): ReactNode => {
-    const servers: Array<AutoCompleteControl> = [];
+    const servers: Array<SCServer> = [];
     formData.sourceControls.forEach((sourceControl: SourceControl) =>
       servers.push(...sourceControl.servers)
     );
-
     if (!servers.length) return null;
-
     return (
       <div
         className="selected-source-controls"
         data-testid={`${dataTestId}-selected-sc`}
       >
-        {servers.map((server) => (
+        {servers.map((server: SCServer) => (
           <div key={server.id} className="selected-source-control">
             <DotAvatar
               alt="Source Icon"
@@ -231,6 +331,7 @@ export const DotProgressionBoardApplicationDrawer = ({
             <DotTypography className="server-name" variant="body1">
               <span title={server.title}>{server.title}</span>
             </DotTypography>
+            {renderSourceControlCopyButton(server.name, false)}
             <DotIconButton
               data-testid={`${dataTestId}-delete-icon`}
               iconId="delete"
@@ -244,6 +345,12 @@ export const DotProgressionBoardApplicationDrawer = ({
   };
 
   const renderDrawerContent = (): ReactNode => {
+    const { applicationName, activeSourceControl, ticketSystem } =
+      formData || {};
+    const { servers: activeSCServers = [] } = activeSourceControl || {};
+    const activeSCServer = activeSCServers.length ? activeSCServers[0] : null;
+    const tsServer = ticketSystem.servers?.[0] || null;
+    const payloadUrl = getPayloadUrl(activeSCServer?.name);
     return (
       <>
         <div className="drawer-header">
@@ -272,7 +379,7 @@ export const DotProgressionBoardApplicationDrawer = ({
               onChange={onInputChange}
               name="applicationName"
               required={true}
-              value={formData.applicationName}
+              value={applicationName}
             />
             <DotAutoComplete
               className="source-control"
@@ -282,18 +389,29 @@ export const DotProgressionBoardApplicationDrawer = ({
               multiple={false}
               onChange={onSourceControlChange}
               options={sourceControls}
-              value={formData.activeSourceControl}
+              value={activeSourceControl}
             />
             <DotAutoComplete
-              className="source-control-server"
+              className="sc-server"
               data-testid={`${dataTestId}-sc-server`}
               helperText="Choose server"
-              inputId="sourceControlServer"
+              inputId="sc-server"
               label="Server name"
               multiple={false}
-              onChange={onSourceControlServerChange}
-              options={sourceControlServers}
-              value={formData.activeSourceControl?.servers?.[0] || null}
+              onChange={onSCServerChange}
+              options={SCServers}
+              value={activeSCServer}
+            />
+            <DotInputText
+              endIcon={renderSourceControlCopyButton(
+                activeSCServer?.name,
+                true
+              )}
+              id="payloadUrl"
+              label="Payload URL"
+              name="payloadUrl"
+              readOnly={true}
+              value={payloadUrl}
             />
             <DotButton
               className="add-more-btn"
@@ -324,7 +442,7 @@ export const DotProgressionBoardApplicationDrawer = ({
               multiple={false}
               onChange={onTicketSystemServerChange}
               options={ticketSystemServers}
-              value={formData.ticketSystem?.servers?.[0] || null}
+              value={tsServer}
             />
             <Divider className="content-divider" />
             <DotCheckbox

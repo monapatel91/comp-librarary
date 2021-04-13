@@ -2,11 +2,17 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, within } from '../../testing-utils';
 import { DotProgressionBoardApplicationDrawer } from './ProgressionBoardApplicationDrawer';
+import {
+  AutoCompleteControl,
+  SourceControl,
+  TicketSystem,
+} from './ProgressionBoardInterfaces';
 
 const onDrawerClose = () => console.log('Closed');
 const onFormCancel = () => console.log('Cancelled');
 const onFormSubmitted = () => console.log('Submitted');
 const apiData = {
+  payloadUrl: 'http://payload.com',
   sourceControls: [
     {
       id: '1',
@@ -15,10 +21,12 @@ const apiData = {
         {
           id: '1',
           title: 'SC1 - Server 1',
+          name: 'Configuration/Custom/111',
         },
         {
           id: '2',
           title: 'SC1 - Server 2',
+          name: 'Configuration/Custom/112',
         },
       ],
     },
@@ -29,14 +37,16 @@ const apiData = {
         {
           id: '3',
           title: 'SC2 - Server 1',
+          name: 'Configuration/Custom/221',
         },
         {
           id: '4',
           title: 'SC2 - Server 2',
+          name: 'Configuration/Custom/222',
         },
       ],
     },
-  ],
+  ] as Array<SourceControl>,
   ticketSystems: [
     {
       id: '1',
@@ -66,7 +76,7 @@ const apiData = {
         },
       ],
     },
-  ],
+  ] as Array<TicketSystem>,
 };
 
 const getSourceControlByTestId = (dataTestId: string): HTMLElement =>
@@ -77,6 +87,20 @@ const getTicketSystemByTestId = (dataTestId: string): HTMLElement =>
 
 const getSourceControlTextbox = (): HTMLElement =>
   screen.getByRole('textbox', { name: /Source control/i });
+
+const getPayloadUrlTextbox = (): HTMLElement =>
+  screen.getByRole('textbox', { name: /Payload URL/i });
+
+const getPayloadUrlCopyButton = (dataTestId: string): HTMLElement => {
+  return screen.getByTestId(`${dataTestId}-payload-copy-btn`);
+};
+
+const getSCPayloadUrlCopyButton = (
+  dataTestId: string,
+  serverId: string
+): HTMLElement => {
+  return screen.getByTestId(`${dataTestId}-sc-payload-copy-btn-${serverId}`);
+};
 
 const getTicketSystemTextbox = (): HTMLElement =>
   screen.getByRole('textbox', { name: /Ticketing system/i });
@@ -90,7 +114,7 @@ const getSaveButton = (): HTMLElement =>
 const getCancelButton = (): HTMLElement =>
   screen.getByRole('button', { name: /Cancel/i });
 
-const getSourceControlServerTextbox = (dataTestId: string): HTMLElement => {
+const getSCServerTextbox = (dataTestId: string): HTMLElement => {
   const sourceControlElem = screen.getByTestId(`${dataTestId}-sc-server`);
   return within(sourceControlElem).getByRole('textbox', {
     name: /Server name/i,
@@ -131,8 +155,8 @@ const selectTicketSystem = (title: string): void => {
   userEvent.click(screen.getByText(title));
 };
 
-const selectSourceControlServer = (title: string, dataTestId: string): void => {
-  const scServerElem = getSourceControlServerTextbox(dataTestId);
+const selectSCServer = (title: string, dataTestId: string): void => {
+  const scServerElem = getSCServerTextbox(dataTestId);
   userEvent.click(scServerElem);
   userEvent.click(screen.getByText(title));
 };
@@ -166,8 +190,8 @@ const clearTicketSystem = (dataTestId: string): void => {
 };
 
 const clickOnDeleteServerIcon = (dataTestId: string) => {
-  const selectedScElem = screen.getByTestId(`${dataTestId}-selected-sc`);
-  const deleteIcon = within(selectedScElem).getByTestId(
+  const selectedSCElem = screen.getByTestId(`${dataTestId}-selected-sc`);
+  const deleteIcon = within(selectedSCElem).getByTestId(
     `${dataTestId}-delete-icon`
   );
   userEvent.click(deleteIcon);
@@ -175,20 +199,20 @@ const clickOnDeleteServerIcon = (dataTestId: string) => {
 
 const getAllScServerTitles = (): Array<string> =>
   apiData.sourceControls
-    .flatMap((sourceControl) => sourceControl.servers)
-    .map((server) => server.title);
+    .flatMap((sourceControl: SourceControl) => sourceControl.servers)
+    .map((server: AutoCompleteControl) => server.title);
 
 const getAllTicketSystemServerTitles = (): Array<string> =>
   apiData.ticketSystems
-    .flatMap((ticketSystem) => ticketSystem.servers)
-    .map((server) => server.title);
+    .flatMap((ticketSystem: TicketSystem) => ticketSystem.servers)
+    .map((server: AutoCompleteControl) => server.title);
 
-const checkIfScServerTitlesPresent = (
+const checkIfSCServerTitlesPresent = (
   titles: Array<string>,
   dataTestId: string,
   shouldBePresent = true
 ): void => {
-  const scServerTextbox = getSourceControlServerTextbox(dataTestId);
+  const scServerTextbox = getSCServerTextbox(dataTestId);
   userEvent.click(scServerTextbox);
   titles.forEach((title) =>
     shouldBePresent
@@ -217,13 +241,18 @@ const addSourceControlToSelectedList = (
   dataTestId: string
 ): void => {
   selectSourceControl(scTitle);
-  selectSourceControlServer(scServerTitle, dataTestId);
+  selectSCServer(scServerTitle, dataTestId);
   clickOnAddMoreButton();
 };
 
 const setApplicationName = (applicationName: string): void => {
   const appNameTextbox = getApplicationNameTextbox();
   userEvent.type(appNameTextbox, applicationName);
+};
+
+const clearApplicationName = (): void => {
+  const appNameTextbox = getApplicationNameTextbox();
+  userEvent.clear(appNameTextbox);
 };
 
 const cancelApplicationDrawer = (): void => userEvent.click(getCancelButton());
@@ -238,31 +267,36 @@ const expectSelectedServerToBeVisible = (
   dataTestId: string,
   shouldBeVisible = true
 ): void => {
-  const selectedScElem = screen.queryByTestId(`${dataTestId}-selected-sc`);
+  const selectedSCElem = screen.queryByTestId(`${dataTestId}-selected-sc`);
 
   if (shouldBeVisible) {
-    expect(within(selectedScElem).getByTitle(serverName)).toBeVisible();
+    expect(within(selectedSCElem).getByTitle(serverName)).toBeVisible();
     expect(
-      within(selectedScElem).getByTestId(`${dataTestId}-source-avatar-icon`)
+      within(selectedSCElem).getByTestId(`${dataTestId}-source-avatar-icon`)
     ).toBeVisible();
     expect(
-      within(selectedScElem).getByTestId(`${dataTestId}-delete-icon`)
+      within(selectedSCElem).getByRole('button', {
+        name: /Click to copy to clipboard/i,
+      })
+    ).toBeVisible();
+    expect(
+      within(selectedSCElem).getByTestId(`${dataTestId}-delete-icon`)
     ).toBeVisible();
   } else {
     expect(
-      within(selectedScElem).queryByTitle(serverName)
+      within(selectedSCElem).queryByTitle(serverName)
     ).not.toBeInTheDocument();
     expect(
-      within(selectedScElem).queryByTestId(`${dataTestId}-source-avatar-icon`)
+      within(selectedSCElem).queryByTestId(`${dataTestId}-source-avatar-icon`)
     ).not.toBeInTheDocument();
     expect(
-      within(selectedScElem).queryByTestId(`${dataTestId}-delete-icon`)
+      within(selectedSCElem).queryByTestId(`${dataTestId}-delete-icon`)
     ).not.toBeInTheDocument();
   }
 };
 
 describe('ProgressionBoardApplicationDrawer', () => {
-  let dataTestId;
+  let dataTestId: string;
 
   beforeEach(() => {
     dataTestId = 'test-pb-application-drawer';
@@ -314,7 +348,7 @@ describe('ProgressionBoardApplicationDrawer', () => {
 
   it("should render source control 'Server name' textbox", () => {
     const sourceControlElem = screen.getByTestId(`${dataTestId}-sc-server`);
-    const serverNameTextbox = getSourceControlServerTextbox(dataTestId);
+    const serverNameTextbox = getSCServerTextbox(dataTestId);
     const serverNameLabel = within(sourceControlElem).getByText(
       'Choose server'
     );
@@ -322,8 +356,83 @@ describe('ProgressionBoardApplicationDrawer', () => {
     expect(serverNameLabel).toBeVisible();
   });
 
+  describe('Payload URL', () => {
+    const selectSCAndServer = (): void => {
+      const selectedSourceControl = apiData.sourceControls[0];
+      const selectedSCServer = selectedSourceControl.servers[0];
+      selectSourceControl(selectedSourceControl.title);
+      selectSCServer(selectedSCServer.title, dataTestId);
+    };
+
+    it("should render read-only 'Payload URL' textbox with disabled copy button", () => {
+      const payloadUrlTextbox = getPayloadUrlTextbox();
+      const payloadUrlButton = getPayloadUrlCopyButton(dataTestId);
+      expect(payloadUrlTextbox).toBeVisible();
+      expect(payloadUrlTextbox).toHaveAttribute('readonly');
+      expect(payloadUrlButton).toBeVisible();
+      expect(payloadUrlButton).toBeDisabled();
+    });
+
+    it('should display empty payload URL when application name is NOT set but source control and server name are selected', () => {
+      const payloadUrlTextbox = getPayloadUrlTextbox();
+      const payloadUrlButton = getPayloadUrlCopyButton(dataTestId);
+      selectSCAndServer();
+      expect(payloadUrlTextbox).toHaveValue('');
+      expect(payloadUrlButton).toBeVisible();
+      expect(payloadUrlButton).toBeDisabled();
+    });
+
+    it('should display payload URL with copy button when application, source control and server name are selected', () => {
+      const payloadUrl = apiData.payloadUrl;
+      const serverName = apiData.sourceControls[0].servers[0].name;
+      const payloadUrlTextbox = getPayloadUrlTextbox();
+      const payloadUrlButton = getPayloadUrlCopyButton(dataTestId);
+      setApplicationName('My app 01');
+      selectSCAndServer();
+      expect(payloadUrlTextbox).toHaveValue(
+        `${payloadUrl}My%20app%2001-source-${serverName}`
+      );
+      expect(payloadUrlButton).toBeVisible();
+      expect(payloadUrlButton).toBeEnabled();
+    });
+
+    it('should display enabled payload copy button in the selected SC list when application name is set', () => {
+      const selectedSourceControl = apiData.sourceControls[0];
+      const selectedServer = selectedSourceControl.servers[0];
+      setApplicationName('test123');
+      addSourceControlToSelectedList(
+        selectedSourceControl.title,
+        selectedServer.title,
+        dataTestId
+      );
+      const copyBtn = getSCPayloadUrlCopyButton(
+        dataTestId,
+        selectedServer.name
+      );
+      expect(copyBtn).toBeVisible();
+      expect(copyBtn).toBeEnabled();
+    });
+
+    it('should display disabled payload copy button in the selected SC list when application name is NOT set', () => {
+      const selectedSourceControl = apiData.sourceControls[0];
+      const selectedServer = selectedSourceControl.servers[0];
+      addSourceControlToSelectedList(
+        selectedSourceControl.title,
+        selectedServer.title,
+        dataTestId
+      );
+      clearApplicationName();
+      const copyBtn = getSCPayloadUrlCopyButton(
+        dataTestId,
+        selectedServer.name
+      );
+      expect(copyBtn).toBeVisible();
+      expect(copyBtn).toBeDisabled();
+    });
+  });
+
   it("should render disabled 'Add more' button", () => {
-    const addMoreBtn = screen.getByRole('button', { name: /Add more/i });
+    const addMoreBtn = getAddMoreButton();
     expect(addMoreBtn).toBeVisible();
     expect(addMoreBtn).toBeDisabled();
   });
@@ -376,7 +485,7 @@ describe('ProgressionBoardApplicationDrawer', () => {
   });
 
   it('should not display any value in SC Server name autocomplete popup if no source control is selected', () => {
-    checkIfScServerTitlesPresent(getAllScServerTitles(), dataTestId, false);
+    checkIfSCServerTitlesPresent(getAllScServerTitles(), dataTestId, false);
   });
 
   it('should set value to input field when selecting item from source control autocomplete popup element', () => {
@@ -393,7 +502,7 @@ describe('ProgressionBoardApplicationDrawer', () => {
       sourceControlTextbox,
       selectedSourceControl.title
     );
-    const scServerTextbox = getSourceControlServerTextbox(dataTestId);
+    const scServerTextbox = getSCServerTextbox(dataTestId);
     userEvent.click(scServerTextbox);
     selectedSourceControl.servers.forEach((server) =>
       expect(screen.getByText(server.title)).toBeVisible()
@@ -405,7 +514,7 @@ describe('ProgressionBoardApplicationDrawer', () => {
     const sourceControlTitle = apiData.sourceControls[0].title;
     selectTitleFromAutocomplete(sourceControlTextbox, sourceControlTitle);
     clearSourceControl(dataTestId);
-    checkIfScServerTitlesPresent(getAllScServerTitles(), dataTestId, false);
+    checkIfSCServerTitlesPresent(getAllScServerTitles(), dataTestId, false);
   });
 
   it("should display 'Add more' button as disabled until both source control and server name get selected", () => {
@@ -415,10 +524,7 @@ describe('ProgressionBoardApplicationDrawer', () => {
     expect(addMoreButton).toBeDisabled();
     selectSourceControl(selectedSourceControl.title);
     expect(addMoreButton).toBeDisabled();
-    selectSourceControlServer(
-      selectedSourceControl.servers[0].title,
-      dataTestId
-    );
+    selectSCServer(selectedSourceControl.servers[0].title, dataTestId);
     expect(addMoreButton).toBeEnabled();
   });
 
@@ -444,7 +550,7 @@ describe('ProgressionBoardApplicationDrawer', () => {
       dataTestId
     );
     selectSourceControl(selectedSourceControl.title);
-    checkIfScServerTitlesPresent([selectedServerTitle], dataTestId, true);
+    checkIfSCServerTitlesPresent([selectedServerTitle], dataTestId, true);
   });
 
   it('should remove selected server when delete icon is clicked and should display deleted value in server autocomplete popup', () => {
@@ -459,7 +565,7 @@ describe('ProgressionBoardApplicationDrawer', () => {
     clickOnDeleteServerIcon(dataTestId);
     clearSourceControl(dataTestId);
     selectSourceControl(selectedSourceControl.title);
-    checkIfScServerTitlesPresent(
+    checkIfSCServerTitlesPresent(
       selectedSourceControl.servers.map((server) => server.title),
       dataTestId,
       true
@@ -525,10 +631,7 @@ describe('ProgressionBoardApplicationDrawer', () => {
     expect(saveBtn).toBeDisabled();
     selectSourceControl(selectedSourceControl.title);
     expect(saveBtn).toBeDisabled();
-    selectSourceControlServer(
-      selectedSourceControl.servers[0].title,
-      dataTestId
-    );
+    selectSCServer(selectedSourceControl.servers[0].title, dataTestId);
     expect(saveBtn).toBeDisabled();
     selectTicketSystem(selectedTicketSystem.title);
     expect(saveBtn).toBeDisabled();
@@ -548,10 +651,7 @@ describe('ProgressionBoardApplicationDrawer', () => {
     const submitFormWithSampleData = (createAnother = false) => {
       setApplicationName('My test application');
       selectSourceControl(selectedSourceControl.title);
-      selectSourceControlServer(
-        selectedSourceControl.servers[0].title,
-        dataTestId
-      );
+      selectSCServer(selectedSourceControl.servers[0].title, dataTestId);
       selectTicketSystem(selectedTicketSystem.title);
       selectTicketSystemServer(
         selectedTicketSystem.servers[0].title,
@@ -564,6 +664,18 @@ describe('ProgressionBoardApplicationDrawer', () => {
     it('should reset form fields on form submission', () => {
       submitFormWithSampleData();
       expect(getApplicationNameTextbox()).toHaveValue('');
+      expect(getSourceControlTextbox()).toHaveValue('');
+      expect(getSCServerTextbox(dataTestId)).toHaveValue('');
+      checkIfSCServerTitlesPresent(getAllScServerTitles(), dataTestId, false);
+      expect(getPayloadUrlTextbox()).toHaveValue('');
+      expect(getTicketSystemTextbox()).toHaveValue('');
+      expect(getTicketSystemServerTextbox(dataTestId)).toHaveValue('');
+      checkIfTicketSystemServerTitlesPresent(
+        getAllTicketSystemServerTitles(),
+        dataTestId,
+        false
+      );
+      expect(getCreateAnotherCheckbox()).not.toBeChecked();
     });
   });
 });

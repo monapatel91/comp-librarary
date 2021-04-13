@@ -114,6 +114,7 @@ export interface WorkItemDetailsType {
 }
 
 export interface ApplicationAPI {
+  payloadUrl: string;
   sourceControls: Array<SourceControlAPI>;
   ticketSystems: Array<TicketSystemsAPI>;
 }
@@ -121,14 +122,14 @@ export interface ApplicationAPI {
 export interface SourceControlAPI {
   id: string;
   title: string;
-  servers: Array<SourceControlServerAPI>;
+  servers: Array<SCServerAPI>;
 }
 
-export interface SourceControlServerAPI {
+export interface SCServerAPI {
   id: string;
   title: string;
   isdefault?: boolean;
-  name?: string;
+  name: string;
   owner?: string;
   team_id?: string | null;
   token?: string;
@@ -185,7 +186,11 @@ export interface AutoCompleteControl {
 }
 
 export interface SourceControl extends AutoCompleteControl {
-  servers: Array<AutoCompleteControl>;
+  servers: Array<SCServer>;
+}
+
+export interface SCServer extends AutoCompleteControl {
+  name: string;
 }
 
 export interface TicketSystem extends AutoCompleteControl {
