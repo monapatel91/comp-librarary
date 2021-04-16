@@ -1,4 +1,10 @@
-import React, { ElementType, MouseEvent, ReactNode, useState } from 'react';
+import React, {
+  ElementType,
+  MouseEvent,
+  KeyboardEvent,
+  ReactNode,
+  useState,
+} from 'react';
 import {
   Collapse,
   Divider,
@@ -10,13 +16,32 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
 import { DotLink } from '../link/Link';
+import { DotMenu, PopperPlacement } from '../menu/Menu';
 import {
   listItemRootClass,
   rootClassName,
   StyledList,
   StyledListItem,
 } from './List.styles';
+import { CreateUUID } from '../createUUID';
 import { DotTypography } from '../typography/Typography';
+
+export type NestedListType = 'menu' | 'expandable';
+
+interface NestedListProps extends CommonProps {
+  /** Element that menu is attached to */
+  anchorEl?: Element;
+  /** Array of list items displayed */
+  items: Array<ListItemProps>;
+  /** If nested list type is 'menu', determines the placement of the menu */
+  menuPlacement?: PopperPlacement;
+  /** Event callback when leaving menu via tab or clicking away */
+  onMenuLeave?: (event: KeyboardEvent | MouseEvent) => void;
+  /** if true the nested list is visible */
+  open: boolean;
+  /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
+  type?: NestedListType;
+}
 
 export interface ListProps extends CommonProps {
   /** aria-label passed to the list component */
@@ -31,6 +56,10 @@ export interface ListProps extends CommonProps {
   disablePadding?: boolean;
   /** Array of list items displayed */
   items?: Array<ListItemProps>;
+  /** If nested list type is 'menu', determines the placement of the menu */
+  menuPlacement?: PopperPlacement;
+  /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
+  nestedListType?: NestedListType;
 }
 
 export interface ListItemProps extends CommonProps {
@@ -44,6 +73,10 @@ export interface ListItemProps extends CommonProps {
   iconId?: string;
   /** If provided, the menu item will display a nested list */
   items?: Array<ListItemProps>;
+  /** If nested list type is 'menu', determines the placement of the menu */
+  menuPlacement?: PopperPlacement;
+  /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
+  nestedListType?: NestedListType;
   /** Event callback */
   onClick?: (event: MouseEvent) => void;
   /** Selected list item */
@@ -54,6 +87,52 @@ export interface ListItemProps extends CommonProps {
   title?: string;
 }
 
+const NestedList = ({
+  anchorEl,
+  items,
+  menuPlacement,
+  onMenuLeave,
+  open,
+  type,
+}: NestedListProps) => {
+  if (type !== 'menu') {
+    return (
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <DotList
+          className="dot-nested-list"
+          component="div"
+          disablePadding={true}
+          items={items}
+        />
+      </Collapse>
+    );
+  } else {
+    const menuItems = items.map((item, index) => {
+      const { href, onClick, title, text } = item;
+      return {
+        children: (
+          <DotLink href={href} underline="none" onClick={onClick} title={title}>
+            <DotTypography variant="body1">{text}</DotTypography>
+          </DotLink>
+        ),
+        classes: '',
+        key: String(index),
+      };
+    });
+
+    return (
+      <DotMenu
+        anchorEl={anchorEl}
+        id={CreateUUID()}
+        menuItems={menuItems}
+        menuPlacement={menuPlacement}
+        onLeave={onMenuLeave}
+        open={open}
+      />
+    );
+  }
+};
+
 export const DotList = ({
   ariaLabel,
   children,
@@ -63,6 +142,8 @@ export const DotList = ({
   dense = false,
   disablePadding = false,
   items = [],
+  menuPlacement = 'right-start',
+  nestedListType = 'expandable',
 }: ListProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
@@ -93,6 +174,8 @@ export const DotList = ({
             items={item.items}
             onClick={item.onClick}
             key={index}
+            menuPlacement={menuPlacement}
+            nestedListType={nestedListType}
             selected={item.selected}
             text={item.text}
             title={item.title}
@@ -113,16 +196,28 @@ export const DotListItem = ({
   iconId,
   onClick,
   items = [],
+  menuPlacement,
+  nestedListType,
   selected,
   text,
   title,
 }: ListItemProps) => {
   const rootClasses = useStylesWithRootClass(listItemRootClass, className);
   const textVariant = divider ? 'h5' : 'body1';
+  const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [open, setOpen] = useState(false);
+  const [isSelected, setSelected] = useState(selected);
 
-  const handleClick = () => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
     setOpen(!open);
+    setSelected(!isSelected);
+  };
+
+  const handleMenuLeave = () => {
+    setAnchorEl(null);
+    setOpen(false);
+    setSelected(false);
   };
 
   const startIcon = (
@@ -140,7 +235,7 @@ export const DotListItem = ({
         data-testid={dataTestId}
         divider={divider}
         onClick={handleClick}
-        selected={selected}
+        selected={isSelected}
       >
         {href || onClick ? (
           <DotLink
@@ -165,19 +260,25 @@ export const DotListItem = ({
         {items.length > 0 && (
           <DotIcon
             className="toggle-display"
-            iconId={open ? 'chevron-up' : 'chevron-down'}
+            iconId={
+              nestedListType === 'menu'
+                ? 'chevron-right'
+                : open
+                ? 'chevron-up'
+                : 'chevron-down'
+            }
           />
         )}
       </StyledListItem>
       {items.length > 0 && (
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <DotList
-            className="dot-nested-list"
-            component="div"
-            disablePadding={true}
-            items={items}
-          />
-        </Collapse>
+        <NestedList
+          anchorEl={anchorEl}
+          items={items}
+          menuPlacement={menuPlacement}
+          onMenuLeave={handleMenuLeave}
+          open={open}
+          type={nestedListType}
+        />
       )}
     </>
   );

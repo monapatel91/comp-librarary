@@ -30,7 +30,7 @@ export const Default: Story<TableProps> = (args) => {
   const [searchText, setSearchText] = useState('');
 
   const onRowClick = (evt, id) => {
-    console.log(id + ' clicked! (cell ' + evt.target.cellIndex + ')');
+    console.log(`${id} clicked! (cell ${evt.target.cellIndex})`);
   };
 
   const onUpdateData = (
@@ -127,15 +127,7 @@ export const RemotelyPaginatedTable: Story<TableProps> = (args) => {
     rowsPerPage: number
   ) => {
     console.log(
-      'onUpdateData(order: ' +
-        order +
-        ', orderBy: ' +
-        orderBy +
-        ', page: ' +
-        page +
-        ', rowsPerPage: ' +
-        rowsPerPage +
-        ')'
+      `onUpdateData(order: ${order}, orderBy: ${orderBy}, page: ${page}, rowsPerPage: ${rowsPerPage})`
     );
     const newData = stableSort(
       paginatedData,
@@ -145,7 +137,7 @@ export const RemotelyPaginatedTable: Story<TableProps> = (args) => {
   };
 
   const onRowClick = (evt: MouseEvent, id: string) => {
-    console.log(id + ' clicked!');
+    console.log(`${id} clicked!`);
   };
 
   return (

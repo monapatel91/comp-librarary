@@ -47,7 +47,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build and push Docker images for Storybook
-        uses: kciter/aws-ecr-action@v1
+        uses: kciter/aws-ecr-action@7ea3f73762295bdbee44242a87de3831f64b4e8f
         with:
           access_key_id: ${{ secrets.GH_AWS_ACCESS_KEY_ID }}
           secret_access_key: ${{ secrets.GH_AWS_SECRET_ACCESS_KEY }}
@@ -76,7 +76,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: helm deploy storybook
-        uses: koslibpro/helm-eks-action@v1.4.10
+        uses: koslibpro/helm-eks-action@v1.7.0
         env:
           KUBE_CONFIG_DATA: ${{ secrets.EKS_CONFIG }}
         with:

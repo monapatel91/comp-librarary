@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 import { DotIconButton } from '../button/IconButton';
-import { DotList, ListItemProps } from '../list/List';
+import { DotList, ListItemProps, NestedListType } from '../list/List';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
@@ -39,6 +39,8 @@ export interface SidebarProps extends CommonProps {
   displayBrand?: boolean;
   /** If true will display the go back nav item at the top of the sidebar */
   goBack?: boolean;
+  /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
+  nestedListType: NestedListType;
   /** Array of nav items */
   navItems?: Array<ListItemProps>;
   /** If true, the sidebar is open. */
@@ -59,6 +61,7 @@ export const DotSidebar = ({
   displayBrand = true,
   goBack = false,
   navItems = [],
+  nestedListType = 'expandable',
   open = true,
   title,
   titleAvatarProps,
@@ -108,6 +111,7 @@ export const DotSidebar = ({
           data-testid="sideNav"
           dense={true}
           items={navItems}
+          nestedListType={nestedListType}
         />
       )}
       {children}

@@ -7,9 +7,12 @@
 > **BREAKING CHANGE: EmptyState** - renamed `image` to `imageSrc` and set it to accept a string representing the path to the image source
 
 - **AppToolbar** - added `mainMenuWidth` prop
+- **Sidebar** - added `nestedListType` prop which controls how a nested list is displayed
 
 ### Experimental
 
+- **List** - added `nestedListType` prop which controls how a nested list is displayed
+- **List** - now accepts `menuPlacement` prop for use when `nestedListType` is `menu`
 - **ProgressionBoardApplicationDrawer** - added `payloadUrl` property to `ApplicationAPI` interface
 
 ## 0.0.0-alpha.18

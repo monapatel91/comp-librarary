@@ -25,14 +25,14 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: helm uninstall storybook
-        uses: koslibpro/helm-eks-action@v1.4.10
+        uses: koslibpro/helm-eks-action@v1.7.0
         env:
           KUBE_CONFIG_DATA: ${{ secrets.EKS_CONFIG }}
         with:
           command: helm uninstall ux-pr${{ steps.get_pr.outputs.pr }} --namespace=ux-pr${{ steps.get_pr.outputs.pr }}
 
       - name: Delete Namespace
-        uses: koslibpro/helm-eks-action@v1.4.10
+        uses: koslibpro/helm-eks-action@v1.7.0
         env:
           KUBE_CONFIG_DATA: ${{ secrets.EKS_CONFIG }}
         with:

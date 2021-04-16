@@ -19,23 +19,27 @@ For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot
 ## Author Checklist
 
 - [ ] Checklist of changes made added to PR description
-- [ ] If new component, ensure it is being exported from library
-- [ ] Make sure there are no `default` exports
-- [ ] Component is a styled component
-- [ ] Component props extends `commonProps`
+- [ ] New component?
+  - [ ] is it being exported from library?
+  - [ ] Make sure there are no `default` exports
+  - [ ] Component is a styled component
+  - [ ] Component props extends `commonProps`
 - [ ] Storybook configurations up-to-date
 - [ ] `unit` test coverage updated
+  - [ ] `testing-library` imports are from `testing-utils`
+  - [ ] modified props have been added to API unit test
 - [ ] `e2e` test coverage updated
-- [ ] `testing-library` imports are from `testing-utils`
 - [ ] `CHANGE_LOG.md` updated
+  - [ ] breaking changes are specified as such
 - [ ] Related issue linked to PR
 
 ## Reviewer Checklist
 
+- [ ] Author checklist has been reviewed?
 - [ ] All acceptance criteria has been met from linked issue
+- [ ] Run code and verify all changes
 - [ ] Updated Storybook deployment has been reviewed
-- [ ] Run code locally and verify all changes
-- [ ] UX Review
+- [ ] UX Review when style changes have been made
 
 ## Related Issue(s)
 

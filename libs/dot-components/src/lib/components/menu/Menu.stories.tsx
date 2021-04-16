@@ -1,6 +1,7 @@
 import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
+import { DotLink } from '../link/Link';
 import { DotMenu, MenuProps } from './Menu';
 import { DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
@@ -35,7 +36,14 @@ export const Default: Story<MenuProps> = (args) => {
     setOpen(false);
   };
   const menuItems = [
-    { children: 'Batman', key: 'batman' },
+    {
+      children: (
+        <DotLink href="#" title="Batman">
+          Batman
+        </DotLink>
+      ),
+      key: 'batman',
+    },
     { children: 'Robin', key: 'robin' },
     { children: 'Bat Girl', key: 'bat-girl' },
     { children: 'Mister Mxyzptlk', key: 'mxy' },

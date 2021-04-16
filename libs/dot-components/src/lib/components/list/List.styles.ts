@@ -12,7 +12,7 @@ export const StyledList = styled(List)`
           padding-left: ${theme.spacing(4)}px;
         }
 
-        .dot-list-item {
+        .${listItemRootClass} {
           p.MuiTypography-root {
             margin-bottom: 0;
           }

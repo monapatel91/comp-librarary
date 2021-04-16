@@ -25,8 +25,19 @@ const mockListItems: Array<ListItemProps> = [
   },
   {
     iconId: 'dashboard',
+    items: [
+      {
+        iconId: 'block',
+        text: 'Nested Link One',
+        href: '/?path=/story/experimental-list--default',
+      },
+      {
+        iconId: 'block',
+        text: 'Nested Link Two',
+        href: '/?path=/story/experimental-list--default',
+      },
+    ],
     text: 'Insights',
-    href: '/?path=/story/experimental-list--default',
   },
   {
     text: 'Workflow',
@@ -93,4 +104,8 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<ListProps> = (args) => <DotList {...args} />;
+export const Default: Story<ListProps> = (args) => (
+  <div style={{ width: '300px' }}>
+    <DotList {...args} />
+  </div>
+);

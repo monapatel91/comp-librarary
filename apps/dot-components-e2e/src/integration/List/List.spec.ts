@@ -20,3 +20,29 @@ describe('dot-components: List component', () => {
     });
   });
 });
+
+describe('dot-components: List component with menu', () => {
+  before(() =>
+    cy.visit(
+      '/iframe.html?id=experimental-list--default&args=nestedListType:menu'
+    )
+  );
+
+  it('should display the nested list as a menu', () => {
+    cy.contains('Progressions').click();
+    cy.get('.dot-menu').should('be.visible').contains('Package Progression');
+  });
+});
+
+describe('dot-components: List component with expand/collapse', () => {
+  before(() =>
+    cy.visit(
+      '/iframe.html?id=experimental-list--default&args=nestedListType:expandable'
+    )
+  );
+
+  it('should display the nested list as a expand/collapse', () => {
+    cy.contains('Progressions').click();
+    cy.get('.dot-list').should('be.visible').contains('Package Progression');
+  });
+});

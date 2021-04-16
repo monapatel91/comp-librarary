@@ -41,18 +41,28 @@ const mockListItems: Array<ListItemProps> = [
 describe('List', () => {
   it('should have unchanged API', () => {
     const props = {
+      ariaLabel: 'hello',
       children: <h3>Hello World</h3>,
+      className: 'foo-bar',
       component: 'ul',
+      'data-testid': 'test-list',
       dense: false,
       disablePadding: false,
       items: mockListItems,
+      menuPlacement: 'right',
+      nestedListType: 'expandable',
     };
     const listProps: ListProps = {
+      ariaLabel: 'hello',
       children: <h3>Hello World</h3>,
+      className: 'foo-bar',
       component: 'ul',
+      'data-testid': 'test-list',
       dense: false,
       disablePadding: false,
       items: mockListItems,
+      menuPlacement: 'right',
+      nestedListType: 'expandable',
     };
     expect(listProps).toEqual(props);
   });
@@ -63,7 +73,20 @@ describe('List', () => {
   });
 
   it('should expand nested list when clicked', () => {
-    render(<DotList items={mockListItems} />);
+    render(<DotList items={mockListItems} nestedListType="expandable" />);
+    const item = screen.getAllByRole('button');
+    const nestedItemText = 'Package Progression';
+
+    waitFor(() => {
+      expect(screen.getByText(nestedItemText)).not.toBeVisible();
+    });
+
+    userEvent.click(item[1]);
+    expect(screen.getByText(nestedItemText)).toBeVisible();
+  });
+
+  it('should display nested menu when clicked', () => {
+    render(<DotList items={mockListItems} nestedListType="menu" />);
     const item = screen.getAllByRole('button');
     const nestedItemText = 'Package Progression';
 

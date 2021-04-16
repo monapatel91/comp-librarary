@@ -5,6 +5,10 @@ import { ButtonProps, DotButton } from './Button';
 import { DotIcon } from '../icon/Icon';
 
 describe('DotButton', () => {
+  const testClick = () => {
+    console.log('test click');
+  };
+
   it('should have unchanged API', () => {
     const onClick = jest.fn();
     const props = {
@@ -38,12 +42,7 @@ describe('DotButton', () => {
 
   it('should render a primary button', () => {
     render(
-      <DotButton
-        onClick={() => {
-          console.log('test click');
-        }}
-        type="primary"
-      >
+      <DotButton onClick={testClick} type="primary">
         Test
       </DotButton>
     );
@@ -54,13 +53,7 @@ describe('DotButton', () => {
 
   it('should render the medium button size', () => {
     render(
-      <DotButton
-        size="medium"
-        onClick={() => {
-          console.log('test click');
-        }}
-        type="outlined"
-      >
+      <DotButton size="medium" onClick={testClick} type="outlined">
         Test
       </DotButton>
     );
@@ -71,13 +64,7 @@ describe('DotButton', () => {
 
   it('should render the small button size', () => {
     render(
-      <DotButton
-        size="small"
-        onClick={() => {
-          console.log('test click');
-        }}
-        type="outlined"
-      >
+      <DotButton size="small" onClick={testClick} type="outlined">
         Test
       </DotButton>
     );
@@ -86,13 +73,7 @@ describe('DotButton', () => {
 
   it('should render the large button size', () => {
     render(
-      <DotButton
-        size="large"
-        onClick={() => {
-          console.log('test click');
-        }}
-        type="outlined"
-      >
+      <DotButton size="large" onClick={testClick} type="outlined">
         Test
       </DotButton>
     );
@@ -102,12 +83,7 @@ describe('DotButton', () => {
 
   it('should render a destructive button', () => {
     render(
-      <DotButton
-        onClick={() => {
-          console.log('test click');
-        }}
-        type="destructive"
-      >
+      <DotButton onClick={testClick} type="destructive">
         Test
       </DotButton>
     );
@@ -118,12 +94,7 @@ describe('DotButton', () => {
 
   it('should render a secondary button', () => {
     render(
-      <DotButton
-        onClick={() => {
-          console.log('test click');
-        }}
-        type="outlined"
-      >
+      <DotButton onClick={testClick} type="outlined">
         Test
       </DotButton>
     );
@@ -132,12 +103,7 @@ describe('DotButton', () => {
 
   it('should render a transparent button', () => {
     render(
-      <DotButton
-        onClick={() => {
-          console.log('test click');
-        }}
-        type="text"
-      >
+      <DotButton onClick={testClick} type="text">
         Test
       </DotButton>
     );
@@ -171,9 +137,7 @@ describe('DotButton', () => {
   it('should render an icon inside of a button', () => {
     render(
       <DotButton
-        onClick={() => {
-          console.log('test click');
-        }}
+        onClick={testClick}
         type="outlined"
         startIcon={<DotIcon data-testid="icon" iconId="save" />}
       >
@@ -191,9 +155,7 @@ describe('DotButton', () => {
     render(
       <DotButton
         size="large"
-        onClick={() => {
-          console.log('test click');
-        }}
+        onClick={testClick}
         type="outlined"
         startIcon={<DotIcon data-testid="icon" iconId="save" />}
       >

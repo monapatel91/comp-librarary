@@ -58,10 +58,10 @@ export const WithError: Story<AutoCompleteProps> = ({ onChange, ...args }) => {
       parsedValue.indexOf('Robin') === -1;
     setError(batman.error);
     setHelperText(batman.error ? 'No Batman without Robin!' : null);
-    console.log('type: ' + ref.current.getAttribute('type'));
-    console.log('autocomplete: ' + ref.current.getAttribute('autocomplete'));
+    console.log(`type: ${ref.current.getAttribute('type')}`);
+    console.log(`autocomplete: ${ref.current.getAttribute('autocomplete')}`);
     console.log(
-      'aria-autocomplete: ' + ref.current.getAttribute('aria-autocomplete')
+      `aria-autocomplete: ${ref.current.getAttribute('aria-autocomplete')}`
     );
     onChange(_event, value, reason);
   };
