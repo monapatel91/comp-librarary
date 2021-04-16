@@ -42,4 +42,5 @@ export * from './table/Table';
 export * from './table/TableHeader';
 export * from './table/TableDataWithPagination';
 export * from './table/TablePagination';
+export * from './tabs/Tabs';
 export * from './typography/Typography';

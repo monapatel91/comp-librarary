@@ -1,5 +1,11 @@
 # Change Log
 
+## Current
+
+### Experimental
+
+- **Tabs** - created new component
+
 ## 0.0.0-alpha.19
 
 ### Components

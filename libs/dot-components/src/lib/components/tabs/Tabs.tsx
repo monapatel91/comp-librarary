@@ -1,0 +1,103 @@
+import React, { ChangeEvent, ReactNode, useState } from 'react';
+import { Tab } from '@material-ui/core';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { CommonProps } from '../CommonProps';
+import { rootClassName, StyledTabs } from './Tabs.styles';
+import { DotIcon } from '../icon/Icon';
+
+export type TabsIndicatorColor = 'primary' | 'secondary';
+export type TabsScrollButtons = 'auto' | 'desktop' | 'off' | 'on';
+export type TabsTextColor = 'inherit' | 'primary' | 'secondary';
+export type TabsVariant = 'fullWidth' | 'scrollable' | 'standard';
+
+export interface TabProps extends CommonProps {
+  /** If true, the tab will be disabled. */
+  disabled?: boolean;
+  /** The ID of the icon to display on the tab */
+  iconId?: string;
+  /** The text to display on the tab */
+  label: string;
+  /** The value of the Tab (defaults to tab index) */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  value?: any;
+}
+
+export interface TabsProps extends CommonProps {
+  /** Center the tabs */
+  centered?: boolean;
+  /** The color of the indicator */
+  indicatorColor?: TabsIndicatorColor;
+  /** The value of the initially selected tab */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  initialValue?: any;
+  /** Tab change callback */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onChange?: (value: any) => void;
+  /** Determines behavior of scroll buttons when tabs are scrollable (variant="scrollable") */
+  scrollButtons?: TabsScrollButtons;
+  /** Array of tabs to be displayed */
+  tabs: Array<TabProps>;
+  /** The color of the tab */
+  textColor?: TabsTextColor;
+  /** Determines additional display behavior of the tabs */
+  variant?: TabsVariant;
+}
+
+export const DotTabs = ({
+  centered = false,
+  className,
+  'data-testid': dataTestId,
+  indicatorColor = 'secondary',
+  initialValue = 0,
+  onChange,
+  scrollButtons = 'auto',
+  tabs,
+  textColor = 'inherit',
+  variant = 'standard',
+}: TabsProps) => {
+  const [value, setValue] = useState(initialValue);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleChange = (event: ChangeEvent<unknown>, val: any) => {
+    setValue(val);
+    onChange && onChange(val);
+  };
+
+  const tabArray: Array<ReactNode> = [];
+  tabs.forEach((tab, index) => {
+    const icon = tab.iconId ? <DotIcon iconId={tab.iconId} /> : null;
+    const label = (
+      <div className="dot-tab-label-container">
+        {icon && <span>{icon}</span>}
+        <span className="dot-tab-label">{tab.label}</span>
+      </div>
+    );
+    const tabElement = (
+      <Tab
+        data-testid={tab['data-testid']}
+        disabled={tab.disabled}
+        disableRipple={true}
+        key={index}
+        label={label}
+      />
+    );
+    tabArray.push(tabElement);
+  });
+  return (
+    <StyledTabs
+      aria-label="tabs"
+      centered={centered}
+      classes={{ root: rootClasses }}
+      data-testid={dataTestId}
+      indicatorColor={indicatorColor}
+      onChange={handleChange}
+      scrollButtons={scrollButtons}
+      textColor={textColor}
+      value={value}
+      variant={variant}
+    >
+      {tabArray}
+    </StyledTabs>
+  );
+};
