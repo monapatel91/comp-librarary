@@ -7,8 +7,11 @@ import {
   DotListItem,
   DotProgressionBoard,
   DotProgressionBoardApplicationDrawer,
+  DotProgressionBoardPhaseEditor,
   DotProgressionBoardWorkItemDrawer,
   DrawerPaperProps,
+  EditablePhaseType,
+  PhaseType,
   SelectedWorkItem,
 } from '@digital-ai/dot-components';
 import { pbWorkItemDetailsData } from '../demo-data/pbWorkItemDetailsData';
@@ -20,6 +23,8 @@ const dialogRootClassName = 'form-result-dialog';
 
 const StyledDemoProgression = styled.div`
   &.${rootClassName} {
+    height: 100%;
+
     .progression {
       display: flex;
     }
@@ -50,6 +55,10 @@ export const ProgressionDemo = () => {
   const [selectedWorkItem, setSelectedWorkItem] = useState(null);
   const [workItemDetails, setWorkItemDetails] = useState(null);
   const [isAppDrawerOpened, setIsAppDrawerOpened] = useState<boolean>(false);
+  const [isInConfigureMode, setIsInConfigureMode] = useState<boolean>(false);
+  const [editablePhases, setEditablePhases] = useState<
+    Array<EditablePhaseType>
+  >(null);
   const [formResult, setFormResult] = useState(null);
 
   const drawerPaperProps: DrawerPaperProps = {
@@ -95,6 +104,11 @@ export const ProgressionDemo = () => {
     setIsAppDrawerOpened(true);
   };
 
+  const onConfigureClick = (): void => {
+    setIsInConfigureMode((prevState) => !prevState);
+    setEditablePhases(getEditablePhases());
+  };
+
   const onApplicationSubmit = (applicationFormData) => {
     const { createAnother } = applicationFormData || {};
     // Close drawer (upon submission) if 'Create another' was NOT checked
@@ -109,6 +123,23 @@ export const ProgressionDemo = () => {
     onFormSubmit: onApplicationSubmit,
     onDrawerClose: onApplicationDrawerClose,
   };
+
+  const getEditablePhases = (): Array<EditablePhaseType> =>
+    phasesData.map((phase: PhaseType) => ({
+      name: phase.name,
+    }));
+
+  const onSaveButtonClick = (newPhases: Array<EditablePhaseType>): void => {
+    const phases = newPhases.map((phase) => {
+      const { isNew, ...rest } = phase;
+      return {
+        ...rest,
+      };
+    });
+    setEditablePhases(phases);
+  };
+
+  const onConfigurationCancel = (): void => setIsInConfigureMode(false);
 
   const renderSourceControlListItems = (sourceControl): ReactNode =>
     sourceControl.servers.map((server) => (
@@ -189,33 +220,53 @@ export const ProgressionDemo = () => {
     );
   };
 
+  const renderProgression = (): ReactNode => {
+    if (isInConfigureMode) {
+      return (
+        <DotProgressionBoardPhaseEditor
+          editablePhases={editablePhases}
+          onCancel={onConfigurationCancel}
+          onSave={onSaveButtonClick}
+        />
+      );
+    }
+    return (
+      <>
+        <DotButton
+          className="new-application-btn"
+          onClick={onNewApplicationClick}
+        >
+          New Application
+        </DotButton>
+        <DotButton className="edit-btn" onClick={onConfigureClick}>
+          Configure
+        </DotButton>
+        <div className="progression">
+          <DotProgressionBoard
+            className="progression-board"
+            workItemSelection={workItemSelection}
+            phases={phasesData}
+            baseUrl={BASE_URL}
+          />
+          <DotProgressionBoardWorkItemDrawer
+            onClose={onDrawerClose}
+            width={DRAWER_WIDTH}
+            workItem={selectedWorkItem}
+            workItemDetails={workItemDetails}
+            drawerPaperProps={drawerPaperProps}
+          />
+          <DotProgressionBoardApplicationDrawer
+            drawerPaperProps={drawerPaperProps}
+            {...application}
+          />
+        </div>
+      </>
+    );
+  };
+
   return (
     <StyledDemoProgression className={rootClassName}>
-      <DotButton
-        className="new-application-btn"
-        onClick={onNewApplicationClick}
-      >
-        New Application
-      </DotButton>
-      <div className="progression">
-        <DotProgressionBoard
-          className="progression-board"
-          workItemSelection={workItemSelection}
-          phases={phasesData}
-          baseUrl={BASE_URL}
-        />
-        <DotProgressionBoardWorkItemDrawer
-          onClose={onDrawerClose}
-          width={DRAWER_WIDTH}
-          workItem={selectedWorkItem}
-          workItemDetails={workItemDetails}
-          drawerPaperProps={drawerPaperProps}
-        />
-        <DotProgressionBoardApplicationDrawer
-          drawerPaperProps={drawerPaperProps}
-          {...application}
-        />
-      </div>
+      {renderProgression()}
       {renderFormResults()}
     </StyledDemoProgression>
   );

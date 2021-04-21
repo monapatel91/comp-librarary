@@ -155,7 +155,7 @@ export const getExistingSCIndex = (
 
 export const getTicketSystemById = (
   ticketSystemId: string,
-  ticketSystems = [] as Array<TicketSystem>
+  ticketSystems: Array<TicketSystem> = []
 ): TicketSystem =>
   (ticketSystems &&
     Array.isArray(ticketSystems) &&
@@ -180,7 +180,7 @@ export const getFormDataWithTicketSystemSet = (
 
 export const getSCById = (
   sourceControlId: string,
-  sourceControls = [] as Array<SourceControl>
+  sourceControls: Array<SourceControl> = []
 ): SourceControl =>
   (sourceControls &&
     Array.isArray(sourceControls) &&
@@ -191,7 +191,7 @@ export const getSCById = (
 
 export const getSCServerById = (
   SCServerId: string,
-  SCServers = [] as Array<SCServer>
+  SCServers: Array<SCServer> = []
 ): SCServer =>
   (SCServers &&
     Array.isArray(SCServers) &&
@@ -232,7 +232,7 @@ export const getFormDataWithSCServerSet = (
 
 export const getTicketSystemServerById = (
   ticketSystemServerId: string,
-  ticketSystemServers = [] as Array<AutoCompleteControl>
+  ticketSystemServers: Array<AutoCompleteControl> = []
 ): AutoCompleteControl =>
   (ticketSystemServers &&
     Array.isArray(ticketSystemServers) &&

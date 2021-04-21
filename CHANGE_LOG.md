@@ -5,6 +5,7 @@
 ### Experimental
 
 - **Tabs** - created new component
+- **ProgressionBoardPhaseEditor** - created new component used for adding new phases to progression
 
 ## 0.0.0-alpha.19
 

@@ -53,6 +53,13 @@ export interface PhaseType {
   packageVersions: Array<PackageType>;
 }
 
+export interface EditablePhaseType {
+  hasFocus?: boolean;
+  isEditable?: boolean;
+  isNew?: boolean;
+  name: string;
+}
+
 export interface SwimLanepkg {
   package_id: string;
   package_name: string;

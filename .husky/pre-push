@@ -1,5 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/common"
 
 yarn affected:lint --base=master~1 --head=master
 yarn affected:test --parallel --onlyChanged --silent

@@ -55,7 +55,7 @@ import {
   isSCDataValidForSubmission,
   isTicketSystemServerValid,
   isTicketSystemValid,
-} from './application/applicationFormHelper';
+} from './progression/applicationFormHelper';
 import { copyTextToClipboard } from './helper';
 import { StyledTooltipContent } from './ProgressionBoardDrawer.styles';
 

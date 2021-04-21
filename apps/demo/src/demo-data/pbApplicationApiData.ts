@@ -7,7 +7,7 @@ export interface ApplicationAPIData {
       id: string;
       title: string;
       isdefault?: boolean;
-      name?: string;
+      name: string;
       owner?: string;
       team_id?: string | null;
       token?: string;
