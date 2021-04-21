@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
-import { DotIcon } from '@digital-ai/dot-components';
+import { DotIcon } from '../icon/Icon';
 import {
   Divider,
   Typography,
