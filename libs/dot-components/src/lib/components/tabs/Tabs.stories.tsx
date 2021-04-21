@@ -4,7 +4,7 @@ import { DotTabs, TabsProps } from './Tabs';
 import { DotActionToolbar } from '../action-toolbar/ActionToolbar';
 
 export default {
-  title: 'Experimental/Tabs',
+  title: 'Components/Tabs',
   component: DotTabs,
   argTypes: {
     centered: {

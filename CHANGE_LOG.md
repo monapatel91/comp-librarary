@@ -2,6 +2,11 @@
 
 ## Current
 
+### Components
+
+- **Tabs** - replaced `indicatorColor` and `textColor` props with `color` prop that controls both
+- **Tabs** - moved to Components
+
 ### Experimental
 
 - **Tabs** - created new component

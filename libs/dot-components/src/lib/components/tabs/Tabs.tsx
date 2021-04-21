@@ -5,9 +5,8 @@ import { CommonProps } from '../CommonProps';
 import { rootClassName, StyledTabs } from './Tabs.styles';
 import { DotIcon } from '../icon/Icon';
 
-export type TabsIndicatorColor = 'primary' | 'secondary';
+export type TabsColor = 'primary' | 'secondary';
 export type TabsScrollButtons = 'auto' | 'desktop' | 'off' | 'on';
-export type TabsTextColor = 'inherit' | 'primary' | 'secondary';
 export type TabsVariant = 'fullWidth' | 'scrollable' | 'standard';
 
 export interface TabProps extends CommonProps {
@@ -25,8 +24,8 @@ export interface TabProps extends CommonProps {
 export interface TabsProps extends CommonProps {
   /** Center the tabs */
   centered?: boolean;
-  /** The color of the indicator */
-  indicatorColor?: TabsIndicatorColor;
+  /** The color of the tabs */
+  color?: TabsColor;
   /** The value of the initially selected tab */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initialValue?: any;
@@ -37,8 +36,6 @@ export interface TabsProps extends CommonProps {
   scrollButtons?: TabsScrollButtons;
   /** Array of tabs to be displayed */
   tabs: Array<TabProps>;
-  /** The color of the tab */
-  textColor?: TabsTextColor;
   /** Determines additional display behavior of the tabs */
   variant?: TabsVariant;
 }
@@ -46,13 +43,12 @@ export interface TabsProps extends CommonProps {
 export const DotTabs = ({
   centered = false,
   className,
+  color = 'secondary',
   'data-testid': dataTestId,
-  indicatorColor = 'secondary',
   initialValue = 0,
   onChange,
   scrollButtons = 'auto',
   tabs,
-  textColor = 'inherit',
   variant = 'standard',
 }: TabsProps) => {
   const [value, setValue] = useState(initialValue);
@@ -90,10 +86,10 @@ export const DotTabs = ({
       centered={centered}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
-      indicatorColor={indicatorColor}
+      indicatorColor={color}
       onChange={handleChange}
       scrollButtons={scrollButtons}
-      textColor={textColor}
+      textColor={color}
       value={value}
       variant={variant}
     >

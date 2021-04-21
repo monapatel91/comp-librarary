@@ -1,7 +1,5 @@
 describe('dot-components: Tabs component', () => {
-  before(() =>
-    cy.visit('/iframe.html?id=experimental-tabs--tabs-in-action-bar')
-  );
+  before(() => cy.visit('/iframe.html?id=components-tabs--tabs-in-action-bar'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-tabs');

@@ -16,12 +16,19 @@ export const StyledTabs = styled(Tabs)`
           padding-top: ${theme.spacing(0.5)}px;
         }
       }
-      .MuiTab-root {
-        max-width: 360px;
-        min-width: 0;
+      .MuiTab-root.MuiTab-textColorSecondary {
         &:hover {
           background-color: ${fade(theme.palette.secondary.main, 0.12)};
         }
+      }
+      .MuiTab-root.MuiTab-textColorPrimary {
+        &:hover {
+          background-color: ${fade(theme.palette.primary.main, 0.12)};
+        }
+      }
+      .MuiTab-root {
+        max-width: 360px;
+        min-width: 0;
       }
       .MuiIcon-root {
         display: inline;

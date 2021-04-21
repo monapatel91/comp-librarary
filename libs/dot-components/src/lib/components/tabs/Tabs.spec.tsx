@@ -24,22 +24,20 @@ describe('Tabs', () => {
     const onChange = jest.fn();
     const tsProps = {
       centered: true,
-      indicatorColor: 'primary',
+      color: 'primary',
       initialValue: 1,
       onChange: onChange,
       scrollButtons: 'auto',
       tabs: tabs,
-      textColor: 'inherit',
       variant: 'scrollable',
     };
     const tabsProps: TabsProps = {
       centered: true,
-      indicatorColor: 'primary',
+      color: 'primary',
       initialValue: 1,
       onChange: onChange,
       scrollButtons: 'auto',
       tabs: tabs,
-      textColor: 'inherit',
       variant: 'scrollable',
     };
     expect(tabsProps).toEqual(tsProps);
