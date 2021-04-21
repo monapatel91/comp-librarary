@@ -1,15 +1,14 @@
 # Change Log
 
-## Current
+## 0.0.0-alpha.20
 
 ### Components
 
 - **Tabs** - replaced `indicatorColor` and `textColor` props with `color` prop that controls both
-- **Tabs** - moved to Components
+- **Tabs** - created new component
 
 ### Experimental
 
-- **Tabs** - created new component
 - **ProgressionBoardPhaseEditor** - created new component used for adding new phases to progression
 
 ## 0.0.0-alpha.19
