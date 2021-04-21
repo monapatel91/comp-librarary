@@ -40,7 +40,7 @@ export interface SidebarProps extends CommonProps {
   /** If true will display the go back nav item at the top of the sidebar */
   goBack?: boolean;
   /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
-  nestedListType: NestedListType;
+  nestedListType?: NestedListType;
   /** Array of nav items */
   navItems?: Array<ListItemProps>;
   /** If true, the sidebar is open. */

@@ -1,5 +1,11 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **Sidebar** - `nestedListType` prop made optional
+
 ## 0.0.0-alpha.20
 
 ### Components
