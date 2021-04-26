@@ -1,5 +1,5 @@
 describe('dot-components: Accordion component', () => {
-  before(() => cy.visit('/iframe.html?id=experimental-accordion--default'));
+  before(() => cy.visit('/iframe.html?id=components-accordion--default'));
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-accordion');
   });
@@ -10,12 +10,11 @@ describe('dot-components: Accordion component', () => {
         'MuiTypography-body1'
       );
     });
-
     it('summary text should be vertically aligned with icon', () => {
-      cy.get('.dot-accordion-summary p').should(
+      cy.get('.MuiAccordionSummary-content p').should(
         'have.css',
-        'margin-bottom',
-        '0px'
+        'padding',
+        '2px 0px'
       );
     });
 

@@ -18,6 +18,9 @@ export const StyledAccordion = styled(Accordion)`
         .dot-icon {
           margin-right: ${theme.spacing(0.5)}px;
         }
+        .MuiTypography-body1 {
+          padding: 2px 0;
+        }
       }
     }
   `}

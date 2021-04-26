@@ -7,7 +7,7 @@ import { Typography } from '@material-ui/core';
 const iconOptions = [null, 'notification-bell', 'help'];
 
 export default {
-  title: 'Experimental/Accordion',
+  title: 'Components/Accordion',
   component: DotAccordion,
   argTypes: {
     children: { defaultValue: 'Accordion Value' },

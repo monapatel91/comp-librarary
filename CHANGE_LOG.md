@@ -23,6 +23,9 @@
 
 > **BREAKING CHANGE: EmptyState** - renamed `image` to `imageSrc` and set it to accept a string representing the path to the image source
 
+- **Accordion** - is now a stable component
+- **Accordion** - added `hasElevation` prop
+
 - **AppToolbar** - added `mainMenuWidth` prop
 - **Sidebar** - added `nestedListType` prop which controls how a nested list is displayed
 

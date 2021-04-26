@@ -19,8 +19,10 @@ describe('Accordion', () => {
       'data-testid': 'dot-accordion',
       defaultExpanded: false,
       disabled: false,
+      hasElevation: false,
       startIcon: <DotIcon iconId="notification-bell" />,
       summary: 'Sample Summary Text',
+      square: true,
     };
     const accordionProps: AccordionProps = {
       actions: 'accordion-test',
@@ -29,8 +31,10 @@ describe('Accordion', () => {
       'data-testid': 'dot-accordion',
       defaultExpanded: false,
       disabled: false,
+      hasElevation: false,
       startIcon: <DotIcon iconId="notification-bell" />,
       summary: 'Sample Summary Text',
+      square: true,
     };
     expect(accordionProps).toEqual(props);
   });
