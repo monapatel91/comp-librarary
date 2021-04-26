@@ -14,7 +14,7 @@ jobs:
   git-version:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.git_version.outputs.VERSION }}-alpha
+      version: ${{ steps.git_version.outputs.VERSION }}
 
     steps:
       - name: Checkout Code
@@ -30,7 +30,7 @@ jobs:
           # The name of the release branch
           release-branch: master
           # The prefix to use in the version
-          # prefix:
+          prefix: alpha-
           # The paths to be used to calculate changes (comma-separated)
           log-paths: libs/dot-components/src/
 
@@ -57,7 +57,7 @@ jobs:
       #       argument: "${{needs.git-version.outputs.version}}"
 
   create-tag:
-    needs: [git-version]
+    needs: [git-version, modify-pkg-json]
     runs-on: ubuntu-latest
 
     steps:
