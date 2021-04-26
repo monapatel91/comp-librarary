@@ -80,14 +80,3 @@ jobs:
   # deploy to storybook (build.yml)
   # OR repository-dispatch may be able to trigger a separate workflow
   # https://github.com/peter-evans/repository-dispatch
-
-  update-pr:
-    needs: [git-version]
-    name: Update PR with tag version
-
-    steps:
-      - name: Add comment to PR
-        uses: github-actions-up-and-running/pr-comment@v1.0.1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          message: 'SHA: ${{github.sha}} has been merged and tagged with version ${{needs.git-version.outputs.version}}'
