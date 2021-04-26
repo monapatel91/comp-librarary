@@ -1,0 +1,78 @@
+name: Dot Components Continuous Release
+
+# Paths are now supported by GitHub on ALL workflows
+# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths
+on:
+  # workflow_dispatch:
+  # pull_request:
+  #   paths:
+  #     - .github/workflows/version.yml
+  #     - libs/dot-components/src/**
+  push:
+    paths:
+      - .github/workflows/version.yml
+      - libs/dot-components/src/**
+    branches:
+      - master
+
+jobs:
+  git-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.git_version.outputs.VERSION }}-alpha
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }} # checkout the correct branch name
+          fetch-depth: 0 # fetch the whole repo history
+
+      - name: Git Version
+        id: git_version
+        uses: codacy/git-version@2.4.0
+        with:
+          # The name of the release branch
+          release-branch: master
+          # The prefix to use in the version
+          # prefix:
+          # The paths to be used to calculate changes (comma-separated)
+          log-paths: libs/dot-components/src/
+
+  modify-pkg-json:
+    runs-on: ubuntu-latest
+    needs: [git-version]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: 'update package.json version'
+        uses: reedyuk/npm-version@1.0.2
+        with:
+          package: './libs/dot-components/'
+          version: '${{needs.git-version.outputs.version}}'
+
+  create-tag:
+    needs: [git-version]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Create Tag
+        uses: negz/create-tag@v1
+        with:
+          version: ${{needs.git-version.outputs.version}}
+          message: 'Tag with version ${{needs.git-version.outputs.version}}'
+          token: ${{ github.token }}
+
+  # release package
+  # https://github.com/elgohr/Github-Release-Action
+
+  # deploy package to npm
+  # https://github.com/marketplace/actions/npm-publish
+
+  # deploy to storybook (build.yml)
+  # OR repository-dispatch may be able to trigger a separate workflow
+  # https://github.com/peter-evans/repository-dispatch
