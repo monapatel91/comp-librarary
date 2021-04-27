@@ -23,33 +23,6 @@ export default {
     children: {
       defaultValue: <DotButton>Activate Bat Signal</DotButton>,
     },
-    items: {
-      defaultValue: [
-        {
-          iconId: 'notification-bell',
-          title: 'Alerts',
-          type: 'button',
-        },
-        {
-          iconId: 'help',
-          title: 'Help',
-          type: 'button',
-        },
-        {
-          iconId: 'apps',
-          title: 'Admin',
-          type: 'button',
-        },
-        {
-          iconId: 'dark',
-          iconSize: 'small',
-          onClick: () => console.log('theme clicked'),
-          text: 'Theme',
-          title: 'Toggle Theme',
-          type: 'button',
-        },
-      ],
-    },
     mainMenu: {
       defaultValue: (
         <DotSidebar
