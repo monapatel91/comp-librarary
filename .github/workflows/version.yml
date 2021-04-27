@@ -1,4 +1,4 @@
-name: Dot Components Continuous Release
+name: Continuous Release
 
 # Paths are now supported by GitHub on ALL workflows
 # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths
@@ -23,8 +23,8 @@ jobs:
           # ref: ${{ github.head_ref }} # checkout the correct branch name
           # fetch-depth: 0 # fetch the whole repo history
 
-      - name: 'cat libs/dot-components/package.json'
-        run: cat ./libs/dot-components/package.json
+      - name: 'cat package.json'
+        run: cat ./package.json
 
       - name: 'Setup Node.js'
         uses: 'actions/setup-node@v1'
@@ -36,7 +36,7 @@ jobs:
         uses: 'phips28/gh-action-bump-version@master'
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          # PACKAGEJSON_DIR: './libs/dot-components'
+          PACKAGEJSON_DIR: 'libs/dot-components'
         with:
           commit-message: 'CI: bumps version to {{version}} [skip ci]'
           default: prerelease
@@ -46,8 +46,8 @@ jobs:
           tag-prefix: ''
           target-branch: 'master'
 
-      - name: 'cat libs/dot-components/package.json'
-        run: cat ./libs/dot-components/package.json
+      - name: 'cat package.json'
+        run: cat ./package.json
 
       - name: 'Output Step'
         env:
