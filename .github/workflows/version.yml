@@ -11,72 +11,108 @@ on:
       - master
 
 jobs:
-  git-version:
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.git_version.outputs.VERSION }}
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }} # checkout the correct branch name
-          fetch-depth: 0 # fetch the whole repo history
-
-      # currently there is an issue updating the version
-      # https://github.com/codacy/git-version/issues/48
-      - name: Git Version
-        id: git_version
-        uses: codacy/git-version@2.4.0
-        with:
-          # The name of the release branch
-          release-branch: master
-          # The prefix to use in the version
-          prefix: alpha-
-          # The paths to be used to calculate changes (comma-separated)
-          log-paths: libs/dot-components/src/
-
-  modify-pkg-json:
-    name: Update version on package.json
-    needs: [git-version]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-
-      # currently an error is occuring when updating package.json
-      # https://github.com/Reedyuk/NPM-Version/issues/3
-      # error: https://github.com/digital-ai/dot-components/runs/2442870832?check_suite_focus=true
-      - name: 'update package.json version'
-        uses: reedyuk/npm-version@1.0.2
-        with:
-          package: './libs/dot-components/package.json'
-          version: '${{needs.git-version.outputs.version}}'
-
-      # another possible option is this one, which doesn't commit the change
-      # https://github.com/marketplace/actions/modify-package-json
-      # - name: 'set version of package.json'
-      #   uses: MYXOMOPX/modify-pkg-json@master
-      #     id: setcmnver
-      #     with:
-      #       target: ./libs/dot-components/package.json
-      #       action: "set_version"
-      #       argument: "${{needs.git-version.outputs.version}}"
-
-  create-tag:
-    needs: [git-version, modify-pkg-json]
+  bump-version:
+    name: 'Bump Version on master'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-
-      - name: Create Tag
-        uses: negz/create-tag@v1
+      - name: 'Checkout code'
+        uses: 'actions/checkout@v2'
         with:
-          version: ${{needs.git-version.outputs.version}}
-          message: 'Tag with version ${{needs.git-version.outputs.version}}'
-          token: ${{ github.token }}
+          ref: ${{ github.ref }}
+          # ref: ${{ github.head_ref }} # checkout the correct branch name
+          # fetch-depth: 0 # fetch the whole repo history
+
+      - name: 'cat package.json'
+        run: cat ./package.json
+
+      - name: 'Setup Node.js'
+        uses: 'actions/setup-node@v1'
+        with:
+          node-version: 12
+
+      - name: 'Automated Version Bump'
+        id: version-bump
+        uses: 'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PACKAGEJSON_DIR: 'libs/dot-components'
+        with:
+          commit-message: 'CI: bumps version to {{version}} [skip ci]'
+          default: prerelease
+          major-wording: 'MAJOR'
+          minor-wording: 'minor'
+          patch-wording: 'patch'
+          tag-prefix: ''
+          target-branch: 'master'
+
+      - name: 'cat package.json'
+        run: cat ./package.json
+
+      - name: 'Output Step'
+        env:
+          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
+        run: echo "new tag $NEW_TAG"
+
+  # git-version:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     version: ${{ steps.git_version.outputs.VERSION }}
+
+  #     # currently there is an issue updating the version
+  #     # https://github.com/codacy/git-version/issues/48
+  #     - name: Git Version
+  #       id: git_version
+  #       uses: codacy/git-version@2.4.0
+  #       with:
+  #         # The name of the release branch
+  #         release-branch: master
+  #         # The prefix to use in the version
+  #         prefix: alpha-
+  #         # The paths to be used to calculate changes (comma-separated)
+  #         log-paths: libs/dot-components/src/
+
+  # modify-pkg-json:
+  #   name: Update version on package.json
+  #   needs: [git-version]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v2
+
+  # currently an error is occuring when updating package.json
+  # https://github.com/Reedyuk/NPM-Version/issues/3
+  # error: https://github.com/digital-ai/dot-components/runs/2442870832?check_suite_focus=true
+  # - name: 'update package.json version'
+  #   uses: reedyuk/npm-version@1.0.2
+  #   with:
+  #     package: 'libs/dot-components/package.json'
+  #     version: '${{needs.git-version.outputs.version}}'
+
+  # another possible option is this one, which doesn't commit the change
+  # https://github.com/marketplace/actions/modify-package-json
+  # - name: 'set version of package.json'
+  #   uses: MYXOMOPX/modify-pkg-json@master
+  #     id: setcmnver
+  #     with:
+  #       target: ./libs/dot-components/package.json
+  #       action: "set_version"
+  #       argument: "${{needs.git-version.outputs.version}}"
+
+  # create-tag:
+  #   needs: [git-version, modify-pkg-json]
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v2
+
+  #     - name: Create Tag
+  #       uses: negz/create-tag@v1
+  #       with:
+  #         version: ${{needs.git-version.outputs.version}}
+  #         message: 'Tag with version ${{needs.git-version.outputs.version}}'
+  #         token: ${{ github.token }}
 
   # release package
   # https://github.com/elgohr/Github-Release-Action
