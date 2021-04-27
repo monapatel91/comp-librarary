@@ -34,14 +34,14 @@ jobs:
         uses: 'phips28/gh-action-bump-version@master'
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          # PACKAGEJSON_DIR: 'libs/dot-components'
+          PACKAGEJSON_DIR: 'libs/dot-components'
         with:
           commit-message: 'CI: bumps version to {{version}} [skip ci]'
           default: prerelease
           major-wording: 'MAJOR'
           minor-wording: 'minor'
           patch-wording: 'patch'
-          rc-wording: 'RELEASE,alpha,beta'
+          # rc-wording: 'RELEASE,alpha,beta'
           tag-prefix: ''
           target-branch: 'master'
           preid: 'alpha'
