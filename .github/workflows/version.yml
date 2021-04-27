@@ -55,6 +55,9 @@ jobs:
 
   # release package
   # https://github.com/elgohr/Github-Release-Action
+  # https://github.com/marvinpinto/action-automatic-releases
+  # https://github.com/softprops/action-gh-release
+  # https://github.com/ncipollo/release-action
 
   # deploy package to npm
   # https://github.com/marketplace/actions/npm-publish
