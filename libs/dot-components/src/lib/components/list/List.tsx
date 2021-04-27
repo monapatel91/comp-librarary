@@ -222,7 +222,7 @@ export const DotListItem = ({
 
   const startIcon = (
     <ListItemIcon>
-      <DotIcon iconId={iconId} />
+      <DotIcon iconId={iconId} title={title} />
     </ListItemIcon>
   );
 
@@ -236,6 +236,7 @@ export const DotListItem = ({
         divider={divider}
         onClick={handleClick}
         selected={isSelected}
+        title={title}
       >
         {href || onClick ? (
           <DotLink

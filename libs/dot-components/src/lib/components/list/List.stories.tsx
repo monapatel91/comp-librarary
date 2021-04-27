@@ -14,14 +14,17 @@ const mockListItems: Array<ListItemProps> = [
         iconId: 'block',
         text: 'Package Progression',
         href: '/?path=/story/experimental-list--default',
+        title: 'These are package progressions',
       },
       {
         iconId: 'block',
         text: 'Feature Progression',
         href: '/?path=/story/experimental-list--default',
+        title: 'These are feature progressions',
       },
     ],
     text: 'Progressions',
+    title: 'These are progressions',
   },
   {
     iconId: 'dashboard',
@@ -30,14 +33,17 @@ const mockListItems: Array<ListItemProps> = [
         iconId: 'block',
         text: 'Nested Link One',
         href: '/?path=/story/experimental-list--default',
+        title: 'First nested link',
       },
       {
         iconId: 'block',
         text: 'Nested Link Two',
         href: '/?path=/story/experimental-list--default',
+        title: 'Second nested link',
       },
     ],
     text: 'Insights',
+    title: 'These are insights',
   },
   {
     text: 'Workflow',
@@ -47,31 +53,37 @@ const mockListItems: Array<ListItemProps> = [
     iconId: 'block',
     text: 'Packages',
     href: '/?path=/story/experimental-list--default',
+    title: 'These are packages',
   },
   {
     iconId: 'flag',
     text: 'Features',
     href: '/?path=/story/experimental-list--default',
+    title: 'These are features',
   },
   {
     iconId: 'collection',
     text: 'Projects',
     href: '/?path=/story/experimental-list--default',
+    title: 'These are projects',
   },
   {
     iconId: 'file-lines',
     text: 'Workitems',
     href: '/?path=/story/experimental-list--default',
+    title: 'These are workitems',
   },
   {
     iconId: 'change',
     text: 'Changes',
     href: '/?path=/story/experimental-list--default',
+    title: 'These are changes',
   },
   {
     iconId: 'square-settings',
     text: 'Artifacts',
     href: '/?path=/story/experimental-list--default',
+    title: 'These are artifacts',
   },
   {
     text: 'System',
@@ -80,14 +92,17 @@ const mockListItems: Array<ListItemProps> = [
   {
     text: 'Tasks',
     href: '/?path=/story/experimental-list--default',
+    title: 'These are tasks',
   },
   {
     text: 'Buckets',
     href: '/?path=/story/experimental-list--default',
+    title: 'Buckets of rain',
   },
   {
     text: 'Environment',
     href: '/?path=/story/experimental-list--default',
+    title: 'Protect the environment',
   },
 ];
 
