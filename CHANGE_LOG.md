@@ -1,5 +1,11 @@
 # Change Log
 
+## Current
+
+### Experimental
+
+- **ProgressionBoard** - determine of a workitem is split internally rather than expecting the provided data to provide that
+
 ## 0.0.0-alpha.21
 
 ### Components

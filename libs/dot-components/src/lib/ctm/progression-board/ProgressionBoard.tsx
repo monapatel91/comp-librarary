@@ -81,16 +81,38 @@ export const DotProgressionBoard = ({
     selectedWorkItem,
   };
 
+  interface WorkitemMapType {
+    [key: string]: number;
+  }
+
   const getPackages = () => {
+    // build a map of workitem ids to the count of packageVersions
+    // in which those workitems appear.
+    const workitemMap: WorkitemMapType = {};
+    phases.forEach((phase) => {
+      phase.packageVersions.forEach((packageVersion) => {
+        packageVersion.workitems.forEach((workitem) => {
+          const currentCount = workitemMap[workitem._id] || 0;
+          workitemMap[workitem._id] = currentCount + 1;
+        });
+      });
+    });
     return (
       phases
-        // create an array of packages included in each phase
-        .map((phase) =>
-          phase.packageVersions.map((version) => ({
+        // create an array of packages included in each phase.
+        // while here, use the map we built above to determine
+        // if workitems are split.
+        .map((phase) => {
+          phase.packageVersions.forEach((packageVersion) => {
+            packageVersion.workitems.forEach((workitem) => {
+              workitem.isSplit = workitemMap[workitem._id] > 1;
+            });
+          });
+          return phase.packageVersions.map((version) => ({
             package_id: version.package_id,
             package_name: version.package_name,
-          }))
-        )
+          }));
+        })
         .reduce((prev, next) => prev.concat(next), [])
         // filter out all but one unique representation of each package
         .filter((item, index, arr) => {
