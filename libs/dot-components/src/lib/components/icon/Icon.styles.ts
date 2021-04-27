@@ -2,12 +2,12 @@ import { Icon } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const rootClassName = 'dot-icon';
-
 export const StyledIcon = styled(Icon)`
   &.${rootClassName} {
     align-items: center;
     box-sizing: content-box;
     display: flex;
+    float: left; // allows flex items to display inline
     font-size: 20px;
     height: 24px;
     justify-content: center;
@@ -26,10 +26,6 @@ export const StyledIcon = styled(Icon)`
         font-size: 16px;
         height: 20px;
         width: 20px;
-
-        i {
-          height: 16px
-        }
       }
 
       i {
@@ -51,20 +47,15 @@ export const StyledIcon = styled(Icon)`
         &.icon-security-off:before {
           content: "\\e9ca";
         }
-
         &.icon-security-on:before {
           content: "\\e9cb";
         }
-
         &.icon-marker-check:before {
           content: "\\e9cc";
         }
-
         &.icon-restore:before {
           content: "\\e9cd";
         }
-
-
         &.icon-check-outlined:before {
           content: "\\e9c7";
         }

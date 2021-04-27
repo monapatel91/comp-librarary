@@ -17,5 +17,9 @@ describe('dot-components: Icon component', () => {
         .and('have.css', 'height', '24px')
         .and('have.css', 'font-size', '20px');
     });
+
+    it('float left for inline flex', () => {
+      cy.get('span.dot-icon').should('have.css', 'float', 'left');
+    });
   });
 });
