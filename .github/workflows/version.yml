@@ -21,9 +21,6 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - name: 'cat libs/dot-components/package.json'
-        run: cat ./libs/dot-components/package.json
-
       - name: 'Setup Node.js'
         uses: 'actions/setup-node@v1'
         with:
@@ -41,14 +38,10 @@ jobs:
           major-wording: 'MAJOR'
           minor-wording: 'minor'
           patch-wording: 'patch'
-          rc-wording: 'RELEASE,alpha,beta'
+          rc-wording: 'alpha' # RELEASE, beta
           tag-prefix: ''
           target-branch: 'master'
           preid: 'alpha'
-          skip-tag: 'true'
-
-      - name: 'cat libs/dot-components/package.json'
-        run: cat ./libs/dot-components/package.json
 
       - name: 'Output Step'
         env:
