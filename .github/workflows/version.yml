@@ -54,19 +54,19 @@ jobs:
   # TO-DO: run test.yml here
 
   # https://github.com/marvinpinto/action-automatic-releases
-  create-release:
-    name: 'Tagged release'
-    runs-on: 'ubuntu-latest'
-    needs: [bump-version]
-    # needs: [verification] # Build & Test
+  # create-release:
+  #   name: 'Tagged release'
+  #   runs-on: 'ubuntu-latest'
+  #   needs: [bump-version]
+  # needs: [verification] # Build & Test
 
-    steps:
-      - name: Create Draft Release
-      - uses: 'marvinpinto/action-automatic-releases@latest'
-        with:
-          draft: true
-          repo_token: ${{ github.token }}
-          prerelease: true
+  # steps:
+  #   - name: Create Draft Release
+  #   - uses: 'marvinpinto/action-automatic-releases@latest'
+  #     with:
+  #       draft: true
+  #       repo_token: ${{ github.token }}
+  #       prerelease: true
 
   # update changelog
   # https://github.com/marketplace?type=actions&query=changelog
