@@ -57,11 +57,11 @@ jobs:
   # https://github.com/peter-evans/repository-dispatch
   # https://github.community/t/wait-for-a-workflow-to-complete-before-starting-another/17192/4
   verification:
-    name: Lint, Test & Build
+    name: Workflow - Lint, Test & Build
     runs-on: 'ubuntu-latest'
 
     steps:
-      - name: Trigger Lint, Test & Build Workflow
+      - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ github.token }}
