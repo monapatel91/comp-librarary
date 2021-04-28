@@ -16,6 +16,8 @@ jobs:
   bump-version:
     name: 'Bump Version on master'
     runs-on: ubuntu-latest
+    outputs:
+      new-version: ${{ steps.version-bump.outputs.newTag }}
 
     steps:
       - name: 'Checkout code'
@@ -61,12 +63,19 @@ jobs:
     # needs: [verification] # Build & Test
 
     steps:
-      - name: Create Draft Release
+      - name: 'Create Draft Release'
+        id: create-draft-release
         uses: 'marvinpinto/action-automatic-releases@latest'
         with:
+          automatic_release_tag: ${{needs.bump-version.outputs.new-version}}
           draft: true
           repo_token: ${{ github.token }}
           prerelease: true
+
+      - name: 'Output Step'
+        env:
+          NEW_RELEASE: ${{ steps.create-draft-release.outputs.automatic_releases_tag }}
+        run: echo "new release tag $NEW_RELEASE"
 
   # update changelog
   # https://github.com/marketplace?type=actions&query=changelog
