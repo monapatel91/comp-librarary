@@ -42,7 +42,7 @@ jobs:
           major-wording: 'MAJOR'
           minor-wording: 'minor'
           patch-wording: 'patch'
-          rc-wording: 'alpha-release' # RELEASE, beta
+          rc-wording: 'test-build, alpha-release' # RELEASE, beta
           tag-prefix: ''
           target-branch: 'master'
           preid: 'alpha'
