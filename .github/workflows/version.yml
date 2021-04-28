@@ -42,7 +42,8 @@ jobs:
           major-wording: 'MAJOR'
           minor-wording: 'minor'
           patch-wording: 'patch'
-          rc-wording: 'alpha-release' # RELEASE, beta
+          # rc-wording will override the preid
+          rc-wording: 'alpha' # RELEASE, beta
           tag-prefix: ''
           target-branch: 'master'
           preid: 'alpha'
