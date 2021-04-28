@@ -7,22 +7,23 @@ jobs:
   verification:
     name: Lint, Test & Build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 12
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+
+      - name: yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -30,9 +31,10 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: yarn install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
-      - name: Lint
+      - name: yarn lint
         run: yarn lint
 
       - name: Code Format
@@ -46,17 +48,17 @@ jobs:
           echo "Base => $NX_BASE"
           yarn format:check --base=$NX_BASE
 
-      - name: Build
+      - name: yarn build
         run: yarn build
         env:
           CI: true
 
-      - name: unit tests
+      - name: run unit tests
         run: yarn test
         env:
           CI: true
 
-      - name: e2e tests
+      - name: run e2e tests
         run: yarn e2e:ci
         env:
           CI: true
