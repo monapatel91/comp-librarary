@@ -2,6 +2,8 @@ name: Lint, Test & Build
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types: [run-lint-test-build]
 
 jobs:
   verification:
@@ -17,6 +19,7 @@ jobs:
         with:
           node-version: 12
 
+      # https://github.com/marketplace/actions/yarn-install-cache
       - name: Cache yarn dependencies
         uses: c-hive/gha-yarn-cache@v1
 

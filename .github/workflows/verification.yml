@@ -1,4 +1,4 @@
-name: Dot Components Verification
+name: Verification
 
 on:
   pull_request:
