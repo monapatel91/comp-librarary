@@ -36,6 +36,7 @@ jobs:
               echo ::set-output name=VERSION::0.0.1.0
           fi
 
+  # TO-DO: replace this with test.yml
   verification:
     name: Verification
     runs-on: ubuntu-latest
