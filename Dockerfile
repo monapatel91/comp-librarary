@@ -20,4 +20,4 @@ RUN yarn storybook:build
 FROM nginx:alpine
 EXPOSE 80
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist/storybook/dot-components /usr/share/nginx/html
+COPY --from=builder /app/dist/docs /usr/share/nginx/html
