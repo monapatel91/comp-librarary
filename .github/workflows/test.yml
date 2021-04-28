@@ -1,7 +1,6 @@
 name: Lint, Test & Build
 
 on:
-  workflow_dispatch:
   repository_dispatch:
     types: [run-lint-test-build]
 
