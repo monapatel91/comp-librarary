@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  verification:
-    name: Lint, Test & Build
+  setup:
+    name: Setup & Install Dependencies
     runs-on: ubuntu-latest
 
     steps:
@@ -20,42 +20,39 @@ jobs:
       - name: Cache yarn dependencies
         uses: c-hive/gha-yarn-cache@v1
 
-      # - name: Get yarn cache directory path
-      #   id: yarn-cache-dir-path
-      #   run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      # - name: yarn cache
-      #   uses: actions/cache@v2
-      #   id: yarn-cache
-      #   with:
-      #     path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-yarn-
-
       - name: yarn install
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
+  verification:
+    name: Lint & Format
+    needs: [setup]
+    runs-on: ubuntu-latest
+
+    steps:
       - name: yarn lint
         run: yarn lint
 
-      - name: Code Format
-        run: |
-          if [[ $GITHUB_BASE_REF ]]
-          then
-            export NX_BASE=remotes/origin/$GITHUB_BASE_REF
-          else
-            export NX_BASE=$(git rev-parse HEAD~1)
-          fi
-          echo "Base => $NX_BASE"
-          yarn format:check --base=$NX_BASE
+      - name: yarn format
+        run: yarn format:check
 
+  build:
+    name: Build
+    needs: [setup]
+    runs-on: ubuntu-latest
+
+    steps:
       - name: yarn build
         run: yarn build
         env:
           CI: true
 
+  test:
+    name: Run Tests
+    needs: [setup]
+    runs-on: ubuntu-latest
+
+    steps:
       - name: run unit tests
         run: yarn test
         env:
