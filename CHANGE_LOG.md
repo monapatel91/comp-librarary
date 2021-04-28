@@ -34,6 +34,7 @@
 
 - **AppToolbar** - added `mainMenuWidth` prop
 - **Sidebar** - added `nestedListType` prop which controls how a nested list is displayed
+- **Toggle** - added new component to stable components
 
 ### Experimental
 
