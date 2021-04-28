@@ -5,11 +5,11 @@ on:
 
 jobs:
   setup:
-    name: Setup & Install Dependencies
+    name: Lint, Test & Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout source code
         uses: actions/checkout@v2
 
       - name: Setup Node.js
@@ -20,54 +20,26 @@ jobs:
       - name: Cache yarn dependencies
         uses: c-hive/gha-yarn-cache@v1
 
-      - name: yarn install
-        # if: steps.yarn-cache.outputs.cache-hit != 'true'
+      - name: Install dependencies
         run: yarn install
 
-  verification:
-    name: Lint & Format
-    needs: [setup]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: yarn lint
+      - name: Lint Code
         run: yarn lint
 
-      - name: yarn format
+      - name: Code Format Check
         run: yarn format:check
 
-  build:
-    name: Build
-    needs: [setup]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: yarn build
+      - name: Build
         run: yarn build
         env:
           CI: true
 
-  test:
-    name: Run Tests
-    needs: [setup]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: run unit tests
+      - name: Run unit tests
         run: yarn test
         env:
           CI: true
 
-      - name: run e2e tests
+      - name: Run e2e tests
         run: yarn e2e:ci
         env:
           CI: true
