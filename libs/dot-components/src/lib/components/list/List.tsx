@@ -204,20 +204,25 @@ export const DotListItem = ({
 }: ListItemProps) => {
   const rootClasses = useStylesWithRootClass(listItemRootClass, className);
   const textVariant = divider ? 'h5' : 'body1';
+  const isFlyout = nestedListType === 'menu' && items.length > 0;
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [open, setOpen] = useState(false);
-  const [isSelected, setSelected] = useState(selected);
 
+  // triggered on expand icon click
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
     setOpen(!open);
-    setSelected(!isSelected);
+  };
+
+  // triggered on text link click
+  const handleLinkClick = (event: MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    onClick(event);
   };
 
   const handleMenuLeave = () => {
     setAnchorEl(null);
     setOpen(false);
-    setSelected(false);
   };
 
   const startIcon = (
@@ -235,14 +240,14 @@ export const DotListItem = ({
         data-testid={dataTestId}
         divider={divider}
         onClick={handleClick}
-        selected={isSelected}
+        selected={isFlyout ? open : selected}
         title={title}
       >
         {href || onClick ? (
           <DotLink
             color="inherit"
             href={href}
-            onClick={onClick}
+            onClick={onClick && handleLinkClick}
             underline="none"
             title={title}
           >
