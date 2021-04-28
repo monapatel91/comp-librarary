@@ -57,14 +57,17 @@ jobs:
   # https://github.com/peter-evans/repository-dispatch
   # https://github.community/t/wait-for-a-workflow-to-complete-before-starting-another/17192/4
   verification:
-    name: Trigger Lint, Test & Build Workflow
+    name: Lint, Test & Build
     # runs-on: 'ubuntu-latest'
-    uses: peter-evans/repository-dispatch@v1
-    with:
-      token: ${{ github.token }}
-      repository: digital-ai/dot-components
-      event-type: run-lint-test-build
-      client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+
+    steps:
+      - name: Trigger Lint, Test & Build Workflow
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ github.token }}
+          repository: digital-ai/dot-components
+          event-type: run-lint-test-build
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
 
   # https://github.com/marvinpinto/action-automatic-releases
   create-release:
