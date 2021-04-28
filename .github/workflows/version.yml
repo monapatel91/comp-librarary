@@ -1,7 +1,5 @@
 name: Continuous Release
 
-# Paths are now supported by GitHub on ALL workflows
-# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths
 on:
   push:
     paths:
