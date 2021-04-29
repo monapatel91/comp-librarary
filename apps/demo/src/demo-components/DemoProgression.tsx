@@ -1,12 +1,14 @@
 import React, { CSSProperties, Fragment, ReactNode, useState } from 'react';
 import styled from 'styled-components';
 import {
+  ApplicationDetails,
   DotButton,
   DotDialog,
   DotList,
   DotListItem,
   DotProgressionBoard,
-  DotProgressionBoardApplicationDrawer,
+  DotProgressionBoardAppFormDrawer,
+  DotProgressionBoardAppInfoDrawer,
   DotProgressionBoardPhaseEditor,
   DotProgressionBoardWorkItemDrawer,
   DrawerPaperProps,
@@ -17,6 +19,7 @@ import {
 import { pbWorkItemDetailsData } from '../demo-data/pbWorkItemDetailsData';
 import { pbApplicationAPIData as apiData } from '../demo-data/pbApplicationAPIData';
 import { phasesData } from './DemoData';
+import { pbAppDetailsData } from '../demo-data/pbAppDetailsData';
 
 const rootClassName = 'demo-progression';
 const dialogRootClassName = 'form-result-dialog';
@@ -55,6 +58,10 @@ export const ProgressionDemo = () => {
   const [selectedWorkItem, setSelectedWorkItem] = useState(null);
   const [workItemDetails, setWorkItemDetails] = useState(null);
   const [isAppDrawerOpened, setIsAppDrawerOpened] = useState<boolean>(false);
+  const [appDetails, setAppDetails] = useState<ApplicationDetails>();
+  const [isAppInfoDrawerOpened, setIsAppInfoDrawerOpened] = useState<boolean>(
+    false
+  );
   const [isInConfigureMode, setIsInConfigureMode] = useState<boolean>(false);
   const [editablePhases, setEditablePhases] = useState<
     Array<EditablePhaseType>
@@ -98,6 +105,8 @@ export const ProgressionDemo = () => {
   const onDrawerClose = (): void => setSelectedWorkItem(null);
 
   const onApplicationDrawerClose = (): void => setIsAppDrawerOpened(false);
+
+  const onAppInfoDrawerClose = (): void => setIsAppInfoDrawerOpened(false);
 
   const onNewApplicationClick = (): void => {
     onDrawerClose();
@@ -220,6 +229,20 @@ export const ProgressionDemo = () => {
     );
   };
 
+  const onAppNameClick = (appName: string): void => {
+    setAppDetails(null);
+    setIsAppInfoDrawerOpened(true);
+    /* Simulate async API call */
+    setTimeout(() => {
+      const currentAppDetails = pbAppDetailsData.find(
+        (app) => app.applicationName === appName
+      );
+      if (currentAppDetails) {
+        setAppDetails(currentAppDetails);
+      }
+    }, 1500);
+  };
+
   const renderProgression = (): ReactNode => {
     if (isInConfigureMode) {
       return (
@@ -245,6 +268,7 @@ export const ProgressionDemo = () => {
           <DotProgressionBoard
             className="progression-board"
             workItemSelection={workItemSelection}
+            onAppNameClick={onAppNameClick}
             phases={phasesData}
             baseUrl={BASE_URL}
           />
@@ -255,9 +279,15 @@ export const ProgressionDemo = () => {
             workItemDetails={workItemDetails}
             drawerPaperProps={drawerPaperProps}
           />
-          <DotProgressionBoardApplicationDrawer
+          <DotProgressionBoardAppFormDrawer
             drawerPaperProps={drawerPaperProps}
             {...application}
+          />
+          <DotProgressionBoardAppInfoDrawer
+            appDetails={appDetails}
+            drawerPaperProps={drawerPaperProps}
+            isDrawerOpened={isAppInfoDrawerOpened}
+            onDrawerClose={onAppInfoDrawerClose}
           />
         </div>
       </>

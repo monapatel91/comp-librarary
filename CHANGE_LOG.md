@@ -11,6 +11,8 @@
 ### Experimental
 
 - **ProgressionBoard** - determine of a workitem is split internally rather than expecting the provided data to provide that
+- **DotProgressionBoardApplicationDrawer** - removed this component and replaced it with **DotProgressionBoardAppFormDrawer**
+- **DotProgressionBoardAppInfoDrawer** - created new component used for viewing existing application data inside of a drawer
 
 ## 0.0.0-alpha.21
 

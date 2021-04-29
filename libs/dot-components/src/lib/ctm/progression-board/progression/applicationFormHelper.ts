@@ -1,5 +1,5 @@
 import {
-  ApplicationForm,
+  ApplicationFormType,
   ApplicationFormOutput,
   AutoCompleteControl,
   SCServer,
@@ -7,7 +7,7 @@ import {
   TicketSystem,
 } from '../ProgressionBoardInterfaces';
 
-const isValidFormData = (formData: ApplicationForm) => {
+const isValidFormData = (formData: ApplicationFormType) => {
   return !!(
     formData &&
     typeof formData === 'object' &&
@@ -32,7 +32,7 @@ export const isServerArrayValid = (
   servers.length > 0 &&
   servers.every((server) => server.id && server.title);
 
-export const isActiveSCValid = (formData: ApplicationForm): boolean => {
+export const isActiveSCValid = (formData: ApplicationFormType): boolean => {
   if (!isValidFormData(formData)) return false;
   const { activeSourceControl } = formData;
   return !!(
@@ -42,7 +42,9 @@ export const isActiveSCValid = (formData: ApplicationForm): boolean => {
   );
 };
 
-export const isActiveSCServerValid = (formData: ApplicationForm): boolean => {
+export const isActiveSCServerValid = (
+  formData: ApplicationFormType
+): boolean => {
   if (!isValidFormData(formData)) return false;
   const {
     activeSourceControl: { servers = [] as Array<AutoCompleteControl> },
@@ -51,14 +53,16 @@ export const isActiveSCServerValid = (formData: ApplicationForm): boolean => {
 };
 
 export const isAtLeastOneSCServerSelected = (
-  formData: ApplicationForm
+  formData: ApplicationFormType
 ): boolean => {
   if (!isValidFormData(formData)) return false;
   const { sourceControls } = formData;
   return sourceControls.length > 0;
 };
 
-export const areActiveSCFieldsEmpty = (formData: ApplicationForm): boolean => {
+export const areActiveSCFieldsEmpty = (
+  formData: ApplicationFormType
+): boolean => {
   if (!formData?.activeSourceControl) return true;
   const isPropertyEmpty =
     Object.keys(formData.activeSourceControl).length === 0;
@@ -70,12 +74,14 @@ export const areActiveSCFieldsEmpty = (formData: ApplicationForm): boolean => {
   return isPropertyEmpty || areControlPropsEmpty;
 };
 
-export const isApplicationNameValid = (formData: ApplicationForm): boolean => {
+export const isApplicationNameValid = (
+  formData: ApplicationFormType
+): boolean => {
   if (!isValidFormData(formData)) return false;
   return !!formData.applicationName;
 };
 
-export const isSCArrayValid = (formData: ApplicationForm): boolean => {
+export const isSCArrayValid = (formData: ApplicationFormType): boolean => {
   if (!isValidFormData(formData)) return false;
   const { sourceControls } = formData;
   return !!(
@@ -90,22 +96,23 @@ export const isSCArrayValid = (formData: ApplicationForm): boolean => {
   );
 };
 
-export const isSCDataValidForSubmission = (formData: ApplicationForm) =>
+export const isSCDataValidForSubmission = (formData: ApplicationFormType) =>
   isAtLeastOneSCServerSelected(formData) && areActiveSCFieldsEmpty(formData)
     ? true
     : isActiveSCValid(formData) && isActiveSCServerValid(formData);
 
-export const areActiveSCFieldsValid = (formData: ApplicationForm): boolean =>
-  isActiveSCValid(formData) && isActiveSCServerValid(formData);
+export const areActiveSCFieldsValid = (
+  formData: ApplicationFormType
+): boolean => isActiveSCValid(formData) && isActiveSCServerValid(formData);
 
-export const isTicketSystemValid = (formData: ApplicationForm): boolean => {
+export const isTicketSystemValid = (formData: ApplicationFormType): boolean => {
   if (!isValidFormData(formData)) return false;
   const { ticketSystem } = formData;
   return !!(ticketSystem && ticketSystem.id && ticketSystem.title);
 };
 
 export const isTicketSystemServerValid = (
-  formData: ApplicationForm
+  formData: ApplicationFormType
 ): boolean => {
   if (!isValidFormData(formData)) return false;
   const { ticketSystem } = formData;
@@ -117,12 +124,12 @@ export const isTicketSystemServerValid = (
   );
 };
 
-export const isCreateAnotherValid = (formData: ApplicationForm): boolean =>
+export const isCreateAnotherValid = (formData: ApplicationFormType): boolean =>
   isValidFormData(formData);
 
 export const isSCServerAlreadySelected = (
   serverId: string,
-  formData: ApplicationForm
+  formData: ApplicationFormType
 ): boolean => {
   if (!isValidFormData(formData)) return false;
   const { sourceControls } = formData;
@@ -138,7 +145,7 @@ export const isSCServerAlreadySelected = (
 
 export const getExistingSCIndex = (
   sourceControlId: string,
-  formData: ApplicationForm
+  formData: ApplicationFormType
 ): number => {
   if (!isValidFormData(formData)) return -1;
   const { sourceControls } = formData;
@@ -164,8 +171,8 @@ export const getTicketSystemById = (
 
 export const getFormDataWithTicketSystemSet = (
   ticketSystem: TicketSystem,
-  formData: ApplicationForm
-): ApplicationForm => {
+  formData: ApplicationFormType
+): ApplicationFormType => {
   if (!isValidFormData(formData)) return null;
   return {
     ...formData,
@@ -200,8 +207,8 @@ export const getSCServerById = (
 
 export const getFormDataWithSCSet = (
   sourceControl: SourceControl,
-  formData: ApplicationForm
-): ApplicationForm => {
+  formData: ApplicationFormType
+): ApplicationFormType => {
   if (!isValidFormData(formData)) return null;
   return {
     ...formData,
@@ -216,8 +223,8 @@ export const getFormDataWithSCSet = (
 
 export const getFormDataWithSCServerSet = (
   currentSCServer: SCServer,
-  formData: ApplicationForm
-): ApplicationForm => {
+  formData: ApplicationFormType
+): ApplicationFormType => {
   if (!isValidFormData(formData)) return null;
   return {
     ...formData,
@@ -243,8 +250,8 @@ export const getTicketSystemServerById = (
 
 export const getFormDataWithTicketSystemServerSet = (
   ticketSystemServer: AutoCompleteControl,
-  formData: ApplicationForm
-): ApplicationForm => {
+  formData: ApplicationFormType
+): ApplicationFormType => {
   if (!isValidFormData(formData)) return null;
   return {
     ...formData,
@@ -259,7 +266,7 @@ export const getFormDataWithTicketSystemServerSet = (
 
 export const getAllNonSelectedSCServers = (
   allSCServers: Array<SCServer>,
-  formData: ApplicationForm
+  formData: ApplicationFormType
 ): Array<SCServer> => {
   if (
     !isValidFormData(formData) ||
@@ -277,8 +284,8 @@ export const getAllNonSelectedSCServers = (
 
 export const getFormDataWithSCServerRemoved = (
   SCServerId: string,
-  formData: ApplicationForm
-): ApplicationForm => {
+  formData: ApplicationFormType
+): ApplicationFormType => {
   if (
     !isValidFormData(formData) ||
     !SCServerId ||
@@ -304,8 +311,8 @@ export const getFormDataWithSCServerRemoved = (
 };
 
 export const getFormDataWithNewSCServerAdded = (
-  formData: ApplicationForm
-): ApplicationForm => {
+  formData: ApplicationFormType
+): ApplicationFormType => {
   if (!isValidFormData(formData) || !areActiveSCFieldsValid(formData))
     return formData;
   const { sourceControls, activeSourceControl } = formData;
@@ -353,7 +360,7 @@ export const getFormDataWithNewSCServerAdded = (
 };
 
 export const getApplicationFormOutputData = (
-  formData: ApplicationForm
+  formData: ApplicationFormType
 ): ApplicationFormOutput => {
   if (!isValidFormData(formData)) return null;
   const data = areActiveSCFieldsEmpty(formData)
@@ -390,7 +397,7 @@ export const getFullPayloadUrl = (
 };
 
 export const getSelectedSCServers = (
-  formData: ApplicationForm
+  formData: ApplicationFormType
 ): Array<AutoCompleteControl> => {
   if (!isValidFormData(formData)) return null;
   const { sourceControls } = formData;

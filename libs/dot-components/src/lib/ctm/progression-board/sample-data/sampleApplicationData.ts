@@ -1,7 +1,11 @@
-import { ApplicationAPI } from '../ProgressionBoardInterfaces';
+import {
+  ApplicationAPI,
+  ApplicationDetails,
+} from '../ProgressionBoardInterfaces';
 
 export const sampleApplicationAPIData: ApplicationAPI = {
-  payloadUrl: 'https://pl.com/api/submit_change?token=<api-token>&toproject=',
+  basePayloadUrl:
+    'https://pl.com/api/submit_change?token=<api-token>&toproject=',
   sourceControls: [
     {
       id: '111111',
@@ -137,4 +141,112 @@ export const sampleApplicationAPIData: ApplicationAPI = {
       ],
     },
   ],
+};
+
+export const sampleAppAPITestData: ApplicationAPI = {
+  basePayloadUrl: 'http://payload.com',
+  sourceControls: [
+    {
+      id: '1',
+      title: 'SC Test 1',
+      servers: [
+        {
+          id: '1',
+          title: 'SC1 - Server 1',
+          name: 'Configuration/Custom/111',
+        },
+        {
+          id: '2',
+          title: 'SC1 - Server 2',
+          name: 'Configuration/Custom/112',
+        },
+      ],
+    },
+    {
+      id: '2',
+      title: 'SC Test 2',
+      servers: [
+        {
+          id: '3',
+          title: 'SC2 - Server 1',
+          name: 'Configuration/Custom/221',
+        },
+        {
+          id: '4',
+          title: 'SC2 - Server 2',
+          name: 'Configuration/Custom/222',
+        },
+      ],
+    },
+  ],
+  ticketSystems: [
+    {
+      id: '1',
+      title: 'TS Test 1',
+      servers: [
+        {
+          id: '1',
+          title: 'TS1 - Server 1',
+        },
+        {
+          id: '2',
+          title: 'TS1 - Server 2',
+        },
+      ],
+    },
+    {
+      id: '2',
+      title: 'TS Test 2',
+      servers: [
+        {
+          id: '1',
+          title: 'TS2 - Server 1',
+        },
+        {
+          id: '2',
+          title: 'TS2 - Server 2',
+        },
+      ],
+    },
+  ],
+};
+
+export const sampleAppDetailsTestData: ApplicationDetails = {
+  applicationName: 'test-api',
+  basePayloadUrl:
+    'https://pl.com/api/submit_change?token=<api-token>&toproject=',
+  sourceControls: [
+    {
+      id: 'e35f9c3091ee11eb81fd0b485fd3e296',
+      title: 'API GitLab',
+      servers: [
+        {
+          id: 'f5252bb091ee11eb9dd9d94066832c2c',
+          title: 'Gitlab - Server 3',
+          name: 'Configuration/Custom/Configuration113',
+        },
+      ],
+    },
+    {
+      id: '250f67f091ef11eb9dd9d94066832c2c',
+      title: 'API GitHub',
+      servers: [
+        {
+          id: '3554e72091ef11eb9dd9d94066832c2c',
+          title: 'GitHub - Server 4',
+          name: 'Configuration/Custom/Configuration124',
+        },
+      ],
+    },
+  ],
+  ticketSystem: {
+    id: '3847733091ef11eb9dd9d94066832c2c',
+    title: 'API Jiraplugin',
+    servers: [
+      {
+        id: '3d5dc9a091ef11eb9dd9d94066832c2c',
+        title: 'Jira Server API-1',
+      },
+    ],
+  },
 };

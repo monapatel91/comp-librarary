@@ -121,7 +121,7 @@ export interface WorkItemDetailsType {
 }
 
 export interface ApplicationAPI {
-  payloadUrl: string;
+  basePayloadUrl: string;
   sourceControls: Array<SourceControlAPI>;
   ticketSystems: Array<TicketSystemsAPI>;
 }
@@ -183,7 +183,14 @@ export interface ApplicationFormOutput {
   ticketSystem: TicketSystem;
 }
 
-export interface ApplicationForm extends ApplicationFormOutput {
+export interface ApplicationDetails {
+  applicationName: string;
+  basePayloadUrl: string;
+  sourceControls: Array<SourceControl>;
+  ticketSystem: TicketSystem;
+}
+
+export interface ApplicationFormType extends ApplicationFormOutput {
   activeSourceControl: SourceControl;
 }
 

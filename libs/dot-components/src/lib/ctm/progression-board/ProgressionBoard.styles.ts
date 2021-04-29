@@ -1,10 +1,17 @@
 import styled, { css } from 'styled-components';
+import { DotTypography } from '../../components';
 
 export const rootClassName = 'dot-progression-board';
 
 interface ProgressionBoardProps {
   offsetLeft: number;
 }
+
+export const StyledTooltipContent = styled(DotTypography)`
+  ${({ theme }) => css`
+    color: ${theme.palette.layer.n0};
+  `}
+`;
 
 export const StyledProgressionBoard = styled.div<ProgressionBoardProps>`
   ${({ theme, offsetLeft }) => css`

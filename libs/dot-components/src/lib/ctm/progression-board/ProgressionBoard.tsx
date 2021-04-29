@@ -18,6 +18,8 @@ import { SwimLane } from './SwimLane';
 export interface ProgressionBoardProps extends CommonProps {
   /* Base URL on which user will be redirected when item selection is made */
   baseUrl?: string;
+  /* Optional callback function which gets executed upon application name click event */
+  onAppNameClick?: (appName: string) => void;
   /* Array of progression phases */
   phases: Array<PhaseType>;
   /* Object which can be used when custom work-item selection is implemented */
@@ -28,6 +30,7 @@ export const DotProgressionBoard = ({
   baseUrl,
   className,
   'data-testid': dataTestId,
+  onAppNameClick,
   phases,
   workItemSelection = null,
 }: ProgressionBoardProps) => {
@@ -157,6 +160,7 @@ export const DotProgressionBoard = ({
       <SwimLane
         baseUrl={baseUrl}
         key={i}
+        onAppNameClick={onAppNameClick}
         progressionPackage={pkg}
         selectWorkitemProps={selectWorkitemProps}
         isOffsetLeft={offsetLeft > 0}
