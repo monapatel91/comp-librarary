@@ -80,7 +80,7 @@ export const DotSidebar = ({
   return (
     <StyledSidebar
       className={rootClasses}
-      data-testid={`primaryNav ${dataTestId}`}
+      data-testid={`primaryNav ${dataTestId ? dataTestId : ''}`}
     >
       {title && (
         <header>
@@ -97,6 +97,7 @@ export const DotSidebar = ({
       {goBack && backItem && (
         <div className="go-back">
           <DotIconButton
+            data-testid="back-button"
             iconId={backItem.iconId ? backItem.iconId : 'back'}
             onClick={backItem.onClick}
             titleTooltip={backItem.title || backItem.text}
@@ -118,6 +119,7 @@ export const DotSidebar = ({
       {collapsable && (
         <div className="toggle-nav">
           <DotIconButton
+            data-testid="toggle-nav"
             iconId="chevron-left"
             onClick={() => setIsOpen(!isOpen)}
           />

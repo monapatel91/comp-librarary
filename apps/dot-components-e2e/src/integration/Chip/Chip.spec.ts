@@ -25,11 +25,11 @@ describe('dot-components: Chip component', () => {
   });
 });
 
-xdescribe('dot-components: Chip component with Avatar', () => {
+describe('dot-components: Chip component with Avatar', () => {
   before(() => cy.visit('/iframe.html?id=components-chip--chip-with-avatar'));
+
   describe('style decisions', () => {
     it('avatar size and spacing is correct', () => {
-      cy.get('div').should('have.class', 'MuiAvatar-root');
       cy.get('div.dot-chip div.dot-avatar')
         .should('have.css', 'height', '24px')
         .and('have.css', 'width', '24px')

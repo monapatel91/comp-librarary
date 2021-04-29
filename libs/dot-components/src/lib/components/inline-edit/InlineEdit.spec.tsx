@@ -105,7 +105,7 @@ describe('DotInlineEdit', () => {
     expect(onEditStageChange).toHaveBeenCalledTimes(3);
   });
 
-  xit('can edit then hit enter to confirm', () => {
+  it('can edit then hit enter to confirm', async () => {
     const originalValue = 'batman';
     const onLabelChange = jest.fn();
     const onEditStageChange = jest.fn();
@@ -134,7 +134,7 @@ describe('DotInlineEdit', () => {
 
     fireEvent.keyDown(textField, { key: 'Enter', code: 13 });
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(textField).toHaveValue(originalValue + newValue);
       expect(onLabelChange).toHaveBeenCalledTimes(1);
       expect(onEditStageChange).toHaveBeenCalledTimes(2);

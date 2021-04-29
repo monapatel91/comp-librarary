@@ -71,7 +71,7 @@ describe('PhaseHeader', () => {
     expect(labelChange).toHaveBeenCalledTimes(1);
   });
 
-  xit('display delete dialog, then delete', () => {
+  it('display delete dialog, then delete', () => {
     const deleteFunction = jest.fn();
     render(
       <DotPhaseHeader
@@ -84,7 +84,7 @@ describe('PhaseHeader', () => {
     expect(deleteButton).toBeTruthy();
     userEvent.click(deleteButton);
 
-    const deleteDialog = screen.getByTestId('phase-icon-delete-0');
+    const deleteDialog = screen.getByTestId('phase-header-delete-dialog-0');
     expect(deleteDialog).toBeVisible();
 
     const deleteConfirmButton = screen.getByRole('button', {
@@ -94,7 +94,7 @@ describe('PhaseHeader', () => {
     expect(deleteFunction).toBeCalledTimes(1);
   });
 
-  xit('display delete dialog, then cancel', () => {
+  it('display delete dialog, then cancel', () => {
     const deleteFunction = jest.fn();
     render(
       <DotPhaseHeader
@@ -107,7 +107,7 @@ describe('PhaseHeader', () => {
     expect(deleteButton).toBeTruthy();
     userEvent.click(deleteButton);
 
-    const deleteDialog = screen.getByTestId('phase-icon-delete-0');
+    const deleteDialog = screen.getByTestId('phase-header-delete-dialog-0');
     expect(deleteDialog).toBeVisible();
 
     const deleteCancelButton = screen.getByRole('button', {

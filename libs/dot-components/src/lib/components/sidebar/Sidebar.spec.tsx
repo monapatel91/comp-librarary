@@ -1,13 +1,14 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '../../testing-utils';
+import { render, screen, waitFor } from '../../testing-utils';
 import { ListItemProps } from '../list/List';
 import { BackItemProps, DotSidebar, SidebarProps } from './Sidebar';
 
+const goBack = jest.fn();
 const backItem: BackItemProps = {
   iconId: 'back',
-  onClick: () => console.log('go back clicked'),
+  onClick: goBack,
   text: 'Home',
   title: `Go Back to Home`,
 };
@@ -60,8 +61,15 @@ describe(' Sidebar', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  xit('navigation expands/collapses as expected', async () => {
-    render(<DotSidebar />);
+  it('navigation expands/collapses as expected', async () => {
+    render(
+      <DotSidebar
+        backItem={backItem}
+        collapsable={true}
+        goBack={true}
+        open={true}
+      />
+    );
     const primaryNav = screen.getByTestId('primaryNav');
 
     await waitFor(() => {
@@ -69,24 +77,23 @@ describe(' Sidebar', () => {
     });
 
     expect(screen.getByText('Home')).toBeVisible();
-    expect(screen.findByTitle('Toggle Nav')).toBeTruthy();
+    expect(screen.getByTestId('toggle-nav')).toBeTruthy();
 
-    userEvent.click(screen.getByTitle('Toggle Nav'));
+    userEvent.click(screen.getByTestId('toggle-nav'));
     expect(primaryNav).toHaveClass('collapsed');
   });
 
-  xit('navigation is expanded by default', () => {
+  it('navigation is expanded by default', () => {
     render(<DotSidebar navItems={navItems} />);
 
     const primaryNav = screen.getByTestId('primaryNav');
     expect(primaryNav).toHaveClass('expanded');
   });
 
-  xit('displays top level navigation when back button clicked', async () => {
-    render(<DotSidebar navItems={navItems} />);
-    const primaryNav = screen.getByTestId('primaryNav');
-    await waitFor(() => {
-      expect(primaryNav.innerHTML).toContain('Batman');
-    });
+  it('calls backItem callback when back button clicked', async () => {
+    render(<DotSidebar backItem={backItem} goBack={true} />);
+    const backButton = screen.getByTestId('back-button');
+    userEvent.click(backButton);
+    expect(goBack).toHaveBeenCalledTimes(1);
   });
 });

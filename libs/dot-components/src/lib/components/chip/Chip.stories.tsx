@@ -23,8 +23,10 @@ export default {
 export const Default: Story<ChipProps> = (args) => <DotChip {...args} />;
 export const ChipWithAvatar: Story<ChipProps> = (args) => (
   <DotChip
-    avatar={<DotAvatar alt="Batman" size="small" type="text" />}
     {...args}
+    avatar={
+      <DotAvatar alt="Batman" size="small" text="Bruce Wayne" type="text" />
+    }
   />
 );
 export const ChipWithIcon: Story<ChipProps> = (args) => (
