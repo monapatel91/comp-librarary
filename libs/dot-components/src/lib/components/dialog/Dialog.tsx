@@ -34,6 +34,8 @@ export interface DialogProps extends CommonProps {
   children?: ReactNode;
   /** boolean that toggles visibility of close icon on top right of dialog header*/
   closeIconVisible?: boolean;
+  /** boolean that toggles existence of primary action button */
+  hasPrimaryAction?: boolean;
   /** The callback to be executed when the action is cancelled */
   onCancel?: (event: KeyboardEvent | MouseEvent) => void;
   /** The callback to be executed when the action is submitted */
@@ -55,6 +57,7 @@ export const DotDialog = ({
   children,
   closeIconVisible,
   closeOnClickAway = true,
+  hasPrimaryAction = true,
   onCancel,
   onSubmit,
   open,
@@ -140,14 +143,16 @@ export const DotDialog = ({
           >
             {cancelLabel}
           </DotButton>
-          <DotButton
-            disabled={submitDisabled}
-            startIcon={submitStartIcon}
-            onClick={handleSubmit}
-            type={submitType}
-          >
-            {submitLabel}
-          </DotButton>
+          {hasPrimaryAction && (
+            <DotButton
+              disabled={submitDisabled}
+              startIcon={submitStartIcon}
+              onClick={handleSubmit}
+              type={submitType}
+            >
+              {submitLabel}
+            </DotButton>
+          )}
         </DialogActions>
       </StyledDialog>
     </div>

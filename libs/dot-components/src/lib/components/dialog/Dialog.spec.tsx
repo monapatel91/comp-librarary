@@ -15,6 +15,7 @@ describe('DotDialog', () => {
       cancelButtonProps: {},
       children: 'Hello World',
       closeIconVisible: true,
+      hasPrimaryAction: true,
       onCancel: onClick,
       onSubmit: onClick,
       open: true,
@@ -26,6 +27,7 @@ describe('DotDialog', () => {
       cancelButtonProps: {},
       children: 'Hello World',
       closeIconVisible: true,
+      hasPrimaryAction: true,
       onCancel: onClick,
       onSubmit: onClick,
       open: true,
@@ -181,5 +183,22 @@ describe('DotDialog', () => {
     );
 
     expect(screen.getByText('Dialog Title')).toBeTruthy();
+  });
+
+  it("should NOT display primary action button when 'hasPrimaryAction' prop is set to false", () => {
+    render(
+      <DotDialog
+        hasPrimaryAction={false}
+        title="Dialog Title"
+        open={true}
+        onCancel={cancelFunc}
+        onSubmit={submitFunc}
+      >
+        <p>Hello World</p>
+      </DotDialog>
+    );
+    expect(
+      screen.queryByRole('button', { name: /ok/i })
+    ).not.toBeInTheDocument();
   });
 });

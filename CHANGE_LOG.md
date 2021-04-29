@@ -1,5 +1,11 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **Dialog** - added `hasActions` optional prop which toggles existence of actions buttons, and is, by default, set to true
+
 ## 0.0.0-alpha.25
 
 ### Experimental
