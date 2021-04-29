@@ -4,9 +4,15 @@ import { useStylesWithRootClass } from '../../components/useStylesWithRootClass'
 import { CommonProps } from '../../components/CommonProps';
 import { rootClassName, StyledProgressionSwimlane } from './Swimlane.styles';
 import { Phase } from './Phase';
-import { SelectWorkItem, SwimLanepkg } from './ProgressionBoardInterfaces';
+import {
+  PhaseType,
+  SelectWorkItem,
+  SwimLanepkg,
+} from './ProgressionBoardInterfaces';
 import { DotLink, DotTypography } from '../../components';
 import { StyledTooltipContent } from './ProgressionBoard.styles';
+import { checkIfApplicationHasAnyVersion } from './progression/applicationHelper';
+import { WaitingPhase } from './phase/WaitingPhase';
 
 export interface SwimLaneProps extends CommonProps {
   baseUrl: string;
@@ -67,6 +73,24 @@ export const SwimLane = ({
     return elem;
   };
 
+  const renderBoardPhases = () => {
+    const hasVersions = checkIfApplicationHasAnyVersion(progressionPackage);
+    if (hasVersions) {
+      return phases.map((phase: PhaseType, index: number) => (
+        <Phase
+          baseUrl={baseUrl}
+          data-testid="phase-columns"
+          key={index}
+          phase={phase}
+          selectWorkitemProps={selectWorkitemProps}
+        />
+      ));
+    }
+    return phases.map((_: PhaseType, index: number) => (
+      <WaitingPhase key={index} />
+    ));
+  };
+
   return (
     <StyledProgressionSwimlane className={rootClasses} data-testid={dataTestId}>
       <div className="swimlane-header">
@@ -78,15 +102,7 @@ export const SwimLane = ({
         ))}
       </div>
       <ul data-testid="board-phases" id="phases" className="board phases">
-        {phases.map((phase, i) => (
-          <Phase
-            baseUrl={baseUrl}
-            data-testid="phase-columns"
-            key={i}
-            phase={phase}
-            selectWorkitemProps={selectWorkitemProps}
-          />
-        ))}
+        {renderBoardPhases()}
       </ul>
     </StyledProgressionSwimlane>
   );

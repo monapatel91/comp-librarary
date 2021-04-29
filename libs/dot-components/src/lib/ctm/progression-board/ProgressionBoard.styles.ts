@@ -16,6 +16,8 @@ export const StyledTooltipContent = styled(DotTypography)`
 export const StyledProgressionBoard = styled.div<ProgressionBoardProps>`
   ${({ theme, offsetLeft }) => css`
     &.${rootClassName} {
+      height: 100%;
+
       &.columns-wrapper {
         display: table;
         flex: 1;

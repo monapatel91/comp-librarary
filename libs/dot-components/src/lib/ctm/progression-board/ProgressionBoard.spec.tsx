@@ -1,25 +1,79 @@
 import React from 'react';
-import { render, screen } from '../../testing-utils';
-import { DotProgressionBoard } from './ProgressionBoard';
+import { render, RenderResult, screen } from '../../testing-utils';
+import { DotProgressionBoard, ProgressionBoardProps } from './ProgressionBoard';
 import { samplePhases } from './sample-data/sampleData';
+import { PhaseType } from './ProgressionBoardInterfaces';
 
 describe('ProgressionBoard', () => {
+  const dataTestId = 'test-pb';
+
+  const sampleEmptyPhases: Array<PhaseType> = [
+    {
+      packageVersions: [],
+      code_complete: false,
+      delivery_category: 'Developing',
+      description: '',
+      name: 'Phase 1',
+    },
+    {
+      code_complete: true,
+      delivery_category: 'Packaged',
+      description: '',
+      name: 'Phase 2',
+      packageVersions: [],
+    },
+    {
+      code_complete: true,
+      delivery_category: 'Packaged',
+      description: '',
+      name: 'Phase 3',
+      packageVersions: [],
+    },
+    {
+      code_complete: true,
+      delivery_category: 'Packaged',
+      description: '',
+      name: 'Phase 4',
+      packageVersions: [],
+    },
+  ];
+
+  const getEmptyPhases = (): HTMLElement =>
+    screen.queryByTestId(`${dataTestId}-empty-phases`);
+
+  const getBoardPhases = (): Array<HTMLElement> =>
+    screen.queryAllByTestId('board-phases');
+
+  const componentProps: ProgressionBoardProps = {
+    'data-testid': dataTestId,
+    phases: samplePhases,
+  };
+
+  const renderComponent = (
+    props: ProgressionBoardProps = null
+  ): RenderResult => {
+    const renderProps = props ? props : componentProps;
+    return render(<DotProgressionBoard {...renderProps} />);
+  };
+
   it('should render successfully', () => {
-    const { baseElement } = render(
-      <DotProgressionBoard phases={samplePhases} />
-    );
+    const { baseElement } = renderComponent();
     expect(baseElement).toBeTruthy();
   });
 
+  it('should NOT render empty phases', () => {
+    expect(getEmptyPhases()).not.toBeInTheDocument();
+  });
+
   it('should have three rows', async () => {
-    render(<DotProgressionBoard phases={samplePhases} />);
-    const phases = screen.getAllByTestId('board-phases');
+    renderComponent();
+    const phases = getBoardPhases();
 
     expect(phases).toHaveLength(3);
   });
 
   it('should have five columns in each row', async () => {
-    render(<DotProgressionBoard phases={samplePhases} />);
+    renderComponent();
     const cols = screen.getAllByTestId('phase-columns');
 
     // 5 columns x 3 rows
@@ -27,14 +81,14 @@ describe('ProgressionBoard', () => {
   });
 
   it('should have correct number of cards', () => {
-    render(<DotProgressionBoard phases={samplePhases} />);
+    renderComponent();
     const cards = screen.getAllByTestId('card');
 
     expect(cards).toHaveLength(10);
   });
 
   it('cards should have correct information', () => {
-    render(<DotProgressionBoard phases={samplePhases} />);
+    renderComponent();
     const cards = screen.getAllByTestId('card');
     const links = screen.getAllByRole('link');
 
@@ -48,5 +102,15 @@ describe('ProgressionBoard', () => {
     expect(firstCard).toContainHTML(`<i class="icon-file-dotted dot-i">`);
     expect(firstCard).toContainHTML(`<i class="icon-check-solid dot-i">`);
     expect(firstCard).toContainHTML(`<i class="icon-rogue-commits dot-i">`);
+  });
+
+  describe('empty phases', () => {
+    const props: ProgressionBoardProps = {
+      'data-testid': dataTestId,
+      phases: sampleEmptyPhases,
+    };
+    renderComponent(props);
+    expect(getEmptyPhases()).toBeVisible();
+    expect(getBoardPhases()).toHaveLength(0);
   });
 });

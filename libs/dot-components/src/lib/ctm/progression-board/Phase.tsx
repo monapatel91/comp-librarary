@@ -2,7 +2,11 @@ import React, { useRef } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import { ValidPackage } from './PackageVersion';
-import { PhaseType, SelectWorkItem } from './ProgressionBoardInterfaces';
+import {
+  PackageType,
+  PhaseType,
+  SelectWorkItem,
+} from './ProgressionBoardInterfaces';
 
 export interface PhaseProps extends CommonProps {
   baseUrl: string;
@@ -21,7 +25,7 @@ export const Phase = ({
   const boardColumnRef = useRef(null);
   return (
     <li className={rootClasses} data-testid={dataTestId} ref={boardColumnRef}>
-      {phase.packageVersions.map((packageVer, i) =>
+      {phase.packageVersions.map((packageVer: PackageType, i: number) =>
         packageVer.rev_from <= packageVer.rev_to ? (
           <ValidPackage
             baseUrl={baseUrl}

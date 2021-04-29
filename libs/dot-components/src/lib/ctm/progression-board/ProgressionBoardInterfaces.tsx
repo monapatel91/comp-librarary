@@ -45,12 +45,16 @@ export interface PackageType {
   workitemsDetails?: Array<WorkItemDetailsType>;
 }
 
+export interface EmptyPackageType {
+  package_name: string;
+}
+
 export interface PhaseType {
   code_complete: boolean;
   delivery_category?: string;
   description?: string;
   name: string;
-  packageVersions: Array<PackageType>;
+  packageVersions: Array<PackageType | EmptyPackageType>;
 }
 
 export interface EditablePhaseType {

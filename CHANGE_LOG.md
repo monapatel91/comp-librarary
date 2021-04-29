@@ -6,6 +6,10 @@
 
 - **Dialog** - added `hasActions` optional prop which toggles existence of actions buttons, and is, by default, set to true
 
+### Experimental
+
+- **ProgressionBoard** - changed type of `packageVersions` to `Array<PackageType | EmptyPackageType>` to support application's empty state
+
 ## 0.0.0-alpha.25
 
 ### Experimental
