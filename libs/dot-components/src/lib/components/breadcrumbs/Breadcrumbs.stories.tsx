@@ -1,11 +1,9 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { action } from '@storybook/addon-actions';
 
 import { DotBreadcrumbs, BreadcrumbProps } from './Breadcrumbs';
 
-// Leaving actions out of this for now when clicking on a items because
-// I'm not sure how to do this with the new argTypes.
-// It might be worth while to consider moving onClick to a prop on Breadcrumbs though.
 export default {
   component: DotBreadcrumbs,
   title: 'Components/Breadcrumbs',
@@ -15,18 +13,22 @@ export default {
         {
           text: 'Link 1',
           underline: 'hover',
+          onClick: action('Link 1 clicked'),
         },
         {
           text: 'Link 2',
           underline: 'hover',
+          onClick: action('Link 2 clicked'),
         },
         {
           text: 'Link 3',
           underline: 'hover',
+          onClick: action('Link 3 clicked'),
         },
         {
           text: 'Link 4',
           underline: 'hover',
+          onClick: action('Link 4 clicked'),
         },
         {
           text: 'Link 5',

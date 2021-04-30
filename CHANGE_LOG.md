@@ -4,6 +4,7 @@
 
 ### Components
 
+- **Breadcrumbs** - added `expansionMenu` prop which, if true, shows collapsed breadcrumbs in a dropdown menu
 - **Dialog** - added `hasActions` optional prop which toggles existence of actions buttons, and is, by default, set to true
 
 ### Experimental
