@@ -76,7 +76,7 @@ jobs:
 
     steps:
       - name: wait on tests
-        uses: lewagon/wait-on-check-action@bafe56a6863672c681c3cf671f5e10b20abf2eaa
+        uses: lewagon/wait-on-check-action@master
         with:
           ref: ${{ github.ref }}
           check-name: Lint, Unit Test & Build
