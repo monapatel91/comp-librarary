@@ -78,7 +78,7 @@ jobs:
       - name: wait on tests
         uses: lewagon/wait-on-check-action@v0.2
         with:
-          ref: master
+          ref: ${{ github.ref }}
           check-name: Lint, Unit Test & Build
           repo-token: ${{ github.token }}
           wait-interval: 20
