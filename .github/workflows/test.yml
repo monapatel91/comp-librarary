@@ -6,7 +6,7 @@ on:
 
 jobs:
   verification:
-    name: Lint, Test & Build
+    name: Lint, Unit Test & Build
     runs-on: ubuntu-latest
 
     steps:
@@ -47,7 +47,28 @@ jobs:
         env:
           CI: true
 
-      # possibly run e2e in parallel
+  e2e:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+      - run: echo ${{ github.event.client_payload.sha }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      # https://github.com/marketplace/actions/yarn-install-cache
+      - name: Cache yarn dependencies
+        uses: c-hive/gha-yarn-cache@v1
+
+      - name: Install dependencies
+        run: yarn install
 
       - name: Run e2e tests
         run: yarn e2e:ci
