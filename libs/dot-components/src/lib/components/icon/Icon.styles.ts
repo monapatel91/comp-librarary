@@ -41,6 +41,9 @@ export const StyledIcon = styled(Icon)`
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
+        &.icon-report:before {
+          content: "\\e9ce";
+        }
         &.icon-package:before {
           content: "\\e9c9";
         }
