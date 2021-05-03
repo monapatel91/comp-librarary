@@ -40,10 +40,11 @@ jobs:
           major-wording: 'MAJOR'
           minor-wording: 'minor'
           patch-wording: 'patch'
-          # rc-wording will override the preid
+          # currently we do not want to bump on every merge
+          # once we do... remove 'alpha' from rc-wording
           rc-wording: 'alpha' # RELEASE, beta
-          tag-prefix: ''
           target-branch: 'master'
+          # rc-wording will override the preid
           preid: 'alpha'
 
       - name: Output Step
@@ -89,6 +90,7 @@ jobs:
           NEW_RELEASE: ${{ steps.create-draft-release.outputs.automatic_releases_tag }}
         run: echo "new release tag $NEW_RELEASE"
 
+  # THIS WILL BE MANUAL FORMAT FOR NOW
   # update changelog
   # https://github.com/marketplace?type=actions&query=changelog
 
@@ -98,7 +100,9 @@ jobs:
   # https://github.com/marketplace/actions/npm-publish
 
   # deploy to github pages
-
-  # deploy to storybook (build.yml)
-  # OR repository-dispatch may be able to trigger a separate workflow
-  # https://github.com/peter-evans/repository-dispatch
+  # https://github.com/digital-ai/dot-components/settings/pages
+  # fetch latest from master
+  # run yarn storybook:build
+  # delete everything except docs/
+  # git push to `ghpages` branch with force
+  # repository-dispatch can do this

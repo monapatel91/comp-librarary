@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      # The following should be able to run independently
+      # will rely on 'verification' creating an environment they can use
+
       - name: Lint Code
         run: yarn lint
 
@@ -43,6 +46,8 @@ jobs:
         run: yarn test
         env:
           CI: true
+
+      # possibly run e2e in parallel
 
       - name: Run e2e tests
         run: yarn e2e:ci
