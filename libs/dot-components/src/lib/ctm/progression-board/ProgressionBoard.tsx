@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, ReactNode } from 'react';
 import { CommonProps } from '../../components/CommonProps';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { BoardHeaders } from './BoardHeaders';
@@ -8,16 +8,20 @@ import {
 } from './ProgressionBoard.styles';
 import { calculateProgressionBoardOffset } from './progressionBoardHelper';
 import {
+  PackageType,
   PhaseType,
   SelectedWorkItem,
   SwimLanepkg,
   WorkItemSelection,
 } from './ProgressionBoardInterfaces';
 import { SwimLane } from './SwimLane';
+import { EmptyPhases } from './phase/EmptyPhases';
 
 export interface ProgressionBoardProps extends CommonProps {
   /* Base URL on which user will be redirected when item selection is made */
   baseUrl?: string;
+  /* Optional callback function which gets executed upon application name click event */
+  onAppNameClick?: (appName: string) => void;
   /* Array of progression phases */
   phases: Array<PhaseType>;
   /* Object which can be used when custom work-item selection is implemented */
@@ -28,6 +32,7 @@ export const DotProgressionBoard = ({
   baseUrl,
   className,
   'data-testid': dataTestId,
+  onAppNameClick,
   phases,
   workItemSelection = null,
 }: ProgressionBoardProps) => {
@@ -90,8 +95,8 @@ export const DotProgressionBoard = ({
     // in which those workitems appear.
     const workitemMap: WorkitemMapType = {};
     phases.forEach((phase) => {
-      phase.packageVersions.forEach((packageVersion) => {
-        packageVersion.workitems.forEach((workitem) => {
+      phase.packageVersions.forEach((packageVersion: PackageType) => {
+        packageVersion.workitems?.forEach((workitem) => {
           const currentCount = workitemMap[workitem._id] || 0;
           workitemMap[workitem._id] = currentCount + 1;
         });
@@ -103,12 +108,12 @@ export const DotProgressionBoard = ({
         // while here, use the map we built above to determine
         // if workitems are split.
         .map((phase) => {
-          phase.packageVersions.forEach((packageVersion) => {
-            packageVersion.workitems.forEach((workitem) => {
+          phase.packageVersions.forEach((packageVersion: PackageType) => {
+            packageVersion.workitems?.forEach((workitem) => {
               workitem.isSplit = workitemMap[workitem._id] > 1;
             });
           });
-          return phase.packageVersions.map((version) => ({
+          return phase.packageVersions.map((version: PackageType) => ({
             package_id: version.package_id,
             package_name: version.package_name,
           }));
@@ -138,7 +143,7 @@ export const DotProgressionBoard = ({
           const packagePhases = phases.map((phase) => ({
             ...phase,
             packageVersions: phase.packageVersions.filter(
-              (version) => version.package_id === pkg.package_id
+              (version: PackageType) => version.package_id === pkg.package_id
             ),
           }));
 
@@ -150,6 +155,8 @@ export const DotProgressionBoard = ({
     );
   };
 
+  const allPackages = getPackages();
+
   const pbRef = useRef(null);
 
   const renderSwimLanesFromPackages = (packages: Array<SwimLanepkg>) => {
@@ -157,11 +164,29 @@ export const DotProgressionBoard = ({
       <SwimLane
         baseUrl={baseUrl}
         key={i}
+        onAppNameClick={onAppNameClick}
         progressionPackage={pkg}
         selectWorkitemProps={selectWorkitemProps}
         isOffsetLeft={offsetLeft > 0}
       />
     ));
+  };
+
+  const renderProgressionBoard = (): ReactNode => {
+    if (allPackages && allPackages.length > 0) {
+      return (
+        <>
+          <BoardHeaders headers={phaseNames} isOffsetLeft={offsetLeft > 0} />
+          {renderSwimLanesFromPackages(allPackages)}
+        </>
+      );
+    }
+    return (
+      <EmptyPhases
+        data-testid={`${dataTestId}-empty-phases`}
+        phaseNames={phaseNames}
+      />
+    );
   };
 
   return (
@@ -172,8 +197,7 @@ export const DotProgressionBoard = ({
       offsetLeft={offsetLeft}
       ref={pbRef}
     >
-      <BoardHeaders headers={phaseNames} isOffsetLeft={offsetLeft > 0} />
-      {renderSwimLanesFromPackages(getPackages())}
+      {renderProgressionBoard()}
     </StyledProgressionBoard>
   );
 };

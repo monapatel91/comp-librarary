@@ -45,12 +45,16 @@ export interface PackageType {
   workitemsDetails?: Array<WorkItemDetailsType>;
 }
 
+export interface EmptyPackageType {
+  package_name: string;
+}
+
 export interface PhaseType {
   code_complete: boolean;
   delivery_category?: string;
   description?: string;
   name: string;
-  packageVersions: Array<PackageType>;
+  packageVersions: Array<PackageType | EmptyPackageType>;
 }
 
 export interface EditablePhaseType {
@@ -121,7 +125,7 @@ export interface WorkItemDetailsType {
 }
 
 export interface ApplicationAPI {
-  payloadUrl: string;
+  basePayloadUrl: string;
   sourceControls: Array<SourceControlAPI>;
   ticketSystems: Array<TicketSystemsAPI>;
 }
@@ -183,7 +187,14 @@ export interface ApplicationFormOutput {
   ticketSystem: TicketSystem;
 }
 
-export interface ApplicationForm extends ApplicationFormOutput {
+export interface ApplicationDetails {
+  applicationName: string;
+  basePayloadUrl: string;
+  sourceControls: Array<SourceControl>;
+  ticketSystem: TicketSystem;
+}
+
+export interface ApplicationFormType extends ApplicationFormOutput {
   activeSourceControl: SourceControl;
 }
 

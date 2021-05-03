@@ -1,5 +1,11 @@
+import {
+  EmptyPackageType,
+  PackageType,
+  PhaseType,
+} from '@digital-ai/dot-components';
+
 // Demo data so that we can provide a constant example.
-export const phasesData = [
+export const phasesData: Array<PhaseType> = [
   {
     name: 'Build',
     packageVersions: [],
@@ -257,6 +263,9 @@ export const phasesData = [
             value_goal: 'improve',
           },
         ],
+      },
+      {
+        package_name: 'empty-app',
       },
       {
         _id: '5b6d3ac4297993664dfa9462',
@@ -827,7 +836,7 @@ export const phasesData = [
           },
         ],
       },
-    ],
+    ] as Array<PackageType | EmptyPackageType>,
   },
   {
     code_complete: false,

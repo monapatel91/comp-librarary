@@ -70,11 +70,13 @@ describe('applicationFormHelper', () => {
   const sampleScServers = [
     {
       id: '1111',
+      name: 'Configuration/2',
       title: 'Gitlab - Server 1',
       payloadUrl: 'http://www.gl1.com',
     },
     {
       id: '2222',
+      name: 'Configuration/2',
       title: 'Gitlab - Server 1',
       payloadUrl: 'http://www.gl2.com',
     },

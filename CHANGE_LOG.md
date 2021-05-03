@@ -1,10 +1,23 @@
 # Change Log
 
+## 0.0.0-alpha.26
+
+### Components
+
+- **Breadcrumbs** - added `expansionMenu` prop which, if true, shows collapsed breadcrumbs in a dropdown menu
+- **Dialog** - added `hasActions` optional prop which toggles existence of actions buttons, and is, by default, set to true
+
+### Experimental
+
+- **ProgressionBoard** - changed type of `packageVersions` to `Array<PackageType | EmptyPackageType>` to support application's empty state
+
 ## 0.0.0-alpha.25
 
 ### Experimental
 
 - **ProgressionBoard** - determine of a workitem is split internally rather than expecting the provided data to provide that
+- **DotProgressionBoardApplicationDrawer** - removed this component and replaced it with **DotProgressionBoardAppFormDrawer**
+- **DotProgressionBoardAppInfoDrawer** - created new component used for viewing existing application data inside of a drawer
 
 ## 0.0.0-alpha.21
 

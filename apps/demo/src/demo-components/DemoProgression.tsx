@@ -1,12 +1,14 @@
 import React, { CSSProperties, Fragment, ReactNode, useState } from 'react';
 import styled from 'styled-components';
 import {
+  ApplicationDetails,
   DotButton,
   DotDialog,
   DotList,
   DotListItem,
   DotProgressionBoard,
-  DotProgressionBoardApplicationDrawer,
+  DotProgressionBoardAppFormDrawer,
+  DotProgressionBoardAppInfoDrawer,
   DotProgressionBoardPhaseEditor,
   DotProgressionBoardWorkItemDrawer,
   DrawerPaperProps,
@@ -16,7 +18,9 @@ import {
 } from '@digital-ai/dot-components';
 import { pbWorkItemDetailsData } from '../demo-data/pbWorkItemDetailsData';
 import { pbApplicationAPIData as apiData } from '../demo-data/pbApplicationAPIData';
+import { sampleEmptyPhases } from '../demo-data/pbEmptyPhasesData';
 import { phasesData } from './DemoData';
+import { pbAppDetailsData } from '../demo-data/pbAppDetailsData';
 
 const rootClassName = 'demo-progression';
 const dialogRootClassName = 'form-result-dialog';
@@ -24,13 +28,16 @@ const dialogRootClassName = 'form-result-dialog';
 const StyledDemoProgression = styled.div`
   &.${rootClassName} {
     height: 100%;
+    display: flex;
+    flex-direction: column;
 
     .progression {
       display: flex;
+      height: 100%;
     }
 
-    .new-application-btn {
-      margin: 8px 0 8px 4px;
+    .progression-action {
+      margin: 8px 0 8px 0;
     }
 
     .form-child-list {
@@ -55,7 +62,14 @@ export const ProgressionDemo = () => {
   const [selectedWorkItem, setSelectedWorkItem] = useState(null);
   const [workItemDetails, setWorkItemDetails] = useState(null);
   const [isAppDrawerOpened, setIsAppDrawerOpened] = useState<boolean>(false);
+  const [appDetails, setAppDetails] = useState<ApplicationDetails>();
+  const [isAppInfoDrawerOpened, setIsAppInfoDrawerOpened] = useState<boolean>(
+    false
+  );
   const [isInConfigureMode, setIsInConfigureMode] = useState<boolean>(false);
+  const [isInEmptyPhasesMode, setIsInEmptyPhasesMode] = useState<boolean>(
+    false
+  );
   const [editablePhases, setEditablePhases] = useState<
     Array<EditablePhaseType>
   >(null);
@@ -99,10 +113,16 @@ export const ProgressionDemo = () => {
 
   const onApplicationDrawerClose = (): void => setIsAppDrawerOpened(false);
 
+  const onAppInfoDrawerClose = (): void => setIsAppInfoDrawerOpened(false);
+
   const onNewApplicationClick = (): void => {
     onDrawerClose();
     setIsAppDrawerOpened(true);
   };
+
+  const onViewEmptyPhasesClick = (): void => setIsInEmptyPhasesMode(true);
+
+  const onCancelEmptyPhasesMode = (): void => setIsInEmptyPhasesMode(false);
 
   const onConfigureClick = (): void => {
     setIsInConfigureMode((prevState) => !prevState);
@@ -220,6 +240,20 @@ export const ProgressionDemo = () => {
     );
   };
 
+  const onAppNameClick = (appName: string): void => {
+    setAppDetails(null);
+    setIsAppInfoDrawerOpened(true);
+    /* Simulate async API call */
+    setTimeout(() => {
+      const currentAppDetails = pbAppDetailsData.find(
+        (app) => app.applicationName === appName
+      );
+      if (currentAppDetails) {
+        setAppDetails(currentAppDetails);
+      }
+    }, 1500);
+  };
+
   const renderProgression = (): ReactNode => {
     if (isInConfigureMode) {
       return (
@@ -230,21 +264,52 @@ export const ProgressionDemo = () => {
         />
       );
     }
+    if (isInEmptyPhasesMode) {
+      return (
+        <>
+          <div className="progression-action">
+            <DotButton
+              className="view-empty-phases-btn"
+              onClick={onCancelEmptyPhasesMode}
+            >
+              Go Back
+            </DotButton>
+          </div>
+          <div className="progression">
+            <DotProgressionBoard
+              className="progression-board"
+              workItemSelection={workItemSelection}
+              phases={sampleEmptyPhases}
+              baseUrl={BASE_URL}
+            />
+          </div>
+        </>
+      );
+    }
     return (
       <>
-        <DotButton
-          className="new-application-btn"
-          onClick={onNewApplicationClick}
-        >
-          New Application
-        </DotButton>
-        <DotButton className="edit-btn" onClick={onConfigureClick}>
-          Configure
-        </DotButton>
+        <div className="progression-action">
+          <DotButton
+            className="new-application-btn"
+            onClick={onNewApplicationClick}
+          >
+            New Application
+          </DotButton>
+          <DotButton
+            className="view-empty-phases-btn"
+            onClick={onViewEmptyPhasesClick}
+          >
+            View Empty Phases
+          </DotButton>
+          <DotButton className="edit-btn" onClick={onConfigureClick}>
+            Configure
+          </DotButton>
+        </div>
         <div className="progression">
           <DotProgressionBoard
             className="progression-board"
             workItemSelection={workItemSelection}
+            onAppNameClick={onAppNameClick}
             phases={phasesData}
             baseUrl={BASE_URL}
           />
@@ -255,9 +320,15 @@ export const ProgressionDemo = () => {
             workItemDetails={workItemDetails}
             drawerPaperProps={drawerPaperProps}
           />
-          <DotProgressionBoardApplicationDrawer
+          <DotProgressionBoardAppFormDrawer
             drawerPaperProps={drawerPaperProps}
             {...application}
+          />
+          <DotProgressionBoardAppInfoDrawer
+            appDetails={appDetails}
+            drawerPaperProps={drawerPaperProps}
+            isDrawerOpened={isAppInfoDrawerOpened}
+            onDrawerClose={onAppInfoDrawerClose}
           />
         </div>
       </>
