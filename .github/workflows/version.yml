@@ -73,11 +73,19 @@ jobs:
     needs: [verification]
 
     steps:
+      - name: wait for build to pass
+        uses: lewagon/wait-on-check-action@master
+        with:
+          ref: ${{ github.ref }}
+          check-name: Lint, Format & Build
+          repo-token: ${{ github.token }}
+          wait-interval: 20
+
       - name: wait for unit tests to pass
         uses: lewagon/wait-on-check-action@master
         with:
           ref: ${{ github.ref }}
-          check-name: Lint, Unit Test & Build
+          check-name: Run Unit Tests
           repo-token: ${{ github.token }}
           wait-interval: 20
 
