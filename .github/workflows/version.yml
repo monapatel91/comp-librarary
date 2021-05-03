@@ -67,6 +67,8 @@ jobs:
           event-type: run-lint-test-build
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
 
+  # Wait - Build & Test
+  # https://github.com/marketplace/actions/wait-on-check
   checks:
     name: Wait on "Lint, Test & Build" Workflow
     runs-on: ubuntu-latest
@@ -78,9 +80,10 @@ jobs:
         with:
           ref: master
           check-name: Lint, Unit Test & Build
-          repo-token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repo-token: ${{ github.token }}
           wait-interval: 20
 
+  # Create Draft Pre-Release
   # https://github.com/marvinpinto/action-automatic-releases
   create-release:
     name: Tagged release
