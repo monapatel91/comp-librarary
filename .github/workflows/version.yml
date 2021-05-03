@@ -52,12 +52,11 @@ jobs:
           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
         run: echo "new tag $NEW_TAG"
 
-  # Build & Test
+  # Dispatch - Build & Test
   # https://github.com/peter-evans/repository-dispatch
-  # https://github.community/t/wait-for-a-workflow-to-complete-before-starting-another/17192/4
   verification:
     name: Workflow - Lint, Test & Build
-    runs-on: 'ubuntu-latest'
+    runs-on: ubuntu-latest
 
     steps:
       - name: Repository Dispatch
@@ -68,11 +67,25 @@ jobs:
           event-type: run-lint-test-build
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
 
+  checks:
+    name: Wait on "Lint, Test & Build" Workflow
+    runs-on: ubuntu-latest
+    needs: [verification]
+
+    steps:
+      - name: wait on tests
+        uses: lewagon/wait-on-check-action@v0.2
+        with:
+          ref: master
+          check-name: Lint, Unit Test & Build
+          repo-token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          wait-interval: 20
+
   # https://github.com/marvinpinto/action-automatic-releases
   create-release:
     name: Tagged release
-    runs-on: 'ubuntu-latest'
-    needs: [bump-version, verification]
+    runs-on: ubuntu-latest
+    needs: [bump-version, checks]
     if: needs.bump-version.outputs.new-version != ''
 
     steps:
@@ -89,20 +102,3 @@ jobs:
         env:
           NEW_RELEASE: ${{ steps.create-draft-release.outputs.automatic_releases_tag }}
         run: echo "new release tag $NEW_RELEASE"
-
-  # THIS WILL BE MANUAL FORMAT FOR NOW
-  # update changelog
-  # https://github.com/marketplace?type=actions&query=changelog
-
-  # BELOW HERE SHOULD BE SEPARATE WORKFLOWS
-
-  # deploy package to npm
-  # https://github.com/marketplace/actions/npm-publish
-
-  # deploy to github pages
-  # https://github.com/digital-ai/dot-components/settings/pages
-  # fetch latest from master
-  # run yarn storybook:build
-  # delete everything except docs/
-  # git push to `ghpages` branch with force
-  # repository-dispatch can do this
