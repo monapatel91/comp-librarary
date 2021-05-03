@@ -7,7 +7,7 @@ on:
 
 jobs:
   verification:
-    name: Lint, Unit Test & Build
+    name: Lint, Format & Build
     runs-on: ubuntu-latest
 
     steps:
@@ -29,9 +29,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      # The following should be able to run independently
-      # will rely on 'verification' creating an environment they can use
-
       - name: Lint Code
         run: yarn lint
 
@@ -42,6 +39,29 @@ jobs:
         run: yarn build
         env:
           CI: true
+
+  unit-tests:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+      - run: echo ${{ github.event.client_payload.sha }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      # https://github.com/marketplace/actions/yarn-install-cache
+      - name: Cache yarn dependencies
+        uses: c-hive/gha-yarn-cache@v1
+
+      - name: Install dependencies
+        run: yarn install
 
       - name: Run unit tests
         run: yarn test

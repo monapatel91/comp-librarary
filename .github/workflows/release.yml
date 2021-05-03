@@ -1,0 +1,40 @@
+name: Deploy to NPM
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [run-deploy-to-npm]
+
+jobs:
+  # https://github.com/marketplace/actions/npm-publish
+  npm-publish:
+    name: Publish Latest to NPM
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          package: libs/dot-components/package.json
+          token: ${{ secrets.NPM_TOKEN }}
+
+  # github-pages:
+  #   name: Publish Latest to GitHub Pages
+
+  # https://github.com/digital-ai/dot-components/settings/pages
+  # fetch latest from master
+  # run yarn storybook:build
+  # delete everything except docs/
+  # git push to `ghpages` branch with force
+  # repository-dispatch can do this
