@@ -39,6 +39,12 @@ describe('ApplicationForm', () => {
     return screen.getByTestId(`${dataTestId}-copy-btn`);
   };
 
+  const getActivePayloadUrlHelpBtn = (): HTMLElement =>
+    screen.getByTestId('payload-url-help-btn');
+
+  const getActivePayloadUrlDialog = (): HTMLElement =>
+    screen.getByTestId('active-payload-url-dialog');
+
   const getTicketSystemTextbox = (): HTMLElement =>
     screen.getByRole('textbox', { name: /Ticketing system/i });
 
@@ -314,6 +320,33 @@ describe('ApplicationForm', () => {
       );
       expect(payloadUrlButton).toBeVisible();
       expect(payloadUrlButton).toBeEnabled();
+    });
+
+    it('should display disabled active payload URL help button when no payload URL', () => {
+      const btn = getActivePayloadUrlHelpBtn();
+      expect(btn).toBeVisible();
+      expect(btn).toBeDisabled();
+    });
+
+    it('should display enabled active payload URL help button when payload URL exists', () => {
+      const btn = getActivePayloadUrlHelpBtn();
+      setApplicationName('test123');
+      selectSCAndServer();
+      expect(btn).toBeVisible();
+      expect(btn).toBeEnabled();
+      expect(btn).toHaveAttribute('title', 'View more info about Payload URL');
+    });
+
+    it('should display confirmation dialog when active payload URL help button is clicked and closed when OK button is clicked', () => {
+      const btn = getActivePayloadUrlHelpBtn();
+      setApplicationName('test123');
+      selectSCAndServer();
+      userEvent.click(btn);
+      const dialog = getActivePayloadUrlDialog();
+      expect(dialog).toBeVisible();
+      const okButton = within(dialog).getByRole('button', { name: /OK/i });
+      userEvent.click(okButton);
+      expect(dialog).not.toBeInTheDocument();
     });
 
     it('should display enabled view payload URl button in the selected SC list when application name is set', () => {

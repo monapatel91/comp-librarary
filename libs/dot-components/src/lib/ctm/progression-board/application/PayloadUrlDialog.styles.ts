@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 import { DotDialog } from '../../../components';
 
-export const rootClassName = 'sc-server-list';
+export const rootClassName = 'payload-url-dialog';
 
-export const StyledPayloadDialog = styled(DotDialog)`
+export const StyledPayloadUrlDialog = styled(DotDialog)`
   ${({ theme }) => css`
     .MuiDialog-paper {
       width: 464px;
@@ -24,26 +24,8 @@ export const StyledPayloadDialog = styled(DotDialog)`
         margin: ${theme.spacing(0, 0, 2, 0)};
       }
 
-      .payload-url-input {
+      .pu-input {
         margin: ${theme.spacing(3, 0, 0)};
-      }
-    }
-  `}
-`;
-
-export const StyledScServerList = styled.div`
-  ${({ theme }) => css`
-    &.${rootClassName} {
-      width: 100%;
-
-      .source-control {
-        margin: ${theme.spacing(0, 0, 1)};
-      }
-
-      .payload-dialog {
-        .dialog-content {
-          padding: ${theme.spacing(5, 3)};
-        }
       }
     }
   `}

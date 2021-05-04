@@ -3,19 +3,10 @@ import { CommonProps } from '../../../components/CommonProps';
 import { useStylesWithRootClass } from '../../../components/useStylesWithRootClass';
 import { SCServer } from '../ProgressionBoardInterfaces';
 import { DrawerItem } from '../DrawerItem';
-import {
-  DialogButtonProps,
-  DotIconButton,
-  DotLink,
-  DotTypography,
-} from '../../../components';
-import { PayloadUrlTextInput } from './PayloadUrlTextInput';
+import { DotIconButton } from '../../../components';
 import { getFullPayloadUrl } from '../progression/applicationFormHelper';
-import {
-  rootClassName,
-  StyledPayloadDialog,
-  StyledScServerList,
-} from './SCServerList.styles';
+import { rootClassName, StyledScServerList } from './SCServerList.styles';
+import { PayloadUrlDialog } from './PayloadUrlDialog';
 
 export interface ScServerListProps extends CommonProps {
   applicationName: string;
@@ -78,43 +69,13 @@ export const ScServerList = ({
 
   const renderPayloadDialog = (): ReactNode => {
     const { id, name } = selectedServer;
-    const cancelButtonProps: DialogButtonProps = {
-      label: 'OK',
-    };
     return (
-      <StyledPayloadDialog
-        className="payload-dialog"
-        cancelButtonProps={cancelButtonProps}
+      <PayloadUrlDialog
         data-testid={`${dataTestId}-dialog-${id}`}
-        hasPrimaryAction={false}
-        open={true}
-        onCancel={onPayloadDialogClose}
-        onSubmit={onPayloadDialogClose}
-        title="Configure WebHook"
-      >
-        <div className="dialog-content">
-          <DotTypography variant="body1" className="dialog-text-1">
-            Copy this Webhook URL and configure Webhook in your SCM tool (GitHub
-            or GitLab) so that Release with Delivery Insights can track all your
-            SCM commits and link your commits to your work items.
-          </DotTypography>
-          <DotTypography variant="body1">
-            For more information about Webhook configuration, see&nbsp;
-            <DotLink
-              href="https://docs.xebialabs.com/v.10.1/release/how-to/release-with-delivery-insights-an-illustration/"
-              underline="none"
-            >
-              Release with Delivery Insights Documentation
-            </DotLink>
-          </DotTypography>
-          <PayloadUrlTextInput
-            className="payload-url-input"
-            data-testid={`${dataTestId}-pu-input-${id}`}
-            inputId="modalPayloadUrlInput"
-            payloadUrl={getPayloadUrl(name)}
-          />
-        </div>
-      </StyledPayloadDialog>
+        onClose={onPayloadDialogClose}
+        payloadUrl={getPayloadUrl(name)}
+        serverId={id}
+      />
     );
   };
 

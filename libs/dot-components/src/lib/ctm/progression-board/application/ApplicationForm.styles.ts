@@ -23,6 +23,15 @@ export const StyledApplicationForm = styled.div`
         justify-content: flex-end;
       }
 
+      .active-payload-url-line {
+        display: flex;
+        align-items: center;
+
+        .payload-url-help-btn {
+          margin: ${theme.spacing(0, 0, 0, 1)};
+        }
+      }
+
       .selected-source-control {
         display: flex;
         align-items: center;

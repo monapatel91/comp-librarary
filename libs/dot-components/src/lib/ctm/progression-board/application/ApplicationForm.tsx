@@ -16,6 +16,7 @@ import {
   DotForm,
   DotFormGroup,
   DotIcon,
+  DotIconButton,
   DotInputText,
 } from '../../../components';
 import {
@@ -52,6 +53,7 @@ import {
 } from '../progression/applicationFormHelper';
 import { PayloadUrlTextInput } from './PayloadUrlTextInput';
 import { ScServerList } from './SCServerList';
+import { PayloadUrlDialog } from './PayloadUrlDialog';
 
 export interface ApplicationFormProps extends CommonProps {
   basePayloadUrl: string;
@@ -84,6 +86,10 @@ export const ApplicationForm = ({
     INITIAL_FORM_DATA
   );
   const [isFormValid, setIsFormValid] = useState<boolean>();
+  const [
+    isPayloadUrlDialogOpened,
+    setIsPayloadUrlDialogOpened,
+  ] = useState<boolean>(false);
   const [SCServers, setSCServers] = useState<Array<SCServer>>([]);
   const [ticketSystemServers, setTicketSystemServers] = useState<
     Array<AutoCompleteControl>
@@ -181,6 +187,12 @@ export const ApplicationForm = ({
     setSCServers([]);
   };
 
+  const onActivePayloadDialogOpen = (): void =>
+    setIsPayloadUrlDialogOpened(true);
+
+  const onActivePayloadDialogClose = (): void =>
+    setIsPayloadUrlDialogOpened(false);
+
   const clearForm = (): void => {
     setFormData(INITIAL_FORM_DATA);
     setSCServers([]);
@@ -255,11 +267,22 @@ export const ApplicationForm = ({
           options={SCServers}
           value={activeSCServer}
         />
-        <PayloadUrlTextInput
-          data-testid={dataTestId}
-          inputId="activePayloadUrl"
-          payloadUrl={payloadUrl}
-        />
+        <div className="active-payload-url-line">
+          <PayloadUrlTextInput
+            data-testid={dataTestId}
+            inputId="activePayloadUrl"
+            payloadUrl={payloadUrl}
+          />
+          <DotIconButton
+            className="payload-url-help-btn"
+            data-testid="payload-url-help-btn"
+            disabled={payloadUrl === ''}
+            iconId="webhook"
+            onClick={onActivePayloadDialogOpen}
+            titleTooltip="View more info about Payload URL"
+            size="small"
+          />
+        </div>
         <DotButton
           className="add-more-btn"
           disabled={isAddMoreButtonDisabled(formData)}
@@ -315,6 +338,14 @@ export const ApplicationForm = ({
           </DotButton>
         </DotFormGroup>
       </DotForm>
+      {isPayloadUrlDialogOpened && (
+        <PayloadUrlDialog
+          data-testid="active-payload-url-dialog"
+          onClose={onActivePayloadDialogClose}
+          serverId={activeSCServer.id}
+          payloadUrl={getPayloadUrl(activeSCServer.name)}
+        />
+      )}
     </StyledApplicationForm>
   );
 };
