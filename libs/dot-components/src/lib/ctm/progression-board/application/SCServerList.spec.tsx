@@ -128,7 +128,6 @@ describe('ScServerList', () => {
       const viewPayloadBtn = getViewPayloadUrlBtn('222');
       userEvent.click(viewPayloadBtn);
       const dialog = getDialog('222');
-      within(dialog).getByText('Configure WebHook');
       const inputElem = within(dialog).getByRole('textbox', {
         name: 'Payload URL',
       });
