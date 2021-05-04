@@ -17,7 +17,7 @@ jobs:
       - name: Publish to GitHub Pages
         uses: sterlingwes/gh-pages-deploy-action@v1.1
         with:
-          access-token: ${{ github.token }}
+          access-token: ${{ secrets.REPO_ACCESS_TOKEN }}
           source-directory: docs
           build-command: yarn storybook:build
           deploy-branch: ghpages

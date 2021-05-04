@@ -138,6 +138,7 @@ jobs:
   github-pages:
     name: Dispatch - Deploy to GitHub Pages
     runs-on: ubuntu-latest
+    needs: [create-release]
 
     steps:
       - name: Repository Dispatch
