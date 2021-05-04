@@ -1,4 +1,4 @@
-name: Cleanup PR Deployments
+name: PR Deployment Cleanup
 
 on:
   pull_request:
