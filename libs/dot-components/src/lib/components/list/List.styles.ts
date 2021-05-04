@@ -34,7 +34,7 @@ export const StyledListItem = styled(ListItem)`
   ${({ theme }) =>
     css`
       &.${listItemRootClass} {
-        .dot-link {
+        .dot-list-item-link {
           align-items: center;
           display: flex;
           flex-grow: 2;

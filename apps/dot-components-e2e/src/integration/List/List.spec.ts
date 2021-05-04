@@ -12,11 +12,15 @@ describe('dot-components: List component', () => {
 
   describe('style decisions', () => {
     it('toggle icon is pushed to the right', () => {
-      cy.get('a.dot-link').should('have.css', 'flex-grow', '2');
+      cy.get('span.dot-list-item-link').should('have.css', 'flex-grow', '2');
     });
 
     it('font format', () => {
-      cy.get('a.dot-link p').should('have.css', 'color', 'rgb(59, 72, 92)');
+      cy.get('span.dot-list-item-link p').should(
+        'have.css',
+        'color',
+        'rgb(59, 72, 92)'
+      );
     });
   });
 });
