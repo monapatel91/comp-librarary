@@ -6,6 +6,7 @@ on:
     types: [run-deploy-gh-pages]
 
 jobs:
+  # https://github.com/sterlingwes/gh-pages-deploy-action
   github-pages:
     name: Publish Latest to GitHub Pages
     runs-on: ubuntu-latest
@@ -21,5 +22,3 @@ jobs:
           source-directory: docs
           build-command: yarn storybook:build
           deploy-branch: ghpages
-
-  # delete everything except docs/

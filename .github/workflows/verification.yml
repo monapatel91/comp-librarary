@@ -1,4 +1,4 @@
-name: Verification
+name: PR Deployment
 
 on:
   pull_request:
@@ -17,18 +17,13 @@ jobs:
       - name: pr-number-action
         id: get_pr
         uses: kkak10/pr-number-action@v1.3
-        if: github.event_name == 'pull_request'
+        # if: github.event_name == 'pull_request'
 
       - name: Get the version
         id: get_version
         shell: bash
         run: |
-          if [ $GITHUB_EVENT_NAME == "pull_request" ]
-          then
-              echo ::set-output name=VERSION::0.0.0.${{ steps.get_pr.outputs.pr }}
-          else
-              echo ::set-output name=VERSION::0.0.1.0
-          fi
+          echo ::set-output name=VERSION::0.0.0.${{ steps.get_pr.outputs.pr }}
 
   # https://github.com/peter-evans/repository-dispatch
   verification:
@@ -43,26 +38,6 @@ jobs:
           repository: ${{ github.repository }}
           event-type: run-lint-test-build
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
-
-  build-preview:
-    needs: [get-version]
-    name: Build and Publish Preview Image
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Build and push Docker images for Storybook
-        uses: kciter/aws-ecr-action@7ea3f73762295bdbee44242a87de3831f64b4e8f
-        with:
-          access_key_id: ${{ secrets.GH_AWS_ACCESS_KEY_ID }}
-          secret_access_key: ${{ secrets.GH_AWS_SECRET_ACCESS_KEY }}
-          account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-          repo: storybook
-          region: ${{ secrets.AWS_REGION }}
-          dockerfile: Dockerfile
-          tags: ${{needs.get-version.outputs.version-string}}
 
   # https://github.com/lewagon/wait-on-check-action
   checks:
@@ -95,8 +70,28 @@ jobs:
           repo-token: ${{ github.token }}
           wait-interval: 20
 
+  build-preview:
+    needs: [get-version, checks]
+    name: Build and Publish Preview Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and push Docker images for Storybook
+        uses: kciter/aws-ecr-action@7ea3f73762295bdbee44242a87de3831f64b4e8f
+        with:
+          access_key_id: ${{ secrets.GH_AWS_ACCESS_KEY_ID }}
+          secret_access_key: ${{ secrets.GH_AWS_SECRET_ACCESS_KEY }}
+          account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+          repo: storybook
+          region: ${{ secrets.AWS_REGION }}
+          dockerfile: Dockerfile
+          tags: ${{needs.get-version.outputs.version-string}}
+
   deploy-pr:
-    needs: [build-preview, get-version, checks]
+    needs: [build-preview]
     name: Deploy PR to EKS
     runs-on: ubuntu-latest
     environment:
