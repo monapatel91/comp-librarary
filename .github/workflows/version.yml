@@ -12,7 +12,7 @@ on:
 jobs:
   # https://github.com/marketplace/actions/automated-version-bump
   bump-version:
-    name: Bump Version on master
+    name: Bump Version & Create Tag
     runs-on: ubuntu-latest
     outputs:
       new-version: ${{ steps.version-bump.outputs.newTag }}
@@ -99,11 +99,12 @@ jobs:
 
   # https://github.com/marvinpinto/action-automatic-releases
   create-release:
-    name: Create tagged release
+    name: Create Release
     runs-on: ubuntu-latest
     needs: [bump-version, checks]
     if: needs.bump-version.outputs.new-version != ''
 
+    # TO-DO: once changelog is figured out this should no longer be draft
     steps:
       - name: Create Draft Release
         id: create-draft-release
