@@ -1,0 +1,25 @@
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [run-deploy-gh-pages]
+
+jobs:
+  github-pages:
+    name: Publish Latest to GitHub Pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Publish to GitHub Pages
+        uses: sterlingwes/gh-pages-deploy-action@v1.1
+        with:
+          access-token: ${{ github.token }}
+          source-directory: docs
+          build-command: yarn storybook:build
+          deploy-branch: ghpages
+
+  # delete everything except docs/

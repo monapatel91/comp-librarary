@@ -28,13 +28,3 @@ jobs:
         with:
           package: libs/dot-components/package.json
           token: ${{ secrets.NPM_TOKEN }}
-
-  # github-pages:
-  #   name: Publish Latest to GitHub Pages
-
-  # https://github.com/digital-ai/dot-components/settings/pages
-  # fetch latest from master
-  # run yarn storybook:build
-  # delete everything except docs/
-  # git push to `ghpages` branch with force
-  # repository-dispatch can do this

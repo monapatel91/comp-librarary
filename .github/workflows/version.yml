@@ -42,7 +42,7 @@ jobs:
           patch-wording: 'patch'
           # currently we do not want to bump on every merge
           # once we do... remove 'alpha' from rc-wording
-          rc-wording: 'alpha' # RELEASE, beta
+          rc-wording: 'alpha, RELEASE, BETA'
           target-branch: 'master'
           # rc-wording will override the preid
           preid: 'alpha'
@@ -132,4 +132,18 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ${{ github.repository }}
           event-type: run-deploy-to-npm
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+
+  # https://github.com/peter-evans/repository-dispatch
+  github-pages:
+    name: Dispatch - Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: ${{ github.repository }}
+          event-type: run-deploy-gh-pages
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
