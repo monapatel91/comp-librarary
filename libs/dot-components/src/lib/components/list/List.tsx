@@ -218,7 +218,7 @@ export const DotListItem = ({
     if (onClick) {
       event.stopPropagation();
       onClick(event);
-    } else {
+    } else if (component === 'li') {
       toggleOpen(event);
     }
   };

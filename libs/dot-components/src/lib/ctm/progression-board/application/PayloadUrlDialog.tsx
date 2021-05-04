@@ -47,7 +47,7 @@ export const PayloadUrlDialog = ({
         <DotTypography variant="body1">
           For more information about Webhook configuration, see&nbsp;
           <DotLink
-            href="https://docs.xebialabs.com/v.10.1/release/how-to/release-with-delivery-insights-an-illustration/"
+            href="https://docs.xebialabs.com/release/how-to/release-with-delivery-insights-an-illustration/"
             underline="none"
           >
             Release with Delivery Insights Documentation

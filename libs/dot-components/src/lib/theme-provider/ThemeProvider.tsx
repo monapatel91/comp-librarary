@@ -3,6 +3,7 @@ import {
   createMuiTheme,
   MuiThemeProvider,
   StylesProvider,
+  Theme,
 } from '@material-ui/core';
 import { ThemeProvider } from 'styled-components';
 import { GlobalFonts } from '../fonts/fonts';
@@ -107,7 +108,7 @@ const breakpointOptions: BreakpointsOptions = {
   },
 };
 
-const agilityLightTheme = createMuiTheme({
+export const agilityLightTheme = createMuiTheme({
   breakpoints: {
     ...breakpointOptions,
   },
@@ -165,7 +166,7 @@ const agilityLightTheme = createMuiTheme({
   },
 });
 
-const agilityDarkTheme = createMuiTheme({
+export const agilityDarkTheme = createMuiTheme({
   breakpoints: {
     ...breakpointOptions,
   },
@@ -226,7 +227,7 @@ const agilityDarkTheme = createMuiTheme({
   },
 });
 
-const darkTheme = createMuiTheme({
+export const darkTheme = createMuiTheme({
   breakpoints: {
     ...breakpointOptions,
   },
@@ -455,24 +456,28 @@ export const lightTheme = createMuiTheme({
 
 interface ThemeProviderProps {
   children: ReactNode;
-  theme?: ThemeOptions;
+  theme?: Theme | ThemeOptions;
 }
 
 export function DotThemeProvider({
   children,
-  theme = 'light',
+  theme = lightTheme,
 }: ThemeProviderProps) {
   let userTheme = lightTheme;
-  switch (theme) {
-    case 'dark':
-      userTheme = darkTheme;
-      break;
-    case 'agility-dark':
-      userTheme = agilityDarkTheme;
-      break;
-    case 'agility-light':
-      userTheme = agilityLightTheme;
-      break;
+  if (typeof theme === 'string') {
+    switch (theme) {
+      case 'dark':
+        userTheme = darkTheme;
+        break;
+      case 'agility-dark':
+        userTheme = agilityDarkTheme;
+        break;
+      case 'agility-light':
+        userTheme = agilityLightTheme;
+        break;
+    }
+  } else {
+    userTheme = theme;
   }
 
   return (
