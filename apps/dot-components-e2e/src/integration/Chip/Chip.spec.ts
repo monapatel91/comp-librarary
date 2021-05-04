@@ -25,6 +25,15 @@ describe('dot-components: Chip component', () => {
   });
 });
 
+describe('dot-components: Chip component - dark', () => {
+  before(() => cy.visit('/iframe.html?id=components-chip--default&theme=dark'));
+  describe('dark theme style decisions', () => {
+    it('color is correct', () => {
+      cy.get('div.dot-chip').should('have.css', 'color', 'rgb(255, 255, 255)');
+    });
+  });
+});
+
 describe('dot-components: Chip component with Avatar', () => {
   before(() => cy.visit('/iframe.html?id=components-chip--chip-with-avatar'));
 
