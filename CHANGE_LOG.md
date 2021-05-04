@@ -1,5 +1,12 @@
 # Change Log
 
+## Current
+
+### Components
+
+- **List** - fixed `onClick` and `href` handling to work when click is to left of list item icon
+- **Sidebar** - fixed `onClick` and `href` handling to work when click is to left of list item icon
+
 ## 0.0.0-alpha.26
 
 ### Components

@@ -9,6 +9,7 @@ const mockListItems: Array<ListItemProps> = [
   {
     text: 'Pipelines',
     onClick: onClick,
+    href: '/ignore/me',
   },
   {
     iconId: 'process-template',
@@ -25,7 +26,6 @@ const mockListItems: Array<ListItemProps> = [
       },
     ],
     text: 'Progressions',
-    href: '/progressions',
   },
   {
     text: 'Workflow',
@@ -98,19 +98,16 @@ describe('List', () => {
     expect(screen.getByText(nestedItemText)).toBeVisible();
   });
 
-  it('should have an href is one is passed', () => {
+  it('should have an href if one is passed', () => {
     render(<DotList items={mockListItems} />);
     expect(
-      screen.getByText('Progressions').closest('a').getAttributeNode('href')
-        .value
-    ).toEqual('/progressions');
+      screen.getByText('Packages').closest('a').getAttributeNode('href').value
+    ).toEqual('/packages');
   });
 
   it('should not have an href if onClick is passed', () => {
     render(<DotList items={mockListItems} />);
-    expect(
-      screen.getByText('Pipelines').closest('a').getAttributeNode('href')
-    ).toEqual(null);
+    expect(screen.getByText('Pipelines').closest('a') === null);
   });
 
   it('should call onClick if one is passed down as a prop', () => {

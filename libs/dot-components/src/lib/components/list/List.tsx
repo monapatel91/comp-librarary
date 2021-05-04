@@ -9,7 +9,6 @@ import {
   Collapse,
   Divider,
   ListItemIcon,
-  ListItemText,
   ListSubheader,
 } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
@@ -208,16 +207,20 @@ export const DotListItem = ({
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [open, setOpen] = useState(false);
 
-  // triggered on expand icon click
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
+  const toggleOpen = (event: MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    event.preventDefault();
     setAnchorEl(event.currentTarget);
     setOpen(!open);
   };
 
-  // triggered on text link click
-  const handleLinkClick = (event: MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
-    onClick(event);
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
+    if (onClick) {
+      event.stopPropagation();
+      onClick(event);
+    } else {
+      toggleOpen(event);
+    }
   };
 
   const handleMenuLeave = () => {
@@ -236,44 +239,31 @@ export const DotListItem = ({
       <StyledListItem
         button
         classes={{ root: rootClasses }}
-        component={component}
+        component={href && !onClick ? 'a' : component}
         data-testid={dataTestId}
         divider={divider}
-        onClick={handleClick}
+        href={onClick ? null : href}
+        onClick={onClick || !href ? handleClick : null}
         selected={isFlyout ? open : selected}
         title={title}
       >
-        {href || onClick ? (
-          <DotLink
-            color="inherit"
-            href={href}
-            onClick={onClick && handleLinkClick}
-            underline="none"
-            title={title}
-          >
-            {iconId && startIcon}
-            <DotTypography variant={textVariant}>{text}</DotTypography>
-          </DotLink>
-        ) : (
-          <>
-            {iconId && startIcon}
-            <ListItemText
-              primary={text}
-              primaryTypographyProps={{ variant: textVariant }}
-            />
-          </>
-        )}
+        <span className="dot-list-item-link">
+          {iconId && startIcon}
+          <DotTypography variant={textVariant}>{text}</DotTypography>
+        </span>
         {items.length > 0 && (
-          <DotIcon
-            className="toggle-display"
-            iconId={
-              nestedListType === 'menu'
-                ? 'chevron-right'
-                : open
-                ? 'chevron-up'
-                : 'chevron-down'
-            }
-          />
+          <DotLink color="inherit" onClick={toggleOpen} underline="none">
+            <DotIcon
+              className="toggle-display"
+              iconId={
+                nestedListType === 'menu'
+                  ? 'chevron-right'
+                  : open
+                  ? 'chevron-up'
+                  : 'chevron-down'
+              }
+            />
+          </DotLink>
         )}
       </StyledListItem>
       {items.length > 0 && (

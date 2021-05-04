@@ -1,5 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { action } from '@storybook/addon-actions';
 import { DotList, ListItemProps, ListProps } from './List';
 
 const mockListItems: Array<ListItemProps> = [
@@ -103,6 +104,69 @@ const mockListItems: Array<ListItemProps> = [
     text: 'Environment',
     href: '/?path=/story/experimental-list--default',
     title: 'Protect the environment',
+  },
+  {
+    text: 'Testing',
+    divider: true,
+  },
+  {
+    iconId: 'process-template',
+    items: [
+      {
+        iconId: 'block',
+        text: 'Nested Link Alpha',
+        href: '/?path=/story/experimental-list--default#alpha',
+        title: 'I am the alpha dog',
+      },
+      {
+        iconId: 'block',
+        text: 'Nested Link Beta',
+        onClick: action('Nested Link Beta clicked'),
+        title: 'I am the beta tester',
+      },
+    ],
+    text: 'Parent',
+    title: 'I have no href or onClick',
+  },
+  {
+    href: '/?path=/story/experimental-list--default#parent',
+    iconId: 'dashboard',
+    items: [
+      {
+        iconId: 'block',
+        text: 'Nested Link Uno',
+        href: '/?path=/story/experimental-list--default#uno',
+        title: 'El primero',
+      },
+      {
+        iconId: 'block',
+        text: 'Nested Link Dos',
+        onClick: action('El segundo clicked'),
+        title: 'El segundo',
+      },
+    ],
+    text: 'Parent with Href',
+    title: 'I have an Href but no onClick',
+  },
+  {
+    iconId: 'file-lines',
+    items: [
+      {
+        iconId: 'block',
+        text: 'Nested Link A',
+        href: '/?path=/story/experimental-list--default#a',
+        title: 'A as in apple',
+      },
+      {
+        iconId: 'block',
+        text: 'Nested Link B',
+        onClick: action('Nested Link B clicked'),
+        title: 'B as in Batman',
+      },
+    ],
+    onClick: action('Parent with onClick clicked'),
+    text: 'Parent with onClick',
+    title: 'I have an onClick but no Href',
   },
 ];
 
