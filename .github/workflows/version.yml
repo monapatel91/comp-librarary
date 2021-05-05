@@ -120,6 +120,9 @@ jobs:
           NEW_RELEASE: ${{ steps.create-draft-release.outputs.automatic_releases_tag }}
         run: echo "new release tag $NEW_RELEASE"
 
+  # https://github.com/marketplace/actions/changelog-ci
+  # Changelog
+
   # https://github.com/peter-evans/repository-dispatch
   release:
     name: Dispatch - Deploy to NPM
