@@ -74,28 +74,28 @@ jobs:
 
     steps:
       - name: wait for build to pass
-        uses: lewagon/wait-on-check-action@v0.2
+        uses: lewagon/wait-on-check-action@master
         with:
           ref: ${{ github.sha }}
           check-name: Lint, Format & Build
-          repo-token: ${{ github.token }}
-          wait-interval: 20
+          repo-token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          wait-interval: 30
 
       - name: wait for unit tests to pass
-        uses: lewagon/wait-on-check-action@v0.2
+        uses: lewagon/wait-on-check-action@master
         with:
           ref: ${{ github.sha }}
           check-name: Run Unit Tests
-          repo-token: ${{ github.token }}
-          wait-interval: 20
+          repo-token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          wait-interval: 30
 
       - name: wait for e2e tests to pass
-        uses: lewagon/wait-on-check-action@v0.2
+        uses: lewagon/wait-on-check-action@master
         with:
           ref: ${{ github.sha }}
           check-name: Run E2E Tests
-          repo-token: ${{ github.token }}
-          wait-interval: 20
+          repo-token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          wait-interval: 30
 
   # https://github.com/marvinpinto/action-automatic-releases
   create-release:
