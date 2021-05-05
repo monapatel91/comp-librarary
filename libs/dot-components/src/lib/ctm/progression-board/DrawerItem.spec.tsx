@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, RenderResult, screen } from '../../testing-utils';
+import { render, RenderResult, screen, within } from '../../testing-utils';
 import { DrawerItem, DrawerItemProps } from './DrawerItem';
 
 describe('DrawerItem', () => {
@@ -9,8 +9,11 @@ describe('DrawerItem', () => {
 
   const componentProps: DrawerItemProps = {
     actionNode: <p>{actionNodeText}</p>,
-    avatarAltText: 'My alt text',
-    avatarIcon: 'branch',
+    avatarProps: {
+      alt: 'My alt text',
+      type: 'icon',
+      iconId: 'branch',
+    },
     contentText: 'My Test 01',
     'data-testid': dataTestId,
     contentVariant: 'h1',
@@ -24,8 +27,11 @@ describe('DrawerItem', () => {
   it('should have unchanged API', () => {
     const props = {
       actionNode: <p>{actionNodeText}</p>,
-      avatarAltText: 'My alt text',
-      avatarIcon: 'branch',
+      avatarProps: {
+        alt: 'My alt text',
+        type: 'icon',
+        iconId: 'branch',
+      },
       contentText: 'My Test 01',
       'data-testid': dataTestId,
       contentVariant: 'h1',
@@ -49,6 +55,7 @@ describe('DrawerItem', () => {
       const avatarIcon = screen.getByTestId(`${dataTestId}-avatar-icon`);
       expect(avatarIcon).toBeVisible();
       expect(avatarIcon).toHaveClass('dot-avatar');
+      expect(within(avatarIcon).queryByRole('img')).not.toBeInTheDocument();
     });
 
     it('should render correct content text', () => {
@@ -68,6 +75,11 @@ describe('DrawerItem', () => {
   describe('with custom props', () => {
     const props: DrawerItemProps = {
       ...componentProps,
+      avatarProps: {
+        alt: 'My alt text',
+        type: 'image',
+        imageSrc: 'data:image/svg+xml;base64,1112333',
+      },
       actionNode: null,
     };
 
@@ -76,6 +88,17 @@ describe('DrawerItem', () => {
     it('should NOT render action node', () => {
       const iconButton = screen.queryByText(actionNodeText);
       expect(iconButton).not.toBeInTheDocument();
+    });
+
+    it('should render custom avatar image', () => {
+      const {
+        avatarProps: { alt, imageSrc },
+      } = props;
+      const avatarIcon = screen.getByTestId(`${dataTestId}-avatar-icon`);
+      const imgElem = within(avatarIcon).getByRole('img');
+      expect(imgElem).toBeVisible();
+      expect(imgElem).toHaveAttribute('src', imageSrc);
+      expect(imgElem).toHaveAttribute('alt', alt);
     });
   });
 });

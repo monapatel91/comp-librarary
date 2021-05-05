@@ -1,18 +1,25 @@
 import React, { ReactNode, useState } from 'react';
 import { CommonProps } from '../../../components/CommonProps';
 import { useStylesWithRootClass } from '../../../components/useStylesWithRootClass';
-import { SCServer } from '../ProgressionBoardInterfaces';
 import { DrawerItem } from '../DrawerItem';
-import { DotIconButton } from '../../../components';
+import { AvatarProps, DotIconButton } from '../../../components';
 import { getFullPayloadUrl } from '../progression/applicationFormHelper';
-import { rootClassName, StyledScServerList } from './SCServerList.styles';
 import { PayloadUrlDialog } from './PayloadUrlDialog';
+import { sourceControls } from './data/sourceControls';
+import { rootClassName, StyledScServerList } from './SCServerList.styles';
 
 export interface ScServerListProps extends CommonProps {
   applicationName: string;
   basePayloadUrl: string;
   onDelete?: (id: string) => void;
-  servers: Array<SCServer>;
+  listItems: Array<ScServerListItem>;
+}
+
+export interface ScServerListItem {
+  scId: string;
+  scServerId: string;
+  scServerName: string;
+  scServerTitle: string;
 }
 
 export const ScServerList = ({
@@ -21,34 +28,55 @@ export const ScServerList = ({
   className,
   'data-testid': dataTestId,
   onDelete,
-  servers,
+  listItems,
 }: ScServerListProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-  const [selectedServer, setSelectedServer] = useState<SCServer>(null);
+  const [selectedListItem, setSelectedListItem] = useState<ScServerListItem>(
+    null
+  );
 
   const getPayloadUrl = (serverName: string): string =>
     getFullPayloadUrl(applicationName, basePayloadUrl, serverName);
 
-  const onViewPayloadClick = (scServer: SCServer): (() => void) => (): void =>
-    setSelectedServer(scServer);
+  const onViewPayloadClick = (
+    listItem: ScServerListItem
+  ): (() => void) => (): void => setSelectedListItem(listItem);
 
-  const onPayloadDialogClose = (): void => setSelectedServer(null);
+  const onPayloadDialogClose = (): void => setSelectedListItem(null);
 
   const onItemDelete = (id: string) => () => onDelete(id);
 
-  const renderActionNode = (scServer: SCServer): ReactNode => {
-    const { id, name } = scServer;
-    const isViewBtnDisabled = !name || !getPayloadUrl(name);
+  const getAvatarPropsFromListItem = (
+    listItem: ScServerListItem
+  ): AvatarProps => {
+    if (listItem.scId in sourceControls) {
+      const sourceControl = sourceControls[listItem.scId];
+      return {
+        alt: sourceControl.label,
+        type: 'image',
+        imageSrc: sourceControl.base64,
+      };
+    }
+    return {
+      alt: listItem.scId,
+      type: 'icon',
+      iconId: 'branch',
+    };
+  };
+
+  const renderActionNode = (listItem: ScServerListItem): ReactNode => {
+    const { scServerId, scServerName } = listItem;
+    const isViewBtnDisabled = !scServerName || !getPayloadUrl(scServerName);
     const iconBtnElem = (
       <DotIconButton
-        data-testid={`${dataTestId}-icon-btn-${id}`}
+        data-testid={`${dataTestId}-icon-btn-${scServerId}`}
         disabled={isViewBtnDisabled}
         iconId="webhook"
-        key={id}
+        key={scServerId}
         size="medium"
         titleTooltip="View payload URL"
-        onClick={onViewPayloadClick(scServer)}
+        onClick={onViewPayloadClick(listItem)}
       />
     );
     if (onDelete) {
@@ -56,9 +84,9 @@ export const ScServerList = ({
         <>
           {iconBtnElem}
           <DotIconButton
-            data-testid={`${dataTestId}-delete-btn-${id}`}
+            data-testid={`${dataTestId}-delete-btn-${scServerId}`}
             iconId="delete"
-            onClick={onItemDelete(id)}
+            onClick={onItemDelete(scServerId)}
             titleTooltip="Click to delete"
           />
         </>
@@ -68,34 +96,34 @@ export const ScServerList = ({
   };
 
   const renderPayloadDialog = (): ReactNode => {
-    const { id, name } = selectedServer;
+    const { scServerId, scServerName } = selectedListItem;
     return (
       <PayloadUrlDialog
-        data-testid={`${dataTestId}-dialog-${id}`}
+        data-testid={`${dataTestId}-dialog-${scServerId}`}
         onClose={onPayloadDialogClose}
-        payloadUrl={getPayloadUrl(name)}
-        serverId={id}
+        payloadUrl={getPayloadUrl(scServerName)}
+        serverId={scServerId}
       />
     );
   };
 
   return (
     <StyledScServerList className={rootClasses} data-testid={dataTestId}>
-      {servers?.map((server: SCServer) => {
-        const { id, title } = server;
+      {listItems?.map((listItem: ScServerListItem) => {
+        const { scServerId, scServerTitle } = listItem;
+        const avatarProps = listItem && getAvatarPropsFromListItem(listItem);
         return (
           <DrawerItem
-            actionNode={renderActionNode(server)}
-            data-testid={`${dataTestId}-drawer-item-${id}`}
-            key={id}
+            actionNode={renderActionNode(listItem)}
+            avatarProps={avatarProps}
             className="source-control"
-            avatarAltText={title}
-            avatarIcon="branch"
-            contentText={title}
+            contentText={scServerTitle}
+            data-testid={`${dataTestId}-drawer-item-${scServerId}`}
+            key={scServerId}
           />
         );
       })}
-      {selectedServer && renderPayloadDialog()}
+      {selectedListItem && renderPayloadDialog()}
     </StyledScServerList>
   );
 };

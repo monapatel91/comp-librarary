@@ -53,6 +53,7 @@ import {
 } from '../progression/applicationFormHelper';
 import { PayloadUrlTextInput } from './PayloadUrlTextInput';
 import { ScServerList } from './SCServerList';
+import { getSCServerListItems } from '../progression/applicationHelper';
 import { PayloadUrlDialog } from './PayloadUrlDialog';
 
 export interface ApplicationFormProps extends CommonProps {
@@ -213,11 +214,8 @@ export const ApplicationForm = ({
   const payloadUrl = getPayloadUrl(activeSCServer?.name);
 
   const renderSelectedSourceControls = (): ReactNode => {
-    const servers: Array<SCServer> = [];
-    formData.sourceControls.forEach((sourceControl: SourceControl) =>
-      servers.push(...sourceControl.servers)
-    );
-    if (!servers.length) return null;
+    const listItems = getSCServerListItems(formData.sourceControls);
+    if (!listItems.length) return null;
     return (
       <div
         className="selected-source-controls"
@@ -228,7 +226,7 @@ export const ApplicationForm = ({
           applicationName={applicationName}
           basePayloadUrl={basePayloadUrl}
           onDelete={onSourceControlDelete}
-          servers={servers}
+          listItems={listItems}
         />
       </div>
     );

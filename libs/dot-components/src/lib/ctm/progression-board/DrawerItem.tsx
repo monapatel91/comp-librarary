@@ -2,20 +2,23 @@ import React, { ReactNode } from 'react';
 import { CommonProps } from '../../components/CommonProps';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { rootClassName, StyledDrawerItem } from './DrawerItem.styles';
-import { DotAvatar, DotTypography, TypographyVariant } from '../../components';
+import {
+  AvatarProps,
+  DotAvatar,
+  DotTypography,
+  TypographyVariant,
+} from '../../components';
 
 export interface DrawerItemProps extends CommonProps {
   actionNode?: ReactNode;
-  avatarAltText: string;
-  avatarIcon: string;
+  avatarProps: AvatarProps;
   contentText: string;
   contentVariant?: TypographyVariant;
 }
 
 export const DrawerItem = ({
   actionNode = null,
-  avatarAltText,
-  avatarIcon,
+  avatarProps,
   className,
   contentText,
   contentVariant = 'body1',
@@ -29,11 +32,7 @@ export const DrawerItem = ({
 
   return (
     <StyledDrawerItem className={rootClasses} data-testid={dataTestId}>
-      <DotAvatar
-        alt={avatarAltText}
-        data-testid={`${dataTestId}-avatar-icon`}
-        iconId={avatarIcon}
-      />
+      <DotAvatar data-testid={`${dataTestId}-avatar-icon`} {...avatarProps} />
       <DotTypography className="content" variant={contentVariant}>
         {contentText}
       </DotTypography>

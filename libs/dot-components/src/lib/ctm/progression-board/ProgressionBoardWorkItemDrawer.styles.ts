@@ -18,7 +18,9 @@ export const StyledProgressionBoardWorkItemDrawer = styled.div`
         display: flex;
         align-items: center;
         height: 90px;
-        border-bottom: 1px solid ${theme.palette.grey[200]};
+        box-shadow: inset 0px -1px 0px ${
+          theme.palette.progressionBoard.boardColumnHeader
+        };
 
         .wi-external-key {
           white-space: nowrap;
@@ -76,7 +78,9 @@ export const StyledProgressionBoardWorkItemDrawer = styled.div`
         }
 
         .content-divider {
-          background-color: ${theme.palette.grey[200]};
+          box-shadow: inset 0px -1px 0px ${
+            theme.palette.progressionBoard.boardColumnHeader
+          };
           margin: ${theme.spacing(0, -2)};
         }
 

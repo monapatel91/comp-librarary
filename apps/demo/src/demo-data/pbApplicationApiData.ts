@@ -38,7 +38,7 @@ export const pbApplicationAPIData: ApplicationAPIData = {
     'https://pl.com/api/submit_change?token=<api-token>&toproject=',
   sourceControls: [
     {
-      id: 'e35f9c3091ee11eb81fd0b485fd3e296',
+      id: 'gitlab',
       title: 'GitLab',
       servers: [
         {
@@ -71,7 +71,7 @@ export const pbApplicationAPIData: ApplicationAPIData = {
       ],
     },
     {
-      id: '250f67f091ef11eb9dd9d94066832c2c',
+      id: 'github',
       title: 'GitHub',
       servers: [
         {
@@ -119,7 +119,7 @@ export const pbApplicationAPIData: ApplicationAPIData = {
   ],
   ticketSystems: [
     {
-      id: '3847733091ef11eb9dd9d94066832c2c',
+      id: 'jiraplugin',
       title: 'Jiraplugin',
       servers: [
         {
@@ -149,7 +149,7 @@ export const pbApplicationAPIData: ApplicationAPIData = {
       ],
     },
     {
-      id: '3f87fca091ef11eb81fd0b485fd3e296',
+      id: 'v1plugin',
       title: 'V1plugin',
       servers: [
         {

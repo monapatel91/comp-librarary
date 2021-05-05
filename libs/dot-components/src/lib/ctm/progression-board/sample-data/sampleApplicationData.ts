@@ -217,7 +217,7 @@ export const sampleAppDetailsTestData: ApplicationDetails = {
     'https://pl.com/api/submit_change?token=<api-token>&toproject=',
   sourceControls: [
     {
-      id: 'e35f9c3091ee11eb81fd0b485fd3e296',
+      id: 'gitlab',
       title: 'API GitLab',
       servers: [
         {
@@ -228,7 +228,7 @@ export const sampleAppDetailsTestData: ApplicationDetails = {
       ],
     },
     {
-      id: '250f67f091ef11eb9dd9d94066832c2c',
+      id: 'github',
       title: 'API GitHub',
       servers: [
         {
@@ -240,7 +240,7 @@ export const sampleAppDetailsTestData: ApplicationDetails = {
     },
   ],
   ticketSystem: {
-    id: '3847733091ef11eb9dd9d94066832c2c',
+    id: 'jiraplugin',
     title: 'API Jiraplugin',
     servers: [
       {

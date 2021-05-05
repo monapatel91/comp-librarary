@@ -11,6 +11,11 @@ export const StyledDrawerItem = styled.div`
       .dot-avatar {
         flex-shrink: 0;
         margin: ${theme.spacing(0, 2, 0, 0)};
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
       }
 
       .content {

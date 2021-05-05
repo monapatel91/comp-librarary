@@ -1,30 +1,44 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, RenderResult, screen, within } from '../../../testing-utils';
-import { ScServerList, ScServerListProps } from './SCServerList';
+import {
+  ScServerList,
+  ScServerListItem,
+  ScServerListProps,
+} from './SCServerList';
 
 describe('ScServerList', () => {
   const dataTestId = 'sc-server-list';
 
   const onDelete = jest.fn();
 
+  const listItems: Array<ScServerListItem> = [
+    {
+      scId: 'github',
+      scServerId: '111',
+      scServerTitle: 'Server 01',
+      scServerName: 'Configuration/Custom/Configuration111',
+    },
+    {
+      scId: 'gitlab',
+      scServerId: '222',
+      scServerTitle: 'Server 02',
+      scServerName: 'Configuration/Custom/Configuration222',
+    },
+    {
+      scId: 'sourceforge',
+      scServerId: '333',
+      scServerTitle: 'Server 03',
+      scServerName: 'Configuration/Custom/Configuration333',
+    },
+  ];
+
   const componentProps: ScServerListProps = {
     applicationName: 'App 01',
     basePayloadUrl: 'www.app.com/',
     'data-testid': dataTestId,
     onDelete,
-    servers: [
-      {
-        id: '111',
-        title: 'Server 01',
-        name: 'Configuration/Custom/Configuration111',
-      },
-      {
-        id: '222',
-        title: 'Server 02',
-        name: 'Configuration/Custom/Configuration222',
-      },
-    ],
+    listItems,
   };
 
   const getDeleteBtn = (serverId: string): HTMLElement =>
@@ -35,6 +49,9 @@ describe('ScServerList', () => {
 
   const getDialog = (serverId: string): HTMLElement =>
     screen.getByTestId(`${dataTestId}-dialog-${serverId}`);
+
+  const getDrawerItem = (serverId: string): HTMLElement =>
+    screen.getByTestId(`${dataTestId}-drawer-item-${serverId}`);
 
   const expectViewPayloadButtonsEnabled = (shouldBeEnabled = true): void => {
     const viewPayloadUrlBtn1 = getViewPayloadUrlBtn('111');
@@ -60,18 +77,7 @@ describe('ScServerList', () => {
       basePayloadUrl: 'www.app.com/',
       'data-testid': dataTestId,
       onDelete,
-      servers: [
-        {
-          id: '111',
-          title: 'Server 01',
-          name: 'Configuration/Custom/Configuration111',
-        },
-        {
-          id: '222',
-          title: 'Server 02',
-          name: 'Configuration/Custom/Configuration222',
-        },
-      ],
+      listItems,
     };
     expect(componentProps).toEqual(props);
   });
@@ -89,8 +95,8 @@ describe('ScServerList', () => {
     });
 
     it('should render two drawer items, one for each server', () => {
-      const drawerItem1 = screen.getByTestId(`${dataTestId}-drawer-item-111`);
-      const drawerItem2 = screen.getByTestId(`${dataTestId}-drawer-item-222`);
+      const drawerItem1 = getDrawerItem('111');
+      const drawerItem2 = getDrawerItem('222');
       expect(drawerItem1).toBeVisible();
       expect(drawerItem1).toHaveClass('source-control');
       expect(drawerItem2).toBeVisible();
@@ -133,7 +139,7 @@ describe('ScServerList', () => {
       });
       expect(inputElem).toBeVisible();
       expect(inputElem.getAttribute('value')).toContain(
-        componentProps.servers[1].name
+        componentProps.listItems[1].scServerName
       );
     });
 
@@ -144,6 +150,27 @@ describe('ScServerList', () => {
       const okButton = within(dialog).getByRole('button', { name: /OK/i });
       userEvent.click(okButton);
       expect(dialog).not.toBeInTheDocument();
+    });
+
+    it('should render Github image for selected Github server', () => {
+      const drawerItem1 = getDrawerItem('111');
+      const img = within(drawerItem1).getByRole('img');
+      expect(img).toBeVisible();
+      expect(img).toHaveAttribute('alt', 'Github');
+    });
+
+    it('should render GitLab image for selected GitLab server', () => {
+      const drawerItem2 = getDrawerItem('222');
+      const img = within(drawerItem2).getByRole('img');
+      expect(img).toBeVisible();
+      expect(img).toHaveAttribute('alt', 'GitLab');
+    });
+
+    it('should render branch icon for unknown source control', () => {
+      const drawerItem3 = getDrawerItem('333');
+      const img = within(drawerItem3).queryByRole('img');
+      expect(img).not.toBeInTheDocument();
+      expect(drawerItem3.querySelector('.icon-branch')).toBeVisible();
     });
   });
 
