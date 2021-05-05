@@ -25,8 +25,11 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Build package
+        run: yarn build
+
       - name: Publish to NPM
         uses: JS-DevTools/npm-publish@v1
         with:
-          package: libs/dot-components/package.json
+          package: dist/libs/dot-components/package.json
           token: ${{ secrets.NPM_TOKEN }}
