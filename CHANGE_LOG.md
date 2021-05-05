@@ -2,6 +2,10 @@
 
 ## 0.0.0-alpha.28
 
+### Experimental
+
+- **SplitButton** - added `SplitButton` component
+
 ### Components
 
 - **List** - fixed `onClick` and `href` handling to work when click is to left of list item icon

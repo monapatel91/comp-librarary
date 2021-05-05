@@ -10,32 +10,15 @@ describe('DotButton', () => {
   };
 
   it('should have unchanged API', () => {
-    const onClick = jest.fn();
     const props = {
       children: 'My Button',
-      disabled: false,
-      disableRipple: false,
       endIcon: <DotIcon iconId="save" />,
-      fullWidth: true,
-      isSubmit: true,
-      onClick: onClick,
-      size: 'small',
       startIcon: <DotIcon iconId="home" />,
-      titleTooltip: 'click here',
-      type: 'text',
     };
     const buttonProps: ButtonProps = {
       children: 'My Button',
-      disabled: false,
-      disableRipple: false,
       endIcon: <DotIcon iconId="save" />,
-      fullWidth: true,
-      isSubmit: true,
-      onClick: onClick,
-      size: 'small',
       startIcon: <DotIcon iconId="home" />,
-      titleTooltip: 'click here',
-      type: 'text',
     };
     expect(buttonProps).toEqual(props);
   });

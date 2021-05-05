@@ -1,34 +1,15 @@
-import React, { MouseEvent, ReactNode } from 'react';
-import { CommonProps } from '../CommonProps';
+import React, { ReactNode } from 'react';
+import { BaseButtonProps } from '../BaseButtonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledButton } from './Button.styles';
 
-export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
-export type ButtonSize = 'small' | 'medium' | 'large';
-
-export interface ButtonProps extends CommonProps {
+export interface ButtonProps extends BaseButtonProps {
   /** The text for the button. Button text should be in sentence case. */
   children: ReactNode;
-  /** If true, the button will be disabled. */
-  disabled?: boolean;
-  /** If true, the ripple effect will be disabled. */
-  disableRipple?: boolean;
   /** Icon placed after the children. */
   endIcon?: ReactNode;
-  /** If true, the button will take up the full width of its container.  */
-  fullWidth?: boolean;
-  /** Is this a submit button */
-  isSubmit?: boolean;
-  /** Event callback */
-  onClick?: (event: MouseEvent<Element>) => void;
-  /** The size of the button */
-  size?: ButtonSize;
   /** Icon placed before the children. */
   startIcon?: ReactNode;
-  /** Help text to be displayed on hover */
-  titleTooltip?: string;
-  /** The type of button */
-  type?: ButtonType;
 }
 
 /** This component wraps the Button component from @material-ui. */
