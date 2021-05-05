@@ -11,6 +11,8 @@ describe('ApplicationEdit', () => {
     'data-testid': dataTestId,
   };
 
+  const getTicketSystemItem = () => screen.getByTestId(`${dataTestId}-ts-item`);
+
   const renderComponent = (
     props: ApplicationEditProps = null
   ): RenderResult => {
@@ -71,6 +73,13 @@ describe('ApplicationEdit', () => {
         )
       ).toBeVisible();
     });
+
+    it('should render Jira image for selected Jira ticket system', () => {
+      const tsItem = getTicketSystemItem();
+      const img = within(tsItem).getByRole('img');
+      expect(img).toBeVisible();
+      expect(img).toHaveAttribute('alt', 'Jira');
+    });
   });
 
   describe('with skeletons', () => {
@@ -104,6 +113,34 @@ describe('ApplicationEdit', () => {
     it('should render skeleton if ticketing system title is not set', () => {
       const skeleton = screen.getByTestId(`${dataTestId}-ts-skeleton`);
       expect(skeleton).toBeVisible();
+    });
+  });
+
+  describe('with custom props', () => {
+    const props: ApplicationEditProps = {
+      ...componentProps,
+      appDetails: {
+        ...sampleAppDetailsTestData,
+        ticketSystem: {
+          id: 'clickone',
+          title: 'ClickOne',
+          servers: [
+            {
+              id: '3d5dc9a091ef11eb9dd9d94066832666',
+              title: 'ClickOne Server API-1',
+            },
+          ],
+        },
+      },
+    };
+
+    beforeEach(() => renderComponent(props));
+
+    it('should render task icon for unknown ticket system', () => {
+      const tsItem = getTicketSystemItem();
+      const img = within(tsItem).queryByRole('img');
+      expect(img).not.toBeInTheDocument();
+      expect(tsItem.querySelector('.icon-task')).toBeVisible();
     });
   });
 });

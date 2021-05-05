@@ -13,7 +13,7 @@ export const StyledApplicationForm = styled.div`
       }
 
       .content-divider {
-        background-color: ${theme.palette.grey[200]};
+        box-shadow: inset 0px -1px 0px ${theme.palette.progressionBoard.boardColumnHeader};
         margin: ${theme.spacing(4, -2, 2)};
       }
 

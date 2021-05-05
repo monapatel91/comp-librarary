@@ -15,7 +15,7 @@ export const StyledDotDrawer = styled(DotDrawer)`
       .dot-drawer-paper {
         padding: 0;
         border: none;
-        box-shadow: inset 1px 0 ${theme.palette.grey[200]};
+        box-shadow: inset 1px 0 ${theme.palette.progressionBoard.boardColumnHeader};
         transition: width 0.2s;
       }
     }

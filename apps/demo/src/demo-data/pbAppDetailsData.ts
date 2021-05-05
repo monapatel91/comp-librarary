@@ -7,7 +7,7 @@ export const pbAppDetailsData: Array<ApplicationDetails> = [
       'https://pl.com/api/submit_change?token=<api-token>&toproject=',
     sourceControls: [
       {
-        id: 'e35f9c3091ee11eb81fd0b485fd3e296',
+        id: 'gitlab',
         title: 'API GitLab',
         servers: [
           {
@@ -18,7 +18,7 @@ export const pbAppDetailsData: Array<ApplicationDetails> = [
         ],
       },
       {
-        id: '250f67f091ef11eb9dd9d94066832c2c',
+        id: 'github',
         title: 'API GitHub',
         servers: [
           {
@@ -28,9 +28,20 @@ export const pbAppDetailsData: Array<ApplicationDetails> = [
           },
         ],
       },
+      {
+        id: 'bitbucket',
+        title: 'API Bitbucket',
+        servers: [
+          {
+            id: '3554e72091ef33eb9dd9d94066832c2c',
+            title: 'Bitbucket - Server 1',
+            name: 'Configuration/Custom/Configuration126',
+          },
+        ],
+      },
     ],
     ticketSystem: {
-      id: '3847733091ef11eb9dd9d94066832c2c',
+      id: 'jiraplugin',
       title: 'API Jiraplugin',
       servers: [
         {
@@ -46,7 +57,7 @@ export const pbAppDetailsData: Array<ApplicationDetails> = [
       'https://pl.com/api/submit_change?token=<api-token>&toproject=',
     sourceControls: [
       {
-        id: 'e35f9c3091ee11eb81fd0b485fd3e296',
+        id: 'gitlab',
         title: 'Database GitLab',
         servers: [
           {
@@ -57,7 +68,7 @@ export const pbAppDetailsData: Array<ApplicationDetails> = [
         ],
       },
       {
-        id: '250f67f091ef11eb9dd9d94066832c2c',
+        id: 'github',
         title: 'Details GitHub',
         servers: [
           {
@@ -67,14 +78,25 @@ export const pbAppDetailsData: Array<ApplicationDetails> = [
           },
         ],
       },
+      {
+        id: 'sourceforge',
+        title: 'SourceForge',
+        servers: [
+          {
+            id: '3554e72091ef11eb9dd9d94066832333',
+            title: 'Sourceforge - Server Details-2',
+            name: 'Configuration/Custom/Configuration125',
+          },
+        ],
+      },
     ],
     ticketSystem: {
-      id: '3847733091ef11eb9dd9d94066832c2c',
-      title: 'Jiraplugin',
+      id: 'clickone',
+      title: 'ClickOne',
       servers: [
         {
           id: '3d5dc9a091ef11eb9dd9d94066832c2c',
-          title: 'Jira Server Details-1',
+          title: 'ClickOne Server Details-1',
         },
       ],
     },
@@ -85,7 +107,7 @@ export const pbAppDetailsData: Array<ApplicationDetails> = [
       'https://pl.com/api/submit_change?token=<api-token>&toproject=',
     sourceControls: [
       {
-        id: 'e35f9c3091ee11eb81fd0b485fd3e296',
+        id: 'gitlab',
         title: 'GitLab',
         servers: [
           {
@@ -96,7 +118,7 @@ export const pbAppDetailsData: Array<ApplicationDetails> = [
         ],
       },
       {
-        id: '250f67f091ef11eb9dd9d94066832c2c',
+        id: 'github',
         title: 'GitHub',
         servers: [
           {
@@ -108,8 +130,8 @@ export const pbAppDetailsData: Array<ApplicationDetails> = [
       },
     ],
     ticketSystem: {
-      id: '3847733091ef11eb9dd9d94066832c2c',
-      title: 'Jiraplugin',
+      id: 'v1plugin',
+      title: 'V1plugin',
       servers: [
         {
           id: '3d5dc9a091ef11eb9dd9d94066832c2c',
