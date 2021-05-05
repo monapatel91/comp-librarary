@@ -17,7 +17,6 @@ jobs:
       - name: pr-number-action
         id: get_pr
         uses: kkak10/pr-number-action@v1.3
-        # if: github.event_name == 'pull_request'
 
       - name: Get the version
         id: get_version
@@ -26,7 +25,7 @@ jobs:
           echo ::set-output name=VERSION::0.0.0.${{ steps.get_pr.outputs.pr }}
 
   verification:
-    name: Lint, Format & Build # used for check-name on version.yml
+    name: Lint, Format & Build
     runs-on: ubuntu-latest
 
     steps:
@@ -62,7 +61,7 @@ jobs:
           CI: true
 
   unit-tests:
-    name: Run Unit Tests # used for check-name on version.yml
+    name: Run Unit Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -90,7 +89,7 @@ jobs:
           CI: true
 
   e2e:
-    name: Run E2E Tests # used for check-name on version.yml
+    name: Run E2E Tests
     runs-on: ubuntu-latest
 
     steps:
