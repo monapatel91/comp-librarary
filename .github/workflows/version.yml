@@ -97,6 +97,9 @@ jobs:
           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
         run: echo "new tag $NEW_TAG"
 
+  # https://github.com/marketplace/actions/changelog-ci
+  # Changelog
+
   # https://github.com/marvinpinto/action-automatic-releases
   create-release:
     name: Create Release
@@ -119,9 +122,6 @@ jobs:
         env:
           NEW_RELEASE: ${{ steps.create-draft-release.outputs.automatic_releases_tag }}
         run: echo "new release tag $NEW_RELEASE"
-
-  # https://github.com/marketplace/actions/changelog-ci
-  # Changelog
 
   # https://github.com/peter-evans/repository-dispatch
   release:
