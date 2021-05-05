@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Publish to GitHub Pages
         uses: sterlingwes/gh-pages-deploy-action@v1.1
