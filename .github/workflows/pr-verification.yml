@@ -24,6 +24,23 @@ jobs:
         run: |
           echo ::set-output name=VERSION::0.0.0.${{ steps.get_pr.outputs.pr }}
 
+  # https://github.com/marketplace/actions/changelog-ci
+  changelog-reminder:
+    name: Changelog Reminder
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Changelog Reminder
+        uses: peterjgrainger/action-changelog-reminder@v1.2.0
+        with:
+          changelog_regex: '/CHANGE_LOG.md'
+          customPrMessage: 'Please update `CHANGE_LOG.md`'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
   verification:
     name: Lint, Format & Build
     runs-on: ubuntu-latest
@@ -116,59 +133,59 @@ jobs:
         env:
           CI: true
 
-  build-preview:
-    needs: [get-version, verification, unit-tests, e2e]
-    name: Build and Publish Preview Image
-    runs-on: ubuntu-latest
+  # build-preview:
+  #   needs: [get-version, verification, unit-tests, e2e]
+  #   name: Build and Publish Preview Image
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Build and push Docker images for Storybook
-        uses: kciter/aws-ecr-action@7ea3f73762295bdbee44242a87de3831f64b4e8f
-        with:
-          access_key_id: ${{ secrets.GH_AWS_ACCESS_KEY_ID }}
-          secret_access_key: ${{ secrets.GH_AWS_SECRET_ACCESS_KEY }}
-          account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-          repo: storybook
-          region: ${{ secrets.AWS_REGION }}
-          dockerfile: Dockerfile
-          tags: ${{needs.get-version.outputs.version-string}}
+  #     - name: Build and push Docker images for Storybook
+  #       uses: kciter/aws-ecr-action@7ea3f73762295bdbee44242a87de3831f64b4e8f
+  #       with:
+  #         access_key_id: ${{ secrets.GH_AWS_ACCESS_KEY_ID }}
+  #         secret_access_key: ${{ secrets.GH_AWS_SECRET_ACCESS_KEY }}
+  #         account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+  #         repo: storybook
+  #         region: ${{ secrets.AWS_REGION }}
+  #         dockerfile: Dockerfile
+  #         tags: ${{needs.get-version.outputs.version-string}}
 
-  deploy-pr:
-    needs: [build-preview]
-    name: Deploy PR to EKS
-    runs-on: ubuntu-latest
-    environment:
-      name: preview
-      url: https://ux-pr${{ steps.get_pr.outputs.pr }}.lisbon-dev.com/
+  # deploy-pr:
+  #   needs: [build-preview]
+  #   name: Deploy PR to EKS
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: preview
+  #     url: https://ux-pr${{ steps.get_pr.outputs.pr }}.lisbon-dev.com/
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Get PR Number
-        id: get_pr
-        uses: kkak10/pr-number-action@v1.3
-        if: github.event_name == 'pull_request'
+  #     - name: Get PR Number
+  #       id: get_pr
+  #       uses: kkak10/pr-number-action@v1.3
+  #       if: github.event_name == 'pull_request'
 
-      - name: AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.EKS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.EKS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+  #     - name: AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.EKS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.EKS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Deploy Storybook
-        uses: koslibpro/helm-eks-action@v1.7.0
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.EKS_CONFIG }}
-        with:
-          command: helm upgrade ux-pr${{ steps.get_pr.outputs.pr }} --install --create-namespace --namespace=ux-pr${{ steps.get_pr.outputs.pr }} --set image.tag=${{needs.get-version.outputs.version-string}} --set image.sha=${{github.sha}} build/helm/storybook
+  #     - name: Deploy Storybook
+  #       uses: koslibpro/helm-eks-action@v1.7.0
+  #       env:
+  #         KUBE_CONFIG_DATA: ${{ secrets.EKS_CONFIG }}
+  #       with:
+  #         command: helm upgrade ux-pr${{ steps.get_pr.outputs.pr }} --install --create-namespace --namespace=ux-pr${{ steps.get_pr.outputs.pr }} --set image.tag=${{needs.get-version.outputs.version-string}} --set image.sha=${{github.sha}} build/helm/storybook
 
-      - name: Add Comment to PR
-        uses: github-actions-up-and-running/pr-comment@v1.0.1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          message: 'SHA: ${{github.sha}} has been built and deployed to the test environment. Storybook URL: https://ux-pr${{ steps.get_pr.outputs.pr }}.lisbon-dev.com/ '
+  #     - name: Add Comment to PR
+  #       uses: github-actions-up-and-running/pr-comment@v1.0.1
+  #       with:
+  #         repo-token: ${{ secrets.GITHUB_TOKEN }}
+  #         message: 'SHA: ${{github.sha}} has been built and deployed to the test environment. Storybook URL: https://ux-pr${{ steps.get_pr.outputs.pr }}.lisbon-dev.com/ '
