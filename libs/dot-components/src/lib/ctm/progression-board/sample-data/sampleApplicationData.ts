@@ -1,6 +1,7 @@
 import {
   ApplicationAPI,
   ApplicationDetails,
+  PBApplications,
 } from '../ProgressionBoardInterfaces';
 
 export const sampleApplicationAPIData: ApplicationAPI = {
@@ -248,5 +249,14 @@ export const sampleAppDetailsTestData: ApplicationDetails = {
         title: 'Jira Server API-1',
       },
     ],
+  },
+};
+
+export const samplePBApplicationTestData: PBApplications = {
+  '111': {
+    waitingMessage: 'Waiting for commits',
+  },
+  '222': {
+    waitingMessage: 'Commits are not tracked',
   },
 };

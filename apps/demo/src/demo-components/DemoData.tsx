@@ -265,7 +265,12 @@ export const phasesData: Array<PhaseType> = [
         ],
       },
       {
-        package_name: 'empty-app',
+        package_id: '5ba79d5929799324b10f1111',
+        package_name: 'no-commits',
+      },
+      {
+        package_id: '5ba79d5929799324b10f1222',
+        package_name: 'commits-without-tracking',
       },
       {
         _id: '5b6d3ac4297993664dfa9462',

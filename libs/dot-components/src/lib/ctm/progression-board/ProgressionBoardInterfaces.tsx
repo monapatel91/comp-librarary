@@ -167,17 +167,13 @@ export interface TicketSystemServerAPI {
   user?: string;
 }
 
+export interface PBApplications {
+  [applicationId: string]: PBApplication;
+}
+
 export interface PBApplication {
-  /* API data needed to populate PB's application controls */
-  apiData: ApplicationAPI;
-  /* Flag which indicates whether application drawer is opened */
-  isDrawerOpened: boolean;
-  /* Callback function which will be called when drawer needs to close */
-  onDrawerClose: () => void;
-  /* Callback function which will be called when form's 'Cancel' button is clicked */
-  onFormCancel: () => void;
-  /* Callback function which executes upon new application form submission */
-  onFormSubmit: (applicationFormData: ApplicationFormOutput) => void;
+  /* Message which will be displayed on all phases within an application if needed */
+  waitingMessage: string;
 }
 
 export interface ApplicationFormOutput {

@@ -1,46 +1,60 @@
 import React from 'react';
-import { CommonProps } from '../../../components/CommonProps';
 import { render, RenderResult, screen } from '../../../testing-utils';
-import { WaitingPhase } from './WaitingPhase';
+import { WaitingPhase, WaitingPhaseProps } from './WaitingPhase';
+import { DEFAULT_APP_WAITING_MESSAGE } from '../application/data/constants';
 
 describe('WaitingPhase', () => {
   const dataTestId = 'test-waiting-phase';
   let baseComponentElem: HTMLElement;
 
-  const componentProps: CommonProps = {
+  const waitingMessage = 'test message';
+
+  const componentProps: WaitingPhaseProps = {
     'data-testid': dataTestId,
+    waitingMessage,
   };
 
-  const renderComponent = (props: CommonProps = null): RenderResult => {
+  const renderComponent = (props: WaitingPhaseProps = null): RenderResult => {
     const renderProps = props ? props : componentProps;
     return render(<WaitingPhase {...renderProps} />);
   };
 
-  beforeEach(() => {
-    const { baseElement } = renderComponent();
-    baseComponentElem = baseElement;
-  });
-
   it('should have unchanged API', () => {
     const props = {
       'data-testid': dataTestId,
+      waitingMessage,
     };
     expect(componentProps).toEqual(props);
   });
 
-  it('should render successfully', () => {
-    expect(baseComponentElem).toBeTruthy();
+  describe('default render', () => {
+    beforeEach(() => {
+      const { baseElement } = renderComponent();
+      baseComponentElem = baseElement;
+    });
+
+    it('should render successfully', () => {
+      expect(baseComponentElem).toBeTruthy();
+    });
+
+    it('should render waiting icon', () => {
+      expect(screen.getByTestId(`${dataTestId}-waiting-icon`)).toBeVisible();
+    });
+
+    it('should render appropriate waiting message', () => {
+      expect(screen.getByText(waitingMessage)).toBeVisible();
+    });
   });
 
-  it('should render waiting icon', () => {
-    expect(screen.getByTestId(`${dataTestId}-waiting-icon`)).toBeVisible();
-  });
+  describe('with custom props', () => {
+    const props: WaitingPhaseProps = {
+      'data-testid': dataTestId,
+      waitingMessage: undefined,
+    };
 
-  it('should render appropriate message', () => {
-    expect(
-      screen.getByText(
-        'To see stories and defects here, configure a source control webhook, make a commit and use the Track code changes task to update the board.'
-      )
-    ).toBeVisible();
+    it('should render default waiting message when no custom message provided', () => {
+      renderComponent(props);
+      expect(screen.getByText(DEFAULT_APP_WAITING_MESSAGE)).toBeVisible();
+    });
   });
 });

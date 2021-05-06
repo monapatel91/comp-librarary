@@ -5,6 +5,7 @@ import { CommonProps } from '../../components/CommonProps';
 import { rootClassName, StyledProgressionSwimlane } from './Swimlane.styles';
 import { Phase } from './Phase';
 import {
+  PBApplication,
   PhaseType,
   SelectWorkItem,
   SwimLanepkg,
@@ -16,20 +17,22 @@ import { WaitingPhase } from './phase/WaitingPhase';
 
 export interface SwimLaneProps extends CommonProps {
   baseUrl: string;
+  isOffsetLeft?: boolean;
   onAppNameClick?: (appName: string) => void;
+  pbApplication?: PBApplication;
   progressionPackage: SwimLanepkg;
   selectWorkitemProps: SelectWorkItem;
-  isOffsetLeft?: boolean;
 }
 
 export const SwimLane = ({
   baseUrl,
   className,
   'data-testid': dataTestId,
+  isOffsetLeft = false,
   onAppNameClick,
+  pbApplication = null,
   progressionPackage,
   selectWorkitemProps,
-  isOffsetLeft = false,
 }: SwimLaneProps) => {
   const phases = progressionPackage.phases;
   const rootClasses = useStylesWithRootClass(
@@ -87,7 +90,11 @@ export const SwimLane = ({
       ));
     }
     return phases.map((_: PhaseType, index: number) => (
-      <WaitingPhase key={index} />
+      <WaitingPhase
+        data-testid={`waiting-phase-${index}`}
+        key={index}
+        waitingMessage={pbApplication?.waitingMessage}
+      />
     ));
   };
 

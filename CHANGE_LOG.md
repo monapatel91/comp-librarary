@@ -9,6 +9,7 @@
 ### Experimental
 
 - **NavigationRail** - added new component
+- **ProgressionBoard** - added `pbApplications` optional prop for rendering appropriate waiting messages for given application
 
 ## 0.0.0-alpha.29
 

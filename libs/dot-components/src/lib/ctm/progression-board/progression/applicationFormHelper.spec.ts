@@ -27,7 +27,7 @@ import {
   isTicketSystemValid,
 } from './applicationFormHelper';
 import {
-  ApplicationForm,
+  ApplicationFormType,
   ApplicationFormOutput,
   SourceControl,
 } from '../ProgressionBoardInterfaces';
@@ -82,7 +82,7 @@ describe('applicationFormHelper', () => {
     },
   ];
 
-  const sampleFormData: ApplicationForm = {
+  const sampleFormData: ApplicationFormType = {
     activeSourceControl: {} as SourceControl,
     applicationName: 'Test app',
     createAnother: false,
@@ -1003,7 +1003,7 @@ describe('applicationFormHelper', () => {
       ).toBe(null);
     });
     it('should return correct data when valid data is passed in', () => {
-      const formData: ApplicationForm = {
+      const formData: ApplicationFormType = {
         ...sampleFormData,
         applicationName: 'Test',
         createAnother: false,

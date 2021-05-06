@@ -9,6 +9,8 @@ import {
 import { calculateProgressionBoardOffset } from './progressionBoardHelper';
 import {
   PackageType,
+  PBApplication,
+  PBApplications,
   PhaseType,
   SelectedWorkItem,
   SwimLanepkg,
@@ -22,6 +24,8 @@ export interface ProgressionBoardProps extends CommonProps {
   baseUrl?: string;
   /* Optional callback function which gets executed upon application name click event */
   onAppNameClick?: (appName: string) => void;
+  /* Object of key-value pairs for each application */
+  pbApplications?: PBApplications;
   /* Array of progression phases */
   phases: Array<PhaseType>;
   /* Object which can be used when custom work-item selection is implemented */
@@ -33,6 +37,7 @@ export const DotProgressionBoard = ({
   className,
   'data-testid': dataTestId,
   onAppNameClick,
+  pbApplications = null,
   phases,
   workItemSelection = null,
 }: ProgressionBoardProps) => {
@@ -159,9 +164,19 @@ export const DotProgressionBoard = ({
 
   const pbRef = useRef(null);
 
+  const getPBApplicationForPackage = (
+    allPBApplications: PBApplications,
+    packageId: string
+  ): PBApplication =>
+    packageId in allPBApplications ? allPBApplications[packageId] : null;
+
   const renderSwimLanesFromPackages = (packages: Array<SwimLanepkg>) => {
     return packages?.map((pkg, i) => (
       <SwimLane
+        pbApplication={
+          pbApplications &&
+          getPBApplicationForPackage(pbApplications, pkg.package_id)
+        }
         baseUrl={baseUrl}
         key={i}
         onAppNameClick={onAppNameClick}

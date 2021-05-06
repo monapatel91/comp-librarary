@@ -21,6 +21,7 @@ import { pbApplicationAPIData as apiData } from '../demo-data/pbApplicationAPIDa
 import { sampleEmptyPhases } from '../demo-data/pbEmptyPhasesData';
 import { phasesData } from './DemoData';
 import { pbAppDetailsData } from '../demo-data/pbAppDetailsData';
+import { pbApplications } from '../demo-data/pbApplicationsData';
 
 const rootClassName = 'demo-progression';
 const dialogRootClassName = 'form-result-dialog';
@@ -310,6 +311,7 @@ export const ProgressionDemo = () => {
             className="progression-board"
             workItemSelection={workItemSelection}
             onAppNameClick={onAppNameClick}
+            pbApplications={pbApplications}
             phases={phasesData}
             baseUrl={BASE_URL}
           />

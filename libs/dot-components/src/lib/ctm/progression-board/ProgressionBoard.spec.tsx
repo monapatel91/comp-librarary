@@ -2,10 +2,13 @@ import React from 'react';
 import { render, RenderResult, screen } from '../../testing-utils';
 import { DotProgressionBoard, ProgressionBoardProps } from './ProgressionBoard';
 import { samplePhases } from './sample-data/sampleData';
+import { samplePBApplicationTestData } from './sample-data/sampleApplicationData';
 import { PhaseType } from './ProgressionBoardInterfaces';
 
 describe('ProgressionBoard', () => {
   const dataTestId = 'test-pb';
+
+  const onAppNameClick = jest.fn();
 
   const sampleEmptyPhases: Array<PhaseType> = [
     {
@@ -45,7 +48,10 @@ describe('ProgressionBoard', () => {
     screen.queryAllByTestId('board-phases');
 
   const componentProps: ProgressionBoardProps = {
+    baseUrl: 'www.test.ai/',
     'data-testid': dataTestId,
+    onAppNameClick,
+    pbApplications: samplePBApplicationTestData,
     phases: samplePhases,
   };
 
@@ -55,6 +61,17 @@ describe('ProgressionBoard', () => {
     const renderProps = props ? props : componentProps;
     return render(<DotProgressionBoard {...renderProps} />);
   };
+
+  it('should have unchanged API', () => {
+    const props = {
+      baseUrl: 'www.test.ai/',
+      'data-testid': dataTestId,
+      onAppNameClick,
+      pbApplications: samplePBApplicationTestData,
+      phases: samplePhases,
+    };
+    expect(componentProps).toEqual(props);
+  });
 
   it('should render successfully', () => {
     const { baseElement } = renderComponent();
