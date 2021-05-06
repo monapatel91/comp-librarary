@@ -2,6 +2,10 @@
 
 ## Current
 
+### Components
+
+- **Pill** - added `backgroundColor` and `labelColor` props
+
 ### Experimental
 
 - **NavigationRail** - added new component
