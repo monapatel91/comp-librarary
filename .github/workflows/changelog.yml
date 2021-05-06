@@ -4,24 +4,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  changelog:
+  # https://github.com/faberNovel/github-changelog-generator-action
+  generate:
     name: Generate Changelog
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run Changelog CI
-        uses: saadmk11/changelog-ci@v0.8.0
+      - name: Generate changelog
+        uses: fabernovel/github-changelog-generator-action@master
         with:
-          # Optional, you can provide any name for your changelog file,
-          # defaults to `CHANGELOG.md` if not provided.
-          changelog_filename: CI_CHANGELOG.md
-          # Optional, only required when you want more customization
-          # e.g: group your changelog by labels with custom titles,
-          # different version prefix, pull request title and version number regex etc.
-          # config file can be in JSON or YAML format.
-          config_file: changelog-ci-config.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+          # You can pass any parameters from https://github.com/github-changelog-generator/github-changelog-generator/wiki/Advanced-change-log-generation-examples#additional-options
+          options: --token ${{ secrets.GITHUB_TOKEN }} --date-format %m/%d/%Y --output CI_CHANGE_LOG.md --enhancement-labels ["enhancement"] --bug-labels ["defect"]
+
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: ${{ github.workspace }}
+          retention-days: 5
+
+  # https://github.com/marketplace/actions/auto-changelog
+  # https://github.com/marketplace/actions/update-changelog
+
+  # https://github.com/marketplace/actions/generate-changelog-using-github-changelog-generator
+  # https://github.com/github-changelog-generator/github-changelog-generator

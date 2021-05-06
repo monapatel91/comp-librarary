@@ -97,8 +97,23 @@ jobs:
           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
         run: echo "new tag $NEW_TAG"
 
-  # https://github.com/marketplace/actions/changelog-ci
-  # Changelog
+  # https://github.com/faberNovel/github-changelog-generator-action
+  # generate:
+  #   name: Generate Changelog
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Generate changelog
+  #       uses: fabernovel/github-changelog-generator-action@master
+  #       with:
+  #         # You can pass any parameters from https://github.com/github-changelog-generator/github-changelog-generator/wiki/Advanced-change-log-generation-examples#additional-options
+  #         options: --token ${{ secrets.GITHUB_TOKEN }} --date-format %m/%d/%Y --output CI_CHANGE_LOG.md --enhancement-labels ["enhancement"] --bug-labels ["defect"]
+
+  #     - name: Publish Artifact
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         path: ${{ github.workspace }}
+  #         retention-days: 5
 
   # https://github.com/marvinpinto/action-automatic-releases
   create-release:
