@@ -27,6 +27,7 @@ export * from './input-form-fields/InputSelect';
 export * from './link/Link';
 export * from './list/List';
 export * from './menu/Menu';
+export * from './navigation-rail/NavigationRail';
 export * from './phase-header/PhaseHeader';
 export * from './pill/Pill';
 export * from './progress/Progress';

@@ -1,5 +1,11 @@
 # Change Log
 
+## Current
+
+### Experimental
+
+- **NavigationRail** - added new component
+
 ## 0.0.0-alpha.29
 
 ### Components
