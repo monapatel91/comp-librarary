@@ -1,8 +1,8 @@
 # Changelog
 
-## [v0.0.0-alpha.30](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.30) (05/07/2021)
+## [Unreleased](https://github.com/digital-ai/dot-components/tree/HEAD)
 
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.28...v0.0.0-alpha.30)
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.29...HEAD)
 
 **Features:**
 
@@ -19,6 +19,10 @@
 - Fix some lint issues [\#511](https://github.com/digital-ai/dot-components/pull/511) ([CWSites](https://github.com/CWSites))
 - S-75774: \[ProgressionBoard\] Show different messages on empty applications [\#509](https://github.com/digital-ai/dot-components/pull/509) ([dmiletic85](https://github.com/dmiletic85))
 - Issue 493: Pill colors [\#506](https://github.com/digital-ai/dot-components/pull/506) ([selsemore](https://github.com/selsemore))
+
+## [v0.0.0-alpha.29](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.29) (05/05/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.28...v0.0.0-alpha.29)
 
 ## [v0.0.0-alpha.28](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.28) (05/05/2021)
 
@@ -383,7 +387,6 @@
 - Issue \#106: refactor Chip component [\#244](https://github.com/digital-ai/dot-components/pull/244) ([selsemore](https://github.com/selsemore))
 - Issue 211 form group [\#243](https://github.com/digital-ai/dot-components/pull/243) ([j-schoen](https://github.com/j-schoen))
 - Issue \#198: refactoring ProgressionBoard [\#239](https://github.com/digital-ai/dot-components/pull/239) ([CWSites](https://github.com/CWSites))
-- Issue \#103: Refactor Card component [\#237](https://github.com/digital-ai/dot-components/pull/237) ([selsemore](https://github.com/selsemore))
 
 ## [0.0.0-alpha.4](https://github.com/digital-ai/dot-components/tree/0.0.0-alpha.4) (01/28/2021)
 
