@@ -32,7 +32,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.client_payload.ref }}
+          ref: ${{ github.event.client_payload.sha }}
       - run: |
           echo REF: ${{ github.event.client_payload.ref }}
           echo SHA: ${{ github.event.client_payload.sha }}
@@ -68,7 +68,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.client_payload.ref }}
+          ref: ${{ github.event.client_payload.sha }}
       - run: echo ${{ github.event.client_payload.sha }}
 
       - name: Setup Node.js
@@ -96,7 +96,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.client_payload.ref }}
+          ref: ${{ github.event.client_payload.sha }}
       - run: echo ${{ github.event.client_payload.sha }}
 
       - name: Setup Node.js
