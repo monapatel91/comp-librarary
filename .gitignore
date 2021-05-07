@@ -39,4 +39,4 @@ testem.log
 Thumbs.db
 
 # CI/CD Output
-CI_CHANGE_LOG.md
+# CI_CHANGE_LOG.md
