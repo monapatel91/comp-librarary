@@ -4,42 +4,25 @@ on:
   pull_request:
 
 jobs:
-  get-version:
-    name: Get Version Number for Build
-    runs-on: ubuntu-latest
-    outputs:
-      version-string: ${{ steps.get_version.outputs.VERSION }}
+  # get-version:
+  #   name: Get Version Number for Build
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     version-string: ${{ steps.get_version.outputs.VERSION }}
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: pr-number-action
-        id: get_pr
-        uses: kkak10/pr-number-action@v1.3
+  #     - name: pr-number-action
+  #       id: get_pr
+  #       uses: kkak10/pr-number-action@v1.3
 
-      - name: Get the version
-        id: get_version
-        shell: bash
-        run: |
-          echo ::set-output name=VERSION::0.0.0.${{ steps.get_pr.outputs.pr }}
-
-  # https://github.com/marketplace/actions/changelog-ci
-  changelog-reminder:
-    name: Changelog Reminder
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Changelog Reminder
-        uses: peterjgrainger/action-changelog-reminder@v1.2.0
-        with:
-          changelog_regex: '/CHANGE_LOG.md'
-          customPrMessage: 'Please update `CHANGE_LOG.md`'
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+  #     - name: Get the version
+  #       id: get_version
+  #       shell: bash
+  #       run: |
+  #         echo ::set-output name=VERSION::0.0.0.${{ steps.get_pr.outputs.pr }}
 
   verification:
     name: Lint, Format & Build
