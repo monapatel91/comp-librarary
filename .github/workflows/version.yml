@@ -86,8 +86,6 @@ jobs:
           minor-wording: 'minor'
           # Providing patch-wording will override commits defaulting to a patch bump.
           # patch-wording: 'patch'
-          # currently we do not want to bump on every merge
-          # once we do... remove 'alpha' from rc-wording
           rc-wording: 'alpha, RELEASE, BETA'
           target-branch: 'master'
           # rc-wording will override the preid
@@ -118,7 +116,7 @@ jobs:
       - name: Commit and Push Changelog
         uses: EndBug/add-and-commit@master
         with:
-          add: 'CI_CHANGE_LOG.md'
+          add: CI_CHANGE_LOG.md --force
           default_author: github_actions
           message: 'Update Changelog'
 
