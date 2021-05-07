@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import {
   DotButton,
   DotCard,
@@ -74,7 +74,7 @@ export const DemoFormUncontrolled = () => {
     }
   };
 
-  const onArtistSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onArtistSelected = (event: ChangeEvent<HTMLInputElement>) => {
     setBowieSelected(event.target.value === 'David Bowie');
     setShowHintDisabled(event.target.value.length === 0 && !hint);
     switch (event.target.value) {

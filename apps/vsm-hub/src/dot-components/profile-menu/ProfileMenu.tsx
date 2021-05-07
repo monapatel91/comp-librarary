@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { MouseEvent, useState } from 'react';
 import {
-  DotAvatar,
-  DotButton,
   DotIconButton,
   DotMenu,
   MenuItemProps,
 } from '@digital-ai/dot-components';
-import { useState } from 'react';
 
 interface ProfileMenuProps {
   onLogout: () => void;
@@ -22,7 +19,7 @@ export const ProfileMenu = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement>();
 
-  const handleClick: any = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
     setIsMenuOpen(true);
   };

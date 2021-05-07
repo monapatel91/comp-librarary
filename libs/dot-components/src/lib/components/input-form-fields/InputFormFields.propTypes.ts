@@ -1,4 +1,4 @@
-import { ReactNode, Ref } from 'react';
+import { ChangeEvent, ReactNode, Ref } from 'react';
 import { CommonProps } from '../CommonProps';
 
 export type inputSizeOptions = 'small' | 'medium';
@@ -31,7 +31,7 @@ export interface InputProps extends CommonProps {
   name: string;
   /** A function that should be executed when the value of the input changes */
   onChange?: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   /** If true, the label is displayed as required and the input element` will be required. */
   required?: boolean;

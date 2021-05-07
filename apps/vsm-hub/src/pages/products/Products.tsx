@@ -1,6 +1,6 @@
-import { DotButton, DotList, ListItemProps } from '@digital-ai/dot-components';
-import React, { useEffect } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { DotButton, DotList, ListItemProps } from '@digital-ai/dot-components';
 import {
   Capability,
   VsmHubCapabilities,
@@ -20,13 +20,9 @@ export const backItems: Array<ListItemProps> = [
     onClick: () => console.log('go back clicked'),
     text: 'Agility',
     title: `Go Back to Home`,
-    component: React.forwardRef((props, ref) => (
-      <Link {...props} to="/" ref={ref} />
-    )),
+    component: forwardRef((props, ref) => <Link {...props} to="/" ref={ref} />),
   },
 ];
-
-export interface ProductsProps {}
 
 export const releaseNotes: Array<Capability> = [
   {
@@ -49,7 +45,7 @@ export const releaseNotes: Array<Capability> = [
   },
 ];
 
-export const VsmHubProducts = ({}: ProductsProps) => {
+export const VsmHubProducts = () => {
   const { navList, setNavList, setGoBack, setBackItem } = useNavListContext();
 
   const history = useHistory();

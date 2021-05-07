@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { BackItemProps, ListItemProps } from '@digital-ai/dot-components';
 import { Link } from 'react-router-dom';
 
@@ -7,15 +7,13 @@ export const mainLevelNav: Array<ListItemProps> = [
     iconId: 'home',
     text: 'Home',
     selected: true,
-    component: React.forwardRef((props, ref) => (
-      <Link {...props} to="/" ref={ref} />
-    )),
+    component: forwardRef((props, ref) => <Link {...props} to="/" ref={ref} />),
   },
   {
     iconId: 'list',
     text: 'Accounts',
 
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/accounts" ref={ref} />
     )),
   },
@@ -23,7 +21,7 @@ export const mainLevelNav: Array<ListItemProps> = [
   //   iconId: 'cloud',
   //   text: 'Account',
 
-  //   component: React.forwardRef((props, ref) => (
+  //   component: forwardRef((props, ref) => (
   //     <Link {...props} to="/account" ref={ref} />
   //   )),
   // },
@@ -31,7 +29,7 @@ export const mainLevelNav: Array<ListItemProps> = [
   {
     iconId: 'settings',
     text: 'Settings',
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/admin" ref={ref} />
     )),
   },
@@ -42,14 +40,14 @@ export const accountLevelNav: Array<ListItemProps> = [
     iconId: 'cloud',
     text: 'Overview',
     selected: true,
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/account" ref={ref} />
     )),
   },
   {
     iconId: 'settings',
     text: 'Settings',
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/account/settings" ref={ref} />
     )),
   },
@@ -60,28 +58,28 @@ export const productLevelNav: Array<ListItemProps> = [
     iconId: 'cloud',
     text: 'Overview',
     selected: true,
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/product/agility" ref={ref} />
     )),
   },
   {
     iconId: 'monitor',
     text: 'Usage',
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/product/usage/agility" ref={ref} />
     )),
   },
   {
     iconId: 'dashboard',
     text: 'Analytics',
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/products/analytics/agility" ref={ref} />
     )),
   },
   {
     iconId: 'list',
     text: 'Logs',
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/products/logs/agility" ref={ref} />
     )),
   },

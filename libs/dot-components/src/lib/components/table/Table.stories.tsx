@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotTable, TableProps, stableSort, getComparator } from './Table';
 import {
@@ -29,27 +29,23 @@ export const Default: Story<TableProps> = (args) => {
   );
   const [searchText, setSearchText] = useState('');
 
-  const onRowClick = (evt, id) => {
-    console.log(`${id} clicked! (cell ${evt.target.cellIndex})`);
+  const onRowClick = (evt: MouseEvent, id: string) => {
+    console.log(`${id} clicked! (cell ${evt.target})`);
   };
 
-  const onUpdateData = (
-    order: Order,
-    orderBy: string,
-    page: number,
-    rowsPerPage: number
-  ) => {
+  const onUpdateData = (order: Order, orderBy: string) => {
     const newData = stableSort(defaultData, getComparator(order, orderBy));
     setData(newData);
   };
 
   const onSearchChange = (
-    evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setSearchText(evt.target.value);
   };
 
-  const isSearchHit = (dataRow) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const isSearchHit = (dataRow: any) => {
     return (
       dataRow.rowData.title.toUpperCase().indexOf(searchText.toUpperCase()) !==
         -1 ||
@@ -60,7 +56,6 @@ export const Default: Story<TableProps> = (args) => {
   };
 
   const getFilteredData = () => {
-    const filteredData = [];
     return data.filter(isSearchHit);
   };
 
@@ -113,9 +108,6 @@ export const LocallyPaginatedTable: Story<TableProps> = (args) => {
 };
 
 export const RemotelyPaginatedTable: Story<TableProps> = (args) => {
-  const [sortedTableData, setSortedData] = useState(
-    stableSort(paginatedData, getComparator('asc', 'name'))
-  );
   const [data, setData] = useState(
     stableSort(paginatedData, getComparator('asc', 'name')).slice(0, 10)
   );
@@ -136,7 +128,7 @@ export const RemotelyPaginatedTable: Story<TableProps> = (args) => {
     setData(newData);
   };
 
-  const onRowClick = (evt: MouseEvent, id: string) => {
+  const onRowClick = (_evt: MouseEvent, id: string) => {
     console.log(`${id} clicked!`);
   };
 

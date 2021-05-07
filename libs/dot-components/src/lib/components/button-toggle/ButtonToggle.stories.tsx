@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, SetStateAction, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotButtonToggle, ButtonToggleProps } from './ButtonToggle';
 
@@ -18,9 +18,12 @@ export default {
 } as Meta;
 
 export const Default: Story<ButtonToggleProps> = (args) => {
-  const [toggleValue, setToggleValue] = React.useState(args.value);
+  const [toggleValue, setToggleValue] = useState(args.value);
 
-  const handleToggleOption = (_event: MouseEvent, activeOption: any) => {
+  const handleToggleOption = (
+    _event: MouseEvent,
+    activeOption: SetStateAction<string | number | boolean>
+  ) => {
     setToggleValue(activeOption);
   };
 

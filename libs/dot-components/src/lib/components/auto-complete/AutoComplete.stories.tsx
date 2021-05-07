@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import React, { ChangeEvent, createRef, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import {
@@ -48,7 +48,7 @@ export const WithError: Story<AutoCompleteProps> = ({ onChange, ...args }) => {
   const [error, setError] = useState(true);
   const ref = createRef<HTMLInputElement>();
   const handleOnChange = (
-    _event: React.ChangeEvent<unknown>,
+    _event: ChangeEvent<unknown>,
     value: AutoCompleteValue,
     reason: string
   ) => {

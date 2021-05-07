@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import {
   BackItemProps,
   DotAvatar,
@@ -37,28 +37,26 @@ const sideNavItems: Array<ListItemProps> = [
   {
     iconId: 'home',
     text: 'Home',
-    component: React.forwardRef((props, ref) => (
-      <Link {...props} to="/" ref={ref} />
-    )),
+    component: forwardRef((props, ref) => <Link {...props} to="/" ref={ref} />),
   },
   {
     iconId: 'comment',
     text: 'Demo Form',
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/demo-form" ref={ref} />
     )),
   },
   {
     iconId: 'visibility-off',
     text: 'Demo Form Uncontrolled',
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/demo-form-uncontrolled" ref={ref} />
     )),
   },
   {
     iconId: 'package',
     text: 'Progression',
-    component: React.forwardRef((props, ref) => (
+    component: forwardRef((props, ref) => (
       <Link {...props} to="/progression" ref={ref} />
     )),
   },

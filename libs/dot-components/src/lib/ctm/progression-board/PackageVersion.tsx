@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useState } from 'react';
+import React, { forwardRef, MutableRefObject, useState } from 'react';
 import { Typography } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
@@ -21,7 +21,7 @@ export interface PackageDetailProps extends CommonProps {
   selectWorkitemProps: SelectWorkItem;
 }
 
-export const ValidPackage = React.forwardRef(
+export const ValidPackage = forwardRef(
   (
     {
       baseUrl,

@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef, MouseEvent } from 'react';
+import React, { forwardRef, MouseEvent, MutableRefObject, useRef } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
 import { DotIcon } from '../../components';
@@ -16,7 +16,7 @@ export interface WorkItemProps extends CommonProps {
   workitem: WorkItemType;
 }
 
-export const WorkItem = React.forwardRef(
+export const WorkItem = forwardRef(
   (
     {
       baseUrl,

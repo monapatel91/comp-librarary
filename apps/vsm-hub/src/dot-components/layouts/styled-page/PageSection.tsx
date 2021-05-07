@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactNode, ReactNodeArray } from 'react';
 import { StyledPageSection, rootClassName } from './StyledPage.styles';
 export interface PageSectionProps {
-  children: React.ReactNode | React.ReactNodeArray;
+  children: ReactNode | ReactNodeArray;
 }
 export const VsmHubPageSection = ({ children }) => {
   return (
