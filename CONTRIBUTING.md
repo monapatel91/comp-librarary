@@ -28,11 +28,14 @@
   - [Checking code style](#checking-code-style)
 - [Definition of Done](#definition-of-done)
   - [Understand your workspace](#understand-your-workspace)
-- [Publishing](#publishing)
-  - [Publishing as NPM package to GitHub Packages](#publishing-as-npm-package-to-github-packages)
-    - [Set the package version number](#set-the-package-version-number)
-    - [Build and publish](#build-and-publish)
-    - [Publish Storybook Site](#publish-storybook-site)
+  - [Security](#security)
+- [CI/CD Automation `version.yml`](#ci-cd-automation-version.yml)
+  - [Lint, Test & Build `test.yml`](#lint-test-and-build-test.yml)
+  - [Bump Version & Create Tag](#bump-version-and-create-tag)
+  - [Change log Updated](#change-log-updated)
+  - [Create Release](#create-release)
+  - [Deploy to NPM `release.yml`](#deploy-to-npm-release.yml)
+  - [Deploy to GitHub Pages `pages.yml`](#deploy-to-github-pages-pages.yml)
 
 # Getting Started
 
@@ -69,10 +72,8 @@ When working on something that is part of a Digital.ai Agility issue we request 
 - If related to an issue then format the title as `Issue #1: Title Here`
 - If related to a story/defect in Agility then format the title as `S-12345: Story Title Here` or `D-12345: Defect Title`.
 - PR should be marked as `draft` if still a work in progress and `ready for review` once your code changes are complete.
-- Please provide enough information so that others will have proper context.
-- Checklist of changes made should be added to the PR description
-- Please extend `e2e` and `unit` tests accordingly.
-- Make sure there are no default exports
+- List of **Changes Made** should be added at the top of the pull request
+- Thoroughly review and complete the **Author Checklist** on your pull request.
 - Update your PR with the issue # that your PR resolves if applicable. [More info](https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword.)
 
 # Component vs. Demo
@@ -145,7 +146,7 @@ export default {
 };
 ```
 
-Please make sure to document each `prop` in your components interface accordingly, it will populate Storybook with these details.
+Please make sure to document each `prop` in your components interface accordingly, it will populate Storybook with these details. All props should extend `CommonProps` which contains `className` and `data-testId`.
 
 **`Button.tsx`**
 
@@ -170,12 +171,15 @@ At a minimum, each component should have an `e2e` test which verifies that the c
 
 ```typescript
 describe('dot-components: Button component', () => {
+  // URL of where component lives on Storybook
   before(() => cy.visit('/iframe.html?id=components-button--default'));
 
+  // ensure dot- prefix
   it('should have a dot- prefix', () => {
     cy.get('button').should('have.class', 'dot-button');
   });
 
+  // example of style decision test
   describe('style decisions', () => {
     it('primary button has correct color', () => {
       cy.get('button.dot-button').should(
@@ -228,14 +232,19 @@ describe('DotButton', () => {
 
 ## Component Author Checklist
 
-- [ ] If new component, ensure it is being exported from library
-- [ ] Make sure there are no default exports
-- [ ] Component is a `styled-component` if applicable
-- [ ] Component props extends `commonProps`
+- [ ] Checklist of changes made added to PR description
+- [ ] New component?
+  - [ ] is it being exported from library?
+  - [ ] Make sure there are no `default` exports
+  - [ ] Component is a styled component
+  - [ ] Component props extends `commonProps`
 - [ ] Storybook configurations up-to-date
 - [ ] `unit` test coverage updated
+  - [ ] `testing-library` imports are from `testing-utils`
+  - [ ] modified props have been added to API unit test
 - [ ] `e2e` test coverage updated
 - [ ] `CHANGE_LOG.md` updated
+  - [ ] breaking changes are specified as such
 
 # Contributing to Demo App
 
@@ -355,38 +364,48 @@ yarn format
 
 Before any work can be merged all checks & builds must pass and your PR must have a minimum of 2 reviewers approval. If design changes were made, one of the reviewers must be a UX member.
 
-# Publishing
+## Understand your workspace
+
+Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
 ## Security
 
 There should be no outstanding security vulnerabilities with `moderate` or higher prior to publishing for use across other applications.
 
-## Understand your workspace
+# CI/CD Automation
 
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+## Lint, Test & Build
 
-## Set the package version number
+- `yarn lint`
+- `yarn format:check`
+- `yarn build`
+- `yarn test`
+- `yarn e2e:ci`
 
-Set the new version number for the package in the `/libs/dot-components/package.json` file. Create a commit with the new version number.
+## Bump Version & Create Tag
 
-## Build and publish
+- Currently a new `alpha` release will be created on every merge to master.
+- `package.json` will be updated with the new version number
+- Tag for the new version will be created in GitHub
 
-To build and publish the library run the following commands:
+## Change Log Generated
 
-```sh
-# just build
-yarn build
+- `CI_CHANGE_LOG.md` will be generated and commited.
+- **Note:** we will retain `CHANGE_LOG.md` until we have worked out all the CI change log formatting issues.
 
-# build and publish
-yarn build:publish
-```
+## Create Release
 
-## Publish Storybook Site
+- A new release will be created in GitHub
+- The release will be tagged as a `pre-release` with a `draft` status
 
-The Storybook documentation is deployed via a manual GitHub Action. To trigger the Action follow these steps:
+## Deploy to NPM
 
-1. Navigate to the [Actions](https://github.com/digital-ai/dot-components/actions) for the repository
-1. Click on the Workflow called "Deploy Storybook for Dot Components"
-1. Click on the "Run Workflow" menu
-1. Choose the appropriate branch to run the workflow on (should be the master branch)
-1. Click on the "Run Workflow" button
+- `yarn build` will be run to compile the code
+- The latest version will be published to GitHub
+- A message will be posted to #dot-components in Slack notifying users of the new version
+
+## Deploy to GitHub Pages
+
+- `yarn storybook:build` will run to compile the `docs` directory
+- The code will be pushed to the `ghpages` branch
+- https://digital-ai.github.io/dot-components will be automatically updated
