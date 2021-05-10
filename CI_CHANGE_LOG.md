@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.0.0-alpha.31](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.31) (05/10/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.30...v0.0.0-alpha.31)
+
+**Merged pull requests:**
+
+- 10/5/2021-Update icons [\#517](https://github.com/digital-ai/dot-components/pull/517) ([BojanKocijan](https://github.com/BojanKocijan))
+
 ## [v0.0.0-alpha.30](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.30) (05/07/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.29...v0.0.0-alpha.30)
@@ -425,7 +433,9 @@
 - Links in .md files should point to ZeroHeight [\#170](https://github.com/digital-ai/dot-components/pull/170) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - defect \#166: updating margins based on UX feedback [\#169](https://github.com/digital-ai/dot-components/pull/169) ([CWSites](https://github.com/CWSites))
 - manual deployment of Storybook site [\#168](https://github.com/digital-ai/dot-components/pull/168) ([TheKeithStewart](https://github.com/TheKeithStewart))
+- issue \#163: move ActionToolbar props and styles to separate files [\#164](https://github.com/digital-ai/dot-components/pull/164) ([selsemore](https://github.com/selsemore))
 - Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
+- Issue 107  108 inputs [\#159](https://github.com/digital-ai/dot-components/pull/159) ([j-schoen](https://github.com/j-schoen))
 - 26 feb icon moon color remove [\#156](https://github.com/digital-ai/dot-components/pull/156) ([BojanKocijan](https://github.com/BojanKocijan))
 - issue \#138: update empty state based on UX feedback [\#150](https://github.com/digital-ai/dot-components/pull/150) ([CWSites](https://github.com/CWSites))
 - issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
