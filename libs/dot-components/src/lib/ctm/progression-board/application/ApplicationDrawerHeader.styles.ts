@@ -7,6 +7,7 @@ export const StyledApplicationDrawerHeader = styled.div`
     &.${rootClassName} {
       padding: ${theme.spacing(0, 1, 0, 2)};
       display: flex;
+      flex-shrink: 0;
       align-items: center;
       height: 90px;
       box-shadow: inset 0px -1px 0px ${theme.palette.progressionBoard.boardColumnHeader};

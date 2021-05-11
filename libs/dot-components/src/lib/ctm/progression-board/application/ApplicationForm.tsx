@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { Divider } from '@material-ui/core';
 import { CommonProps } from '../../../components/CommonProps';
 import { useStylesWithRootClass } from '../../../components/useStylesWithRootClass';
 import { rootClassName, StyledApplicationForm } from './ApplicationForm.styles';
@@ -13,8 +12,6 @@ import {
   DotAutoComplete,
   DotButton,
   DotCheckbox,
-  DotForm,
-  DotFormGroup,
   DotIcon,
   DotIconButton,
   DotInputText,
@@ -261,8 +258,12 @@ export const ApplicationForm = ({
   };
 
   return (
-    <StyledApplicationForm className={rootClasses} data-testid={dataTestId}>
-      <DotForm onSubmit={onApplicationFormSubmit}>
+    <StyledApplicationForm
+      className={rootClasses}
+      data-testid={dataTestId}
+      onSubmit={onApplicationFormSubmit}
+    >
+      <div className="form-content">
         <DotInputText
           className="application-name"
           data-testid="application-name"
@@ -343,30 +344,29 @@ export const ApplicationForm = ({
           options={ticketSystemServers}
           value={tsServer}
         />
-        <Divider className="content-divider" />
         <DotCheckbox
           checked={formCreateAnother}
           className="add-another-cb"
           label="Create another"
           onChange={onCreateAnotherChange}
         />
-        <DotFormGroup className="form-action-group" row={true}>
-          <DotButton
-            className="form-cancel-btn"
-            onClick={onCancelButtonClick}
-            type="text"
-          >
-            Cancel
-          </DotButton>
-          <DotButton
-            className="form-save-btn"
-            disabled={!isFormValid}
-            isSubmit={true}
-          >
-            Save
-          </DotButton>
-        </DotFormGroup>
-      </DotForm>
+      </div>
+      <div className="form-action">
+        <DotButton
+          className="form-cancel-btn"
+          onClick={onCancelButtonClick}
+          type="text"
+        >
+          Cancel
+        </DotButton>
+        <DotButton
+          className="form-save-btn"
+          disabled={!isFormValid}
+          isSubmit={true}
+        >
+          Save
+        </DotButton>
+      </div>
       {isPayloadUrlDialogOpened && (
         <PayloadUrlDialog
           data-testid="active-payload-url-dialog"
