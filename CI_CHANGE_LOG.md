@@ -1,5 +1,24 @@
 # Changelog
 
+## [v0.0.0-alpha.32](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.32) (05/11/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.31...v0.0.0-alpha.32)
+
+**Features:**
+
+- Checkbox enhancement [\#271](https://github.com/digital-ai/dot-components/issues/271)
+
+**Closed issues:**
+
+- S-73861: Automate process for versioning and releasing [\#84](https://github.com/digital-ai/dot-components/issues/84)
+
+**Merged pull requests:**
+
+- Issue \#271: Add ariaLabel, ariaLabelledby and disableRipple props [\#522](https://github.com/digital-ai/dot-components/pull/522) ([selsemore](https://github.com/selsemore))
+- S-75925: Sticky action buttons on application drawer when content becomes scrollable [\#520](https://github.com/digital-ai/dot-components/pull/520) ([dmiletic85](https://github.com/dmiletic85))
+- S-73861: CI/CD Automation [\#515](https://github.com/digital-ai/dot-components/pull/515) ([CWSites](https://github.com/CWSites))
+- S-75915: Client side validation for application name [\#513](https://github.com/digital-ai/dot-components/pull/513) ([dmiletic85](https://github.com/dmiletic85))
+
 ## [v0.0.0-alpha.31](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.31) (05/10/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.30...v0.0.0-alpha.31)
@@ -435,7 +454,6 @@
 - manual deployment of Storybook site [\#168](https://github.com/digital-ai/dot-components/pull/168) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - issue \#163: move ActionToolbar props and styles to separate files [\#164](https://github.com/digital-ai/dot-components/pull/164) ([selsemore](https://github.com/selsemore))
 - Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
-- Issue 107  108 inputs [\#159](https://github.com/digital-ai/dot-components/pull/159) ([j-schoen](https://github.com/j-schoen))
 - 26 feb icon moon color remove [\#156](https://github.com/digital-ai/dot-components/pull/156) ([BojanKocijan](https://github.com/BojanKocijan))
 - issue \#138: update empty state based on UX feedback [\#150](https://github.com/digital-ai/dot-components/pull/150) ([CWSites](https://github.com/CWSites))
 - issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
