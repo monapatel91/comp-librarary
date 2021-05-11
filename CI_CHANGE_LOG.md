@@ -1,5 +1,22 @@
 # Changelog
 
+## [v0.0.0-alpha.33](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.33) (05/11/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.32...v0.0.0-alpha.33)
+
+**Features:**
+
+- Add `backgroundColor` prop for `DotAvatar` when `type` is `text` or `icon` [\#494](https://github.com/digital-ai/dot-components/issues/494)
+
+**Fixed bugs:**
+
+- Icons not shown for nested List/Sidebar items in menu mode [\#518](https://github.com/digital-ai/dot-components/issues/518)
+
+**Merged pull requests:**
+
+- Issue \#518 fix nested item icons [\#519](https://github.com/digital-ai/dot-components/pull/519) ([selsemore](https://github.com/selsemore))
+- Issue \#494: add 'backgroundColor' and 'color' props to DotAvatar [\#516](https://github.com/digital-ai/dot-components/pull/516) ([selsemore](https://github.com/selsemore))
+
 ## [v0.0.0-alpha.32](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.32) (05/11/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.31...v0.0.0-alpha.32)
