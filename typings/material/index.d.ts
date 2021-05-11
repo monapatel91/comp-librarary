@@ -2,15 +2,34 @@ import '@material-ui/core/styles/createPalette';
 
 declare module '@material-ui/core/styles/createPalette' {
   interface PaletteOptions {
+    avatarColors: AvatarPaletteColorOptions;
     icon: IconPaletteColorOptions;
     layer: LayerPaletteColorOptions;
     progressionBoard: ProgressionBoardColorOptions;
   }
 
   interface Palette {
+    avatarColors: AvatarPaletteColorOptions;
     icon: IconPaletteColorOptions;
     layer: LayerPaletteColorOptions;
     progressionBoard: ProgressionBoardColorOptions;
+  }
+
+  interface AvatarPaletteColorOptions {
+    default: AvatarPaletteColorOption;
+    green: AvatarPaletteColorOption;
+    blue: AvatarPaletteColorOption;
+    orange: AvatarPaletteColorOption;
+    purple: AvatarPaletteColorOption;
+    yellow: AvatarPaletteColorOption;
+    red: AvatarPaletteColorOption;
+    darkGrey: AvatarPaletteColorOption;
+    lightGrey: AvatarPaletteColorOption;
+  }
+
+  interface AvatarPaletteColorOption {
+    backgroundColor: string;
+    color: string;
   }
 
   interface LayerPaletteColorOptions {

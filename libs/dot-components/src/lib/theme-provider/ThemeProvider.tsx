@@ -108,12 +108,54 @@ const breakpointOptions: BreakpointsOptions = {
   },
 };
 
+export const avatarColors = {
+  default: {
+    color: lightColors.n700,
+    backgroundColor: lightColors.n100,
+  },
+  green: {
+    color: lightColors.n0,
+    backgroundColor: lightColors.g500,
+  },
+  blue: {
+    color: lightColors.n0,
+    backgroundColor: lightColors.b500,
+  },
+  orange: {
+    color: lightColors.n700,
+    backgroundColor: lightColors.o500,
+  },
+  purple: {
+    color: lightColors.n0,
+    backgroundColor: lightColors.p500,
+  },
+  yellow: {
+    color: lightColors.n700,
+    backgroundColor: lightColors.y500,
+  },
+  red: {
+    color: lightColors.n0,
+    backgroundColor: lightColors.r500,
+  },
+  darkGrey: {
+    color: lightColors.n0,
+    backgroundColor: lightColors.n700,
+  },
+  lightGrey: {
+    color: lightColors.n700,
+    backgroundColor: lightColors.n200,
+  },
+};
+
 export const agilityLightTheme = createMuiTheme({
   breakpoints: {
     ...breakpointOptions,
   },
   palette: {
     type: 'light',
+    avatarColors: {
+      ...avatarColors,
+    },
     icon: {
       checkOutline: '#1E88E5',
       checkSolid: '#1E88E5',
@@ -172,6 +214,9 @@ export const agilityDarkTheme = createMuiTheme({
   },
   palette: {
     type: 'dark',
+    avatarColors: {
+      ...avatarColors,
+    },
     background: {
       default: '#14262E',
     },
@@ -233,6 +278,9 @@ export const darkTheme = createMuiTheme({
   },
   palette: {
     type: 'dark',
+    avatarColors: {
+      ...avatarColors,
+    },
     icon: {
       checkOutline: lightColors.b500,
       checkSolid: lightColors.b500,
@@ -294,6 +342,9 @@ export const lightTheme = createMuiTheme({
   },
   palette: {
     type: 'light',
+    avatarColors: {
+      ...avatarColors,
+    },
     background: {
       default: lightColors.n0,
     },

@@ -17,9 +17,36 @@ describe('dot-components: Avatar component', () => {
     });
 
     it('has correct colors', () => {
-      cy.get('div.dot-avatar')
-        .should('have.css', 'background-color', 'rgb(227, 229, 232)')
-        .and('have.css', 'color', 'rgb(59, 72, 92)');
+      cy.get('div.dot-avatar').should(
+        'have.css',
+        'background-color',
+        'rgb(227, 229, 232)'
+      );
+      cy.get('h3.dot-typography').should(
+        'have.css',
+        'color',
+        'rgb(59, 72, 92)'
+      );
+    });
+  });
+
+  describe('dot-components: Avatar component - custom colors', () => {
+    before(() =>
+      cy.visit('/iframe.html?id=components-avatar--default&args=color:yellow')
+    );
+    describe('custom color styles', () => {
+      it('should use custom colors', () => {
+        cy.get('div.dot-avatar').should(
+          'have.css',
+          'background-color',
+          'rgb(238, 197, 17)'
+        );
+        cy.get('h3.dot-typography').should(
+          'have.css',
+          'color',
+          'rgb(59, 72, 92)'
+        );
+      });
     });
   });
 });

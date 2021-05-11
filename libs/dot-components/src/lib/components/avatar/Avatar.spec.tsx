@@ -7,6 +7,7 @@ describe('DotAvatar', () => {
     const onClick = jest.fn();
     const props = {
       alt: 'Avatar alt text',
+      color: 'red',
       iconId: 'home',
       imageSrc: './somewhere',
       onClick: onClick,
@@ -17,6 +18,7 @@ describe('DotAvatar', () => {
     };
     const avatarProps: AvatarProps = {
       alt: 'Avatar alt text',
+      color: 'red',
       iconId: 'home',
       imageSrc: './somewhere',
       onClick: onClick,

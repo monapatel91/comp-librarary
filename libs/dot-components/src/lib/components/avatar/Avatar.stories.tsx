@@ -1,6 +1,9 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotAvatar, AvatarProps } from './Avatar';
+import { avatarColors } from '../../theme-provider/ThemeProvider';
+
+const colorOptions = [null].concat(Object.keys(avatarColors));
 
 export default {
   title: 'Components/Avatar',
@@ -9,6 +12,7 @@ export default {
     alt: {
       defaultValue: 'Avatar alt text',
     },
+    color: { control: { type: 'select', options: colorOptions } },
     imageSrc: {
       defaultValue:
         'https://cdn1-www.superherohype.com/assets/uploads/2013/11/batmane3-1.jpg',

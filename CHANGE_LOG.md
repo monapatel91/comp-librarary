@@ -4,6 +4,7 @@
 
 ### Components
 
+- **Avatar** - added `color` prop
 - **Checkbox** - added `ariaLabel`, `ariaLabelledby` and `disableRipple` props
 - **Pill** - added `backgroundColor` and `labelColor` props
 

@@ -8,10 +8,22 @@ import { DotTypography } from '../typography/Typography';
 type AvatarSize = 'small' | 'medium' | 'large';
 type AvatarType = 'image' | 'text' | 'icon';
 type AvatarVariant = 'circular' | 'square';
+type AvatarColor =
+  | 'default'
+  | 'green'
+  | 'blue'
+  | 'orange'
+  | 'purple'
+  | 'yellow'
+  | 'red'
+  | 'darkGrey'
+  | 'lightGrey';
 
 export interface AvatarProps extends CommonProps {
   /** Text displayed on hover */
   alt: string;
+  /** Color for avatar (ignored if type is 'image') */
+  color?: string;
   /** The ID of the icon to display on the avatar */
   iconId?: string;
   /** Source for the image used for the avatar */
@@ -33,6 +45,7 @@ export interface AvatarProps extends CommonProps {
 export const DotAvatar = ({
   alt,
   className,
+  color = 'default',
   'data-testid': dataTestId,
   iconId,
   imageSrc,
@@ -62,9 +75,10 @@ export const DotAvatar = ({
     <StyledAvatar
       alt={alt}
       className={size}
+      color={color}
       classes={{ root: rootClasses, img: 'dot-img' }}
       data-testid={dataTestId}
-      onClick={(event) => (onClick ? onClick(event) : null)}
+      onClick={(event: MouseEvent) => (onClick ? onClick(event) : null)}
       src={type === 'image' ? imageSrc : null}
       variant={variant}
       style={style}
