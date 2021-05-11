@@ -54,6 +54,7 @@ export const DotProgressionBoardAppFormDrawer = ({
         />
         <div className="drawer-content">
           <ApplicationForm
+            applicationNames={apiData.applicationNames}
             basePayloadUrl={apiData?.basePayloadUrl}
             sourceControls={apiData?.sourceControls}
             ticketSystems={apiData?.ticketSystems}

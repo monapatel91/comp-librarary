@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { InputProps } from './InputFormFields.propTypes';
+import { DotIcon } from '..';
 import {
   rootClassName,
   StyledTextField,
@@ -57,6 +58,20 @@ export const DotInputText = ({
     className,
     hasWarning
   );
+  const endAdornmentIcon =
+    endIcon ||
+    (error && (
+      <DotIcon
+        data-testid={dataTestId && `${dataTestId}-error-icon`}
+        iconId="error-solid"
+      />
+    )) ||
+    (warning && (
+      <DotIcon
+        data-testid={dataTestId && `${dataTestId}-warning-icon`}
+        iconId="warning-solid"
+      />
+    ));
 
   return (
     <StyledTextField
@@ -84,12 +99,12 @@ export const DotInputText = ({
             {startIcon}
           </StyledAdornment>
         ),
-        endAdornment: endIcon && (
+        endAdornment: endAdornmentIcon && (
           <StyledAdornment
             className={`${adornmentIconClassName} end`}
             position="end"
           >
-            {endIcon}
+            {endAdornmentIcon}
           </StyledAdornment>
         ),
       }}

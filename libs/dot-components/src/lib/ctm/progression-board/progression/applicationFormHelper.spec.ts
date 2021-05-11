@@ -31,6 +31,7 @@ import {
   ApplicationFormOutput,
   SourceControl,
 } from '../ProgressionBoardInterfaces';
+import { INITIAL_VALIDATION_DATA } from '../application/data/formData';
 
 describe('applicationFormHelper', () => {
   const incorrectObjectStructure = {
@@ -83,40 +84,72 @@ describe('applicationFormHelper', () => {
   ];
 
   const sampleFormData: ApplicationFormType = {
-    activeSourceControl: {} as SourceControl,
-    applicationName: 'Test app',
-    createAnother: false,
-    sourceControls: [
-      {
-        id: '12345',
-        title: 'GitLab',
-        servers: [...sampleScServers],
-      },
-    ],
-    ticketSystem: {
-      id: '2233',
-      title: 'Ticket System 1',
-      servers: [
+    activeSourceControl: {
+      ...INITIAL_VALIDATION_DATA,
+      value: {} as SourceControl,
+    },
+    applicationName: {
+      errorMessage: '',
+      isTouched: true,
+      isValid: true,
+      value: 'Test app',
+    },
+    createAnother: {
+      errorMessage: '',
+      isTouched: true,
+      isValid: true,
+      value: false,
+    },
+    sourceControls: {
+      errorMessage: '',
+      isTouched: true,
+      isValid: true,
+      value: [
         {
-          id: '1111',
-          title: 'Server 1',
-        },
-        {
-          id: '2222',
-          title: 'Server 2',
+          id: '12345',
+          title: 'GitLab',
+          servers: [...sampleScServers],
         },
       ],
+    },
+    ticketSystem: {
+      errorMessage: '',
+      isTouched: true,
+      isValid: true,
+      value: {
+        id: '2233',
+        title: 'Ticket System 1',
+        servers: [
+          {
+            id: '1111',
+            title: 'Server 1',
+          },
+          {
+            id: '2222',
+            title: 'Server 2',
+          },
+        ],
+      },
     },
   };
 
   const sampleFormWithEmptySC = {
     ...sampleFormData,
-    sourceControls: [] as Array<SourceControl>,
+    sourceControls: {
+      ...sampleFormData.sourceControls,
+      value: [] as Array<SourceControl>,
+    },
   };
 
   const sampleFormWithNullSC = {
     ...sampleFormData,
-    sourceControls: null as Array<SourceControl>,
+    sourceControls: {
+      ...sampleFormData.sourceControls,
+      value: {
+        ...sampleFormData.sourceControls,
+        value: null as Array<SourceControl>,
+      },
+    },
   };
 
   const sampleTicketSystems = [
@@ -184,24 +217,32 @@ describe('applicationFormHelper', () => {
       expect(isActiveSCValid(incorrectObjectStructure as never)).toBe(false);
     });
     it('should return false if ID or title properties are empty strings', () => {
-      const formData = {
+      const formData: ApplicationFormType = {
         ...sampleFormData,
         activeSourceControl: {
-          id: '',
-          title: '',
+          ...sampleFormData.activeSourceControl,
+          value: {
+            id: '',
+            title: '',
+            servers: [],
+          },
         },
       };
-      expect(isActiveSCValid(formData as never)).toBe(false);
+      expect(isActiveSCValid(formData)).toBe(false);
     });
     it('should return true on correct data structure with values', () => {
-      const formData = {
+      const formData: ApplicationFormType = {
         ...sampleFormData,
         activeSourceControl: {
-          id: '123',
-          title: 'Test title',
+          ...sampleFormData.activeSourceControl,
+          value: {
+            id: '123',
+            title: 'Test title',
+            servers: [sampleScServers[0]],
+          },
         },
       };
-      expect(isActiveSCValid(formData as never)).toBe(true);
+      expect(isActiveSCValid(formData)).toBe(true);
     });
   });
 
@@ -221,7 +262,10 @@ describe('applicationFormHelper', () => {
       const formData = {
         ...sampleFormData,
         activeSourceControl: {
-          servers: [...emptyServers],
+          ...sampleFormData.activeSourceControl,
+          value: {
+            servers: [...emptyServers],
+          },
         },
       };
       expect(isActiveSCServerValid(formData as never)).toBe(false);
@@ -230,12 +274,15 @@ describe('applicationFormHelper', () => {
       const formData = {
         ...sampleFormData,
         activeSourceControl: {
-          servers: [
-            {
-              id: '123',
-              title: 'Test title',
-            },
-          ],
+          ...sampleFormData.activeSourceControl,
+          value: {
+            servers: [
+              {
+                id: '123',
+                title: 'Test title',
+              },
+            ],
+          },
         },
       };
       expect(isActiveSCServerValid(formData as never)).toBe(true);
@@ -264,7 +311,10 @@ describe('applicationFormHelper', () => {
     it('should return true if more than one source control defined', () => {
       const formData = {
         ...sampleFormData,
-        sourceControls: [{ id: '1' }, { id: '2' }],
+        sourceControls: {
+          ...sampleFormData.sourceControls,
+          value: [{ id: '1' }, { id: '2' }],
+        },
       };
       expect(isAtLeastOneSCServerSelected(formData as never)).toBe(true);
     });
@@ -285,7 +335,10 @@ describe('applicationFormHelper', () => {
     it('should return true if activeSourceControl property is null', () => {
       const formData = {
         ...sampleFormData,
-        activeSourceControl: null as Array<SourceControl>,
+        activeSourceControl: {
+          ...sampleFormData.activeSourceControl,
+          value: null as Array<SourceControl>,
+        },
       };
       expect(areActiveSCFieldsEmpty(formData as never)).toBe(true);
     });
@@ -318,29 +371,32 @@ describe('applicationFormHelper', () => {
 
   describe('isApplicationNameValid function', () => {
     it('should return false if null value passed as argument', () => {
-      expect(isApplicationNameValid(null)).toBe(false);
+      expect(isApplicationNameValid(null, [])).toBe(false);
     });
     it('should return false if undefined value passed as argument', () => {
-      expect(isApplicationNameValid(undefined)).toBe(false);
+      expect(isApplicationNameValid(undefined, [])).toBe(false);
     });
     it('should return false if incorrect data structure is passed in', () => {
-      expect(isApplicationNameValid(incorrectObjectStructure as never)).toBe(
-        false
-      );
+      expect(
+        isApplicationNameValid(incorrectObjectStructure as never, [])
+      ).toBe(false);
     });
     it('should return false if application name is empty', () => {
       const formData = {
         ...sampleFormData,
         applicationName: '',
       };
-      expect(isApplicationNameValid(formData as never)).toBe(false);
+      expect(isApplicationNameValid(formData as never, [])).toBe(false);
     });
     it('should return true if application name is set', () => {
       const formData = {
         ...sampleFormData,
-        applicationName: 'test123',
+        applicationName: {
+          ...sampleFormData.applicationName,
+          value: 'test123',
+        },
       };
-      expect(isApplicationNameValid(formData as never)).toBe(true);
+      expect(isApplicationNameValid(formData as never, [])).toBe(true);
     });
   });
 
@@ -394,14 +450,20 @@ describe('applicationFormHelper', () => {
     it('should return false if ticketSystem property is null value', () => {
       const formData = {
         ...sampleFormData,
-        ticketSystem: null as never,
+        ticketSystem: {
+          ...sampleFormData.ticketSystem,
+          value: null as never,
+        },
       };
       expect(isTicketSystemValid(formData as never)).toBe(false);
     });
     it('should return false if ticketSystem property is empty object', () => {
       const formData = {
         ...sampleFormData,
-        ticketSystem: {},
+        ticketSystem: {
+          ...sampleFormData.ticketSystem,
+          value: {},
+        },
       };
       expect(isTicketSystemValid(formData as never)).toBe(false);
     });
@@ -428,7 +490,10 @@ describe('applicationFormHelper', () => {
         ...sampleFormData,
         ticketSystem: {
           ...sampleFormData.ticketSystem,
-          servers: { ...emptyServers },
+          value: {
+            ...sampleFormData.ticketSystem.value,
+            servers: { ...emptyServers },
+          },
         },
       };
       expect(isTicketSystemServerValid(formData as never)).toBe(false);
@@ -454,21 +519,30 @@ describe('applicationFormHelper', () => {
     it('should return false if property is set to null', () => {
       const formData = {
         ...sampleFormData,
-        createAnother: null as never,
+        createAnother: {
+          ...sampleFormData.createAnother,
+          value: null as never,
+        },
       };
       expect(isCreateAnotherValid(formData as never)).toBe(false);
     });
     it('should return true if property is set to true', () => {
       const formData = {
         ...sampleFormData,
-        createAnother: true,
+        createAnother: {
+          ...sampleFormData.createAnother,
+          value: true,
+        },
       };
       expect(isCreateAnotherValid(formData as never)).toBe(true);
     });
     it('should return true if property is set to false', () => {
       const formData = {
         ...sampleFormData,
-        createAnother: false,
+        createAnother: {
+          ...sampleFormData.createAnother,
+          value: false,
+        },
       };
       expect(isCreateAnotherValid(formData as never)).toBe(true);
     });
@@ -498,14 +572,12 @@ describe('applicationFormHelper', () => {
     it('should return false if server ID is NOT already selected', () => {
       const formData = {
         ...sampleFormData,
-        createAnother: false,
       };
       expect(isSCServerAlreadySelected('99999', formData as never)).toBe(false);
     });
     it('should return true if server ID is already selected', () => {
       const formData = {
         ...sampleFormData,
-        createAnother: false,
       };
       expect(isSCServerAlreadySelected('1111', formData as never)).toBe(true);
     });
@@ -576,11 +648,17 @@ describe('applicationFormHelper', () => {
     it('should return correct form data when passed in ticket system object as null value', () => {
       const formData = {
         ...sampleFormData,
-        ticketSystem: {},
+        ticketSystem: {
+          ...sampleFormData.ticketSystem,
+          value: {},
+        },
       };
       const expectedFormData = {
         ...formData,
-        ticketSystem: {},
+        ticketSystem: {
+          ...formData.ticketSystem,
+          value: {},
+        },
       };
       expect(
         getFormDataWithTicketSystemSet(null, formData as never)
@@ -590,13 +668,19 @@ describe('applicationFormHelper', () => {
       const ticketSystem = { ...sampleTicketSystems[0] };
       const formData = {
         ...sampleFormData,
-        ticketSystem: {},
+        ticketSystem: {
+          ...sampleFormData.ticketSystem,
+          value: {},
+        },
       };
       const expectedFormData = {
         ...formData,
         ticketSystem: {
-          ...ticketSystem,
-          servers: [] as never,
+          ...formData.ticketSystem,
+          value: {
+            ...ticketSystem,
+            servers: [] as never,
+          },
         },
       };
       expect(
@@ -659,11 +743,17 @@ describe('applicationFormHelper', () => {
     it('should return correct form data when passed in source control object as null value', () => {
       const formData = {
         ...sampleFormData,
-        activeSourceControl: {},
+        activeSourceControl: {
+          ...sampleFormData.activeSourceControl,
+          value: {},
+        },
       };
       const expectedFormData = {
         ...formData,
-        activeSourceControl: {},
+        activeSourceControl: {
+          ...formData.activeSourceControl,
+          value: {},
+        },
       };
       expect(getFormDataWithSCSet(null, formData as never)).toStrictEqual(
         expectedFormData
@@ -673,13 +763,19 @@ describe('applicationFormHelper', () => {
       const sourceControl = { ...sampleSourceControls[0] };
       const formData = {
         ...sampleFormData,
-        activeSourceControl: {},
+        activeSourceControl: {
+          ...sampleFormData.activeSourceControl,
+          value: {},
+        },
       };
       const expectedFormData = {
         ...formData,
         activeSourceControl: {
-          ...sourceControl,
-          servers: [] as never,
+          ...formData.activeSourceControl,
+          value: {
+            ...sourceControl,
+            servers: [] as never,
+          },
         },
       };
       expect(
@@ -700,8 +796,11 @@ describe('applicationFormHelper', () => {
       const formData = {
         ...sampleFormData,
         activeSourceControl: {
-          ...sourceControl,
-          servers: [] as never,
+          ...sampleFormData.activeSourceControl,
+          value: {
+            ...sourceControl,
+            servers: [] as never,
+          },
         },
       };
       expect(getFormDataWithSCServerSet(null, formData as never)).toStrictEqual(
@@ -713,15 +812,21 @@ describe('applicationFormHelper', () => {
       const formData = {
         ...sampleFormData,
         activeSourceControl: {
-          ...sourceControl,
-          servers: [] as never,
+          ...sampleFormData.activeSourceControl,
+          value: {
+            ...sourceControl,
+            servers: [] as never,
+          },
         },
       };
       const expectedFormData = {
         ...formData,
         activeSourceControl: {
-          ...sourceControl,
-          servers: [sourceControl],
+          ...formData.activeSourceControl,
+          value: {
+            ...sourceControl,
+            servers: [sourceControl],
+          },
         },
       };
       expect(
@@ -769,8 +874,11 @@ describe('applicationFormHelper', () => {
       const formData = {
         ...sampleFormData,
         ticketSystem: {
-          ...ticketSystem,
-          servers: [] as never,
+          ...sampleFormData.ticketSystem,
+          value: {
+            ...ticketSystem,
+            servers: [] as never,
+          },
         },
       };
       expect(
@@ -783,15 +891,21 @@ describe('applicationFormHelper', () => {
       const formData = {
         ...sampleFormData,
         ticketSystem: {
-          ...ticketSystem,
-          servers: [] as never,
+          ...sampleFormData.ticketSystem,
+          value: {
+            ...ticketSystem,
+            servers: [] as never,
+          },
         },
       };
       const expectedFormData = {
         ...formData,
         ticketSystem: {
           ...formData.ticketSystem,
-          servers: [server],
+          value: {
+            ...formData.ticketSystem.value,
+            servers: [server],
+          },
         },
       };
       expect(
@@ -826,7 +940,10 @@ describe('applicationFormHelper', () => {
     it('should filter passed in servers and return only NON selected ones', () => {
       const formData = {
         ...sampleFormData,
-        sourceControls: [{ ...sampleSourceControls[0] }],
+        sourceControls: {
+          ...sampleFormData.sourceControls,
+          value: [{ ...sampleSourceControls[0] }],
+        },
       };
       const expectedServers = sampleServers.slice(2);
       expect(
@@ -855,19 +972,25 @@ describe('applicationFormHelper', () => {
     it('should return form data with source control server removed if source control server ID is found', () => {
       const inputFormData = {
         ...sampleFormData,
-        sourceControls: [...sampleSourceControls],
+        sourceControls: {
+          ...sampleFormData.sourceControls,
+          value: [...sampleSourceControls],
+        },
       };
       const expectedData = {
         ...inputFormData,
-        sourceControls: [
-          {
-            ...sampleSourceControls[0],
-            servers: [...sampleServers.slice(1, 2)],
-          },
-          {
-            ...sampleSourceControls[1],
-          },
-        ],
+        sourceControls: {
+          ...inputFormData.sourceControls,
+          value: [
+            {
+              ...sampleSourceControls[0],
+              servers: [...sampleServers.slice(1, 2)],
+            },
+            {
+              ...sampleSourceControls[1],
+            },
+          ],
+        },
       };
       expect(
         getFormDataWithSCServerRemoved('1', inputFormData as never)
@@ -886,20 +1009,29 @@ describe('applicationFormHelper', () => {
       const formData = {
         ...sampleFormData,
         activeSourceControl: {
-          id: '11223344',
-          title: 'Test Active Source Control',
-          servers: [...sampleServers],
+          ...sampleFormData.activeSourceControl,
+          value: {
+            id: '11223344',
+            title: 'Test Active Source Control',
+            servers: [...sampleServers],
+          },
         },
       };
       const expectedData = {
         ...sampleFormData,
         activeSourceControl: {
-          ...emptySourceControls[0],
+          errorMessage: '',
+          isTouched: false,
+          isValid: false,
+          value: emptySourceControls[0],
         },
-        sourceControls: [
+        sourceControls: {
           ...sampleFormData.sourceControls,
-          formData.activeSourceControl,
-        ],
+          value: [
+            ...sampleFormData.sourceControls.value,
+            formData.activeSourceControl.value,
+          ],
+        },
       };
       expect(getFormDataWithNewSCServerAdded(formData as never)).toStrictEqual(
         expectedData
@@ -911,27 +1043,32 @@ describe('applicationFormHelper', () => {
         title: 'test server',
       };
       const sourceControl = {
-        ...sampleFormData.sourceControls[0],
+        ...sampleFormData.sourceControls.value[0],
         servers: [server],
       };
       const expectedSourceControls = [
         {
-          ...sampleFormData.sourceControls[0],
-          servers: [...sampleFormData.sourceControls[0].servers, server],
+          ...sampleFormData.sourceControls.value[0],
+          servers: [...sampleFormData.sourceControls.value[0].servers, server],
         },
       ];
       const formData = {
         ...sampleFormData,
         activeSourceControl: {
-          ...sourceControl,
+          ...sampleFormData.activeSourceControl,
+          value: sourceControl,
         },
       };
       const expectedData = {
         ...formData,
         activeSourceControl: {
-          ...emptySourceControls[0],
+          ...formData.activeSourceControl,
+          value: emptySourceControls[0],
         },
-        sourceControls: expectedSourceControls,
+        sourceControls: {
+          ...formData.sourceControls,
+          value: expectedSourceControls,
+        },
       };
       expect(getFormDataWithNewSCServerAdded(formData as never)).toStrictEqual(
         expectedData
@@ -1005,17 +1142,24 @@ describe('applicationFormHelper', () => {
     it('should return correct data when valid data is passed in', () => {
       const formData: ApplicationFormType = {
         ...sampleFormData,
-        applicationName: 'Test',
-        createAnother: false,
+        applicationName: {
+          ...sampleFormData.applicationName,
+          value: 'Test',
+        },
+        createAnother: {
+          ...sampleFormData.createAnother,
+          value: false,
+        },
         activeSourceControl: {
-          ...emptySourceControls[0],
-        } as SourceControl,
+          ...sampleFormData.activeSourceControl,
+          value: emptySourceControls[0],
+        },
       };
       const expectedData: ApplicationFormOutput = {
-        applicationName: formData.applicationName,
-        createAnother: formData.createAnother,
-        sourceControls: formData.sourceControls,
-        ticketSystem: formData.ticketSystem,
+        applicationName: formData.applicationName.value,
+        createAnother: formData.createAnother.value,
+        sourceControls: formData.sourceControls.value,
+        ticketSystem: formData.ticketSystem.value,
       };
       expect(getApplicationFormOutputData(formData)).toStrictEqual(
         expectedData

@@ -24,9 +24,7 @@ import {
   ApplicationFormType,
   AutoCompleteControl,
   SCServer,
-  SourceControl,
   SourceControlAPI,
-  TicketSystem,
   TicketSystemsAPI,
 } from '../ProgressionBoardInterfaces';
 import {
@@ -44,6 +42,7 @@ import {
   getSCServerById,
   getTicketSystemById,
   getTicketSystemServerById,
+  isApplicationNameDuplicate,
   isApplicationNameValid,
   isCreateAnotherValid,
   isSCArrayValid,
@@ -55,8 +54,10 @@ import { PayloadUrlTextInput } from './PayloadUrlTextInput';
 import { ScServerList } from './SCServerList';
 import { getSCServerListItems } from '../progression/applicationHelper';
 import { PayloadUrlDialog } from './PayloadUrlDialog';
+import { INITIAL_FORM_DATA } from './data/formData';
 
 export interface ApplicationFormProps extends CommonProps {
+  applicationNames: Array<string>;
   basePayloadUrl: string;
   onFormCancel: () => void;
   onFormSubmit: (applicationFormData: ApplicationFormOutput) => void;
@@ -64,15 +65,8 @@ export interface ApplicationFormProps extends CommonProps {
   ticketSystems: Array<TicketSystemsAPI>;
 }
 
-const INITIAL_FORM_DATA: ApplicationFormType = {
-  activeSourceControl: {} as SourceControl,
-  applicationName: '',
-  createAnother: false,
-  sourceControls: [],
-  ticketSystem: {} as TicketSystem,
-};
-
 export const ApplicationForm = ({
+  applicationNames,
   basePayloadUrl,
   className,
   'data-testid': dataTestId,
@@ -101,7 +95,7 @@ export const ApplicationForm = ({
   }, [formData]);
 
   const checkIfFormDataValid = (data: ApplicationFormType): boolean =>
-    isApplicationNameValid(data) &&
+    isApplicationNameValid(data, applicationNames) &&
     isSCDataValidForSubmission(data) &&
     isSCArrayValid(data) &&
     isTicketSystemValid(data) &&
@@ -122,15 +116,32 @@ export const ApplicationForm = ({
     onFormCancel();
   };
 
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const target = e.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    const data = {
-      ...formData,
-      [name]: value,
-    };
-    setFormData(data);
+  const onApplicationNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    let errorMessage = '';
+    const duplicateErrorMessage = 'Application already exists';
+    const newAppName = e.target.value;
+    const isEmpty = e.target.value === '';
+    const isDuplicate = isApplicationNameDuplicate(
+      newAppName,
+      applicationNames
+    );
+    if (isEmpty) {
+      errorMessage = 'This field is required';
+    } else if (isDuplicate) {
+      errorMessage = duplicateErrorMessage;
+    }
+    const isValid = !isEmpty && !isDuplicate;
+    setFormData((prevFormData: ApplicationFormType) => {
+      return {
+        ...prevFormData,
+        applicationName: {
+          errorMessage,
+          isTouched: true,
+          isValid,
+          value: newAppName,
+        },
+      };
+    });
   };
 
   const onTicketSystemChange = (
@@ -180,7 +191,10 @@ export const ApplicationForm = ({
   const onCreateAnotherChange = (e: ChangeEvent<HTMLInputElement>): void =>
     setFormData({
       ...formData,
-      createAnother: e.target.checked,
+      createAnother: {
+        ...formData.createAnother,
+        value: e.target.checked,
+      },
     });
 
   const onAddMoreButtonClick = (): void => {
@@ -201,20 +215,34 @@ export const ApplicationForm = ({
   };
 
   const getPayloadUrl = (serverName: string): string => {
-    const { applicationName: appName } = formData || {};
-    return serverName && appName
-      ? getFullPayloadUrl(appName, basePayloadUrl, serverName)
+    const {
+      applicationName: { value },
+    } = formData || {};
+    return serverName && value
+      ? getFullPayloadUrl(value, basePayloadUrl, serverName)
       : '';
   };
 
-  const { applicationName, activeSourceControl, ticketSystem } = formData || {};
-  const { servers: activeSCServers = [] } = activeSourceControl || {};
+  const {
+    applicationName: {
+      value: formAppName,
+      isValid: isFormAppNameValid,
+      isTouched: isFormAppNameTouched,
+      errorMessage: formAppNameErrorMsg,
+    },
+    activeSourceControl: { value: formActiveSourceControl },
+    createAnother: { value: formCreateAnother },
+    sourceControls: { value: formSourceControls },
+    ticketSystem: { value: formTicketSystem },
+  } = formData;
+  const { servers: activeSCServers = [] } = formActiveSourceControl || {};
+  const { servers: tsServers = [] } = formTicketSystem || {};
   const activeSCServer = activeSCServers.length ? activeSCServers[0] : null;
-  const tsServer = ticketSystem.servers?.[0] || null;
+  const tsServer = tsServers?.[0] || null;
   const payloadUrl = getPayloadUrl(activeSCServer?.name);
 
   const renderSelectedSourceControls = (): ReactNode => {
-    const listItems = getSCServerListItems(formData.sourceControls);
+    const listItems = getSCServerListItems(formSourceControls);
     if (!listItems.length) return null;
     return (
       <div
@@ -223,7 +251,7 @@ export const ApplicationForm = ({
       >
         <ScServerList
           data-testid={dataTestId}
-          applicationName={applicationName}
+          applicationName={formAppName}
           basePayloadUrl={basePayloadUrl}
           onDelete={onSourceControlDelete}
           listItems={listItems}
@@ -237,12 +265,15 @@ export const ApplicationForm = ({
       <DotForm onSubmit={onApplicationFormSubmit}>
         <DotInputText
           className="application-name"
+          data-testid="application-name"
+          error={isFormAppNameTouched && !isFormAppNameValid}
+          helperText={formAppNameErrorMsg}
           id="applicationName"
           label="Application name"
-          onChange={onInputChange}
+          onChange={onApplicationNameChange}
           name="applicationName"
           required={true}
-          value={applicationName}
+          value={formAppName}
         />
         <DotAutoComplete
           className="source-control"
@@ -252,7 +283,7 @@ export const ApplicationForm = ({
           multiple={false}
           onChange={onSourceControlChange}
           options={sourceControls}
-          value={activeSourceControl}
+          value={formActiveSourceControl}
         />
         <DotAutoComplete
           className="sc-server"
@@ -299,7 +330,7 @@ export const ApplicationForm = ({
           multiple={false}
           onChange={onTicketSystemChange}
           options={ticketSystems}
-          value={formData.ticketSystem}
+          value={formTicketSystem}
         />
         <DotAutoComplete
           className="ticket-system-server"
@@ -314,7 +345,7 @@ export const ApplicationForm = ({
         />
         <Divider className="content-divider" />
         <DotCheckbox
-          checked={formData.createAnother}
+          checked={formCreateAnother}
           className="add-another-cb"
           label="Create another"
           onChange={onCreateAnotherChange}

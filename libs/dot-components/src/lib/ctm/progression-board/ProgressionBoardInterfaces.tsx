@@ -125,6 +125,7 @@ export interface WorkItemDetailsType {
 }
 
 export interface ApplicationAPI {
+  applicationNames: Array<string>;
   basePayloadUrl: string;
   sourceControls: Array<SourceControlAPI>;
   ticketSystems: Array<TicketSystemsAPI>;
@@ -172,6 +173,8 @@ export interface PBApplications {
 }
 
 export interface PBApplication {
+  /* Name of the application */
+  applicationName: string;
   /* Message which will be displayed on all phases within an application if needed */
   waitingMessage: string;
 }
@@ -190,8 +193,39 @@ export interface ApplicationDetails {
   ticketSystem: TicketSystem;
 }
 
-export interface ApplicationFormType extends ApplicationFormOutput {
-  activeSourceControl: SourceControl;
+export interface FormFieldValidation {
+  errorMessage: string;
+  isTouched: boolean;
+  isValid: boolean;
+}
+
+export interface ApplicationFormActiveSourceControl
+  extends FormFieldValidation {
+  value: SourceControl;
+}
+
+export interface ApplicationFormApplicationName extends FormFieldValidation {
+  value: string;
+}
+
+export interface ApplicationFormCreateAnother extends FormFieldValidation {
+  value: boolean;
+}
+
+export interface ApplicationFormSourceControls extends FormFieldValidation {
+  value: Array<SourceControl>;
+}
+
+export interface ApplicationFormTicketSystem extends FormFieldValidation {
+  value: TicketSystem;
+}
+
+export interface ApplicationFormType {
+  activeSourceControl: ApplicationFormActiveSourceControl;
+  applicationName: ApplicationFormApplicationName;
+  createAnother: ApplicationFormCreateAnother;
+  sourceControls: ApplicationFormSourceControls;
+  ticketSystem: ApplicationFormTicketSystem;
 }
 
 export interface AutoCompleteControl {

@@ -1,39 +1,13 @@
-export interface ApplicationAPIData {
-  basePayloadUrl: string;
-  sourceControls: Array<{
-    id: string;
-    title: string;
-    servers: Array<{
-      id: string;
-      title: string;
-      isdefault?: boolean;
-      name: string;
-      owner?: string;
-      team_id?: string | null;
-      token?: string;
-      url?: string;
-    }>;
-  }>;
-  ticketSystems: Array<{
-    id: string;
-    title: string;
-    servers: Array<{
-      id: string;
-      title: string;
-      improve_types?: string;
-      isdefault?: boolean;
-      maintain_types?: string;
-      name?: string;
-      password?: string;
-      team_id?: string | null;
-      token?: string;
-      url?: string;
-      user?: string;
-    }>;
-  }>;
-}
+import { ApplicationAPI } from '@digital-ai/dot-components';
 
-export const pbApplicationAPIData: ApplicationAPIData = {
+export const pbApplicationAPIData: ApplicationAPI = {
+  applicationNames: [
+    'webstore',
+    'no-commits',
+    'commits-without-tracking',
+    'database',
+    'api',
+  ],
   basePayloadUrl:
     'https://pl.com/api/submit_change?token=<api-token>&toproject=',
   sourceControls: [

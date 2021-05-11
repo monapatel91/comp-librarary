@@ -10,6 +10,7 @@
 
 - **NavigationRail** - added new component
 - **ProgressionBoard** - added `pbApplications` optional prop for rendering appropriate waiting messages for given application
+- **ProgressionBoardApplicationDrawer** - added `applicationNames` property to `ApplicationAPI` interface
 
 ## 0.0.0-alpha.29
 

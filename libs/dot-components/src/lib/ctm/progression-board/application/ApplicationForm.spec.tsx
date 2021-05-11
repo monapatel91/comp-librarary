@@ -223,6 +223,7 @@ describe('ApplicationForm', () => {
   };
 
   const componentProps: ApplicationFormProps = {
+    applicationNames: ['appName1', 'appName2'],
     basePayloadUrl: 'www.test.ai/',
     'data-testid': dataTestId,
     onFormCancel,
@@ -240,6 +241,7 @@ describe('ApplicationForm', () => {
 
   it('should have unchanged API', () => {
     const props = {
+      applicationNames: ['appName1', 'appName2'],
       basePayloadUrl: 'www.test.ai/',
       'data-testid': dataTestId,
       onFormCancel,
@@ -263,6 +265,18 @@ describe('ApplicationForm', () => {
     const textBoxElem = getApplicationNameTextbox();
     expect(textBoxElem).toBeVisible();
     expect(textBoxElem).toHaveValue('');
+  });
+
+  it("should render 'Application name' textbox with error message if duplicate name is entered", () => {
+    const errorMessage = 'Application already exists';
+    const errorIconId = 'application-name-error-icon';
+    const textBoxElem = getApplicationNameTextbox();
+    userEvent.type(textBoxElem, 'appName1');
+    expect(screen.getByText(errorMessage)).toBeVisible();
+    expect(screen.getByTestId(errorIconId)).toBeVisible();
+    userEvent.type(textBoxElem, 'Unique Name');
+    expect(screen.queryByText(errorMessage)).not.toBeInTheDocument();
+    expect(screen.queryByTestId(errorIconId)).not.toBeInTheDocument();
   });
 
   it("should render 'Source control' textbox", () => {
