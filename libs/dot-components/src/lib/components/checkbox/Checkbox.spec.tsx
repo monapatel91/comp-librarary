@@ -5,9 +5,15 @@ import { DotCheckbox, CheckboxProps } from './Checkbox';
 describe('DotCheckbox', () => {
   it('should have unchanged API', () => {
     const props = {
+      ariaLabel: 'Accessibility for the win',
+      ariaLabelledby: 'label-man',
+      disableRipple: true,
       indeterminate: false,
     };
     const checkboxProps: CheckboxProps = {
+      ariaLabel: 'Accessibility for the win',
+      ariaLabelledby: 'label-man',
+      disableRipple: true,
       indeterminate: false,
     };
     expect(checkboxProps).toEqual(props);
@@ -24,6 +30,8 @@ describe('DotCheckbox', () => {
     it('should render with all props', () => {
       const { baseElement } = render(
         <DotCheckbox
+          ariaLabel="Accessibility for the win"
+          ariaLabelledby="label-man"
           checked
           className="custom-test-class"
           data-testid="test-checkbox"
@@ -53,6 +61,8 @@ describe('DotCheckbox', () => {
       );
       expect(input).toHaveAttribute('name', 'test-name');
       expect(input).toHaveAttribute('value', 'test-value');
+      expect(input).toHaveAttribute('aria-label', 'Accessibility for the win');
+      expect(input).toHaveAttribute('aria-labelledby', 'label-man');
     });
     it('should render with label placed at the bottom', () => {
       const { baseElement } = render(
