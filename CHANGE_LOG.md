@@ -7,9 +7,11 @@
 - **Avatar** - added `color` prop
 - **Checkbox** - added `ariaLabel`, `ariaLabelledby` and `disableRipple` props
 - **Pill** - added `backgroundColor` and `labelColor` props
+- **Sidebar** - fix to show icons for nested items when `nestedListType` is `menu`.
 
 ### Experimental
 
+- **List** - fix to show icons for nested items when `nestedListType` is `menu`.
 - **NavigationRail** - added new component
 - **ProgressionBoard** - added `pbApplications` optional prop for rendering appropriate waiting messages for given application
 - **ProgressionBoardApplicationDrawer** - added `applicationNames` property to `ApplicationAPI` interface

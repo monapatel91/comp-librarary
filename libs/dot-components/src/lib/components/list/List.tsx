@@ -17,7 +17,11 @@ import { DotIcon } from '../icon/Icon';
 import { DotLink } from '../link/Link';
 import { DotMenu, PopperPlacement } from '../menu/Menu';
 import {
+  flyoutItemLinkClassName,
+  flyoutListItemClassName,
+  listItemLinkClassName,
   listItemRootClass,
+  nestedListClassName,
   rootClassName,
   StyledList,
   StyledListItem,
@@ -94,11 +98,19 @@ const NestedList = ({
   open,
   type,
 }: NestedListProps) => {
+  const flyoutItemClasses = useStylesWithRootClass(
+    listItemRootClass,
+    flyoutListItemClassName
+  );
+  const flyoutSpanClasses = useStylesWithRootClass(
+    listItemLinkClassName,
+    flyoutItemLinkClassName
+  );
   if (type !== 'menu') {
     return (
       <Collapse in={open} timeout="auto" unmountOnExit>
         <DotList
-          className="dot-nested-list"
+          className={nestedListClassName}
           component="div"
           disablePadding={true}
           items={items}
@@ -107,12 +119,21 @@ const NestedList = ({
     );
   } else {
     const menuItems = items.map((item, index) => {
-      const { href, onClick, title, text } = item;
+      const { href, iconId, onClick, title, text } = item;
+      const startIcon = <DotIcon iconId={iconId} title={title} />;
       return {
         children: (
-          <DotLink href={href} underline="none" onClick={onClick} title={title}>
-            <DotTypography variant="body1">{text}</DotTypography>
-          </DotLink>
+          <StyledListItem
+            className={flyoutItemClasses}
+            component={href && !onClick ? 'a' : null}
+            href={onClick ? null : href}
+            onClick={onClick}
+          >
+            <span className={flyoutSpanClasses}>
+              {iconId && startIcon}
+              <DotTypography variant="body1">{text}</DotTypography>
+            </span>
+          </StyledListItem>
         ),
         classes: '',
         key: String(index),
@@ -247,7 +268,7 @@ export const DotListItem = ({
         selected={isFlyout ? open : selected}
         title={title}
       >
-        <span className="dot-list-item-link">
+        <span className={listItemLinkClassName}>
           {iconId && startIcon}
           <DotTypography variant={textVariant}>{text}</DotTypography>
         </span>

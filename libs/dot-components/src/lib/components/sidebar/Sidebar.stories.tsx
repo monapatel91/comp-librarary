@@ -71,13 +71,13 @@ export const Default: Story<SidebarProps> = (args) => {
       iconId: 'satellite-group',
       items: [
         {
-          iconId: 'satellite-group',
+          iconId: 'block',
           onClick: (event: MouseEvent) => handleClick(3),
           selected: isSelected(3),
           text: 'Groups',
         },
         {
-          iconId: 'satellite-group',
+          iconId: 'block',
           onClick: (event: MouseEvent) => handleClick(4),
           selected: isSelected(4),
           text: 'Instances',

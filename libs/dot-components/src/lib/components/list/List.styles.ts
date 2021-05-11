@@ -3,19 +3,17 @@ import { List, ListItem } from '@material-ui/core';
 
 export const rootClassName = 'dot-list';
 export const listItemRootClass = 'dot-list-item';
+export const nestedListClassName = 'dot-nested-list';
+export const flyoutListItemClassName = 'dot-flyout-list-item';
+export const flyoutItemLinkClassName = 'dot-flyout-item-link';
+export const listItemLinkClassName = 'dot-list-item-link';
 
 export const StyledList = styled(List)`
   ${({ theme }) =>
     css`
       &.${rootClassName} {
-        &.dot-nested-list .dot-list-item {
+        &.${nestedListClassName} .${listItemRootClass} {
           padding-left: ${theme.spacing(4)}px;
-        }
-
-        .${listItemRootClass} {
-          p.MuiTypography-root {
-            margin-bottom: 0;
-          }
         }
 
         .MuiListSubheader-root {
@@ -34,10 +32,22 @@ export const StyledListItem = styled(ListItem)`
   ${({ theme }) =>
     css`
       &.${listItemRootClass} {
-        .dot-list-item-link {
+        &.${flyoutListItemClassName} {
+          padding: 0;
+        }
+
+        p.MuiTypography-root {
+          margin-bottom: 0;
+        }
+
+        .${listItemLinkClassName} {
           align-items: center;
           display: flex;
           flex-grow: 2;
+        }
+
+        .${flyoutItemLinkClassName} .MuiIcon-root {
+          margin-right: ${theme.spacing(4)}px;
         }
 
         .dot-icon i:before {
