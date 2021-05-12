@@ -3,8 +3,6 @@ name: Continuous Release
 on:
   push:
     paths:
-      - .github/workflows/version.yml
-      - CHANGE_LOG.md
       - libs/dot-components/src/**
     branches:
       - master
