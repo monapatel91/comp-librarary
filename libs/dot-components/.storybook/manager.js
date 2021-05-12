@@ -1,15 +1,17 @@
 import { addons } from '@storybook/addons';
 
 addons.setConfig({
+  enableShortcuts: true,
+  initialActive: 'sidebar',
   isFullscreen: false,
+  isToolshown: true,
+  panelPosition: 'bottom',
+  selectedPanel: undefined,
   showNav: true,
   showPanel: true,
-  panelPosition: 'bottom',
+  sidebar: {
+    showRoots: true,
+  },
   sidebarAnimations: true,
-  enableShortcuts: true,
-  isToolshown: true,
   theme: undefined,
-  selectedPanel: undefined,
-  initialActive: 'sidebar',
-  showRoots: true,
 });

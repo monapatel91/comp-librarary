@@ -112,6 +112,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Increase watchers
+        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
       - name: Run e2e tests
         run: yarn e2e:ci
         env:

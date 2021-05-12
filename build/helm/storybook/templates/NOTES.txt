@@ -1,6 +1,0 @@
-
-{{- if .Values.ingress.enabled }}
-Storybook is deployed and can be accessed at this URL:
-
-   https://{{ tpl .Values.ingress.host . }}/
-{{- end }}

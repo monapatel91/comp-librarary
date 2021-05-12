@@ -1,4 +1,7 @@
 module.exports = {
+  features: {
+    postcss: false,
+  },
   stories: [],
   addons: [
     '@storybook/addon-essentials',
