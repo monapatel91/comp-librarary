@@ -28,7 +28,6 @@ export const DotNavList = ({
   appToolbar,
   navbar,
 }: NavListProps) => {
-  const { branding, setBranding } = useNavListContext();
   const targetBreakpoint = useMediaQuery((theme: Theme) =>
     theme.breakpoints.up(navBreakpoint)
   );

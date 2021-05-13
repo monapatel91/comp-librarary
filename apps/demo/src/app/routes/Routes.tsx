@@ -5,6 +5,8 @@ import { DemoProgressionBoard } from '../../demo-components/DemoProgressionBoard
 import { DemoForm } from '../../demo-components/DemoForm';
 import { DemoFormUncontrolled } from '../../demo-components/DemoFormUncontrolled';
 import { ProgressionDemo } from '../../demo-components/DemoProgression';
+import { DemoCssGrid } from '../../demo-components/DemoCssGrid';
+import { DemoCssGridTemplate } from '../../demo-components/DemoCssGridTemplate';
 
 export const Routes = () => {
   return (
@@ -17,6 +19,8 @@ export const Routes = () => {
         component={DemoFormUncontrolled}
       />
       <Route path="/progression" exact component={ProgressionDemo} />
+      <Route path="/css-grid" exact component={DemoCssGrid} />
+      <Route path="/css-grid-template" exact component={DemoCssGridTemplate} />
     </Switch>
   );
 };

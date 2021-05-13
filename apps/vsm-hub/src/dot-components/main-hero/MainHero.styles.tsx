@@ -46,21 +46,15 @@ export const StyledMainHero = styled(DotHeroBackground)`
       margin-bottom: -200px;
       height: 200px;
       background-color: ${theme.palette.grey[50]};
-      ${theme.breakpoints.up('md')} {
-        height: ${height}px;
-        margin-bottom: ${marginBottom}px;
-        background-size: 500px auto, 425px auto;
-        background-repeat: no-repeat;
-        background-position: left -172px bottom 0px, right 172px bottom 0px;
-        background-image: url('${leftBackgroundImage}'),
-          url('${rightBackgroundImage}');
-      }
+      margin-bottom: ${marginBottom}px;
+      background-size: 300px auto, 300px auto;
       .hero-message-container {
         display: none;
         position: absolute;
         top: 50%;
-        left: 25%;
-        max-width: 300px;
+        left: 50%;
+        width: 80%;
+        z-index: 10;
         transform: translate(-50%, -50%);
         .hero-message-title {
           color: ${theme.palette.success[500]};
@@ -68,11 +62,20 @@ export const StyledMainHero = styled(DotHeroBackground)`
         .hero-message-message {
           margin: ${theme.spacing(0, 2, 2, 0)};
         }
-        ${theme.breakpoints.up('md')} {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      ${theme.breakpoints.up('md')} {
+        height: ${height}px;
+        background-repeat: no-repeat;
+        background-position: left -172px bottom 0px, right 100px bottom 0px;
+        background-image: url('${leftBackgroundImage}'),
+          url('${rightBackgroundImage}');
+        .hero-message-container {
+          left: 25%;
+          max-width: 300px;
         }
       }
     }

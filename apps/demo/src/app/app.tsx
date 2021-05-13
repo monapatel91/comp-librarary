@@ -60,6 +60,20 @@ const sideNavItems: Array<ListItemProps> = [
       <Link {...props} to="/progression" ref={ref} />
     )),
   },
+  {
+    iconId: 'package',
+    text: 'CSS Grid',
+    component: React.forwardRef((props, ref) => (
+      <Link {...props} to="/css-grid" ref={ref} />
+    )),
+  },
+  {
+    iconId: 'package',
+    text: 'CSS Grid Template',
+    component: React.forwardRef((props, ref) => (
+      <Link {...props} to="/css-grid-template" ref={ref} />
+    )),
+  },
 ];
 
 const mainMenu = <DotSidebar navItems={sideNavItems} />;

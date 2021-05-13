@@ -12,6 +12,9 @@
 ### Experimental
 
 - **List** - fix to show icons for nested items when `nestedListType` is `menu`.
+- **CssGrid** - added new component
+- **CssCell** - added new component
+- **CssGridDebug** - added new component
 - **NavigationRail** - added new component
 - **ProgressionBoard** - added `pbApplications` optional prop for rendering appropriate waiting messages for given application
 - **ProgressionBoardApplicationDrawer** - added `applicationNames` property to `ApplicationAPI` interface

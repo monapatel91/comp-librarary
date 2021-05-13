@@ -3,23 +3,27 @@ import styled, { css } from 'styled-components';
 export const rootClassName = 'vsm-hub-home-content';
 export const containerClassName = 'vsm-hub-container';
 
-export const StyledVsmHubHome = styled.main`
+export const StyledVsmHubHome = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
-      .resource-title {
-        margin-bottom: ${theme.spacing(2)}px;
-      }
-      .MuiGrid-spacing-xs-2 {
-        margin: 0;
-      }
+      margin: ${theme.spacing(3)}px;
+      position: relative;
     }
   `}
+`;
+
+export const StyledSection = styled.div`
+  &.section {
+    position: relative;
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const StyledContainer = styled.div`
   ${({ theme }) => css`
     &.${containerClassName} {
-      display: flex;
       .item {
       }
     }

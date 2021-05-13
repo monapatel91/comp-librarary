@@ -1,6 +1,11 @@
-import { DotList } from '@digital-ai/dot-components';
+import {
+  CssCell,
+  CssGrid,
+  CssGridDebug,
+  DotList,
+} from '@digital-ai/dot-components';
 import { useHistory } from 'react-router-dom';
-import { Grid, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import {
   VsmHubCapabilities,
@@ -10,7 +15,6 @@ import {
   checkSelectedItem,
   useNavListContext,
 } from '../../context/NavigationContext';
-import { VsmHubPageSection } from '../../dot-components/layouts/styled-page/PageSection';
 import { DotMainHero } from '../../dot-components/main-hero/MainHero';
 import { mainLevelNav, backItem } from '../../routes/routes';
 import { StyledVsmHubHome, rootClassName } from '../home/home.styles';
@@ -65,8 +69,6 @@ export const VsmHome = ({}: HomeProps) => {
         pathname: `/product/${item.id}`,
       });
     }
-
-    console.log(item);
   };
 
   return (
@@ -74,58 +76,61 @@ export const VsmHome = ({}: HomeProps) => {
       <DotMainHero
         rightBackgroundImage="/assets/svg/rocket.svg"
         marginBottom={0}
-        height={300}
+        height={200}
         title="Value Stream Management"
         message="Learn how to get the most out
 of Agile and DevOps"
         ctaLabel="Learn more"
       ></DotMainHero>
-      <VsmHubPageSection>
-        <StyledVsmHubHome className={rootClassName}>
-          <Grid container spacing={2}>
-            <Grid item sm={9}>
-              <VsmHubCapabilities
-                onClick={handleActions}
-                capabilityItems={capabilities}
-              />
-            </Grid>
-            <Grid item sm={3}>
-              <Typography
-                className="resource-title"
-                component="h3"
-                variant="h2"
-              >
-                Resources
-              </Typography>
-              <DotList
-                className=""
-                dense={false}
-                items={[
-                  {
-                    href: '/support',
-                    text: 'Support',
-                  },
-                  { divider: true },
-                  {
-                    href: '/support',
-                    text: 'VSM FAQ',
-                  },
-                  { divider: true },
-                  {
-                    href: '/documentation',
-                    text: 'Documentation',
-                  },
-                  { divider: true },
-                  {
-                    href: '/marketplace',
-                    text: 'Marketplace',
-                  },
-                ]}
-              />
-            </Grid>
-          </Grid>
-        </StyledVsmHubHome>
-      </VsmHubPageSection>
+      <StyledVsmHubHome className={rootClassName}>
+        <CssGridDebug showInfo />
+        <CssGrid>
+          <CssCell
+            xs={{ start: 1, span: 4 }}
+            sm={{ start: 1, span: 6 }}
+            md={{ start: 1, span: 9 }}
+          >
+            <VsmHubCapabilities
+              onClick={handleActions}
+              capabilityItems={capabilities}
+            />
+          </CssCell>
+          <CssCell
+            xs={{ start: 1, span: 4 }}
+            sm={{ start: 7, span: 2 }}
+            md={{ start: 10, span: 3 }}
+          >
+            <Typography className="resource-title" component="h3" variant="h2">
+              Resources
+            </Typography>
+            <DotList
+              className=""
+              dense={false}
+              items={[
+                {
+                  href: '/support',
+                  text: 'Support',
+                },
+                { divider: true },
+                {
+                  href: '/support',
+                  text: 'VSM FAQ',
+                },
+                { divider: true },
+                {
+                  href: '/documentation',
+                  text: 'Documentation',
+                },
+                { divider: true },
+                {
+                  href: '/marketplace',
+                  text: 'Marketplace',
+                },
+              ]}
+            />
+          </CssCell>
+        </CssGrid>
+      </StyledVsmHubHome>
     </>
   );
 };
