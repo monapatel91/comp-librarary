@@ -2,7 +2,28 @@ import {
   PhaseType,
   SelectWorkItem,
   SwimLanepkg,
+  WorkItemType,
 } from '../ProgressionBoardInterfaces';
+
+export const sampleWorkItemTest1: WorkItemType = {
+  _id: '5b9c4fc12979930dbb0f13c5',
+  change_count: 1,
+  external_id: 'Story:1243',
+  external_key: 'S-01031',
+  title: 'Accounting Integration - Spike',
+  value_goal: 'improve',
+  isSplit: false,
+};
+
+export const sampleWorkItemTest2: WorkItemType = {
+  _id: '5b9d258129799313db0f13cc',
+  change_count: 2,
+  external_id: 'Story:1244',
+  external_key: 'S-01032',
+  title: 'Accounting Integration - main',
+  value_goal: 'improve',
+  isSplit: false,
+};
 
 export const sampleProgressionPackageTest: SwimLanepkg = {
   package_id: '11111111111111111',
@@ -61,26 +82,7 @@ export const sampleProgressionPackageTest: SwimLanepkg = {
           unmanaged_change_count: 0,
           version: '5.0',
           workitem_count: 25,
-          workitems: [
-            {
-              _id: '5b9c4fc12979930dbb0f13c5',
-              change_count: 1,
-              external_id: 'Story:1243',
-              external_key: 'S-01031',
-              title: 'Accounting Integration - Spike',
-              value_goal: 'improve',
-              isSplit: false,
-            },
-            {
-              _id: '5b9d258129799313db0f13cc',
-              change_count: 2,
-              external_id: 'Story:1244',
-              external_key: 'S-01032',
-              title: 'Accounting Integration - main',
-              value_goal: 'improve',
-              isSplit: false,
-            },
-          ],
+          workitems: [sampleWorkItemTest1, sampleWorkItemTest2],
         },
       ],
     },

@@ -1,4 +1,9 @@
-import React, { forwardRef, MutableRefObject, useState } from 'react';
+import React, {
+  forwardRef,
+  MutableRefObject,
+  ReactNode,
+  useState,
+} from 'react';
 import { Typography } from '@material-ui/core';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { CommonProps } from '../../components/CommonProps';
@@ -155,10 +160,13 @@ export const ValidPackage = forwardRef(
         : null,
     ].filter((x) => !!x);
 
-    const renderWorkItems = (items: WorkItemType[]) => {
-      return items.map((item, i) => {
-        const isSelected = item._id === selectedWorkItem?._id;
-        const isFaded = isCardSelected && !isSelected;
+    const renderWorkItems = (items: WorkItemType[]): Array<ReactNode> => {
+      return items.map((item: WorkItemType, i: number) => {
+        const { _id: id } = item;
+        const { hoveredWorkItem } = selectWorkitemProps;
+        const isSelected = id === selectedWorkItem?._id;
+        const isHovered = id === hoveredWorkItem;
+        const isFaded = (isCardSelected && !isSelected) || isHovered;
 
         return (
           <WorkItem

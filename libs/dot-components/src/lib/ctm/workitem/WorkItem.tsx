@@ -41,7 +41,6 @@ export const WorkItem = forwardRef(
       allowSelection,
       selectWorkItem: selectItem,
       hoverWorkItem,
-      hoveredWorkItem,
       unHoverWorkItem,
     } = selectWorkItem;
     const rootClasses = useStylesWithRootClass(
@@ -72,11 +71,12 @@ export const WorkItem = forwardRef(
         className={rootClasses}
         data-testid={dataTestId}
         onClick={onItemClick}
-        onMouseEnter={onItemMouseEnter}
-        onMouseLeave={onItemMouseLeave}
+        onMouseEnter={isSplit ? onItemMouseEnter : null}
+        onMouseLeave={isSplit ? onItemMouseLeave : null}
         ref={workItemElem}
       >
         <DotIcon
+          data-testid={dataTestId && 'icon-circle'}
           fontSize="inherit"
           iconId={isSplit ? 'circle-half-full' : 'circle'}
         />
