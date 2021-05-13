@@ -17,7 +17,7 @@ import {
   SelectedWorkItem,
 } from '@digital-ai/dot-components';
 import { pbWorkItemDetailsData } from '../demo-data/pbWorkItemDetailsData';
-import { pbApplicationAPIData as apiData } from '../demo-data/pbApplicationAPIData';
+import { pbApplicationAPIData as apiData } from '../demo-data/pbApplicationApiData';
 import { sampleEmptyPhases } from '../demo-data/pbEmptyPhasesData';
 import { phasesData } from './DemoData';
 import { pbAppDetailsData } from '../demo-data/pbAppDetailsData';
