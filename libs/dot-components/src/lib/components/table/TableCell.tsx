@@ -19,15 +19,12 @@ export const DotBodyCell = ({
   id = CreateUUID(),
   value,
 }: CellProps) => {
-  const title = value ? value.toString() : '';
-
   return (
     <TableCell
       align={align ? 'right' : 'left'}
       classes={{ root: 'dot-td' }}
       colSpan={colspan}
       key={id}
-      title={title}
     >
       {value}
     </TableCell>
