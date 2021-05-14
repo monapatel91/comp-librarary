@@ -8,6 +8,7 @@
 - **Checkbox** - added `ariaLabel`, `ariaLabelledby` and `disableRipple` props
 - **Pill** - added `backgroundColor` and `labelColor` props
 - **Sidebar** - fix to show icons for nested items when `nestedListType` is `menu`.
+- **Table** - fixed `loading` state so that `<td>` is not nested within `<span>`
 - **Table** - fix to not add tooltips to table cells
 
 ### Experimental

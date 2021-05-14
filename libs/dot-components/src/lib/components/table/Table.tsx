@@ -198,7 +198,7 @@ export const DotTable = ({
     columns.forEach((column) => {
       skeletonRow.rowData[column.id] = (
         <DotSkeleton width="300">
-          <td>{column.label}</td>
+          <span>{column.label}</span>
         </DotSkeleton>
       );
     });
