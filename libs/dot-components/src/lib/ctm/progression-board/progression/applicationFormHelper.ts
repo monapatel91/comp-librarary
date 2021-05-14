@@ -93,10 +93,15 @@ export const isApplicationNameDuplicate = (
   applicationName: string,
   applicationNames: Array<string>
 ): boolean => {
+  if (!applicationName || !Array.isArray(applicationNames)) return false;
   return applicationNames.some(
-    (appName: string) => appName === applicationName
+    (existingAppName: string) =>
+      existingAppName.toLowerCase() === applicationName.trim().toLowerCase()
   );
 };
+
+export const isApplicationNameEmpty = (applicationName: string): boolean =>
+  typeof applicationName !== 'string' || applicationName.trim() === '';
 
 export const isSCArrayValid = (formData: ApplicationFormType): boolean => {
   if (!isValidFormDataStructure(formData)) return false;
@@ -436,7 +441,7 @@ export const getApplicationFormOutputData = (
   } = data;
   return formApplicationName !== ''
     ? {
-        applicationName: formApplicationName,
+        applicationName: formApplicationName.trim(),
         createAnother: formCreateAnother,
         sourceControls: formSourceControls,
         ticketSystem: formTicketSystem,

@@ -40,6 +40,7 @@ import {
   getTicketSystemById,
   getTicketSystemServerById,
   isApplicationNameDuplicate,
+  isApplicationNameEmpty,
   isApplicationNameValid,
   isCreateAnotherValid,
   isSCArrayValid,
@@ -117,7 +118,7 @@ export const ApplicationForm = ({
     let errorMessage = '';
     const duplicateErrorMessage = 'Application already exists';
     const newAppName = e.target.value;
-    const isEmpty = e.target.value === '';
+    const isEmpty = isApplicationNameEmpty(newAppName);
     const isDuplicate = isApplicationNameDuplicate(
       newAppName,
       applicationNames

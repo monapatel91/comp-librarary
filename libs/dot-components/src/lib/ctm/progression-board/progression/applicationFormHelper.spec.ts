@@ -10,13 +10,15 @@ import {
   getFormDataWithTicketSystemServerSet,
   getFormDataWithTicketSystemSet,
   getFullPayloadUrl,
+  getSCById,
   getSCServerById,
   getSelectedSCServers,
-  getSCById,
   getTicketSystemById,
   getTicketSystemServerById,
   isActiveSCServerValid,
   isActiveSCValid,
+  isApplicationNameDuplicate,
+  isApplicationNameEmpty,
   isApplicationNameValid,
   isAtLeastOneSCServerSelected,
   isCreateAnotherValid,
@@ -27,8 +29,8 @@ import {
   isTicketSystemValid,
 } from './applicationFormHelper';
 import {
-  ApplicationFormType,
   ApplicationFormOutput,
+  ApplicationFormType,
   SourceControl,
 } from '../ProgressionBoardInterfaces';
 import { INITIAL_VALIDATION_DATA } from '../application/data/formData';
@@ -397,6 +399,64 @@ describe('applicationFormHelper', () => {
         },
       };
       expect(isApplicationNameValid(formData as never, [])).toBe(true);
+    });
+  });
+
+  describe('isApplicationNameDuplicate function', () => {
+    const applicationNames = ['api', 'Test1'];
+    it('should return false if null value passed as argument', () => {
+      expect(isApplicationNameDuplicate(null as never, applicationNames)).toBe(
+        false
+      );
+    });
+    it('should return false if undefined value passed as argument', () => {
+      expect(
+        isApplicationNameDuplicate(undefined as never, applicationNames)
+      ).toBe(false);
+    });
+    it('should return false if value is not found in array', () => {
+      expect(isApplicationNameDuplicate('test2', applicationNames)).toBe(false);
+    });
+    it('should return true if exact value is found in array', () => {
+      expect(isApplicationNameDuplicate('api', applicationNames)).toBe(true);
+    });
+    it('should return true if same value but has leading whitespace', () => {
+      expect(isApplicationNameDuplicate(' api', applicationNames)).toBe(true);
+    });
+    it('should return true if same value but has trailing whitespace', () => {
+      expect(isApplicationNameDuplicate('api  ', applicationNames)).toBe(true);
+    });
+    it('should return true if same value but has leading and trailing whitespace', () => {
+      expect(isApplicationNameDuplicate('   api   ', applicationNames)).toBe(
+        true
+      );
+    });
+    it('should return true if same value but in uppercase', () => {
+      expect(isApplicationNameDuplicate('API', applicationNames)).toBe(true);
+    });
+    it('should return true if same value but in lowercase', () => {
+      expect(isApplicationNameDuplicate('test1', applicationNames)).toBe(true);
+    });
+  });
+
+  describe('isApplicationNameEmpty function', () => {
+    it('should return true if null value passed as argument', () => {
+      expect(isApplicationNameEmpty(null)).toBe(true);
+    });
+    it('should return true if undefined value passed as argument', () => {
+      expect(isApplicationNameEmpty(undefined)).toBe(true);
+    });
+    it('should return true if non-string type value passed as argument', () => {
+      expect(isApplicationNameEmpty(123 as never)).toBe(true);
+    });
+    it('should return true if empty string passed as argument', () => {
+      expect(isApplicationNameEmpty('')).toBe(true);
+    });
+    it('should return true if string with whitespaces only passed as argument', () => {
+      expect(isApplicationNameEmpty('   ')).toBe(true);
+    });
+    it('should return false for non-empty string', () => {
+      expect(isApplicationNameEmpty('test123')).toBe(false);
     });
   });
 
@@ -1157,6 +1217,25 @@ describe('applicationFormHelper', () => {
       };
       const expectedData: ApplicationFormOutput = {
         applicationName: formData.applicationName.value,
+        createAnother: formData.createAnother.value,
+        sourceControls: formData.sourceControls.value,
+        ticketSystem: formData.ticketSystem.value,
+      };
+      expect(getApplicationFormOutputData(formData)).toStrictEqual(
+        expectedData
+      );
+    });
+    it('should return trimmed application name if trailing or leading whitespaces were entered on the form', () => {
+      const expectedName = 'test';
+      const formData: ApplicationFormType = {
+        ...sampleFormData,
+        applicationName: {
+          ...sampleFormData.applicationName,
+          value: `  ${expectedName}  `,
+        },
+      };
+      const expectedData: ApplicationFormOutput = {
+        applicationName: expectedName,
         createAnother: formData.createAnother.value,
         sourceControls: formData.sourceControls.value,
         ticketSystem: formData.ticketSystem.value,
