@@ -36,6 +36,10 @@ describe('dot-components: List component with menu', () => {
     cy.contains('Progressions').click();
     cy.get('.dot-menu').should('be.visible').contains('Package Progression');
     cy.get('.dot-menu').get('.icon-block').should('be.visible');
+    cy.contains('Package Progression').should('be.visible');
+    cy.contains('Insights').click();
+    cy.contains('Package Progression').should('not.be.visible');
+    cy.contains('Nested Link One').should('be.visible');
   });
 });
 

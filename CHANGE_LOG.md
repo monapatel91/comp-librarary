@@ -6,8 +6,11 @@
 
 - **Avatar** - added `color` prop
 - **Checkbox** - added `ariaLabel`, `ariaLabelledby` and `disableRipple` props
+- **List** - fix to only show one flyout menu at a time
+- **List** - added `index` prop
 - **Pill** - added `backgroundColor` and `labelColor` props
 - **Sidebar** - fix to show icons for nested items when `nestedListType` is `menu`.
+- **Sidebar** - fix to only show one flyout menu at a time
 - **Table** - fixed `loading` state so that `<td>` is not nested within `<span>`
 - **Table** - fix to not add tooltips to table cells
 

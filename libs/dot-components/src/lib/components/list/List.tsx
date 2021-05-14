@@ -42,6 +42,8 @@ interface NestedListProps extends CommonProps {
   onMenuLeave?: (event: KeyboardEvent | MouseEvent) => void;
   /** if true the nested list is visible */
   open: boolean;
+  /** Index of the parent list item */
+  parentItemIndex?: number;
   /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
   type?: NestedListType;
 }
@@ -74,6 +76,8 @@ export interface ListItemProps extends CommonProps {
   href?: string;
   /** If provided, the icon ID which is displayed on the front of the list item */
   iconId?: string;
+  /** List item index */
+  index?: number;
   /** If provided, the menu item will display a nested list */
   items?: Array<ListItemProps>;
   /** If nested list type is 'menu', determines the placement of the menu */
@@ -96,6 +100,7 @@ const NestedList = ({
   menuPlacement,
   onMenuLeave,
   open,
+  parentItemIndex,
   type,
 }: NestedListProps) => {
   const flyoutItemClasses = useStylesWithRootClass(
@@ -143,6 +148,7 @@ const NestedList = ({
     return (
       <DotMenu
         anchorEl={anchorEl}
+        className={`dot-flyout-menu dot-flyout-menu-${parentItemIndex}`}
         id={CreateUUID()}
         menuItems={menuItems}
         menuPlacement={menuPlacement}
@@ -191,6 +197,7 @@ export const DotList = ({
             divider={item.divider}
             href={item.href}
             iconId={item.iconId}
+            index={index}
             items={item.items}
             onClick={item.onClick}
             key={index}
@@ -214,6 +221,7 @@ export const DotListItem = ({
   divider = false,
   href,
   iconId,
+  index,
   onClick,
   items = [],
   menuPlacement,
@@ -231,8 +239,27 @@ export const DotListItem = ({
   const toggleOpen = (event: MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     event.preventDefault();
+
+    // TODO: Find way to refactor flyout menus so that this is no longer necessary.
+    let toggle = true;
+    const flyoutMenus = document.getElementsByClassName('dot-flyout-menu');
+    Array.from(flyoutMenus as HTMLCollectionOf<HTMLElement>).forEach(
+      (flyoutMenu) => {
+        if (flyoutMenu.classList.contains(`dot-flyout-menu-${index}`)) {
+          if (open && flyoutMenu.style.display === 'none') {
+            flyoutMenu.style.display = 'inherit';
+            toggle = false;
+          }
+        } else {
+          flyoutMenu.style.display = 'none';
+        }
+      }
+    );
+
     setAnchorEl(event.currentTarget);
-    setOpen(!open);
+    if (toggle) {
+      setOpen(!open);
+    }
   };
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
@@ -294,6 +321,7 @@ export const DotListItem = ({
           menuPlacement={menuPlacement}
           onMenuLeave={handleMenuLeave}
           open={open}
+          parentItemIndex={index}
           type={nestedListType}
         />
       )}
