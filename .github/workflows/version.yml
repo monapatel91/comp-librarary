@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - libs/dot-components/src/**
+      - .github/workflows/**
     branches:
       - master
 
