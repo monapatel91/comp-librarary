@@ -2,6 +2,10 @@ name: Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: 'GitHub Ref to be used for checkout'
+        required: true
   repository_dispatch:
     types: [run-deploy-gh-pages]
 
@@ -14,12 +18,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      #   with:
-      #     ref: ${{ github.event.client_payload.sha }}
+        with:
+          ref: ${{github.event.inputs.ref }}
 
-      - run: 'echo "Inputs: ${{github.event.inputs }}"'
       - run: 'echo "REF: ${{github.event.inputs.ref }}"'
-      - run: 'echo "SHA: ${{github.event.inputs.sha }}"'
 
       - name: Publish to GitHub Pages
         uses: sterlingwes/gh-pages-deploy-action@v1.1

@@ -2,6 +2,10 @@ name: Deploy to NPM
 
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: 'GitHub Ref to be used for checkout'
+        required: true
   repository_dispatch:
     types: [run-deploy-to-npm]
 
@@ -14,10 +18,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        # with:
-        #   ref: ${{ github.event.client_payload.sha }}
+        with:
+          ref: ${{github.event.inputs.ref }}
 
-      # - run: 'echo "SHA: ${{github.event.client_payload.sha }}"'
+      - run: 'echo "REF: ${{github.event.inputs.ref }}"'
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
