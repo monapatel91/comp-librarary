@@ -185,25 +185,22 @@ jobs:
           NEW_RELEASE: ${{ steps.create-release.outputs.automatic_releases_tag }}
         run: echo "new release tag $NEW_RELEASE"
 
-  # https://github.com/peter-evans/repository-dispatch
-  release:
-    name: Trigger Worflow - Deploy to NPM
-    runs-on: ubuntu-latest
-    needs: [create-release]
+  # https://github.com/benc-uk/workflow-dispatch
+  # release:
+  #   name: Trigger Worflow - Deploy to NPM
+  #   runs-on: ubuntu-latest
+  #   needs: [create-release]
 
-    steps:
-      - name: Trigger Workflow
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          # inputs: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
-          inputs: '{"message": "triggered by Continuous Release Workflow"}'
-          # repo: ${{ github.repository }}
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          workflow: Deploy to NPM
+  #   steps:
+  #     - name: Trigger Workflow
+  #       uses: benc-uk/workflow-dispatch@v1
+  #       with:
+  #         # inputs: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+  #         inputs: '{"message": "triggered by Continuous Release Workflow"}'
+  #         token: ${{ secrets.REPO_ACCESS_TOKEN }}
+  #         workflow: Deploy to NPM
 
-      # - run: 'echo "SHA: ${{github.sha }}"'
-
-  # https://github.com/peter-evans/repository-dispatch
+  # https://github.com/benc-uk/workflow-dispatch
   github-pages:
     name: Trigger Workflow - Deploy to GitHub Pages
     runs-on: ubuntu-latest
@@ -213,10 +210,7 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          # inputs: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
-          inputs: '{"message": "triggered by Continuous Release Workflow"}'
-          # repo: ${{ github.repository }}
+          # inputs: "{ 'ref': '${{ github.ref }}', 'sha': '${{ github.sha }}' }"
+          # inputs: "{'message': 'triggered by Continuous Release Workflow'}"
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to GitHub Pages
-
-      # - run: 'echo "SHA: ${{github.sha }}"'
