@@ -18,6 +18,8 @@ jobs:
       #     ref: ${{ github.event.client_payload.sha }}
 
       - run: 'echo "Inputs: ${{github.event.inputs }}"'
+      - run: 'echo "REF: ${{github.event.inputs.ref }}"'
+      - run: 'echo "SHA: ${{github.event.inputs.sha }}"'
 
       - name: Publish to GitHub Pages
         uses: sterlingwes/gh-pages-deploy-action@v1.1
