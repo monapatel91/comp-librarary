@@ -1,5 +1,40 @@
 # Changelog
 
+## [Unreleased](https://github.com/digital-ai/dot-components/tree/HEAD)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.36...HEAD)
+
+**Merged pull requests:**
+
+- bump material-ui to v4.11.2 [\#543](https://github.com/digital-ai/dot-components/pull/543) ([CWSites](https://github.com/CWSites))
+- Bring build changes into `develop` [\#541](https://github.com/digital-ai/dot-components/pull/541) ([CWSites](https://github.com/CWSites))
+
+## [v0.0.0-alpha.36](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.36) (05/17/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.35...v0.0.0-alpha.36)
+
+**Fixed bugs:**
+
+- running `npm install` on fresh install fails [\#542](https://github.com/digital-ai/dot-components/issues/542)
+
+## [v0.0.0-alpha.35](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.35) (05/14/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.34...v0.0.0-alpha.35)
+
+**Fixed bugs:**
+
+- Table cells have useless tooltips [\#539](https://github.com/digital-ai/dot-components/issues/539)
+- \[Progression\] Application name validation is not trimming whitespaces when doing duplicate name check [\#536](https://github.com/digital-ai/dot-components/issues/536)
+- Error when displaying the Skeleton loader while a table is loading [\#535](https://github.com/digital-ai/dot-components/issues/535)
+- List and Sidebar show multiple flyout menus at the same time [\#523](https://github.com/digital-ai/dot-components/issues/523)
+
+**Merged pull requests:**
+
+- Issue \#539: Do not add tooltips to table cells [\#540](https://github.com/digital-ai/dot-components/pull/540) ([selsemore](https://github.com/selsemore))
+- Issue \#535: Do not nest \<td\> in \<span\> in table skeleton data [\#538](https://github.com/digital-ai/dot-components/pull/538) ([selsemore](https://github.com/selsemore))
+- Issue \#536: \[Progression\] Application name validation is not trimming whitespaces when doing duplicate name check [\#537](https://github.com/digital-ai/dot-components/pull/537) ([dmiletic85](https://github.com/dmiletic85))
+- Issue \#523: Fix List/Sidebar to not show multiple flyout menus at once [\#525](https://github.com/digital-ai/dot-components/pull/525) ([selsemore](https://github.com/selsemore))
+
 ## [v0.0.0-alpha.34](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.34) (05/13/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.33...v0.0.0-alpha.34)
@@ -449,6 +484,7 @@
 - Issue \#43: Expand e2e tests [\#251](https://github.com/digital-ai/dot-components/pull/251) ([CWSites](https://github.com/CWSites))
 - issue \#248: speed up e2e tests using before instead of beforeEach [\#249](https://github.com/digital-ai/dot-components/pull/249) ([CWSites](https://github.com/CWSites))
 - Issue \#199: Progression Board Legend [\#246](https://github.com/digital-ai/dot-components/pull/246) ([CWSites](https://github.com/CWSites))
+- Issue \#106: refactor Chip component [\#244](https://github.com/digital-ai/dot-components/pull/244) ([selsemore](https://github.com/selsemore))
 - Issue 211 form group [\#243](https://github.com/digital-ai/dot-components/pull/243) ([j-schoen](https://github.com/j-schoen))
 - Issue \#198: refactoring ProgressionBoard [\#239](https://github.com/digital-ai/dot-components/pull/239) ([CWSites](https://github.com/CWSites))
 - Issue \#103: Refactor Card component [\#237](https://github.com/digital-ai/dot-components/pull/237) ([selsemore](https://github.com/selsemore))
@@ -596,7 +632,6 @@
 - S-74144: theme configuration [\#36](https://github.com/digital-ai/dot-components/pull/36) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - S 73983 avatar component [\#35](https://github.com/digital-ai/dot-components/pull/35) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - S-73862: side navigation cleanup [\#34](https://github.com/digital-ai/dot-components/pull/34) ([CWSites](https://github.com/CWSites))
-- S-74096: theme provider [\#31](https://github.com/digital-ai/dot-components/pull/31) ([TheKeithStewart](https://github.com/TheKeithStewart))
 
 
 
