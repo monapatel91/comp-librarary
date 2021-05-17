@@ -41,40 +41,12 @@ export const legendItems: Array<LegendItem> = [
     title: 'Other Workitem',
   },
   {
-    iconId: 'error-solid',
-    title: 'Test Coverage',
-  },
-  {
-    iconId: 'info-solid',
-    title: 'Quality Information',
-  },
-  {
     iconId: 'rogue-commits',
     title: 'Rogue Commits',
   },
   {
-    iconId: 'pending-clock',
-    title: 'Pending Activity',
-  },
-  {
     iconId: 'file-dotted',
     title: 'Delivery Forecast',
-  },
-  {
-    iconId: 'error-outlines',
-    title: 'Activity or Control failed',
-  },
-  {
-    iconId: 'check-solid',
-    title: 'Completed Activities',
-  },
-  {
-    iconId: 'thumbs-down',
-    title: 'Failing Tests',
-  },
-  {
-    iconId: 'lock',
-    title: 'Security Violations',
   },
 ];
 

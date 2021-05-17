@@ -83,15 +83,6 @@ describe('dot-components: Progression Board component', () => {
       );
     });
 
-    it('error icon should render as red', () => {
-      cy.get('i').should('have.class', 'icon-error-outlines');
-      cy.get('i.icon-error-outlines').should(
-        'have.css',
-        'color',
-        'rgb(214, 31, 33)'
-      );
-    });
-
     it('file icon should render as blue', () => {
       cy.get('i').should('have.class', 'icon-file-dotted');
       cy.get('i.icon-file-dotted').should(
@@ -101,13 +92,5 @@ describe('dot-components: Progression Board component', () => {
       );
     });
 
-    it('check icon should render as blue', () => {
-      cy.get('i').should('have.class', 'icon-check-solid');
-      cy.get('i.icon-check-solid').should(
-        'have.css',
-        'color',
-        'rgb(61, 108, 158)'
-      );
-    });
   });
 });

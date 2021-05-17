@@ -222,17 +222,6 @@ export const StyledProgressionSwimlane = styled.div`
       }
 
       .dot-icon i {
-        &.icon-error-outlines {
-          color: ${theme.palette.icon.errorOutlines};
-        }
-
-        &.icon-error-solid {
-          color: ${theme.palette.icon.errorSolid};
-        }
-
-        &.icon-info-solid {
-          color: ${theme.palette.icon.infoSolid};
-        }
 
         &.icon-rogue-commits {
           color: ${theme.palette.icon.rogueCommits};
@@ -242,21 +231,6 @@ export const StyledProgressionSwimlane = styled.div`
           color: ${theme.palette.icon.fileDotted};
         }
 
-        &.icon-pending-clock {
-          color: ${theme.palette.icon.pendingClock};
-        }
-
-        &.icon-check-solid {
-          color: ${theme.palette.icon.checkSolid};
-        }
-
-        &.icon-thumbs-down {
-          color: ${theme.palette.icon.thumbsDown};
-        }
-
-        &.icon-lock {
-          color: ${theme.palette.icon.lock};
-        }
       }
     }
   `}

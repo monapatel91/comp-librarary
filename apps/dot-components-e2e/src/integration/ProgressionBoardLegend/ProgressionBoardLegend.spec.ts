@@ -14,15 +14,8 @@ describe('dot-components: Progression Board Legend component', () => {
       .and('contain', 'Story')
       .and('contain', 'Trailing Commits (Story)')
       .and('contain', 'Other Workitem')
-      .and('contain', 'Test Coverage')
-      .and('contain', 'Quality Information')
       .and('contain', 'Rogue Commits')
-      .and('contain', 'Pending Activity')
-      .and('contain', 'Delivery Forecast')
-      .and('contain', 'Activity or Control failed')
-      .and('contain', 'Completed Activities')
-      .and('contain', 'Failing Tests')
-      .and('contain', 'Security Violations');
+      .and('contain', 'Delivery Forecast');
   });
 
   describe('style decisions', () => {
@@ -53,27 +46,9 @@ describe('dot-components: Progression Board Legend component', () => {
       );
     });
 
-    it('error icon should render as red', () => {
-      cy.get('i').should('have.class', 'icon-error-outlines');
-      cy.get('i.icon-error-outlines').should(
-        'have.css',
-        'color',
-        'rgb(214, 31, 33)'
-      );
-    });
-
     it('file icon should render as blue', () => {
       cy.get('i').should('have.class', 'icon-file-dotted');
       cy.get('i.icon-file-dotted').should(
-        'have.css',
-        'color',
-        'rgb(61, 108, 158)'
-      );
-    });
-
-    it('check icon should render as blue', () => {
-      cy.get('i').should('have.class', 'icon-check-solid');
-      cy.get('i.icon-check-solid').should(
         'have.css',
         'color',
         'rgb(61, 108, 158)'

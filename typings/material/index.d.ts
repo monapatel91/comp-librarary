@@ -59,20 +59,13 @@ declare module '@material-ui/core/styles/createPalette' {
 
   interface IconPaletteColorOptions {
     checkOutline: string;
-    checkSolid: string;
     emphasized: string;
-    errorOutlines: string;
-    errorSolid: string;
     fileDotted: string;
     improve: string;
     improveHover: string;
-    infoSolid: string;
-    lock: string;
     maintain: string;
     maintainHover: string;
-    pendingClock: string;
     rogueCommits: string;
-    thumbsDown: string;
     unknown: string;
     unknownHover: string;
   }

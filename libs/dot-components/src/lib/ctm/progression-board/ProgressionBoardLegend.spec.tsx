@@ -17,6 +17,6 @@ describe('ProgressionBoardLegend', () => {
     render(<DotProgressionBoardLegend items={sampleItems} />);
     const items = screen.getAllByRole('listitem');
 
-    expect(items).toHaveLength(14);
+    expect(items).toHaveLength(7);
   });
 });
