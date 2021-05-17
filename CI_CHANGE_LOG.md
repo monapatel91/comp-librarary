@@ -2,13 +2,17 @@
 
 ## [Unreleased](https://github.com/digital-ai/dot-components/tree/HEAD)
 
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.40...HEAD)
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.42...HEAD)
 
 **Merged pull requests:**
 
 - D-17921 Remove the unused icons from the legend. [\#544](https://github.com/digital-ai/dot-components/pull/544) ([HakujouRyu](https://github.com/HakujouRyu))
 - bump material-ui to v4.11.2 [\#543](https://github.com/digital-ai/dot-components/pull/543) ([CWSites](https://github.com/CWSites))
 - Bring build changes into `develop` [\#541](https://github.com/digital-ai/dot-components/pull/541) ([CWSites](https://github.com/CWSites))
+
+## [v0.0.0-alpha.42](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.42) (05/17/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.40...v0.0.0-alpha.42)
 
 ## [v0.0.0-alpha.40](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.40) (05/17/2021)
 
@@ -649,7 +653,6 @@
 - S-74144: theme configuration [\#36](https://github.com/digital-ai/dot-components/pull/36) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - S 73983 avatar component [\#35](https://github.com/digital-ai/dot-components/pull/35) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - S-73862: side navigation cleanup [\#34](https://github.com/digital-ai/dot-components/pull/34) ([CWSites](https://github.com/CWSites))
-- S-73953: init change log [\#29](https://github.com/digital-ai/dot-components/pull/29) ([TheKeithStewart](https://github.com/TheKeithStewart))
 
 
 
