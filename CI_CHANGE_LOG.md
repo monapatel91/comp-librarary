@@ -2,12 +2,16 @@
 
 ## [Unreleased](https://github.com/digital-ai/dot-components/tree/HEAD)
 
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.37...HEAD)
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.38...HEAD)
 
 **Merged pull requests:**
 
 - bump material-ui to v4.11.2 [\#543](https://github.com/digital-ai/dot-components/pull/543) ([CWSites](https://github.com/CWSites))
 - Bring build changes into `develop` [\#541](https://github.com/digital-ai/dot-components/pull/541) ([CWSites](https://github.com/CWSites))
+
+## [v0.0.0-alpha.38](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.38) (05/17/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.37...v0.0.0-alpha.38)
 
 ## [v0.0.0-alpha.37](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.37) (05/17/2021)
 
