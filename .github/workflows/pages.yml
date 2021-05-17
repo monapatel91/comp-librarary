@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.sha }}
 
       - name: Publish to GitHub Pages
         uses: sterlingwes/gh-pages-deploy-action@v1.1
