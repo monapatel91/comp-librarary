@@ -4,8 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       ref:
-        description: 'GitHub Ref to be used for checkout'
+        description: 'GitHub REF to be used for checkout'
         required: true
+      sha:
+        description: 'GitHub SHA to be used for checkout'
+        required: false
+      message:
+        description: 'Details of which workflow triggered the workflow'
+        required: false
   repository_dispatch:
     types: [run-deploy-to-npm]
 
