@@ -2,13 +2,21 @@
 
 ## [Unreleased](https://github.com/digital-ai/dot-components/tree/HEAD)
 
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.42...HEAD)
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.44...HEAD)
 
 **Merged pull requests:**
 
 - D-17921 Remove the unused icons from the legend. [\#544](https://github.com/digital-ai/dot-components/pull/544) ([HakujouRyu](https://github.com/HakujouRyu))
 - bump material-ui to v4.11.2 [\#543](https://github.com/digital-ai/dot-components/pull/543) ([CWSites](https://github.com/CWSites))
 - Bring build changes into `develop` [\#541](https://github.com/digital-ai/dot-components/pull/541) ([CWSites](https://github.com/CWSites))
+
+## [v0.0.0-alpha.44](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.44) (05/18/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.43...v0.0.0-alpha.44)
+
+## [v0.0.0-alpha.43](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.43) (05/18/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.42...v0.0.0-alpha.43)
 
 ## [v0.0.0-alpha.42](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.42) (05/17/2021)
 
