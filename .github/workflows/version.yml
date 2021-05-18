@@ -9,7 +9,6 @@ on:
 
 jobs:
   # https://github.com/benc-uk/workflow-dispatch
-  # for continuous release workflow trigger it should use `github.sha`
   verification:
     name: Trigger - Lint, Test & Build
     runs-on: ubuntu-latest
@@ -145,7 +144,6 @@ jobs:
         run: echo "new release tag $NEW_RELEASE"
 
   # https://github.com/benc-uk/workflow-dispatch
-  # for continuous release workflow trigger it should use `github.sha`
   release:
     name: Trigger - Deploy to NPM
     runs-on: ubuntu-latest
@@ -160,7 +158,6 @@ jobs:
           workflow: Deploy to NPM
 
   # https://github.com/benc-uk/workflow-dispatch
-  # for continuous release workflow trigger it should use `github.sha`
   github-pages:
     name: Trigger - Deploy to GitHub Pages
     runs-on: ubuntu-latest
