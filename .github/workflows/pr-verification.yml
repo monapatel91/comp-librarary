@@ -13,7 +13,7 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{"sha": "${{ github.sha }}"}'
+          inputs: '{ "ref": "${{ github.event.pull_request.head.ref }}", "sha": "${{ github.sha }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Lint, Test & Build
 
