@@ -27,9 +27,3 @@ jobs:
           add: CI_CHANGE_LOG.md --force
           default_author: github_actions
           message: 'Update Changelog'
-
-  # https://github.com/marketplace/actions/auto-changelog
-  # https://github.com/marketplace/actions/update-changelog
-
-  # https://github.com/marketplace/actions/generate-changelog-using-github-changelog-generator
-  # https://github.com/github-changelog-generator/github-changelog-generator

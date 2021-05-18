@@ -4,87 +4,46 @@ on:
   pull_request:
 
 jobs:
-  build:
-    name: Lint & Build
+  # https://github.com/benc-uk/workflow-dispatch
+  verification:
+    name: Trigger - Lint, Test & Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
+      - name: Trigger Workflow
+        uses: benc-uk/workflow-dispatch@v1
         with:
-          ref: ${{ github.sha }}
+          inputs: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          workflow: Lint, Test & Build
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      # https://github.com/marketplace/actions/yarn-install-cache
-      - name: Cache yarn dependencies
-        uses: c-hive/gha-yarn-cache@v1
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Lint Code
-        run: yarn lint
-
-      - name: Build
-        run: yarn build
-        env:
-          CI: true
-
-  unit-tests:
-    name: Run Unit Tests
+  # https://github.com/lewagon/wait-on-check-action
+  checks:
+    name: Wait on "Lint, Test & Build" Workflow
     runs-on: ubuntu-latest
+    needs: [verification]
 
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
+      - name: wait on build
+        uses: lewagon/wait-on-check-action@master
         with:
           ref: ${{ github.sha }}
+          check-name: Lint & Build
+          repo-token: ${{ github.token }}
+          wait-interval: 20
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      # https://github.com/marketplace/actions/yarn-install-cache
-      - name: Cache yarn dependencies
-        uses: c-hive/gha-yarn-cache@v1
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Run unit tests
-        run: yarn test:ci
-
-  e2e:
-    name: Run E2E Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
+      - name: wait on unit tests
+        uses: lewagon/wait-on-check-action@master
         with:
           ref: ${{ github.sha }}
+          check-name: Run Unit Tests
+          repo-token: ${{ github.token }}
+          wait-interval: 20
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - name: wait on e2e tests
+        uses: lewagon/wait-on-check-action@master
         with:
-          node-version: 12
-
-      # https://github.com/marketplace/actions/yarn-install-cache
-      - name: Cache yarn dependencies
-        uses: c-hive/gha-yarn-cache@v1
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Increase watchers
-        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-
-      - name: Run e2e tests
-        run: yarn e2e:ci
-        env:
-          CI: true
+          ref: ${{ github.sha }}
+          check-name: Run E2E Tests
+          repo-token: ${{ github.token }}
+          wait-interval: 20

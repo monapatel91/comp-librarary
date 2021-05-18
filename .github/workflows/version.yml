@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - libs/dot-components/src/**
-      - .github/workflows/**
     branches:
       - master
 
@@ -52,91 +51,6 @@ jobs:
           check-name: Run E2E Tests
           repo-token: ${{ github.token }}
           wait-interval: 20
-
-  # build:
-  #   name: Lint & Build
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout source code
-  #       uses: actions/checkout@v2
-  #       with:
-  #         ref: ${{ github.sha }}
-
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 12
-
-  #     # https://github.com/marketplace/actions/yarn-install-cache
-  #     - name: Cache yarn dependencies
-  #       uses: c-hive/gha-yarn-cache@v1
-
-  #     - name: Install dependencies
-  #       run: yarn install
-
-  #     - name: Lint Code
-  #       run: yarn lint
-
-  #     - name: Build
-  #       run: yarn build
-  #       env:
-  #         CI: true
-
-  # unit-tests:
-  #   name: Run Unit Tests
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout source code
-  #       uses: actions/checkout@v2
-  #       with:
-  #         ref: ${{ github.sha }}
-
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 12
-
-  #     # https://github.com/marketplace/actions/yarn-install-cache
-  #     - name: Cache yarn dependencies
-  #       uses: c-hive/gha-yarn-cache@v1
-
-  #     - name: Install dependencies
-  #       run: yarn install
-
-  #     - name: Run unit tests
-  #       run: yarn test:ci
-
-  # e2e:
-  #   name: Run E2E Tests
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout source code
-  #       uses: actions/checkout@v2
-  #       with:
-  #         ref: ${{ github.sha }}
-
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 12
-
-  #     # https://github.com/marketplace/actions/yarn-install-cache
-  #     - name: Cache yarn dependencies
-  #       uses: c-hive/gha-yarn-cache@v1
-
-  #     - name: Install dependencies
-  #       run: yarn install
-
-  #     - name: Increase watchers
-  #       run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-
-  #     - name: Run e2e tests
-  #       run: yarn e2e:ci
-  #       env:
-  #         CI: true
 
   # https://github.com/marketplace/actions/automated-version-bump
   bump-version:
