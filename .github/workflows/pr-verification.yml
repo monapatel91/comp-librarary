@@ -5,6 +5,7 @@ on:
 
 jobs:
   # https://github.com/benc-uk/workflow-dispatch
+  # for PR workflow trigger it should use `github.event.pull_request.head.ref`
   verification:
     name: Trigger - Lint, Test & Build
     runs-on: ubuntu-latest
@@ -13,7 +14,7 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{ "ref": "${{ github.event.pull_request.head.ref }}", "sha": "${{ github.sha }}"}'
+          inputs: '{"ref": "${{ github.event.pull_request.head.ref }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Lint, Test & Build
 

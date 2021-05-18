@@ -4,10 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       ref:
-        description: 'GitHub REF to be used for checkout'
-        required: false
-      sha:
-        description: 'GitHub SHA to be used for checkout'
+        description: 'GitHub ref to be used for checkout, can be `ref`, `sha` or `branch`'
         required: true
 
 jobs:
@@ -19,7 +16,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
-          ref: ${{github.event.inputs.sha }}
+          ref: ${{ github.event.inputs.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -49,7 +46,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
-          ref: ${{github.event.inputs.sha }}
+          ref: ${{ github.event.inputs.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -74,7 +71,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
-          ref: ${{github.event.inputs.sha }}
+          ref: ${{ github.event.inputs.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
