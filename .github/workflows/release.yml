@@ -5,10 +5,10 @@ on:
     inputs:
       ref:
         description: 'GitHub REF to be used for checkout'
-        required: true
+        required: false
       sha:
         description: 'GitHub SHA to be used for checkout'
-        required: false
+        required: true
 
 jobs:
   # https://github.com/marketplace/actions/npm-publish
