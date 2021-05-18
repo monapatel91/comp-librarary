@@ -2,7 +2,6 @@ name: Test Changelog Generation
 
 on:
   workflow_dispatch:
-  # pull_request:
 
 jobs:
   # https://github.com/faberNovel/github-changelog-generator-action
