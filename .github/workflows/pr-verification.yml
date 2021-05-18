@@ -8,7 +8,7 @@ on:
 # https://github.com/benc-uk/workflow-dispatch/issues/15
 jobs:
   build:
-    name: Lint & Build
+    name: Lint & Build # used for check-name on version.yml
     runs-on: ubuntu-latest
 
     steps:
@@ -38,7 +38,7 @@ jobs:
           CI: true
 
   unit-tests:
-    name: Run Unit Tests
+    name: Run Unit Tests # used for check-name on version.yml
     runs-on: ubuntu-latest
 
     steps:
@@ -63,7 +63,7 @@ jobs:
         run: yarn test:ci
 
   e2e:
-    name: Run E2E Tests
+    name: Run E2E Tests # used for check-name on version.yml
     runs-on: ubuntu-latest
 
     steps:
