@@ -9,11 +9,6 @@ on:
       sha:
         description: 'GitHub SHA to be used for checkout'
         required: false
-      message:
-        description: 'Details of which workflow triggered the workflow'
-        required: false
-  repository_dispatch:
-    types: [run-deploy-gh-pages]
 
 jobs:
   # https://github.com/sterlingwes/gh-pages-deploy-action
@@ -25,9 +20,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: ${{github.event.inputs.ref }}
-
-      - run: 'echo "REF: ${{github.event.inputs.ref }}"'
+          ref: ${{github.event.inputs.sha }}
 
       - name: Publish to GitHub Pages
         uses: sterlingwes/gh-pages-deploy-action@v1.1

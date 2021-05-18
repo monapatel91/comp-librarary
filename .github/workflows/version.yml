@@ -187,7 +187,7 @@ jobs:
 
   # https://github.com/benc-uk/workflow-dispatch
   release:
-    name: Trigger Worflow - Deploy to NPM
+    name: Trigger - Deploy to NPM
     runs-on: ubuntu-latest
     needs: [create-release]
 
@@ -195,13 +195,13 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "message": "triggered by **Continuous Release** Workflow"}'
+          inputs: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to NPM
 
   # https://github.com/benc-uk/workflow-dispatch
   github-pages:
-    name: Trigger Workflow - Deploy to GitHub Pages
+    name: Trigger - Deploy to GitHub Pages
     runs-on: ubuntu-latest
     needs: [create-release]
 
@@ -209,6 +209,6 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "message": "triggered by **Continuous Release** Workflow"}'
+          inputs: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to GitHub Pages
