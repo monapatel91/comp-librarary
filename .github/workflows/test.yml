@@ -2,6 +2,13 @@ name: Lint, Test & Build
 
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: 'GitHub REF to be used for checkout'
+        required: true
+      sha:
+        description: 'GitHub SHA to be used for checkout'
+        required: false
 
 jobs:
   verification:
@@ -12,8 +19,8 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.client_payload.sha }}
-      - run: echo using SHA ${{ github.event.client_payload.sha }}
+          ref: ${{github.event.inputs.sha }}
+      - run: echo using SHA ${{ github.event.inputs.sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -43,8 +50,8 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.client_payload.sha }}
-      - run: echo using SHA ${{ github.event.client_payload.sha }}
+          ref: ${{github.event.inputs.sha }}
+      - run: echo using SHA ${{ github.event.inputs.sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -69,8 +76,8 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.client_payload.sha }}
-      - run: echo using SHA ${{ github.event.client_payload.sha }}
+          ref: ${{github.event.inputs.sha }}
+      - run: echo using SHA ${{ github.event.inputs.sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
