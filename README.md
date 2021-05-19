@@ -20,6 +20,35 @@ The `DotThemeProvider` provides the theme for the components in this library. Wh
 </DotThemeProvider>
 ```
 
+Once your application is wrapped with `DotThemeProvider`, your styled components can use colors and spacings from the theme:
+
+```jsx
+import React from 'react';
+import styled, { css } from 'styled-components';
+
+const StyledWidget = styled.div`
+  ${({ theme }) => css`
+    background-color: ${theme.palette.secondary[300]};
+    border: 1px solid ${theme.palette.primary.main};
+    .my-widget-text {
+      margin-left: ${theme.spacing(2)}px;
+    }
+  `}
+`;
+
+export interface MyWidgetProps {
+  text: string;
+}
+
+export const MyWidget = ({ text }: MyWidgetProps) => {
+  return (
+    <StyledWidget>
+      <div className="my-widget-text">{text}</div>
+    </StyledWidget>
+  );
+};
+```
+
 ### Resolving Style Conflicts
 
 It is possible that existing application styles might target native elements in ways that will conflict with styles from `dot-components`.
