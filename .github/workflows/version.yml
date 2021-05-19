@@ -89,11 +89,6 @@ jobs:
           # rc-wording will override the preid
           preid: 'alpha'
 
-      - name: Output Step
-        env:
-          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
-        run: echo "new tag $NEW_TAG"
-
   # https://github.com/faberNovel/github-changelog-generator-action
   changelog:
     name: Generate Changelog
@@ -136,14 +131,8 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           automatic_release_tag: ${{needs.bump-version.outputs.new-version}}
-          # draft: true
           repo_token: ${{ github.token }}
           prerelease: true
-
-      - name: Output Step
-        env:
-          NEW_RELEASE: ${{ steps.create-release.outputs.automatic_releases_tag }}
-        run: echo "new release tag $NEW_RELEASE"
 
   # https://github.com/benc-uk/workflow-dispatch
   release:
