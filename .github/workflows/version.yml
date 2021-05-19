@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - libs/dot-components/src/**
+      - libs/dot-components/package.json
     branches:
       - master
 
