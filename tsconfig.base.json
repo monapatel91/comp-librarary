@@ -20,5 +20,6 @@
       "@digital-ai/testing-utils": ["libs/testing-utils/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "include": ["typings/**/*.d.ts"]
 }

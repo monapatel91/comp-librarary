@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { InputProps } from './InputFormFields.propTypes';
-import { DotIcon } from '..';
+import { DotIcon } from '../icon/Icon';
 import {
   rootClassName,
   StyledTextField,

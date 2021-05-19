@@ -80,7 +80,7 @@ jobs:
           default: prerelease
           major-wording: 'MAJOR'
           minor-wording: 'minor'
-          # Providing patch-wording will override commits defaulting to a patch bump.
+          # Providing patch-wording will prevent every commit triggering patch bump.
           # patch-wording: 'patch'
           rc-wording: 'alpha, RELEASE, BETA'
           target-branch: 'master'

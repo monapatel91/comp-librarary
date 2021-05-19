@@ -9,7 +9,7 @@ describe('dot-components: Button component', () => {
     cy.get('button').should('contain', 'option 1');
   });
 
-  it('should toggle menu when right button clicked', () => {
+  xit('should toggle menu when right button clicked', () => {
     cy.contains('option 3').should('not.be.visible');
     cy.get('button.dot-button').eq(1).click();
     cy.contains('option 3').should('be.visible');
@@ -17,7 +17,7 @@ describe('dot-components: Button component', () => {
     cy.contains('option 3').should('not.be.visible');
   });
 
-  it('should change selection when menu item clicked', () => {
+  xit('should change selection when menu item clicked', () => {
     cy.contains('option 1').should('be.visible');
     cy.contains('option 3').should('not.be.visible');
     cy.get('button.dot-button').eq(1).click();
