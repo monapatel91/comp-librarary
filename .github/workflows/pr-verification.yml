@@ -34,8 +34,6 @@ jobs:
 
       - name: Build
         run: yarn build
-        env:
-          CI: true
 
   unit-tests:
     name: Run Unit Tests
@@ -89,5 +87,3 @@ jobs:
 
       - name: Run e2e tests
         run: yarn e2e:ci
-        env:
-          CI: true
