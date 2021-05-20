@@ -1,5 +1,26 @@
 # Changelog
 
+## [Unreleased](https://github.com/digital-ai/dot-components/tree/HEAD)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/alphav0.0.1-alpha.1...HEAD)
+
+**Merged pull requests:**
+
+- Issue \#553: Add README.md example for using theme colors and spacing [\#554](https://github.com/digital-ai/dot-components/pull/554) ([selsemore](https://github.com/selsemore))
+- Issue \#527: resolve various issues [\#529](https://github.com/digital-ai/dot-components/pull/529) ([CWSites](https://github.com/CWSites))
+
+## [alphav0.0.1-alpha.1](https://github.com/digital-ai/dot-components/tree/alphav0.0.1-alpha.1) (05/20/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.1-alpha.0...alphav0.0.1-alpha.1)
+
+**Features:**
+
+- Add example to README.md Theme Provider section for using theme colors and spacing [\#553](https://github.com/digital-ai/dot-components/issues/553)
+
+**Fixed bugs:**
+
+- Build Issues [\#527](https://github.com/digital-ai/dot-components/issues/527)
+
 ## [v0.0.1-alpha.0](https://github.com/digital-ai/dot-components/tree/v0.0.1-alpha.0) (05/19/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.45...v0.0.1-alpha.0)
@@ -400,6 +421,7 @@
 - Updates to issue & PR templates [\#194](https://github.com/digital-ai/dot-components/issues/194)
 - Icon size is wrong [\#191](https://github.com/digital-ai/dot-components/issues/191)
 - Alpha 5 release [\#187](https://github.com/digital-ai/dot-components/issues/187)
+- Alpha 4 release [\#184](https://github.com/digital-ai/dot-components/issues/184)
 - Separate DOM segments into separate styled components [\#182](https://github.com/digital-ai/dot-components/issues/182)
 - Investigate `\<Image\>` use in `\<DotEmptyState\>` component [\#161](https://github.com/digital-ai/dot-components/issues/161)
 - Create Issue and PR templates [\#144](https://github.com/digital-ai/dot-components/issues/144)
@@ -542,7 +564,6 @@
 
 **Closed issues:**
 
-- Alpha 4 release [\#184](https://github.com/digital-ai/dot-components/issues/184)
 - Make the deployment of the public Storybook site a manual action [\#167](https://github.com/digital-ai/dot-components/issues/167)
 - Move "styles" for styled components to separate file [\#163](https://github.com/digital-ai/dot-components/issues/163)
 - Links in change log and other markdown files should point to ZeroHeight rather than local files [\#157](https://github.com/digital-ai/dot-components/issues/157)
