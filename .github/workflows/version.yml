@@ -79,7 +79,7 @@ jobs:
           PACKAGEJSON_DIR: 'libs/dot-components'
         with:
           commit-message: 'CI: bumps version to {{version}} [skip ci]'
-          default: prerelease
+          # default: prerelease
           major-wording: 'MAJOR'
           minor-wording: 'minor'
           # Providing patch-wording will prevent every commit triggering patch bump.
