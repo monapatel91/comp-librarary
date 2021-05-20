@@ -88,6 +88,7 @@ jobs:
           target-branch: 'master'
           # rc-wording will override the preid
           preid: 'alpha'
+          tag-prefix: 'alpha'
 
   # https://github.com/faberNovel/github-changelog-generator-action
   changelog:
