@@ -88,7 +88,6 @@ jobs:
           # rc-wording: 'alpha, RELEASE, BETA'
           target-branch: 'master'
           preid: 'alpha'
-          tag-prefix: 'alpha-'
 
   # https://github.com/faberNovel/github-changelog-generator-action
   changelog:
