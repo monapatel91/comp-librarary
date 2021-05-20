@@ -144,7 +144,7 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{"ref": "${{ github.sha }}"}'
+          inputs: '{"ref": "${{ github.ref }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to NPM
 
@@ -158,6 +158,6 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{"ref": "${{ github.sha }}"}'
+          inputs: '{"ref": "${{ github.ref }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to GitHub Pages
