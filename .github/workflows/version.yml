@@ -81,14 +81,14 @@ jobs:
           commit-message: 'CI: bumps version to {{version}} [skip ci]'
           # default: prerelease
           major-wording: 'MAJOR'
-          minor-wording: 'minor'
-          # Providing patch-wording will prevent every commit triggering patch bump.
+          minor-wording: 'MINOR'
+          ## Providing patch-wording will override commits defaulting to a patch bump.
           # patch-wording: 'patch'
-          rc-wording: 'alpha, RELEASE, BETA'
+          ## rc-wording will override the 'preid'
+          # rc-wording: 'alpha, RELEASE, BETA'
           target-branch: 'master'
-          # rc-wording will override the preid
           preid: 'alpha'
-          tag-prefix: 'alpha'
+          tag-prefix: 'alpha-'
 
   # https://github.com/faberNovel/github-changelog-generator-action
   changelog:
