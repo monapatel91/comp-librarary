@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- merging master \> develop [\#557](https://github.com/digital-ai/dot-components/pull/557) ([CWSites](https://github.com/CWSites))
 - Issue \#553: Add README.md example for using theme colors and spacing [\#554](https://github.com/digital-ai/dot-components/pull/554) ([selsemore](https://github.com/selsemore))
 - Issue \#527: resolve various issues [\#529](https://github.com/digital-ai/dot-components/pull/529) ([CWSites](https://github.com/CWSites))
 
