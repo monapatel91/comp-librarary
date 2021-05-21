@@ -1,5 +1,7 @@
 # @digital-ai/dot-components
 
+[![npm version](https://badge.fury.io/js/%40digital-ai%2Fdot-components.svg)](https://badge.fury.io/js/%40digital-ai%2Fdot-components)
+
 ## Installation
 
 ```sh

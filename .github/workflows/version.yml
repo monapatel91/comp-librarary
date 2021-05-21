@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - libs/dot-components/src/**
+      - libs/dot-components/package.json
+      - .github/workflows/**
     branches:
       - master
 
@@ -79,18 +81,13 @@ jobs:
           commit-message: 'CI: bumps version to {{version}} [skip ci]'
           default: prerelease
           major-wording: 'MAJOR'
-          minor-wording: 'minor'
-          # Providing patch-wording will prevent every commit triggering patch bump.
+          minor-wording: 'MINOR'
+          ## Providing patch-wording will override commits defaulting to a patch bump.
           # patch-wording: 'patch'
-          rc-wording: 'alpha, RELEASE, BETA'
+          ## rc-wording will override the 'preid'
+          # rc-wording: 'alpha, RELEASE, BETA'
           target-branch: 'master'
-          # rc-wording will override the preid
           preid: 'alpha'
-
-      - name: Output Step
-        env:
-          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
-        run: echo "new tag $NEW_TAG"
 
   # https://github.com/faberNovel/github-changelog-generator-action
   changelog:
@@ -134,14 +131,8 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           automatic_release_tag: ${{needs.bump-version.outputs.new-version}}
-          # draft: true
           repo_token: ${{ github.token }}
           prerelease: true
-
-      - name: Output Step
-        env:
-          NEW_RELEASE: ${{ steps.create-release.outputs.automatic_releases_tag }}
-        run: echo "new release tag $NEW_RELEASE"
 
   # https://github.com/benc-uk/workflow-dispatch
   release:
@@ -153,7 +144,7 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{"ref": "${{ github.sha }}"}'
+          inputs: '{"ref": "${{ github.ref }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to NPM
 
@@ -167,6 +158,6 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{"ref": "${{ github.sha }}"}'
+          inputs: '{"ref": "${{ github.ref }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to GitHub Pages
