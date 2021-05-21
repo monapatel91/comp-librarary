@@ -92,14 +92,7 @@ export const onThemeSwitch = (context) => {
   };
   storybookTheme = theme.name;
 
-  // Only update 'theme' query param on theme switch if the param is already
-  // present or if the new theme is not 'light' (the default). This will
-  // avoid potential CORS issues and avoid unnecessary page reload when
-  // switching from one story to another.
-  if (
-    (getThemeParameter() || theme.name !== 'light') &&
-    getThemeParameter() !== theme.name
-  ) {
+  if (getThemeParameter() !== theme.name) {
     const newParams = updateThemeParameter(theme.name);
     window.parent.location.search = newParams;
   }
