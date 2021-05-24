@@ -12,12 +12,12 @@ export const StyledTooltipContent = styled(DotTypography)`
 
 export const StyledDotDrawer = styled(DotDrawer)`
   ${({ theme }) => css`
-      .dot-drawer-paper {
-        padding: 0;
-        border: none;
-        box-shadow: inset 1px 0 ${theme.palette.progressionBoard.boardColumnHeader};
-        transition: width 0.2s;
-      }
+    .dot-drawer-paper {
+      padding: 0;
+      border: none;
+      box-shadow: inset 1px 0
+        ${theme.palette.progressionBoard.boardColumnHeader};
+      transition: width 0.2s;
     }
   `}
 `;

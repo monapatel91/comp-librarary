@@ -91,6 +91,5 @@ describe('dot-components: Progression Board component', () => {
         'rgb(61, 108, 158)'
       );
     });
-
   });
 });

@@ -222,7 +222,6 @@ export const StyledProgressionSwimlane = styled.div`
       }
 
       .dot-icon i {
-
         &.icon-rogue-commits {
           color: ${theme.palette.icon.rogueCommits};
         }
@@ -230,7 +229,6 @@ export const StyledProgressionSwimlane = styled.div`
         &.icon-file-dotted {
           color: ${theme.palette.icon.fileDotted};
         }
-
       }
     }
   `}

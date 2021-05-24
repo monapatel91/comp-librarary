@@ -1,7 +1,8 @@
 export { DotProgressionBoard } from './progression-board/ProgressionBoard';
+export { DotProgressionBoardDrawer } from './progression-board/ProgressionBoardDrawer';
 export { DotProgressionBoardLegend } from './progression-board/ProgressionBoardLegend';
-export { DotProgressionBoardAppFormDrawer } from './progression-board/application/ProgressionBoardAppFormDrawer';
-export { DotProgressionBoardAppInfoDrawer } from './progression-board/application/ProgressionBoardAppInfoDrawer';
+export { DotPBAppFormDrawerContent } from './progression-board/application/PBAppFormDrawerContent';
+export { DotPBAppInfoDrawerContent } from './progression-board/application/PBAppInfoDrawerContent';
 export { DotProgressionBoardPhaseEditor } from './progression-board/ProgressionBoardPhaseEditor';
-export { DotProgressionBoardWorkItemDrawer } from './progression-board/ProgressionBoardWorkItemDrawer';
+export { DotPBWorkItemDrawerContent } from './progression-board/PBWorkItemDrawerContent';
 export * from './progression-board/ProgressionBoardInterfaces';

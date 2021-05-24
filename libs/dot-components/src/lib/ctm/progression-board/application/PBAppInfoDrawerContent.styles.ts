@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-export const rootClassName = 'progression-board-app-info-drawer';
+export const rootClassName = 'pb-app-info-drawer-content';
 
-export const StyledProgressionBoardAppInfoDrawer = styled.div`
+export const StyledPBAppInfoDrawerContent = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
       .application-edit {

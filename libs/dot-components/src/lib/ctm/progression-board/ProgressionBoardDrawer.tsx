@@ -21,7 +21,7 @@ export interface ProgressionBoardDrawerProps extends CommonProps {
   width?: number;
 }
 
-export const ProgressionBoardDrawer = ({
+export const DotProgressionBoardDrawer = ({
   className,
   'data-testid': dataTestId,
   drawerPaperProps,

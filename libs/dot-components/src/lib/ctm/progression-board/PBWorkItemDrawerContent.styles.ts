@@ -10,7 +10,7 @@ export const StyledTooltipContent = styled(DotTypography)`
   `}
 `;
 
-export const StyledProgressionBoardWorkItemDrawer = styled.div`
+export const StyledPBWorkItemDrawerContent = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
       .drawer-header {

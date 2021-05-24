@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { DemoProgressionBoard } from '../../demo-components/DemoProgressionBoard';
 import { DemoForm } from '../../demo-components/DemoForm';
 import { DemoFormUncontrolled } from '../../demo-components/DemoFormUncontrolled';
-import { ProgressionDemo } from '../../demo-components/DemoProgression';
+import { ProgressionDemo } from '../../demo-components/progression/DemoProgression';
 import { DemoCssGrid } from '../../demo-components/DemoCssGrid';
 import { DemoCssGridTemplate } from '../../demo-components/DemoCssGridTemplate';
 

@@ -8,9 +8,7 @@ import {
   DotIconButton,
   DotSkeleton,
   DotTypography,
-  DrawerPaperProps,
 } from '../../components';
-import { ProgressionBoardDrawer } from './ProgressionBoardDrawer';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import {
   WorkItemDetailsType,
@@ -18,32 +16,26 @@ import {
 } from './ProgressionBoardInterfaces';
 import {
   rootClassName,
-  StyledProgressionBoardWorkItemDrawer,
-} from './ProgressionBoardWorkItemDrawer.styles';
+  StyledPBWorkItemDrawerContent,
+} from './PBWorkItemDrawerContent.styles';
 import { StyledTooltipContent } from './ProgressionBoardDrawer.styles';
 
-export interface ProgressionBoardDrawerProps extends CommonProps {
+export interface PBWorkItemDrawerContentProps extends CommonProps {
   /* Callback function which executes upon drawer being closed */
   onClose: () => void;
-  /** Props applied to the drawer's Paper element. */
-  drawerPaperProps?: DrawerPaperProps;
-  /* Width of the drawer in pixels. If not set, default value is assumed. */
-  width?: number;
   /* Basic workitem's data which is loaded when progression board is displayed */
   workItem: WorkItemType;
   /* Detail data about workitem which are fetched asynchronously */
   workItemDetails?: WorkItemDetailsType;
 }
 
-export const DotProgressionBoardWorkItemDrawer = ({
+export const DotPBWorkItemDrawerContent = ({
   className,
   'data-testid': dataTestId,
-  drawerPaperProps,
   onClose,
-  width,
   workItem,
   workItemDetails = null,
-}: ProgressionBoardDrawerProps) => {
+}: PBWorkItemDrawerContentProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   const wiTypeIconRootClasses = useStylesWithRootClass(
@@ -53,8 +45,6 @@ export const DotProgressionBoardWorkItemDrawer = ({
       ? [workItem.value_goal, workItem.isEmphasized ? 'emphasized' : '']
       : [])
   );
-
-  const isDrawerOpened = !!(workItem && workItem._id);
 
   const onDrawerClose = (): void => onClose();
 
@@ -247,17 +237,11 @@ export const DotProgressionBoardWorkItemDrawer = ({
   };
 
   return (
-    <StyledProgressionBoardWorkItemDrawer
+    <StyledPBWorkItemDrawerContent
       className={rootClasses}
       data-testid={dataTestId}
     >
-      <ProgressionBoardDrawer
-        isDrawerOpened={isDrawerOpened}
-        drawerPaperProps={drawerPaperProps}
-        width={width}
-      >
-        {renderDrawerContent()}
-      </ProgressionBoardDrawer>
-    </StyledProgressionBoardWorkItemDrawer>
+      {renderDrawerContent()}
+    </StyledPBWorkItemDrawerContent>
   );
 };

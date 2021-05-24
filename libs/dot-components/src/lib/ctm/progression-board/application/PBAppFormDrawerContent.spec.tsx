@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '../../../testing-utils';
 import {
-  DotProgressionBoardAppFormDrawer,
-  PBAppDrawerProps,
-} from './ProgressionBoardAppFormDrawer';
+  DotPBAppFormDrawerContent,
+  PBAppFormDrawerContentProps,
+} from './PBAppFormDrawerContent';
 import { sampleAppAPITestData } from '../sample-data/sampleApplicationData';
 
 const onDrawerClose = () => jest.fn();
@@ -11,27 +11,25 @@ const onFormCancel = () => jest.fn();
 const onFormSubmitted = () => jest.fn();
 const apiData = sampleAppAPITestData;
 
-describe('ProgressionBoardAppFormDrawer', () => {
+describe('PBAppFormDrawerContent', () => {
   const dataTestId = 'test-pb-application-drawer';
 
-  const componentProps: PBAppDrawerProps = {
+  const componentProps: PBAppFormDrawerContentProps = {
     apiData: apiData,
     'data-testid': dataTestId,
-    isDrawerOpened: true,
     onDrawerClose: onDrawerClose,
     onFormCancel: onFormCancel,
     onFormSubmit: onFormSubmitted,
   };
 
   beforeEach(() => {
-    render(<DotProgressionBoardAppFormDrawer {...componentProps} />);
+    render(<DotPBAppFormDrawerContent {...componentProps} />);
   });
 
   it('should have unchanged API', () => {
     const props = {
       apiData: apiData,
       'data-testid': dataTestId,
-      isDrawerOpened: true,
       onDrawerClose: onDrawerClose,
       onFormCancel: onFormCancel,
       onFormSubmit: onFormSubmitted,

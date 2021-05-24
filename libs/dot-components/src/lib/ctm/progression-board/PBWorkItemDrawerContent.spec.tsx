@@ -1,13 +1,16 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '../../testing-utils';
-import { DotProgressionBoardWorkItemDrawer } from './ProgressionBoardWorkItemDrawer';
+import { render, RenderResult, screen } from '../../testing-utils';
 import {
-  WorkItemDetailsType,
-  WorkItemType,
-} from './ProgressionBoardInterfaces';
+  DotPBWorkItemDrawerContent,
+  PBWorkItemDrawerContentProps,
+} from './PBWorkItemDrawerContent';
+import { WorkItemDetailsType } from './ProgressionBoardInterfaces';
 
-const onPbWorkItemDrawerClose = () => console.log('Closed');
+const dataTestId = 'test-pb-workitem-drawer';
+
+const onPbWorkItemDrawerClose = jest.fn();
+
 const workItem = {
   _id: '5b9c4fc12979930dbb0f13c5',
   change_count: 1,
@@ -26,38 +29,33 @@ const workItemDetails: WorkItemDetailsType = {
   sourceSystemUrl: `http://localhost:8080/id=${workItem._id}`,
 };
 
-interface PbDrawerProps {
-  onClose: () => void;
-  workItem: WorkItemType;
-  workItemDetails: WorkItemDetailsType;
-  dataTestId: string;
-}
-
-const renderPbDrawer = (pbDrawerProps: PbDrawerProps) => {
-  const { onClose, workItem, workItemDetails, dataTestId } =
-    pbDrawerProps || {};
-  render(
-    <DotProgressionBoardWorkItemDrawer
-      onClose={onClose}
-      workItem={workItem}
-      workItemDetails={workItemDetails}
-      data-testid={dataTestId}
-    />
-  );
+const componentProps: PBWorkItemDrawerContentProps = {
+  'data-testid': dataTestId,
+  onClose: onPbWorkItemDrawerClose,
+  workItem,
+  workItemDetails,
 };
 
-describe('ProgressionBoardDrawer', () => {
-  const dataTestId = 'test-pb-workitem-drawer';
+const renderComponent = (
+  props: PBWorkItemDrawerContentProps = null
+): RenderResult => {
+  const renderProps = props ? props : componentProps;
+  return render(<DotPBWorkItemDrawerContent {...renderProps} />);
+};
 
+it('should have unchanged API', () => {
+  const props = {
+    'data-testid': dataTestId,
+    onClose: onPbWorkItemDrawerClose,
+    workItem,
+    workItemDetails,
+  };
+  expect(componentProps).toEqual(props);
+});
+
+describe('PBWorkItemDrawerContent', () => {
   describe('basic render', () => {
-    beforeEach(() => {
-      renderPbDrawer({
-        onClose: onPbWorkItemDrawerClose,
-        workItem,
-        workItemDetails,
-        dataTestId,
-      });
-    });
+    beforeEach(() => renderComponent());
 
     it('should render successfully', () => {
       expect(screen).toBeTruthy();
@@ -127,11 +125,9 @@ describe('ProgressionBoardDrawer', () => {
     };
 
     beforeEach(() =>
-      renderPbDrawer({
-        onClose: onPbWorkItemDrawerClose,
-        workItem,
+      renderComponent({
+        ...componentProps,
         workItemDetails: wiDetails,
-        dataTestId,
       })
     );
 

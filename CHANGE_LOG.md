@@ -16,6 +16,12 @@
 
 ### Experimental
 
+> **BREAKING CHANGE: ProgressionBoardAppFormDrawer** - renamed component to `PBAppFormDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+
+> **BREAKING CHANGE: ProgressionBoardAppInfoDrawer** - renamed component to `PBAppInfoDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+
+> **BREAKING CHANGE: ProgressionBoardWorkItemDrawer** - renamed component to `PBWorkItemDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+
 - **List** - fix to show icons for nested items when `nestedListType` is `menu`.
 - **CssGrid** - added new component
 - **CssCell** - added new component
@@ -23,6 +29,7 @@
 - **NavigationRail** - added new component
 - **ProgressionBoard** - added `pbApplications` optional prop for rendering appropriate waiting messages for given application
 - **ProgressionBoardApplicationDrawer** - added `applicationNames` property to `ApplicationAPI` interface
+- **ProgressionBoardDrawer** - added new component which should be used as a parent component when using any drawer content component
 
 ## 0.0.0-alpha.29
 

@@ -1,29 +1,28 @@
 import React from 'react';
 import { render, RenderResult, screen } from '../../../testing-utils';
 import {
-  DotProgressionBoardAppInfoDrawer,
-  ProgressionBoardAppInfoDrawerProps,
-} from './ProgressionBoardAppInfoDrawer';
+  DotPBAppInfoDrawerContent,
+  PBAppInfoDrawerContentProps,
+} from './PBAppInfoDrawerContent';
 import { sampleAppDetailsTestData } from '../sample-data/sampleApplicationData';
 
 const appDetails = sampleAppDetailsTestData;
 const onDrawerClose = () => jest.fn();
 
-describe('ProgressionBoardAppInfoDrawer', () => {
-  const dataTestId = 'test-pb-app-info-drawer';
+describe('PBAppInfoDrawerContent', () => {
+  const dataTestId = 'pb-app-info-drawer-content';
 
-  const componentProps: ProgressionBoardAppInfoDrawerProps = {
+  const componentProps: PBAppInfoDrawerContentProps = {
     appDetails,
     'data-testid': dataTestId,
-    isDrawerOpened: true,
     onDrawerClose,
   };
 
   const renderComponent = (
-    props: ProgressionBoardAppInfoDrawerProps = null
+    props: PBAppInfoDrawerContentProps = null
   ): RenderResult => {
     const renderProps = props ? props : componentProps;
-    return render(<DotProgressionBoardAppInfoDrawer {...renderProps} />);
+    return render(<DotPBAppInfoDrawerContent {...renderProps} />);
   };
 
   beforeEach(() => {
@@ -34,7 +33,6 @@ describe('ProgressionBoardAppInfoDrawer', () => {
     const props = {
       appDetails,
       'data-testid': dataTestId,
-      isDrawerOpened: true,
       onDrawerClose,
     };
     expect(componentProps).toEqual(props);
