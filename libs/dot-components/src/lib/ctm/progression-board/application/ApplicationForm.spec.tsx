@@ -1,6 +1,12 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, RenderResult, screen, within } from '../../../testing-utils';
+import {
+  render,
+  RenderResult,
+  screen,
+  waitFor,
+  within,
+} from '../../../testing-utils';
 import { ApplicationForm, ApplicationFormProps } from './ApplicationForm';
 import {
   AutoCompleteControl,
@@ -153,14 +159,16 @@ describe('ApplicationForm', () => {
     userEvent.click(deleteIcon);
   };
 
-  const setApplicationName = (applicationName: string): void => {
+  const setApplicationName = async (applicationName: string): Promise<void> => {
     const appNameTextbox = getApplicationNameTextbox();
     userEvent.type(appNameTextbox, applicationName);
+    await waitFor(() => expect(appNameTextbox).toHaveValue(applicationName));
   };
 
-  const clearApplicationName = (): void => {
+  const clearApplicationName = async (): Promise<void> => {
     const appNameTextbox = getApplicationNameTextbox();
     userEvent.clear(appNameTextbox);
+    await waitFor(() => expect(appNameTextbox).toHaveValue(''));
   };
 
   const cancelApplicationDrawer = (): void =>
@@ -267,16 +275,20 @@ describe('ApplicationForm', () => {
     expect(textBoxElem).toHaveValue('');
   });
 
-  it("should render 'Application name' textbox with error message if duplicate name is entered", () => {
+  it("should render 'Application name' textbox with error message if duplicate name is entered", async () => {
     const errorMessage = 'Application already exists';
     const errorIconId = 'application-name-error-icon';
-    const textBoxElem = getApplicationNameTextbox();
-    userEvent.type(textBoxElem, 'appName1');
-    expect(screen.getByText(errorMessage)).toBeVisible();
-    expect(screen.getByTestId(errorIconId)).toBeVisible();
-    userEvent.type(textBoxElem, 'Unique Name');
-    expect(screen.queryByText(errorMessage)).not.toBeInTheDocument();
-    expect(screen.queryByTestId(errorIconId)).not.toBeInTheDocument();
+    await setApplicationName('appName1');
+    await waitFor(() => {
+      expect(screen.getByText(errorMessage)).toBeVisible();
+      expect(screen.getByTestId(errorIconId)).toBeVisible();
+    });
+    await clearApplicationName();
+    await setApplicationName('Unique Name');
+    await waitFor(() => {
+      expect(screen.queryByText(errorMessage)).not.toBeInTheDocument();
+      expect(screen.queryByTestId(errorIconId)).not.toBeInTheDocument();
+    });
   });
 
   it("should render 'Source control' textbox", () => {
@@ -322,15 +334,17 @@ describe('ApplicationForm', () => {
       expect(payloadUrlButton).toBeDisabled();
     });
 
-    it('should display payload URL with copy button when application, source control and server name are selected', () => {
+    it('should display payload URL with copy button when application, source control and server name are selected', async () => {
       const { basePayloadUrl } = componentProps;
       const serverName = sourceControls[0].servers[0].name;
       const payloadUrlTextbox = getPayloadUrlTextbox();
       const payloadUrlButton = getPayloadUrlCopyButton();
-      setApplicationName('My app 01');
+      await setApplicationName('My app 01');
       selectSCAndServer();
-      expect(payloadUrlTextbox).toHaveValue(
-        `${basePayloadUrl}My%20app%2001-source-${serverName}`
+      await waitFor(() =>
+        expect(payloadUrlTextbox).toHaveValue(
+          `${basePayloadUrl}My%20app%2001-source-${serverName}`
+        )
       );
       expect(payloadUrlButton).toBeVisible();
       expect(payloadUrlButton).toBeEnabled();
@@ -342,19 +356,20 @@ describe('ApplicationForm', () => {
       expect(btn).toBeDisabled();
     });
 
-    it('should display enabled active payload URL help button when payload URL exists', () => {
+    it('should display enabled active payload URL help button when payload URL exists', async () => {
       const btn = getActivePayloadUrlHelpBtn();
-      setApplicationName('test123');
+      await setApplicationName('test123');
       selectSCAndServer();
       expect(btn).toBeVisible();
-      expect(btn).toBeEnabled();
+      await waitFor(() => expect(btn).toBeEnabled());
       expect(btn).toHaveAttribute('title', 'View more info about Payload URL');
     });
 
-    it('should display confirmation dialog when active payload URL help button is clicked and closed when OK button is clicked', () => {
+    it('should display confirmation dialog when active payload URL help button is clicked and closed when OK button is clicked', async () => {
       const btn = getActivePayloadUrlHelpBtn();
-      setApplicationName('test123');
+      await setApplicationName('test123');
       selectSCAndServer();
+      await waitFor(() => expect(btn).toBeEnabled());
       userEvent.click(btn);
       const dialog = getActivePayloadUrlDialog();
       expect(dialog).toBeVisible();
@@ -363,30 +378,32 @@ describe('ApplicationForm', () => {
       expect(dialog).not.toBeInTheDocument();
     });
 
-    it('should display enabled view payload URl button in the selected SC list when application name is set', () => {
+    it('should display enabled view payload URl button in the selected SC list when application name is set', async () => {
       const selectedSourceControl = sourceControls[0];
       const selectedServer = selectedSourceControl.servers[0];
-      setApplicationName('test123');
+      await setApplicationName('test123');
       addSourceControlToSelectedList(
         selectedSourceControl.title,
         selectedServer.title
       );
       const viewBtn = getSCPayloadViewUrlButton(selectedServer.id);
       expect(viewBtn).toBeVisible();
-      expect(viewBtn).toBeEnabled();
+      await waitFor(() => expect(viewBtn).toBeEnabled());
     });
 
-    it('should display disabled payload copy button in the selected SC list when application name is NOT set', () => {
+    it('should display disabled payload copy button in the selected SC list when application name is NOT set', async () => {
       const selectedSourceControl = sourceControls[0];
       const selectedServer = selectedSourceControl.servers[0];
       addSourceControlToSelectedList(
         selectedSourceControl.title,
         selectedServer.title
       );
-      clearApplicationName();
+      await clearApplicationName();
       const copyBtn = getSCPayloadViewUrlButton(selectedServer.id);
-      expect(copyBtn).toBeVisible();
-      expect(copyBtn).toBeDisabled();
+      await waitFor(() => {
+        expect(copyBtn).toBeVisible();
+        expect(copyBtn).toBeDisabled();
+      });
     });
   });
 
@@ -574,11 +591,11 @@ describe('ApplicationForm', () => {
     );
   });
 
-  it("should display 'Save' button as disabled until all data is set", () => {
+  it("should display 'Save' button as disabled until all data is set", async () => {
     const selectedSourceControl = sourceControls[0];
     const selectedTicketSystem = ticketSystems[0];
     const saveBtn = getSaveButton();
-    setApplicationName('App Test');
+    await setApplicationName('App Test');
     expect(saveBtn).toBeDisabled();
     selectSourceControl(selectedSourceControl.title);
     expect(saveBtn).toBeDisabled();
@@ -587,49 +604,33 @@ describe('ApplicationForm', () => {
     selectTicketSystem(selectedTicketSystem.title);
     expect(saveBtn).toBeDisabled();
     selectTicketSystemServer(selectedTicketSystem.servers[0].title);
-    expect(saveBtn).toBeEnabled();
+    await waitFor(() => expect(saveBtn).toBeEnabled());
   });
 
-  it("should call correct event handler when 'Cancel' button is clicked", () => {
-    setApplicationName('My test application');
+  it("should call correct event handler when 'Cancel' button is clicked", async () => {
+    await setApplicationName('My test application');
     cancelApplicationDrawer();
     expect(onFormCancel).toHaveBeenCalledTimes(1);
-  });
-
-  it("should reset form fields on 'Cancel' button click", () => {
-    setApplicationName('My test application');
-    cancelApplicationDrawer();
-    expect(getApplicationNameTextbox()).toHaveValue('');
   });
 
   describe('form submission', () => {
     const selectedSourceControl = sourceControls[0];
     const selectedTicketSystem = ticketSystems[0];
-    const submitFormWithSampleData = (createAnother = false) => {
-      setApplicationName('My test application');
+    const submitFormWithSampleData = async (createAnother = false) => {
+      const saveBtn = getSaveButton();
+      await setApplicationName('My test application');
       selectSourceControl(selectedSourceControl.title);
       selectSCServer(selectedSourceControl.servers[0].title);
       selectTicketSystem(selectedTicketSystem.title);
       selectTicketSystemServer(selectedTicketSystem.servers[0].title);
       createAnother && clickCreateAnotherCheckbox();
+      await waitFor(() => expect(saveBtn).toBeEnabled());
       saveApplicationDrawer();
     };
 
-    it('should reset form fields on form submission', () => {
-      submitFormWithSampleData();
+    it("should call appropriate submit handler upon 'Save' button click", async () => {
+      await submitFormWithSampleData();
       expect(onFormSubmit).toHaveBeenCalledTimes(1);
-      expect(getApplicationNameTextbox()).toHaveValue('');
-      expect(getSourceControlTextbox()).toHaveValue('');
-      expect(getSCServerTextbox()).toHaveValue('');
-      checkIfSCServerTitlesPresent(getAllScServerTitles(), false);
-      expect(getPayloadUrlTextbox()).toHaveValue('');
-      expect(getTicketSystemTextbox()).toHaveValue('');
-      expect(getTicketSystemServerTextbox()).toHaveValue('');
-      checkIfTicketSystemServerTitlesPresent(
-        getAllTicketSystemServerTitles(),
-        false
-      );
-      expect(getCreateAnotherCheckbox()).not.toBeChecked();
     });
   });
 });

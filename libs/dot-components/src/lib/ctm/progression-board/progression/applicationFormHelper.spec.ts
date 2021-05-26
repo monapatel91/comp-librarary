@@ -2,6 +2,7 @@ import {
   areActiveSCFieldsEmpty,
   getAllNonSelectedSCServers,
   getApplicationFormOutputData,
+  getApplicationNameErrorMessage,
   getExistingSCIndex,
   getFormDataWithNewSCServerAdded,
   getFormDataWithSCServerRemoved,
@@ -436,6 +437,24 @@ describe('applicationFormHelper', () => {
     });
     it('should return true if same value but in lowercase', () => {
       expect(isApplicationNameDuplicate('test1', applicationNames)).toBe(true);
+    });
+  });
+
+  describe('getApplicationNameErrorMessage function', () => {
+    const emptyMsg = 'This field is required';
+    const duplicateMsg = 'Application already exists';
+
+    it('should return correct error message if application name is empty', () => {
+      expect(getApplicationNameErrorMessage(true, false)).toBe(emptyMsg);
+    });
+    it('should return correct error message if application name is empty and duplicate', () => {
+      expect(getApplicationNameErrorMessage(true, true)).toBe(emptyMsg);
+    });
+    it('should return correct error message if application name is not-empty but duplicate', () => {
+      expect(getApplicationNameErrorMessage(false, true)).toBe(duplicateMsg);
+    });
+    it('should return empty string if application name is neither empty nor duplicate', () => {
+      expect(getApplicationNameErrorMessage(false, false)).toBe('');
     });
   });
 

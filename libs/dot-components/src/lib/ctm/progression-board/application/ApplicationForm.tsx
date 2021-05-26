@@ -14,7 +14,6 @@ import {
   DotCheckbox,
   DotIcon,
   DotIconButton,
-  DotInputText,
 } from '../../../components';
 import {
   ApplicationFormOutput,
@@ -28,6 +27,7 @@ import {
   areActiveSCFieldsValid,
   getAllNonSelectedSCServers,
   getApplicationFormOutputData,
+  getApplicationNameErrorMessage,
   getFormDataWithNewSCServerAdded,
   getFormDataWithSCServerRemoved,
   getFormDataWithSCServerSet,
@@ -41,18 +41,14 @@ import {
   getTicketSystemServerById,
   isApplicationNameDuplicate,
   isApplicationNameEmpty,
-  isApplicationNameValid,
-  isCreateAnotherValid,
-  isSCArrayValid,
-  isSCDataValidForSubmission,
-  isTicketSystemServerValid,
-  isTicketSystemValid,
+  isFormDataValid,
 } from '../progression/applicationFormHelper';
 import { PayloadUrlTextInput } from './PayloadUrlTextInput';
 import { ScServerList } from './SCServerList';
 import { getSCServerListItems } from '../progression/applicationHelper';
 import { PayloadUrlDialog } from './PayloadUrlDialog';
 import { INITIAL_FORM_DATA } from './data/formData';
+import { ApplicationNameInput } from './form-input/ApplicationNameInput';
 
 export interface ApplicationFormProps extends CommonProps {
   applicationNames: Array<string>;
@@ -93,42 +89,25 @@ export const ApplicationForm = ({
   }, [formData]);
 
   const checkIfFormDataValid = (data: ApplicationFormType): boolean =>
-    isApplicationNameValid(data, applicationNames) &&
-    isSCDataValidForSubmission(data) &&
-    isSCArrayValid(data) &&
-    isTicketSystemValid(data) &&
-    isTicketSystemServerValid(data) &&
-    isCreateAnotherValid(data);
+    isFormDataValid(data, applicationNames);
 
   const isAddMoreButtonDisabled = (data: ApplicationFormType): boolean =>
     !areActiveSCFieldsValid(data);
 
   const onApplicationFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    clearForm();
     onFormSubmit(getApplicationFormOutputData(formData));
   };
 
   const onCancelButtonClick = (): void => {
-    clearForm();
     onFormCancel();
   };
 
-  const onApplicationNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    let errorMessage = '';
-    const duplicateErrorMessage = 'Application already exists';
-    const newAppName = e.target.value;
-    const isEmpty = isApplicationNameEmpty(newAppName);
-    const isDuplicate = isApplicationNameDuplicate(
-      newAppName,
-      applicationNames
-    );
-    if (isEmpty) {
-      errorMessage = 'This field is required';
-    } else if (isDuplicate) {
-      errorMessage = duplicateErrorMessage;
-    }
+  const onApplicationNameChange = (appName: string): void => {
+    const isEmpty = isApplicationNameEmpty(appName);
+    const isDuplicate = isApplicationNameDuplicate(appName, applicationNames);
     const isValid = !isEmpty && !isDuplicate;
+    const errorMessage = getApplicationNameErrorMessage(isEmpty, isDuplicate);
     setFormData((prevFormData: ApplicationFormType) => {
       return {
         ...prevFormData,
@@ -136,7 +115,7 @@ export const ApplicationForm = ({
           errorMessage,
           isTouched: true,
           isValid,
-          value: newAppName,
+          value: appName,
         },
       };
     });
@@ -206,12 +185,6 @@ export const ApplicationForm = ({
   const onActivePayloadDialogClose = (): void =>
     setIsPayloadUrlDialogOpened(false);
 
-  const clearForm = (): void => {
-    setFormData(INITIAL_FORM_DATA);
-    setSCServers([]);
-    setTicketSystemServers([]);
-  };
-
   const getPayloadUrl = (serverName: string): string => {
     const {
       applicationName: { value },
@@ -265,17 +238,12 @@ export const ApplicationForm = ({
       onSubmit={onApplicationFormSubmit}
     >
       <div className="form-content">
-        <DotInputText
-          className="application-name"
-          data-testid="application-name"
-          error={isFormAppNameTouched && !isFormAppNameValid}
-          helperText={formAppNameErrorMsg}
-          id="applicationName"
-          label="Application name"
-          onChange={onApplicationNameChange}
-          name="applicationName"
-          required={true}
-          value={formAppName}
+        <ApplicationNameInput
+          formAppNameErrorMsg={formAppNameErrorMsg}
+          isFormAppNameTouched={isFormAppNameTouched}
+          isFormAppNameValid={isFormAppNameValid}
+          onAppNameChange={onApplicationNameChange}
+          onBeforeAppNameChange={() => setIsFormValid(false)}
         />
         <DotAutoComplete
           className="source-control"

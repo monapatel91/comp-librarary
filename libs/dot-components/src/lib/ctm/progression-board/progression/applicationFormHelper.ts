@@ -26,6 +26,17 @@ const isValidFormDataStructure = (formData: ApplicationFormType) => {
   );
 };
 
+export const isFormDataValid = (
+  formData: ApplicationFormType,
+  applicationNames: Array<string>
+): boolean =>
+  isApplicationNameValid(formData, applicationNames) &&
+  isSCDataValidForSubmission(formData) &&
+  isSCArrayValid(formData) &&
+  isTicketSystemValid(formData) &&
+  isTicketSystemServerValid(formData) &&
+  isCreateAnotherValid(formData);
+
 export const isServerArrayValid = (
   servers: Array<AutoCompleteControl> = []
 ): boolean =>
@@ -98,6 +109,15 @@ export const isApplicationNameDuplicate = (
     (existingAppName: string) =>
       existingAppName.toLowerCase() === applicationName.trim().toLowerCase()
   );
+};
+
+export const getApplicationNameErrorMessage = (
+  isEmpty: boolean,
+  isDuplicate: boolean
+) => {
+  if (isEmpty) return 'This field is required';
+  if (isDuplicate) return 'Application already exists';
+  return '';
 };
 
 export const isApplicationNameEmpty = (applicationName: string): boolean =>
