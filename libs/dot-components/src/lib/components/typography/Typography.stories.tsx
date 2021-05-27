@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotTypography, TypographyProps } from './Typography';
 
 export default {
-  title: 'Experimental/Typography',
+  title: 'Components/Typography',
   component: DotTypography,
   argTypes: {
     'data-testid': { defaultValue: 'typography-test-id' },

@@ -4,7 +4,7 @@ import { DotProgressionBoard, ProgressionBoardProps } from './ProgressionBoard';
 import { samplePhases } from './sample-data/sampleData';
 
 export default {
-  title: 'Experimental/ProgressionBoard',
+  title: 'Product/ProgressionBoard',
   component: DotProgressionBoard,
   argTypes: {
     phases: { defaultValue: samplePhases },

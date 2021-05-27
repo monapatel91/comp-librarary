@@ -72,10 +72,10 @@ export interface ListItemProps extends CommonProps {
   component?: ElementType;
   /** If true, a 1px light border is added to the bottom of the list item. */
   divider?: boolean;
+  /** If provided, the icon ID which is displayed at the end of the list item */
+  endIconId?: string;
   /** If provided, the list item will be rendered as a link */
   href?: string;
-  /** If provided, the icon ID which is displayed on the front of the list item */
-  iconId?: string;
   /** List item index */
   index?: number;
   /** If provided, the menu item will display a nested list */
@@ -88,6 +88,8 @@ export interface ListItemProps extends CommonProps {
   onClick?: (event: MouseEvent) => void;
   /** Selected list item */
   selected?: boolean;
+  /** If provided, the icon ID which is displayed on the front of the list item */
+  startIconId?: string;
   /** Text which is displayed in the list item */
   text?: string;
   /** The tooltip text displayed on hover */
@@ -124,8 +126,8 @@ const NestedList = ({
     );
   } else {
     const menuItems = items.map((item, index) => {
-      const { href, iconId, onClick, title, text } = item;
-      const startIcon = <DotIcon iconId={iconId} title={title} />;
+      const { href, startIconId, onClick, title, text } = item;
+      const startIcon = <DotIcon iconId={startIconId} title={title} />;
       return {
         children: (
           <StyledListItem
@@ -135,7 +137,7 @@ const NestedList = ({
             onClick={onClick}
           >
             <span className={flyoutSpanClasses}>
-              {iconId && startIcon}
+              {startIconId && startIcon}
               <DotTypography variant="body1">{text}</DotTypography>
             </span>
           </StyledListItem>
@@ -195,8 +197,8 @@ export const DotList = ({
           <DotListItem
             component={item.component}
             divider={item.divider}
+            endIconId={item.endIconId}
             href={item.href}
-            iconId={item.iconId}
             index={index}
             items={item.items}
             onClick={item.onClick}
@@ -204,6 +206,7 @@ export const DotList = ({
             menuPlacement={menuPlacement}
             nestedListType={nestedListType}
             selected={item.selected}
+            startIconId={item.startIconId}
             text={item.text}
             title={item.title}
           />
@@ -219,14 +222,15 @@ export const DotListItem = ({
   component = 'li',
   'data-testid': dataTestId,
   divider = false,
+  endIconId,
   href,
-  iconId,
   index,
   onClick,
   items = [],
   menuPlacement,
   nestedListType,
   selected,
+  startIconId,
   text,
   title,
 }: ListItemProps) => {
@@ -278,7 +282,13 @@ export const DotListItem = ({
 
   const startIcon = (
     <ListItemIcon>
-      <DotIcon iconId={iconId} title={title} />
+      <DotIcon iconId={startIconId} title={title} />
+    </ListItemIcon>
+  );
+
+  const endIcon = (
+    <ListItemIcon>
+      <DotIcon iconId={endIconId} />
     </ListItemIcon>
   );
 
@@ -296,10 +306,10 @@ export const DotListItem = ({
         title={title}
       >
         <span className={listItemLinkClassName}>
-          {iconId && startIcon}
+          {startIconId && startIcon}
           <DotTypography variant={textVariant}>{text}</DotTypography>
         </span>
-        {items.length > 0 && (
+        {items.length > 0 ? (
           <DotLink color="inherit" onClick={toggleOpen} underline="none">
             <DotIcon
               className="toggle-display"
@@ -312,6 +322,8 @@ export const DotListItem = ({
               }
             />
           </DotLink>
+        ) : (
+          endIconId && endIcon
         )}
       </StyledListItem>
       {items.length > 0 && (

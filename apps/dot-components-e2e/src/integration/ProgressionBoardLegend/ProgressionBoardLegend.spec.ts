@@ -1,6 +1,6 @@
 describe('dot-components: Progression Board Legend component', () => {
   before(() =>
-    cy.visit('/iframe.html?id=experimental-progressionboardlegend--default')
+    cy.visit('/iframe.html?id=product-progressionboardlegend--default')
   );
 
   it('should have a dot- prefix', () => {

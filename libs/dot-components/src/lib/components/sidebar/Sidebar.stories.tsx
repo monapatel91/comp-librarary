@@ -50,16 +50,16 @@ export const Default: Story<SidebarProps> = (args) => {
   };
   const navItems = [
     {
-      iconId: 'process-template',
+      startIconId: 'process-template',
       items: [
         {
-          iconId: 'process-template',
+          startIconId: 'process-template',
           onClick: (event: MouseEvent) => handleClick(0),
           selected: isSelected(0),
           text: 'Package Progression',
         },
         {
-          iconId: 'process-template',
+          startIconId: 'process-template',
           onClick: (event: MouseEvent) => handleClick(1),
           selected: isSelected(1),
           text: 'Feature Progression',
@@ -68,16 +68,16 @@ export const Default: Story<SidebarProps> = (args) => {
       text: 'Progressions',
     },
     {
-      iconId: 'satellite-group',
+      startIconId: 'satellite-group',
       items: [
         {
-          iconId: 'block',
+          startIconId: 'block',
           onClick: (event: MouseEvent) => handleClick(3),
           selected: isSelected(3),
           text: 'Groups',
         },
         {
-          iconId: 'block',
+          startIconId: 'block',
           onClick: (event: MouseEvent) => handleClick(4),
           selected: isSelected(4),
           text: 'Instances',
@@ -86,7 +86,7 @@ export const Default: Story<SidebarProps> = (args) => {
       text: 'Pipelines',
     },
     {
-      iconId: 'dashboard',
+      startIconId: 'dashboard',
       onClick: (event: MouseEvent) => handleClick(6),
       selected: isSelected(6),
       text: 'Insights',
@@ -96,19 +96,19 @@ export const Default: Story<SidebarProps> = (args) => {
       divider: true,
     },
     {
-      iconId: 'block',
+      startIconId: 'block',
       onClick: (event: MouseEvent) => handleClick(7),
       selected: isSelected(7),
       text: 'Packages',
     },
     {
-      iconId: 'flag',
+      startIconId: 'flag',
       onClick: (event: MouseEvent) => handleClick(8),
       selected: isSelected(8),
       text: 'Features',
     },
     {
-      iconId: 'collection',
+      startIconId: 'collection',
       onClick: (event: MouseEvent) => handleClick(9),
       selected: isSelected(9),
       text: 'Projects',
@@ -117,19 +117,19 @@ export const Default: Story<SidebarProps> = (args) => {
       divider: true,
     },
     {
-      iconId: 'file-lines',
+      startIconId: 'file-lines',
       onClick: (event: MouseEvent) => handleClick(10),
       selected: isSelected(10),
       text: 'Workitems',
     },
     {
-      iconId: 'change',
+      startIconId: 'change',
       onClick: (event: MouseEvent) => handleClick(11),
       selected: isSelected(11),
       text: 'Changes',
     },
     {
-      iconId: 'square-settings',
+      startIconId: 'square-settings',
       onClick: (event: MouseEvent) => handleClick(12),
       selected: isSelected(12),
       text: 'Artifacts',
@@ -139,19 +139,19 @@ export const Default: Story<SidebarProps> = (args) => {
       divider: true,
     },
     {
-      iconId: 'monitor-gears',
+      startIconId: 'monitor-gears',
       onClick: (event: MouseEvent) => handleClick(13),
       selected: isSelected(13),
       text: 'Tasks',
     },
     {
-      iconId: 'archive',
+      startIconId: 'archive',
       onClick: (event: MouseEvent) => handleClick(14),
       selected: isSelected(14),
       text: 'Buckets',
     },
     {
-      iconId: 'monitor',
+      startIconId: 'monitor',
       onClick: (event: MouseEvent) => handleClick(15),
       selected: isSelected(15),
       text: 'Environment',

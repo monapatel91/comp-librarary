@@ -3,24 +3,25 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 import { DotList, ListItemProps, ListProps } from './List';
 
+const mockHref = '/?path=/story/components-list--default';
 const mockListItems: Array<ListItemProps> = [
   {
     text: 'Pipelines',
-    href: '/?path=/story/experimental-list--default',
+    href: mockHref,
   },
   {
-    iconId: 'process-template',
+    startIconId: 'process-template',
     items: [
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Package Progression',
-        href: '/?path=/story/experimental-list--default',
+        href: mockHref,
         title: 'These are package progressions',
       },
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Feature Progression',
-        href: '/?path=/story/experimental-list--default',
+        href: mockHref,
         title: 'These are feature progressions',
       },
     ],
@@ -28,18 +29,18 @@ const mockListItems: Array<ListItemProps> = [
     title: 'These are progressions',
   },
   {
-    iconId: 'dashboard',
+    startIconId: 'dashboard',
     items: [
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Nested Link One',
-        href: '/?path=/story/experimental-list--default',
+        href: mockHref,
         title: 'First nested link',
       },
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Nested Link Two',
-        href: '/?path=/story/experimental-list--default',
+        href: mockHref,
         title: 'Second nested link',
       },
     ],
@@ -51,39 +52,39 @@ const mockListItems: Array<ListItemProps> = [
     divider: true,
   },
   {
-    iconId: 'block',
+    startIconId: 'block',
     text: 'Packages',
-    href: '/?path=/story/experimental-list--default',
+    href: mockHref,
     title: 'These are packages',
   },
   {
-    iconId: 'flag',
+    startIconId: 'flag',
     text: 'Features',
-    href: '/?path=/story/experimental-list--default',
+    href: mockHref,
     title: 'These are features',
   },
   {
-    iconId: 'collection',
+    startIconId: 'collection',
     text: 'Projects',
-    href: '/?path=/story/experimental-list--default',
+    href: mockHref,
     title: 'These are projects',
   },
   {
-    iconId: 'file-lines',
+    startIconId: 'file-lines',
     text: 'Workitems',
-    href: '/?path=/story/experimental-list--default',
+    href: mockHref,
     title: 'These are workitems',
   },
   {
-    iconId: 'change',
+    startIconId: 'change',
     text: 'Changes',
-    href: '/?path=/story/experimental-list--default',
+    href: mockHref,
     title: 'These are changes',
   },
   {
-    iconId: 'square-settings',
+    startIconId: 'square-settings',
     text: 'Artifacts',
-    href: '/?path=/story/experimental-list--default',
+    href: mockHref,
     title: 'These are artifacts',
   },
   {
@@ -92,17 +93,17 @@ const mockListItems: Array<ListItemProps> = [
   },
   {
     text: 'Tasks',
-    href: '/?path=/story/experimental-list--default',
+    href: mockHref,
     title: 'These are tasks',
   },
   {
     text: 'Buckets',
-    href: '/?path=/story/experimental-list--default',
+    href: mockHref,
     title: 'Buckets of rain',
   },
   {
     text: 'Environment',
-    href: '/?path=/story/experimental-list--default',
+    href: mockHref,
     title: 'Protect the environment',
   },
   {
@@ -110,16 +111,16 @@ const mockListItems: Array<ListItemProps> = [
     divider: true,
   },
   {
-    iconId: 'process-template',
+    startIconId: 'process-template',
     items: [
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Nested Link Alpha',
-        href: '/?path=/story/experimental-list--default#alpha',
+        href: '/?path=/story/components-list--default#alpha',
         title: 'I am the alpha dog',
       },
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Nested Link Beta',
         onClick: action('Nested Link Beta clicked'),
         title: 'I am the beta tester',
@@ -129,17 +130,17 @@ const mockListItems: Array<ListItemProps> = [
     title: 'I have no href or onClick',
   },
   {
-    href: '/?path=/story/experimental-list--default#parent',
-    iconId: 'dashboard',
+    href: '/?path=/story/components-list--default#parent',
+    startIconId: 'dashboard',
     items: [
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Nested Link Uno',
-        href: '/?path=/story/experimental-list--default#uno',
+        href: '/?path=/story/components-list--default#uno',
         title: 'El primero',
       },
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Nested Link Dos',
         onClick: action('El segundo clicked'),
         title: 'El segundo',
@@ -149,16 +150,16 @@ const mockListItems: Array<ListItemProps> = [
     title: 'I have an Href but no onClick',
   },
   {
-    iconId: 'file-lines',
+    startIconId: 'file-lines',
     items: [
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Nested Link A',
-        href: '/?path=/story/experimental-list--default#a',
+        href: '/?path=/story/components-list--default#a',
         title: 'A as in apple',
       },
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Nested Link B',
         onClick: action('Nested Link B clicked'),
         title: 'B as in Batman',
@@ -171,7 +172,7 @@ const mockListItems: Array<ListItemProps> = [
 ];
 
 export default {
-  title: 'Experimental/List',
+  title: 'Components/List',
   component: DotList,
   argTypes: {
     component: {

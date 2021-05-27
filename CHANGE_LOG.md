@@ -16,6 +16,18 @@
 
 ### Experimental
 
+> **BREAKING CHANGE: StepCard** - was removed
+
+> **BREAKING CHANGE: StageCard** - was removed
+
+> **BREAKING CHANGE: Row** - was removed
+
+> **BREAKING CHANGE: PhaseHeader** - was removed
+
+> **BREAKING CHANGE: List** - modified `iconId` to be `startIconId`
+
+> **BREAKING CHANGE: Sidebar** - modified `iconId` to be `startIconId`
+
 > **BREAKING CHANGE: ProgressionBoardAppFormDrawer** - renamed component to `PBAppFormDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
 
 > **BREAKING CHANGE: ProgressionBoardAppInfoDrawer** - renamed component to `PBAppInfoDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)

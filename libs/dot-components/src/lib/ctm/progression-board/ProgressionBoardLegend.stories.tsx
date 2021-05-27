@@ -7,7 +7,7 @@ import {
 } from './ProgressionBoardLegend';
 
 export default {
-  title: 'Experimental/ProgressionBoardLegend',
+  title: 'Product/ProgressionBoardLegend',
   component: DotProgressionBoardLegend,
 } as Meta;
 

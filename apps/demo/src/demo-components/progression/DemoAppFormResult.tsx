@@ -27,7 +27,7 @@ export const DemoAppFormResult = ({
       key={id}
       title="Source Control Server"
       text={title}
-      iconId="server"
+      startIconId="server"
     />
   );
 
@@ -55,7 +55,7 @@ export const DemoAppFormResult = ({
             className="application-name"
             title="Application Name"
             text={applicationName}
-            iconId="apps"
+            startIconId="apps"
           />
           {sourceControls.map((sourceControl) => (
             <Fragment key={sourceControl.id}>
@@ -64,7 +64,7 @@ export const DemoAppFormResult = ({
                 title="Source Control"
                 key={sourceControl.id}
                 text={sourceControl.title}
-                iconId="branch"
+                startIconId="branch"
               />
               <DotList className="form-child-list">
                 {renderSourceControlListItems(sourceControl)}
@@ -75,7 +75,7 @@ export const DemoAppFormResult = ({
             className="ticket-system"
             title="Ticketing System"
             text={ticketSystem.title}
-            iconId="task"
+            startIconId="task"
           />
           <DotList className="form-child-list">
             {renderTicketSystemListItems(ticketSystem)}
@@ -83,7 +83,7 @@ export const DemoAppFormResult = ({
           <DotListItem
             title="Create another"
             text={`Create another: ${createAnother}`}
-            iconId="add"
+            startIconId="add"
           />
         </>
       </DotList>

@@ -1,7 +1,5 @@
 describe('dot-components: Progression Board component', () => {
-  before(() =>
-    cy.visit('/iframe.html?id=experimental-progressionboard--default')
-  );
+  before(() => cy.visit('/iframe.html?id=product-progressionboard--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-progression-board');
