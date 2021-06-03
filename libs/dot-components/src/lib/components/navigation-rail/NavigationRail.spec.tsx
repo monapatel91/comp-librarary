@@ -11,27 +11,20 @@ import {
 describe('NavigationRail', () => {
   const dataTestId = 'test-navigation-rail';
 
-  const onItemOneClick = jest.fn();
-
-  const onItemTwoClick = jest.fn();
-
-  const onItemThreeClick = jest.fn();
+  const onChange = jest.fn();
 
   const railItems: Array<RailItem> = [
     {
       iconId: 'list',
       title: 'Test 1',
-      onClick: onItemOneClick,
     },
     {
       iconId: 'history',
       title: 'Test 2',
-      onClick: onItemTwoClick,
     },
     {
       iconId: 'users',
       title: 'Test 3',
-      onClick: onItemThreeClick,
     },
   ];
 
@@ -67,6 +60,7 @@ describe('NavigationRail', () => {
 
   const componentProps: NavigationRailProps = {
     'data-testid': dataTestId,
+    onChange,
     railItemPosition: 'flex-start',
     railItems,
     selectedIndex: 0,
@@ -80,6 +74,7 @@ describe('NavigationRail', () => {
   it('should have unchanged API', () => {
     const props = {
       'data-testid': dataTestId,
+      onChange,
       railItemPosition: 'flex-start',
       railItems,
       selectedIndex: 0,
@@ -112,7 +107,8 @@ describe('NavigationRail', () => {
       const selectedIndex = 2;
       const railItem = getRailItem(selectedIndex);
       userEvent.click(railItem);
-      expect(onItemThreeClick).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith(selectedIndex);
       expectItemToBeSelected(selectedIndex);
     });
   });
@@ -159,40 +155,34 @@ describe('NavigationRail', () => {
     });
 
     it('should display maximum of 7 items', () => {
-      const nonDisplayedItems = [
+      const nonDisplayedItems: Array<RailItem> = [
         {
           iconId: 'list',
           title: 'Test 8',
-          onClick: jest.fn(),
         },
         {
           iconId: 'history',
           title: 'Test 9',
-          onClick: jest.fn(),
         },
       ];
 
-      const displayedItems = [
+      const displayedItems: Array<RailItem> = [
         ...railItems,
         {
           iconId: 'list',
           title: 'Test 4',
-          onClick: jest.fn(),
         },
         {
           iconId: 'history',
           title: 'Test 5',
-          onClick: jest.fn(),
         },
         {
           iconId: 'users',
           title: 'Test 6',
-          onClick: jest.fn(),
         },
         {
           iconId: 'users',
           title: 'Test 7',
-          onClick: jest.fn(),
         },
       ];
 

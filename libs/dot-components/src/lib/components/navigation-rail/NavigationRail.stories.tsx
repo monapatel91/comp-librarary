@@ -10,22 +10,18 @@ const mockRailItems: Array<RailItem> = [
   {
     iconId: 'list',
     title: 'Details',
-    onClick: () => console.log('Details item selected'),
   },
   {
     iconId: 'history',
     title: 'History',
-    onClick: () => console.log('History item selected'),
   },
   {
     iconId: 'users',
     title: 'Users',
-    onClick: () => console.log('Users item selected'),
   },
   {
     iconId: 'timeline',
     title: 'Long Item Title',
-    onClick: () => console.log('Long Item Title item selected'),
   },
 ];
 
@@ -42,6 +38,9 @@ export default {
   argTypes: {
     railItems: {
       defaultValue: mockRailItems,
+    },
+    onChange: {
+      action: 'item changed',
     },
   },
 } as Meta;

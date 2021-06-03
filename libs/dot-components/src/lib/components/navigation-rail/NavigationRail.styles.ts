@@ -13,16 +13,13 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
       background-color: ${theme.palette.layer.n50};
       display: flex;
       flex-direction: column;
-      height: 100%;
       justify-content: ${railItemPosition};
       padding: ${theme.spacing(1, 0, 0)};
       text-align: center;
       width: 72px;
 
       .rail-item-button {
-        border-right: 1px solid ${theme.palette.layer.n0};
         border-radius: 0;
-        box-sizing: content-box;
         margin: 0;
         padding: 0;
         width: 100%;

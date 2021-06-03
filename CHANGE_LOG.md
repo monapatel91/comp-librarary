@@ -18,6 +18,8 @@
 
 ### Experimental
 
+> **BREAKING CHANGE: NavigationRail** - removed `onClick` mandatory prop from `RailItem` interface
+
 > **BREAKING CHANGE: StepCard** - was removed
 
 > **BREAKING CHANGE: StageCard** - was removed
@@ -41,6 +43,7 @@
 - **CssCell** - added new component
 - **CssGridDebug** - added new component
 - **NavigationRail** - added new component
+- **NavigationRail** - added optional `onChange` prop for handling item selection events
 - **ProgressionBoard** - added `pbApplications` optional prop for rendering appropriate waiting messages for given application
 - **ProgressionBoardApplicationDrawer** - added `applicationNames` property to `ApplicationAPI` interface
 - **ProgressionBoardDrawer** - added new component which should be used as a parent component when using any drawer content component

@@ -12,11 +12,11 @@ export type RailItemsPosition = 'flex-start' | 'center' | 'flex-end';
 
 export interface RailItem {
   iconId: string;
-  onClick: (index: number) => void;
   title: string;
 }
 
 export interface NavigationRailProps extends CommonProps {
+  onChange?: (index: number) => void;
   railItemPosition?: RailItemsPosition;
   railItems: Array<RailItem>;
   selectedIndex?: number;
@@ -25,6 +25,7 @@ export interface NavigationRailProps extends CommonProps {
 export const DotNavigationRail = ({
   className,
   'data-testid': dataTestId,
+  onChange,
   railItemPosition = 'flex-start',
   railItems,
   selectedIndex = 0,
@@ -35,12 +36,9 @@ export const DotNavigationRail = ({
     selectedIndex
   );
 
-  const onItemSelect = (
-    index: number,
-    onClick: (index: number) => void
-  ): (() => void) => () => {
+  const onItemSelect = (index: number): (() => void) => () => {
     setSelectedItemIndex(index);
-    onClick(index);
+    onChange && onChange(index);
   };
 
   const checkIfSelected = (index: number): boolean =>
@@ -49,7 +47,7 @@ export const DotNavigationRail = ({
   const renderRailItems = (): ReactNode => {
     return railItems
       ?.slice(0, MAX_ALLOWED_ITEMS)
-      .map(({ iconId, onClick, title }: RailItem, index: number) => (
+      .map(({ iconId, title }: RailItem, index: number) => (
         <DotButton
           className={combineClasses(
             'rail-item-button',
@@ -58,7 +56,7 @@ export const DotNavigationRail = ({
           data-testid={`rail-item-${index}`}
           disableRipple={true}
           key={index}
-          onClick={onItemSelect(index, onClick)}
+          onClick={onItemSelect(index)}
           type="text"
         >
           {iconId && (
