@@ -2,6 +2,8 @@
 
 ## Current
 
+- **EmptyState** - fixed behavior when no `imageSrc` prop is passed
+
 ### Components
 
 - **Avatar** - added `color` prop
