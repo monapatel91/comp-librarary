@@ -2,13 +2,14 @@
 
 ## Current
 
-- **AppToolbar** - added styling so that `Sidebar` component is not truncated when used as hamburger menu
-- **EmptyState** - fixed behavior when no `imageSrc` prop is passed
-
 ### Components
 
+> **BREAKING CHANGE: Pill** - fixed console warning message about `backgroundColor` prop and `labelColor` prop by changing both to all lowercase `backgroundcolor` and `labelcolor`
+
+- **AppToolbar** - added styling so that `Sidebar` component is not truncated when used as hamburger menu
 - **Avatar** - added `color` prop
 - **Checkbox** - added `ariaLabel`, `ariaLabelledby` and `disableRipple` props
+- **EmptyState** - fixed behavior when no `imageSrc` prop is passed
 - **List** - fix to only show one flyout menu at a time
 - **List** - added `index` prop
 - **Pill** - added `backgroundColor` and `labelColor` props

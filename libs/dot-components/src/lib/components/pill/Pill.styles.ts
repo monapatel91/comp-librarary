@@ -7,11 +7,11 @@ export const rootClassName = 'dot-pill';
 export const StyledPill = styled(Chip)<PillProps>`
   ${({ theme }) => css`
     &.${rootClassName} {
-      background-color: ${({ backgroundColor }: PillProps) => {
-        return backgroundColor ? backgroundColor : theme.palette.grey[200];
+      background-color: ${({ backgroundcolor }: PillProps) => {
+        return backgroundcolor ? backgroundcolor : theme.palette.grey[200];
       }};
-      color: ${({ labelColor }: PillProps) => {
-        return labelColor ? labelColor : theme.palette.layer.n700;
+      color: ${({ labelcolor }: PillProps) => {
+        return labelcolor ? labelcolor : theme.palette.layer.n700;
       }};
 
       &.error {
