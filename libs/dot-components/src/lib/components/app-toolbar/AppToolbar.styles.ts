@@ -7,6 +7,9 @@ export const StyledMainMenu = styled(DotDrawer)`
   ${({ theme }) => css`
     &.dot-main-menu .dot-drawer-paper {
       padding: ${theme.spacing(6, 0, 0)};
+      .dot-sidebar {
+        height: calc(100vh - 48px);
+      }
     }
   `}
 `;

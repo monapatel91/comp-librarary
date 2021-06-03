@@ -2,6 +2,7 @@
 
 ## Current
 
+- **AppToolbar** - added styling so that `Sidebar` component is not truncated when used as hamburger menu
 - **EmptyState** - fixed behavior when no `imageSrc` prop is passed
 
 ### Components
