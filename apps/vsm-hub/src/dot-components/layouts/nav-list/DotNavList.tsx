@@ -35,11 +35,7 @@ export const DotNavList = ({
     <>
       <DotAppToolbar
         borderColor="#649A3D"
-        mainMenu={
-          !targetBreakpoint ? (
-            <DotSidebar {...navbar} />
-          ) : undefined
-        }
+        mainMenu={!targetBreakpoint ? <DotSidebar {...navbar} /> : undefined}
         {...appToolbar}
       />
       <StyledDotNavList className={rootClassName}>

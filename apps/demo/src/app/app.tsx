@@ -35,11 +35,6 @@ const topNavItems: Array<IconButtonProps> = [
 
 const sideNavItems: Array<ListItemProps> = [
   {
-    iconId: 'home',
-    text: 'Home',
-    component: forwardRef((props, ref) => <Link {...props} to="/" ref={ref} />),
-  },
-  {
     iconId: 'comment',
     text: 'Demo Form',
     component: forwardRef((props, ref) => (
@@ -51,13 +46,6 @@ const sideNavItems: Array<ListItemProps> = [
     text: 'Demo Form Uncontrolled',
     component: forwardRef((props, ref) => (
       <Link {...props} to="/demo-form-uncontrolled" ref={ref} />
-    )),
-  },
-  {
-    iconId: 'package',
-    text: 'Progression',
-    component: forwardRef((props, ref) => (
-      <Link {...props} to="/progression" ref={ref} />
     )),
   },
   {

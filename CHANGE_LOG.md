@@ -20,6 +20,8 @@
 
 ### Experimental
 
+> **BREAKING CHANGE: ProgressionBoard** - removed all progression board components
+
 > **BREAKING CHANGE: NavigationRail** - removed `onClick` mandatory prop from `RailItem` interface
 
 > **BREAKING CHANGE: StepCard** - was removed
