@@ -8,7 +8,7 @@
     "start:vsm": "nx serve vsm-hub",
     "build": "nx build --project=dot-components",
     "test": "nx test --project=dot-components --silent",
-    "test:ci": "nx test --ci --bail",
+    "test:ci": "yarn test --ci --bail",
     "lint": "nx workspace-lint && nx lint --project=dot-components",
     "e2e": "nx e2e --project=dot-components-e2e --headless",
     "e2e:ci": "yarn e2e",

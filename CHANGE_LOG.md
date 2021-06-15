@@ -4,8 +4,12 @@
 
 ### Components
 
+> **BREAKING CHANGE: Pill** - fixed console warning message about `backgroundColor` prop and `labelColor` prop by changing both to all lowercase `backgroundcolor` and `labelcolor`
+
+- **AppToolbar** - added styling so that `Sidebar` component is not truncated when used as hamburger menu
 - **Avatar** - added `color` prop
 - **Checkbox** - added `ariaLabel`, `ariaLabelledby` and `disableRipple` props
+- **EmptyState** - fixed behavior when no `imageSrc` prop is passed
 - **List** - fix to only show one flyout menu at a time
 - **List** - added `index` prop
 - **Pill** - added `backgroundColor` and `labelColor` props
@@ -16,13 +20,37 @@
 
 ### Experimental
 
+> **BREAKING CHANGE: ProgressionBoard** - removed all progression board components
+
+> **BREAKING CHANGE: NavigationRail** - removed `onClick` mandatory prop from `RailItem` interface
+
+> **BREAKING CHANGE: StepCard** - was removed
+
+> **BREAKING CHANGE: StageCard** - was removed
+
+> **BREAKING CHANGE: Row** - was removed
+
+> **BREAKING CHANGE: PhaseHeader** - was removed
+
+> **BREAKING CHANGE: List** - modified `iconId` to be `startIconId`
+
+> **BREAKING CHANGE: Sidebar** - modified `iconId` to be `startIconId`
+
+> **BREAKING CHANGE: ProgressionBoardAppFormDrawer** - renamed component to `PBAppFormDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+
+> **BREAKING CHANGE: ProgressionBoardAppInfoDrawer** - renamed component to `PBAppInfoDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+
+> **BREAKING CHANGE: ProgressionBoardWorkItemDrawer** - renamed component to `PBWorkItemDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+
 - **List** - fix to show icons for nested items when `nestedListType` is `menu`.
 - **CssGrid** - added new component
 - **CssCell** - added new component
 - **CssGridDebug** - added new component
 - **NavigationRail** - added new component
+- **NavigationRail** - added optional `onChange` prop for handling item selection events
 - **ProgressionBoard** - added `pbApplications` optional prop for rendering appropriate waiting messages for given application
 - **ProgressionBoardApplicationDrawer** - added `applicationNames` property to `ApplicationAPI` interface
+- **ProgressionBoardDrawer** - added new component which should be used as a parent component when using any drawer content component
 
 ## 0.0.0-alpha.29
 

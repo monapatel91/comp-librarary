@@ -74,7 +74,7 @@ describe('dot-components: Pill component', () => {
   describe('dot-components: Pill component - custom colors', () => {
     before(() =>
       cy.visit(
-        '/iframe.html?id=components-pill--default&args=backgroundColor:red;labelColor:green'
+        '/iframe.html?id=components-pill--default&args=backgroundcolor:red;labelcolor:green'
       )
     );
     describe('custom color styles', () => {

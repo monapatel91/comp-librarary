@@ -1,5 +1,5 @@
 describe('dot-components: List component', () => {
-  before(() => cy.visit('/iframe.html?id=experimental-list--default'));
+  before(() => cy.visit('/iframe.html?id=components-list--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('ul').should('have.class', 'dot-list');
@@ -28,7 +28,7 @@ describe('dot-components: List component', () => {
 describe('dot-components: List component with menu', () => {
   before(() =>
     cy.visit(
-      '/iframe.html?id=experimental-list--default&args=nestedListType:menu'
+      '/iframe.html?id=components-list--default&args=nestedListType:menu'
     )
   );
 
@@ -46,7 +46,7 @@ describe('dot-components: List component with menu', () => {
 describe('dot-components: List component with expand/collapse', () => {
   before(() =>
     cy.visit(
-      '/iframe.html?id=experimental-list--default&args=nestedListType:expandable'
+      '/iframe.html?id=components-list--default&args=nestedListType:expandable'
     )
   );
 

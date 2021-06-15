@@ -34,7 +34,7 @@
 
 - Updating master to `0.0.1-alpha` [\#552](https://github.com/digital-ai/dot-components/pull/552) ([CWSites](https://github.com/CWSites))
 - Updating to `0.0.1` [\#551](https://github.com/digital-ai/dot-components/pull/551) ([CWSites](https://github.com/CWSites))
-- 5/10/21   update icon [\#545](https://github.com/digital-ai/dot-components/pull/545) ([BojanKocijan](https://github.com/BojanKocijan))
+- 5/10/21 update icon [\#545](https://github.com/digital-ai/dot-components/pull/545) ([BojanKocijan](https://github.com/BojanKocijan))
 - D-17921 Remove the unused icons from the legend. [\#544](https://github.com/digital-ai/dot-components/pull/544) ([HakujouRyu](https://github.com/HakujouRyu))
 - bump material-ui to v4.11.2 [\#543](https://github.com/digital-ai/dot-components/pull/543) ([CWSites](https://github.com/CWSites))
 - Bring build changes into `develop` [\#541](https://github.com/digital-ai/dot-components/pull/541) ([CWSites](https://github.com/CWSites))

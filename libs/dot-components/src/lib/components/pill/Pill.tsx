@@ -13,11 +13,11 @@ export type PillStatus =
 
 export interface PillProps extends CommonProps {
   /** Background color for the pill, ignored if 'status' is not 'default' */
-  backgroundColor?: string;
+  backgroundcolor?: string;
   /** The text for the pill. */
   label: string;
   /** Label color for the pill, ignored if 'status' is not 'default' */
-  labelColor?: string;
+  labelcolor?: string;
   /** Determines the size of the pill 'medium' or 'small' */
   size?: PillSize;
   /** Determines the status of the pill component */
@@ -25,11 +25,11 @@ export interface PillProps extends CommonProps {
 }
 
 export const DotPill = ({
-  backgroundColor,
+  backgroundcolor,
   className,
   'data-testid': dataTestId,
   label,
-  labelColor,
+  labelcolor,
   size = 'medium',
   status = 'default',
 }: PillProps) => {
@@ -37,12 +37,12 @@ export const DotPill = ({
 
   return (
     <StyledPill
-      backgroundColor={backgroundColor}
+      backgroundcolor={backgroundcolor}
       classes={{ root: rootClasses }}
       clickable={false}
       data-testid={dataTestId}
       label={label}
-      labelColor={labelColor}
+      labelcolor={labelcolor}
       size={size}
     />
   );

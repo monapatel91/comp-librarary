@@ -12,15 +12,15 @@ const mockListItems: Array<ListItemProps> = [
     href: '/ignore/me',
   },
   {
-    iconId: 'process-template',
+    startIconId: 'process-template',
     items: [
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Package Progression',
         href: '/package-progression',
       },
       {
-        iconId: 'block',
+        startIconId: 'block',
         text: 'Feature Progression',
         href: '/feature-progression',
       },
@@ -32,7 +32,7 @@ const mockListItems: Array<ListItemProps> = [
     divider: true,
   },
   {
-    iconId: 'block',
+    startIconId: 'block',
     text: 'Packages',
     href: '/packages',
   },

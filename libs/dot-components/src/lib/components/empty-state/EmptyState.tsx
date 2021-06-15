@@ -26,7 +26,7 @@ export const DotEmptyState = ({
 
   return (
     <StyledEmptyState className={rootClasses} data-testid={dataTestId}>
-      {Image && (
+      {imageSrc && (
         <img
           className="empty-state-image"
           title={imageAltText || title}

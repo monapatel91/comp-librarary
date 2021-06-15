@@ -5,16 +5,16 @@ import { DotPill, PillProps } from './Pill';
 describe('DotPill', () => {
   it('should have unchanged API', () => {
     const props = {
-      backgroundColor: 'red',
+      backgroundcolor: 'red',
       label: 'I am such a pill',
-      labelColor: 'blue',
+      labelcolor: 'blue',
       size: 'medium',
       status: 'default',
     };
     const pillProps: PillProps = {
-      backgroundColor: 'red',
+      backgroundcolor: 'red',
       label: 'I am such a pill',
-      labelColor: 'blue',
+      labelcolor: 'blue',
       size: 'medium',
       status: 'default',
     };
