@@ -36,7 +36,6 @@
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.56",
-    "@react-theming/storybook-addon": "^1.1.1",
     "document-register-element": "1.13.1",
     "echarts": "^5.0.2",
     "echarts-for-react": "^3.0.1",
@@ -66,6 +65,7 @@
     "@nrwl/tao": "12.4.0",
     "@nrwl/web": "12.4.0",
     "@nrwl/workspace": "12.4.0",
+    "@react-theming/storybook-addon": "^1.1.1",
     "@rollup/plugin-url": "^5.0.1",
     "@storybook/addon-a11y": "^6.2.1",
     "@storybook/addon-controls": "^6.2.1",
