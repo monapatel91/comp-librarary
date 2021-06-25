@@ -43,8 +43,7 @@ Steps to reproduce the behavior:
 **Component Library**
 
 - Release Version [e.g. 1.0.0]
-- Did this work in previous versions?
-- Does this occur in the latest stable & nightly version?
+- Did this work in previous versions? If so, which one(s)
 
 **Acceptance Criteria**
 

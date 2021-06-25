@@ -11,7 +11,6 @@ import {
   rootClassName,
   mainContentClassName,
 } from './DotNavList.styles';
-import { useNavListContext } from 'apps/vsm-hub/src/context/NavigationContext';
 
 export type Breakpoint = 'sm' | 'md' | 'lg' | 'xl';
 
