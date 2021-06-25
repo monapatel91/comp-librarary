@@ -106,3 +106,7 @@ If you're using the `DotIcon` component then you do not need to pass in the `ico
 ## Change Log
 
 [Learn about the latest improvements](https://zeroheight.com/4a9ac476a/p/50279a-developers/b/95a7cc).
+
+## Security Policy
+
+[Learn about our security policy](https://zeroheight.com/4a9ac476a/p/50279a-developers/b/098239)
