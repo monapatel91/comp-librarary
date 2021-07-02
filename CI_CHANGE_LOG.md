@@ -2,11 +2,41 @@
 
 ## [Unreleased](https://github.com/digital-ai/dot-components/tree/HEAD)
 
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/alpha-v0.0.1...HEAD)
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.0...HEAD)
 
 **Merged pull requests:**
 
+- S-76321: Remove PB-related code from dot-components repo [\#570](https://github.com/digital-ai/dot-components/pull/570) ([dmiletic85](https://github.com/dmiletic85))
+- Issue \#562: Fix EmptyState behavior when no imageSrc prop is passed [\#568](https://github.com/digital-ai/dot-components/pull/568) ([selsemore](https://github.com/selsemore))
+- Issue \#566: Fix DotPill console warning message [\#567](https://github.com/digital-ai/dot-components/pull/567) ([selsemore](https://github.com/selsemore))
+- Navigation rail improvements [\#565](https://github.com/digital-ai/dot-components/pull/565) ([dmiletic85](https://github.com/dmiletic85))
+- New icons 27 5 2021 [\#564](https://github.com/digital-ai/dot-components/pull/564) ([BojanKocijan](https://github.com/BojanKocijan))
+- Add isUnderToolbar property to Sidebar for use beneath AppToolbar [\#560](https://github.com/digital-ai/dot-components/pull/560) ([selsemore](https://github.com/selsemore))
+- Move approved components to "Stable" [\#559](https://github.com/digital-ai/dot-components/pull/559) ([CWSites](https://github.com/CWSites))
 - merging master \> develop [\#557](https://github.com/digital-ai/dot-components/pull/557) ([CWSites](https://github.com/CWSites))
+- S-75998: \[PB Tech Debt\] Avoid unnecessary form re-renders when typing application name [\#556](https://github.com/digital-ai/dot-components/pull/556) ([dmiletic85](https://github.com/dmiletic85))
+- S-75991: \[PB Tech Debt\] Refactor and improve wrapper component in demo app [\#546](https://github.com/digital-ai/dot-components/pull/546) ([dmiletic85](https://github.com/dmiletic85))
+
+## [1.0.0](https://github.com/digital-ai/dot-components/tree/1.0.0) (06/15/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/alpha-v0.0.1...1.0.0)
+
+**Fixed bugs:**
+
+- Footer truncated from Sidebar [\#569](https://github.com/digital-ai/dot-components/issues/569)
+- DotPill component causes error message in console [\#566](https://github.com/digital-ai/dot-components/issues/566)
+- DotEmptyState is not handling image correctly [\#562](https://github.com/digital-ai/dot-components/issues/562)
+
+**Closed issues:**
+
+- Component Review: Phase Header [\#206](https://github.com/digital-ai/dot-components/issues/206)
+- Component Review: Row [\#204](https://github.com/digital-ai/dot-components/issues/204)
+- Component Review: Stage Card [\#202](https://github.com/digital-ai/dot-components/issues/202)
+- Component Review: Step Card [\#201](https://github.com/digital-ai/dot-components/issues/201)
+
+**Merged pull requests:**
+
+- Deploy Latest `master` [\#558](https://github.com/digital-ai/dot-components/pull/558) ([CWSites](https://github.com/CWSites))
 - Issue \#553: Add README.md example for using theme colors and spacing [\#554](https://github.com/digital-ai/dot-components/pull/554) ([selsemore](https://github.com/selsemore))
 - Issue \#527: resolve various issues [\#529](https://github.com/digital-ai/dot-components/pull/529) ([CWSites](https://github.com/CWSites))
 
