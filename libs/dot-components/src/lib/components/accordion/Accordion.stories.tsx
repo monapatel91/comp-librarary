@@ -12,7 +12,11 @@ export default {
   argTypes: {
     children: { defaultValue: 'Accordion Value' },
     startIcon: { control: { type: 'select', options: iconOptions } },
-    summary: { defaultValue: 'Accordion text summary' },
+    summary: {
+      defaultValue:
+        'I seek the means to fight injustice. To turn fear against those who prey on the fearful. Swear to me! Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadnt ended.',
+    },
+    noWrap: { defaultValue: false },
   },
 } as Meta;
 

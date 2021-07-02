@@ -25,6 +25,8 @@ export interface TypographyProps extends CommonProps {
   children: ReactNode;
   /** The component used for the root node. Either a string to use a HTML element or a component. */
   component?: ElementType;
+  /** If true, the text will wrap and not be truncated */
+  noWrap?: boolean;
   /** Applies the theme typography styles. */
   variant?: TypographyVariant;
 }
@@ -34,6 +36,7 @@ export const DotTypography = ({
   'data-testid': dataTestId,
   children,
   component,
+  noWrap,
   variant,
 }: TypographyProps) => {
   const rootClasses = useStylesWithRootClass('dot-typography', className);
@@ -42,6 +45,7 @@ export const DotTypography = ({
     <Typography
       classes={{ root: rootClasses }}
       component={component}
+      noWrap={noWrap}
       variant={variant}
     >
       {children}
