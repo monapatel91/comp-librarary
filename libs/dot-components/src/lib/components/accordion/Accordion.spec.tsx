@@ -23,6 +23,7 @@ describe('Accordion', () => {
       startIcon: <DotIcon iconId="notification-bell" />,
       summary: 'Sample Summary Text',
       square: true,
+      noWrap: false,
     };
     const accordionProps: AccordionProps = {
       actions: 'accordion-test',
@@ -35,6 +36,7 @@ describe('Accordion', () => {
       startIcon: <DotIcon iconId="notification-bell" />,
       summary: 'Sample Summary Text',
       square: true,
+      noWrap: false,
     };
     expect(accordionProps).toEqual(props);
   });

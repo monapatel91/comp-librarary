@@ -1,12 +1,13 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
+import { DotTypography } from '../typography/Typography';
 import {
-  Divider,
-  Typography,
   AccordionActions,
-  AccordionSummary,
   AccordionDetails,
+  AccordionSummary,
+  Divider,
+  Tooltip,
 } from '@material-ui/core';
 import {
   detailClassName,
@@ -27,6 +28,8 @@ export interface AccordionProps extends CommonProps {
   disabled?: boolean;
   /** If true, the Accordion will have elevation. */
   hasElevation?: boolean;
+  /** If true, the text will wrap and not be truncated */
+  noWrap?: boolean;
   /** If true, rounded corners are disabled. */
   square?: boolean;
   /** Icon placed before the children. */
@@ -46,9 +49,9 @@ export const DotAccordion = ({
   square = false,
   startIcon,
   summary,
+  noWrap = true,
 }: AccordionProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-
   const [elevation, setElevation] = useState<number>();
 
   useEffect(() => {
@@ -70,7 +73,15 @@ export const DotAccordion = ({
         expandIcon={<DotIcon iconId="chevron-down" />}
       >
         {startIcon}
-        <Typography variant="body1">{summary}</Typography>
+        <DotTypography variant="body1" noWrap={noWrap}>
+          <Tooltip
+            className="dot-tooltip"
+            placement="top-start"
+            title={noWrap ? summary : ''}
+          >
+            <span>{summary}</span>
+          </Tooltip>
+        </DotTypography>
       </AccordionSummary>
       <AccordionDetails
         className={detailClassName}

@@ -27,3 +27,28 @@ describe('dot-components: Accordion component', () => {
     });
   });
 });
+
+describe('dot-components: Accordion component with noWrap = true', () => {
+  before(() =>
+    cy.visit('/iframe.html?id=components-accordion--default&args=noWrap:true')
+  );
+
+  describe('functionality', () => {
+    it('summary text should be truncated', () => {
+      cy.get('.dot-accordion-summary p').should(
+        'have.class',
+        'MuiTypography-noWrap'
+      );
+      cy.get('.dot-accordion-summary p')
+        .should('have.css', 'white-space', 'nowrap')
+        .and('have.css', 'overflow', 'hidden')
+        .and('have.css', 'text-overflow', 'ellipsis');
+    });
+
+    it('summary text should have a title prop', () => {
+      cy.get('.dot-tooltip')
+        .should('have.attr', 'title')
+        .and('match', /I seek the means to fight injustice/);
+    });
+  });
+});

@@ -12,6 +12,11 @@ export const StyledAccordion = styled(Accordion)`
       .${summaryClassName} {
         display: flex;
         align-items: center;
+
+        .MuiAccordionSummary-content {
+          width: calc(100% - ${theme.spacing(5)}px);
+        }
+
         .MuiTypography-root {
           margin-bottom: 0;
         }
