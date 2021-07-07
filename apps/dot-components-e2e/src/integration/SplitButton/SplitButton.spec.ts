@@ -31,5 +31,10 @@ describe('dot-components: Button component', () => {
       cy.get('button.dot-button').eq(0).should('have.css', 'margin', '0px');
       cy.get('button.dot-button').eq(1).should('have.css', 'margin', '0px');
     });
+
+    it('menu has z-index 9999', () => {
+      cy.get('button.dot-button').eq(1).click();
+      cy.get('div.dot-menu').eq(0).should('have.css', 'z-index', '9999');
+    });
   });
 });

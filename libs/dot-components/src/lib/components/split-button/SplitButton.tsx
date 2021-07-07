@@ -6,15 +6,21 @@ import React, {
   useState,
 } from 'react';
 import { DotIcon } from '../icon/Icon';
-import { DotMenu, MenuItemProps } from '../menu/Menu';
+import { MenuItemProps } from '../menu/Menu';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotButton } from '../button/Button';
-import { rootClassName, StyledSplitButtonGroup } from './SplitButton.styles';
+import {
+  rootClassName,
+  StyledMenu,
+  StyledSplitButtonGroup,
+} from './SplitButton.styles';
 import { BaseButtonProps } from '../BaseButtonProps';
 
 export interface SplitButtonProps extends BaseButtonProps {
   /** accessibility label */
   ariaLabel: string;
+  /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
+  disablePortal?: boolean;
   /** Callback when menu item is selected */
   onSelect?: (
     event: MouseEvent | KeyboardEvent,
@@ -30,6 +36,7 @@ export const DotSplitButton = ({
   className,
   'data-testid': dataTestId,
   disabled = false,
+  disablePortal,
   disableRipple = false,
   fullWidth = false,
   isSubmit = false,
@@ -101,8 +108,9 @@ export const DotSplitButton = ({
           />
         </DotButton>
       </StyledSplitButtonGroup>
-      <DotMenu
+      <StyledMenu
         anchorEl={anchorRef.current}
+        disablePortal={disablePortal}
         id="dot-menu-id"
         menuItems={options}
         menuPlacement="bottom-end"

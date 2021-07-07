@@ -4,6 +4,7 @@
 
 ### Experimental
 
+- **SplitButton** - added styling and `disablePortal` prop so that `SplitButton` menu can always be shown on top
 - **SplitButton** - fixed to work with non-numeric option keys
 
 ### Components

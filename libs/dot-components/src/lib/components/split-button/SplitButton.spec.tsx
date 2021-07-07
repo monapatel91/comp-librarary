@@ -15,11 +15,13 @@ describe('DotButton', () => {
   it('should have unchanged API', () => {
     const props = {
       ariaLabel: 'splitsville',
+      disablePortal: true,
       onSelect: onSelect,
       options: options,
     };
     const splitButtonProps: SplitButtonProps = {
       ariaLabel: 'splitsville',
+      disablePortal: true,
       onSelect: onSelect,
       options: options,
     };
