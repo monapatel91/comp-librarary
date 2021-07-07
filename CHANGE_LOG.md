@@ -2,6 +2,10 @@
 
 ## Current
 
+### Experimental
+
+- **SplitButton** - fixed to work with non-numeric option keys
+
 ### Components
 
 > **BREAKING CHANGE: Pill** - fixed console warning message about `backgroundColor` prop and `labelColor` prop by changing both to all lowercase `backgroundcolor` and `labelcolor`

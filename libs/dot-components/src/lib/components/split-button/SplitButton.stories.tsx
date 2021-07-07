@@ -4,9 +4,12 @@ import { action } from '@storybook/addon-actions';
 import { DotSplitButton, SplitButtonProps } from './SplitButton';
 
 const options = [
-  { children: 'option 1', key: '0' },
-  { children: 'option 2 with some longer text', key: '1' },
-  { children: 'option 3', key: '2' },
+  { children: 'option 1', key: 'option 1' },
+  {
+    children: 'option 2 with some longer text',
+    key: 'option 2 with some longer text',
+  },
+  { children: 'option 3', key: 'option 3' },
 ];
 
 export default {
@@ -20,18 +23,18 @@ export default {
 } as Meta;
 
 export const Default: Story<SplitButtonProps> = (args) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedItem, setSelectedItem] = useState(options[0].key);
   const onSelect = (
     event: MouseEvent | KeyboardEvent,
     menuId: string,
     itemId: string
   ) => {
-    setSelectedIndex(parseInt(itemId));
+    setSelectedItem(itemId);
   };
   return (
     <DotSplitButton
       {...args}
-      onClick={action('Clicked ' + options[selectedIndex].children)}
+      onClick={action(`Clicked ${selectedItem}`)}
       onSelect={onSelect}
     />
   );

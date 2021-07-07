@@ -40,18 +40,26 @@ export const DotSplitButton = ({
   titleTooltip,
   type = 'primary',
 }: SplitButtonProps) => {
+  type OptionIndexMap = {
+    [key: string]: number;
+  };
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const anchorRef = useRef(null);
 
+  const optionIndexMap: OptionIndexMap = {};
+  options.forEach((option, index: number) => {
+    optionIndexMap[option.key] = index;
+  });
+
   const handleMenuItemClick = (
     event: MouseEvent | KeyboardEvent,
     menuId: string,
     itemKey: string
   ) => {
-    setSelectedIndex(parseInt(itemKey));
+    setSelectedIndex(optionIndexMap[itemKey]);
     setOpen(false);
     onSelect && onSelect(event, menuId, itemKey);
   };
