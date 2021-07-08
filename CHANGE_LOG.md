@@ -2,6 +2,11 @@
 
 ## Current
 
+### Experimental
+
+- **SplitButton** - added styling and `disablePortal` prop so that `SplitButton` menu can always be shown on top
+- **SplitButton** - fixed to work with non-numeric option keys
+
 ### Components
 
 > **BREAKING CHANGE: Pill** - fixed console warning message about `backgroundColor` prop and `labelColor` prop by changing both to all lowercase `backgroundcolor` and `labelcolor`
