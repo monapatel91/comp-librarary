@@ -1,11 +1,13 @@
 # Changelog
 
-## [Unreleased](https://github.com/digital-ai/dot-components/tree/HEAD)
+## [1.0.2](https://github.com/digital-ai/dot-components/tree/1.0.2) (07/08/2021)
 
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.1...HEAD)
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.1...1.0.2)
 
 **Merged pull requests:**
 
+- S-76905: add disablePortal prop to SplitButton and set z-index for SplitButton menu [\#596](https://github.com/digital-ai/dot-components/pull/596) ([selsemore](https://github.com/selsemore))
+- S-76905: fix error upon selection of split button option with non-numeric key [\#595](https://github.com/digital-ai/dot-components/pull/595) ([selsemore](https://github.com/selsemore))
 - updating github workflow to default to patch release [\#593](https://github.com/digital-ai/dot-components/pull/593) ([CWSites](https://github.com/CWSites))
 - S-76914: optional prop for truncating accordion summary to one line [\#590](https://github.com/digital-ai/dot-components/pull/590) ([CWSites](https://github.com/CWSites))
 - Update icons [\#589](https://github.com/digital-ai/dot-components/pull/589) ([BojanKocijan](https://github.com/BojanKocijan))
@@ -126,7 +128,7 @@
 
 - Updating master to `0.0.1-alpha` [\#552](https://github.com/digital-ai/dot-components/pull/552) ([CWSites](https://github.com/CWSites))
 - Updating to `0.0.1` [\#551](https://github.com/digital-ai/dot-components/pull/551) ([CWSites](https://github.com/CWSites))
-- 5/10/21 update icon [\#545](https://github.com/digital-ai/dot-components/pull/545) ([BojanKocijan](https://github.com/BojanKocijan))
+- 5/10/21   update icon [\#545](https://github.com/digital-ai/dot-components/pull/545) ([BojanKocijan](https://github.com/BojanKocijan))
 - D-17921 Remove the unused icons from the legend. [\#544](https://github.com/digital-ai/dot-components/pull/544) ([HakujouRyu](https://github.com/HakujouRyu))
 - bump material-ui to v4.11.2 [\#543](https://github.com/digital-ai/dot-components/pull/543) ([CWSites](https://github.com/CWSites))
 - Bring build changes into `develop` [\#541](https://github.com/digital-ai/dot-components/pull/541) ([CWSites](https://github.com/CWSites))
@@ -431,7 +433,7 @@
 - Main content is not scrollable in demo app [\#371](https://github.com/digital-ai/dot-components/issues/371)
 - Sidebar navigation items are not navigating when clicked on [\#358](https://github.com/digital-ai/dot-components/issues/358)
 - DotMenu no longer using disablePortal [\#353](https://github.com/digital-ai/dot-components/issues/353)
-- Dependabot security vulnerabilities [\#344](https://github.com/digital-ai/dot-components/issues/344)
+- Dependabot security vulnerabilities  [\#344](https://github.com/digital-ai/dot-components/issues/344)
 - 'Theme' is defined but never used [\#341](https://github.com/digital-ai/dot-components/issues/341)
 - Circular dependency warnings regarding the List components [\#338](https://github.com/digital-ai/dot-components/issues/338)
 - Errors when running the "sandbox" app [\#337](https://github.com/digital-ai/dot-components/issues/337)
@@ -588,7 +590,7 @@
 - S-74524: Add a new application to the Progression Board [\#365](https://github.com/digital-ai/dot-components/pull/365) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#358: update list to pass null for onClick if not provided [\#362](https://github.com/digital-ai/dot-components/pull/362) ([CWSites](https://github.com/CWSites))
 - Issue \#339: Use `novalidate` on demo form [\#361](https://github.com/digital-ai/dot-components/pull/361) ([CWSites](https://github.com/CWSites))
-- 345: No implicit any [\#357](https://github.com/digital-ai/dot-components/pull/357) ([syedsabbas360](https://github.com/syedsabbas360))
+- 345: No implicit any  [\#357](https://github.com/digital-ai/dot-components/pull/357) ([syedsabbas360](https://github.com/syedsabbas360))
 - Issue \#351 apply 'dot-' classes to native elements [\#356](https://github.com/digital-ai/dot-components/pull/356) ([selsemore](https://github.com/selsemore))
 - Icons update and fixes 24-03-2021 [\#355](https://github.com/digital-ai/dot-components/pull/355) ([BojanKocijan](https://github.com/BojanKocijan))
 - Issue \#353 Expose disablePortal prop in Menu component [\#354](https://github.com/digital-ai/dot-components/pull/354) ([selsemore](https://github.com/selsemore))
@@ -666,7 +668,6 @@
 **Merged pull requests:**
 
 - Issue \#184: Alpha 4 release [\#185](https://github.com/digital-ai/dot-components/pull/185) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- Issue \#144: initial draft of PR template [\#183](https://github.com/digital-ai/dot-components/pull/183) ([CWSites](https://github.com/CWSites))
 - defect \#165: Avatar adjustments [\#180](https://github.com/digital-ai/dot-components/pull/180) ([CWSites](https://github.com/CWSites))
 - issue \#163: move Sidebar styles to a separate file [\#179](https://github.com/digital-ai/dot-components/pull/179) ([selsemore](https://github.com/selsemore))
 - issue \#163: move Navigation styles to separate files [\#178](https://github.com/digital-ai/dot-components/pull/178) ([selsemore](https://github.com/selsemore))
@@ -693,7 +694,7 @@
 **Features:**
 
 - Button height is not correct [\#128](https://github.com/digital-ai/dot-components/issues/128)
-- Nav item font size is not correct [\#127](https://github.com/digital-ai/dot-components/issues/127)
+- Nav item font size is not correct  [\#127](https://github.com/digital-ai/dot-components/issues/127)
 - Fix the size of Subheader in side menu and margins [\#89](https://github.com/digital-ai/dot-components/issues/89)
 - Convert Button and Avatar to styled components [\#87](https://github.com/digital-ai/dot-components/issues/87)
 - Avatar needs an `onClick` prop [\#85](https://github.com/digital-ai/dot-components/issues/85)
@@ -712,7 +713,7 @@
 - Menu does not have a selection handler [\#66](https://github.com/digital-ai/dot-components/issues/66)
 - Chips needs updating [\#65](https://github.com/digital-ai/dot-components/issues/65)
 - Dialog title and close icon alignment is off. [\#63](https://github.com/digital-ai/dot-components/issues/63)
-- Destructive button hover turns green [\#60](https://github.com/digital-ai/dot-components/issues/60)
+- Destructive button hover turns green  [\#60](https://github.com/digital-ai/dot-components/issues/60)
 - Actions items in Dotheader [\#56](https://github.com/digital-ai/dot-components/issues/56)
 - Company name displaying in the content area. [\#52](https://github.com/digital-ai/dot-components/issues/52)
 - DotSidebar animation [\#47](https://github.com/digital-ai/dot-components/issues/47)
@@ -788,4 +789,6 @@
 - S 73983 avatar component [\#35](https://github.com/digital-ai/dot-components/pull/35) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - S-73862: side navigation cleanup [\#34](https://github.com/digital-ai/dot-components/pull/34) ([CWSites](https://github.com/CWSites))
 
-\* _This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)_
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
