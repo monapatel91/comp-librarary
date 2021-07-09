@@ -132,7 +132,7 @@ jobs:
         with:
           automatic_release_tag: ${{needs.bump-version.outputs.new-version}}
           repo_token: ${{ github.token }}
-          prerelease: true
+          prerelease: false
 
   # https://github.com/benc-uk/workflow-dispatch
   release:
