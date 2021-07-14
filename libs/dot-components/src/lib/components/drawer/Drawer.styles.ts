@@ -13,6 +13,8 @@ export const StyledDrawer = styled(Drawer)<DrawerProps>`
     }
 
     .dot-drawer-paper {
+      height: ${({ height, anchor }: DrawerProps) =>
+        anchor === 'left' || anchor === 'right' ? '100%' : height};
       width: ${({ width, anchor }: DrawerProps) =>
         anchor === 'bottom' || anchor === 'top' ? '100%' : width};
       padding: ${theme.spacing(2)}px;

@@ -10,7 +10,6 @@ export default {
   argTypes: {
     open: { defaultValue: true },
     children: { defaultValue: 'I am Batman' },
-    width: { defaultValue: '256px' },
   },
 } as Meta;
 
