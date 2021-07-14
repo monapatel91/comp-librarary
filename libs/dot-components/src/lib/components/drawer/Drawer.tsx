@@ -13,6 +13,8 @@ export interface DrawerProps extends CommonProps {
   anchor?: DrawerAnchor;
   /** string or JSX element that is displayed inside the drawer */
   children?: ReactNode;
+  /** The height of the drawer when anchor is 'top' or 'bottom' */
+  height?: string;
   /** Props applied to the Modal element. */
   ModalProps?: DrawerModalProps;
   /** Props applied to the Paper element. */
@@ -23,7 +25,7 @@ export interface DrawerProps extends CommonProps {
   open: boolean;
   /** The variant to use 'permanent', 'persistent', 'temporary' */
   variant?: DrawerVariant;
-  /** The width of the drawer defaults to 256px */
+  /** The width of the drawer when anchor is 'left' or 'right' */
   width?: string;
 }
 
@@ -32,6 +34,7 @@ export const DotDrawer = ({
   className,
   children,
   'data-testid': dataTestId,
+  height = '44px',
   ModalProps,
   onClose,
   open,
@@ -45,6 +48,7 @@ export const DotDrawer = ({
       data-testid={dataTestId}
       anchor={anchor}
       classes={{ root: rootClasses, paper: 'dot-drawer-paper' }}
+      height={height}
       ModalProps={ModalProps}
       PaperProps={PaperProps}
       onClose={(event: MouseEvent) => onClose && onClose(event)}

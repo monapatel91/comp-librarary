@@ -8,6 +8,7 @@ describe('Drawer', () => {
     const props = {
       anchor: 'bottom',
       children: 'I am a drawer',
+      height: '44px',
       onClose: onClose,
       open: true,
       variant: 'persistent',
@@ -16,6 +17,7 @@ describe('Drawer', () => {
     const drawerProps: DrawerProps = {
       anchor: 'bottom',
       children: 'I am a drawer',
+      height: '44px',
       onClose: onClose,
       open: true,
       variant: 'persistent',
