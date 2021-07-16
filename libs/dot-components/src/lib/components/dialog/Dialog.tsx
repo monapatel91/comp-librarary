@@ -8,18 +8,19 @@ import React, {
 import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
+import { BaseButtonProps } from '../BaseButtonProps';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDialog } from './Dialog.styles';
 import { DotTypography } from '../typography/Typography';
 
-export interface DialogButtonProps extends CommonProps {
-  /** If true, the button will be disabled. */
-  disabled?: boolean;
+export interface DialogButtonProps extends BaseButtonProps {
+  /** Icon placed after the children. */
+  endIcon?: ReactNode;
   /** The text displayed on the button */
   label?: string;
   /** The icon to display on the button */
-  startIcon?: string;
+  startIcon?: ReactNode;
 }
 
 export interface SubmitButtonProps extends DialogButtonProps {
@@ -65,16 +66,11 @@ export const DotDialog = ({
   title,
 }: DialogProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const cancelClasses = useStylesWithRootClass(
+    cancelButtonProps?.className,
+    'cancel-button'
+  );
   const [isOpen, setIsOpen] = useState<boolean>(open);
-
-  const cancelDisabled = cancelButtonProps?.disabled || false,
-    cancelLabel = cancelButtonProps?.label || 'Cancel',
-    cancelStartIcon = cancelButtonProps?.startIcon || null;
-
-  const submitDisabled = submitButtonProps?.disabled || false,
-    submitLabel = submitButtonProps?.label || 'OK',
-    submitStartIcon = submitButtonProps?.startIcon || null,
-    submitType = submitButtonProps?.type || 'primary';
 
   useEffect(() => {
     setIsOpen(open);
@@ -135,22 +131,31 @@ export const DotDialog = ({
         </DialogContent>
         <DialogActions classes={{ root: `dot-dialog-actions` }}>
           <DotButton
-            className="cancel-button"
-            disabled={cancelDisabled}
-            startIcon={cancelStartIcon}
+            className={cancelClasses}
+            data-testid={cancelButtonProps?.['data-testid']}
+            disabled={cancelButtonProps?.disabled}
+            disableRipple={cancelButtonProps?.disableRipple}
+            endIcon={cancelButtonProps?.endIcon}
+            startIcon={cancelButtonProps?.startIcon}
             onClick={handleCancel}
+            titleTooltip={cancelButtonProps?.titleTooltip}
             type="text"
           >
-            {cancelLabel}
+            {cancelButtonProps?.label || 'Cancel'}
           </DotButton>
           {hasPrimaryAction && (
             <DotButton
-              disabled={submitDisabled}
-              startIcon={submitStartIcon}
+              className={submitButtonProps?.className}
+              data-testid={submitButtonProps?.['data-testid']}
+              disabled={submitButtonProps?.disabled}
+              disableRipple={submitButtonProps?.disableRipple}
+              endIcon={submitButtonProps?.endIcon}
+              startIcon={submitButtonProps?.startIcon}
               onClick={handleSubmit}
-              type={submitType}
+              titleTooltip={submitButtonProps?.titleTooltip}
+              type={submitButtonProps?.type || 'primary'}
             >
-              {submitLabel}
+              {submitButtonProps?.label || 'OK'}
             </DotButton>
           )}
         </DialogActions>
