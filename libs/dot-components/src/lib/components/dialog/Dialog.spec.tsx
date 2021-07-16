@@ -1,16 +1,47 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
-import { DialogProps, DotDialog } from './../dialog/Dialog';
+import { DialogButtonProps, DialogProps, DotDialog } from './../dialog/Dialog';
 
 describe('DotDialog', () => {
   const cancelFunc = () => {
     console.log('Cancelled');
   };
   const submitFunc = () => console.log('Submitted');
+  const onClick = jest.fn();
+
+  it('should have unchanged DialogButton API', () => {
+    const buttonProps = {
+      disabled: true,
+      disableRipple: true,
+      endIcon: <i className="box" />,
+      fullWidth: true,
+      isSubmit: true,
+      label: 'Criminals Beware',
+      onClick: onClick,
+      size: 'small',
+      startIcon: <i className="box" />,
+      titleTooltip: 'I am Batman',
+      type: 'text',
+    };
+
+    const dialogButtonProps: DialogButtonProps = {
+      disabled: true,
+      disableRipple: true,
+      endIcon: <i className="box" />,
+      fullWidth: true,
+      isSubmit: true,
+      label: 'Criminals Beware',
+      onClick: onClick,
+      size: 'small',
+      startIcon: <i className="box" />,
+      titleTooltip: 'I am Batman',
+      type: 'text',
+    };
+    expect(dialogButtonProps).toEqual(buttonProps);
+  });
 
   it('should have unchanged API', () => {
-    const onClick = jest.fn();
     const props = {
       cancelButtonProps: {},
       children: 'Hello World',
