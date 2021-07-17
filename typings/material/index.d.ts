@@ -5,14 +5,12 @@ declare module '@material-ui/core/styles/createPalette' {
     avatarColors: AvatarPaletteColorOptions;
     icon: IconPaletteColorOptions;
     layer: LayerPaletteColorOptions;
-    progressionBoard: ProgressionBoardColorOptions;
   }
 
   interface Palette {
     avatarColors: AvatarPaletteColorOptions;
     icon: IconPaletteColorOptions;
     layer: LayerPaletteColorOptions;
-    progressionBoard: ProgressionBoardColorOptions;
   }
 
   interface AvatarPaletteColorOptions {
@@ -44,17 +42,6 @@ declare module '@material-ui/core/styles/createPalette' {
     n700: string;
     n800: string;
     n900: string;
-  }
-
-  interface ProgressionBoardColorOptions {
-    board: string;
-    boardColumn: string;
-    boardColumnHeader: string;
-    card: string;
-    cardBorder: string;
-    cardCorner: string;
-    cardSelectedBorder: string;
-    swimlaneColumnHeader: string;
   }
 
   interface IconPaletteColorOptions {
