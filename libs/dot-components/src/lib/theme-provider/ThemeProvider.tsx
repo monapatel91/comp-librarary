@@ -181,16 +181,6 @@ export const agilityLightTheme = createMuiTheme({
       n800: '#14262E',
       n900: '#000',
     },
-    progressionBoard: {
-      board: lightColors.n0,
-      boardColumn: '#C3DBE4',
-      boardColumnHeader: '#C3DBE4',
-      card: lightColors.n0,
-      cardBorder: '#E6F0F4',
-      cardCorner: '#589BB6',
-      cardSelectedBorder: '#E6F0F4',
-      swimlaneColumnHeader: '#9FC5D5',
-    },
   },
   typography: {
     ...typographyOptions,
@@ -238,16 +228,6 @@ export const agilityDarkTheme = createMuiTheme({
       n800: lightColors.n0,
       n900: lightColors.n0,
     },
-    progressionBoard: {
-      board: '#050A0A',
-      boardColumn: '#244451',
-      boardColumnHeader: '#244451',
-      card: '#336275',
-      cardBorder: '#050A0A',
-      cardCorner: '#9FC5D5',
-      cardSelectedBorder: '#050A0A',
-      swimlaneColumnHeader: '#336275',
-    },
   },
   typography: {
     ...typographyOptions,
@@ -278,16 +258,6 @@ export const darkTheme = createMuiTheme({
       rogueCommits: lightColors.o500,
       unknown: lightColors.n300,
       unknownHover: lightColors.n100,
-    },
-    progressionBoard: {
-      board: '#0D1017',
-      boardColumn: '#171B22',
-      boardColumnHeader: '#21272D',
-      card: '#21272D',
-      cardBorder: '#30363D',
-      cardCorner: '#30363D',
-      cardSelectedBorder: '#A9AEB3',
-      swimlaneColumnHeader: '#30363D',
     },
     layer: {
       n0: lightColors.n0, // text-0
@@ -452,16 +422,6 @@ export const lightTheme = createMuiTheme({
       rogueCommits: lightColors.o500,
       unknown: lightColors.n300,
       unknownHover: lightColors.n100,
-    },
-    progressionBoard: {
-      board: lightColors.n0,
-      boardColumn: lightColors.n50,
-      boardColumnHeader: lightColors.n100,
-      card: lightColors.n0,
-      cardBorder: lightColors.n200,
-      cardCorner: lightColors.n200,
-      cardSelectedBorder: lightColors.n300,
-      swimlaneColumnHeader: lightColors.n200,
     },
     text: {
       primary: lightColors.n700,
