@@ -115,7 +115,7 @@ export const CssCell = styled(Cell)`
     ${lg && breakpointsGetter(lg, theme, 'lg')}
     ${lg && breakpointsGetter(lg, theme, 'lg')}
     ${xl && breakpointsGetter(lg, theme, 'xl')}
-    grid-column: ${gridColumn && gridColumn};
+    grid-column: ${gridColumn};
     }
   `}
 `;

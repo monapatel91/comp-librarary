@@ -38,8 +38,6 @@ import { DotMessage } from '../../dot-components/message/Message';
 import { DotProgressIcon } from '../../dot-components/progress-icon/ProgressIcon';
 import { useHistory } from 'react-router';
 
-export interface AccountProps {}
-
 function createData(
   capabilities: { id: string; label: string; desc: string },
   units: number,
@@ -174,7 +172,7 @@ const initialSeriesData = [
   },
 ];
 
-export const VsmAccount = ({}: AccountProps) => {
+export const VsmAccount = () => {
   const { navList, setNavList, setGoBack, setBackItem } = useNavListContext();
   const [open, setOpen] = useState(false);
   const [messageOpen, setMessageOpen] = useState(false);
