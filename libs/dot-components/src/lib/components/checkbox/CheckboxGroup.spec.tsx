@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
 import { DotCheckboxGroup, CheckboxGroupProps } from './CheckboxGroup';
@@ -17,6 +17,7 @@ const defaultValues = [
 ];
 
 describe('DotCheckbox', () => {
+  const inputRef = createRef<HTMLInputElement>();
   it('should have unchanged API', () => {
     const onChange = jest.fn();
     const props = {
@@ -26,10 +27,12 @@ describe('DotCheckbox', () => {
       disableGroup: false,
       endIcon: <DotIcon iconId="save" />,
       error: false,
-      groupLabel: 'My Button Group',
       helperText: 'a little help here?',
-      name: 'checkbox-group',
+      id: 'checkbox-group-id',
+      inputRef: inputRef,
+      label: 'My Button Group',
       labelPlacement: 'end',
+      name: 'checkbox-group',
       onChange: onChange,
       options: options,
       required: true,
@@ -48,7 +51,7 @@ describe('DotCheckbox', () => {
       render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          defaultValues={defaultValues}
+          defaultValue={defaultValues}
           options={options}
         />
       );
@@ -65,7 +68,7 @@ describe('DotCheckbox', () => {
       render(
         <DotCheckboxGroup
           data-testid="test-checkoxb-group"
-          defaultValues={defaultValues}
+          defaultValue={defaultValues}
           options={options}
         />
       );
@@ -93,7 +96,6 @@ describe('DotCheckbox', () => {
           data-testid="test-checkbox-group"
           disableGroup
           options={options}
-          value="item-2"
         />
       );
       const inputs = screen.getAllByRole('checkbox');
@@ -114,14 +116,13 @@ describe('DotCheckbox', () => {
       const startIcon = screen.getByTestId('start-icon');
       expect(startIcon).toBeVisible();
     });
-    it('should have groupLabel', () => {
+    it('should have checkbox group label', () => {
       const { baseElement } = render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
           endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
           groupLabel="Group label"
           options={options}
-          value="item-2"
         />
       );
       const formControlLabel = baseElement.querySelector(
@@ -137,7 +138,6 @@ describe('DotCheckbox', () => {
           endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
           groupLabel="Group label"
           options={options}
-          value="item-2"
         />
       );
       const startIcon = screen.getByTestId('end-icon');
@@ -148,10 +148,9 @@ describe('DotCheckbox', () => {
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
           error
-          groupLabel="Group label"
+          label="Group label"
           helperText="error"
           options={options}
-          value="item-2"
         />
       );
       const formControlLabel = baseElement.querySelector('.Mui-error');
@@ -170,7 +169,6 @@ describe('DotCheckbox', () => {
           groupLabel="Group label"
           helperText="Helper test"
           options={options}
-          value="item-2"
         />
       );
       const helperText = baseElement.querySelector('.MuiFormHelperText-root');
@@ -185,7 +183,6 @@ describe('DotCheckbox', () => {
           helperText="Helper test"
           name="test-checkbox-name"
           options={options}
-          value="item-2"
         />
       );
       const inputs = screen.getAllByRole('checkbox');
@@ -202,7 +199,6 @@ describe('DotCheckbox', () => {
           labelPlacement="start"
           name="test-checkbox-name"
           options={options}
-          value="item-2"
         />
       );
       const formControlLabels = baseElement.querySelectorAll('label');
@@ -235,13 +231,12 @@ describe('DotCheckbox', () => {
       const { baseElement } = render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           labelPlacement="bottom"
           name="test-checkbox-name"
           options={options}
           size="small"
-          value="item-2"
         />
       );
       const svgs = baseElement.querySelectorAll('svg');

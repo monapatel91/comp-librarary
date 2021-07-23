@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
 import { DotRadioGroup, RadioGroupProps } from './RadioGroup';
@@ -12,6 +12,7 @@ const radioButtons = [
 ];
 
 describe('DotRadioGroup', () => {
+  const inputRef = createRef<HTMLInputElement>();
   it('should have unchanged API', () => {
     const onChange = jest.fn();
     const props = {
@@ -19,11 +20,13 @@ describe('DotRadioGroup', () => {
       className: 'test-class',
       'data-testid': 'testid',
       defaultValue: 'the default',
-      disableGroup: false,
+      disabled: false,
       endIcon: <DotIcon iconId="save" />,
       error: false,
-      groupLabel: 'My Button Group',
       helperText: 'a little help here?',
+      id: 'radio-group-id',
+      inputRef: inputRef,
+      label: 'My Button Group',
       labelPlacement: 'end',
       name: 'radio-group',
       onChange: onChange,
@@ -43,7 +46,7 @@ describe('DotRadioGroup', () => {
         <DotRadioGroup
           data-testid="test-radio-group"
           options={radioButtons}
-          value="item-1"
+          defaultValue="item-1"
         />
       );
       const inputs = screen.getAllByRole('radio');
@@ -109,7 +112,6 @@ describe('DotRadioGroup', () => {
           data-testid="test-radio-group"
           disableGroup
           options={radioButtons}
-          value="item-2"
         />
       );
       const inputs = screen.getAllByRole('radio');
@@ -130,21 +132,17 @@ describe('DotRadioGroup', () => {
       const startIcon = screen.getByTestId('start-icon');
       expect(startIcon).toBeVisible();
     });
-    it('should have groupLabel', () => {
-      const { baseElement } = render(
+    it('should have radio group label', () => {
+      render(
         <DotRadioGroup
           data-testid="test-radio-group"
           endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
           groupLabel="Group label"
           options={radioButtons}
-          value="item-2"
         />
       );
-      const formControlLabel = baseElement.querySelector(
-        '.dot-form-group-label'
-      );
-      expect(formControlLabel).toBeVisible();
-      expect(formControlLabel).toHaveTextContent('Group label');
+      const radioGroupLabel = screen.getByText('Group label');
+      expect(radioGroupLabel).toBeVisible();
     });
     it('should have endIcon', () => {
       render(
@@ -153,7 +151,6 @@ describe('DotRadioGroup', () => {
           endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
           groupLabel="Group label"
           options={radioButtons}
-          value="item-2"
         />
       );
       const startIcon = screen.getByTestId('end-icon');
@@ -164,10 +161,9 @@ describe('DotRadioGroup', () => {
         <DotRadioGroup
           data-testid="test-radio-group"
           error
-          groupLabel="Group label"
+          label="Group label"
           helperText="error"
           options={radioButtons}
-          value="item-2"
         />
       );
       const formControlLabel = baseElement.querySelector('.Mui-error');
@@ -186,7 +182,6 @@ describe('DotRadioGroup', () => {
           groupLabel="Group label"
           helperText="Helper test"
           options={radioButtons}
-          value="item-2"
         />
       );
       const helperText = baseElement.querySelector('.MuiFormHelperText-root');
@@ -201,7 +196,6 @@ describe('DotRadioGroup', () => {
           helperText="Helper test"
           name="test-radio-name"
           options={radioButtons}
-          value="item-2"
         />
       );
       const inputs = screen.getAllByRole('radio');
@@ -218,7 +212,6 @@ describe('DotRadioGroup', () => {
           labelPlacement="start"
           name="test-radio-name"
           options={radioButtons}
-          value="item-2"
         />
       );
       const formControlLabels = baseElement.querySelectorAll('label');
@@ -251,13 +244,12 @@ describe('DotRadioGroup', () => {
       const { baseElement } = render(
         <DotRadioGroup
           data-testid="test-radio-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           labelPlacement="bottom"
           name="test-radio-name"
           options={radioButtons}
           size="small"
-          value="item-2"
         />
       );
       const svgs = baseElement.querySelectorAll('svg');
