@@ -9,6 +9,7 @@ import {
   startAdornmentClassName,
   StyledFormControl,
 } from '../form-controls/FormControl.styles';
+import { CommonFormFieldProps } from '../input-form-fields/InputFormFields.propTypes';
 import { DotRadioButton, RadioButtonProps } from './RadioButton';
 import { groupClassName, StyledRadioGroup } from './RadioGroup.styles';
 
