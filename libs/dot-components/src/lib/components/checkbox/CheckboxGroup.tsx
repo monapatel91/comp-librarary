@@ -43,8 +43,6 @@ export interface CheckboxGroupProps extends CommonFormFieldProps {
   showSelectAll?: boolean;
   /** Icon placed before the children. */
   startIcon?: ReactNode;
-  /** value of the input */
-  value?: CheckboxProps[];
 }
 
 // Have this outside of component to avoid having different
@@ -75,7 +73,6 @@ export function DotCheckboxGroup({
   showSelectAll = false,
   size = 'medium',
   startIcon,
-  value,
 }: CheckboxGroupProps) {
   const groupDisabled = disabled;
   const placement = `dot-${labelPlacement}`;
@@ -85,7 +82,7 @@ export function DotCheckboxGroup({
     className,
     placement
   );
-  const [selectedOptions, setSelectedOptions] = useState(value || defaultValue);
+  const [selectedOptions, setSelectedOptions] = useState(defaultValue);
   const [allChecked, setAllChecked] = useState(false);
 
   /* This will ensure that state can be updated from the outside */
