@@ -9,6 +9,7 @@
     "build": "nx build --project=dot-components",
     "test": "nx test --project=dot-components --silent",
     "test:ci": "yarn test --ci --bail",
+    "test-coverage": "yarn test --codeCoverage && open coverage/libs/dot-components/index.html",
     "lint": "nx workspace-lint && nx lint --project=dot-components",
     "e2e": "nx e2e --project=dot-components-e2e --headless",
     "e2e:ci": "yarn e2e",
