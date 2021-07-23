@@ -70,9 +70,7 @@ const dfps = [
   },
 ];
 
-export interface UsageProps {}
-
-export const VsmHubUsage = ({}: UsageProps) => {
+export const VsmHubUsage = () => {
   const { navList, setNavList, setGoBack, setBackItem } = useNavListContext();
   const history = useHistory();
 

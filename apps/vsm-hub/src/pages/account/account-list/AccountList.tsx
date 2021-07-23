@@ -20,10 +20,8 @@ import { Grid } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import ReactECharts from 'echarts-for-react';
 
-export interface AccountListProps {}
-
-export const VsmHubAccountList = ({}: AccountListProps) => {
-  const { navList, setNavList, setGoBack, setBackItem } = useNavListContext();
+export const VsmHubAccountList = () => {
+  const { setNavList, setGoBack } = useNavListContext();
   const history = useHistory();
 
   useEffect(() => {

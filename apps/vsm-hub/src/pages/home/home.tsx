@@ -19,8 +19,6 @@ import { DotMainHero } from '../../dot-components/main-hero/MainHero';
 import { mainLevelNav, backItem } from '../../routes/routes';
 import { StyledVsmHubHome, rootClassName } from '../home/home.styles';
 
-export interface HomeProps {}
-
 export const capabilities: Array<Capability> = [
   {
     iconId: 'file-image',
@@ -48,7 +46,7 @@ export const capabilities: Array<Capability> = [
   },
 ];
 
-export const VsmHome = ({}: HomeProps) => {
+export const VsmHome = () => {
   const { navList, setNavList, setGoBack, setBackItem } = useNavListContext();
   const history = useHistory();
 
