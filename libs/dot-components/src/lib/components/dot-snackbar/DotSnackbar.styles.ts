@@ -27,6 +27,7 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
         color: white;
         top: 112px;
         z-index: 999;
+        position: relative;
       .MuiButtonBase-root.MuiIconButton-sizeSmall {
         .MuiSvgIcon-fontSizeSmall {
           font-size: 16px;
