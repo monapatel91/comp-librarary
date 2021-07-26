@@ -33,10 +33,6 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
         }
       }
       @media (min-width: 720px) {
-        .MuiSnackbar-anchorOriginTopRight{
-          top: 112px;
-          z-index: 999;
-        }
         .MuiAlert-root {
           top: 112px;
           position: relative;
