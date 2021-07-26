@@ -49,6 +49,7 @@ export const DotSnackbar = ({
 
   return (
     <StyledSnackbar
+      onClose={onClose}
       severity={severity}
       classes={{ root: rootClassName }}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
