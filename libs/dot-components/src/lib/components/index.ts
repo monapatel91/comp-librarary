@@ -22,7 +22,7 @@ export * from './form/Form';
 export * from './form-group/FormGroup';
 export * from './icon/Icon';
 export * from './dot-snackbar/DotSnackbar';
-export * from './dot-snackbar/DotSnackbarProvider'
+export * from './dot-snackbar/DotSnackbarProvider';
 export * from './inline-edit/InlineEdit';
 export * from './input-form-fields/InputText';
 export * from './input-form-fields/InputSelect';
