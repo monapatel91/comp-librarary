@@ -62,7 +62,7 @@ export const DotSnackbarProvider = ({ children }: DotSnackbarProviderProps) => {
 
   return (
     <DotSnackbarContext.Provider value={memoizedValues}>
-      <DotSnackbarContainer/>
+      <DotSnackbarContainer />
       {children}
     </DotSnackbarContext.Provider>
   );

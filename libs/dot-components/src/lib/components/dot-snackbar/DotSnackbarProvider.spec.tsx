@@ -8,6 +8,6 @@ describe('<DotSnackbarProvider/>', () => {
         <div>Test</div>
       </DotSnackbarProvider>
     );
-    expect(screen.getByTestId('dot-snackbar-container')).toBeInTheDocument()
+    expect(screen.getByTestId('dot-snackbar-container')).toBeInTheDocument();
   });
 });

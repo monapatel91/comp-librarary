@@ -20,7 +20,10 @@ export const DotSnackbarContainer = React.memo(
 
     return (
       <StyledDotSnackbarContainer className={rootClassName}>
-        <div data-testid="dot-snackbar-container" className="dot-snackbar-container">
+        <div
+          data-testid="dot-snackbar-container"
+          className="dot-snackbar-container"
+        >
           {alerts
             .slice()
             .reverse()
