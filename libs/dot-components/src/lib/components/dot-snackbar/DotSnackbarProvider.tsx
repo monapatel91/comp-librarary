@@ -1,16 +1,17 @@
 import React from 'react';
+import { DotSnackbarContainer } from './DotSnackbarContainer';
 
 const initialState = [
   { message: '', open: false, severity: 'success', id: '' },
 ];
 
-interface ProviderProps {
+interface DotSnackbarProviderProps {
   children: React.ReactNode;
 }
 
 type Severity = 'success' | 'warning' | 'info' | 'error';
 
-interface SnackbarProps {
+interface DotSnackbarProps {
   alerts: typeof initialState;
   enqueueMessage: (message: string, severity: Severity) => void;
   removeMessage: (id: string) => void;
@@ -25,13 +26,13 @@ const generateId = (): number => {
   }, 0);
 };
 
-const SnackbarContext = React.createContext<SnackbarProps>({
+const DotSnackbarContext = React.createContext<DotSnackbarProps>({
   alerts: [],
   enqueueMessage: (message: string, severity: Severity) => null,
   removeMessage: (id: string) => null,
 });
 
-export const SnackbarProvider = ({ children }: ProviderProps) => {
+export const DotSnackbarProvider = ({ children }: DotSnackbarProviderProps) => {
   const [alerts, setAlerts] = React.useState<typeof initialState>([]);
 
   function enqueueMessage(message: string, severity: Severity): void {
@@ -51,21 +52,22 @@ export const SnackbarProvider = ({ children }: ProviderProps) => {
     });
   };
 
-  const snackbarValues = {
+  const DotSnackbarValues = {
     alerts,
     enqueueMessage,
     removeMessage,
   };
 
-  const memoizedValues = React.useMemo(() => snackbarValues, [alerts]);
+  const memoizedValues = React.useMemo(() => DotSnackbarValues, [alerts]);
 
   return (
-    <SnackbarContext.Provider value={memoizedValues}>
+    <DotSnackbarContext.Provider value={memoizedValues}>
+      <DotSnackbarContainer/>
       {children}
-    </SnackbarContext.Provider>
+    </DotSnackbarContext.Provider>
   );
 };
 
-export const useSnackbarContext = () => {
-  return React.useContext(SnackbarContext);
+export const useDotSnackbarContext = () => {
+  return React.useContext(DotSnackbarContext);
 };
