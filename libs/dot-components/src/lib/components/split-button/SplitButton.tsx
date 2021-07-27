@@ -1,7 +1,7 @@
 import React, {
-  Fragment,
   KeyboardEvent,
   MouseEvent,
+  ReactNode,
   useRef,
   useState,
 } from 'react';
@@ -19,6 +19,8 @@ import { BaseButtonProps } from '../BaseButtonProps';
 export interface SplitButtonProps extends BaseButtonProps {
   /** accessibility label */
   ariaLabel: string;
+  /** The text for the button. Button text should be in sentence case. */
+  children: ReactNode;
   /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
   disablePortal?: boolean;
   /** Callback when menu item is selected */
@@ -33,6 +35,7 @@ export interface SplitButtonProps extends BaseButtonProps {
 
 export const DotSplitButton = ({
   ariaLabel,
+  children,
   className,
   'data-testid': dataTestId,
   disabled = false,
@@ -50,10 +53,14 @@ export const DotSplitButton = ({
   type OptionIndexMap = {
     [key: string]: number;
   };
-  const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    className,
+    type,
+    disabled ? 'disabled' : ''
+  );
 
   const [open, setOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const anchorRef = useRef(null);
 
   const optionIndexMap: OptionIndexMap = {};
@@ -61,18 +68,21 @@ export const DotSplitButton = ({
     optionIndexMap[option.key] = index;
   });
 
-  const handleMenuItemClick = (
+  const handleClick = (
     event: MouseEvent | KeyboardEvent,
-    menuId: string,
-    itemKey: string
+    menuId?: string,
+    itemKey?: string
   ) => {
-    setSelectedIndex(optionIndexMap[itemKey]);
     setOpen(false);
-    onSelect && onSelect(event, menuId, itemKey);
+    if (menuId || itemKey) {
+      onSelect && onSelect(event, menuId, itemKey);
+    } else {
+      onClick && onClick(event);
+    }
   };
 
   return (
-    <Fragment>
+    <>
       <StyledSplitButtonGroup
         aria-label={ariaLabel}
         className={rootClasses}
@@ -85,12 +95,12 @@ export const DotSplitButton = ({
           disabled={disabled}
           disableRipple={disableRipple}
           isSubmit={isSubmit}
-          onClick={onClick}
+          onClick={(event) => handleClick(event)}
           size={size}
           titleTooltip={titleTooltip}
           type={type}
         >
-          {options.length > 0 && options[selectedIndex].children}
+          {children}
         </DotButton>
         <DotButton
           className="expand-button"
@@ -101,11 +111,7 @@ export const DotSplitButton = ({
           size={size}
           type={type}
         >
-          <DotIcon
-            fontSize="small"
-            iconId="chevron-down"
-            title={titleTooltip}
-          />
+          <DotIcon fontSize="small" iconId="arrow-down" title={titleTooltip} />
         </DotButton>
       </StyledSplitButtonGroup>
       <StyledMenu
@@ -116,8 +122,8 @@ export const DotSplitButton = ({
         menuPlacement="bottom-end"
         onLeave={() => setOpen(false)}
         open={open}
-        onSelect={handleMenuItemClick}
+        onSelect={handleClick}
       />
-    </Fragment>
+    </>
   );
 };

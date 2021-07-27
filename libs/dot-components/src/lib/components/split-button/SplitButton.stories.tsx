@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, MouseEvent, useState } from 'react';
+import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 import { DotSplitButton, SplitButtonProps } from './SplitButton';
@@ -13,9 +13,10 @@ const options = [
 ];
 
 export default {
-  title: 'Experimental/SplitButton',
+  title: 'Components/SplitButton',
   component: DotSplitButton,
   argTypes: {
+    children: { defaultValue: 'Hello' },
     label: { defaultValue: 'SplitButton Component' },
     options: { defaultValue: options },
     titleTooltip: { defaultValue: 'Submit your favorite option' },
@@ -23,19 +24,11 @@ export default {
 } as Meta;
 
 export const Default: Story<SplitButtonProps> = (args) => {
-  const [selectedItem, setSelectedItem] = useState(options[0].key);
-  const onSelect = (
-    event: MouseEvent | KeyboardEvent,
-    menuId: string,
-    itemId: string
-  ) => {
-    setSelectedItem(itemId);
-  };
   return (
     <DotSplitButton
       {...args}
-      onClick={action(`Clicked ${selectedItem}`)}
-      onSelect={onSelect}
+      onClick={action(`Clicked on main button`)}
+      onSelect={action(`Clicked on menu item`)}
     />
   );
 };
