@@ -1,5 +1,5 @@
 describe('dot-components: Button component', () => {
-  before(() => cy.visit('/iframe.html?id=components-splitbutton--default'));
+  before(() => cy.visit('/iframe.html?id=experimental-splitbutton--default'));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-split-button-group');

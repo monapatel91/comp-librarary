@@ -13,7 +13,7 @@ const options = [
 ];
 
 export default {
-  title: 'Components/SplitButton',
+  title: 'Experimental/SplitButton',
   component: DotSplitButton,
   argTypes: {
     children: { defaultValue: 'Hello' },
