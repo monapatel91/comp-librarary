@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotSnackbar, DotSnackbarProps } from './DotSnackbar';
 
 export default {
-  title: 'Experimental/DotSnackbar',
+  title: 'Experimental/Snackbar',
   component: DotSnackbar,
   argTypes: {
     severity: { defaultValue: 'success' },

@@ -24,7 +24,7 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
         max-width: 500px;
         background-color: ${(props: StyledProps) =>
           theme.palette[props.severity].main};
-        color: white;
+        color: #fff;
         top: 112px;
         z-index: 999;
         position: relative;

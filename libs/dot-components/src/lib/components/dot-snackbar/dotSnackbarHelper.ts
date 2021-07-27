@@ -1,6 +1,3 @@
 export function addAutoHideDuration(severity: string): number | null {
-  if (severity === 'error') {
-    return null;
-  }
-  return 10000;
+  return severity === 'error' ? null : 10000;
 }

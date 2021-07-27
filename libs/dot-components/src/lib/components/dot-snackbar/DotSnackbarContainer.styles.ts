@@ -10,7 +10,7 @@ export const StyledDotSnackbarContainer = styled.div`
       width: 250px;
       height: auto;
       right: 0;
-      .dot-snackbar-container > div {
+      & > div {
         position: relative;
       }
     }

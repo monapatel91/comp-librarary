@@ -1,5 +1,5 @@
-describe('dot-components: DotSnackbar component', () => {
-  before(() => cy.visit('/iframe.html?id=experimental-dotsnackbar--default'));
+describe('dot-components: Snackbar component', () => {
+  before(() => cy.visit('/iframe.html?id=experimental-snackbar--default'));
 
   it('should have a positioning of top-right', () => {
     cy.get('.MuiSnackbar-root').within(($el) => {
