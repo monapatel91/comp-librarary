@@ -15,25 +15,25 @@ describe('DotButton', () => {
   it('should have unchanged API', () => {
     const props = {
       ariaLabel: 'splitsville',
+      children: 'Hello',
       disablePortal: true,
       onSelect: onSelect,
       options: options,
     };
-    const splitButtonProps: SplitButtonProps = {
-      ariaLabel: 'splitsville',
-      disablePortal: true,
-      onSelect: onSelect,
-      options: options,
-    };
+    const splitButtonProps: SplitButtonProps = props;
     expect(splitButtonProps).toEqual(props);
   });
 
   it('should render left and right side buttons', () => {
-    render(<DotSplitButton ariaLabel="splitsville" options={options} />);
+    render(
+      <DotSplitButton ariaLabel="splitsville" options={options}>
+        Hello
+      </DotSplitButton>
+    );
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toEqual(2);
-    expect(screen.getByText('option 1')).toBeVisible();
-    expect(buttons[1].getElementsByClassName('icon-chevron-down')).toHaveLength(
+    expect(screen.getByText('Hello')).toBeVisible();
+    expect(buttons[1].getElementsByClassName('icon-arrow-down')).toHaveLength(
       1
     );
   });
@@ -45,11 +45,29 @@ describe('DotButton', () => {
         ariaLabel="splitsville"
         onClick={onClick}
         options={options}
-      />
+      >
+        Hello
+      </DotSplitButton>
     );
     const buttons = screen.getAllByRole('button');
     userEvent.click(buttons[0]);
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('should allow me to click the arrow button and view options', () => {
+    render(
+      <DotSplitButton
+        ariaLabel="splitsville"
+        onSelect={onSelect}
+        options={options}
+      >
+        Hello
+      </DotSplitButton>
+    );
+    const buttons = screen.getAllByRole('button');
+    userEvent.click(buttons[1]);
+    const listItems = screen.getAllByRole('menuitem');
+    expect(listItems[0]).toBeVisible();
   });
 
   it('should allow me to select menu item with non-numeric key', () => {
@@ -58,7 +76,9 @@ describe('DotButton', () => {
         ariaLabel="splitsville"
         onSelect={onSelect}
         options={options}
-      />
+      >
+        Hello
+      </DotSplitButton>
     );
     const buttons = screen.getAllByRole('button');
     userEvent.click(buttons[1]);
@@ -75,7 +95,9 @@ describe('DotButton', () => {
         disabled={true}
         onClick={onClick}
         options={options}
-      />
+      >
+        Hello
+      </DotSplitButton>
     );
     const buttons = screen.getAllByRole('button');
     userEvent.click(buttons[0]);
