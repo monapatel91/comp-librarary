@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {
+  createContext,
+  useMemo,
+  ReactNode,
+  useState,
+  useContext,
+} from 'react';
 import { DotSnackbarContainer } from './DotSnackbarContainer';
+import { CreateUUID } from '../createUUID';
 
 const initialState = [
   { message: '', open: false, severity: 'success', id: '' },
 ];
 
 interface DotSnackbarProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 type Severity = 'success' | 'warning' | 'info' | 'error';
@@ -17,26 +24,17 @@ interface DotSnackbarProps {
   removeMessage: (id: string) => void;
 }
 
-const generateId = (): number => {
-  const date = new Date().getTime().toString();
-  return date.split('').reduce((acc: number, cur: string): number => {
-    const index = Math.floor(Math.random() * 13);
-    const value = date[index];
-    return (acc = value.charCodeAt(0) + (acc << 6) + (acc << 16) - acc);
-  }, 0);
-};
-
-const DotSnackbarContext = React.createContext<DotSnackbarProps>({
+const DotSnackbarContext = createContext<DotSnackbarProps>({
   alerts: [],
   enqueueMessage: (message: string, severity: Severity) => null,
   removeMessage: (id: string) => null,
 });
 
 export const DotSnackbarProvider = ({ children }: DotSnackbarProviderProps) => {
-  const [alerts, setAlerts] = React.useState<typeof initialState>([]);
+  const [alerts, setAlerts] = useState<typeof initialState>([]);
 
   function enqueueMessage(message: string, severity: Severity): void {
-    const id = generateId().toString();
+    const id = CreateUUID();
     const queue = { id, message, severity, open: true };
 
     setAlerts((prevState) => {
@@ -58,7 +56,7 @@ export const DotSnackbarProvider = ({ children }: DotSnackbarProviderProps) => {
     removeMessage,
   };
 
-  const memoizedValues = React.useMemo(() => DotSnackbarValues, [alerts]);
+  const memoizedValues = useMemo(() => DotSnackbarValues, [alerts]);
 
   return (
     <DotSnackbarContext.Provider value={memoizedValues}>
@@ -69,5 +67,5 @@ export const DotSnackbarProvider = ({ children }: DotSnackbarProviderProps) => {
 };
 
 export const useDotSnackbarContext = () => {
-  return React.useContext(DotSnackbarContext);
+  return useContext(DotSnackbarContext);
 };
