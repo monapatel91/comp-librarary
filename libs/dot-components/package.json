@@ -26,7 +26,7 @@
   },
   "author": "Keith Stewart",
   "dependencies": {
-    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/lab": "4.0.0-alpha.56",
     "@material-ui/core": "4.11.4",
     "styled-components": "^5.2.1"
   },
@@ -34,7 +34,6 @@
     "react": ">16.13.1"
   },
   "resolutions": {
-    "@material-ui/lab": "4.0.0-alpha.58",
     "@material-ui/system": "4.11.3"
   }
 }
