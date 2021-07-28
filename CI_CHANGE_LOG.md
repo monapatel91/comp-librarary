@@ -1,5 +1,43 @@
 # Changelog
 
+## [Unreleased](https://github.com/digital-ai/dot-components/tree/HEAD)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.3...HEAD)
+
+**Features:**
+
+- S-76930: New Component: DotSnackbar [\#607](https://github.com/digital-ai/dot-components/pull/607) ([coryell1287](https://github.com/coryell1287))
+
+**Merged pull requests:**
+
+- S-76627: new snackbar provider [\#616](https://github.com/digital-ai/dot-components/pull/616) ([TheKeithStewart](https://github.com/TheKeithStewart))
+- S-76905 split button component back to experimental [\#614](https://github.com/digital-ai/dot-components/pull/614) ([CWSites](https://github.com/CWSites))
+- S-76905: update SplitButton design and functionality [\#613](https://github.com/digital-ai/dot-components/pull/613) ([CWSites](https://github.com/CWSites))
+- S-77681: setup test-coverage for reporting on dot-components [\#610](https://github.com/digital-ai/dot-components/pull/610) ([CWSites](https://github.com/CWSites))
+- S-76838: address Sonarcloud code issues [\#608](https://github.com/digital-ai/dot-components/pull/608) ([CWSites](https://github.com/CWSites))
+- S-76918: DialogButtonProps updated with more available BaseButtonProps [\#605](https://github.com/digital-ai/dot-components/pull/605) ([CWSites](https://github.com/CWSites))
+- D-18306: lock material UI to `4.11.x` [\#604](https://github.com/digital-ai/dot-components/pull/604) ([CWSites](https://github.com/CWSites))
+- S-77317: Add 'height' prop to DotDrawer component [\#603](https://github.com/digital-ai/dot-components/pull/603) ([selsemore](https://github.com/selsemore))
+- Update GitHub prerelease [\#599](https://github.com/digital-ai/dot-components/pull/599) ([CWSites](https://github.com/CWSites))
+- S-76917: remove progressionBoard styles from theme provider [\#597](https://github.com/digital-ai/dot-components/pull/597) ([CWSites](https://github.com/CWSites))
+
+## [1.0.3](https://github.com/digital-ai/dot-components/tree/1.0.3) (07/27/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.2...1.0.3)
+
+**Features:**
+
+- Add height property to DotDrawer component [\#600](https://github.com/digital-ai/dot-components/issues/600)
+- Address theme overrides in consuming applications. [\#578](https://github.com/digital-ai/dot-components/issues/578)
+
+**Fixed bugs:**
+
+- Not all button props are passed to the buttons in a Dialog [\#571](https://github.com/digital-ai/dot-components/issues/571)
+
+**Merged pull requests:**
+
+- Deploying latest to master [\#615](https://github.com/digital-ai/dot-components/pull/615) ([CWSites](https://github.com/CWSites))
+
 ## [1.0.2](https://github.com/digital-ai/dot-components/tree/1.0.2) (07/08/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.1...1.0.2)
@@ -82,13 +120,18 @@
 
 ## [1.0.0](https://github.com/digital-ai/dot-components/tree/1.0.0) (06/15/2021)
 
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/alpha-v0.0.1...1.0.0)
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.1-alpha.0...1.0.0)
+
+**Features:**
+
+- Add example to README.md Theme Provider section for using theme colors and spacing [\#553](https://github.com/digital-ai/dot-components/issues/553)
 
 **Fixed bugs:**
 
 - Footer truncated from Sidebar [\#569](https://github.com/digital-ai/dot-components/issues/569)
 - DotPill component causes error message in console [\#566](https://github.com/digital-ai/dot-components/issues/566)
 - DotEmptyState is not handling image correctly [\#562](https://github.com/digital-ai/dot-components/issues/562)
+- Build Issues [\#527](https://github.com/digital-ai/dot-components/issues/527)
 - Column Header not respecting configured width [\#534](https://github.com/digital-ai/dot-components/issues/534)
 
 **Closed issues:**
@@ -103,18 +146,6 @@
 - Deploy Latest `master` [\#558](https://github.com/digital-ai/dot-components/pull/558) ([CWSites](https://github.com/CWSites))
 - Issue \#553: Add README.md example for using theme colors and spacing [\#554](https://github.com/digital-ai/dot-components/pull/554) ([selsemore](https://github.com/selsemore))
 - Issue \#527: resolve various issues [\#529](https://github.com/digital-ai/dot-components/pull/529) ([CWSites](https://github.com/CWSites))
-
-## [alpha-v0.0.1](https://github.com/digital-ai/dot-components/tree/alpha-v0.0.1) (05/20/2021)
-
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.1-alpha.0...alpha-v0.0.1)
-
-**Features:**
-
-- Add example to README.md Theme Provider section for using theme colors and spacing [\#553](https://github.com/digital-ai/dot-components/issues/553)
-
-**Fixed bugs:**
-
-- Build Issues [\#527](https://github.com/digital-ai/dot-components/issues/527)
 
 ## [v0.0.1-alpha.0](https://github.com/digital-ai/dot-components/tree/v0.0.1-alpha.0) (05/19/2021)
 
@@ -357,7 +388,7 @@
 
 ## [v0.0.0-alpha.24](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.24) (04/27/2021)
 
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/0.0.0-alpha.0.0.1-s73861automateversioning.995.d3186ab...v0.0.0-alpha.24)
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/0.0.0-alpha.21...v0.0.0-alpha.24)
 
 **Fixed bugs:**
 
@@ -365,6 +396,10 @@
 - `items` listed on props for AppToolbar [\#480](https://github.com/digital-ai/dot-components/issues/480)
 - Progression board split workitems aren't showing as such [\#475](https://github.com/digital-ai/dot-components/issues/475)
 - DotIcon takes up a row by default [\#460](https://github.com/digital-ai/dot-components/issues/460)
+
+**Closed issues:**
+
+- Component UX Review: Accordion [\#425](https://github.com/digital-ai/dot-components/issues/425)
 
 **Merged pull requests:**
 
