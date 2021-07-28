@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/digital-ai/dot-components/tree/1.0.5) (07/28/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.4...1.0.5)
+
+**Merged pull requests:**
+
+- Merging develop onto master [\#621](https://github.com/digital-ai/dot-components/pull/621) ([TheKeithStewart](https://github.com/TheKeithStewart))
+
 ## [1.0.4](https://github.com/digital-ai/dot-components/tree/1.0.4) (07/28/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.3...1.0.4)
@@ -39,6 +47,7 @@
 
 **Merged pull requests:**
 
+- pin material-ui lab version [\#620](https://github.com/digital-ai/dot-components/pull/620) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Deploying latest to master [\#615](https://github.com/digital-ai/dot-components/pull/615) ([CWSites](https://github.com/CWSites))
 
 ## [1.0.2](https://github.com/digital-ai/dot-components/tree/1.0.2) (07/08/2021)
