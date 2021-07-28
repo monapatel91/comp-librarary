@@ -6,7 +6,7 @@ on:
     paths:
       - libs/dot-components/src/**
       - libs/dot-components/package.json
-      # - .github/workflows/**
+      - .github/workflows/**
     branches:
       - master
 
