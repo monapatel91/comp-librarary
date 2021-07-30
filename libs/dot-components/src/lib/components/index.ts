@@ -1,5 +1,6 @@
 export * from './accordion/Accordion';
 export * from './action-toolbar/ActionToolbar';
+export * from './alert-banner/AlertBanner';
 export * from './app-toolbar/AppToolbar';
 export * from './auto-complete/AutoComplete';
 export * from './avatar/Avatar';
