@@ -21,6 +21,10 @@ describe('dot-components: Sidebar component', () => {
         .and('have.css', 'overflow-y', 'auto');
     });
 
+    it('nav item', () => {
+      cy.get('.dot-list-item').should('have.css', 'height', '44px');
+    });
+
     it('nav divider', () => {
       cy.get('hr.MuiDivider-root')
         .should('have.css', 'margin-top', '8px')
