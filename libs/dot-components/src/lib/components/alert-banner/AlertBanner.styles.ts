@@ -10,7 +10,6 @@ export const StyledAlertBanner = styled(Alert)<AlertBannerProps>`
             padding: ${theme.spacing(0, 2)};
             .MuiAlert-message{
                padding: ${theme.spacing(2, 0)};
-                
             }
             &.MuiAlert-standardSuccess {
                 .MuiAlert-icon, .dot-typography{

@@ -7,13 +7,11 @@ import { DotTypography } from '../typography/Typography'
 
 type AlertBannerSeverity = 'error' | 'info' | 'success' | 'warning';
 
-
 export interface AlertBannerProps extends CommonProps {
-  action: ReactNode,
+  action?: ReactNode,
   children: ReactNode | string;
   onClose?: (event: MouseEvent) => void;
   severity: AlertBannerSeverity,
-
 }
 
 export const DotAlertBanner = ({
