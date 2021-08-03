@@ -56,6 +56,10 @@ export const StyledSidebar = styled.aside`
         overflow-x: hidden;
         overflow-y: auto;
 
+        .dot-list-item {
+          height: 44px;
+        }
+
         li.dot-list-item .dot-typography {
           white-space: nowrap;
         }
