@@ -1,5 +1,5 @@
 describe('dot-components: Alert Banner component', () => {
-  before(() => cy.visit('/iframe.html?id=components-alertbanner--default'));
+  before(() => cy.visit('/iframe.html?id=experimental-alertbanner--default'));
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-alert-banner');
   });
@@ -8,7 +8,7 @@ describe('dot-components: Alert Banner component', () => {
       cy.get('.dot-alert-banner .MuiAlert-icon').should(
         'have.css',
         'padding',
-        '12px 0px'
+        '14px 0px'
       );
     });
     it('alert text should have padding', () => {
@@ -26,4 +26,3 @@ describe('dot-components: Alert Banner component', () => {
     });
   });
 });
-
