@@ -1,6 +1,10 @@
 import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
+import {
+  inputLabelPlacement,
+  inputSizeOptions,
+} from '../input-form-fields/InputFormFields.propTypes';
 import { DotRadioGroup, RadioGroupProps } from './RadioGroup';
 import { DotIcon } from '../icon/Icon';
 
@@ -27,13 +31,13 @@ describe('DotRadioGroup', () => {
       id: 'radio-group-id',
       inputRef: inputRef,
       label: 'My Button Group',
-      labelPlacement: 'end',
+      labelPlacement: 'end' as inputLabelPlacement,
       name: 'radio-group',
       onChange: onChange,
       options: radioButtons,
       required: true,
       row: true,
-      size: 'medium',
+      size: 'medium' as inputSizeOptions,
       startIcon: <DotIcon iconId="save" />,
     };
     const radioGroupProps: RadioGroupProps = props;

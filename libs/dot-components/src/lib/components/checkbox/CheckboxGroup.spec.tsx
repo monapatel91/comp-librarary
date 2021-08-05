@@ -1,6 +1,10 @@
 import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
+import {
+  inputLabelPlacement,
+  inputSizeOptions,
+} from '../input-form-fields/InputFormFields.propTypes';
 import { DotCheckboxGroup, CheckboxGroupProps } from './CheckboxGroup';
 import { DotIcon } from '../icon/Icon';
 
@@ -31,7 +35,7 @@ describe('DotCheckbox', () => {
       id: 'checkbox-group-id',
       inputRef: inputRef,
       label: 'My Button Group',
-      labelPlacement: 'end',
+      labelPlacement: 'end' as inputLabelPlacement,
       name: 'checkbox-group',
       onChange: onChange,
       options: options,
@@ -39,7 +43,7 @@ describe('DotCheckbox', () => {
       row: true,
       selectAllLabel: 'select all',
       showSelectAll: true,
-      size: 'medium',
+      size: 'medium' as inputSizeOptions,
       startIcon: <DotIcon iconId="save" />,
     };
     const checkboxGroupProps: CheckboxGroupProps = props;

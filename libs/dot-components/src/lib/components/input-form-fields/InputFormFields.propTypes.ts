@@ -1,8 +1,8 @@
 import { ChangeEvent, ReactNode, Ref, KeyboardEvent } from 'react';
 import { CommonProps } from '../CommonProps';
 
-export type inputSizeOptions = 'small' | 'medium';
 export type inputLabelPlacement = 'bottom' | 'end' | 'start';
+export type inputSizeOptions = 'small' | 'medium';
 
 export interface CommonFormFieldProps extends CommonProps {
   /** accessibility label */
