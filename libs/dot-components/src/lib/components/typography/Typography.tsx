@@ -45,6 +45,7 @@ export const DotTypography = ({
     <Typography
       classes={{ root: rootClasses }}
       component={component}
+      data-testid={dataTestId}
       noWrap={noWrap}
       variant={variant}
     >
