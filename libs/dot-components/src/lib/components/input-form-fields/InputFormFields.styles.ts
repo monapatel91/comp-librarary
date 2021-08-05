@@ -18,6 +18,12 @@ export const StyledAdornment = styled(InputAdornment)`
 export const StyledTextField = styled(TextField)`
   ${({ theme, InputProps }) => css`
     &.${rootClassName} {
+      .MuiInputBase-root {
+        background: ${
+          theme.palette.product === 'agility' && theme.palette.layer.n0
+        }
+      }
+
       .MuiOutlinedInput-input {
         padding: ${
           InputProps.startAdornment ? `18px 12px 18px 0px` : `18px 12px`

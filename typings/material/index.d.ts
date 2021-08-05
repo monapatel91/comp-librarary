@@ -5,12 +5,7 @@ declare module '@material-ui/core/styles/createPalette' {
     avatarColors: AvatarPaletteColorOptions;
     icon: IconPaletteColorOptions;
     layer: LayerPaletteColorOptions;
-  }
-
-  interface Palette {
-    avatarColors: AvatarPaletteColorOptions;
-    icon: IconPaletteColorOptions;
-    layer: LayerPaletteColorOptions;
+    product?: 'agility';
   }
 
   interface AvatarPaletteColorOptions {
