@@ -23,7 +23,11 @@ export const StyledTextField = styled(TextField)`
           theme.palette.product === 'agility' && theme.palette.layer.n0
         }
       }
-
+      .MuiOutlinedInput-notchedOutline {
+        border-color: ${
+          theme.palette.product === 'agility' && theme.palette.layer.n100
+        }
+      }
       .MuiOutlinedInput-input {
         padding: ${
           InputProps.startAdornment ? `18px 12px 18px 0px` : `18px 12px`
@@ -38,6 +42,11 @@ export const StyledTextField = styled(TextField)`
       }
     }
     &.${rootSelectClassName}, &.${rootClassName} {
+      select.dot-select {
+        background: ${
+          theme.palette.product === 'agility' && theme.palette.layer.n0
+        };
+      }
       .MuiSelect-select:focus {
         background-color: transparent;
       }

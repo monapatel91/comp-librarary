@@ -1,5 +1,6 @@
 import { Button, darken } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { agilityGreen } from '../../theme-provider/colors/light-theme-colors';
 
 export const rootClassName = 'dot-button';
 
@@ -9,7 +10,8 @@ export const StyledButton = styled(Button)`
       margin: ${theme.spacing(0.5)}px;
 
       &.MuiButton-containedPrimary {
-        background-color: ${theme.palette.product === 'agility' && '#79B522'};
+        background-color: ${theme.palette.product === 'agility' &&
+        agilityGreen};
       }
 
       &.MuiButton-containedSecondary {
