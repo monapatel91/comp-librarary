@@ -14,7 +14,9 @@ export const StyledAvatar = styled(Avatar)<AvatarProps>`
   ${({ theme }) => css`
     &.MuiAvatar-root {
       background-color: ${({ color }: AvatarProps) => {
-        return color && theme.palette.avatarColors[color]
+        return theme.palette.product === 'agility' && color === 'default'
+          ? theme.palette.layer.n0
+          : color && theme.palette.avatarColors[color]
           ? theme.palette.avatarColors[color].backgroundColor
           : theme.palette.avatarColors['default'].backgroundColor;
       }};
@@ -22,7 +24,9 @@ export const StyledAvatar = styled(Avatar)<AvatarProps>`
       .dot-i,
       .dot-typography {
         color: ${({ color }: AvatarProps) => {
-          return color && theme.palette.avatarColors[color]
+          return theme.palette.product === 'agility' && color === 'default'
+            ? theme.palette.layer.n700
+            : color && theme.palette.avatarColors[color]
             ? theme.palette.avatarColors[color].color
             : theme.palette.avatarColors['default'].color;
         }};

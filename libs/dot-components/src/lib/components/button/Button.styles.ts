@@ -8,6 +8,10 @@ export const StyledButton = styled(Button)`
     &.${rootClassName} {
       margin: ${theme.spacing(0.5)}px;
 
+      &.MuiButton-containedPrimary {
+        background-color: ${theme.palette.product === 'agility' && '#79B522'};
+      }
+
       &.MuiButton-containedSecondary {
         background-color: ${theme.palette.error.main};
 

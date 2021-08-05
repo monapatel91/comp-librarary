@@ -9,9 +9,12 @@ export const actionsClassName = 'dot-accordion-actions';
 export const StyledAccordion = styled(Accordion)`
   ${({ theme }) => css`
     &.${rootClassName} {
+      background: ${theme.palette.product === 'agility' &&
+      theme.palette.layer.n100};
+
       .${summaryClassName} {
-        display: flex;
         align-items: center;
+        display: flex;
 
         .MuiAccordionSummary-content {
           width: calc(100% - ${theme.spacing(5)}px);

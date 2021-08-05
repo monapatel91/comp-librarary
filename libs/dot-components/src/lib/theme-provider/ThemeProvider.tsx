@@ -153,6 +153,7 @@ export const agilityLightTheme = createMuiTheme({
   },
   palette: {
     type: 'light',
+    product: 'agility',
     avatarColors: {
       ...avatarColors,
     },
@@ -197,6 +198,7 @@ export const agilityDarkTheme = createMuiTheme({
   },
   palette: {
     type: 'dark',
+    product: 'agility',
     avatarColors: {
       ...avatarColors,
     },
