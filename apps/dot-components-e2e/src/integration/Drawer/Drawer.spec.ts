@@ -36,3 +36,17 @@ describe('dot-components: Drawer component', () => {
     });
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit('/iframe.html?id=components-drawer--default&theme=agility-dark')
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('.dot-drawer-paper').should(
+      'have.css',
+      'background-color',
+      'rgb(20, 38, 46)'
+    );
+  });
+});

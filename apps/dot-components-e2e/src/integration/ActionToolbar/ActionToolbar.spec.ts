@@ -28,3 +28,19 @@ describe('dot-components: ActionToolbar component', () => {
     });
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit(
+      '/iframe.html?id=components-actiontoolbar--default&theme=agility-dark'
+    )
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('div.dot-action-toolbar').should(
+      'have.css',
+      'border-bottom-color',
+      'rgb(36, 68, 81)'
+    );
+  });
+});

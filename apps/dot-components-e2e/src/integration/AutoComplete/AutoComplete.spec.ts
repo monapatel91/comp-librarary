@@ -33,3 +33,19 @@ describe('dot-components: Auto Complete component', () => {
     });
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit(
+      '/iframe.html?id=components-auto-complete--default&theme=agility-dark'
+    )
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('.dot-text-field').should(
+      'have.css',
+      'background-color',
+      'rgba(0, 0, 0, 0)'
+    );
+  });
+});

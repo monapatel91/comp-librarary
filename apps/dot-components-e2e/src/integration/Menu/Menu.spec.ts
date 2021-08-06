@@ -20,3 +20,17 @@ describe('dot-components: Menu component', () => {
     });
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit('/iframe.html?id=components-menu--default&theme=agility-dark')
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('.dot-menu ul.dot-ul').should(
+      'have.css',
+      'background-color',
+      'rgb(36, 68, 81)'
+    );
+  });
+});

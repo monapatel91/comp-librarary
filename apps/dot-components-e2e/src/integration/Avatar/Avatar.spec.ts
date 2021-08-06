@@ -50,3 +50,22 @@ describe('dot-components: Avatar component', () => {
     });
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit('/iframe.html?id=components-avatar--default&theme=agility-dark')
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('div.dot-avatar').should(
+      'have.css',
+      'background-color',
+      'rgb(5, 10, 10)'
+    );
+    cy.get('h3.dot-typography').should(
+      'have.css',
+      'color',
+      'rgb(255, 255, 255)'
+    );
+  });
+});
