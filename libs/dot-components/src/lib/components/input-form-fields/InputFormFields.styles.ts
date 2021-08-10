@@ -42,6 +42,11 @@ export const StyledTextField = styled(TextField)`
       }
     }
     &.${rootSelectClassName}, &.${rootClassName} {
+      .MuiFormLabel-root.Mui-focused {
+        color: ${
+          theme.palette.product === 'agility' && theme.palette.layer.n700
+        }
+      }
       select.dot-select {
         background: ${
           theme.palette.product === 'agility' && theme.palette.layer.n0
