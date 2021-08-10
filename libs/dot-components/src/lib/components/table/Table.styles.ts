@@ -36,7 +36,7 @@ export const StyledTableContainer = styled(TableContainer)`
 
       tr:hover {
         background-color: ${theme.palette.product === 'agility'
-          ? theme.palette.layer.n100
+          ? theme.palette.agilityInterface.fixedCol
           : theme.palette.grey[50]};
       }
 
@@ -56,7 +56,7 @@ export const StyledTableContainer = styled(TableContainer)`
 
         .Mui-selected:not(:hover) {
           background-color: ${theme.palette.product === 'agility'
-            ? theme.palette.layer.n100
+            ? theme.palette.agilityInterface.fixedCol
             : theme.palette.grey[200]};
         }
 

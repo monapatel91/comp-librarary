@@ -157,6 +157,9 @@ export const agilityLightTheme = createMuiTheme({
     avatarColors: {
       ...avatarColors,
     },
+    background: {
+      default: '#E6F0F4',
+    },
     icon: {
       checkOutline: '#1E88E5',
       emphasized: '#C6F1FF',
@@ -188,6 +191,7 @@ export const agilityLightTheme = createMuiTheme({
       cardBg: '#FFF',
       fixedCol: '#E6F0F4',
       helpColor: '#FF5722',
+      menuBg: '#FFF',
       panelBgActive: '#FFF',
       panelBgDefault: '#9FC6D5',
       panelTextActive: '#244451',
@@ -216,7 +220,7 @@ export const agilityDarkTheme = createMuiTheme({
       ...avatarColors,
     },
     background: {
-      default: '#14262E',
+      default: '#050A0A',
     },
     icon: {
       checkOutline: '#42A5F5',
@@ -249,6 +253,7 @@ export const agilityDarkTheme = createMuiTheme({
       cardBg: '#336275',
       fixedCol: '#1C3540',
       helpColor: '#FF5722',
+      menuBg: '#244451',
       panelBgActive: '#7CB0C5',
       panelBgDefault: '#14272E',
       panelTextActive: '#14272E',
