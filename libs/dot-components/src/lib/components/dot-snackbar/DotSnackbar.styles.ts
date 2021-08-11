@@ -13,27 +13,40 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
     .MuiSvgIcon-root {
       color: #fff;
     }
+    .MuiAlert-icon {
+      padding: ${theme.spacing(1.375, 0)};
+    }
+    .MuiIconButton-label > .MuiSvgIcon-fontSizeSmall{
+      font-size: 16px;
+      height: 20px;
+      width: 20px;
+    }
     .MuiAlert-message {
-        color: #fff;
+      padding: ${theme.spacing(1.625, 0)};
+    }
+    &.MuiSnackbar-anchorOriginTopRight{
+      top: auto;
+      z-index: 999;
+    }
+    .MuiAlert-root {
+      &.MuiAlert-standardInfo{
+        background-color: ${theme.palette.primary[500]};
       }
-      .MuiSnackbar-anchorOriginTopRight{
-          top: 112px;
-          z-index: 999;
-        }
-      .MuiAlert-root {
-        max-width: 500px;
-        background-color: ${(props: StyledProps) =>
-          theme.palette[props.severity].main};
-        color: #fff;
-        top: 112px;
-        z-index: 999;
-        position: relative;
-      .MuiButtonBase-root.MuiIconButton-sizeSmall {
-        .MuiSvgIcon-fontSizeSmall {
-          font-size: 16px;
+      &.MuiAlert-standardWarning{
+        color: ${theme.palette.grey[900]};
+        .MuiSvgIcon-root{
+          color: ${theme.palette.grey[900]};
         }
       }
-      @media (min-width: 720px) {
+      max-width: 500px;
+      min-width: 344px;
+      background-color: ${(props: StyledProps) =>
+        theme.palette[props.severity].main};
+      color: #fff;
+      z-index: 999;
+      position: relative;
+      margin-top: ${theme.spacing(1)}px;
+        @media (min-width: 720px) {
         .MuiAlert-root {
           top: 112px;
           position: relative;

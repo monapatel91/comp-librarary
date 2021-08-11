@@ -12,6 +12,7 @@ export default {
     open: { defaultValue: true },
     autoHideDuration: { defaultValue: 10000 },
     onClose: { action: 'clicked' },
+    width: { defaultValue: '450px' },
   },
 } as Meta;
 

@@ -10,6 +10,7 @@ import {
   DotInputText,
   DotRadioGroup,
   DotSwitch,
+  DotSnackbar,
 } from '@digital-ai/dot-components';
 
 interface FormState {
@@ -42,6 +43,7 @@ export const DemoForm = () => {
   const [formValues, setFormValues] = useState<FormState>(initialFormState);
   const [errors, updateErrors] = useState<ErrorState>({});
   const [message, setMessage] = useState(null);
+  const [showSnackbar, setShowSnackbar] = useState(false);
 
   const {
     firstName,
@@ -77,9 +79,10 @@ export const DemoForm = () => {
 
     if (!hasError) {
       const valOfForm = formValues;
-      setMessage(
-        `Great! Successfully Submitted form! ${JSON.stringify(valOfForm)}`
-      );
+      setShowSnackbar(true);
+      // setMessage(
+      //   `Great! Successfully Submitted form! ${JSON.stringify(valOfForm)}`
+      // );
       updateErrors({});
       resetForm();
     } else {
@@ -109,6 +112,9 @@ export const DemoForm = () => {
   return (
     <>
       {message && <DotCard>{message}</DotCard>}
+      <DotSnackbar severity="success" open={showSnackbar}>
+        Great! Successfully Submitted form!
+      </DotSnackbar>
       <DotForm onSubmit={handleOnSubmit}>
         <>
           <DotInputText
