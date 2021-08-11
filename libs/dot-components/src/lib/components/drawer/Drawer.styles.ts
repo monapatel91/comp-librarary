@@ -13,11 +13,13 @@ export const StyledDrawer = styled(Drawer)<DrawerProps>`
     }
 
     .dot-drawer-paper {
+      background-color: ${theme.palette.product === 'agility' &&
+      theme.palette.layer.n50};
       height: ${({ height, anchor }: DrawerProps) =>
         anchor === 'left' || anchor === 'right' ? '100%' : height};
+      padding: ${theme.spacing(2)}px;
       width: ${({ width, anchor }: DrawerProps) =>
         anchor === 'bottom' || anchor === 'top' ? '100%' : width};
-      padding: ${theme.spacing(2)}px;
     }
   `}
 `;

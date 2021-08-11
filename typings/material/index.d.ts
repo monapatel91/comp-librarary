@@ -2,15 +2,11 @@ import '@material-ui/core/styles/createPalette';
 
 declare module '@material-ui/core/styles/createPalette' {
   interface PaletteOptions {
+    agilityInterface?: AgilityInterfaceOptions;
     avatarColors: AvatarPaletteColorOptions;
     icon: IconPaletteColorOptions;
     layer: LayerPaletteColorOptions;
-  }
-
-  interface Palette {
-    avatarColors: AvatarPaletteColorOptions;
-    icon: IconPaletteColorOptions;
-    layer: LayerPaletteColorOptions;
+    product?: 'agility';
   }
 
   interface AvatarPaletteColorOptions {
@@ -28,6 +24,21 @@ declare module '@material-ui/core/styles/createPalette' {
   interface AvatarPaletteColorOption {
     backgroundColor: string;
     color: string;
+  }
+
+  interface AgilityInterfaceOptions {
+    activeBg: string;
+    activeCardBg: string;
+    cardBg: string;
+    fixedCol: string;
+    helpColor: string;
+    menuBg: string;
+    panelBgActive: string;
+    panelBgDefault: string;
+    panelTextActive: string;
+    panelTextDefault: string;
+    projectNavBg: string;
+    warnCardBg: string;
   }
 
   interface LayerPaletteColorOptions {

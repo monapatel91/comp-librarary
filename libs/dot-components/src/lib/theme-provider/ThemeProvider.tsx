@@ -153,8 +153,12 @@ export const agilityLightTheme = createMuiTheme({
   },
   palette: {
     type: 'light',
+    product: 'agility',
     avatarColors: {
       ...avatarColors,
+    },
+    background: {
+      default: '#E6F0F4',
     },
     icon: {
       checkOutline: '#1E88E5',
@@ -181,6 +185,20 @@ export const agilityLightTheme = createMuiTheme({
       n800: '#14262E',
       n900: '#000',
     },
+    agilityInterface: {
+      activeBg: 'rgba(121, 181, 34, 0.2)',
+      activeCardBg: '#EDF9DD',
+      cardBg: '#FFF',
+      fixedCol: '#E6F0F4',
+      helpColor: '#FF5722',
+      menuBg: '#FFF',
+      panelBgActive: '#FFF',
+      panelBgDefault: '#9FC6D5',
+      panelTextActive: '#244451',
+      panelTextDefault: '#244451',
+      projectNavBg: 'rgba(67, 128, 152, 0.2)',
+      warnCardBg: '#FBE9E7',
+    },
   },
   typography: {
     ...typographyOptions,
@@ -197,11 +215,12 @@ export const agilityDarkTheme = createMuiTheme({
   },
   palette: {
     type: 'dark',
+    product: 'agility',
     avatarColors: {
       ...avatarColors,
     },
     background: {
-      default: '#14262E',
+      default: '#050A0A',
     },
     icon: {
       checkOutline: '#42A5F5',
@@ -227,6 +246,20 @@ export const agilityDarkTheme = createMuiTheme({
       n700: lightColors.n0, // text-0
       n800: lightColors.n0,
       n900: lightColors.n0,
+    },
+    agilityInterface: {
+      activeBg: 'rgba(121, 181, 34, 0.2)',
+      activeCardBg: '#405F12',
+      cardBg: '#336275',
+      fixedCol: '#1C3540',
+      helpColor: '#FF5722',
+      menuBg: '#244451',
+      panelBgActive: '#7CB0C5',
+      panelBgDefault: '#14272E',
+      panelTextActive: '#14272E',
+      panelTextDefault: '#9FC6D5',
+      projectNavBg: 'rgba(67, 128, 152, 0.2)',
+      warnCardBg: '#7A4637',
     },
   },
   typography: {

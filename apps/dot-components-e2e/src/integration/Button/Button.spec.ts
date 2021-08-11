@@ -31,3 +31,17 @@ describe('dot-components: Button component', () => {
     });
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit('/iframe.html?id=components-button--default&theme=agility-dark')
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('button.dot-button').should(
+      'have.css',
+      'background-color',
+      'rgb(121, 181, 34)'
+    );
+  });
+});

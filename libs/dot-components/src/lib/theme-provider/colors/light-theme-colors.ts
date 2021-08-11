@@ -126,3 +126,5 @@ export const pA100 = '#ff9cd1';
 export const pA200 = '#ff69b9';
 export const pA400 = '#ff36a2';
 export const pA700 = '#ff1d96';
+
+export const agilityGreen = '#79B522';

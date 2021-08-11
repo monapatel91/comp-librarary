@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../testing-utils';
-import { DotSkeleton, SkeletonProps } from './Skeleton';
+import { DotSkeleton, SkeletonProps, SkeletonVariantType } from './Skeleton';
 
 describe('Skeleton', () => {
   it('should have unchanged API', () => {
@@ -8,14 +8,9 @@ describe('Skeleton', () => {
       children: <div></div>,
       height: 50,
       width: 50,
-      variant: 'rectangular',
+      variant: 'rectangular' as SkeletonVariantType,
     };
-    const skeletonProps: SkeletonProps = {
-      children: <div></div>,
-      height: 50,
-      width: 50,
-      variant: 'rectangular',
-    };
+    const skeletonProps: SkeletonProps = props;
     expect(skeletonProps).toEqual(props);
   });
 
