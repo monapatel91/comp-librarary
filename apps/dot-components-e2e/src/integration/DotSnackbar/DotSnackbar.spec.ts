@@ -24,7 +24,7 @@ describe('dot-components: Snackbar component', () => {
     cy.get('.MuiSvgIcon-fontSizeSmall').should('have.css', 'font-size', '16px');
   });
 
-  it('should have a top positioning of 112px', () => {
-    cy.get('.MuiAlert-root').should('have.css', 'top', '112px');
+  it('should be placed 8px below actionbar', () => {
+    cy.get('.MuiAlert-root').should('have.css', 'margin-top', '8px');
   });
 });
