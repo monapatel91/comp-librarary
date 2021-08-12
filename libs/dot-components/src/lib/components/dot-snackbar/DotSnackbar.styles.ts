@@ -23,9 +23,10 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
     }
     .MuiAlert-message {
       padding: ${theme.spacing(1.625, 0)};
+      word-break: break-all;
     }
     &.MuiSnackbar-anchorOriginTopRight{
-      top: auto;
+      top: 0px;
       z-index: 999;
     }
     .MuiAlert-root {
@@ -45,7 +46,7 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
       color: #fff;
       z-index: 999;
       position: relative;
-      margin-top: ${theme.spacing(1)}px;
+      margin-top: ${theme.spacing(13.5)}px;
         @media (min-width: 720px) {
         .MuiAlert-root {
           top: 112px;
