@@ -6,7 +6,6 @@ import {
   DotSidebar,
   ListItemProps,
   IconButtonProps,
-  DotActionToolbar,
 } from '@digital-ai/dot-components';
 import { Routes } from '../app/routes/Routes';
 
@@ -97,9 +96,6 @@ export const App = () => {
           title="FedEx"
         />
         <section className="main-content">
-          <DotActionToolbar>
-            <h1>Action bar</h1>
-          </DotActionToolbar>
           <Routes />
         </section>
       </main>

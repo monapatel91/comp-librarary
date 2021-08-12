@@ -10,6 +10,8 @@ import {
   DotRadioGroup,
   DotSwitch,
   useDotSnackbarContext,
+  DotActionToolbar,
+  DotBreadcrumbs,
 } from '@digital-ai/dot-components';
 
 interface FormState {
@@ -110,117 +112,125 @@ export const DemoForm = () => {
 
   return (
     <>
-      <DotForm onSubmit={handleOnSubmit}>
-        <>
-          <DotInputText
-            helperText={
-              errors.firstName ? errors.firstName : 'Your First Name Goes Here'
-            }
-            id="firstName"
-            label="First Name"
-            name="firstName"
-            required
-            size="small"
-            value={firstName}
-            onChange={handleChange}
-            error={errors.firstName && errors.firstName !== ''}
-          />
+      <DotActionToolbar>
+        <DotBreadcrumbs items={[{ text: 'Demo Form' }]} />
+      </DotActionToolbar>
 
-          <DotInputText
-            helperText={errors.lastName}
-            id="lastName"
-            label="Last Name"
-            name="lastName"
-            required
-            size="small"
-            value={lastName}
-            onChange={handleChange}
-            error={errors.lastName && errors.lastName !== ''}
-          />
+      <div style={{ margin: 16 }}>
+        <DotForm onSubmit={handleOnSubmit}>
+          <>
+            <DotInputText
+              helperText={
+                errors.firstName
+                  ? errors.firstName
+                  : 'Your First Name Goes Here'
+              }
+              id="firstName"
+              label="First Name"
+              name="firstName"
+              required
+              size="small"
+              value={firstName}
+              onChange={handleChange}
+              error={errors.firstName && errors.firstName !== ''}
+            />
 
-          <DotInputSelect
-            id="devType"
-            label="Dev Type"
-            name="devType"
-            required
-            size="small"
-            value={devType}
-            onChange={handleChange}
-            options={['', 'React Dev', 'Angular Dev', 'Other Dev']}
-            error={errors.devType && errors.devType !== ''}
-          />
+            <DotInputText
+              helperText={errors.lastName}
+              id="lastName"
+              label="Last Name"
+              name="lastName"
+              required
+              size="small"
+              value={lastName}
+              onChange={handleChange}
+              error={errors.lastName && errors.lastName !== ''}
+            />
 
-          <DotRadioGroup
-            id="superHero"
-            name="superHero"
-            value={superHero}
-            groupLabel="Select Your Favorite Superhero"
-            required
-            onChange={handleChange}
-            options={[
-              { label: 'None', value: 'None' },
-              { label: 'Batman', value: 'Batman' },
-              { label: 'Superman', value: 'Superman' },
-              { label: 'Spiderman', value: 'Spiderman' },
-            ]}
-            error={errors.superHero && errors.superHero !== ''}
-          />
+            <DotInputSelect
+              id="devType"
+              label="Dev Type"
+              name="devType"
+              required
+              size="small"
+              value={devType}
+              onChange={handleChange}
+              options={['', 'React Dev', 'Angular Dev', 'Other Dev']}
+              error={errors.devType && errors.devType !== ''}
+            />
 
-          <DotCheckboxGroup
-            defaultValues={favTrait}
-            groupLabel="Select Reason:"
-            required
-            onChange={(_event, values) => handleCheckboxChange(values)}
-            options={[
-              { label: 'None', value: 'None' },
-              { label: 'Coolest Outfit', value: 'Coolest Outfit' },
-              { label: 'Strongest', value: 'Strongest' },
-              { label: 'Best Superpower', value: 'Best Superpower' },
-              { label: 'Bravest', value: 'Bravest' },
-            ]}
-            error={errors.favTrait && errors.favTrait !== ''}
-          />
+            <DotRadioGroup
+              id="superHero"
+              name="superHero"
+              value={superHero}
+              groupLabel="Select Your Favorite Superhero"
+              required
+              onChange={handleChange}
+              options={[
+                { label: 'None', value: 'None' },
+                { label: 'Batman', value: 'Batman' },
+                { label: 'Superman', value: 'Superman' },
+                { label: 'Spiderman', value: 'Spiderman' },
+              ]}
+              error={errors.superHero && errors.superHero !== ''}
+            />
 
-          <DotSwitch
-            checked={childhoodHero}
-            label="Do you watch their cartoon?"
-            onChange={(event) =>
-              setFormValues((formValues) => ({
-                ...formValues,
-                childhoodHero: event.target.checked,
-              }))
-            }
-          />
+            <DotCheckboxGroup
+              defaultValues={favTrait}
+              groupLabel="Select Reason:"
+              required
+              onChange={(_event, values) => handleCheckboxChange(values)}
+              options={[
+                { label: 'None', value: 'None' },
+                { label: 'Coolest Outfit', value: 'Coolest Outfit' },
+                { label: 'Strongest', value: 'Strongest' },
+                { label: 'Best Superpower', value: 'Best Superpower' },
+                { label: 'Bravest', value: 'Bravest' },
+              ]}
+              error={errors.favTrait && errors.favTrait !== ''}
+            />
 
-          <DotInputText
-            disabled={!childhoodHero}
-            id="cartoonComments"
-            label="Cartoon Comments"
-            name="cartoonComments"
-            size="small"
-            value={cartoonComments}
-            onChange={(event) => handleChange(event)}
-          />
+            <DotSwitch
+              checked={childhoodHero}
+              label="Do you watch their cartoon?"
+              onChange={(event) =>
+                setFormValues((formValues) => ({
+                  ...formValues,
+                  childhoodHero: event.target.checked,
+                }))
+              }
+            />
 
-          <DotInputText
-            id="commentField"
-            label="Comment Field"
-            name="commentField"
-            size="small"
-            multiline={true}
-            rows={4}
-            value={commentField}
-            onChange={handleChange}
-          />
+            <DotInputText
+              disabled={!childhoodHero}
+              id="cartoonComments"
+              label="Cartoon Comments"
+              name="cartoonComments"
+              size="small"
+              value={cartoonComments}
+              onChange={(event) => handleChange(event)}
+            />
 
-          <DotButton type="outlined" onClick={resetForm}>
-            Clear
-          </DotButton>
-          <DotButton isSubmit={true} onClick={formValidation}>
-            Submit
-          </DotButton>
-        </>
-      </DotForm>
+            <DotInputText
+              id="commentField"
+              label="Comment Field"
+              name="commentField"
+              size="small"
+              multiline={true}
+              rows={4}
+              value={commentField}
+              onChange={handleChange}
+            />
+
+            <DotButton type="outlined" onClick={resetForm}>
+              Clear
+            </DotButton>
+            <DotButton isSubmit={true} onClick={formValidation}>
+              Submit
+            </DotButton>
+          </>
+        </DotForm>
+      </div>
     </>
   );
 };
