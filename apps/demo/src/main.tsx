@@ -1,4 +1,7 @@
-import { DotThemeProvider } from '@digital-ai/dot-components';
+import {
+  DotSnackbarProvider,
+  DotThemeProvider,
+} from '@digital-ai/dot-components';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -9,7 +12,9 @@ ReactDOM.render(
   <StrictMode>
     <BrowserRouter>
       <DotThemeProvider>
-        <App />
+        <DotSnackbarProvider>
+          <App />
+        </DotSnackbarProvider>
       </DotThemeProvider>
     </BrowserRouter>
   </StrictMode>,

@@ -3,14 +3,13 @@ import { useState, FormEvent } from 'react';
 import {
   CheckboxProps,
   DotButton,
-  DotCard,
   DotCheckboxGroup,
   DotForm,
   DotInputSelect,
   DotInputText,
   DotRadioGroup,
   DotSwitch,
-  DotSnackbar,
+  useDotSnackbarContext,
 } from '@digital-ai/dot-components';
 
 interface FormState {
@@ -42,8 +41,7 @@ const initialFormState: FormState = {
 export const DemoForm = () => {
   const [formValues, setFormValues] = useState<FormState>(initialFormState);
   const [errors, updateErrors] = useState<ErrorState>({});
-  const [message, setMessage] = useState(null);
-  const [showSnackbar, setShowSnackbar] = useState(false);
+  const { enqueueMessage } = useDotSnackbarContext();
 
   const {
     firstName,
@@ -79,14 +77,15 @@ export const DemoForm = () => {
 
     if (!hasError) {
       const valOfForm = formValues;
-      setShowSnackbar(true);
-      // setMessage(
-      //   `Great! Successfully Submitted form! ${JSON.stringify(valOfForm)}`
-      // );
+      enqueueMessage(
+        `Great! Successfully Submitted form! ${JSON.stringify(valOfForm)}`,
+        'success'
+      );
       updateErrors({});
       resetForm();
     } else {
       updateErrors(formErrors);
+      enqueueMessage('There are errors!', 'error');
     }
   };
 
@@ -111,10 +110,6 @@ export const DemoForm = () => {
 
   return (
     <>
-      {message && <DotCard>{message}</DotCard>}
-      <DotSnackbar severity="success" open={showSnackbar}>
-        Great! Successfully Submitted form!
-      </DotSnackbar>
       <DotForm onSubmit={handleOnSubmit}>
         <>
           <DotInputText
