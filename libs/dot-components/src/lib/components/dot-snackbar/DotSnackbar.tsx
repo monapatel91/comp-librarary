@@ -18,6 +18,7 @@ export interface DotSnackbarProps extends CommonProps {
   open: boolean;
   /** Property used for creating a custom action button. */
   action?: ActionButton;
+  width?: string;
 }
 
 function checkForConflictingEventHandlers({
@@ -38,6 +39,7 @@ export const DotSnackbar = ({
   children,
   action,
   className,
+  width,
 }: DotSnackbarProps) => {
   const autoHideDuration = addAutoHideDuration(severity);
   checkForConflictingEventHandlers({ onClose, action });
@@ -52,7 +54,12 @@ export const DotSnackbar = ({
       open={open}
       severity={severity}
     >
-      <Alert action={action} onClose={onClose} severity={severity}>
+      <Alert
+        action={action}
+        onClose={onClose}
+        severity={severity}
+        style={{ width: width }}
+      >
         <span aria-label={severity}>{children}</span>
       </Alert>
     </StyledSnackbar>

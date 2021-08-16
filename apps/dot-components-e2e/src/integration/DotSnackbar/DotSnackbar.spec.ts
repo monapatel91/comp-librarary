@@ -1,5 +1,5 @@
 describe('dot-components: Snackbar component', () => {
-  before(() => cy.visit('/iframe.html?id=experimental-snackbar--default'));
+  before(() => cy.visit('/iframe.html?id=components-snackbar--default'));
 
   it('should have a positioning of top-right', () => {
     cy.get('.MuiSnackbar-root').within(($el) => {
@@ -19,12 +19,7 @@ describe('dot-components: Snackbar component', () => {
   it('should have a max-width of 500px', () => {
     cy.get('.MuiAlert-root').should('have.css', 'max-width', '500px');
   });
-
-  it('should have a font-size of 16px ', () => {
-    cy.get('.MuiSvgIcon-fontSizeSmall').should('have.css', 'font-size', '16px');
-  });
-
-  it('should have a top positioning of 112px', () => {
-    cy.get('.MuiAlert-root').should('have.css', 'top', '112px');
+  it('should be placed 8px below actionbar', () => {
+    cy.get('.MuiAlert-root').should('have.css', 'margin-top', '108px');
   });
 });

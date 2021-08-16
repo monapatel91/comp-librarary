@@ -86,6 +86,7 @@ export const App = () => {
         navItems={topNavItems}
         mainMenu={mainMenu}
       />
+
       <main>
         <DotSidebar
           backItem={backItem}
