@@ -1,6 +1,6 @@
 {
   "name": "@digital-ai/dot-components",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": false,
   "license": "SEE LICENSE IN <LICENSE.md>",
   "contributors": [
@@ -31,7 +31,7 @@
     "styled-components": "^5.2.1"
   },
   "peerDependencies": {
-    "react": ">16.13.1"
+    "react": "^16.8.0 || ^17.0.0"
   },
   "resolutions": {
     "@material-ui/system": "4.11.3"
