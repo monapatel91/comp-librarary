@@ -11,15 +11,10 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
   ${({ theme }) => css`
   &.${rootClassName} {
     .MuiSvgIcon-root {
-      color: #fff;
+      color: ${theme.palette.layer.n0};
     }
     .MuiAlert-icon {
       padding: 11px 0px;
-    }
-    .MuiIconButton-label > .MuiSvgIcon-fontSizeSmall{
-      font-size: 16px;
-      height: 20px;
-      width: 20px;
     }
     .MuiAlert-message {
       padding: 13px 0px;
@@ -41,12 +36,12 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
       }
       max-width: 500px;
       min-width: 344px;
-      background-color: ${(props: StyledProps) =>
-        theme.palette[props.severity].main};
-      color: #fff;
+      color: ${theme.palette.layer.n0};
       z-index: 999;
       position: relative;
       margin-top: 108px;
+      background-color: ${(props: StyledProps) =>
+        theme.palette[props.severity].main};
         @media (min-width: 720px) {
         .MuiAlert-root {
           top: 112px;
