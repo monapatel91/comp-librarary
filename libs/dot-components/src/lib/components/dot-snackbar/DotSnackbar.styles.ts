@@ -14,7 +14,7 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
       color: #fff;
     }
     .MuiAlert-icon {
-      padding: ${theme.spacing(1.375, 0)};
+      padding: 11px 0px;
     }
     .MuiIconButton-label > .MuiSvgIcon-fontSizeSmall{
       font-size: 16px;
@@ -22,7 +22,7 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
       width: 20px;
     }
     .MuiAlert-message {
-      padding: ${theme.spacing(1.625, 0)};
+      padding: 13px 0px;
       word-break: break-all;
     }
     &.MuiSnackbar-anchorOriginTopRight{
@@ -46,7 +46,7 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
       color: #fff;
       z-index: 999;
       position: relative;
-      margin-top: ${theme.spacing(13.5)}px;
+      margin-top: 108px;
         @media (min-width: 720px) {
         .MuiAlert-root {
           top: 112px;
