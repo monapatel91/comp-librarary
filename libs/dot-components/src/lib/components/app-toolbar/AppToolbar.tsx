@@ -19,6 +19,8 @@ export interface AppToolbarProps extends CommonProps {
   appName?: string;
   /** JSX Element that is displayed between the logo and right nav */
   children?: ReactNode;
+  /** Allow to display custom logo */
+  customLogo?: ReactNode;
   /** Array of nav items to be displayed on the right side */
   navItems?: Array<IconButtonProps>;
   /** If provided will display a hamburger main menu drawer */
@@ -33,6 +35,7 @@ export const DotAppToolbar = ({
   appName,
   children,
   className,
+  customLogo = <LogoDigitalAiWhite title="digital.ai" />,
   'data-testid': dataTestId,
   navItems = [],
   mainMenu,
@@ -70,9 +73,7 @@ export const DotAppToolbar = ({
         </Fragment>
       )}
       <div className={`dot-branding ${mainMenu ? 'hamburger' : ''}`}>
-        <DotLink href="/">
-          <LogoDigitalAiWhite title="digital.ai" />
-        </DotLink>
+        <DotLink href="/">{customLogo}</DotLink>
         {appName && (
           <DotTypography className="dot-product-name">{appName}</DotTypography>
         )}
