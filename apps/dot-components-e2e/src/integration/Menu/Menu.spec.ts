@@ -15,7 +15,6 @@ describe('dot-components: Menu component', () => {
     it('ul has correct size constraints and overflow handling', () => {
       cy.get('ul.MuiList-root')
         .should('have.css', 'min-width', '112px')
-        .and('have.css', 'max-width', '280px')
         .and('have.css', 'overflow', 'auto');
     });
   });
