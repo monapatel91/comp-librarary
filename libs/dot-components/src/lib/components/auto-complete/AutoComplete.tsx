@@ -1,5 +1,7 @@
 import React, { useState, ChangeEvent, Ref } from 'react';
-import { Autocomplete, AutocompleteGetTagProps } from '@material-ui/lab';
+import { AutocompleteGetTagProps } from '@material-ui/lab';
+import { rootClassName, StyledAutocomplete } from './AutoComplete.styles';
+import { StyledPopper } from '../menu/Menu.styles';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotChip } from '../chip/Chip';
@@ -101,7 +103,7 @@ export const DotAutoComplete = ({
   const [showPlaceholder, setShowPlaceholder] = useState(
     !value && !defaultValue
   );
-  const rootClasses = useStylesWithRootClass('dot-autocomplete', className);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
   const textFieldRootClasses = useStylesWithRootClass(
     textFieldRootClassName,
     className
@@ -144,8 +146,13 @@ export const DotAutoComplete = ({
       : options;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const DotPopper = (props: any) => {
+    return <StyledPopper {...props} />;
+  };
+
   return (
-    <Autocomplete
+    <StyledAutocomplete
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       disabled={disabled}
@@ -159,6 +166,7 @@ export const DotAutoComplete = ({
         valuesChanged({ _event, val, reason })
       }
       groupBy={group ? (option: AutoCompleteOption) => option.group : undefined}
+      PopperComponent={DotPopper}
       renderInput={(params) => (
         // We are not using DotInputText here because the {...params} spread
         // passed to renderInput includes inputProps and InputProps properties
