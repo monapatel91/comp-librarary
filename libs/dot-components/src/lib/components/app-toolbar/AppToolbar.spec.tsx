@@ -5,7 +5,7 @@ import { DotAvatar } from '../avatar/Avatar';
 import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { IconButtonProps } from '../button/IconButton';
 import { DotSidebar } from '../sidebar/Sidebar';
-import { ReactComponent as LogoDigitalAiCustom } from '../../assets/logo_digital_aie.svg';
+import { ReactComponent as LogoDigitalAiCustom } from '../../assets/logo_digital_ai.svg';
 
 const menuItems = new Array<IconButtonProps>();
 const userAvatar = (
