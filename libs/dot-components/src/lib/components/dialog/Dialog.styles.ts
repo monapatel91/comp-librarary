@@ -7,6 +7,8 @@ export const StyledDialog = styled(Dialog)`
   ${({ theme }) => css`
     &.${rootClassName} {
       .MuiPaper-root {
+        background-color: ${theme.palette.product === 'agility' &&
+        theme.palette.layer.n50};
         min-width: 280px;
         max-height: 80vh;
         max-width: 80vw;

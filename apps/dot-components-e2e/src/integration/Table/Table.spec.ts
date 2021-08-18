@@ -58,3 +58,29 @@ describe('dot-components: Table component', () => {
     cy.get('p').should('have.class', 'dot-typography');
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit(
+      '/iframe.html?id=components-table--locally-paginated-table&theme=agility-dark'
+    )
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('.MuiTablePagination-root').should(
+      'have.css',
+      'border-top',
+      '1px solid rgb(36, 68, 81)'
+    );
+    cy.get('.MuiPaper-root').should(
+      'have.css',
+      'border',
+      '1px solid rgb(36, 68, 81)'
+    );
+    cy.get('.dot-table').should(
+      'have.css',
+      'background-color',
+      'rgb(20, 38, 46)'
+    );
+  });
+});

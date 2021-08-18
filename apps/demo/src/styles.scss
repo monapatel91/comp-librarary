@@ -74,10 +74,10 @@ main {
   position: relative;
   top: 48px;
   width: 100vw;
+  margin-top: 4px;
 
   section.main-content {
     overflow: auto;
-    padding: 8px * 2;
     width: 100%;
   }
 }

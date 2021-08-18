@@ -1,17 +1,28 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-
+import { action } from '@storybook/addon-actions';
+import { DotIconButton } from '../button/IconButton';
 import { DotSnackbar, DotSnackbarProps } from './DotSnackbar';
 
 export default {
-  title: 'Experimental/Snackbar',
+  title: 'Components/Snackbar',
   component: DotSnackbar,
   argTypes: {
+    action: {
+      defaultValue: (
+        <DotIconButton
+          iconId="close"
+          onClick={action('Close Button clicked!!')}
+          size="medium"
+        />
+      ),
+    },
     severity: { defaultValue: 'success' },
     children: { defaultValue: 'Dot snackbar message' },
     open: { defaultValue: true },
     autoHideDuration: { defaultValue: 10000 },
     onClose: { action: 'clicked' },
+    width: { defaultValue: '450px' },
   },
 } as Meta;
 

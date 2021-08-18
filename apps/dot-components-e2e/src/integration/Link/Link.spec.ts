@@ -15,3 +15,13 @@ describe('dot-components: Link component', () => {
     });
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit('/iframe.html?id=components-link--default&theme=agility-dark')
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('a').should('have.css', 'color', 'rgb(36, 68, 81)');
+  });
+});

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { TextField, InputAdornment } from '@material-ui/core';
+import { agilityGreen } from '../../theme-provider/colors/light-theme-colors';
 
 export const rootClassName = 'dot-text-field';
 export const rootSelectClassName = 'dot-select-field';
@@ -18,6 +19,16 @@ export const StyledAdornment = styled(InputAdornment)`
 export const StyledTextField = styled(TextField)`
   ${({ theme, InputProps }) => css`
     &.${rootClassName} {
+      .MuiInputBase-root {
+        background: ${
+          theme.palette.product === 'agility' && theme.palette.layer.n0
+        }
+      }
+      .MuiOutlinedInput-notchedOutline {
+        border-color: ${
+          theme.palette.product === 'agility' && theme.palette.layer.n100
+        }
+      }
       .MuiOutlinedInput-input {
         padding: ${
           InputProps.startAdornment ? `18px 12px 18px 0px` : `18px 12px`
@@ -32,6 +43,16 @@ export const StyledTextField = styled(TextField)`
       }
     }
     &.${rootSelectClassName}, &.${rootClassName} {
+      .MuiFormLabel-root.Mui-focused {
+        color: ${
+          theme.palette.product === 'agility' && theme.palette.layer.n700
+        }
+      }
+      select.dot-select {
+        background: ${
+          theme.palette.product === 'agility' && theme.palette.layer.n0
+        };
+      }
       .MuiSelect-select:focus {
         background-color: transparent;
       }
@@ -66,6 +87,9 @@ export const StyledTextField = styled(TextField)`
         &:not(.Mui-error) {
           color: ${theme.palette.grey[700]};
         }
-    }
+      }
+      .Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: ${theme.palette.product === 'agility' && agilityGreen};
+      }
   `}
 `;

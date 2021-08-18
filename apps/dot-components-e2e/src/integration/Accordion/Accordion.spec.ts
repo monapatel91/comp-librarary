@@ -52,3 +52,17 @@ describe('dot-components: Accordion component with noWrap = true', () => {
     });
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit('/iframe.html?id=components-accordion--default&theme=agility-dark')
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('.MuiPaper-root').should(
+      'have.css',
+      'background-color',
+      'rgb(36, 68, 81)'
+    );
+  });
+});

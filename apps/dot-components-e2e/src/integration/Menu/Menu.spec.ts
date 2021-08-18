@@ -15,8 +15,21 @@ describe('dot-components: Menu component', () => {
     it('ul has correct size constraints and overflow handling', () => {
       cy.get('ul.MuiList-root')
         .should('have.css', 'min-width', '112px')
-        .and('have.css', 'max-width', '280px')
         .and('have.css', 'overflow', 'auto');
     });
+  });
+});
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit('/iframe.html?id=components-menu--default&theme=agility-dark')
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('.dot-menu ul.dot-ul').should(
+      'have.css',
+      'background-color',
+      'rgb(36, 68, 81)'
+    );
   });
 });

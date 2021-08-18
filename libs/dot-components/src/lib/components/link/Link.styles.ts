@@ -1,14 +1,17 @@
 import { Link } from '@material-ui/core';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-link';
 
 export const StyledLink = styled(Link)`
-  &.${rootClassName} {
-    cursor: pointer;
+  ${({ theme }) => css`
+    &.${rootClassName} {
+      color: ${theme.palette.product === 'agility' && '#244451'};
+      cursor: pointer;
 
-    &:hover :not(.MuiLink-underlineHover) {
-      text-decoration: none;
+      &:hover :not(.MuiLink-underlineHover) {
+        text-decoration: none;
+      }
     }
-  }
+  `}
 `;

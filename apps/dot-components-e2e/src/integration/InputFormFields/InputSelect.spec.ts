@@ -35,3 +35,24 @@ describe('dot-components: Input Select Field component', () => {
     });
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit(
+      '/iframe.html?id=components-input-select--default&theme=agility-dark'
+    )
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('select.MuiSelect-root').should(
+      'have.css',
+      'color',
+      'rgb(255, 255, 255)'
+    );
+    cy.get('label.MuiFormLabel-root').should(
+      'have.css',
+      'color',
+      'rgb(255, 255, 255)'
+    );
+  });
+});

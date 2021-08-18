@@ -6,7 +6,12 @@ export const rootClassName = 'dot-table';
 export const StyledPaper = styled(Paper)`
   ${({ theme }) => css`
     &.dot-table {
-      border: 1px solid ${theme.palette.grey[200]};
+      background: ${theme.palette.product === 'agility' &&
+      theme.palette.layer.n50};
+      border: 1px solid
+        ${theme.palette.product === 'agility'
+          ? theme.palette.layer.n100
+          : theme.palette.grey[200]};
 
       // while loading, change opacity, disable pointer events
       // and hide pagination.
@@ -30,7 +35,9 @@ export const StyledTableContainer = styled(TableContainer)`
       justify-content: center;
 
       tr:hover {
-        background-color: ${theme.palette.grey[50]};
+        background-color: ${theme.palette.product === 'agility'
+          ? theme.palette.agilityInterface.fixedCol
+          : theme.palette.grey[50]};
       }
 
       tr:last-child td {
@@ -48,7 +55,9 @@ export const StyledTableContainer = styled(TableContainer)`
         }
 
         .Mui-selected:not(:hover) {
-          background-color: ${theme.palette.grey[200]};
+          background-color: ${theme.palette.product === 'agility'
+            ? theme.palette.agilityInterface.fixedCol
+            : theme.palette.grey[200]};
         }
 
         .MuiTableRow-head {
@@ -56,7 +65,15 @@ export const StyledTableContainer = styled(TableContainer)`
         }
 
         .MuiTableCell-root {
-          border-bottom: 1px solid ${theme.palette.grey[200]};
+          border-bottom: 1px solid
+            ${theme.palette.product === 'agility'
+              ? theme.palette.layer.n100
+              : theme.palette.grey[200]};
+
+          &.MuiTableCell-stickyHeader {
+            background: ${theme.palette.product === 'agility' &&
+            theme.palette.layer.n50};
+          }
         }
 
         .MuiTableRow-root {

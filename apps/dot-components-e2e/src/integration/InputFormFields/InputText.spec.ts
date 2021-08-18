@@ -26,3 +26,24 @@ describe('dot-components: Input Text Field component', () => {
     });
   });
 });
+
+describe('Agility theme style decisions', () => {
+  before(() =>
+    cy.visit(
+      '/iframe.html?id=components-input-text--default&theme=agility-dark'
+    )
+  );
+
+  it('should apply the correct theme colors', () => {
+    cy.get('div.MuiInputBase-root').should(
+      'have.css',
+      'color',
+      'rgb(255, 255, 255)'
+    );
+    cy.get('label.MuiFormLabel-root').should(
+      'have.css',
+      'color',
+      'rgb(255, 255, 255)'
+    );
+  });
+});
