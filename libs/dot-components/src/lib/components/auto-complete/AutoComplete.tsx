@@ -155,17 +155,19 @@ export const DotAutoComplete = ({
     <StyledAutocomplete
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
-      disabled={disabled}
-      multiple={multiple}
-      options={sortOptions()}
       defaultValue={defaultValue}
+      disabled={disabled}
       filterSelectedOptions={true}
       freeSolo={freesolo}
-      getOptionLabel={(option) => parseAutoCompleteValue(option)}
+      getOptionLabel={(option: AutoCompleteOption) =>
+        parseAutoCompleteValue(option)
+      }
+      groupBy={group ? (option: AutoCompleteOption) => option.group : undefined}
+      multiple={multiple}
       onChange={(_event, val: AutoCompleteValue, reason) =>
         valuesChanged({ _event, val, reason })
       }
-      groupBy={group ? (option: AutoCompleteOption) => option.group : undefined}
+      options={sortOptions()}
       PopperComponent={DotPopper}
       renderInput={(params) => (
         // We are not using DotInputText here because the {...params} spread
