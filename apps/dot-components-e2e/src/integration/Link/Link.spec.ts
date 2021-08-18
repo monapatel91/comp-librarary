@@ -22,6 +22,6 @@ describe('Agility theme style decisions', () => {
   );
 
   it('should apply the correct theme colors', () => {
-    cy.get('a').should('have.css', 'color', 'rgb(121, 181, 34)');
+    cy.get('a').should('have.css', 'color', 'rgb(36, 68, 81)');
   });
 });
