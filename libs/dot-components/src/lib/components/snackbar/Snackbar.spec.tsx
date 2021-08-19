@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { fireEvent } from '@testing-library/react';
 import { render, screen } from '../../testing-utils';
 import Button from '@material-ui/core/Button';
 
-import { DotSnackbar } from './DotSnackbar';
-import { addAutoHideDuration } from './dotSnackbarHelper';
+import { DotSnackbar, SnackbarProps, SnackbarSeverity } from './Snackbar';
+import { addAutoHideDuration } from './SnackbarHelper';
 describe('DotSnackbar', () => {
+  it('should have unchanged API', () => {
+    const props = {
+      action: null as ReactNode,
+      children: null as ReactNode,
+      className: 'test-class',
+      'data-testid': 'testid',
+      onClose: jest.fn(),
+      open: false,
+      severity: 'error' as SnackbarSeverity,
+      width: '280',
+    };
+    const snackbarProps: SnackbarProps = props;
+    expect(snackbarProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     expect.assertions(1);
     const { baseElement } = render(

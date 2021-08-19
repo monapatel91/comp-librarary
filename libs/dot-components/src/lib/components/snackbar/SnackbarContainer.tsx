@@ -1,14 +1,12 @@
-import React, { ReactElement } from 'react';
+import React, { ReactNode } from 'react';
 import {
-  StyledDotSnackbarContainer,
+  StyledSnackbarContainer,
   rootClassName,
-} from './DotSnackbarContainer.styles';
-import { DotSnackbar } from './DotSnackbar';
-import { useDotSnackbarContext } from './DotSnackbarProvider';
+} from './SnackbarContainer.styles';
+import { DotSnackbar, SnackbarSeverity } from './Snackbar';
+import { useDotSnackbarContext } from './SnackbarProvider';
 
-type Severity = 'error' | 'warning' | 'info' | 'success';
-
-export const DotSnackbarContainer = (): ReactElement => {
+export const DotSnackbarContainer = (): ReactNode => {
   const { alerts, removeMessage } = useDotSnackbarContext();
 
   function handleClose(id: string): () => void {
@@ -18,7 +16,7 @@ export const DotSnackbarContainer = (): ReactElement => {
   }
 
   return (
-    <StyledDotSnackbarContainer className={rootClassName}>
+    <StyledSnackbarContainer className={rootClassName}>
       <div data-testid={rootClassName} className={rootClassName}>
         {alerts
           .slice()
@@ -27,7 +25,7 @@ export const DotSnackbarContainer = (): ReactElement => {
             return (
               <DotSnackbar
                 key={alert.id}
-                severity={alert.severity as Severity}
+                severity={alert.severity as SnackbarSeverity}
                 onClose={handleClose(alert.id)}
                 open={alert.open}
               >
@@ -36,6 +34,6 @@ export const DotSnackbarContainer = (): ReactElement => {
             );
           })}
       </div>
-    </StyledDotSnackbarContainer>
+    </StyledSnackbarContainer>
   );
 };

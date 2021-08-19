@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '../../testing-utils';
-import { DotSnackbarProvider } from './DotSnackbarProvider';
+import { DotSnackbarProvider } from './SnackbarProvider';
 describe('<DotSnackbarProvider/>', () => {
   it('should render DotSnackbarProvider component', () => {
     render(

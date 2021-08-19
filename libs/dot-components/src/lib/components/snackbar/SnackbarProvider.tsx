@@ -5,35 +5,30 @@ import React, {
   useState,
   useContext,
 } from 'react';
-import { DotSnackbarContainer } from './DotSnackbarContainer';
+import { DotSnackbarContainer } from './SnackbarContainer';
+import { SnackbarSeverity } from './Snackbar';
 import { CreateUUID } from '../createUUID';
 
 const initialState = [
   { message: '', open: false, severity: 'success', id: '' },
 ];
 
-interface DotSnackbarProviderProps {
-  children: ReactNode;
-}
-
-type Severity = 'success' | 'warning' | 'info' | 'error';
-
 interface DotSnackbarProps {
   alerts: typeof initialState;
-  enqueueMessage: (message: string, severity: Severity) => void;
+  enqueueMessage: (message: string, severity: SnackbarSeverity) => void;
   removeMessage: (id: string) => void;
 }
 
 const DotSnackbarContext = createContext<DotSnackbarProps>({
   alerts: [],
-  enqueueMessage: (message: string, severity: Severity) => null,
-  removeMessage: (id: string) => null,
+  enqueueMessage: (_message: string, _severity: SnackbarSeverity) => null,
+  removeMessage: (_id: string) => null,
 });
 
-export const DotSnackbarProvider = ({ children }: DotSnackbarProviderProps) => {
+export const DotSnackbarProvider = (children: ReactNode) => {
   const [alerts, setAlerts] = useState<typeof initialState>([]);
 
-  function enqueueMessage(message: string, severity: Severity): void {
+  function enqueueMessage(message: string, severity: SnackbarSeverity): void {
     const id = CreateUUID();
     const queue = { id, message, severity, open: true };
 
