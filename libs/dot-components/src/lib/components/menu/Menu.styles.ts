@@ -11,7 +11,6 @@ export const StyledPopper = styled(Popper)`
         theme.palette.agilityInterface.menuBg
       };
       min-width: 112px;
-      max-width: 280px;
       max-height: calc(100vh - 24px);
       overflow: auto;
 

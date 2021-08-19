@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.0.6](https://github.com/digital-ai/dot-components/tree/1.0.6) (08/18/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.5...1.0.6)
+
+**Features:**
+
+- New component alert banner [\#625](https://github.com/digital-ai/dot-components/pull/625) ([monapatel91](https://github.com/monapatel91))
+
+**Fixed bugs:**
+
+- Dialog and autocomplete dont follow agility dark theme [\#631](https://github.com/digital-ai/dot-components/issues/631)
+- Fix agility theme colors [\#623](https://github.com/digital-ai/dot-components/issues/623)
+
+**Merged pull requests:**
+
+- Next patch release with agility theme colors [\#638](https://github.com/digital-ai/dot-components/pull/638) ([CWSites](https://github.com/CWSites))
+- S 78162: agility theme [\#636](https://github.com/digital-ai/dot-components/pull/636) ([CWSites](https://github.com/CWSites))
+- update the peerDependencies to support all appropriate versions of React [\#634](https://github.com/digital-ai/dot-components/pull/634) ([monapatel91](https://github.com/monapatel91))
+- Feedback of snackbar [\#628](https://github.com/digital-ai/dot-components/pull/628) ([monapatel91](https://github.com/monapatel91))
+- S-77873: Support agility themes in certain components [\#626](https://github.com/digital-ai/dot-components/pull/626) ([CWSites](https://github.com/CWSites))
+- D-18346: fix sidebar menu item height [\#624](https://github.com/digital-ai/dot-components/pull/624) ([selsemore](https://github.com/selsemore))
+- Merging master back into develop [\#622](https://github.com/digital-ai/dot-components/pull/622) ([CWSites](https://github.com/CWSites))
+
 ## [1.0.5](https://github.com/digital-ai/dot-components/tree/1.0.5) (07/28/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.4...1.0.5)
@@ -7,6 +30,7 @@
 **Merged pull requests:**
 
 - Merging develop onto master [\#621](https://github.com/digital-ai/dot-components/pull/621) ([TheKeithStewart](https://github.com/TheKeithStewart))
+- pin material-ui lab version [\#620](https://github.com/digital-ai/dot-components/pull/620) ([TheKeithStewart](https://github.com/TheKeithStewart))
 
 ## [1.0.4](https://github.com/digital-ai/dot-components/tree/1.0.4) (07/28/2021)
 
@@ -47,7 +71,6 @@
 
 **Merged pull requests:**
 
-- pin material-ui lab version [\#620](https://github.com/digital-ai/dot-components/pull/620) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Deploying latest to master [\#615](https://github.com/digital-ai/dot-components/pull/615) ([CWSites](https://github.com/CWSites))
 
 ## [1.0.2](https://github.com/digital-ai/dot-components/tree/1.0.2) (07/08/2021)

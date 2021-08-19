@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { TextField, InputAdornment } from '@material-ui/core';
+import { agilityGreen } from '../../theme-provider/colors/light-theme-colors';
 
 export const rootClassName = 'dot-text-field';
 export const rootSelectClassName = 'dot-select-field';
@@ -86,6 +87,9 @@ export const StyledTextField = styled(TextField)`
         &:not(.Mui-error) {
           color: ${theme.palette.grey[700]};
         }
-    }
+      }
+      .Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: ${theme.palette.product === 'agility' && agilityGreen};
+      }
   `}
 `;
