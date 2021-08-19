@@ -3,7 +3,7 @@ import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotButton } from '../button/Button';
 import { DotSidebar } from '../sidebar/Sidebar';
-import { ReactComponent as LogoDigitalAiCustom } from '../../assets/logo_digital_ai.svg';
+import { ReactComponent as FedexLogo } from '../../assets/Fedex.svg';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const logoOptions = ['Default', 'Custom'];
@@ -133,8 +133,6 @@ export default {
 
 export const Default: Story<AppToolbarProps> = (args) => {
   const { customLogo: logoId } = args;
-  const logo = logoId === 'Custom' && (
-    <LogoDigitalAiCustom title="digital.ai.custom" />
-  );
+  const logo = logoId === 'Custom' && <FedexLogo title="fedex.logo" />;
   return <DotAppToolbar {...args} customLogo={logo} />;
 };
