@@ -8,6 +8,8 @@ describe('Menu', () => {
     const onSelect = jest.fn();
     const mProps = {
       anchorEl: null as Element,
+      className: 'test-class',
+      'data-testid': 'testid',
       disablePortal: true,
       id: 'menu-id',
       menuItems: [{ children: 'opt 1' }],
@@ -18,10 +20,11 @@ describe('Menu', () => {
     };
     const menuProps: MenuProps = mProps;
     expect(menuProps).toEqual(mProps);
-    const onClick = jest.fn();
     const iProps = {
       children: 'opt 1',
+      className: 'test-class',
       classes: 'menu-item-class',
+      'data-testid': 'testid',
       key: 'opt1',
     };
     const menuItemProps: MenuItemProps = iProps;

@@ -2,6 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
 import { BreadcrumbProps, BreadcrumbItem, DotBreadcrumbs } from './Breadcrumbs';
+import { LinkUnderline } from '../link/Link';
 
 describe('Breadcrumbs', () => {
   const onClick = jest.fn();
@@ -19,12 +20,25 @@ describe('Breadcrumbs', () => {
 
   it('should have unchanged API', () => {
     const props = {
+      className: 'test-class',
+      'data-testid': 'testid',
       expansionMenu: false,
       items: dummyItems,
       maxItems: 5,
     };
     const breadcrumbProps: BreadcrumbProps = props;
     expect(breadcrumbProps).toEqual(props);
+
+    const iProps = {
+      className: 'test-class',
+      'data-testid': 'testid',
+      href: '/',
+      onClick: onClick,
+      text: 'hello world',
+      underline: 'always' as LinkUnderline,
+    };
+    const breadcrumbItempProps: BreadcrumbItem = iProps;
+    expect(breadcrumbItempProps).toEqual(iProps);
   });
 
   it('should render successfully', () => {

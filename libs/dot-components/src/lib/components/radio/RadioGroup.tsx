@@ -30,10 +30,10 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   endIcon?: ReactNode;
   /** If true, the label should be displayed in an error state. */
   error?: boolean;
-  /** The helper text content. */
-  helperText?: string;
   /** The label of the radio button group. */
   groupLabel?: string;
+  /** The helper text content. */
+  helperText?: string;
   /** if true user is required to select an option */
   required?: boolean;
   /** changes layout to be horizontal if true */

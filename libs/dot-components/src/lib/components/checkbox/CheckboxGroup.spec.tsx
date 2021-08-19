@@ -20,6 +20,8 @@ describe('DotCheckbox', () => {
   it('should have unchanged API', () => {
     const onChange = jest.fn();
     const props = {
+      className: 'test-class',
+      'data-testid': 'testid',
       defaultValues: defaultValues,
       onChange: onChange,
       options: options,

@@ -5,6 +5,8 @@ import { DotIcon, IconFontSize, IconProps } from './Icon';
 describe('DotIcon', () => {
   it('should have unchanged API', () => {
     const props = {
+      className: 'test-class',
+      'data-testid': 'testid',
       fontSize: 'default' as IconFontSize,
       iconId: 'home',
       title: 'icon title',

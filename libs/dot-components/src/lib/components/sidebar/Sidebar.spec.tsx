@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
-import { ListItemProps } from '../list/List';
+import { ListItemProps, NestedListType } from '../list/List';
 import { BackItemProps, DotSidebar, SidebarProps } from './Sidebar';
 
 const goBack = jest.fn();
@@ -15,12 +15,12 @@ const backItem: BackItemProps = {
 
 const navItems: Array<ListItemProps> = [
   {
-    iconId: 'block',
+    startIconId: 'block',
     text: 'Home',
     href: '/',
   },
   {
-    iconId: 'change',
+    startIconId: 'change',
     text: 'Changes',
     href: '/',
   },
@@ -33,15 +33,29 @@ describe(' Sidebar', () => {
       backItem: backItem,
       brandDesc: 'best brand',
       children: <TextField placeholder="search" variant="outlined" />,
+      className: 'test-class',
+      'data-testid': 'testid',
       collapsable: true,
       displayBrand: true,
       goBack: false,
+      nestedListType: 'menu' as NestedListType,
       navItems: navItems,
+      open: false,
       title: 'Captain Sidebar',
       titleAvatarProps: titleAvatarProps,
     };
     const sidebarProps: SidebarProps = props;
     expect(sidebarProps).toEqual(props);
+
+    const bProps = {
+      iconId: 'home',
+      onClick: goBack,
+      text: 'Go Back',
+      title: 'Go Back Home',
+    };
+
+    const backItemProps: BackItemProps = bProps;
+    expect(backItemProps).toEqual(bProps);
   });
 
   it('should render successfully', () => {

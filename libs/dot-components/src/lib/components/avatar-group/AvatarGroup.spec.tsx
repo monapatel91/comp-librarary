@@ -11,6 +11,8 @@ describe('AvatarGroup', () => {
   it('should have unchanged API', () => {
     const props = {
       avatars: sampleAvatars,
+      className: 'test-class',
+      'data-testid': 'testid',
       max: 3,
       spacing: 'medium' as AvatarGroupSpacing,
     };

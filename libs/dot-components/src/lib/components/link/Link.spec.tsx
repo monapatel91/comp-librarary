@@ -16,7 +16,9 @@ describe('Link', () => {
     const onMouseEnter = jest.fn();
     const props = {
       children: 'My Link',
+      className: 'test-class',
       color: 'primary' as LinkColor,
+      'data-testid': 'testid',
       href: 'http://somewhere',
       onClick: onClick,
       onMouseEnter: onMouseEnter,

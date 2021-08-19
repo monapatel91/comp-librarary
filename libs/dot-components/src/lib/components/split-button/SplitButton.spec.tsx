@@ -16,6 +16,8 @@ describe('DotButton', () => {
     const props = {
       ariaLabel: 'splitsville',
       children: 'Hello',
+      className: 'test-class',
+      'data-testid': 'testid',
       disablePortal: true,
       onSelect: onSelect,
       options: options,

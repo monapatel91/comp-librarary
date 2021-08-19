@@ -17,6 +17,8 @@ describe('DotChip', () => {
     const props = {
       avatar: avatar,
       children: 'My Chip',
+      className: 'test-class',
+      'data-testid': 'testid',
       isClickable: true,
       isDeletable: true,
       disabled: false,

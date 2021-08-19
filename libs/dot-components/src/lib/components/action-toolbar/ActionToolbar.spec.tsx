@@ -10,6 +10,8 @@ describe('ActionToolbar', () => {
   it('should have unchanged API', () => {
     const props = {
       children: 'child',
+      className: 'test-class',
+      'data-testid': 'testid',
       variant: 'regular' as DotActionBarVarient,
     };
     const actionBarProps: DotActionBarProps = props;

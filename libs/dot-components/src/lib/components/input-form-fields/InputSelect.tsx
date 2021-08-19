@@ -10,15 +10,19 @@ import {
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export interface InputSelectProps extends InputProps {
-  options: Array<string>;
-  value?: string;
+  /** default value of select field */
   defaultValue?: string;
+  /** options of select dropdown */
+  options: Array<string>;
+  /** value of input field */
+  value?: string;
 }
 
 export const DotInputSelect = ({
   autoFocus,
   className,
   'data-testid': dataTestId,
+  defaultValue,
   disabled = false,
   endIcon,
   error = false,
@@ -30,11 +34,10 @@ export const DotInputSelect = ({
   name,
   onChange,
   options = [],
-  defaultValue,
-  value,
   required,
-  startIcon,
   size = 'small',
+  startIcon,
+  value,
   warning = false,
 }: InputSelectProps) => {
   const rootStyles = useStylesWithRootClass(rootSelectClassName, className);

@@ -16,7 +16,9 @@ describe('Switch', () => {
     const props = {
       ariaLabel: 'aria label',
       checked: false,
+      className: 'test-class',
       color: 'primary' as SwitchColor,
+      'data-testid': 'testid',
       disabled: false,
       id: 'id',
       inputRef: inputRef,

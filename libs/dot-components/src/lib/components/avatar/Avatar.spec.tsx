@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { render, screen } from '../../testing-utils';
 import {
   AvatarColor,
@@ -14,11 +14,14 @@ describe('DotAvatar', () => {
     const onClick = jest.fn();
     const props = {
       alt: 'Avatar alt text',
+      className: 'test-class',
       color: 'red' as AvatarColor,
+      'data-testid': 'testid',
       iconId: 'home',
       imageSrc: './somewhere',
       onClick: onClick,
       size: 'small' as AvatarSize,
+      style: { color: '#44b700' } as CSSProperties,
       text: 'BM',
       type: 'image' as AvatarType,
       variant: 'circular' as AvatarVariant,

@@ -16,6 +16,8 @@ describe('DotRadioGroup', () => {
     const onChange = jest.fn();
     const props = {
       ariaLabel: 'aria label',
+      className: 'test-class',
+      'data-testid': 'testid',
       defaultValue: 'the default',
       disableGroup: false,
       endIcon: <DotIcon iconId="save" />,

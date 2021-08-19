@@ -1,7 +1,13 @@
 import React, { ElementType } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
-import { DotList, ListItemProps, ListProps, NestedListType } from './List';
+import {
+  DotList,
+  ListItemProps,
+  ListProps,
+  NestedListProps,
+  NestedListType,
+} from './List';
 import { PopperPlacement } from '../menu/Menu';
 
 const onClick = jest.fn();
@@ -55,6 +61,18 @@ describe('List', () => {
     };
     const listProps: ListProps = props;
     expect(listProps).toEqual(props);
+
+    const nProps = {
+      anchorEl: null as Element,
+      items: mockListItems,
+      menuPlacement: 'right' as PopperPlacement,
+      onMenuLeave: jest.fn(),
+      open: false,
+      parentItemIndex: 1,
+      type: 'expandable' as NestedListType,
+    };
+    const nestedListProps: NestedListProps = nProps;
+    expect(nestedListProps).toEqual(nProps);
   });
 
   it('should render successfully', () => {

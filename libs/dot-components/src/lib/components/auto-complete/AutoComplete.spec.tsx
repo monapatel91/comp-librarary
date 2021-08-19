@@ -27,6 +27,8 @@ describe('AutoComplete', () => {
     const inputRef = createRef<HTMLInputElement>();
     const props = {
       autoFocus: true,
+      className: 'test-class',
+      'data-testid': 'testid',
       defaultValue: dummyOptions[0],
       disabled: true,
       error: false,

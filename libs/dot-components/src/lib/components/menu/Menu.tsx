@@ -37,14 +37,14 @@ export interface MenuProps extends CommonProps {
   menuPlacement?: PopperPlacement;
   /** If true, the menu is open. */
   open?: boolean;
+  /** Event callback when leaving menu via tab or clicking away */
+  onLeave?: (event: KeyboardEvent | MouseEvent) => void;
   /** Callback when menu item is selected */
   onSelect?: (
     event: MouseEvent | KeyboardEvent,
     menuId: string,
     itemKey: string
   ) => void;
-  /** Event callback when leaving menu via tab or clicking away */
-  onLeave?: (event: KeyboardEvent | MouseEvent) => void;
 }
 
 export interface MenuItemProps {

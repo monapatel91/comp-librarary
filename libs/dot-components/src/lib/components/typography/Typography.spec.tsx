@@ -10,7 +10,10 @@ describe('DotTypography', () => {
   it('should have unchanged API', () => {
     const props = {
       children: 'some text',
+      className: 'test-class',
       component: 'h1' as ElementType,
+      'data-testid': 'testid',
+      noWrap: false,
       variant: 'h1' as TypographyVariant,
     };
     const typographyProps: TypographyProps = props;

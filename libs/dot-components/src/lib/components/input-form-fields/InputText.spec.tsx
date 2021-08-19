@@ -12,6 +12,8 @@ describe('DotInputText', () => {
   it('should have unchanged API', () => {
     const props = {
       autoFocus: true,
+      className: 'test-class',
+      'data-testid': 'testid',
       defaultValue: 'Batman',
       disabled: true,
       endIcon: <DotIcon iconId="save" />,

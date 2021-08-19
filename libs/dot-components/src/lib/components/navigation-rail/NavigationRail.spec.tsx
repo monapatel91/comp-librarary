@@ -59,6 +59,7 @@ describe('NavigationRail', () => {
     });
 
   const props = {
+    className: 'test-class',
     'data-testid': dataTestId,
     onChange,
     railItemPosition: 'flex-start' as RailItemsPosition,
@@ -74,6 +75,14 @@ describe('NavigationRail', () => {
   };
 
   it('should have unchanged API', () => {
+    const iProps = {
+      iconId: 'home',
+      title: 'welcome home',
+    };
+
+    const itemProps: RailItem = iProps;
+
+    expect(itemProps).toEqual(iProps);
     expect(componentProps).toEqual(props);
   });
 

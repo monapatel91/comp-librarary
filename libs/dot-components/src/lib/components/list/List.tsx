@@ -31,7 +31,7 @@ import { DotTypography } from '../typography/Typography';
 
 export type NestedListType = 'menu' | 'expandable';
 
-interface NestedListProps extends CommonProps {
+export interface NestedListProps extends CommonProps {
   /** Element that menu is attached to */
   anchorEl?: Element;
   /** Array of list items displayed */

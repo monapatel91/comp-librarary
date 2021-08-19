@@ -6,6 +6,8 @@ describe('DotPill', () => {
   it('should have unchanged API', () => {
     const props = {
       backgroundcolor: 'red',
+      className: 'test-class',
+      'data-testid': 'testid',
       label: 'I am such a pill',
       labelcolor: 'blue',
       size: 'medium' as PillSize,

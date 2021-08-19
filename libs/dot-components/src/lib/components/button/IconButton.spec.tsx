@@ -12,7 +12,9 @@ describe('DotIconButton', () => {
   it('should have unchanged API', () => {
     const onClick = jest.fn();
     const props = {
+      className: 'test-class',
       color: 'primary' as IconButtonColor,
+      'data-testid': 'testid',
       disabled: false,
       iconId: 'save',
       onClick: onClick,

@@ -7,6 +7,8 @@ describe('DotCheckbox', () => {
     const props = {
       ariaLabel: 'Accessibility for the win',
       ariaLabelledby: 'label-man',
+      className: 'test-class',
+      'data-testid': 'testid',
       disableRipple: true,
       indeterminate: false,
     };

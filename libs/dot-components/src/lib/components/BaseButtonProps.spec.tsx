@@ -4,6 +4,8 @@ describe('CommonProps', () => {
   it('should have unchanged API', () => {
     const onClick = jest.fn();
     const props = {
+      className: 'test-class',
+      'data-testid': 'testid',
       disabled: false,
       disableRipple: false,
       fullWidth: true,

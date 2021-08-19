@@ -1,6 +1,13 @@
 import React from 'react';
 import { render } from '../../testing-utils';
-import { DotDrawer, DrawerAnchor, DrawerProps, DrawerVariant } from './Drawer';
+import {
+  DotDrawer,
+  DrawerAnchor,
+  DrawerModalProps,
+  DrawerPaperProps,
+  DrawerProps,
+  DrawerVariant,
+} from './Drawer';
 
 describe('Drawer', () => {
   it('should have unchanged API', () => {
@@ -8,7 +15,11 @@ describe('Drawer', () => {
     const props = {
       anchor: 'bottom' as DrawerAnchor,
       children: 'I am a drawer',
+      className: 'test-class',
+      'data-testid': 'testid',
       height: '44px',
+      ModalProps: { color: '#0f0' } as DrawerModalProps,
+      PaperProps: { color: '#f00' } as DrawerPaperProps,
       onClose: onClose,
       open: true,
       variant: 'persistent' as DrawerVariant,

@@ -32,14 +32,14 @@ export interface AvatarProps extends CommonProps {
   onClick?: (event: MouseEvent) => void;
   /** Size of avatar displayed */
   size?: AvatarSize;
+  /** To be used to override syles inline */
+  style?: CSSProperties;
   /** The text to be displayed. Only the first 2 letters will be displayed. */
   text?: string;
   /** The type of the avatar */
   type?: AvatarType;
   /** The shape of the avatar */
   variant?: AvatarVariant;
-  /** To be used to override syles inline */
-  style?: CSSProperties;
 }
 
 export const DotAvatar = ({

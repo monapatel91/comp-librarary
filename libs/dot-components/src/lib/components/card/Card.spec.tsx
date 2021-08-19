@@ -21,6 +21,8 @@ describe('DotCard', () => {
     const hProps = {
       action: action,
       avatar: avatar,
+      className: 'test-class',
+      'data-testid': 'testid',
       subheader: 'I am a subheader',
       subheaderSize: 'large' as SubheaderSize,
       title: 'I am a title',
@@ -30,16 +32,22 @@ describe('DotCard', () => {
     expect(headerProps).toEqual(hProps);
     const cProps = {
       children: 'This is some content',
+      className: 'test-class',
+      'data-testid': 'testid',
     };
     const contentProps = cProps;
     expect(contentProps).toEqual(cProps);
     const fProps = {
       children: 'This is a footer',
+      className: 'test-class',
+      'data-testid': 'testid',
     };
     const footerProps = fProps;
     expect(footerProps).toEqual(fProps);
     const props = {
       children: 'I am a card!',
+      className: 'test-class',
+      'data-testid': 'testid',
     };
     const cardProps = props;
     expect(props).toEqual(cardProps);

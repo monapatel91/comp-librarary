@@ -13,6 +13,8 @@ describe('DotRadioButton', () => {
     const inputRef = createRef<HTMLInputElement>();
     const props = {
       checked: false,
+      className: 'test-class',
+      'data-testid': 'testid',
       disabled: false,
       id: 'button-id',
       inputRef: inputRef,

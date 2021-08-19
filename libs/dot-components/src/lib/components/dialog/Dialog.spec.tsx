@@ -39,12 +39,14 @@ describe('DotDialog', () => {
     const props = {
       cancelButtonProps: {},
       children: 'Hello World',
+      className: 'test-class',
       closeIconVisible: true,
+      closeOnClickAway: true,
+      'data-testid': 'testid',
       hasPrimaryAction: true,
       onCancel: onClick,
       onSubmit: onClick,
       open: true,
-      closeOnClickAway: true,
       submitButtonProps: { type: 'primary' } as SubmitButtonProps,
       title: 'Goodbye',
     };

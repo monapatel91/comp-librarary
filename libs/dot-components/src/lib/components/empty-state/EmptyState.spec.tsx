@@ -8,11 +8,15 @@ describe(' EmptyState', () => {
   it('should have unchanged API', () => {
     const buttonProps = {
       children: 'I am the button',
+      className: 'test-class',
+      'data-testid': 'testid',
     };
     const props = {
       buttonProps: buttonProps,
-      imageSrc: EmptyStateImage,
+      className: 'test-class',
+      'data-testid': 'testid',
       imageAltText: 'image alt text',
+      imageSrc: EmptyStateImage,
       subtitle: 'subtitle',
       title: 'title',
     };

@@ -32,6 +32,8 @@ describe('Tabs', () => {
     const tsProps = {
       centered: true,
       color: 'primary' as TabsColor,
+      className: 'test-class',
+      'data-testid': 'testid',
       initialValue: 1,
       onChange: onChange,
       scrollButtons: 'auto' as TabsScrollButtons,

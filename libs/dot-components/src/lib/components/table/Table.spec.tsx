@@ -5,6 +5,7 @@ import { DotActionToolbar } from '../action-toolbar/ActionToolbar';
 import { DotTable, TableProps } from './Table';
 import { Order } from '../table/TableBody';
 import { RowsPerPageOption } from './TablePagination';
+import { TableRowProps } from '@material-ui/core';
 
 const mockFunc = jest.fn();
 
@@ -15,9 +16,11 @@ it('should have unchanged API', () => {
   ];
   const tProps = {
     ariaLabel: 'aria label',
+    className: 'test-class',
     columns: columns,
     count: 12,
     data: data,
+    'data-testid': 'testid',
     emptyMessage: 'nothing to see here',
     loading: false,
     maxHeight: '500px',
@@ -32,6 +35,14 @@ it('should have unchanged API', () => {
   };
   const tableProps: TableProps = tProps;
   expect(tableProps).toEqual(tProps);
+
+  const trProps = {
+    id: 'foo-bar',
+    selected: true,
+    rowData: data[0].rowData,
+  };
+  const tableRowProps: TableRowProps = trProps;
+  expect(tableRowProps).toEqual(trProps);
 });
 
 const testCols = [

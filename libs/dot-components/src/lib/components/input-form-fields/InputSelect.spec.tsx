@@ -13,6 +13,8 @@ describe('DotInputSelect', () => {
   it('should have unchanged API', () => {
     const props = {
       autoFocus: true,
+      className: 'test-class',
+      'data-testid': 'testid',
       defaultValue: 'Batman',
       disabled: true,
       endIcon: <DotIcon iconId="save" />,
@@ -28,6 +30,7 @@ describe('DotInputSelect', () => {
       required: true,
       size: 'small' as inputSizeOptions,
       startIcon: <DotIcon iconId="save" />,
+      type: 'text',
       value: 'Batman',
       warning: false,
     };
