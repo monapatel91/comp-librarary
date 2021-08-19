@@ -10,6 +10,7 @@ import {
   rootClassName as rootCheckboxClassName,
 } from './Checkbox.styles';
 import { RadioButtonProps } from '../radio/RadioButton';
+
 export type CheckboxSize = 'medium' | 'small';
 export type CheckboxLabelPlacement = 'bottom' | 'end' | 'start';
 

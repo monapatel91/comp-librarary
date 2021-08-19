@@ -5,13 +5,21 @@ import React, {
   useState,
   useContext,
 } from 'react';
-import { DotSnackbarContainer } from './SnackbarContainer';
-import { SnackbarSeverity } from './Snackbar';
 import { CreateUUID } from '../createUUID';
+import { DotSnackbar, SnackbarSeverity } from './Snackbar';
+import {
+  StyledSnackbarContainer,
+  rootClassName,
+} from './SnackbarContainer.styles';
 
 const initialState = [
   { message: '', open: false, severity: 'success', id: '' },
 ];
+
+interface SnackbarProviderProps {
+  /** The components or string that load inside of the snackbar provider. */
+  children: ReactNode;
+}
 
 interface DotSnackbarProps {
   alerts: typeof initialState;
@@ -25,7 +33,39 @@ const DotSnackbarContext = createContext<DotSnackbarProps>({
   removeMessage: (_id: string) => null,
 });
 
-export const DotSnackbarProvider = (children: ReactNode) => {
+export const DotSnackbarContainer = () => {
+  const { alerts, removeMessage } = useDotSnackbarContext();
+
+  function handleClose(id: string): () => void {
+    return () => {
+      removeMessage(id);
+    };
+  }
+
+  return (
+    <StyledSnackbarContainer className={rootClassName}>
+      <div data-testid={rootClassName} className={rootClassName}>
+        {alerts
+          .slice()
+          .reverse()
+          .map((alert) => {
+            return (
+              <DotSnackbar
+                key={alert.id}
+                severity={alert.severity as SnackbarSeverity}
+                onClose={handleClose(alert.id)}
+                open={alert.open}
+              >
+                {alert.message}
+              </DotSnackbar>
+            );
+          })}
+      </div>
+    </StyledSnackbarContainer>
+  );
+};
+
+export const DotSnackbarProvider = ({ children }: SnackbarProviderProps) => {
   const [alerts, setAlerts] = useState<typeof initialState>([]);
 
   function enqueueMessage(message: string, severity: SnackbarSeverity): void {

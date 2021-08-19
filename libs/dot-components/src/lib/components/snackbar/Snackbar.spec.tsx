@@ -123,7 +123,7 @@ describe('DotSnackbar', () => {
 
   it('should return 10000 milliseconds if the severity level is not an error', () => {
     expect.assertions(3);
-    ['level', 'info', 'warning'].forEach((value) => {
+    ['level', 'info', 'warning'].forEach((value: SnackbarSeverity) => {
       expect(addAutoHideDuration(value)).toBe(10000);
     });
   });
