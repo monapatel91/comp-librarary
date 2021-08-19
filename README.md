@@ -7,6 +7,10 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=digital-ai_dot-components&metric=security_rating&token=ba1ac26fcfd0a9737112911ea4ac2d9a2b6f066f)](https://sonarcloud.io/dashboard?id=digital-ai_dot-components)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=digital-ai_dot-components&metric=vulnerabilities&token=ba1ac26fcfd0a9737112911ea4ac2d9a2b6f066f)](https://sonarcloud.io/dashboard?id=digital-ai_dot-components)
 
+## Welcome! 👋
+
+So you've decided to use `dot-components` in your application, that's fantastic. Be sure to come say "hi" in the [#dot-components](https://app.slack.com/client/T02GN6UQX/C01GVS9T7GV) channel in Slack and let us know how you're using our library.
+
 ## Installation
 
 ```sh
