@@ -35,7 +35,7 @@ export const DotAppToolbar = ({
   appName,
   children,
   className,
-  customLogo = <LogoDigitalAiWhite title="digital.ai" />,
+  customLogo,
   'data-testid': dataTestId,
   navItems = [],
   mainMenu,
@@ -73,7 +73,9 @@ export const DotAppToolbar = ({
         </Fragment>
       )}
       <div className={`dot-branding ${mainMenu ? 'hamburger' : ''}`}>
-        <DotLink href="/">{customLogo}</DotLink>
+        <DotLink href="/">
+          {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
+        </DotLink>
         {appName && (
           <DotTypography className="dot-product-name">{appName}</DotTypography>
         )}
