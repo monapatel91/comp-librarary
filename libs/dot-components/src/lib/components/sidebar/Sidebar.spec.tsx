@@ -40,17 +40,7 @@ describe(' Sidebar', () => {
       title: 'Captain Sidebar',
       titleAvatarProps: titleAvatarProps,
     };
-    const sidebarProps: SidebarProps = {
-      backItem: backItem,
-      brandDesc: 'best brand',
-      children: <TextField placeholder="search" variant="outlined" />,
-      collapsable: true,
-      displayBrand: true,
-      goBack: false,
-      navItems: navItems,
-      title: 'Captain Sidebar',
-      titleAvatarProps: titleAvatarProps,
-    };
+    const sidebarProps: SidebarProps = props;
     expect(sidebarProps).toEqual(props);
   });
 

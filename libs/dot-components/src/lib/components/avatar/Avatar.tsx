@@ -5,10 +5,10 @@ import { rootClassName, StyledAvatar } from './Avatar.styles';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography } from '../typography/Typography';
 
-type AvatarSize = 'small' | 'medium' | 'large';
-type AvatarType = 'image' | 'text' | 'icon';
-type AvatarVariant = 'circular' | 'square';
-type AvatarColor =
+export type AvatarSize = 'small' | 'medium' | 'large';
+export type AvatarType = 'image' | 'text' | 'icon';
+export type AvatarVariant = 'circular' | 'square';
+export type AvatarColor =
   | 'default'
   | 'green'
   | 'blue'
@@ -23,7 +23,7 @@ export interface AvatarProps extends CommonProps {
   /** Text displayed on hover */
   alt: string;
   /** Color for avatar (ignored if type is 'image') */
-  color?: string;
+  color?: AvatarColor;
   /** The ID of the icon to display on the avatar */
   iconId?: string;
   /** Source for the image used for the avatar */

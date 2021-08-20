@@ -4,7 +4,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 
-type AvatarGroupSpacing = 'medium' | 'small' | number;
+export type AvatarGroupSpacing = 'medium' | 'small' | number;
 
 export interface AvatarGroupProps extends CommonProps {
   /** Array of avatars displayed inside the group */

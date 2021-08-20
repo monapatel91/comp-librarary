@@ -15,11 +15,7 @@ describe('DotButton', () => {
       endIcon: <DotIcon iconId="save" />,
       startIcon: <DotIcon iconId="home" />,
     };
-    const buttonProps: ButtonProps = {
-      children: 'My Button',
-      endIcon: <DotIcon iconId="save" />,
-      startIcon: <DotIcon iconId="home" />,
-    };
+    const buttonProps: ButtonProps = props;
     expect(buttonProps).toEqual(props);
   });
 

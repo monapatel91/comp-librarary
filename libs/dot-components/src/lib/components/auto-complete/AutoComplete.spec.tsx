@@ -3,8 +3,9 @@ import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
 import {
   AutoCompleteOption,
-  DotAutoComplete,
   AutoCompleteProps,
+  autoCompleteSize,
+  DotAutoComplete,
   parseAutoCompleteValue,
 } from './AutoComplete';
 
@@ -39,27 +40,10 @@ describe('AutoComplete', () => {
       onChange: onChange,
       options: dummyOptions,
       placeholder: 'Select a hero',
-      size: 'medium',
+      size: 'medium' as autoCompleteSize,
       value: dummyOptions[1],
     };
-    const autoCompleteProps: AutoCompleteProps = {
-      autoFocus: true,
-      defaultValue: dummyOptions[0],
-      disabled: true,
-      error: false,
-      freesolo: false,
-      group: true,
-      helperText: 'a little help here?',
-      inputId: 'input-id',
-      inputRef: inputRef,
-      label: 'My Label',
-      multiple: false,
-      onChange: onChange,
-      options: dummyOptions,
-      placeholder: 'Select a hero',
-      size: 'medium',
-      value: dummyOptions[1],
-    };
+    const autoCompleteProps: AutoCompleteProps = props;
     expect(autoCompleteProps).toEqual(props);
   });
 

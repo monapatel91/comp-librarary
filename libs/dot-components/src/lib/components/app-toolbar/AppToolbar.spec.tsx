@@ -25,16 +25,8 @@ describe(' AppToolbar', () => {
       mainMenuWidth: 240,
       navItems: menuItems,
     };
-    const appToolbarProps: AppToolbarProps = {
-      appName: 'Batman',
-      avatar: userAvatar,
-      borderColor: '#1abc9c',
-      children: <Input type="text" placeholder="search" />,
-      customLogo: customLogo,
-      mainMenu: <DotSidebar />,
-      mainMenuWidth: 240,
-      navItems: menuItems,
-    };
+
+    const appToolbarProps: AppToolbarProps = props;
     expect(appToolbarProps).toEqual(props);
   });
 

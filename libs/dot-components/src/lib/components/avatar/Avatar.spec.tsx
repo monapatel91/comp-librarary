@@ -1,32 +1,29 @@
 import React from 'react';
 import { render, screen } from '../../testing-utils';
-import { DotAvatar, AvatarProps } from './Avatar';
+import {
+  AvatarColor,
+  AvatarProps,
+  AvatarSize,
+  AvatarType,
+  AvatarVariant,
+  DotAvatar,
+} from './Avatar';
 
 describe('DotAvatar', () => {
   it('should have unchanged API', () => {
     const onClick = jest.fn();
     const props = {
       alt: 'Avatar alt text',
-      color: 'red',
+      color: 'red' as AvatarColor,
       iconId: 'home',
       imageSrc: './somewhere',
       onClick: onClick,
-      size: 'small',
+      size: 'small' as AvatarSize,
       text: 'BM',
-      type: 'image',
-      variant: 'circular',
+      type: 'image' as AvatarType,
+      variant: 'circular' as AvatarVariant,
     };
-    const avatarProps: AvatarProps = {
-      alt: 'Avatar alt text',
-      color: 'red',
-      iconId: 'home',
-      imageSrc: './somewhere',
-      onClick: onClick,
-      size: 'small',
-      text: 'BM',
-      type: 'image',
-      variant: 'circular',
-    };
+    const avatarProps: AvatarProps = props;
     expect(avatarProps).toEqual(props);
   });
 

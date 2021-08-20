@@ -3,6 +3,8 @@ import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
 import { DotActionToolbar } from '../action-toolbar/ActionToolbar';
 import { DotTable, TableProps } from './Table';
+import { Order } from '../table/TableBody';
+import { RowsPerPageOption } from './TablePagination';
 
 const mockFunc = jest.fn();
 
@@ -19,32 +21,16 @@ it('should have unchanged API', () => {
     emptyMessage: 'nothing to see here',
     loading: false,
     maxHeight: '500px',
-    order: 'asc',
+    order: 'asc' as Order,
     orderBy: 'title',
     onRowClick: mockFunc,
     onUpdateData: mockFunc,
-    rowsPerPage: 10,
+    rowsPerPage: 10 as RowsPerPageOption,
     sortable: true,
     stickyHeader: true,
     toolbar: <DotActionToolbar>Test</DotActionToolbar>,
   };
-  const tableProps: TableProps = {
-    ariaLabel: 'aria label',
-    columns: columns,
-    count: 12,
-    data: data,
-    emptyMessage: 'nothing to see here',
-    loading: false,
-    maxHeight: '500px',
-    order: 'asc',
-    orderBy: 'title',
-    onRowClick: mockFunc,
-    onUpdateData: mockFunc,
-    rowsPerPage: 10,
-    sortable: true,
-    stickyHeader: true,
-    toolbar: <DotActionToolbar>Test</DotActionToolbar>,
-  };
+  const tableProps: TableProps = tProps;
   expect(tableProps).toEqual(tProps);
 });
 

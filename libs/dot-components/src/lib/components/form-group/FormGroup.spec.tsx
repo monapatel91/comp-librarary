@@ -10,11 +10,7 @@ describe('FormGroup', () => {
       children: children,
       row: true,
     };
-    const formGroupProps: FormGroupProps = {
-      ariaLabel: 'accessibility label',
-      children: children,
-      row: true,
-    };
+    const formGroupProps: FormGroupProps = props;
     expect(formGroupProps).toEqual(props);
   });
 

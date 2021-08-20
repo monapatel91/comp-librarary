@@ -1,27 +1,25 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
-import { DotIconButton, IconButtonProps } from './IconButton';
+import {
+  DotIconButton,
+  IconButtonProps,
+  IconButtonColor,
+  IconButtonSize,
+} from './IconButton';
 
 describe('DotIconButton', () => {
   it('should have unchanged API', () => {
     const onClick = jest.fn();
     const props = {
-      color: 'primary',
+      color: 'primary' as IconButtonColor,
       disabled: false,
       iconId: 'save',
       onClick: onClick,
-      size: 'small',
+      size: 'small' as IconButtonSize,
       titleTooltip: 'click here',
     };
-    const iconButtonProps: IconButtonProps = {
-      color: 'primary',
-      disabled: false,
-      iconId: 'save',
-      onClick: onClick,
-      size: 'small',
-      titleTooltip: 'click here',
-    };
+    const iconButtonProps: IconButtonProps = props;
     expect(iconButtonProps).toEqual(props);
   });
 

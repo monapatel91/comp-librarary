@@ -16,13 +16,7 @@ describe(' EmptyState', () => {
       subtitle: 'subtitle',
       title: 'title',
     };
-    const emptyStateProps: EmptyStateProps = {
-      buttonProps: buttonProps,
-      imageSrc: EmptyStateImage,
-      imageAltText: 'image alt text',
-      subtitle: 'subtitle',
-      title: 'title',
-    };
+    const emptyStateProps: EmptyStateProps = props;
     expect(emptyStateProps).toEqual(props);
   });
 

@@ -1,28 +1,20 @@
 import React from 'react';
 import { render } from '../../testing-utils';
-import { DotDrawer, DrawerProps } from './Drawer';
+import { DotDrawer, DrawerAnchor, DrawerProps, DrawerVariant } from './Drawer';
 
 describe('Drawer', () => {
   it('should have unchanged API', () => {
     const onClose = jest.fn();
     const props = {
-      anchor: 'bottom',
+      anchor: 'bottom' as DrawerAnchor,
       children: 'I am a drawer',
       height: '44px',
       onClose: onClose,
       open: true,
-      variant: 'persistent',
+      variant: 'persistent' as DrawerVariant,
       width: '512px',
     };
-    const drawerProps: DrawerProps = {
-      anchor: 'bottom',
-      children: 'I am a drawer',
-      height: '44px',
-      onClose: onClose,
-      open: true,
-      variant: 'persistent',
-      width: '512px',
-    };
+    const drawerProps: DrawerProps = props;
     expect(drawerProps).toEqual(props);
   });
 

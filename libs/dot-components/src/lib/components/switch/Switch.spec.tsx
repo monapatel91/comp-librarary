@@ -1,7 +1,13 @@
 import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
-import { DotSwitch, SwitchProps } from './Switch';
+import {
+  DotSwitch,
+  SwitchColor,
+  SwitchLabelPlacement,
+  SwitchProps,
+  SwitchSize,
+} from './Switch';
 
 describe('Switch', () => {
   const onChange = jest.fn();
@@ -10,27 +16,16 @@ describe('Switch', () => {
     const props = {
       ariaLabel: 'aria label',
       checked: false,
-      color: 'primary',
+      color: 'primary' as SwitchColor,
       disabled: false,
       id: 'id',
       inputRef: inputRef,
       label: 'My Switch',
-      labelPlacement: 'end',
+      labelPlacement: 'end' as SwitchLabelPlacement,
       onChange: onChange,
-      size: 'small',
+      size: 'small' as SwitchSize,
     };
-    const switchProps: SwitchProps = {
-      ariaLabel: 'aria label',
-      checked: false,
-      color: 'primary',
-      disabled: false,
-      id: 'id',
-      inputRef: inputRef,
-      label: 'My Switch',
-      labelPlacement: 'end',
-      onChange: onChange,
-      size: 'small',
-    };
+    const switchProps: SwitchProps = props;
     expect(switchProps).toEqual(props);
   });
 

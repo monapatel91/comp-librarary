@@ -1,7 +1,12 @@
 import React, { Fragment } from 'react';
 import { render, screen } from '../../testing-utils';
 import { DotCard } from './Card';
-import { DotCardHeader, CardHeaderProps } from './CardHeader';
+import {
+  DotCardHeader,
+  CardHeaderProps,
+  SubheaderSize,
+  TitleSize,
+} from './CardHeader';
 import { DotCardContent } from './CardContent';
 import { DotCardFooter } from './CardFooter';
 import { DotAvatar } from '../avatar/Avatar';
@@ -17,39 +22,26 @@ describe('DotCard', () => {
       action: action,
       avatar: avatar,
       subheader: 'I am a subheader',
-      subheaderSize: 'large',
+      subheaderSize: 'large' as SubheaderSize,
       title: 'I am a title',
-      titleSize: 'large',
+      titleSize: 'large' as TitleSize,
     };
-    const headerProps: CardHeaderProps = {
-      action: action,
-      avatar: avatar,
-      subheader: 'I am a subheader',
-      subheaderSize: 'large',
-      title: 'I am a title',
-      titleSize: 'large',
-    };
+    const headerProps: CardHeaderProps = hProps;
     expect(headerProps).toEqual(hProps);
     const cProps = {
       children: 'This is some content',
     };
-    const contentProps = {
-      children: 'This is some content',
-    };
+    const contentProps = cProps;
     expect(contentProps).toEqual(cProps);
     const fProps = {
       children: 'This is a footer',
     };
-    const footerProps = {
-      children: 'This is a footer',
-    };
+    const footerProps = fProps;
     expect(footerProps).toEqual(fProps);
     const props = {
       children: 'I am a card!',
     };
-    const cardProps = {
-      children: 'I am a card!',
-    };
+    const cardProps = props;
     expect(props).toEqual(cardProps);
   });
 

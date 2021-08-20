@@ -1,6 +1,7 @@
 import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
+import { inputSizeOptions } from '../input-form-fields/InputFormFields.propTypes';
 import { DotInputText, InputTextProps } from './InputText';
 import { DotIcon } from '../icon/Icon';
 
@@ -28,37 +29,13 @@ describe('DotInputText', () => {
       required: true,
       rows: 5,
       rowsMax: 15,
-      size: 'small',
+      size: 'small' as inputSizeOptions,
       startIcon: <DotIcon iconId="save" />,
       type: 'text',
       value: 'Batman',
       warning: false,
     };
-    const inputTextProps: InputTextProps = {
-      autoFocus: true,
-      defaultValue: 'Batman',
-      disabled: true,
-      endIcon: <DotIcon iconId="save" />,
-      error: true,
-      fullWidth: true,
-      helperText: 'help me',
-      id: 'text-id',
-      inputRef: inputRef,
-      label: 'text label',
-      multiline: true,
-      name: 'my-text',
-      onChange: mockFunc,
-      placeholder: 'Enter something',
-      readOnly: true,
-      required: true,
-      rows: 5,
-      rowsMax: 15,
-      size: 'small',
-      startIcon: <DotIcon iconId="save" />,
-      type: 'text',
-      value: 'Batman',
-      warning: false,
-    };
+    const inputTextProps: InputTextProps = props;
     expect(inputTextProps).toEqual(props);
   });
 

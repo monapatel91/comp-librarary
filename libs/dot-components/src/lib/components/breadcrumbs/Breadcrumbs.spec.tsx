@@ -23,11 +23,7 @@ describe('Breadcrumbs', () => {
       items: dummyItems,
       maxItems: 5,
     };
-    const breadcrumbProps: BreadcrumbProps = {
-      expansionMenu: false,
-      items: dummyItems,
-      maxItems: 5,
-    };
+    const breadcrumbProps: BreadcrumbProps = props;
     expect(breadcrumbProps).toEqual(props);
   });
 

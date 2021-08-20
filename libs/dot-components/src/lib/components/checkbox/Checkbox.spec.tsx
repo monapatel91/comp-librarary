@@ -10,12 +10,7 @@ describe('DotCheckbox', () => {
       disableRipple: true,
       indeterminate: false,
     };
-    const checkboxProps: CheckboxProps = {
-      ariaLabel: 'Accessibility for the win',
-      ariaLabelledby: 'label-man',
-      disableRipple: true,
-      indeterminate: false,
-    };
+    const checkboxProps: CheckboxProps = props;
     expect(checkboxProps).toEqual(props);
   });
 

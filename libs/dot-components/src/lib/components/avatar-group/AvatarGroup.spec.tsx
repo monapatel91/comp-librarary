@@ -1,6 +1,10 @@
 import React from 'react';
 import { render, screen } from '../../testing-utils';
-import { AvatarGroupProps, DotAvatarGroup } from './AvatarGroup';
+import {
+  AvatarGroupProps,
+  AvatarGroupSpacing,
+  DotAvatarGroup,
+} from './AvatarGroup';
 import { sampleAvatars } from './AvatarGroup.stories.data';
 
 describe('AvatarGroup', () => {
@@ -8,13 +12,9 @@ describe('AvatarGroup', () => {
     const props = {
       avatars: sampleAvatars,
       max: 3,
-      spacing: 'medium',
+      spacing: 'medium' as AvatarGroupSpacing,
     };
-    const avatarGroupProps: AvatarGroupProps = {
-      avatars: sampleAvatars,
-      max: 3,
-      spacing: 'medium',
-    };
+    const avatarGroupProps: AvatarGroupProps = props;
     expect(avatarGroupProps).toEqual(props);
   });
 

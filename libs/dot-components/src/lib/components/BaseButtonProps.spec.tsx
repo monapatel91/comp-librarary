@@ -1,4 +1,4 @@
-import { BaseButtonProps } from './BaseButtonProps';
+import { BaseButtonProps, ButtonSize, ButtonType } from './BaseButtonProps';
 
 describe('CommonProps', () => {
   it('should have unchanged API', () => {
@@ -9,20 +9,11 @@ describe('CommonProps', () => {
       fullWidth: true,
       isSubmit: true,
       onClick: onClick,
-      size: 'small',
+      size: 'small' as ButtonSize,
       titleTooltip: 'click here',
-      type: 'text',
+      type: 'text' as ButtonType,
     };
-    const buttonProps: BaseButtonProps = {
-      disabled: false,
-      disableRipple: false,
-      fullWidth: true,
-      isSubmit: true,
-      onClick: onClick,
-      size: 'small',
-      titleTooltip: 'click here',
-      type: 'text',
-    };
+    const buttonProps: BaseButtonProps = props;
     expect(buttonProps).toEqual(props);
   });
 });
