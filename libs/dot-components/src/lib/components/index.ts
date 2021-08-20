@@ -1,7 +1,7 @@
 export { DotAccordion } from './accordion/Accordion';
 export { DotActionToolbar } from './action-toolbar/ActionToolbar';
 export { DotAlertBanner } from './alert-banner/AlertBanner';
-export { DotAppToolbar } from './app-toolbar/AppToolbar';
+export { DotAppToolbar, AppToolbarProps } from './app-toolbar/AppToolbar';
 export {
   AutoCompleteOption,
   DotAutoComplete,
@@ -10,7 +10,7 @@ export { AvatarProps, DotAvatar } from './avatar/Avatar';
 export { DotAvatarGroup } from './avatar-group/AvatarGroup';
 export { BreadcrumbItem, DotBreadcrumbs } from './breadcrumbs/Breadcrumbs';
 export { DotButton } from './button/Button';
-export { DotIconButton, IconButtonProps } from './button/IconButton';
+export { DotButtonToggle } from './button-toggle/ButtonToggle';
 export { DotCard } from './card/Card';
 export { DotCardContent } from './card/CardContent';
 export { DotCardFooter } from './card/CardFooter';
@@ -19,18 +19,16 @@ export { CheckboxProps, DotCheckbox } from './checkbox/Checkbox';
 export { DotCheckboxGroup } from './checkbox/CheckboxGroup';
 export { DotChip } from './chip/Chip';
 export { DotConfirmationDialog } from './confirmation-dialog/ConfirmationDialog';
+export { Cell } from './css-grid/CssCell';
+export { CssGrid } from './css-grid/CssGrid';
+export { CssGridDebug } from './css-grid/CssGridDebug';
 export { DotDialog } from './dialog/Dialog';
 export { DotDrawer } from './drawer/Drawer';
 export { DotEmptyState } from './empty-state/EmptyState';
 export { DotForm } from './form/Form';
 export { DotFormGroup } from './form-group/FormGroup';
 export { DotIcon } from './icon/Icon';
-export { DotSnackbar } from './snackbar/Snackbar';
-export {
-  DotSnackbarContainer,
-  DotSnackbarProvider,
-  useDotSnackbarContext,
-} from './snackbar/SnackbarProvider';
+export { DotIconButton, IconButtonProps } from './button/IconButton';
 export { DotInlineEdit } from './inline-edit/InlineEdit';
 export { DotInputText } from './input-form-fields/InputText';
 export { DotInputSelect } from './input-form-fields/InputSelect';
@@ -42,17 +40,19 @@ export { DotPill } from './pill/Pill';
 export { DotProgress } from './progress/Progress';
 export { DotRadioButton, RadioButtonProps } from './radio/RadioButton';
 export { DotRadioGroup } from './radio/RadioGroup';
-export { DotSidebar } from './sidebar/Sidebar';
+export { BackItemProps, DotSidebar, SidebarProps } from './sidebar/Sidebar';
 export { DotSkeleton } from './skeleton/Skeleton';
+export { DotSnackbar } from './snackbar/Snackbar';
+export {
+  DotSnackbarContainer,
+  DotSnackbarProvider,
+  useDotSnackbarContext,
+} from './snackbar/SnackbarProvider';
 export { DotSplitButton } from './split-button/SplitButton';
 export { DotSwitch } from './switch/Switch';
 export { DotTable, TableRowProps } from './table/Table';
-export { DotHeaderRow } from './table/TableHeader';
+export { DotHeaderRow, DotColumnHeader } from './table/TableHeader';
 export { TableDataWithPagination } from './table/TableDataWithPagination';
 export { DotTablePagination } from './table/TablePagination';
 export { DotTabs, TabProps } from './tabs/Tabs';
-export { DotButtonToggle } from './button-toggle/ButtonToggle';
 export { DotTypography } from './typography/Typography';
-export { CssGrid } from './css-grid/CssGrid';
-export { Cell } from './css-grid/CssCell';
-export { CssGridDebug } from './css-grid/CssGridDebug';
