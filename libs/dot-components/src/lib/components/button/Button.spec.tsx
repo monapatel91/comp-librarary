@@ -12,14 +12,12 @@ describe('DotButton', () => {
   it('should have unchanged API', () => {
     const props = {
       children: 'My Button',
+      className: 'test-class',
+      'data-testid': 'testid',
       endIcon: <DotIcon iconId="save" />,
       startIcon: <DotIcon iconId="home" />,
     };
-    const buttonProps: ButtonProps = {
-      children: 'My Button',
-      endIcon: <DotIcon iconId="save" />,
-      startIcon: <DotIcon iconId="home" />,
-    };
+    const buttonProps: ButtonProps = props;
     expect(buttonProps).toEqual(props);
   });
 

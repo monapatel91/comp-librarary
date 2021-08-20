@@ -11,14 +11,20 @@ const MAX_ALLOWED_ITEMS = 7;
 export type RailItemsPosition = 'flex-start' | 'center' | 'flex-end';
 
 export interface RailItem {
+  /** Id of the icon shown in the rail item */
   iconId: string;
+  /** text displayed or title text if icon used */
   title: string;
 }
 
 export interface NavigationRailProps extends CommonProps {
+  /** onChange callback */
   onChange?: (index: number) => void;
+  /** controls the position of the rail items */
   railItemPosition?: RailItemsPosition;
+  /** list of rail items */
   railItems: Array<RailItem>;
+  /** index of selected rail item */
   selectedIndex?: number;
 }
 

@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { ElementType } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
-import { DotList, ListItemProps, ListProps } from './List';
+import {
+  DotList,
+  ListItemProps,
+  ListProps,
+  NestedListProps,
+  NestedListType,
+} from './List';
+import { PopperPlacement } from '../menu/Menu';
 
 const onClick = jest.fn();
 
@@ -44,27 +51,28 @@ describe('List', () => {
       ariaLabel: 'hello',
       children: <h3>Hello World</h3>,
       className: 'foo-bar',
-      component: 'ul',
+      component: 'ul' as ElementType,
       'data-testid': 'test-list',
       dense: false,
       disablePadding: false,
       items: mockListItems,
-      menuPlacement: 'right',
-      nestedListType: 'expandable',
+      menuPlacement: 'right' as PopperPlacement,
+      nestedListType: 'expandable' as NestedListType,
     };
-    const listProps: ListProps = {
-      ariaLabel: 'hello',
-      children: <h3>Hello World</h3>,
-      className: 'foo-bar',
-      component: 'ul',
-      'data-testid': 'test-list',
-      dense: false,
-      disablePadding: false,
-      items: mockListItems,
-      menuPlacement: 'right',
-      nestedListType: 'expandable',
-    };
+    const listProps: ListProps = props;
     expect(listProps).toEqual(props);
+
+    const nProps = {
+      anchorEl: null as Element,
+      items: mockListItems,
+      menuPlacement: 'right' as PopperPlacement,
+      onMenuLeave: jest.fn(),
+      open: false,
+      parentItemIndex: 1,
+      type: 'expandable' as NestedListType,
+    };
+    const nestedListProps: NestedListProps = nProps;
+    expect(nestedListProps).toEqual(nProps);
   });
 
   it('should render successfully', () => {

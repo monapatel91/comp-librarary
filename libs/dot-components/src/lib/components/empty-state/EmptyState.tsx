@@ -6,10 +6,15 @@ import { rootClassName, StyledEmptyState } from './EmptyState.styles';
 import { DotTypography } from '../typography/Typography';
 
 export interface EmptyStateProps extends CommonProps {
+  /** primary button properties */
   buttonProps?: ButtonProps;
-  imageSrc?: string;
+  /** alt text of image */
   imageAltText?: string;
+  /** location of image */
+  imageSrc?: string;
+  /** subtitle text displayed */
   subtitle?: string;
+  /** title text displayed */
   title: string;
 }
 

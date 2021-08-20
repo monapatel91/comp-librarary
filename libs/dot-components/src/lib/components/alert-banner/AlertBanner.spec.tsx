@@ -1,6 +1,10 @@
 import React from 'react';
 import { fireEvent, render, screen } from '../../testing-utils';
-import { DotAlertBanner, AlertBannerProps } from './AlertBanner';
+import {
+  DotAlertBanner,
+  AlertBannerProps,
+  AlertBannerSeverity,
+} from './AlertBanner';
 import { DotButton } from '../button/Button';
 
 const onClose = jest.fn();
@@ -13,16 +17,9 @@ describe('AlertBanner', () => {
       className: 'dot-alert-banner',
       'data-testid': 'dot-AlertBanner',
       onClose: onClose || null,
-      severity: 'success',
+      severity: 'success' as AlertBannerSeverity,
     };
-    const alertBannerProps: AlertBannerProps = {
-      action: <DotButton type="text">Dismiss</DotButton>,
-      children: 'Test Alert banner',
-      className: 'dot-alert-banner',
-      'data-testid': 'dot-AlertBanner',
-      onClose: onClose || null,
-      severity: 'success',
-    };
+    const alertBannerProps: AlertBannerProps = props;
     expect(alertBannerProps).toEqual(props);
   });
   it('should render successfully', () => {

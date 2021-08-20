@@ -7,17 +7,23 @@ import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
 import { DotMenu } from '../menu/Menu';
 
 export type BreadcrumbItem = {
+  /** link the breadcrumb goes to */
   href?: string;
   // Using React.MouseEvent here rather than importing MouseEvent from 'react'
   // because component is also using the native MouseEvent in clickListener.
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  /** text displayed */
   text: string;
+  /** determines if and when the underline will be shown */
   underline?: LinkUnderline;
 };
 
 export interface BreadcrumbProps extends CommonProps {
+  /** determines if the menu expands on click */
   expansionMenu?: boolean;
+  /** array of breadcrumb items to display */
   items: Array<BreadcrumbItem>;
+  /** determines the maximum number of items to display */
   maxItems?: number;
 }
 

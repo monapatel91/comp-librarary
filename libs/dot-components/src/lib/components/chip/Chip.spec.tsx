@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
-import { DotChip, ChipProps } from './Chip';
+import { DotChip, ChipProps, ChipSize } from './Chip';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotIcon } from '../icon/Icon';
 
@@ -17,27 +17,18 @@ describe('DotChip', () => {
     const props = {
       avatar: avatar,
       children: 'My Chip',
+      className: 'test-class',
+      'data-testid': 'testid',
       isClickable: true,
       isDeletable: true,
       disabled: false,
       error: false,
       onClick: onClick,
       onDelete: onDelete,
-      size: 'medium',
+      size: 'medium' as ChipSize,
       startIcon: <DotIcon iconId="home" />,
     };
-    const chipProps: ChipProps = {
-      avatar: avatar,
-      children: 'My Chip',
-      isClickable: true,
-      isDeletable: true,
-      disabled: false,
-      error: false,
-      onClick: onClick,
-      onDelete: onDelete,
-      size: 'medium',
-      startIcon: <DotIcon iconId="home" />,
-    };
+    const chipProps: ChipProps = props;
     expect(chipProps).toEqual(props);
   });
 

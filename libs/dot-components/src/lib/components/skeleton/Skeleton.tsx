@@ -10,10 +10,10 @@ export interface SkeletonProps extends CommonProps {
   children?: ReactNode;
   /** Determine height of skeleton */
   height?: number | string;
-  /** Determine width of skeleton */
-  width?: number | string;
   /** Control shape of skeleton */
   variant?: SkeletonVariantType;
+  /** Determine width of skeleton */
+  width?: number | string;
 }
 
 export const DotSkeleton = ({

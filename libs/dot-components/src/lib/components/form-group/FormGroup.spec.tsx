@@ -8,13 +8,11 @@ describe('FormGroup', () => {
     const props = {
       ariaLabel: 'accessibility label',
       children: children,
+      className: 'test-class',
+      'data-testid': 'testid',
       row: true,
     };
-    const formGroupProps: FormGroupProps = {
-      ariaLabel: 'accessibility label',
-      children: children,
-      row: true,
-    };
+    const formGroupProps: FormGroupProps = props;
     expect(formGroupProps).toEqual(props);
   });
 
