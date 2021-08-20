@@ -20,12 +20,9 @@ describe(' AppToolbar', () => {
       avatar: userAvatar,
       borderColor: '#1abc9c',
       children: <Input type="text" placeholder="search" />,
-<<<<<<< HEAD
-      customLogo: customLogo,
-=======
       className: 'test-class',
+      customLogo: customLogo,
       'data-testid': 'testid',
->>>>>>> e484da96 (updating all API unit tests to include all props available)
       mainMenu: <DotSidebar />,
       mainMenuWidth: 240,
       navItems: menuItems,
