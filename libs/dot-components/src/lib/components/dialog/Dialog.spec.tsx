@@ -165,7 +165,7 @@ describe('DotDialog', () => {
     expect(submitMock).toHaveBeenCalledTimes(1);
   });
 
-  it('should execute onSubmit when the enter key is pressed', () => {
+  it('should submit button have focus if set', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
@@ -173,17 +173,13 @@ describe('DotDialog', () => {
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
+        submitButtonProps={{ autoFocus: true, type: 'primary' }}
       >
         <p>Hello World</p>
-        <input name="text" type="text" />
       </DotDialog>
     );
 
-    userEvent.type(screen.getByRole('textbox'), '{space}');
-    expect(submitMock).toHaveBeenCalledTimes(0);
-
-    userEvent.type(screen.getByRole('textbox'), '{enter}');
-    expect(submitMock).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('button', { name: /ok/i })).toHaveFocus();
   });
 
   it('children should render successfully', () => {
