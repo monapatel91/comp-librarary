@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.0.7](https://github.com/digital-ai/dot-components/tree/1.0.7) (08/23/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.6...1.0.7)
+
+**Fixed bugs:**
+
+- Link color is hardcoded for agility product [\#641](https://github.com/digital-ai/dot-components/issues/641)
+- Error when installing dot-components in a project that is on version 17 of React [\#591](https://github.com/digital-ai/dot-components/issues/591)
+
+**Closed issues:**
+
+- Dialog Accessibility enhancement [\#648](https://github.com/digital-ai/dot-components/issues/648)
+
+**Merged pull requests:**
+
+- Add autofocus property to Button [\#647](https://github.com/digital-ai/dot-components/pull/647) ([angel-git](https://github.com/angel-git))
+- remove customer logo and use imaginary test logo instead [\#646](https://github.com/digital-ai/dot-components/pull/646) ([CWSites](https://github.com/CWSites))
+- Patch release [\#645](https://github.com/digital-ai/dot-components/pull/645) ([CWSites](https://github.com/CWSites))
+- S-78162: adjust link color [\#642](https://github.com/digital-ai/dot-components/pull/642) ([CWSites](https://github.com/CWSites))
+- update all API unit tests to not have duplicate data [\#639](https://github.com/digital-ai/dot-components/pull/639) ([CWSites](https://github.com/CWSites))
+- Custom main logo in the AppToolbar [\#637](https://github.com/digital-ai/dot-components/pull/637) ([monapatel91](https://github.com/monapatel91))
+
 ## [1.0.6](https://github.com/digital-ai/dot-components/tree/1.0.6) (08/18/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.5...1.0.6)
@@ -372,6 +394,7 @@
 - S-75356: Update VCS icons for progression board drawers [\#497](https://github.com/digital-ai/dot-components/pull/497) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#96 storybook themes [\#472](https://github.com/digital-ai/dot-components/pull/472) ([selsemore](https://github.com/selsemore))
 - Introduce SplitButton Component [\#465](https://github.com/digital-ai/dot-components/pull/465) ([syedsabbas360](https://github.com/syedsabbas360))
+- S-74523: Add Phases from the Progression Board Experience [\#456](https://github.com/digital-ai/dot-components/pull/456) ([dmiletic85](https://github.com/dmiletic85))
 
 ## [v0.0.0-alpha.27](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.27) (05/03/2021)
 
@@ -607,7 +630,6 @@
 - Issue 463 Tabs UX fixes and move to Components [\#467](https://github.com/digital-ai/dot-components/pull/467) ([selsemore](https://github.com/selsemore))
 - Fix test type error [\#462](https://github.com/digital-ai/dot-components/pull/462) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#450: Tabs component [\#459](https://github.com/digital-ai/dot-components/pull/459) ([selsemore](https://github.com/selsemore))
-- S-74523: Add Phases from the Progression Board Experience [\#456](https://github.com/digital-ai/dot-components/pull/456) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#332: Nested list add menu capability [\#453](https://github.com/digital-ai/dot-components/pull/453) ([CWSites](https://github.com/CWSites))
 - contributing docs - adding tree structure for components [\#451](https://github.com/digital-ai/dot-components/pull/451) ([CWSites](https://github.com/CWSites))
 - \#161: import image src rather than component [\#447](https://github.com/digital-ai/dot-components/pull/447) ([TheKeithStewart](https://github.com/TheKeithStewart))
