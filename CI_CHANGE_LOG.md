@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.8](https://github.com/digital-ai/dot-components/tree/1.0.8) (08/23/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.7...1.0.8)
+
+**Fixed bugs:**
+
+- Some things that were being used by consumers were removed from the exports of the library [\#650](https://github.com/digital-ai/dot-components/issues/650)
+
+**Merged pull requests:**
+
+- add export back to component library [\#652](https://github.com/digital-ai/dot-components/pull/652) ([CWSites](https://github.com/CWSites))
+- add back missing items from export [\#651](https://github.com/digital-ai/dot-components/pull/651) ([TheKeithStewart](https://github.com/TheKeithStewart))
+- Master back into develop [\#649](https://github.com/digital-ai/dot-components/pull/649) ([CWSites](https://github.com/CWSites))
+
 ## [1.0.7](https://github.com/digital-ai/dot-components/tree/1.0.7) (08/23/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.6...1.0.7)
@@ -298,6 +312,7 @@
 - Issue \#528: TypeScript Error:applicationName missing when required [\#532](https://github.com/digital-ai/dot-components/pull/532) ([dmiletic85](https://github.com/dmiletic85))
 - D-17908: Hover on progression board causes rerender of board [\#524](https://github.com/digital-ai/dot-components/pull/524) ([dmiletic85](https://github.com/dmiletic85))
 - Automation improvements [\#521](https://github.com/digital-ai/dot-components/pull/521) ([CWSites](https://github.com/CWSites))
+- Issue \#518 fix nested item icons [\#519](https://github.com/digital-ai/dot-components/pull/519) ([selsemore](https://github.com/selsemore))
 - Layout poc [\#510](https://github.com/digital-ai/dot-components/pull/510) ([j-schoen](https://github.com/j-schoen))
 
 ## [v0.0.0-alpha.33](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.33) (05/11/2021)
@@ -314,7 +329,6 @@
 
 **Merged pull requests:**
 
-- Issue \#518 fix nested item icons [\#519](https://github.com/digital-ai/dot-components/pull/519) ([selsemore](https://github.com/selsemore))
 - Issue \#494: add 'backgroundColor' and 'color' props to DotAvatar [\#516](https://github.com/digital-ai/dot-components/pull/516) ([selsemore](https://github.com/selsemore))
 
 ## [v0.0.0-alpha.32](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.32) (05/11/2021)
@@ -394,7 +408,6 @@
 - S-75356: Update VCS icons for progression board drawers [\#497](https://github.com/digital-ai/dot-components/pull/497) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#96 storybook themes [\#472](https://github.com/digital-ai/dot-components/pull/472) ([selsemore](https://github.com/selsemore))
 - Introduce SplitButton Component [\#465](https://github.com/digital-ai/dot-components/pull/465) ([syedsabbas360](https://github.com/syedsabbas360))
-- S-74523: Add Phases from the Progression Board Experience [\#456](https://github.com/digital-ai/dot-components/pull/456) ([dmiletic85](https://github.com/dmiletic85))
 
 ## [v0.0.0-alpha.27](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.27) (05/03/2021)
 
@@ -630,6 +643,7 @@
 - Issue 463 Tabs UX fixes and move to Components [\#467](https://github.com/digital-ai/dot-components/pull/467) ([selsemore](https://github.com/selsemore))
 - Fix test type error [\#462](https://github.com/digital-ai/dot-components/pull/462) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#450: Tabs component [\#459](https://github.com/digital-ai/dot-components/pull/459) ([selsemore](https://github.com/selsemore))
+- S-74523: Add Phases from the Progression Board Experience [\#456](https://github.com/digital-ai/dot-components/pull/456) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#332: Nested list add menu capability [\#453](https://github.com/digital-ai/dot-components/pull/453) ([CWSites](https://github.com/CWSites))
 - contributing docs - adding tree structure for components [\#451](https://github.com/digital-ai/dot-components/pull/451) ([CWSites](https://github.com/CWSites))
 - \#161: import image src rather than component [\#447](https://github.com/digital-ai/dot-components/pull/447) ([TheKeithStewart](https://github.com/TheKeithStewart))
@@ -777,7 +791,6 @@
 - Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
 - 26 feb icon moon color remove [\#156](https://github.com/digital-ai/dot-components/pull/156) ([BojanKocijan](https://github.com/BojanKocijan))
 - issue \#138: update empty state based on UX feedback [\#150](https://github.com/digital-ai/dot-components/pull/150) ([CWSites](https://github.com/CWSites))
-- issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
 
 ## [0.0.0-alpha.3](https://github.com/digital-ai/dot-components/tree/0.0.0-alpha.3) (01/25/2021)
 
@@ -836,6 +849,7 @@
 
 **Merged pull requests:**
 
+- issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
 - Alpha 3 Release [\#145](https://github.com/digital-ai/dot-components/pull/145) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Change log updates [\#143](https://github.com/digital-ai/dot-components/pull/143) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Issue 112 drawer review [\#141](https://github.com/digital-ai/dot-components/pull/141) ([j-schoen](https://github.com/j-schoen))
