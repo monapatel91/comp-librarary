@@ -14,6 +14,7 @@ export interface ButtonProps extends BaseButtonProps {
 
 /** This component wraps the Button component from @material-ui. */
 export const DotButton = ({
+  autoFocus = false,
   children,
   className,
   'data-testid': dataTestId,
@@ -53,6 +54,7 @@ export const DotButton = ({
 
   return (
     <StyledButton
+      autoFocus={autoFocus}
       classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}

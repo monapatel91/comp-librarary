@@ -102,64 +102,55 @@ export const DotDialog = ({
     handleClose();
   };
 
-  const onKeyPress = (event: KeyboardEvent): void => {
-    const inputWrapper = event.target;
-
-    if (event.key === 'Enter') {
-      handleSubmit(event);
-      (inputWrapper as HTMLElement).blur();
-    }
-  };
-
   return (
-    <div onKeyDown={(event) => onKeyPress(event)}>
-      <StyledDialog
-        classes={{ root: rootClasses }}
-        data-testid={dataTestId}
-        open={isOpen}
-        onClose={handleClickAway}
-        aria-labelledby="MuiDialogTitle-root"
-      >
-        <DialogTitle disableTypography={true}>
-          <DotTypography variant="h2">{title}</DotTypography>
-          {closeIconVisible && (
-            <DotIconButton iconId="close" onClick={handleCancel} size="small" />
-          )}
-        </DialogTitle>
-        <DialogContent classes={{ root: `dot-dialog-content` }}>
-          {children}
-        </DialogContent>
-        <DialogActions classes={{ root: `dot-dialog-actions` }}>
+    <StyledDialog
+      classes={{ root: rootClasses }}
+      data-testid={dataTestId}
+      open={isOpen}
+      onClose={handleClickAway}
+      aria-labelledby='MuiDialogTitle-root'
+    >
+      <DialogTitle disableTypography={true}>
+        <DotTypography variant='h2'>{title}</DotTypography>
+        {closeIconVisible && (
+          <DotIconButton iconId='close' onClick={handleCancel} size='small' />
+        )}
+      </DialogTitle>
+      <DialogContent classes={{ root: `dot-dialog-content` }}>
+        {children}
+      </DialogContent>
+      <DialogActions classes={{ root: `dot-dialog-actions` }}>
+        <DotButton
+          autoFocus={cancelButtonProps?.autoFocus}
+          className={cancelClasses}
+          data-testid={cancelButtonProps?.['data-testid']}
+          disabled={cancelButtonProps?.disabled}
+          disableRipple={cancelButtonProps?.disableRipple}
+          endIcon={cancelButtonProps?.endIcon}
+          startIcon={cancelButtonProps?.startIcon}
+          onClick={handleCancel}
+          titleTooltip={cancelButtonProps?.titleTooltip}
+          type='text'
+        >
+          {cancelButtonProps?.label || 'Cancel'}
+        </DotButton>
+        {hasPrimaryAction && (
           <DotButton
-            className={cancelClasses}
-            data-testid={cancelButtonProps?.['data-testid']}
-            disabled={cancelButtonProps?.disabled}
-            disableRipple={cancelButtonProps?.disableRipple}
-            endIcon={cancelButtonProps?.endIcon}
-            startIcon={cancelButtonProps?.startIcon}
-            onClick={handleCancel}
-            titleTooltip={cancelButtonProps?.titleTooltip}
-            type="text"
+            autoFocus={submitButtonProps?.autoFocus}
+            className={submitButtonProps?.className}
+            data-testid={submitButtonProps?.['data-testid']}
+            disabled={submitButtonProps?.disabled}
+            disableRipple={submitButtonProps?.disableRipple}
+            endIcon={submitButtonProps?.endIcon}
+            startIcon={submitButtonProps?.startIcon}
+            onClick={handleSubmit}
+            titleTooltip={submitButtonProps?.titleTooltip}
+            type={submitButtonProps?.type || 'primary'}
           >
-            {cancelButtonProps?.label || 'Cancel'}
+            {submitButtonProps?.label || 'OK'}
           </DotButton>
-          {hasPrimaryAction && (
-            <DotButton
-              className={submitButtonProps?.className}
-              data-testid={submitButtonProps?.['data-testid']}
-              disabled={submitButtonProps?.disabled}
-              disableRipple={submitButtonProps?.disableRipple}
-              endIcon={submitButtonProps?.endIcon}
-              startIcon={submitButtonProps?.startIcon}
-              onClick={handleSubmit}
-              titleTooltip={submitButtonProps?.titleTooltip}
-              type={submitButtonProps?.type || 'primary'}
-            >
-              {submitButtonProps?.label || 'OK'}
-            </DotButton>
-          )}
-        </DialogActions>
-      </StyledDialog>
-    </div>
+        )}
+      </DialogActions>
+    </StyledDialog>
   );
 };

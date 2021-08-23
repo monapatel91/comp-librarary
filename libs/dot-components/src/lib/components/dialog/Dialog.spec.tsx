@@ -133,6 +133,27 @@ describe('DotDialog', () => {
     expect(cancelMock).toHaveBeenCalledTimes(1);
   });
 
+  it('should not execute onSubmit when the enter key is pressed somewhere else', () => {
+    const submitMock = jest.fn();
+    render(
+      <DotDialog
+        title='Dialog Title'
+        open={true}
+        onCancel={cancelFunc}
+        onSubmit={submitMock}
+      >
+        <p>Hello World</p>
+        <input name='text' type='text' />
+      </DotDialog>
+    );
+
+    userEvent.type(screen.getByRole('textbox'), '{space}');
+    expect(submitMock).toHaveBeenCalledTimes(0);
+
+    userEvent.type(screen.getByRole('textbox'), '{enter}');
+    expect(submitMock).toHaveBeenCalledTimes(0);
+  });
+
   it('should execute onSubmit when the add button is clicked', () => {
     const submitMock = jest.fn();
     render(
@@ -150,7 +171,7 @@ describe('DotDialog', () => {
     expect(submitMock).toHaveBeenCalledTimes(1);
   });
 
-  it('should execute onSubmit when the enter key is pressed', () => {
+  it('should submit button have focus if set', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
@@ -158,17 +179,30 @@ describe('DotDialog', () => {
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
+        submitButtonProps={{ autoFocus: true, type: 'primary' }}
       >
         <p>Hello World</p>
-        <input name="text" type="text" />
       </DotDialog>
     );
 
-    userEvent.type(screen.getByRole('textbox'), '{space}');
-    expect(submitMock).toHaveBeenCalledTimes(0);
+    expect(screen.getByRole('button', { name: /ok/i })).toHaveFocus();
+  });
 
-    userEvent.type(screen.getByRole('textbox'), '{enter}');
-    expect(submitMock).toHaveBeenCalledTimes(1);
+  it('should cancel button have focus if set', () => {
+    const submitMock = jest.fn();
+    render(
+      <DotDialog
+        title='Dialog Title'
+        open={true}
+        onCancel={cancelFunc}
+        onSubmit={submitMock}
+        cancelButtonProps={{ autoFocus: true, type: 'outlined' }}
+      >
+        <p>Hello World</p>
+      </DotDialog>
+    );
+
+    expect(screen.getByRole('button', { name: /cancel/i })).toHaveFocus();
   });
 
   it('children should render successfully', () => {
