@@ -1,43 +1,33 @@
 import React from 'react';
 import { render, screen } from '../../testing-utils';
-import { DotMenu, MenuProps, MenuItemProps } from './Menu';
+import { DotMenu, MenuProps, MenuItemProps, PopperPlacement } from './Menu';
 
 describe('Menu', () => {
   it('should have unchanged API', () => {
     const onLeave = jest.fn();
     const onSelect = jest.fn();
     const mProps = {
-      anchorEl: null,
+      anchorEl: null as Element,
+      className: 'test-class',
+      'data-testid': 'testid',
       disablePortal: true,
       id: 'menu-id',
       menuItems: [{ children: 'opt 1' }],
-      menuPlacement: 'bottom',
+      menuPlacement: 'bottom' as PopperPlacement,
       open: true,
       onLeave: onLeave,
       onSelect: onSelect,
     };
-    const menuProps: MenuProps = {
-      anchorEl: null,
-      disablePortal: true,
-      id: 'menu-id',
-      menuItems: [{ children: 'opt 1' }],
-      menuPlacement: 'bottom',
-      open: true,
-      onLeave: onLeave,
-      onSelect: onSelect,
-    };
+    const menuProps: MenuProps = mProps;
     expect(menuProps).toEqual(mProps);
-    const onClick = jest.fn();
     const iProps = {
       children: 'opt 1',
+      className: 'test-class',
       classes: 'menu-item-class',
+      'data-testid': 'testid',
       key: 'opt1',
     };
-    const menuItemProps: MenuItemProps = {
-      children: 'opt 1',
-      classes: 'menu-item-class',
-      key: 'opt1',
-    };
+    const menuItemProps: MenuItemProps = iProps;
     expect(menuItemProps).toEqual(iProps);
   });
 

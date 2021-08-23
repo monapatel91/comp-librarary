@@ -5,7 +5,7 @@ import { rootClassName, StyledAlertBanner } from './AlertBanner.styles';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography } from '../typography/Typography';
 
-type AlertBannerSeverity = 'error' | 'info' | 'success' | 'warning';
+export type AlertBannerSeverity = 'error' | 'info' | 'success' | 'warning';
 
 export interface AlertBannerProps extends CommonProps {
   action?: ReactNode;

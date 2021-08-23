@@ -16,6 +16,8 @@ describe('DotRadioGroup', () => {
     const onChange = jest.fn();
     const props = {
       ariaLabel: 'aria label',
+      className: 'test-class',
+      'data-testid': 'testid',
       defaultValue: 'the default',
       disableGroup: false,
       endIcon: <DotIcon iconId="save" />,
@@ -28,20 +30,7 @@ describe('DotRadioGroup', () => {
       row: true,
       startIcon: <DotIcon iconId="save" />,
     };
-    const radioGroupProps: RadioGroupProps = {
-      ariaLabel: 'aria label',
-      defaultValue: 'the default',
-      disableGroup: false,
-      endIcon: <DotIcon iconId="save" />,
-      error: false,
-      groupLabel: 'My Button Group',
-      helperText: 'a little help here?',
-      onChange: onChange,
-      options: radioButtons,
-      required: true,
-      row: true,
-      startIcon: <DotIcon iconId="save" />,
-    };
+    const radioGroupProps: RadioGroupProps = props;
     expect(radioGroupProps).toEqual(props);
   });
 

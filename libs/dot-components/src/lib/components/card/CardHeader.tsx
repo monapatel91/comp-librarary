@@ -3,8 +3,8 @@ import { CardHeader } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
-type TitleSize = 'small' | 'medium' | 'large';
-type SubheaderSize = 'small' | 'large';
+export type TitleSize = 'small' | 'medium' | 'large';
+export type SubheaderSize = 'small' | 'large';
 
 export interface CardHeaderProps extends CommonProps {
   /** Card header action */

@@ -1,23 +1,19 @@
 import React from 'react';
-import { render, screen } from '../../testing-utils';
-import { DotPill, PillProps } from './Pill';
+import { render } from '../../testing-utils';
+import { DotPill, PillProps, PillSize, PillStatus } from './Pill';
 
 describe('DotPill', () => {
   it('should have unchanged API', () => {
     const props = {
       backgroundcolor: 'red',
+      className: 'test-class',
+      'data-testid': 'testid',
       label: 'I am such a pill',
       labelcolor: 'blue',
-      size: 'medium',
-      status: 'default',
+      size: 'medium' as PillSize,
+      status: 'default' as PillStatus,
     };
-    const pillProps: PillProps = {
-      backgroundcolor: 'red',
-      label: 'I am such a pill',
-      labelcolor: 'blue',
-      size: 'medium',
-      status: 'default',
-    };
+    const pillProps: PillProps = props;
     expect(pillProps).toEqual(props);
   });
 

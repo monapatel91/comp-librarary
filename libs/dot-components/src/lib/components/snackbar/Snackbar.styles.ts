@@ -1,10 +1,11 @@
 import { Snackbar } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { SnackbarSeverity } from './Snackbar';
 
 export const rootClassName = 'dot-snackbar';
 
 interface StyledProps {
-  severity: string;
+  severity: SnackbarSeverity;
 }
 
 export const StyledSnackbar = styled(Snackbar)<StyledProps>`

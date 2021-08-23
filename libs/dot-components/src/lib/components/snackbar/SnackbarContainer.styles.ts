@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-snackbar-container';
 
-export const StyledDotSnackbarContainer = styled.div`
+export const StyledSnackbarContainer = styled.div`
   ${() => css`
     &.${rootClassName} {
       position: absolute;

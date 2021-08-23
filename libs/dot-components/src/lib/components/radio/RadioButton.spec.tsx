@@ -1,6 +1,11 @@
 import React, { createRef } from 'react';
 import { render, screen } from '../../testing-utils';
-import { DotRadioButton, RadioButtonProps } from './RadioButton';
+import {
+  DotRadioButton,
+  RadioButtonProps,
+  RadioLabelPlacement,
+  RadioSize,
+} from './RadioButton';
 
 describe('DotRadioButton', () => {
   it('should have unchanged API', () => {
@@ -8,30 +13,20 @@ describe('DotRadioButton', () => {
     const inputRef = createRef<HTMLInputElement>();
     const props = {
       checked: false,
+      className: 'test-class',
+      'data-testid': 'testid',
       disabled: false,
       id: 'button-id',
       inputRef: inputRef,
       label: 'My Label',
-      labelPlacement: 'bottom',
+      labelPlacement: 'bottom' as RadioLabelPlacement,
       name: 'button-name',
       onChange: onChange,
-      size: 'medium',
+      size: 'medium' as RadioSize,
       required: true,
       value: 'x',
     };
-    const radioButtonProps: RadioButtonProps = {
-      checked: false,
-      disabled: false,
-      id: 'button-id',
-      inputRef: inputRef,
-      label: 'My Label',
-      labelPlacement: 'bottom',
-      name: 'button-name',
-      onChange: onChange,
-      size: 'medium',
-      required: true,
-      value: 'x',
-    };
+    const radioButtonProps: RadioButtonProps = props;
     expect(radioButtonProps).toEqual(props);
   });
 

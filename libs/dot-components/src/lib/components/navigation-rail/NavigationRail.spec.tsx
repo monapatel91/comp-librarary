@@ -58,13 +58,16 @@ describe('NavigationRail', () => {
         : expect(item).not.toBeInTheDocument();
     });
 
-  const componentProps: NavigationRailProps = {
+  const props = {
+    className: 'test-class',
     'data-testid': dataTestId,
     onChange,
-    railItemPosition: 'flex-start',
+    railItemPosition: 'flex-start' as RailItemsPosition,
     railItems,
     selectedIndex: 0,
   };
+
+  const componentProps: NavigationRailProps = props;
 
   const renderComponent = (props: NavigationRailProps = null): RenderResult => {
     const renderProps = props ? props : componentProps;
@@ -72,13 +75,14 @@ describe('NavigationRail', () => {
   };
 
   it('should have unchanged API', () => {
-    const props = {
-      'data-testid': dataTestId,
-      onChange,
-      railItemPosition: 'flex-start',
-      railItems,
-      selectedIndex: 0,
+    const iProps = {
+      iconId: 'home',
+      title: 'welcome home',
     };
+
+    const itemProps: RailItem = iProps;
+
+    expect(itemProps).toEqual(iProps);
     expect(componentProps).toEqual(props);
   });
 

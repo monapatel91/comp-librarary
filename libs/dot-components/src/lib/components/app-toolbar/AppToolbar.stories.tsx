@@ -3,7 +3,10 @@ import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotButton } from '../button/Button';
 import { DotSidebar } from '../sidebar/Sidebar';
+import { ReactComponent as FedexLogo } from '../../assets/Fedex.svg';
 import { Story, Meta } from '@storybook/react/types-6-0';
+
+const logoOptions = ['Default', 'Custom'];
 
 export default {
   title: 'Components/AppToolbar',
@@ -22,6 +25,10 @@ export default {
     },
     children: {
       defaultValue: <DotButton>Activate Bat Signal</DotButton>,
+    },
+    customLogo: {
+      control: { type: 'select', options: logoOptions },
+      defaultValue: 'Default',
     },
     mainMenu: {
       defaultValue: (
@@ -124,6 +131,8 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<AppToolbarProps> = (args) => (
-  <DotAppToolbar {...args} />
-);
+export const Default: Story<AppToolbarProps> = (args) => {
+  const { customLogo: logoId } = args;
+  const logo = logoId === 'Custom' && <FedexLogo title="fedex.logo" />;
+  return <DotAppToolbar {...args} customLogo={logo} />;
+};

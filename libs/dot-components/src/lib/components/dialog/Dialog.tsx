@@ -35,6 +35,8 @@ export interface DialogProps extends CommonProps {
   children?: ReactNode;
   /** boolean that toggles visibility of close icon on top right of dialog header*/
   closeIconVisible?: boolean;
+  /** boolean if true then the dialog will not close*/
+  closeOnClickAway?: boolean;
   /** boolean that toggles existence of primary action button */
   hasPrimaryAction?: boolean;
   /** The callback to be executed when the action is cancelled */
@@ -43,8 +45,6 @@ export interface DialogProps extends CommonProps {
   onSubmit?: (event: KeyboardEvent | MouseEvent) => void;
   /** if true, the dialog is visible to the user */
   open: boolean;
-  /** boolean if true then the dialog will not close*/
-  closeOnClickAway?: boolean;
   /** props passed down to the submit button */
   submitButtonProps?: SubmitButtonProps;
   /** dialog heading */

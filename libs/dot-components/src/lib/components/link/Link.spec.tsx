@@ -1,7 +1,13 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
-import { DotLink, LinkProps } from './Link';
+import {
+  DotLink,
+  LinkColor,
+  LinkProps,
+  LinkTarget,
+  LinkUnderline,
+} from './Link';
 
 describe('Link', () => {
   const onClick = jest.fn();
@@ -10,28 +16,19 @@ describe('Link', () => {
     const onMouseEnter = jest.fn();
     const props = {
       children: 'My Link',
-      color: 'primary',
+      className: 'test-class',
+      color: 'primary' as LinkColor,
+      'data-testid': 'testid',
       href: 'http://somewhere',
       onClick: onClick,
       onMouseEnter: onMouseEnter,
       rel: 'second cousin',
       tabIndex: 0,
-      target: '_self',
+      target: '_self' as LinkTarget,
       title: 'Sir Link',
-      underline: 'always',
+      underline: 'always' as LinkUnderline,
     };
-    const linkProps: LinkProps = {
-      children: 'My Link',
-      color: 'primary',
-      href: 'http://somewhere',
-      onClick: onClick,
-      onMouseEnter: onMouseEnter,
-      rel: 'second cousin',
-      tabIndex: 0,
-      target: '_self',
-      title: 'Sir Link',
-      underline: 'always',
-    };
+    const linkProps: LinkProps = props;
     expect(linkProps).toEqual(props);
   });
 

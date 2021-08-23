@@ -1,7 +1,13 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
-import { DialogButtonProps, DialogProps, DotDialog } from './../dialog/Dialog';
+import { ButtonSize, ButtonType } from '../BaseButtonProps';
+import {
+  DialogButtonProps,
+  DialogProps,
+  DotDialog,
+  SubmitButtonProps,
+} from './../dialog/Dialog';
 
 describe('DotDialog', () => {
   const cancelFunc = () => {
@@ -19,25 +25,13 @@ describe('DotDialog', () => {
       isSubmit: true,
       label: 'Criminals Beware',
       onClick: onClick,
-      size: 'small',
+      size: 'small' as ButtonSize,
       startIcon: <i className="box" />,
       titleTooltip: 'I am Batman',
-      type: 'text',
+      type: 'text' as ButtonType,
     };
 
-    const dialogButtonProps: DialogButtonProps = {
-      disabled: true,
-      disableRipple: true,
-      endIcon: <i className="box" />,
-      fullWidth: true,
-      isSubmit: true,
-      label: 'Criminals Beware',
-      onClick: onClick,
-      size: 'small',
-      startIcon: <i className="box" />,
-      titleTooltip: 'I am Batman',
-      type: 'text',
-    };
+    const dialogButtonProps: DialogButtonProps = buttonProps;
     expect(dialogButtonProps).toEqual(buttonProps);
   });
 
@@ -45,27 +39,18 @@ describe('DotDialog', () => {
     const props = {
       cancelButtonProps: {},
       children: 'Hello World',
+      className: 'test-class',
       closeIconVisible: true,
+      closeOnClickAway: true,
+      'data-testid': 'testid',
       hasPrimaryAction: true,
       onCancel: onClick,
       onSubmit: onClick,
       open: true,
-      closeOnClickAway: true,
-      submitButtonProps: { type: 'primary' },
+      submitButtonProps: { type: 'primary' } as SubmitButtonProps,
       title: 'Goodbye',
     };
-    const dialogProps: DialogProps = {
-      cancelButtonProps: {},
-      children: 'Hello World',
-      closeIconVisible: true,
-      hasPrimaryAction: true,
-      onCancel: onClick,
-      onSubmit: onClick,
-      open: true,
-      closeOnClickAway: true,
-      submitButtonProps: { type: 'primary' },
-      title: 'Goodbye',
-    };
+    const dialogProps: DialogProps = props;
     expect(dialogProps).toEqual(props);
   });
 
