@@ -20,24 +20,12 @@ describe('Accordion', () => {
       defaultExpanded: false,
       disabled: false,
       hasElevation: false,
+      noWrap: false,
+      square: true,
       startIcon: <DotIcon iconId="notification-bell" />,
       summary: 'Sample Summary Text',
-      square: true,
-      noWrap: false,
     };
-    const accordionProps: AccordionProps = {
-      actions: 'accordion-test',
-      children: 'My Accordion',
-      className: 'dot-accordion',
-      'data-testid': 'dot-accordion',
-      defaultExpanded: false,
-      disabled: false,
-      hasElevation: false,
-      startIcon: <DotIcon iconId="notification-bell" />,
-      summary: 'Sample Summary Text',
-      square: true,
-      noWrap: false,
-    };
+    const accordionProps: AccordionProps = props;
     expect(accordionProps).toEqual(props);
   });
 

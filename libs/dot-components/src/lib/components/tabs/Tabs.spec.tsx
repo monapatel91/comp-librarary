@@ -1,6 +1,13 @@
 import React from 'react';
 import { render, screen } from '../../testing-utils';
-import { DotTabs, TabsProps, TabProps } from './Tabs';
+import {
+  DotTabs,
+  TabsColor,
+  TabsProps,
+  TabProps,
+  TabsScrollButtons,
+  TabsVariant,
+} from './Tabs';
 
 describe('Tabs', () => {
   const tabs = [
@@ -24,22 +31,16 @@ describe('Tabs', () => {
     const onChange = jest.fn();
     const tsProps = {
       centered: true,
-      color: 'primary',
+      color: 'primary' as TabsColor,
+      className: 'test-class',
+      'data-testid': 'testid',
       initialValue: 1,
       onChange: onChange,
-      scrollButtons: 'auto',
+      scrollButtons: 'auto' as TabsScrollButtons,
       tabs: tabs,
-      variant: 'scrollable',
+      variant: 'scrollable' as TabsVariant,
     };
-    const tabsProps: TabsProps = {
-      centered: true,
-      color: 'primary',
-      initialValue: 1,
-      onChange: onChange,
-      scrollButtons: 'auto',
-      tabs: tabs,
-      variant: 'scrollable',
-    };
+    const tabsProps: TabsProps = tsProps;
     expect(tabsProps).toEqual(tsProps);
     const tProps = {
       disabled: true,
@@ -47,12 +48,7 @@ describe('Tabs', () => {
       label: 'Tab 1',
       value: 1,
     };
-    const tabProps: TabProps = {
-      disabled: true,
-      iconId: 'help',
-      label: 'Tab 1',
-      value: 1,
-    };
+    const tabProps: TabProps = tProps;
     expect(tabProps).toEqual(tProps);
   });
 

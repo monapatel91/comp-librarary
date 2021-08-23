@@ -35,10 +35,10 @@ export interface InputProps extends CommonProps {
   ) => void;
   /** If true, the label is displayed as required and the input element` will be required. */
   required?: boolean;
-  /** Icon placed before the children. */
-  startIcon?: ReactNode;
   /** Size of the input */
   size?: inputSizeOptions;
+  /** Icon placed before the children. */
+  startIcon?: ReactNode;
   /**
    * Type of input should be a valid HTML 5 input type
    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types

@@ -3,7 +3,10 @@ import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotButton } from '../button/Button';
 import { DotSidebar } from '../sidebar/Sidebar';
+import { ReactComponent as TestLogo } from '../../assets/test_logo.svg';
 import { Story, Meta } from '@storybook/react/types-6-0';
+
+const logoOptions = ['Default', 'Custom'];
 
 export default {
   title: 'Components/AppToolbar',
@@ -23,22 +26,26 @@ export default {
     children: {
       defaultValue: <DotButton>Activate Bat Signal</DotButton>,
     },
+    customLogo: {
+      control: { type: 'select', options: logoOptions },
+      defaultValue: 'Default',
+    },
     mainMenu: {
       defaultValue: (
         <DotSidebar
           navItems={[
             {
-              iconId: 'process-template',
+              startIconId: 'process-template',
               text: 'Progressions',
               href: '/progressions',
             },
             {
-              iconId: 'satellite-group',
+              startIconId: 'satellite-group',
               text: 'Pipelines',
               href: '/pipelines',
             },
             {
-              iconId: 'dashboard',
+              startIconId: 'dashboard',
               text: 'Insights',
               href: '/insights',
             },
@@ -47,32 +54,32 @@ export default {
               divider: true,
             },
             {
-              iconId: 'block',
+              startIconId: 'block',
               text: 'Packages',
               href: '/packages',
             },
             {
-              iconId: 'flag',
+              startIconId: 'flag',
               text: 'Features',
               href: '/features',
             },
             {
-              iconId: 'collection',
+              startIconId: 'collection',
               text: 'Projects',
               href: '/projects',
             },
             {
-              iconId: 'file-lines',
+              startIconId: 'file-lines',
               text: 'Workitems',
               href: '/workitems',
             },
             {
-              iconId: 'change',
+              startIconId: 'change',
               text: 'Changes',
               href: '/changes',
             },
             {
-              iconId: 'square-settings',
+              startIconId: 'square-settings',
               text: 'Artifacts',
               href: '/artifacts',
             },
@@ -81,17 +88,17 @@ export default {
               divider: true,
             },
             {
-              iconId: 'monitor-gears',
+              startIconId: 'monitor-gears',
               text: 'Tasks',
               href: '/tasks',
             },
             {
-              iconId: 'archive',
+              startIconId: 'archive',
               text: 'Buckets',
               href: '/buckets',
             },
             {
-              iconId: 'monitor',
+              startIconId: 'monitor',
               text: 'Environment',
               href: '/environment',
             },
@@ -124,6 +131,8 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<AppToolbarProps> = (args) => (
-  <DotAppToolbar {...args} />
-);
+export const Default: Story<AppToolbarProps> = (args) => {
+  const { customLogo: logoId } = args;
+  const logo = logoId === 'Custom' && <TestLogo title="test.logo" />;
+  return <DotAppToolbar {...args} customLogo={logo} />;
+};

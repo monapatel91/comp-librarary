@@ -34,6 +34,7 @@ export interface SplitButtonProps extends BaseButtonProps {
 }
 
 export const DotSplitButton = ({
+  autoFocus = false,
   ariaLabel,
   children,
   className,
@@ -90,6 +91,7 @@ export const DotSplitButton = ({
         ref={anchorRef}
       >
         <DotButton
+          autoFocus={autoFocus}
           className="label-button"
           data-testid={dataTestId}
           disabled={disabled}

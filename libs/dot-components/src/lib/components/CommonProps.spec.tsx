@@ -6,10 +6,7 @@ describe('CommonProps', () => {
       className: 'test-class',
       'data-testid': 'testid',
     };
-    const commonProps: CommonProps = {
-      className: 'test-class',
-      'data-testid': 'testid',
-    };
+    const commonProps: CommonProps = props;
     expect(commonProps).toEqual(props);
   });
 });

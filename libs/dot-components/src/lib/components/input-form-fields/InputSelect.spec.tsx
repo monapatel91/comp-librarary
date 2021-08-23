@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { fireEvent, render, screen } from '../../testing-utils';
 import { DotInputSelect, InputSelectProps } from './InputSelect';
+import { inputSizeOptions } from '../input-form-fields/InputFormFields.propTypes';
 import { DotIcon } from '../icon/Icon';
 
 const sampleOptions = ['Batman', 'Ironman', 'Superman'];
@@ -12,6 +13,8 @@ describe('DotInputSelect', () => {
   it('should have unchanged API', () => {
     const props = {
       autoFocus: true,
+      className: 'test-class',
+      'data-testid': 'testid',
       defaultValue: 'Batman',
       disabled: true,
       endIcon: <DotIcon iconId="save" />,
@@ -25,31 +28,13 @@ describe('DotInputSelect', () => {
       onChange: mockFunc,
       options: ['Batman', 'Superman'],
       required: true,
-      size: 'small',
+      size: 'small' as inputSizeOptions,
       startIcon: <DotIcon iconId="save" />,
+      type: 'text',
       value: 'Batman',
       warning: false,
     };
-    const inputSelectProps: InputSelectProps = {
-      autoFocus: true,
-      defaultValue: 'Batman',
-      disabled: true,
-      endIcon: <DotIcon iconId="save" />,
-      error: true,
-      fullWidth: true,
-      helperText: 'help me',
-      id: 'text-id',
-      inputRef: inputRef,
-      label: 'select label',
-      name: 'my-text',
-      onChange: mockFunc,
-      options: ['Batman', 'Superman'],
-      required: true,
-      size: 'small',
-      startIcon: <DotIcon iconId="save" />,
-      value: 'Batman',
-      warning: false,
-    };
+    const inputSelectProps: InputSelectProps = props;
     expect(inputSelectProps).toEqual(props);
   });
 

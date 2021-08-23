@@ -1,7 +1,13 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
-import { DialogButtonProps, DialogProps, DotDialog } from './../dialog/Dialog';
+import { ButtonSize, ButtonType } from '../BaseButtonProps';
+import {
+  DialogButtonProps,
+  DialogProps,
+  DotDialog,
+  SubmitButtonProps,
+} from './../dialog/Dialog';
 
 describe('DotDialog', () => {
   const cancelFunc = () => {
@@ -19,25 +25,13 @@ describe('DotDialog', () => {
       isSubmit: true,
       label: 'Criminals Beware',
       onClick: onClick,
-      size: 'small',
+      size: 'small' as ButtonSize,
       startIcon: <i className="box" />,
       titleTooltip: 'I am Batman',
-      type: 'text',
+      type: 'text' as ButtonType,
     };
 
-    const dialogButtonProps: DialogButtonProps = {
-      disabled: true,
-      disableRipple: true,
-      endIcon: <i className="box" />,
-      fullWidth: true,
-      isSubmit: true,
-      label: 'Criminals Beware',
-      onClick: onClick,
-      size: 'small',
-      startIcon: <i className="box" />,
-      titleTooltip: 'I am Batman',
-      type: 'text',
-    };
+    const dialogButtonProps: DialogButtonProps = buttonProps;
     expect(dialogButtonProps).toEqual(buttonProps);
   });
 
@@ -45,27 +39,18 @@ describe('DotDialog', () => {
     const props = {
       cancelButtonProps: {},
       children: 'Hello World',
+      className: 'test-class',
       closeIconVisible: true,
+      closeOnClickAway: true,
+      'data-testid': 'testid',
       hasPrimaryAction: true,
       onCancel: onClick,
       onSubmit: onClick,
       open: true,
-      closeOnClickAway: true,
-      submitButtonProps: { type: 'primary' },
+      submitButtonProps: { type: 'primary' } as SubmitButtonProps,
       title: 'Goodbye',
     };
-    const dialogProps: DialogProps = {
-      cancelButtonProps: {},
-      children: 'Hello World',
-      closeIconVisible: true,
-      hasPrimaryAction: true,
-      onCancel: onClick,
-      onSubmit: onClick,
-      open: true,
-      closeOnClickAway: true,
-      submitButtonProps: { type: 'primary' },
-      title: 'Goodbye',
-    };
+    const dialogProps: DialogProps = props;
     expect(dialogProps).toEqual(props);
   });
 
@@ -148,6 +133,27 @@ describe('DotDialog', () => {
     expect(cancelMock).toHaveBeenCalledTimes(1);
   });
 
+  it('should not execute onSubmit when the enter key is pressed somewhere else', () => {
+    const submitMock = jest.fn();
+    render(
+      <DotDialog
+        title='Dialog Title'
+        open={true}
+        onCancel={cancelFunc}
+        onSubmit={submitMock}
+      >
+        <p>Hello World</p>
+        <input name='text' type='text' />
+      </DotDialog>
+    );
+
+    userEvent.type(screen.getByRole('textbox'), '{space}');
+    expect(submitMock).toHaveBeenCalledTimes(0);
+
+    userEvent.type(screen.getByRole('textbox'), '{enter}');
+    expect(submitMock).toHaveBeenCalledTimes(0);
+  });
+
   it('should execute onSubmit when the add button is clicked', () => {
     const submitMock = jest.fn();
     render(
@@ -165,7 +171,7 @@ describe('DotDialog', () => {
     expect(submitMock).toHaveBeenCalledTimes(1);
   });
 
-  it('should execute onSubmit when the enter key is pressed', () => {
+  it('should submit button have focus if set', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
@@ -173,17 +179,30 @@ describe('DotDialog', () => {
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
+        submitButtonProps={{ autoFocus: true, type: 'primary' }}
       >
         <p>Hello World</p>
-        <input name="text" type="text" />
       </DotDialog>
     );
 
-    userEvent.type(screen.getByRole('textbox'), '{space}');
-    expect(submitMock).toHaveBeenCalledTimes(0);
+    expect(screen.getByRole('button', { name: /ok/i })).toHaveFocus();
+  });
 
-    userEvent.type(screen.getByRole('textbox'), '{enter}');
-    expect(submitMock).toHaveBeenCalledTimes(1);
+  it('should cancel button have focus if set', () => {
+    const submitMock = jest.fn();
+    render(
+      <DotDialog
+        title='Dialog Title'
+        open={true}
+        onCancel={cancelFunc}
+        onSubmit={submitMock}
+        cancelButtonProps={{ autoFocus: true, type: 'outlined' }}
+      >
+        <p>Hello World</p>
+      </DotDialog>
+    );
+
+    expect(screen.getByRole('button', { name: /cancel/i })).toHaveFocus();
   });
 
   it('children should render successfully', () => {

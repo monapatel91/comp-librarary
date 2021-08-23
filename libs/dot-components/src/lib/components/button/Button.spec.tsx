@@ -12,14 +12,12 @@ describe('DotButton', () => {
   it('should have unchanged API', () => {
     const props = {
       children: 'My Button',
+      className: 'test-class',
+      'data-testid': 'testid',
       endIcon: <DotIcon iconId="save" />,
       startIcon: <DotIcon iconId="home" />,
     };
-    const buttonProps: ButtonProps = {
-      children: 'My Button',
-      endIcon: <DotIcon iconId="save" />,
-      startIcon: <DotIcon iconId="home" />,
-    };
+    const buttonProps: ButtonProps = props;
     expect(buttonProps).toEqual(props);
   });
 
@@ -150,5 +148,23 @@ describe('DotButton', () => {
     expect(screen.getByRole('button')).toHaveClass('MuiButton-sizeLarge');
     expect(icon).not.toHaveClass('MuiIcon-fontSizeLarge');
     expect(icon).not.toHaveClass('MuiIcon-fontSizeSmall');
+  });
+
+  it('should render autofocused button', () => {
+    render(
+      <DotButton autoFocus={true} onClick={testClick} type="primary">
+        Test
+      </DotButton>
+    );
+    expect(screen.getByRole('button')).toHaveFocus();
+  });
+
+  it('should render non autofocused button', () => {
+    render(
+      <DotButton autoFocus={false} onClick={testClick} type="primary">
+        Test
+      </DotButton>
+    );
+    expect(screen.getByRole('button')).not.toHaveFocus();
   });
 });

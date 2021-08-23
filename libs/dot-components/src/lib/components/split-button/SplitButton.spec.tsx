@@ -14,8 +14,11 @@ const onSelect = jest.fn();
 describe('DotButton', () => {
   it('should have unchanged API', () => {
     const props = {
+      autoFocus: false,
       ariaLabel: 'splitsville',
       children: 'Hello',
+      className: 'test-class',
+      'data-testid': 'testid',
       disablePortal: true,
       onSelect: onSelect,
       options: options,
@@ -102,5 +105,20 @@ describe('DotButton', () => {
     const buttons = screen.getAllByRole('button');
     userEvent.click(buttons[0]);
     expect(onClick).toHaveBeenCalledTimes(0);
+  });
+
+  it('should left button have focus', () => {
+    render(
+      <DotSplitButton
+        autoFocus={true}
+        ariaLabel="splitsville"
+        onSelect={onSelect}
+        options={options}
+      >
+        Hello
+      </DotSplitButton>
+    );
+    const buttons = screen.getAllByRole('button');
+    expect(buttons[0]).toHaveFocus();
   });
 });

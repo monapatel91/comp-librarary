@@ -11,20 +11,22 @@ import {
 } from './AppToolbar.styles';
 import { DotTypography } from '../typography/Typography';
 export interface AppToolbarProps extends CommonProps {
+  /** Product name displayed next to Digital.ai logo */
+  appName?: string;
   /** User avatar component */
   avatar?: ReactNode;
   /** Control the bottom border of the toolbar, accepts any valid  */
   borderColor?: string;
-  /** Product name displayed next to Digital.ai logo */
-  appName?: string;
   /** JSX Element that is displayed between the logo and right nav */
   children?: ReactNode;
-  /** Array of nav items to be displayed on the right side */
-  navItems?: Array<IconButtonProps>;
+  /** Allow to display custom logo */
+  customLogo?: ReactNode;
   /** If provided will display a hamburger main menu drawer */
   mainMenu?: ReactNode;
   /** Width of main menu drawer if mainMenu provided, defaults to 240px */
   mainMenuWidth?: number;
+  /** Array of nav items to be displayed on the right side */
+  navItems?: Array<IconButtonProps>;
 }
 
 export const DotAppToolbar = ({
@@ -33,6 +35,7 @@ export const DotAppToolbar = ({
   appName,
   children,
   className,
+  customLogo,
   'data-testid': dataTestId,
   navItems = [],
   mainMenu,
@@ -71,7 +74,7 @@ export const DotAppToolbar = ({
       )}
       <div className={`dot-branding ${mainMenu ? 'hamburger' : ''}`}>
         <DotLink href="/">
-          <LogoDigitalAiWhite title="digital.ai" />
+          {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>
         {appName && (
           <DotTypography className="dot-product-name">{appName}</DotTypography>

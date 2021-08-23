@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 import { DotIconButton } from '../button/IconButton';
-import { DotSnackbar, DotSnackbarProps } from './DotSnackbar';
+import { DotSnackbar, SnackbarProps } from './Snackbar';
 
 export default {
   title: 'Components/Snackbar',
@@ -26,6 +26,6 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<DotSnackbarProps> = (args) => (
+export const Default: Story<SnackbarProps> = (args) => (
   <DotSnackbar {...args} />
 );

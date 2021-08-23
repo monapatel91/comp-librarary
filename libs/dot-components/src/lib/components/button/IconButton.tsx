@@ -16,10 +16,10 @@ export interface IconButtonProps extends CommonProps {
   iconId: string;
   /** Event callback */
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-  /** Help text to be displayed on icon hover */
-  titleTooltip?: string;
   /** Determines the size of the button and padding around the icon */
   size?: IconButtonSize;
+  /** Help text to be displayed on icon hover */
+  titleTooltip?: string;
 }
 
 /** This component wraps the IconButton component from @material-ui. */
