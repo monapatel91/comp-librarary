@@ -121,6 +121,7 @@ export const DotDialog = ({
       </DialogContent>
       <DialogActions classes={{ root: `dot-dialog-actions` }}>
         <DotButton
+          autoFocus={cancelButtonProps?.autoFocus}
           className={cancelClasses}
           data-testid={cancelButtonProps?.['data-testid']}
           disabled={cancelButtonProps?.disabled}

@@ -14,29 +14,29 @@ describe('DotDialog', () => {
     const buttonProps = {
       disabled: true,
       disableRipple: true,
-      endIcon: <i className="box" />,
+      endIcon: <i className='box' />,
       fullWidth: true,
       isSubmit: true,
       label: 'Criminals Beware',
       onClick: onClick,
       size: 'small',
-      startIcon: <i className="box" />,
+      startIcon: <i className='box' />,
       titleTooltip: 'I am Batman',
-      type: 'text',
+      type: 'text'
     };
 
     const dialogButtonProps: DialogButtonProps = {
       disabled: true,
       disableRipple: true,
-      endIcon: <i className="box" />,
+      endIcon: <i className='box' />,
       fullWidth: true,
       isSubmit: true,
       label: 'Criminals Beware',
       onClick: onClick,
       size: 'small',
-      startIcon: <i className="box" />,
+      startIcon: <i className='box' />,
       titleTooltip: 'I am Batman',
-      type: 'text',
+      type: 'text'
     };
     expect(dialogButtonProps).toEqual(buttonProps);
   });
@@ -52,7 +52,7 @@ describe('DotDialog', () => {
       open: true,
       closeOnClickAway: true,
       submitButtonProps: { type: 'primary' },
-      title: 'Goodbye',
+      title: 'Goodbye'
     };
     const dialogProps: DialogProps = {
       cancelButtonProps: {},
@@ -64,7 +64,7 @@ describe('DotDialog', () => {
       open: true,
       closeOnClickAway: true,
       submitButtonProps: { type: 'primary' },
-      title: 'Goodbye',
+      title: 'Goodbye'
     };
     expect(dialogProps).toEqual(props);
   });
@@ -72,7 +72,7 @@ describe('DotDialog', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <DotDialog
-        title="Dialog Title"
+        title='Dialog Title'
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
@@ -87,7 +87,7 @@ describe('DotDialog', () => {
   it('should render the cancel button successfully', () => {
     render(
       <DotDialog
-        title="Dialog Title"
+        title='Dialog Title'
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
@@ -102,7 +102,7 @@ describe('DotDialog', () => {
   it('should render the add button successfully', () => {
     render(
       <DotDialog
-        title="Dialog Title"
+        title='Dialog Title'
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
@@ -118,7 +118,7 @@ describe('DotDialog', () => {
     const cancelMock = jest.fn();
     render(
       <DotDialog
-        title="Dialog Title"
+        title='Dialog Title'
         open={true}
         onCancel={cancelMock}
         onSubmit={submitFunc}
@@ -135,7 +135,7 @@ describe('DotDialog', () => {
     const cancelMock = jest.fn();
     render(
       <DotDialog
-        title="Dialog Title"
+        title='Dialog Title'
         open={true}
         onCancel={cancelMock}
         onSubmit={submitFunc}
@@ -148,11 +148,32 @@ describe('DotDialog', () => {
     expect(cancelMock).toHaveBeenCalledTimes(1);
   });
 
+  it('should not execute onSubmit when the enter key is pressed somewhere else', () => {
+    const submitMock = jest.fn();
+    render(
+      <DotDialog
+        title='Dialog Title'
+        open={true}
+        onCancel={cancelFunc}
+        onSubmit={submitMock}
+      >
+        <p>Hello World</p>
+        <input name='text' type='text' />
+      </DotDialog>
+    );
+
+    userEvent.type(screen.getByRole('textbox'), '{space}');
+    expect(submitMock).toHaveBeenCalledTimes(0);
+
+    userEvent.type(screen.getByRole('textbox'), '{enter}');
+    expect(submitMock).toHaveBeenCalledTimes(0);
+  });
+
   it('should execute onSubmit when the add button is clicked', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
-        title="Dialog Title"
+        title='Dialog Title'
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
@@ -169,7 +190,7 @@ describe('DotDialog', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
-        title="Dialog Title"
+        title='Dialog Title'
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
@@ -182,10 +203,27 @@ describe('DotDialog', () => {
     expect(screen.getByRole('button', { name: /ok/i })).toHaveFocus();
   });
 
+  it('should cancel button have focus if set', () => {
+    const submitMock = jest.fn();
+    render(
+      <DotDialog
+        title='Dialog Title'
+        open={true}
+        onCancel={cancelFunc}
+        onSubmit={submitMock}
+        cancelButtonProps={{ autoFocus: true, type: 'outlined' }}
+      >
+        <p>Hello World</p>
+      </DotDialog>
+    );
+
+    expect(screen.getByRole('button', { name: /cancel/i })).toHaveFocus();
+  });
+
   it('children should render successfully', () => {
     render(
       <DotDialog
-        title="Dialog Title"
+        title='Dialog Title'
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
@@ -200,7 +238,7 @@ describe('DotDialog', () => {
   it('title should display as expected', () => {
     render(
       <DotDialog
-        title="Dialog Title"
+        title='Dialog Title'
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
@@ -212,11 +250,11 @@ describe('DotDialog', () => {
     expect(screen.getByText('Dialog Title')).toBeTruthy();
   });
 
-  it("should NOT display primary action button when 'hasPrimaryAction' prop is set to false", () => {
+  it('should NOT display primary action button when \'hasPrimaryAction\' prop is set to false', () => {
     render(
       <DotDialog
         hasPrimaryAction={false}
-        title="Dialog Title"
+        title='Dialog Title'
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
