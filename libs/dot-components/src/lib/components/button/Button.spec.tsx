@@ -151,4 +151,22 @@ describe('DotButton', () => {
     expect(icon).not.toHaveClass('MuiIcon-fontSizeLarge');
     expect(icon).not.toHaveClass('MuiIcon-fontSizeSmall');
   });
+
+  it('should render autofocused button', () => {
+    render(
+      <DotButton autoFocus={true} onClick={testClick} type="primary">
+        Test
+      </DotButton>
+    );
+    expect(screen.getByRole('button')).toHaveFocus();
+  });
+
+  it('should render non autofocused button', () => {
+    render(
+      <DotButton autoFocus={false} onClick={testClick} type="primary">
+        Test
+      </DotButton>
+    );
+    expect(screen.getByRole('button')).not.toHaveFocus();
+  });
 });
