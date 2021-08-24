@@ -15,4 +15,12 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/dot-components',
   coveragePathIgnorePatterns: ['/node_modules/'],
+  coverageReporters: ['lcov'],
+  coverageThreshold: {
+    global: {
+      branches: 75,
+      functions: 80,
+      lines: 80,
+    },
+  },
 };
