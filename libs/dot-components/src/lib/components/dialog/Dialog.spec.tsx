@@ -137,13 +137,13 @@ describe('DotDialog', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
-        title='Dialog Title'
+        title="Dialog Title"
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
       >
         <p>Hello World</p>
-        <input name='text' type='text' />
+        <input name="text" type="text" />
       </DotDialog>
     );
 
@@ -192,7 +192,7 @@ describe('DotDialog', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
-        title='Dialog Title'
+        title="Dialog Title"
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
