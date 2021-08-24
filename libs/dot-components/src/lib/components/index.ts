@@ -5,6 +5,8 @@ export { DotAppToolbar, AppToolbarProps } from './app-toolbar/AppToolbar';
 export {
   AutoCompleteOption,
   DotAutoComplete,
+  AutoCompleteValue,
+  parseAutoCompleteValue,
 } from './auto-complete/AutoComplete';
 export { AvatarProps, DotAvatar } from './avatar/Avatar';
 export { DotAvatarGroup } from './avatar-group/AvatarGroup';
@@ -55,4 +57,4 @@ export { DotHeaderRow, DotColumnHeader } from './table/TableHeader';
 export { TableDataWithPagination } from './table/TableDataWithPagination';
 export { DotTablePagination } from './table/TablePagination';
 export { DotTabs, TabProps } from './tabs/Tabs';
-export { DotTypography } from './typography/Typography';
+export { DotTypography, TypographyVariant } from './typography/Typography';
