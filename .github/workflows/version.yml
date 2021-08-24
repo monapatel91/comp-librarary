@@ -104,9 +104,10 @@ jobs:
         uses: fabernovel/github-changelog-generator-action@master
         with:
           # https://github.com/github-changelog-generator/github-changelog-generator/wiki/Advanced-change-log-generation-examples#additional-options
-          options: --token ${{ secrets.GITHUB_TOKEN }} --date-format %m/%d/%Y --output CI_CHANGE_LOG.md --enhancement-label **Features:** --enhancement-labels enhancement --bug-labels defect --exclude-tags 0.0.0-alpha.0.0.1-s73861automateversioning.995.d3186ab
+          options: --token ${{ secrets.GITHUB_TOKEN }} --date-format %m/%d/%Y --output CI_CHANGE_LOG.md --enhancement-label **Features:** --enhancement-labels enhancement --bug-labels defect
 
       # https://github.com/marketplace/actions/add-commit
+      # TO-DO: use modified SHA to resolve any build issues: https://github.com/EndBug/add-and-commit/issues/200
       - name: Commit and Push Changelog
         uses: EndBug/add-and-commit@master
         with:
