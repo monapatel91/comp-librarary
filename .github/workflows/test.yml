@@ -63,6 +63,9 @@ jobs:
       - name: Run unit tests
         run: yarn test:ci
 
+      - name: Gather Test Coverage
+        run: yarn test-coverage
+
   e2e:
     name: Run E2E Tests # used for check-name on version.yml
     runs-on: ubuntu-latest
