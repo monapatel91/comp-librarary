@@ -1,6 +1,7 @@
 import { Tabs, fade } from '@material-ui/core';
 
 import styled, { css } from 'styled-components';
+import { agilityGreen } from '../../theme-provider/colors/light-theme-colors';
 
 export const rootClassName = 'dot-tabs';
 
@@ -18,7 +19,12 @@ export const StyledTabs = styled(Tabs)`
       }
       .MuiTab-root.MuiTab-textColorSecondary {
         &:hover {
-          background-color: ${fade(theme.palette.secondary.main, 0.12)};
+          background-color: ${theme.palette.product === 'agility'
+            ? theme.palette.agilityInterface.activeCardBg
+            : fade(theme.palette.secondary.main, 0.12)};
+        }
+        &.Mui-selected {
+          color: ${theme.palette.product === 'agility' && agilityGreen};
         }
       }
       .MuiTab-root.MuiTab-textColorPrimary {
@@ -33,6 +39,10 @@ export const StyledTabs = styled(Tabs)`
       .MuiIcon-root {
         display: inline;
         padding-right: ${theme.spacing(0.5)}px;
+      }
+      .MuiTabs-indicator {
+        background-color: ${theme.palette.product === 'agility' &&
+        agilityGreen};
       }
     }
   `}
