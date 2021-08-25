@@ -55,6 +55,14 @@ jobs:
           repo-token: ${{ github.token }}
           wait-interval: 20
 
+      - name: wait on sonarqube scan
+        uses: lewagon/wait-on-check-action@master
+        with:
+          ref: ${{ github.sha }}
+          check-name: SonarQube Scan
+          repo-token: ${{ github.token }}
+          wait-interval: 20
+
   # https://github.com/marketplace/actions/automated-version-bump
   bump-version:
     name: Bump Version & Create GitHub Tag

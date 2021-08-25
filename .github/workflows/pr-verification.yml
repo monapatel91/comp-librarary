@@ -88,6 +88,37 @@ jobs:
       - name: Run e2e tests
         run: yarn e2e:ci
 
+  sonarqube:
+    name: SonarQube Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      # https://github.com/marketplace/actions/yarn-install-cache
+      - name: Cache yarn dependencies
+        uses: c-hive/gha-yarn-cache@v1
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Gather Test Coverage
+        run: yarn test-coverage
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST_URL }}
+
   sonarcloud:
     name: SonarCloud Scan
     runs-on: ubuntu-latest
