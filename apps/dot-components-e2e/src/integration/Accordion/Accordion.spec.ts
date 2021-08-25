@@ -62,7 +62,7 @@ describe('Agility theme style decisions', () => {
     cy.get('.MuiPaper-root').should(
       'have.css',
       'background-color',
-      'rgb(36, 68, 81)'
+      'rgb(20, 38, 46)'
     );
   });
 });
