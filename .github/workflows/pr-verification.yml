@@ -118,34 +118,3 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST_URL }}
-
-  sonarcloud:
-    name: SonarCloud Scan
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.inputs.ref }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      # https://github.com/marketplace/actions/yarn-install-cache
-      - name: Cache yarn dependencies
-        uses: c-hive/gha-yarn-cache@v1
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Gather Test Coverage
-        run: yarn test-coverage
-
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
