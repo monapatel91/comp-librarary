@@ -106,7 +106,7 @@ describe('DotChip', () => {
 
   it("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
-    const dataTestId = 'test-avatar-group';
+    const dataTestId = 'test-chip';
     render(
       <DotChip ariaLabel={ariaLabel} data-testid={dataTestId}>
         Hello
