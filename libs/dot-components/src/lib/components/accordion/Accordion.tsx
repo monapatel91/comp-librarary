@@ -20,6 +20,8 @@ import { CommonProps } from '../CommonProps';
 export interface AccordionProps extends CommonProps {
   /** actionable components (ex: checkbox, button) that can be nested within the expanded Accordion component */
   actions?: ReactNode;
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** The content for the Accordion.*/
   children: ReactNode;
   /** If true, expands the accordion by default. */
@@ -40,6 +42,7 @@ export interface AccordionProps extends CommonProps {
 
 export const DotAccordion = ({
   actions,
+  ariaLabel,
   children,
   className,
   'data-testid': dataTestId = 'dot-accordion',
@@ -60,6 +63,7 @@ export const DotAccordion = ({
 
   return (
     <StyledAccordion
+      aria-label={ariaLabel}
       className={rootClasses}
       data-testid={dataTestId}
       defaultExpanded={defaultExpanded}
