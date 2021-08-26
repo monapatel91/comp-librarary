@@ -13,20 +13,27 @@ describe('NavigationRail', () => {
 
   const onChange = jest.fn();
 
+  const ariaLabel = 'navigation rail label';
+
   const railItems: Array<RailItem> = [
     {
+      ariaLabel: 'list item 1',
       iconId: 'list',
       title: 'Test 1',
     },
     {
+      ariaLabel: 'list item 2',
       iconId: 'history',
       title: 'Test 2',
     },
     {
+      ariaLabel: 'list item 3',
       iconId: 'users',
       title: 'Test 3',
     },
   ];
+
+  const getNavigationRail = (): HTMLElement => screen.getByTestId(dataTestId);
 
   const getRailItem = (index: number): HTMLElement =>
     screen.getByTestId(`rail-item-${index}`);
@@ -43,7 +50,7 @@ describe('NavigationRail', () => {
   const expectToHavePositionValue = (
     railItemsPosition: RailItemsPosition
   ): void =>
-    expect(screen.getByTestId(dataTestId)).toHaveStyle(
+    expect(getNavigationRail()).toHaveStyle(
       `justify-content: ${railItemsPosition}`
     );
 
@@ -59,6 +66,7 @@ describe('NavigationRail', () => {
     });
 
   const props = {
+    ariaLabel,
     className: 'test-class',
     'data-testid': dataTestId,
     onChange,
@@ -76,6 +84,7 @@ describe('NavigationRail', () => {
 
   it('should have unchanged API', () => {
     const iProps = {
+      ariaLabel: 'item label',
       iconId: 'home',
       title: 'welcome home',
     };
@@ -114,6 +123,17 @@ describe('NavigationRail', () => {
       expect(onChange).toHaveBeenCalledTimes(1);
       expect(onChange).toHaveBeenCalledWith(selectedIndex);
       expectItemToBeSelected(selectedIndex);
+    });
+
+    it("should have 'aria-label' attribute with correct value", () => {
+      const navigationRailElement = getNavigationRail();
+      expect(navigationRailElement).toHaveAttribute('aria-label', ariaLabel);
+    });
+
+    it("should have 'aria-label' attribute, with correct value, for each rail item", () => {
+      railItems.forEach(({ ariaLabel }: RailItem, index: number) => {
+        expect(getRailItem(index)).toHaveAttribute('aria-label', ariaLabel);
+      });
     });
   });
 
