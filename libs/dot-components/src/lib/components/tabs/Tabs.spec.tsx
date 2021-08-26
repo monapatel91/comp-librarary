@@ -10,17 +10,23 @@ import {
 } from './Tabs';
 
 describe('Tabs', () => {
+  const getTab = (tabNumber: number): HTMLElement =>
+    screen.getByTestId(`tab-${tabNumber}`);
+
   const tabs = [
     {
+      ariaLabel: 'tab 1',
       label: 'Tab 1',
       'data-testid': 'tab-1',
     },
     {
+      ariaLabel: 'tab 2',
       label: 'Tab 2',
       iconId: 'help',
       'data-testid': 'tab-2',
     },
     {
+      ariaLabel: 'tab 3',
       label: 'Tab 3',
       disabled: true,
       'data-testid': 'tab-3',
@@ -66,5 +72,13 @@ describe('Tabs', () => {
     expect(icon).toBeVisible();
     const disabledTab = screen.getByTestId('tab-3');
     expect(disabledTab).toHaveClass('Mui-disabled');
+  });
+
+  it("should have 'aria-label' attribute, with correct value, for each tab", () => {
+    render(<DotTabs tabs={tabs} />);
+    expect(screen.getByRole('tablist')).toHaveAttribute('aria-label', 'tabs');
+    tabs.forEach(({ ariaLabel }: TabProps, index: number) => {
+      expect(getTab(index + 1)).toHaveAttribute('aria-label', ariaLabel);
+    });
   });
 });

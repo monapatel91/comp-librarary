@@ -10,6 +10,8 @@ export type TabsScrollButtons = 'auto' | 'desktop' | 'off' | 'on';
 export type TabsVariant = 'fullWidth' | 'scrollable' | 'standard';
 
 export interface TabProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** If true, the tab will be disabled. */
   disabled?: boolean;
   /** The ID of the icon to display on the tab */
@@ -71,6 +73,7 @@ export const DotTabs = ({
     );
     const tabElement = (
       <Tab
+        aria-label={tab.ariaLabel}
         data-testid={tab['data-testid']}
         disabled={tab.disabled}
         disableRipple={true}
