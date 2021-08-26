@@ -7,6 +7,8 @@ import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
 import { DotMenu } from '../menu/Menu';
 
 export type BreadcrumbItem = {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** link the breadcrumb goes to */
   href?: string;
   // Using React.MouseEvent here rather than importing MouseEvent from 'react'
@@ -70,6 +72,7 @@ export const DotBreadcrumbs = ({
     return items.slice(1, items.length - 2).map((item, index) => {
       const itemChildren = (
         <DotLink
+          ariaLabel={item.ariaLabel}
           className="breadcrumb"
           color="inherit"
           href={item.href}
@@ -106,16 +109,21 @@ export const DotBreadcrumbs = ({
         separator={<DotIcon iconId="chevron-right" className="separator" />}
       >
         {items.map((item: BreadcrumbItem, index: number) => {
-          const { href, onClick, text, underline } = item;
+          const { ariaLabel, href, onClick, text, underline } = item;
           if (index === items.length - 1) {
             return (
-              <span className="breadcrumb current-page" key={index}>
+              <span
+                aria-label={ariaLabel}
+                className="breadcrumb current-page"
+                key={index}
+              >
                 {text}
               </span>
             );
           } else {
             return (
               <DotLink
+                ariaLabel={ariaLabel}
                 className="breadcrumb"
                 color="inherit"
                 href={href}
