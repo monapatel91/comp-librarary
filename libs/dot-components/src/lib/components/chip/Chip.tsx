@@ -6,6 +6,8 @@ import { rootClassName, StyledChip } from './Chip.styles';
 export type ChipSize = 'medium' | 'small';
 
 export interface ChipProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** If provided, will display an avatar which takes precedence over icon */
   avatar?: ReactElement;
   /** The text for the chip. */
@@ -29,6 +31,7 @@ export interface ChipProps extends CommonProps {
 }
 
 export const DotChip = ({
+  ariaLabel,
   avatar,
   children,
   className,
@@ -51,6 +54,7 @@ export const DotChip = ({
 
   return (
     <StyledChip
+      aria-label={ariaLabel}
       avatar={avatar}
       classes={{ root: rootClasses }}
       clickable={isClickable}
