@@ -6,6 +6,8 @@ import { rootClassName, StyledEmptyState } from './EmptyState.styles';
 import { DotTypography } from '../typography/Typography';
 
 export interface EmptyStateProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** primary button properties */
   buttonProps?: ButtonProps;
   /** alt text of image */
@@ -19,6 +21,7 @@ export interface EmptyStateProps extends CommonProps {
 }
 
 export const DotEmptyState = ({
+  ariaLabel,
   buttonProps,
   className,
   'data-testid': dataTestId,
@@ -30,7 +33,11 @@ export const DotEmptyState = ({
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   return (
-    <StyledEmptyState className={rootClasses} data-testid={dataTestId}>
+    <StyledEmptyState
+      aria-label={ariaLabel}
+      className={rootClasses}
+      data-testid={dataTestId}
+    >
       {imageSrc && (
         <img
           className="empty-state-image"
