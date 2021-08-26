@@ -91,7 +91,7 @@ describe(' EmptyState', () => {
 
   it("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
-    const dataTestId = 'test-avatar-group';
+    const dataTestId = 'test-empty-state';
     render(
       <DotEmptyState
         ariaLabel={ariaLabel}
