@@ -64,7 +64,7 @@ describe('AlertBanner', () => {
 
   it("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
-    const dataTestId = 'test-avatar-group';
+    const dataTestId = 'test-alert-banner';
     render(
       <DotAlertBanner
         action={
