@@ -136,7 +136,7 @@ describe('DotSnackbar', () => {
 
   it("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
-    const dataTestId = 'test-avatar-group';
+    const dataTestId = 'test-snackbar';
     render(
       <DotSnackbar
         ariaLabel={ariaLabel}
