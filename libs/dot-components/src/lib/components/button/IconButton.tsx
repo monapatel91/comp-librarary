@@ -8,6 +8,8 @@ export type IconButtonColor = 'default' | 'inherit' | 'primary' | 'secondary';
 export type IconButtonSize = 'small' | 'medium';
 
 export interface IconButtonProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** 'default', 'inherit', 'primary', 'secondary' */
   color?: IconButtonColor;
   /** If true, the button will be disabled. */
@@ -24,6 +26,7 @@ export interface IconButtonProps extends CommonProps {
 
 /** This component wraps the IconButton component from @material-ui. */
 export const DotIconButton = ({
+  ariaLabel,
   className,
   color = 'inherit',
   'data-testid': dataTestId,
@@ -37,6 +40,7 @@ export const DotIconButton = ({
 
   return (
     <StyledIconButton
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}
