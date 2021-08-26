@@ -7,6 +7,8 @@ import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 export type AvatarGroupSpacing = 'medium' | 'small' | number;
 
 export interface AvatarGroupProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** Array of avatars displayed inside the group */
   avatars: Array<AvatarProps>;
   /** Max avatars to show before +x */
@@ -16,6 +18,7 @@ export interface AvatarGroupProps extends CommonProps {
 }
 
 export const DotAvatarGroup = ({
+  ariaLabel,
   avatars,
   className,
   'data-testid': dataTestId,
@@ -26,6 +29,7 @@ export const DotAvatarGroup = ({
 
   return (
     <AvatarGroup
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       max={max}
