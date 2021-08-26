@@ -15,6 +15,8 @@ export type LinkUnderline = 'always' | 'hover' | 'none';
 export type LinkTarget = '_blank' | '_self';
 
 export interface LinkProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** text for the link. */
   children: ReactNode;
   /** link color */
@@ -38,6 +40,7 @@ export interface LinkProps extends CommonProps {
 }
 
 export const DotLink = ({
+  ariaLabel,
   children,
   className,
   color = 'primary',
@@ -55,6 +58,7 @@ export const DotLink = ({
 
   return (
     <StyledLink
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}

@@ -15,6 +15,7 @@ describe('Link', () => {
   it('should have unchanged API', () => {
     const onMouseEnter = jest.fn();
     const props = {
+      ariaLabel: 'my link',
       children: 'My Link',
       className: 'test-class',
       color: 'primary' as LinkColor,
@@ -65,5 +66,16 @@ describe('Link', () => {
     expect(
       screen.getByText('Sample Link').closest('a').getAttributeNode('href')
     ).toEqual(null);
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    render(
+      <DotLink ariaLabel={ariaLabel} href="#">
+        Sample Link
+      </DotLink>
+    );
+    const linkElement = screen.getByRole('link');
+    expect(linkElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });
