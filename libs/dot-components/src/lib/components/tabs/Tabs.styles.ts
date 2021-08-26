@@ -1,5 +1,4 @@
 import { Tabs, fade } from '@material-ui/core';
-
 import styled, { css } from 'styled-components';
 import { agilityGreen } from '../../theme-provider/colors/light-theme-colors';
 
@@ -17,21 +16,9 @@ export const StyledTabs = styled(Tabs)`
           padding-top: ${theme.spacing(0.5)}px;
         }
       }
-      .MuiTab-root.MuiTab-textColorSecondary {
-        color: ${theme.palette.product === 'agility' && theme.palette.n700};
-
-        &:hover {
-          background-color: ${theme.palette.product !== 'agility' &&
-          fade(theme.palette.secondary.main, 0.12)};
-        }
-      }
-      .MuiTab-root.MuiTab-textColorPrimary {
-        &:hover {
-          background-color: ${theme.palette.product !== 'agility' &&
-          fade(theme.palette.primary.main, 0.12)};
-        }
-      }
       .MuiTab-root {
+        color: ${theme.palette.product === 'agility' &&
+        theme.palette.layer.n700};
         max-width: 360px;
         min-width: 0;
         &:hover {
@@ -45,6 +32,14 @@ export const StyledTabs = styled(Tabs)`
         &.Mui-disabled {
           color: ${theme.palette.product === 'agility' &&
           theme.palette.agilityInterface.disabledText};
+        }
+        &.MuiTab-textColorPrimary:hover {
+          background-color: ${theme.palette.product !== 'agility' &&
+          fade(theme.palette.primary.main, 0.12)};
+        }
+        &.MuiTab-textColorSecondary:hover {
+          background-color: ${theme.palette.product !== 'agility' &&
+          fade(theme.palette.secondary.main, 0.12)};
         }
       }
       .MuiIcon-root {
