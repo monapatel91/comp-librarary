@@ -22,6 +22,8 @@ export type AvatarColor =
 export interface AvatarProps extends CommonProps {
   /** Text displayed on hover */
   alt: string;
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** Color for avatar (ignored if type is 'image') */
   color?: AvatarColor;
   /** The ID of the icon to display on the avatar */
@@ -44,6 +46,7 @@ export interface AvatarProps extends CommonProps {
 
 export const DotAvatar = ({
   alt,
+  ariaLabel,
   className,
   color = 'default',
   'data-testid': dataTestId,
@@ -74,6 +77,7 @@ export const DotAvatar = ({
   return (
     <StyledAvatar
       alt={alt}
+      aria-label={ariaLabel}
       className={size}
       color={color}
       classes={{ root: rootClasses, img: 'dot-img' }}
