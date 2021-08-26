@@ -18,23 +18,34 @@ export const StyledTabs = styled(Tabs)`
         }
       }
       .MuiTab-root.MuiTab-textColorSecondary {
+        color: ${theme.palette.product === 'agility' && theme.palette.n700};
+
         &:hover {
-          background-color: ${theme.palette.product === 'agility'
-            ? theme.palette.agilityInterface.activeCardBg
-            : fade(theme.palette.secondary.main, 0.12)};
-        }
-        &.Mui-selected {
-          color: ${theme.palette.product === 'agility' && agilityGreen};
+          background-color: ${theme.palette.product !== 'agility' &&
+          fade(theme.palette.secondary.main, 0.12)};
         }
       }
       .MuiTab-root.MuiTab-textColorPrimary {
         &:hover {
-          background-color: ${fade(theme.palette.primary.main, 0.12)};
+          background-color: ${theme.palette.product !== 'agility' &&
+          fade(theme.palette.primary.main, 0.12)};
         }
       }
       .MuiTab-root {
         max-width: 360px;
         min-width: 0;
+        &:hover {
+          background-color: ${theme.palette.product === 'agility' &&
+          theme.palette.agilityInterface.activeCardBg};
+          color: ${theme.palette.product === 'agility' && agilityGreen};
+        }
+        &.Mui-selected {
+          color: ${theme.palette.product === 'agility' && agilityGreen};
+        }
+        &.Mui-disabled {
+          color: ${theme.palette.product === 'agility' &&
+          theme.palette.agilityInterface.disabledText};
+        }
       }
       .MuiIcon-root {
         display: inline;
