@@ -8,6 +8,7 @@ describe('Menu', () => {
     const onSelect = jest.fn();
     const mProps = {
       anchorEl: null as Element,
+      ariaLabel: 'my menu label',
       className: 'test-class',
       'data-testid': 'testid',
       disablePortal: true,
@@ -21,6 +22,7 @@ describe('Menu', () => {
     const menuProps: MenuProps = mProps;
     expect(menuProps).toEqual(mProps);
     const iProps = {
+      ariaLabel: 'aria-label',
       children: 'opt 1',
       className: 'test-class',
       classes: 'menu-item-class',
@@ -31,10 +33,13 @@ describe('Menu', () => {
     expect(menuItemProps).toEqual(iProps);
   });
 
+  const getMenuListItem = (text: string): HTMLElement =>
+    screen.getByText(text).closest('li');
+
   const dummyMenuItems = [
-    { children: <span>Batman</span> },
-    { children: <span>Robin</span> },
-    { children: <span>Bat Girl</span> },
+    { ariaLabel: 'item-1', children: <span>Batman</span> },
+    { ariaLabel: 'item-2', children: <span>Robin</span> },
+    { ariaLabel: 'item-3', children: <span>Bat Girl</span> },
   ];
 
   it('should show menu items when open', () => {
@@ -47,5 +52,37 @@ describe('Menu', () => {
     render(<DotMenu id="foo_bar" menuItems={dummyMenuItems} />);
     const menuItem = screen.queryByText('Batman');
     expect(menuItem).toBeNull();
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-menu';
+    render(
+      <DotMenu
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        id="foo_bar"
+        menuItems={dummyMenuItems}
+        open={true}
+      />
+    );
+    const menuElement = screen.getByTestId(dataTestId);
+    expect(menuElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  it("should have 'aria-label' attribute, with correct value, for each menu item", () => {
+    render(<DotMenu id="foo_bar" menuItems={dummyMenuItems} open={true} />);
+    expect(getMenuListItem('Batman')).toHaveAttribute(
+      'aria-label',
+      dummyMenuItems[0].ariaLabel
+    );
+    expect(getMenuListItem('Robin')).toHaveAttribute(
+      'aria-label',
+      dummyMenuItems[1].ariaLabel
+    );
+    expect(getMenuListItem('Bat Girl')).toHaveAttribute(
+      'aria-label',
+      dummyMenuItems[2].ariaLabel
+    );
   });
 });

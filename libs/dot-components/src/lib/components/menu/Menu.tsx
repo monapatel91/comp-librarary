@@ -27,6 +27,8 @@ export type PopperPlacement =
 export interface MenuProps extends CommonProps {
   /** Element that menu is attached to */
   anchorEl?: Element;
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
   disablePortal?: boolean;
   /** Unique ID that ties a particular menu to a specific element */
@@ -48,6 +50,8 @@ export interface MenuProps extends CommonProps {
 }
 
 export interface MenuItemProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** The text displayed on the item */
   children?: ReactNode;
   /** Space delimited CSS classes to be attributed to the menu item */
@@ -58,6 +62,7 @@ export interface MenuItemProps {
 
 export const DotMenu = ({
   anchorEl,
+  ariaLabel,
   className,
   'data-testid': dataTestId,
   disablePortal,
@@ -91,6 +96,7 @@ export const DotMenu = ({
   return (
     <StyledPopper
       anchorEl={anchorEl}
+      aria-label={ariaLabel}
       className={rootClasses}
       data-testid={dataTestId}
       disablePortal={disablePortal}
@@ -119,6 +125,7 @@ export const DotMenu = ({
                 {menuItems.map((item, index: number) => {
                   return (
                     <MenuItem
+                      aria-label={item.ariaLabel}
                       className={`dot-li ${item.classes ? item.classes : ''}`}
                       onClick={(event) => handleSelect(event, item.key)}
                       key={index}
