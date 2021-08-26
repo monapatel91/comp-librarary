@@ -4,6 +4,8 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledButton } from './Button.styles';
 
 export interface ButtonProps extends BaseButtonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** The text for the button. Button text should be in sentence case. */
   children: ReactNode;
   /** Icon placed after the children. */
@@ -14,6 +16,7 @@ export interface ButtonProps extends BaseButtonProps {
 
 /** This component wraps the Button component from @material-ui. */
 export const DotButton = ({
+  ariaLabel,
   autoFocus = false,
   children,
   className,
@@ -54,6 +57,7 @@ export const DotButton = ({
 
   return (
     <StyledButton
+      aria-label={ariaLabel}
       autoFocus={autoFocus}
       classes={{ root: rootClasses }}
       color={color}
