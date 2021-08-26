@@ -1,11 +1,11 @@
 # @digital-ai/dot-components
 
 [![npm version](https://badge.fury.io/js/%40digital-ai%2Fdot-components.svg)](https://badge.fury.io/js/%40digital-ai%2Fdot-components)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=digital-ai_dot-components&metric=alert_status&token=ba1ac26fcfd0a9737112911ea4ac2d9a2b6f066f)](https://sonarcloud.io/dashboard?id=digital-ai_dot-components)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=digital-ai_dot-components&metric=sqale_rating&token=ba1ac26fcfd0a9737112911ea4ac2d9a2b6f066f)](https://sonarcloud.io/dashboard?id=digital-ai_dot-components)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=digital-ai_dot-components&metric=reliability_rating&token=ba1ac26fcfd0a9737112911ea4ac2d9a2b6f066f)](https://sonarcloud.io/dashboard?id=digital-ai_dot-components)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=digital-ai_dot-components&metric=security_rating&token=ba1ac26fcfd0a9737112911ea4ac2d9a2b6f066f)](https://sonarcloud.io/dashboard?id=digital-ai_dot-components)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=digital-ai_dot-components&metric=vulnerabilities&token=ba1ac26fcfd0a9737112911ea4ac2d9a2b6f066f)](https://sonarcloud.io/dashboard?id=digital-ai_dot-components)
+[![Quality Gate Status](https://sonarqube.digital.ai/api/project_badges/measure?project=digital-ai_dot-components&metric=alert_status)](https://sonarqube.digital.ai/dashboard?id=digital-ai_dot-components)
+[![Maintainability Rating](https://sonarqube.digital.ai/api/project_badges/measure?project=digital-ai_dot-components&metric=sqale_rating)](https://sonarqube.digital.ai/dashboard?id=digital-ai_dot-components)
+[![Reliability Rating](https://sonarqube.digital.ai/api/project_badges/measure?project=digital-ai_dot-components&metric=reliability_rating)](https://sonarqube.digital.ai/dashboard?id=digital-ai_dot-components)
+[![Security Rating](https://sonarqube.digital.ai/api/project_badges/measure?project=digital-ai_dot-components&metric=security_rating)](https://sonarqube.digital.ai/dashboard?id=digital-ai_dot-components)
+[![Vulnerabilities](https://sonarqube.digital.ai/api/project_badges/measure?project=digital-ai_dot-components&metric=vulnerabilities)](https://sonarqube.digital.ai/dashboard?id=digital-ai_dot-components)
 
 ## Welcome! 👋
 
