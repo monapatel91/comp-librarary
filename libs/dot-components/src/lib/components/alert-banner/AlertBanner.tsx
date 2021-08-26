@@ -9,6 +9,7 @@ export type AlertBannerSeverity = 'error' | 'info' | 'success' | 'warning';
 
 export interface AlertBannerProps extends CommonProps {
   action?: ReactNode;
+  ariaLabel?: string;
   children: ReactNode | string;
   onClose?: (event: MouseEvent) => void;
   severity: AlertBannerSeverity;
@@ -16,6 +17,7 @@ export interface AlertBannerProps extends CommonProps {
 
 export const DotAlertBanner = ({
   action,
+  ariaLabel,
   children,
   className,
   'data-testid': dataTestId,
@@ -35,6 +37,7 @@ export const DotAlertBanner = ({
   return (
     <StyledAlertBanner
       action={action}
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       iconMapping={AlertBannerIconMapping}

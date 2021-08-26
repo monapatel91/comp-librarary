@@ -13,6 +13,7 @@ describe('AlertBanner', () => {
   it('should have unchanged API', () => {
     const props = {
       action: <DotButton type="text">Dismiss</DotButton>,
+      ariaLabel: 'my avatar group',
       children: 'Test Alert banner',
       className: 'dot-alert-banner',
       'data-testid': 'dot-AlertBanner',
@@ -59,5 +60,24 @@ describe('AlertBanner', () => {
     );
     fireEvent.click(screen.getByText(/undo/i));
     expect(handleClick).toBeCalledTimes(1);
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-avatar-group';
+    render(
+      <DotAlertBanner
+        action={
+          <DotButton ariaLabel={ariaLabel} data-testid={dataTestId}>
+            Undo
+          </DotButton>
+        }
+        severity="error"
+      >
+        Test Alert Banner
+      </DotAlertBanner>
+    );
+    const alertBannerElement = screen.getByTestId(dataTestId);
+    expect(alertBannerElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });
