@@ -6,6 +6,8 @@ import { rootClassName, StyledIcon } from './Icon.styles';
 export type IconFontSize = 'inherit' | 'default' | 'small';
 
 export interface IconProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** Determines the size of the icon and spacing around it */
   fontSize?: IconFontSize;
   /** The ID of the icon to display on the button */
@@ -15,6 +17,7 @@ export interface IconProps extends CommonProps {
 }
 
 export const DotIcon = ({
+  ariaLabel,
   className,
   'data-testid': dataTestId,
   fontSize = 'default',
@@ -26,6 +29,7 @@ export const DotIcon = ({
   return (
     <StyledIcon
       aria-hidden="false"
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       fontSize={fontSize}
