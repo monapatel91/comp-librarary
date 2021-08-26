@@ -10,6 +10,8 @@ export type SnackbarSeverity = 'error' | 'warning' | 'info' | 'success';
 export interface SnackbarProps extends CommonProps {
   /** Property used for creating a custom action button. */
   action?: ReactNode;
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** The message the user sees once the alert displays */
   children: ReactNode;
   /** A callback to handle closing the alert. */
@@ -33,12 +35,14 @@ function checkForConflictingEventHandlers({
 }
 
 export const DotSnackbar = ({
-  open,
-  onClose,
-  severity,
-  children,
   action,
+  ariaLabel,
+  children,
   className,
+  'data-testid': dataTestId,
+  onClose,
+  open,
+  severity,
   width,
 }: SnackbarProps) => {
   const autoHideDuration = addAutoHideDuration(severity);
@@ -48,8 +52,10 @@ export const DotSnackbar = ({
   return (
     <StyledSnackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      aria-label={ariaLabel}
       autoHideDuration={autoHideDuration}
       classes={{ root: rootClasses }}
+      data-testid={dataTestId}
       onClose={onClose}
       open={open}
       severity={severity}
