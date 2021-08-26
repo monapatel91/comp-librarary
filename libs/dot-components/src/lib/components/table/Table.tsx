@@ -179,10 +179,7 @@ export const DotTable = ({
   const onChangeRowsPerPage = (
     evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
-    const newRowsPerPage = parseInt(
-      evt.target.value,
-      rowsPerPage
-    ) as RowsPerPageOption;
+    const newRowsPerPage = parseInt(evt.target.value) as RowsPerPageOption;
     setRowsPerPage(newRowsPerPage);
     setPage(0);
     onUpdateData
@@ -225,9 +222,6 @@ export const DotTable = ({
         : -1
       : data.length
     : null;
-  const emptyRows = rowsPerPage
-    ? Math.min(tableRowsPerPage - data.length, 10)
-    : 0;
 
   if (count && !rowsPerPage) {
     console.warn(
@@ -279,7 +273,6 @@ export const DotTable = ({
             columns={columns}
             data={getData()}
             emptyMessage={emptyMessage}
-            emptyRows={emptyRows}
             onRowClick={onRowClick}
           />
         </Table>
