@@ -16,8 +16,6 @@ export interface TableBodyProps extends CommonProps {
   data: Array<TableRowProps>;
   /** Message to show if no data */
   emptyMessage?: string;
-  /** Empty rows to show */
-  emptyRows?: number;
   /** Row click event callback */
   onRowClick?: (event: MouseEvent, id: string) => void;
 }
@@ -30,7 +28,6 @@ export const DotTableBody = ({
   columns,
   data,
   emptyMessage,
-  emptyRows,
   onRowClick,
 }: TableBodyProps) => {
   if (data.length === 0) {
@@ -39,12 +36,6 @@ export const DotTableBody = ({
         <EmptyDotRow cols={columns.length} message={emptyMessage} />
       </TableBody>
     );
-  }
-  const emptyRowArray = [];
-  if (emptyRows) {
-    for (let i = 0; i < emptyRows; i++) {
-      emptyRowArray.push(<EmptyDotRow cols={columns.length} message="" />);
-    }
   }
   return (
     <TableBody classes={{ root: 'dot-tbody' }}>
@@ -58,9 +49,6 @@ export const DotTableBody = ({
             selected={row.selected}
           />
         );
-      })}
-      {emptyRowArray.map((emptyRow) => {
-        return emptyRow;
       })}
     </TableBody>
   );
