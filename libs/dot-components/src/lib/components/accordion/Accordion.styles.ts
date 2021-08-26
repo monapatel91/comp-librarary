@@ -10,7 +10,7 @@ export const StyledAccordion = styled(Accordion)`
   ${({ theme }) => css`
     &.${rootClassName} {
       background: ${theme.palette.product === 'agility' &&
-      theme.palette.layer.n100};
+      theme.palette.layer.n50};
 
       .${summaryClassName} {
         align-items: center;

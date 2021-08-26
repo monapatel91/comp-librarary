@@ -85,4 +85,16 @@ describe('dot-components: Pill component', () => {
       });
     });
   });
+
+  describe('Agility theme style decisions', () => {
+    before(() =>
+      cy.visit('/iframe.html?id=components-pill--default&theme=agility-dark')
+    );
+
+    it('should apply the correct theme colors', () => {
+      cy.get('div.dot-pill')
+        .should('have.css', 'background-color', 'rgb(36, 68, 81)')
+        .and('have.css', 'color', 'rgb(255, 255, 255)');
+    });
+  });
 });
