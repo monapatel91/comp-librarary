@@ -12,6 +12,8 @@ export type PillStatus =
   | 'default';
 
 export interface PillProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** Background color for the pill, ignored if 'status' is not 'default' */
   backgroundcolor?: string;
   /** The text for the pill. */
@@ -25,6 +27,7 @@ export interface PillProps extends CommonProps {
 }
 
 export const DotPill = ({
+  ariaLabel,
   backgroundcolor,
   className,
   'data-testid': dataTestId,
@@ -37,6 +40,7 @@ export const DotPill = ({
 
   return (
     <StyledPill
+      aria-label={ariaLabel}
       backgroundcolor={backgroundcolor}
       classes={{ root: rootClasses }}
       clickable={false}
