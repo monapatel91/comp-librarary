@@ -22,6 +22,7 @@ export const DotBodyCell = ({
   align,
   className,
   colspan,
+  'data-testid': dataTestId,
   id = CreateUUID(),
   noWrap,
   value,
@@ -49,6 +50,7 @@ export const DotBodyCell = ({
       align={align}
       classes={{ root: rootClasses }}
       colSpan={colspan}
+      data-testid={dataTestId}
       key={id}
     >
       {value}

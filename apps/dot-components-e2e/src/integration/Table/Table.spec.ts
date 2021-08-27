@@ -35,7 +35,7 @@ describe('dot-components: Table component', () => {
         .and('have.css', 'font-size', '12px')
         .and('have.css', 'text-align', 'left');
     });
-    it('table header should have padding', () => {
+    it('sortable table header should have padding', () => {
       cy.get('.MuiTableCell-alignCenter').within(() => {
         cy.get('span').should('have.css', 'padding-left', '26px');
       });

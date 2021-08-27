@@ -1,4 +1,3 @@
-/* eslint-disable array-callback-return */
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
@@ -208,9 +207,7 @@ describe(' Table', () => {
     );
     testCols.map((cols) => {
       const td = baseElement.querySelector('td');
-      if (cols.truncate) {
-        return expect(td).toHaveClass('noWrap');
-      }
+      return cols.truncate && expect(td).toHaveClass('noWrap');
     });
   });
 });
