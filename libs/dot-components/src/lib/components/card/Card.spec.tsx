@@ -98,4 +98,16 @@ describe('DotCard', () => {
     expect(cardContentTestId).toHaveClass('custom-test-class');
     expect(cardFooterTestId).toHaveClass('custom-test-class');
   });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-card';
+    render(
+      <DotCard ariaLabel={ariaLabel} data-testid={dataTestId}>
+        My Card
+      </DotCard>
+    );
+    const cardElement = screen.getByTestId(dataTestId);
+    expect(cardElement).toHaveAttribute('aria-label', ariaLabel);
+  });
 });
