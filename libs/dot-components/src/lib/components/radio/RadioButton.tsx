@@ -14,6 +14,8 @@ export type RadioSize = 'medium' | 'small';
 export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
 
 export interface RadioButtonBaseProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** id of radio button */
   id?: string;
   /** pass a ref to the input element */
@@ -42,6 +44,7 @@ export interface RadioButtonProps extends RadioButtonBaseProps {
 }
 
 export function DotRadioButton({
+  ariaLabel,
   checked,
   className,
   'data-testid': dataTestId,
@@ -69,6 +72,7 @@ export function DotRadioButton({
       value={value}
       control={
         <StyledRadioButton
+          aria-label={ariaLabel}
           classes={{ root: rootRadioButtonClassName }}
           checked={checked}
           color="primary"

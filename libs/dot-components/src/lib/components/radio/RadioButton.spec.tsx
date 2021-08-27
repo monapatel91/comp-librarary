@@ -112,5 +112,12 @@ describe('DotRadioButton', () => {
         'MuiSvgIcon-fontSizeSmall'
       );
     });
+    it("should have 'aria-label' attribute with correct value", () => {
+      const ariaLabel = 'my label';
+      const dataTestId = 'test-radio-button';
+      render(<DotRadioButton ariaLabel={ariaLabel} data-testid={dataTestId} />);
+      const radioButtonElement = screen.getByTestId(dataTestId);
+      expect(radioButtonElement).toHaveAttribute('aria-label', ariaLabel);
+    });
   });
 });
