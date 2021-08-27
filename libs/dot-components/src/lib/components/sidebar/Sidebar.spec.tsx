@@ -100,4 +100,12 @@ describe(' Sidebar', () => {
     userEvent.click(backButton);
     expect(goBack).toHaveBeenCalledTimes(1);
   });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-sidebar';
+    render(<DotSidebar ariaLabel={ariaLabel} data-testid={dataTestId} />);
+    const sidebarElement = screen.getByTestId(`primaryNav ${dataTestId}`);
+    expect(sidebarElement).toHaveAttribute('aria-label', ariaLabel);
+  });
 });

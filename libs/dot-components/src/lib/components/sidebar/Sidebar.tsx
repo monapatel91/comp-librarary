@@ -27,6 +27,8 @@ export interface BackItemProps extends CommonProps {
 }
 
 export interface SidebarProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** props used by the back item */
   backItem?: BackItemProps;
   /** If displayBrand is true this text will be displayed above the Digital.ai branding */
@@ -52,6 +54,7 @@ export interface SidebarProps extends CommonProps {
 }
 
 export const DotSidebar = ({
+  ariaLabel,
   backItem,
   brandDesc,
   children,
@@ -79,6 +82,7 @@ export const DotSidebar = ({
 
   return (
     <StyledSidebar
+      aria-label={ariaLabel}
       className={rootClasses}
       data-testid={`primaryNav ${dataTestId ? dataTestId : ''}`}
     >
