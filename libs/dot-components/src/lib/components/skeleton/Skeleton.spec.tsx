@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../testing-utils';
+import { render, screen } from '../../testing-utils';
 import { DotSkeleton, SkeletonProps, SkeletonVariantType } from './Skeleton';
 
 describe('Skeleton', () => {
@@ -19,5 +19,13 @@ describe('Skeleton', () => {
   it('should render successfully', () => {
     const { baseElement } = render(<DotSkeleton />);
     expect(baseElement).toBeTruthy();
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-skeleton';
+    render(<DotSkeleton ariaLabel={ariaLabel} data-testid={dataTestId} />);
+    const skeletonElement = screen.getByTestId(dataTestId);
+    expect(skeletonElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });
