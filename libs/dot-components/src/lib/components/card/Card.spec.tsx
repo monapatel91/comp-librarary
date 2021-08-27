@@ -99,15 +99,48 @@ describe('DotCard', () => {
     expect(cardFooterTestId).toHaveClass('custom-test-class');
   });
 
-  it("should have 'aria-label' attribute with correct value", () => {
-    const ariaLabel = 'my label';
+  it("should have 'aria-label' attributes with correct values", () => {
+    const cardAriaLabel = 'my card';
+    const cardHeaderAriaLabel = 'my card header';
+    const cardContentAriaLabel = 'my card content';
+    const cardFooterAriaLabel = 'my card footer';
+    const cardHeaderTitle = 'Cool Card';
+    const cardContent = 'This is some content';
+    const cardFooter = 'This is a footer';
+    const cardHeaderDataTestId = 'test-card-header';
     const dataTestId = 'test-card';
     render(
-      <DotCard ariaLabel={ariaLabel} data-testid={dataTestId}>
-        My Card
+      <DotCard ariaLabel={cardAriaLabel} data-testid={dataTestId}>
+        <DotCardHeader
+          ariaLabel={cardHeaderAriaLabel}
+          data-testid={cardHeaderDataTestId}
+          title={cardHeaderTitle}
+        />
+        <DotCardContent ariaLabel={cardContentAriaLabel}>
+          {cardContent}
+        </DotCardContent>
+        <DotCardFooter ariaLabel={cardFooterAriaLabel}>
+          {cardFooter}
+        </DotCardFooter>
       </DotCard>
     );
     const cardElement = screen.getByTestId(dataTestId);
-    expect(cardElement).toHaveAttribute('aria-label', ariaLabel);
+    const cardHeaderTitleElement = screen.getByTestId(cardHeaderDataTestId);
+    const cardContentElement = screen.getByText(cardContent);
+    const cardFooterElement = screen.getByText(cardFooter);
+
+    expect(cardElement).toHaveAttribute('aria-label', cardAriaLabel);
+    expect(cardHeaderTitleElement).toHaveAttribute(
+      'aria-label',
+      cardHeaderAriaLabel
+    );
+    expect(cardContentElement).toHaveAttribute(
+      'aria-label',
+      cardContentAriaLabel
+    );
+    expect(cardFooterElement).toHaveAttribute(
+      'aria-label',
+      cardFooterAriaLabel
+    );
   });
 });
