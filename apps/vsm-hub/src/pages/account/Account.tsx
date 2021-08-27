@@ -70,8 +70,7 @@ const rows = [
     {
       id: 'risk-prediction',
       label: 'Risk Prediction',
-      desc:
-        '100 DFPs = 1 SMPO Small Solution, 150 DFPs = 1 SMPO Medium Solution, 200 DFPs = 1 SMPO Large Solution',
+      desc: '100 DFPs = 1 SMPO Small Solution, 150 DFPs = 1 SMPO Medium Solution, 200 DFPs = 1 SMPO Large Solution',
     },
     0,
     null,
@@ -103,8 +102,7 @@ const rows = [
     {
       id: 'app-protection',
       label: 'App Protection',
-      desc:
-        '75 DFPs = 1 App/Platform combo of App Protect for Mobile & Desktop Apps',
+      desc: '75 DFPs = 1 App/Platform combo of App Protect for Mobile & Desktop Apps',
     },
     0,
     null,
@@ -128,8 +126,7 @@ const rows = [
     {
       id: 'serive-managment',
       label: 'Service Management Process Optimization',
-      desc:
-        '100 DFPs = 1 SMPO Small Solution, 150 DFPs = 1 SMPO Medium Solution, 200 DFPs = 1 SMPO Large Solution',
+      desc: '100 DFPs = 1 SMPO Small Solution, 150 DFPs = 1 SMPO Medium Solution, 200 DFPs = 1 SMPO Large Solution',
     },
     0,
     null,

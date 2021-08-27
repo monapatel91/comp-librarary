@@ -43,14 +43,15 @@ export const DotNavigationRail = ({
 }: NavigationRailProps) => {
   const rootClasses = combineClasses(rootClassName, className);
 
-  const [selectedItemIndex, setSelectedItemIndex] = useState<number>(
-    selectedIndex
-  );
+  const [selectedItemIndex, setSelectedItemIndex] =
+    useState<number>(selectedIndex);
 
-  const onItemSelect = (index: number): (() => void) => () => {
-    setSelectedItemIndex(index);
-    onChange && onChange(index);
-  };
+  const onItemSelect =
+    (index: number): (() => void) =>
+    () => {
+      setSelectedItemIndex(index);
+      onChange && onChange(index);
+    };
 
   const checkIfSelected = (index: number): boolean =>
     selectedItemIndex === index;
