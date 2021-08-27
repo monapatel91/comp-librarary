@@ -67,11 +67,8 @@ describe('AlertBanner', () => {
     const dataTestId = 'test-alert-banner';
     render(
       <DotAlertBanner
-        action={
-          <DotButton ariaLabel={ariaLabel} data-testid={dataTestId}>
-            Undo
-          </DotButton>
-        }
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
         severity="error"
       >
         Test Alert Banner
