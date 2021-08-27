@@ -11,6 +11,8 @@ export type DrawerPaperProps = { style?: CSSProperties };
 export interface DrawerProps extends CommonProps {
   /** Side from which the drawer will appear 'bottom', 'left', 'right', 'top' */
   anchor?: DrawerAnchor;
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** string or JSX element that is displayed inside the drawer */
   children?: ReactNode;
   /** The height of the drawer when anchor is 'top' or 'bottom' */
@@ -31,6 +33,7 @@ export interface DrawerProps extends CommonProps {
 
 export const DotDrawer = ({
   anchor = 'right',
+  ariaLabel,
   className,
   children,
   'data-testid': dataTestId,
@@ -45,6 +48,7 @@ export const DotDrawer = ({
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   return (
     <StyledDrawer
+      aria-label={ariaLabel}
       data-testid={dataTestId}
       anchor={anchor}
       classes={{ root: rootClasses, paper: 'dot-drawer-paper' }}
