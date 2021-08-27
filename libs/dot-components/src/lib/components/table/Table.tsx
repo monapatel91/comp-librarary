@@ -262,7 +262,7 @@ export const DotTable = ({
         <Table
           aria-label={ariaLabel}
           className={tableClasses}
-          padding="default"
+          padding="normal"
           stickyHeader={stickyHeader}
         >
           <DotHeaderRow
