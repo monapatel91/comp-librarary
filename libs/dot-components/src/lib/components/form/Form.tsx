@@ -4,11 +4,16 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledForm } from './Form.styles';
 
 export interface FormProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
+  /** The content for the Form. **/
   children: ReactNode;
+  /** Callback function when form is submitted **/
   onSubmit: (event: FormEvent) => void;
 }
 
 export const DotForm = ({
+  ariaLabel,
   children,
   className,
   'data-testid': dataTestId,
@@ -18,6 +23,7 @@ export const DotForm = ({
 
   return (
     <StyledForm
+      aria-label={ariaLabel}
       className={rootClasses}
       data-testid={dataTestId}
       noValidate
