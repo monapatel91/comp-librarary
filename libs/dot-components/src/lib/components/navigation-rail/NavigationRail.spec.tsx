@@ -13,7 +13,7 @@ describe('NavigationRail', () => {
 
   const onChange = jest.fn();
 
-  const ariaLabel = 'navigation rail label';
+  const navRailAriaLabel = 'navigation rail label';
 
   const railItems: Array<RailItem> = [
     {
@@ -66,7 +66,7 @@ describe('NavigationRail', () => {
     });
 
   const props = {
-    ariaLabel,
+    ariaLabel: navRailAriaLabel,
     className: 'test-class',
     'data-testid': dataTestId,
     onChange,
@@ -127,7 +127,10 @@ describe('NavigationRail', () => {
 
     it("should have 'aria-label' attribute with correct value", () => {
       const navigationRailElement = getNavigationRail();
-      expect(navigationRailElement).toHaveAttribute('aria-label', ariaLabel);
+      expect(navigationRailElement).toHaveAttribute(
+        'aria-label',
+        navRailAriaLabel
+      );
     });
 
     it("should have 'aria-label' attribute, with correct value, for each rail item", () => {
