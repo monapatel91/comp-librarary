@@ -43,6 +43,8 @@ export const parseAutoCompleteValue = (value: AutoCompleteValue) => {
 };
 
 export interface AutoCompleteProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** This prop helps users to fill forms faster */
   autoFocus?: boolean;
   /** default option that is selected */
@@ -81,6 +83,7 @@ export interface AutoCompleteProps extends CommonProps {
   value?: AutoCompleteValue;
 }
 export const DotAutoComplete = ({
+  ariaLabel,
   autoFocus,
   className,
   'data-testid': dataTestId,
@@ -153,6 +156,7 @@ export const DotAutoComplete = ({
 
   return (
     <StyledAutocomplete
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       defaultValue={defaultValue}

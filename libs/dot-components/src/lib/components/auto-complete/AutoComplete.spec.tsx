@@ -181,6 +181,22 @@ describe('AutoComplete', () => {
       'create-option'
     );
   });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-autocomplete';
+    render(
+      <DotAutoComplete
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        inputId="input-id"
+        label="Label"
+        options={dummyOptions}
+      />
+    );
+    const autocompleteElement = screen.getByTestId(dataTestId);
+    expect(autocompleteElement).toHaveAttribute('aria-label', ariaLabel);
+  });
 });
 
 describe('parseAutoCompleteValue', () => {
