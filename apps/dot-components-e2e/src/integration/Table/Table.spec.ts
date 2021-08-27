@@ -35,6 +35,11 @@ describe('dot-components: Table component', () => {
         .and('have.css', 'font-size', '12px')
         .and('have.css', 'text-align', 'left');
     });
+    it('table header should have padding', () => {
+      cy.get('.MuiTableCell-alignCenter').within(() => {
+        cy.get('span').should('have.css', 'padding-left', '26px');
+      });
+    });
 
     it('table body', () => {
       cy.get('.MuiTableCell-body')
@@ -43,7 +48,9 @@ describe('dot-components: Table component', () => {
         .and('have.css', 'font-size', '12px')
         .and('have.css', 'margin-bottom', '3px');
     });
-
+    it('table cell should have noWrap class to truncate text', () => {
+      cy.get('.MuiTableCell-root').should('have.class', 'noWrap');
+    });
     it('table footer', () => {
       cy.get('.MuiTablePagination-root').should(
         'have.css',

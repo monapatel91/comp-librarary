@@ -4,9 +4,9 @@ import { DotIconButton } from '../button/IconButton';
 const deleteIcon = <DotIconButton iconId="delete" />;
 
 export const defaultColumns = [
-  { id: 'title', label: 'Title', width: '30%' },
+  { id: 'title', label: 'Title', width: '30%', truncate: true },
   { id: 'hometown', label: 'Hometown', width: '30%' },
-  { id: 'fans', label: 'Fan Base', align: 'right', width: '20%' },
+  { id: 'fans', label: 'Fan Base', align: 'center', width: '20%' },
   { id: 'delete', sortable: false, width: '24px', align: 'right' },
 ];
 
@@ -15,7 +15,8 @@ export const defaultData = [
     id: 'ironman',
     selected: false,
     rowData: {
-      title: 'Ironman',
+      title:
+        'Ironman batman Captain Marvel Superman ironman batman Captain Marvel Superman ironman batman',
       hometown: 'Malibu',
       fans: 1,
       delete: deleteIcon,
@@ -51,8 +52,8 @@ export const defaultData = [
 ];
 
 export const paginatedColumns = [
-  { id: 'name', label: 'Name', width: '50%' },
-  { id: 'hit', label: 'Hit Song', width: '50%' },
+  { id: 'name', label: 'Name', width: '50%', truncate: true },
+  { id: 'hit', label: 'Hit Song', width: '50%', align: 'center' },
 ];
 
 export const paginatedData = [

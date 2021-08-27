@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
@@ -47,7 +48,7 @@ it('should have unchanged API', () => {
 });
 
 const testCols = [
-  { id: 'name', label: 'Name' },
+  { id: 'name', label: 'Name', truncate: true },
   { id: 'type', label: 'Type' },
 ];
 const testData = [
@@ -193,6 +194,23 @@ describe(' Table', () => {
     userEvent.click(th);
     waitFor(() => {
       expect(mockFunc).toHaveBeenCalledWith('desc', 'name', 0, 10);
+    });
+  });
+
+  it('should have noWrap class and Truncate table cell text if truncate prop is true', () => {
+    const { baseElement } = render(
+      <DotTable
+        ariaLabel="super heroes!"
+        columns={testCols}
+        data={testData}
+        orderBy="name"
+      />
+    );
+    testCols.map((cols) => {
+      const td = baseElement.querySelector('td');
+      if (cols.truncate) {
+        return expect(td).toHaveClass('noWrap');
+      }
     });
   });
 });

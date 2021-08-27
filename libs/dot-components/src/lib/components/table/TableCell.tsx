@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TableCell } from '@material-ui/core';
+import { CommonProps } from '../CommonProps';
 import { CreateUUID } from '../createUUID';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
-export interface CellProps {
-  align?: boolean;
+export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
+
+export interface CellProps extends CommonProps {
+  align?: textAlignment;
   colspan?: number;
   id?: string;
+  noWrap?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value?: any;
 }
@@ -15,14 +20,34 @@ export interface CellProps {
  */
 export const DotBodyCell = ({
   align,
+  className,
   colspan,
   id = CreateUUID(),
+  noWrap,
   value,
 }: CellProps) => {
+  useEffect(() => {
+    const noWrapTableCell = document.getElementsByClassName('noWrap');
+    Array.from(noWrapTableCell as HTMLCollectionOf<HTMLElement>).forEach(
+      (truncatedText) => {
+        const isOverflowing =
+          truncatedText.clientWidth < truncatedText.scrollWidth ||
+          truncatedText.clientHeight < truncatedText.scrollHeight;
+        if (isOverflowing) {
+          truncatedText.setAttribute('title', truncatedText.innerText);
+        }
+      }
+    );
+  });
+  const rootClasses = useStylesWithRootClass(
+    'dot-td',
+    className,
+    noWrap ? 'noWrap' : ''
+  );
   return (
     <TableCell
-      align={align ? 'right' : 'left'}
-      classes={{ root: 'dot-td' }}
+      align={align}
+      classes={{ root: rootClasses }}
       colSpan={colspan}
       key={id}
     >
