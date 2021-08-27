@@ -7,6 +7,8 @@ export type progressColorOptions = 'inherit' | 'primary' | 'secondary';
 export type progressVariantOptions = 'determinate' | 'indeterminate' | 'static';
 
 export interface ProgressProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** color of the loading spinner border */
   color?: progressColorOptions;
   /** controls the diameter of the loading spinner */
@@ -22,6 +24,7 @@ export interface ProgressProps extends CommonProps {
 }
 
 export const DotProgress = ({
+  ariaLabel,
   color = 'secondary',
   className,
   'data-testid': dataTestId,
@@ -35,6 +38,7 @@ export const DotProgress = ({
 
   return (
     <StyledCircularProgress
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}
