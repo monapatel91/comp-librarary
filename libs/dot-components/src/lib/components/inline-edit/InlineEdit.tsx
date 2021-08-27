@@ -9,6 +9,8 @@ import { DotIconButton } from '../button/IconButton';
 import { inputSizeOptions } from '../input-form-fields/InputFormFields.propTypes';
 
 export interface InlineEditProps extends CommonProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** If true, the input will be focused automatically on load */
   autoFocus?: boolean;
   /** If true, the input will be disabled */
@@ -41,6 +43,7 @@ export interface InlineEditProps extends CommonProps {
  * @experimental This component is still in development
  */
 export const DotInlineEdit = ({
+  ariaLabel,
   autoFocus,
   className,
   'data-testid': dataTestId,
@@ -114,6 +117,7 @@ export const DotInlineEdit = ({
 
   return (
     <StyledInlineEdit
+      aria-label={ariaLabel}
       className={`${rootClasses} ${
         editing ? 'editing' : disabled ? 'disabled' : ''
       }`}

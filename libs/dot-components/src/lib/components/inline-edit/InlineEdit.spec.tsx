@@ -140,4 +140,17 @@ describe('DotInlineEdit', () => {
       expect(onEditStageChange).toHaveBeenCalledTimes(2);
     });
   });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    render(
+      <DotInlineEdit
+        ariaLabel={ariaLabel}
+        name="inline-edit"
+        required={false}
+      />
+    );
+    const inlineEditElement = screen.getByTestId(inlineEditName);
+    expect(inlineEditElement).toHaveAttribute('aria-label', ariaLabel);
+  });
 });
