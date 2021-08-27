@@ -53,5 +53,13 @@
       "tags": [],
       "implicitDependencies": ["vsm-hub"]
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }
