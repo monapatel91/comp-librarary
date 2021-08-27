@@ -28,6 +28,7 @@ it('should have unchanged API', () => {
     orderBy: 'title',
     onRowClick: mockFunc,
     onUpdateData: mockFunc,
+    page: 1,
     rowsPerPage: 10 as RowsPerPageOption,
     sortable: true,
     stickyHeader: true,
@@ -145,6 +146,28 @@ describe(' Table', () => {
     );
     const rowsShownText = screen.getByText('1-10 of more than 10');
     expect(rowsShownText).toBeVisible();
+  });
+
+  it("should have enabled 'Previous page' button when not on first page", () => {
+    render(
+      <DotTable
+        ariaLabel="super heroes!"
+        columns={testCols}
+        count={11}
+        data={testData}
+        onUpdateData={mockFunc}
+        orderBy="name"
+        page={1}
+        rowsPerPage={10}
+      />
+    );
+    const rowsShownText = screen.getByText('11-11 of 11');
+    expect(rowsShownText).toBeVisible();
+    const previousPage = screen.getByTitle('Previous page');
+    userEvent.click(previousPage);
+    waitFor(() => {
+      expect(mockFunc).toHaveBeenCalledWith('asc', 'name', 0, 10);
+    });
   });
 
   it('should call onUpdateData when sort or page changes', () => {

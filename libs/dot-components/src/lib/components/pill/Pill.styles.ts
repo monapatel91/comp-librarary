@@ -8,7 +8,11 @@ export const StyledPill = styled(Chip)<PillProps>`
   ${({ theme }) => css`
     &.${rootClassName} {
       background-color: ${({ backgroundcolor }: PillProps) => {
-        return backgroundcolor ? backgroundcolor : theme.palette.grey[200];
+        return backgroundcolor
+          ? backgroundcolor
+          : theme.palette.product === 'agility'
+          ? theme.palette.layer.n100
+          : theme.palette.grey[200];
       }};
       color: ${({ labelcolor }: PillProps) => {
         return labelcolor ? labelcolor : theme.palette.layer.n700;
