@@ -54,6 +54,8 @@ export interface TableProps extends CommonProps {
     page: number,
     rowsPerPage: number
   ) => void;
+  /** The zero-based index of the current page  for paginated table */
+  page?: number;
   /** Rows per page for paginated table */
   rowsPerPage?: RowsPerPageOption;
   /** Table is sortable */
@@ -117,6 +119,7 @@ export const DotTable = ({
   orderBy,
   onRowClick,
   onUpdateData,
+  page = 0,
   rowsPerPage,
   stickyHeader = true,
   sortable = true,
@@ -124,7 +127,7 @@ export const DotTable = ({
 }: TableProps) => {
   const [tableOrder, setOrder] = useState(order);
   const [tableOrderBy, setOrderBy] = useState(orderBy);
-  const [tablePage, setPage] = useState(0);
+  const [tablePage, setPage] = useState(page);
   const [tableRowsPerPage, setRowsPerPage] = useState(rowsPerPage);
   const getSortedData = () => {
     return onUpdateData
