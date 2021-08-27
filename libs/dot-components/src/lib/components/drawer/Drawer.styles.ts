@@ -1,4 +1,5 @@
-import { Drawer, fade } from '@material-ui/core';
+import { Drawer } from '@material-ui/core';
+import { alpha } from '@material-ui/core/styles';
 import styled, { css } from 'styled-components';
 import { DrawerProps } from './Drawer';
 
@@ -8,7 +9,7 @@ export const StyledDrawer = styled(Drawer)<DrawerProps>`
   ${({ theme }) => css`
     &.dot-drawer {
       .MuiBackdrop-root {
-        background-color: ${fade(theme.palette.grey[900], 0.7)};
+        background-color: ${alpha(theme.palette.grey[900], 0.7)};
       }
     }
 

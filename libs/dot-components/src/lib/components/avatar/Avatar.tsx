@@ -87,7 +87,7 @@ export const DotAvatar = ({
         <DotIcon
           data-testid={`${dataTestId}-icon`}
           iconId={iconId ? iconId : 'user'}
-          fontSize={size === 'small' ? size : 'default'}
+          fontSize={size === 'small' ? size : 'medium'}
         />
       ) : type === 'text' ? (
         <DotTypography

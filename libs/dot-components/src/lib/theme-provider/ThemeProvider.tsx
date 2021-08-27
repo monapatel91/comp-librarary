@@ -1,16 +1,12 @@
 import React, { ReactNode } from 'react';
-import {
-  createMuiTheme,
-  MuiThemeProvider,
-  StylesProvider,
-  Theme,
-} from '@material-ui/core';
+import { MuiThemeProvider, StylesProvider, Theme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
+import { BreakpointsOptions } from '@material-ui/core/styles/createBreakpoints';
+import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 import { ThemeProvider } from 'styled-components';
 import { GlobalFonts } from '../fonts/fonts';
 
 import * as lightColors from './colors/light-theme-colors';
-import { BreakpointsOptions } from '@material-ui/core/styles/createBreakpoints';
-import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 
 export type ThemeOptions = 'light' | 'dark' | 'agility-light' | 'agility-dark';
 
@@ -147,7 +143,7 @@ export const avatarColors = {
   },
 };
 
-export const agilityLightTheme = createMuiTheme({
+export const agilityLightTheme = createTheme({
   breakpoints: {
     ...breakpointOptions,
   },
@@ -210,7 +206,7 @@ export const agilityLightTheme = createMuiTheme({
   },
 });
 
-export const agilityDarkTheme = createMuiTheme({
+export const agilityDarkTheme = createTheme({
   breakpoints: {
     ...breakpointOptions,
   },
@@ -273,7 +269,7 @@ export const agilityDarkTheme = createMuiTheme({
   },
 });
 
-export const darkTheme = createMuiTheme({
+export const darkTheme = createTheme({
   breakpoints: {
     ...breakpointOptions,
   },
@@ -320,7 +316,7 @@ export const darkTheme = createMuiTheme({
   },
 });
 
-export const lightTheme = createMuiTheme({
+export const lightTheme = createTheme({
   breakpoints: {
     ...breakpointOptions,
   },

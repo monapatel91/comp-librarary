@@ -3,7 +3,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledIcon } from './Icon.styles';
 
-export type IconFontSize = 'inherit' | 'default' | 'small';
+export type IconFontSize = 'inherit' | 'medium' | 'small';
 
 export interface IconProps extends CommonProps {
   /** Determines the size of the icon and spacing around it */
@@ -17,7 +17,7 @@ export interface IconProps extends CommonProps {
 export const DotIcon = ({
   className,
   'data-testid': dataTestId,
-  fontSize = 'default',
+  fontSize = 'medium',
   iconId,
   title = '',
 }: IconProps) => {
