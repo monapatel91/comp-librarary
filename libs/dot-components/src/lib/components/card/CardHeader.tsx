@@ -9,6 +9,8 @@ export type SubheaderSize = 'small' | 'large';
 export interface CardHeaderProps extends CommonProps {
   /** Card header action */
   action?: ReactNode;
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** Card header avatar */
   avatar?: ReactNode;
   /** Card subheader */
@@ -23,6 +25,7 @@ export interface CardHeaderProps extends CommonProps {
 
 export const DotCardHeader = ({
   action,
+  ariaLabel,
   avatar,
   className,
   'data-testid': dataTestId,
@@ -41,6 +44,7 @@ export const DotCardHeader = ({
   return (
     <CardHeader
       action={action}
+      aria-label={ariaLabel}
       avatar={avatar}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
