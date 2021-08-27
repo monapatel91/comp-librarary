@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../testing-utils';
+import { render, screen } from '../../testing-utils';
 import {
   DotActionToolbar,
   DotActionBarProps,
@@ -21,5 +21,13 @@ describe('ActionToolbar', () => {
   it('should render successfully', () => {
     const { baseElement } = render(<DotActionToolbar />);
     expect(baseElement).toBeTruthy();
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-action-toolbar';
+    render(<DotActionToolbar ariaLabel={ariaLabel} data-testid={dataTestId} />);
+    const actionToolbarElement = screen.getByTestId(dataTestId);
+    expect(actionToolbarElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });
