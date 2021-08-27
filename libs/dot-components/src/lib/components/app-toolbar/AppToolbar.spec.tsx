@@ -54,4 +54,18 @@ describe(' AppToolbar', () => {
     render(<DotAppToolbar customLogo={customLogo} navItems={menuItems} />);
     expect(screen.getByTitle('digital.ai.custom')).toBeVisible();
   });
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-app-toolbar';
+    render(
+      <DotAppToolbar
+        appName="Lisbon"
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        navItems={menuItems}
+      />
+    );
+    const appToolbarElement = screen.getByTestId(dataTestId);
+    expect(appToolbarElement).toHaveAttribute('aria-label', ariaLabel);
+  });
 });

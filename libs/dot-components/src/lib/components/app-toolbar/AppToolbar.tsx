@@ -13,6 +13,8 @@ import { DotTypography } from '../typography/Typography';
 export interface AppToolbarProps extends CommonProps {
   /** Product name displayed next to Digital.ai logo */
   appName?: string;
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** User avatar component */
   avatar?: ReactNode;
   /** Control the bottom border of the toolbar, accepts any valid  */
@@ -30,6 +32,7 @@ export interface AppToolbarProps extends CommonProps {
 }
 
 export const DotAppToolbar = ({
+  ariaLabel,
   avatar,
   borderColor,
   appName,
@@ -49,6 +52,7 @@ export const DotAppToolbar = ({
 
   return (
     <StyledAppToolbar
+      aria-label={ariaLabel}
       className={rootClasses}
       data-testid={dataTestId}
       style={{ borderBottomColor: borderColor }}
