@@ -135,8 +135,6 @@ describe('DotInlineEdit', () => {
 
   it('can edit then hit enter to confirm', async () => {
     const originalValue = 'batman';
-    const onLabelChange = jest.fn();
-    const onEditStageChange = jest.fn();
 
     render(
       <DotInlineEdit
@@ -144,7 +142,7 @@ describe('DotInlineEdit', () => {
         value={originalValue}
         required={false}
         onLabelChange={onLabelChange}
-        onEditStateChange={onEditStageChange}
+        onEditStateChange={onEditStateChange}
         data-testid="test_field"
       />
     );
@@ -165,7 +163,7 @@ describe('DotInlineEdit', () => {
     await waitFor(() => {
       expect(textField).toHaveValue(originalValue + newValue);
       expect(onLabelChange).toHaveBeenCalledTimes(1);
-      expect(onEditStageChange).toHaveBeenCalledTimes(2);
+      expect(onEditStateChange).toHaveBeenCalledTimes(2);
     });
   });
 
