@@ -81,7 +81,6 @@ describe(' EmptyState', () => {
           type: 'primary',
           onClick: clickHandler,
         }}
-        subtitle="I am a test"
         title="Hello World"
       />
     );
