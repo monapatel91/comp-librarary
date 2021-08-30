@@ -7,7 +7,7 @@ describe('DotIcon', () => {
     const props = {
       className: 'test-class',
       'data-testid': 'testid',
-      fontSize: 'medium' as IconFontSize,
+      fontSize: 'default' as IconFontSize,
       iconId: 'home',
       title: 'icon title',
     };
