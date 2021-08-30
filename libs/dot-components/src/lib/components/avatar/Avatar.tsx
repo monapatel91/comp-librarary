@@ -5,6 +5,7 @@ import { rootClassName, StyledAvatar } from './Avatar.styles';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography } from '../typography/Typography';
 
+// TO-DO: MUI 5 change AvatarSize 'default' to 'medium'
 export type AvatarSize = 'small' | 'default' | 'large';
 export type AvatarType = 'image' | 'text' | 'icon';
 export type AvatarVariant = 'circular' | 'square';

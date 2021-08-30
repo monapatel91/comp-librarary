@@ -3,6 +3,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledIcon } from './Icon.styles';
 
+// TO-DO: MUI 5 change IconFontSize 'default' to 'medium'
 export type IconFontSize = 'inherit' | 'default' | 'small';
 
 export interface IconProps extends CommonProps {
