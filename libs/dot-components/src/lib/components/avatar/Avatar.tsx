@@ -5,8 +5,7 @@ import { rootClassName, StyledAvatar } from './Avatar.styles';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography } from '../typography/Typography';
 
-// TO-DO: MUI 5 change AvatarSize 'default' to 'medium'
-export type AvatarSize = 'small' | 'default' | 'large';
+export type AvatarSize = 'small' | 'medium' | 'large';
 export type AvatarType = 'image' | 'text' | 'icon';
 export type AvatarVariant = 'circular' | 'square';
 export type AvatarColor =
@@ -51,7 +50,7 @@ export const DotAvatar = ({
   iconId,
   imageSrc,
   onClick,
-  size = 'default',
+  size = 'medium',
   text = alt,
   type = 'image',
   variant = 'circular',
@@ -88,7 +87,7 @@ export const DotAvatar = ({
         <DotIcon
           data-testid={`${dataTestId}-icon`}
           iconId={iconId ? iconId : 'user'}
-          fontSize={size === 'large' ? 'default' : size}
+          fontSize={size === 'small' ? size : 'default'}
         />
       ) : type === 'text' ? (
         <DotTypography
