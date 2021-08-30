@@ -8,7 +8,7 @@ export default {
   component: DotIcon,
   argTypes: {
     iconId: { defaultValue: 'script' },
-    fontSize: { defaultValue: 'medium' },
+    fontSize: { defaultValue: 'default' },
     title: { defaultValue: 'Hello World' },
   },
 } as Meta;
