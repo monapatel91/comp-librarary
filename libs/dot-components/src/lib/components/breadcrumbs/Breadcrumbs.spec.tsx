@@ -26,6 +26,7 @@ describe('Breadcrumbs', () => {
 
   it('should have unchanged API', () => {
     const props = {
+      ariaLabel: 'breadcrumbs',
       className: 'test-class',
       'data-testid': 'testid',
       expansionMenu: false,
@@ -36,6 +37,7 @@ describe('Breadcrumbs', () => {
     expect(breadcrumbProps).toEqual(props);
 
     const iProps = {
+      ariaLabel: 'breadcrumb item',
       className: 'test-class',
       'data-testid': 'testid',
       href: '/',

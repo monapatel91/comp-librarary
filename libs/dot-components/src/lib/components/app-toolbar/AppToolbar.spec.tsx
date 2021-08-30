@@ -17,6 +17,7 @@ describe(' AppToolbar', () => {
   it('should have unchanged API', () => {
     const props = {
       appName: 'Batman',
+      ariaLabel: 'app toolbar',
       avatar: userAvatar,
       borderColor: '#1abc9c',
       children: <Input type="text" placeholder="search" />,

@@ -1,11 +1,39 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { fireEvent, render, screen, waitFor } from '../../testing-utils';
-import { DotInlineEdit } from './InlineEdit';
+import { DotInlineEdit, InlineEditProps } from './InlineEdit';
+import { inputSizeOptions } from '../input-form-fields/InputFormFields.propTypes';
 
 const inlineEditName = 'inline-edit-wrapper';
 
 describe('DotInlineEdit', () => {
+  const onChange = jest.fn();
+  const onEditStateChange = jest.fn();
+  const onLabelChange = jest.fn();
+
+  it('should have unchanged API', () => {
+    const props = {
+      ariaLabel: 'icon',
+      autoFocus: true,
+      className: 'test-class',
+      'data-testid': 'testid',
+      disabled: false,
+      error: false,
+      fullWidth: true,
+      helperText: 'i need some help!',
+      name: 'my-inline-edit',
+      onChange: onChange,
+      onEditStateChange: onEditStateChange,
+      onLabelChange: onLabelChange,
+      readOnly: true,
+      required: true,
+      size: 'medium' as inputSizeOptions,
+      value: 'edit',
+    };
+    const inlineEditProps: InlineEditProps = props;
+    expect(inlineEditProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     const { baseElement } = render(
       <DotInlineEdit name="test" required={false} />

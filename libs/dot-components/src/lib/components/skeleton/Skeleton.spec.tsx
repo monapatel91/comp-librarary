@@ -5,6 +5,7 @@ import { DotSkeleton, SkeletonProps, SkeletonVariantType } from './Skeleton';
 describe('Skeleton', () => {
   it('should have unchanged API', () => {
     const props = {
+      ariaLabel: 'skeleton',
       children: <div></div>,
       className: 'test-class',
       'data-testid': 'testid',

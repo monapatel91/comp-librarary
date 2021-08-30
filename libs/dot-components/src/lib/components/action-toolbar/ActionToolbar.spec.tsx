@@ -9,6 +9,7 @@ import {
 describe('ActionToolbar', () => {
   it('should have unchanged API', () => {
     const props = {
+      ariaLabel: 'action toolbar',
       children: 'child',
       className: 'test-class',
       'data-testid': 'testid',

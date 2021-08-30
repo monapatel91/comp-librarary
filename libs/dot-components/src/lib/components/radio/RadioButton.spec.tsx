@@ -12,6 +12,7 @@ describe('DotRadioButton', () => {
     const onChange = jest.fn();
     const inputRef = createRef<HTMLInputElement>();
     const props = {
+      ariaLabel: 'radio button',
       checked: false,
       className: 'test-class',
       'data-testid': 'testid',

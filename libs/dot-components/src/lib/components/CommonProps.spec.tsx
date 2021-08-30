@@ -3,6 +3,7 @@ import { CommonProps } from './CommonProps';
 describe('CommonProps', () => {
   it('should have unchanged API', () => {
     const props = {
+      ariaLabel: 'aria label',
       className: 'test-class',
       'data-testid': 'testid',
     };

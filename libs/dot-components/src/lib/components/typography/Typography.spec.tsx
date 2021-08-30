@@ -9,6 +9,7 @@ import {
 describe('DotTypography', () => {
   it('should have unchanged API', () => {
     const props = {
+      ariaLabel: 'typography',
       children: 'some text',
       className: 'test-class',
       component: 'h1' as ElementType,

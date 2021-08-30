@@ -30,6 +30,7 @@ describe(' Sidebar', () => {
   it('should have unchanged API', () => {
     const titleAvatarProps = { alt: 'avatar alt text', text: 'BM' };
     const props = {
+      ariaLabel: 'sidebar',
       backItem: backItem,
       brandDesc: 'best brand',
       children: <TextField placeholder="search" variant="outlined" />,

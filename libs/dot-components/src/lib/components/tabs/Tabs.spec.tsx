@@ -36,6 +36,7 @@ describe('Tabs', () => {
   it('should have unchanged API', () => {
     const onChange = jest.fn();
     const tsProps = {
+      ariaLabel: 'tabs',
       centered: true,
       color: 'primary' as TabsColor,
       className: 'test-class',
@@ -49,6 +50,7 @@ describe('Tabs', () => {
     const tabsProps: TabsProps = tsProps;
     expect(tabsProps).toEqual(tsProps);
     const tProps = {
+      ariaLabel: 'tab',
       disabled: true,
       iconId: 'help',
       label: 'Tab 1',

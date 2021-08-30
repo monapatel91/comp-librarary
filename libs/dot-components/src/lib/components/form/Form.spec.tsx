@@ -1,10 +1,23 @@
 import React from 'react';
 import { render, screen } from '../../testing-utils';
 import { DotInputText } from '../input-form-fields/InputText';
-import { DotForm } from './Form';
+import { DotForm, FormProps } from './Form';
 
 describe('Form', () => {
   const onSubmit = jest.fn();
+
+  it('should have unchanged API', () => {
+    const props = {
+      ariaLabel: 'form',
+      children: 'My Form',
+      className: 'test-class',
+      'data-testid': 'testid',
+      onSubmit,
+    };
+    const formProps: FormProps = props;
+    expect(formProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     const { baseElement } = render(
       <DotForm onSubmit={onSubmit}>

@@ -20,6 +20,7 @@ describe('DotCard', () => {
   it('should have unchanged API', () => {
     const hProps = {
       action: action,
+      ariaLabel: 'card header',
       avatar: avatar,
       className: 'test-class',
       'data-testid': 'testid',
@@ -31,6 +32,7 @@ describe('DotCard', () => {
     const headerProps: CardHeaderProps = hProps;
     expect(headerProps).toEqual(hProps);
     const cProps = {
+      ariaLabel: 'card content',
       children: 'This is some content',
       className: 'test-class',
       'data-testid': 'testid',
@@ -38,6 +40,7 @@ describe('DotCard', () => {
     const contentProps = cProps;
     expect(contentProps).toEqual(cProps);
     const fProps = {
+      ariaLabel: 'card footer',
       children: 'This is a footer',
       className: 'test-class',
       'data-testid': 'testid',
@@ -45,6 +48,7 @@ describe('DotCard', () => {
     const footerProps = fProps;
     expect(footerProps).toEqual(fProps);
     const props = {
+      ariaLabel: 'card',
       children: 'I am a card!',
       className: 'test-class',
       'data-testid': 'testid',

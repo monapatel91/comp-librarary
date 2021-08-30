@@ -14,6 +14,7 @@ describe('Drawer', () => {
     const onClose = jest.fn();
     const props = {
       anchor: 'bottom' as DrawerAnchor,
+      ariaLabel: 'drawer',
       children: 'I am a drawer',
       className: 'test-class',
       'data-testid': 'testid',

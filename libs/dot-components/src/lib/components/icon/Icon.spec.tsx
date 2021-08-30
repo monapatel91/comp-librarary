@@ -5,7 +5,7 @@ import { DotIcon, IconFontSize, IconProps } from './Icon';
 describe('DotIcon', () => {
   it('should have unchanged API', () => {
     const props = {
-      ariaLabel: 'my avatar group',
+      ariaLabel: 'icon',
       className: 'test-class',
       'data-testid': 'testid',
       fontSize: 'default' as IconFontSize,

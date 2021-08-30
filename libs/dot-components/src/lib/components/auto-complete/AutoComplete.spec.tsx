@@ -26,6 +26,7 @@ describe('AutoComplete', () => {
     const onChange = jest.fn();
     const inputRef = createRef<HTMLInputElement>();
     const props = {
+      ariaLabel: 'autocomplete',
       autoFocus: true,
       className: 'test-class',
       'data-testid': 'testid',
