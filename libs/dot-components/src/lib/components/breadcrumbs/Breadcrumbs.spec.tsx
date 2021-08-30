@@ -98,9 +98,8 @@ describe('Breadcrumbs', () => {
     dummyItems.forEach(({ ariaLabel, text }: BreadcrumbItem, index: number) => {
       const breadcrumbItem = getBreadcrumbItem(text);
       expect(breadcrumbItem).toHaveAttribute('aria-label', ariaLabel);
-      if (index === dummyItems.length - 1) {
+      index === dummyItems.length - 1 &&
         expect(breadcrumbItem).toHaveClass('current-page');
-      }
     });
   });
 
