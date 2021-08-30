@@ -43,8 +43,6 @@ export const parseAutoCompleteValue = (value: AutoCompleteValue) => {
 };
 
 export interface AutoCompleteProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** This prop helps users to fill forms faster */
   autoFocus?: boolean;
   /** default option that is selected */

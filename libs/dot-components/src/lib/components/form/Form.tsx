@@ -4,8 +4,6 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledForm } from './Form.styles';
 
 export interface FormProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** The content for the Form. **/
   children: ReactNode;
   /** Callback function when form is submitted **/

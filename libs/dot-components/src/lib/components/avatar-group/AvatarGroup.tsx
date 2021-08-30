@@ -7,8 +7,6 @@ import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 export type AvatarGroupSpacing = 'medium' | 'small' | number;
 
 export interface AvatarGroupProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** Array of avatars displayed inside the group */
   avatars: Array<AvatarProps>;
   /** Max avatars to show before +x */

@@ -21,8 +21,6 @@ export type TypographyVariant =
   | 'inherit';
 
 export interface TypographyProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** The content of the component. */
   children: ReactNode;
   /** The component used for the root node. Either a string to use a HTML element or a component. */

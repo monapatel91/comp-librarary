@@ -8,8 +8,6 @@ export type IconButtonColor = 'default' | 'inherit' | 'primary' | 'secondary';
 export type IconButtonSize = 'small' | 'medium';
 
 export interface IconButtonProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** 'default', 'inherit', 'primary', 'secondary' */
   color?: IconButtonColor;
   /** If true, the button will be disabled. */

@@ -6,8 +6,6 @@ import { rootClassName, StyledEmptyState } from './EmptyState.styles';
 import { DotTypography } from '../typography/Typography';
 
 export interface EmptyStateProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** primary button properties */
   buttonProps?: ButtonProps;
   /** alt text of image */

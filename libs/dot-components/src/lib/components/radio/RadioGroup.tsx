@@ -22,8 +22,6 @@ import {
 } from './RadioGroup.styles';
 
 export interface RadioGroupBaseProps extends RadioButtonBaseProps {
-  /** accessibility label */
-  ariaLabel?: string;
   /** if true makes all radio buttons disabled */
   disableGroup?: boolean;
   /** Icon placed before the children. */

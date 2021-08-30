@@ -13,8 +13,6 @@ import { DotTypography } from '../typography/Typography';
 export interface AppToolbarProps extends CommonProps {
   /** Product name displayed next to Digital.ai logo */
   appName?: string;
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** User avatar component */
   avatar?: ReactNode;
   /** Control the bottom border of the toolbar, accepts any valid  */

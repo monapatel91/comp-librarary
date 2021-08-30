@@ -27,8 +27,6 @@ export interface BackItemProps extends CommonProps {
 }
 
 export interface SidebarProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** props used by the back item */
   backItem?: BackItemProps;
   /** If displayBrand is true this text will be displayed above the Digital.ai branding */

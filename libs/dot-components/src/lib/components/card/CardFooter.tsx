@@ -4,8 +4,6 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDiv } from './CardFooter.styles';
 
 export interface CardFooterProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** The content for the CardFooter.*/
   children: ReactNode;
 }

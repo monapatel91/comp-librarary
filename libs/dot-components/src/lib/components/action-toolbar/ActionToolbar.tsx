@@ -5,8 +5,6 @@ import { rootClassName, StyledToolbar } from './ActionToolbar.styles';
 
 export type DotActionBarVarient = 'regular' | 'dense';
 export interface DotActionBarProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** string or JSX element that is displayed inside the toolbar */
   children?: ReactNode;
   /** DotActionBarVarient dense and regular for toolbar height */

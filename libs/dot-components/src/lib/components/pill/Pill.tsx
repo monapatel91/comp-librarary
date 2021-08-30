@@ -12,8 +12,6 @@ export type PillStatus =
   | 'default';
 
 export interface PillProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** Background color for the pill, ignored if 'status' is not 'default' */
   backgroundcolor?: string;
   /** The text for the pill. */

@@ -20,8 +20,6 @@ export interface RailItem {
 }
 
 export interface NavigationRailProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** onChange callback */
   onChange?: (index: number) => void;
   /** controls the position of the rail items */

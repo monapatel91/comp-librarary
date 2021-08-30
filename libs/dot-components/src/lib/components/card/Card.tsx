@@ -4,8 +4,6 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export interface CardProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** The content for the Card.*/
   children: ReactNode;
 }

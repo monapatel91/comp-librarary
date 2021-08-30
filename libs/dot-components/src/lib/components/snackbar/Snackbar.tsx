@@ -10,8 +10,6 @@ export type SnackbarSeverity = 'error' | 'warning' | 'info' | 'success';
 export interface SnackbarProps extends CommonProps {
   /** Property used for creating a custom action button. */
   action?: ReactNode;
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** The message the user sees once the alert displays */
   children: ReactNode;
   /** A callback to handle closing the alert. */

@@ -9,8 +9,6 @@ import { DotIconButton } from '../button/IconButton';
 import { inputSizeOptions } from '../input-form-fields/InputFormFields.propTypes';
 
 export interface InlineEditProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** If true, the input will be focused automatically on load */
   autoFocus?: boolean;
   /** If true, the input will be disabled */

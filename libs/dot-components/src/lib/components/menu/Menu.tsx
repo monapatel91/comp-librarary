@@ -27,8 +27,6 @@ export type PopperPlacement =
 export interface MenuProps extends CommonProps {
   /** Element that menu is attached to */
   anchorEl?: Element;
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
   disablePortal?: boolean;
   /** Unique ID that ties a particular menu to a specific element */

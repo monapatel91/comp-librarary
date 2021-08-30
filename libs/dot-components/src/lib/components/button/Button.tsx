@@ -4,8 +4,6 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledButton } from './Button.styles';
 
 export interface ButtonProps extends BaseButtonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** The text for the button. Button text should be in sentence case. */
   children: ReactNode;
   /** Icon placed after the children. */

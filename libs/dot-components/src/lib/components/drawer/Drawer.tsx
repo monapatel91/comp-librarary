@@ -11,8 +11,6 @@ export type DrawerPaperProps = { style?: CSSProperties };
 export interface DrawerProps extends CommonProps {
   /** Side from which the drawer will appear 'bottom', 'left', 'right', 'top' */
   anchor?: DrawerAnchor;
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** string or JSX element that is displayed inside the drawer */
   children?: ReactNode;
   /** The height of the drawer when anchor is 'top' or 'bottom' */

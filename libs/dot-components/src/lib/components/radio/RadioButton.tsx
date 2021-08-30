@@ -14,8 +14,6 @@ export type RadioSize = 'medium' | 'small';
 export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
 
 export interface RadioButtonBaseProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** id of radio button */
   id?: string;
   /** pass a ref to the input element */

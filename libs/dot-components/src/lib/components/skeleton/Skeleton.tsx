@@ -6,8 +6,6 @@ import { rootClassName, StyledSkeleton } from './Skeleton.styles';
 export type SkeletonVariantType = 'circular' | 'rectangular' | 'text';
 
 export interface SkeletonProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** component(s) inside a skeleton will constrain the size/shape */
   children?: ReactNode;
   /** Determine height of skeleton */

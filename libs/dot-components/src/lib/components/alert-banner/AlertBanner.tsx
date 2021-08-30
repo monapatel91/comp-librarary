@@ -9,7 +9,6 @@ export type AlertBannerSeverity = 'error' | 'info' | 'success' | 'warning';
 
 export interface AlertBannerProps extends CommonProps {
   action?: ReactNode;
-  ariaLabel?: string;
   children: ReactNode | string;
   onClose?: (event: MouseEvent) => void;
   severity: AlertBannerSeverity;
