@@ -70,7 +70,11 @@ describe('Link', () => {
 
   it("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
-    render(<DotLink ariaLabel={ariaLabel}>Link</DotLink>);
+    render(
+      <DotLink ariaLabel={ariaLabel} href="#">
+        Link
+      </DotLink>
+    );
     const linkElement = screen.getByRole('link');
     expect(linkElement).toHaveAttribute('aria-label', ariaLabel);
   });
