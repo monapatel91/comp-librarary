@@ -25,7 +25,7 @@ export const DotSkeleton = ({
   variant,
 }: SkeletonProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-  // When we upgrade to Material UI v5 this must be removed!
+  // TO-DO: MUI 5 remove this statement
   const skeletonVariant = variant
     ? variant === 'circular'
       ? 'circle'
