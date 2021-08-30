@@ -43,9 +43,10 @@ export const DotTableRow = ({ columns, data, onClick, selected }: RowProps) => {
       {columns.map((column) => {
         return (
           <DotBodyCell
-            align={column.align === 'right'}
-            value={rowData[column.id]}
+            align={column.align}
             key={CreateUUID()}
+            noWrap={column.truncate}
+            value={rowData[column.id]}
           />
         );
       })}
