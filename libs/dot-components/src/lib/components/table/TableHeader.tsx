@@ -7,12 +7,14 @@ import {
 } from '@material-ui/core';
 import { Order } from './TableBody';
 import { CreateUUID } from '../createUUID';
+import { textAlignment } from './TableCell';
 
 export interface DotColumnHeader {
-  align?: string;
+  align?: textAlignment;
   id: string;
   label?: string;
   sortable?: boolean;
+  truncate?: boolean;
   width?: string;
 }
 
@@ -26,10 +28,13 @@ export interface HeaderProps {
 }
 
 export interface HeaderCellProps {
-  align?: boolean;
+  /** Allows to align cell text left, right, center  */
+  align?: textAlignment;
+  /** Click event function to handle sorting */
   createSortHandler?: (
     property: string
   ) => (event: MouseEvent<unknown>) => void;
+  /** The Id of table cell */
   id?: string;
   /** The order of data which is being sorted by */
   order?: Order;
@@ -37,10 +42,14 @@ export interface HeaderCellProps {
   orderBy?: string;
   /** Determines if sorting is enabled */
   sortable?: boolean;
+  /** Determines sorting order of ascending or desceding */
   sortDirection?: 'desc' | 'asc' | undefined;
+  /**Allows table cell text truncated and displays in only one line */
+  truncate?: boolean;
   /** The UID of the cell, if not provided then a randomly generated hash will be created using
    * CreateUUID() */
   uid: string;
+  /** The value of header cell*/
   value?: ReactNode;
   /** The width of the column */
   width?: string;
@@ -57,22 +66,22 @@ export const DotHeaderRow = ({
   orderBy,
   sortable = false,
 }: HeaderProps) => {
-  const createSortHandler = (property: string) => (
-    event: MouseEvent<unknown>
-  ) => {
-    onRequestSort(property);
-  };
+  const createSortHandler =
+    (property: string) => (event: MouseEvent<unknown>) => {
+      onRequestSort(property);
+    };
   return (
     <TableHead classes={{ root: 'dot-thead' }}>
       <TableRow classes={{ root: 'dot-tr' }}>
         {columns.map((cell: DotColumnHeader) => (
           <DotHeaderCell
-            align={cell.align === 'right'}
+            align={cell.align}
             createSortHandler={createSortHandler}
             id={cell.id}
             key={CreateUUID()}
             order={order}
             orderBy={orderBy}
+            truncate={cell.truncate}
             sortable={sortable && cell.sortable}
             sortDirection={orderBy === cell.id ? order : undefined}
             uid={CreateUUID()}
@@ -101,13 +110,12 @@ export const DotHeaderCell = ({
   value,
   width,
 }: HeaderCellProps) => {
-  const headerAlign = align ? 'right' : 'left';
   const headerTitle = typeof value === 'string' ? value : null;
   if (sortable) {
     const orderById: boolean = orderBy === id;
     return (
       <TableCell
-        align={headerAlign}
+        align={align}
         classes={{ root: 'dot-th' }}
         key={uid}
         sortDirection={sortDirection}
@@ -126,7 +134,12 @@ export const DotHeaderCell = ({
   }
 
   return (
-    <TableCell align={headerAlign} key={uid} title={headerTitle}>
+    <TableCell
+      align={align}
+      key={uid}
+      title={headerTitle}
+      style={{ width: width ? width : '' }}
+    >
       {value}
     </TableCell>
   );

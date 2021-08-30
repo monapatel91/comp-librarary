@@ -47,7 +47,7 @@ it('should have unchanged API', () => {
 });
 
 const testCols = [
-  { id: 'name', label: 'Name' },
+  { id: 'name', label: 'Name', truncate: true },
   { id: 'type', label: 'Type' },
 ];
 const testData = [
@@ -193,6 +193,21 @@ describe(' Table', () => {
     userEvent.click(th);
     waitFor(() => {
       expect(mockFunc).toHaveBeenCalledWith('desc', 'name', 0, 10);
+    });
+  });
+
+  it('should have noWrap class and Truncate table cell text if truncate prop is true', () => {
+    const { baseElement } = render(
+      <DotTable
+        ariaLabel="super heroes!"
+        columns={testCols}
+        data={testData}
+        orderBy="name"
+      />
+    );
+    testCols.map((cols) => {
+      const td = baseElement.querySelector('td');
+      return cols.truncate && expect(td).toHaveClass('noWrap');
     });
   });
 });
