@@ -100,6 +100,9 @@ describe(' Sidebar', () => {
     const backButton = screen.getByTestId('back-button');
     userEvent.click(backButton);
     expect(goBack).toHaveBeenCalledTimes(1);
+    const backButtonText = screen.getByText('Home');
+    userEvent.click(backButtonText);
+    expect(goBack).toHaveBeenCalledTimes(2);
   });
 
   it("should have 'aria-label' attribute with correct value", () => {
