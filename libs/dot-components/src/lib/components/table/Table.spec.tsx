@@ -210,4 +210,13 @@ describe(' Table', () => {
       return cols.truncate && expect(td).toHaveClass('noWrap');
     });
   });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    render(
+      <DotTable ariaLabel={ariaLabel} columns={testCols} data={testData} />
+    );
+    const tableElement = screen.getByRole('table');
+    expect(tableElement).toHaveAttribute('aria-label', ariaLabel);
+  });
 });
