@@ -36,9 +36,6 @@ export const StyledSidebar = styled.aside`
       }
 
       .go-back {
-        &:hover {
-          background-color: ${theme.palette.grey[100]};
-        }
         align-items: center;
         border-bottom: 1px solid ${theme.palette.grey[100]};
         display: flex;
@@ -48,6 +45,10 @@ export const StyledSidebar = styled.aside`
         .dot-icon {
           margin-right: ${theme.spacing(1)}px;
           padding: 12px;
+        }
+      
+        &:hover {
+          background-color: ${theme.palette.grey[100]};
         }
       }
 
