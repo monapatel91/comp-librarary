@@ -95,6 +95,7 @@ export interface ListItemProps extends CommonProps {
 }
 
 const NestedList = ({
+  ariaLabel,
   anchorEl,
   items,
   menuPlacement,
@@ -115,6 +116,7 @@ const NestedList = ({
     return (
       <Collapse in={open} timeout="auto" unmountOnExit>
         <DotList
+          ariaLabel={ariaLabel}
           className={nestedListClassName}
           component="div"
           disablePadding={true}
@@ -147,6 +149,7 @@ const NestedList = ({
 
     return (
       <DotMenu
+        ariaLabel={ariaLabel}
         anchorEl={anchorEl}
         className={`dot-flyout-menu dot-flyout-menu-${parentItemIndex}`}
         id={CreateUUID()}
@@ -216,6 +219,7 @@ export const DotList = ({
 };
 
 export const DotListItem = ({
+  ariaLabel,
   className,
   component = 'li',
   'data-testid': dataTestId,
@@ -293,6 +297,7 @@ export const DotListItem = ({
   return (
     <>
       <StyledListItem
+        aria-label={ariaLabel}
         button
         classes={{ root: rootClasses }}
         component={href && !onClick ? 'a' : component}
@@ -326,6 +331,7 @@ export const DotListItem = ({
       </StyledListItem>
       {items.length > 0 && (
         <NestedList
+          ariaLabel="nested list"
           anchorEl={anchorEl}
           items={items}
           menuPlacement={menuPlacement}
