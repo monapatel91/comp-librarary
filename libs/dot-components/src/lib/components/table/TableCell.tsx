@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { TableCell } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { CreateUUID } from '../createUUID';
+import { compareArrayWidthHeight } from '../compareWidth';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
@@ -30,6 +31,7 @@ export const DotBodyCell = ({
 }: CellProps) => {
   useEffect(() => {
     const noWrapTableCell = document.getElementsByClassName('noWrap');
+
     Array.from(noWrapTableCell as HTMLCollectionOf<HTMLElement>).forEach(
       (truncatedText) => {
         const isOverflowing =

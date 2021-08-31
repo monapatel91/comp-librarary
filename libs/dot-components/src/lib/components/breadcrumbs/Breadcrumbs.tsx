@@ -1,10 +1,11 @@
 import React, { KeyboardEvent, useEffect, useState } from 'react';
-import { DotIcon } from '../icon/Icon';
-import { DotLink, LinkUnderline } from '../link/Link';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
+import { DotIcon } from '../icon/Icon';
+import { DotLink, LinkUnderline } from '../link/Link';
 import { DotMenu } from '../menu/Menu';
+import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
+import { compareWidth } from '../compareWidth';
 
 export type BreadcrumbItem = {
   /** Defines a string value that labels the current element **/
@@ -37,9 +38,18 @@ export const DotBreadcrumbs = ({
   maxItems = 3,
 }: BreadcrumbProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const breadcrumbWrapper = document.querySelector('.dot-breadcrumbs');
+  const breadcrumbList = document.querySelector('.dot-breadcrumbs > .dot-ol');
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [adjustMaxItems, setAdjustMaxItems] = useState(false);
+
+  useEffect(() => {
+    setAdjustMaxItems(compareWidth(breadcrumbWrapper, breadcrumbList));
+    // possible helper to check for resize
+    // https://github.com/wellyshen/react-cool-dimensions
+  }, []);
 
   const clickListener = (event: MouseEvent) => {
     event.stopPropagation();
@@ -90,7 +100,7 @@ export const DotBreadcrumbs = ({
 
   const menuItems = items.length > maxItems ? getMenuItems() : null;
 
-  const onMenuLeave = (event: KeyboardEvent | React.MouseEvent) => {
+  const onMenuLeave = (_event: KeyboardEvent | React.MouseEvent) => {
     setMenuOpen(false);
   };
 
@@ -104,8 +114,8 @@ export const DotBreadcrumbs = ({
           li: 'dot-li',
         }}
         data-testid={dataTestId}
-        itemsAfterCollapse={2}
-        maxItems={maxItems}
+        itemsAfterCollapse={adjustMaxItems ? 1 : 2}
+        maxItems={adjustMaxItems ? 2 : maxItems}
         separator={<DotIcon iconId="chevron-right" className="separator" />}
       >
         {items.map((item: BreadcrumbItem, index: number) => {
