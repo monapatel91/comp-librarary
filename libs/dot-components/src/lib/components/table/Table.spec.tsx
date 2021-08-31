@@ -4,7 +4,7 @@ import { render, screen, waitFor } from '../../testing-utils';
 import { DotActionToolbar } from '../action-toolbar/ActionToolbar';
 import { DotTable, TableProps } from './Table';
 import { Order } from '../table/TableBody';
-import { RowsPerPageOption } from './TablePagination';
+import { DotTablePagination, RowsPerPageOption } from './TablePagination';
 import { TableRowProps } from '@material-ui/core';
 import { DotBodyCell } from './TableCell';
 
@@ -224,8 +224,24 @@ describe(' Table', () => {
   it("should have 'aria-label' attribute with correct value on DotBodyCell", () => {
     const ariaLabel = 'my label';
     const dataTestId = 'test-body-cell';
-    render(<DotBodyCell ariaLabel={ariaLabel} />);
+    render(<DotBodyCell ariaLabel={ariaLabel} data-testid={dataTestId} />);
     const bodyCellElement = screen.getByTestId(dataTestId);
     expect(bodyCellElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  it("should have 'aria-label' attribute with correct value on DotTablePagination", () => {
+    const onChangePage = jest.fn();
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-table-pagination';
+    render(
+      <DotTablePagination
+        ariaLabel={ariaLabel}
+        count={10}
+        data-testid={dataTestId}
+        onChangePage={onChangePage}
+      />
+    );
+    const tablePaginationElement = screen.getByTestId(dataTestId);
+    expect(tablePaginationElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });
