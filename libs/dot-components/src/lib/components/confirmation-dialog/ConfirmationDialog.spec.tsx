@@ -111,4 +111,18 @@ describe('DotConfirmationDialog', () => {
 
     expect(screen.getByText('Please confirm')).toBeTruthy();
   });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-confirmation-dialog';
+    render(
+      <DotConfirmationDialog
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        open={true}
+      />
+    );
+    const confirmationDialogElement = screen.getByTestId(dataTestId);
+    expect(confirmationDialogElement).toHaveAttribute('aria-label', ariaLabel);
+  });
 });

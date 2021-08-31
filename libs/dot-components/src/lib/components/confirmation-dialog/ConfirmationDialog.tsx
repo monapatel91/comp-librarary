@@ -25,6 +25,7 @@ export interface ConfirmationDialogProps extends CommonProps {
 }
 
 export const DotConfirmationDialog = ({
+  ariaLabel,
   cancelButtonProps,
   className,
   'data-testid': dataTestId,
@@ -45,6 +46,7 @@ export const DotConfirmationDialog = ({
 
   return (
     <DotDialog
+      ariaLabel={ariaLabel}
       cancelButtonProps={cancelButtonProps}
       className={rootClasses}
       data-testid={dataTestId}
