@@ -1,4 +1,7 @@
-export const compareWidth = (parentEl: HTMLElement, childEl: HTMLElement) => {
+export const compareWidth = (
+  parentEl: Element | HTMLElement,
+  childEl: Element | HTMLElement
+) => {
   const parentWidth = parentEl?.getBoundingClientRect().width;
   const childWidth = childEl?.getBoundingClientRect().width;
 
@@ -6,8 +9,8 @@ export const compareWidth = (parentEl: HTMLElement, childEl: HTMLElement) => {
 };
 
 export const compareWidthHeight = (
-  parentEl: HTMLElement,
-  childEl: HTMLElement
+  parentEl: Element | HTMLElement,
+  childEl: Element | HTMLElement
 ) => {
   const parentHeight = parentEl?.getBoundingClientRect().height;
   const parentWidth = parentEl?.getBoundingClientRect().width;

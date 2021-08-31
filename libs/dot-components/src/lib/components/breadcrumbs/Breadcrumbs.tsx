@@ -5,7 +5,7 @@ import { DotIcon } from '../icon/Icon';
 import { DotLink, LinkUnderline } from '../link/Link';
 import { DotMenu } from '../menu/Menu';
 import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
-import { compareWidth } from '../compareWidth';
+import { compareWidth } from '../compareSize';
 
 export type BreadcrumbItem = {
   /** Defines a string value that labels the current element **/

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { TableCell } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { CreateUUID } from '../createUUID';
-import { compareArrayWidthHeight } from '../compareWidth';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
