@@ -272,5 +272,19 @@ describe('DotCheckbox', () => {
       const inputs = screen.getAllByRole('checkbox');
       userEvent.click(inputs[0]);
     });
+
+    it("should have 'aria-label' attribute with correct value", () => {
+      const ariaLabel = 'my label';
+      const dataTestId = 'dot-checkbox-group';
+      render(
+        <DotCheckboxGroup
+          ariaLabel={ariaLabel}
+          options={options}
+          data-testid={dataTestId}
+        />
+      );
+      const checkboxGroupElement = screen.getByTestId(dataTestId);
+      expect(checkboxGroupElement).toHaveAttribute('aria-label', ariaLabel);
+    });
   });
 });
