@@ -6,6 +6,7 @@ import { DotTable, TableProps } from './Table';
 import { Order } from '../table/TableBody';
 import { RowsPerPageOption } from './TablePagination';
 import { TableRowProps } from '@material-ui/core';
+import { DotBodyCell } from './TableCell';
 
 const mockFunc = jest.fn();
 
@@ -218,5 +219,13 @@ describe(' Table', () => {
     );
     const tableElement = screen.getByRole('table');
     expect(tableElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  it("should have 'aria-label' attribute with correct value on DotBodyCell", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-body-cell';
+    render(<DotBodyCell ariaLabel={ariaLabel} />);
+    const bodyCellElement = screen.getByTestId(dataTestId);
+    expect(bodyCellElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });
