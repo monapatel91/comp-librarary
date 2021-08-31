@@ -20,6 +20,7 @@ describe('DotCard', () => {
   it('should have unchanged API', () => {
     const hProps = {
       action: action,
+      ariaLabel: 'card header',
       avatar: avatar,
       className: 'test-class',
       'data-testid': 'testid',
@@ -31,6 +32,7 @@ describe('DotCard', () => {
     const headerProps: CardHeaderProps = hProps;
     expect(headerProps).toEqual(hProps);
     const cProps = {
+      ariaLabel: 'card content',
       children: 'This is some content',
       className: 'test-class',
       'data-testid': 'testid',
@@ -38,6 +40,7 @@ describe('DotCard', () => {
     const contentProps = cProps;
     expect(contentProps).toEqual(cProps);
     const fProps = {
+      ariaLabel: 'card footer',
       children: 'This is a footer',
       className: 'test-class',
       'data-testid': 'testid',
@@ -45,6 +48,7 @@ describe('DotCard', () => {
     const footerProps = fProps;
     expect(footerProps).toEqual(fProps);
     const props = {
+      ariaLabel: 'card',
       children: 'I am a card!',
       className: 'test-class',
       'data-testid': 'testid',
@@ -97,5 +101,50 @@ describe('DotCard', () => {
     expect(cardHeaderTestId).toHaveClass('custom-test-class');
     expect(cardContentTestId).toHaveClass('custom-test-class');
     expect(cardFooterTestId).toHaveClass('custom-test-class');
+  });
+
+  it("should have 'aria-label' attributes with correct values", () => {
+    const cardAriaLabel = 'my card';
+    const cardHeaderAriaLabel = 'my card header';
+    const cardContentAriaLabel = 'my card content';
+    const cardFooterAriaLabel = 'my card footer';
+    const cardHeaderTitle = 'Cool Card';
+    const cardContent = 'This is some content';
+    const cardFooter = 'This is a footer';
+    const cardHeaderDataTestId = 'test-card-header';
+    const dataTestId = 'test-card';
+    render(
+      <DotCard ariaLabel={cardAriaLabel} data-testid={dataTestId}>
+        <DotCardHeader
+          ariaLabel={cardHeaderAriaLabel}
+          data-testid={cardHeaderDataTestId}
+          title={cardHeaderTitle}
+        />
+        <DotCardContent ariaLabel={cardContentAriaLabel}>
+          {cardContent}
+        </DotCardContent>
+        <DotCardFooter ariaLabel={cardFooterAriaLabel}>
+          {cardFooter}
+        </DotCardFooter>
+      </DotCard>
+    );
+    const cardElement = screen.getByTestId(dataTestId);
+    const cardHeaderTitleElement = screen.getByTestId(cardHeaderDataTestId);
+    const cardContentElement = screen.getByText(cardContent);
+    const cardFooterElement = screen.getByText(cardFooter);
+
+    expect(cardElement).toHaveAttribute('aria-label', cardAriaLabel);
+    expect(cardHeaderTitleElement).toHaveAttribute(
+      'aria-label',
+      cardHeaderAriaLabel
+    );
+    expect(cardContentElement).toHaveAttribute(
+      'aria-label',
+      cardContentAriaLabel
+    );
+    expect(cardFooterElement).toHaveAttribute(
+      'aria-label',
+      cardFooterAriaLabel
+    );
   });
 });

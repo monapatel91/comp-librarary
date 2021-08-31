@@ -14,6 +14,7 @@ describe('Accordion', () => {
   it('should have unchanged API', () => {
     const props = {
       actions: 'accordion-test',
+      ariaLabel: 'my avatar group',
       children: 'My Accordion',
       className: 'dot-accordion',
       'data-testid': 'dot-accordion',
@@ -69,5 +70,21 @@ describe('Accordion', () => {
         icon
       );
     });
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-dot-accordion';
+    render(
+      <DotAccordion
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        summary="Test summary"
+      >
+        Testing
+      </DotAccordion>
+    );
+    const accordionElement = screen.getByTestId(dataTestId);
+    expect(accordionElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

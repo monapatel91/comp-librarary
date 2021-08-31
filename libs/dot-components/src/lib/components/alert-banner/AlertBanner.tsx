@@ -16,6 +16,7 @@ export interface AlertBannerProps extends CommonProps {
 
 export const DotAlertBanner = ({
   action,
+  ariaLabel,
   children,
   className,
   'data-testid': dataTestId,
@@ -35,6 +36,7 @@ export const DotAlertBanner = ({
   return (
     <StyledAlertBanner
       action={action}
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       iconMapping={AlertBannerIconMapping}

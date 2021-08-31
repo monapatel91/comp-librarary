@@ -251,4 +251,21 @@ describe('DotDialog', () => {
       screen.queryByRole('button', { name: /ok/i })
     ).not.toBeInTheDocument();
   });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-dialog';
+    render(
+      <DotDialog
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        title="Dialog Title"
+        open={true}
+      >
+        <p>Hello World</p>
+      </DotDialog>
+    );
+    const dialogElement = screen.getByTestId(dataTestId);
+    expect(dialogElement).toHaveAttribute('aria-label', ariaLabel);
+  });
 });

@@ -81,6 +81,7 @@ export interface AutoCompleteProps extends CommonProps {
   value?: AutoCompleteValue;
 }
 export const DotAutoComplete = ({
+  ariaLabel,
   autoFocus,
   className,
   'data-testid': dataTestId,
@@ -153,6 +154,7 @@ export const DotAutoComplete = ({
 
   return (
     <StyledAutocomplete
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       defaultValue={defaultValue}

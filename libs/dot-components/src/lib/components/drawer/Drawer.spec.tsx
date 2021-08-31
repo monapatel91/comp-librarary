@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../testing-utils';
+import { render, screen } from '../../testing-utils';
 import {
   DotDrawer,
   DrawerAnchor,
@@ -14,6 +14,7 @@ describe('Drawer', () => {
     const onClose = jest.fn();
     const props = {
       anchor: 'bottom' as DrawerAnchor,
+      ariaLabel: 'drawer',
       children: 'I am a drawer',
       className: 'test-class',
       'data-testid': 'testid',
@@ -36,5 +37,17 @@ describe('Drawer', () => {
       </DotDrawer>
     );
     expect(baseElement).toBeTruthy();
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-drawer';
+    render(
+      <DotDrawer ariaLabel={ariaLabel} data-testid={dataTestId} open={true}>
+        Hi There!
+      </DotDrawer>
+    );
+    const drawerElement = screen.getByTestId(dataTestId);
+    expect(drawerElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

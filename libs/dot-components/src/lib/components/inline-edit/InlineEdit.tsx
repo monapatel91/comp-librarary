@@ -41,6 +41,7 @@ export interface InlineEditProps extends CommonProps {
  * @experimental This component is still in development
  */
 export const DotInlineEdit = ({
+  ariaLabel,
   autoFocus,
   className,
   'data-testid': dataTestId,
@@ -114,6 +115,7 @@ export const DotInlineEdit = ({
 
   return (
     <StyledInlineEdit
+      aria-label={ariaLabel}
       className={`${rootClasses} ${
         editing ? 'editing' : disabled ? 'disabled' : ''
       }`}

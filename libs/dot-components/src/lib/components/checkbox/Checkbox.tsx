@@ -15,8 +15,6 @@ export type CheckboxSize = 'medium' | 'small';
 export type CheckboxLabelPlacement = 'bottom' | 'end' | 'start';
 
 export interface CheckboxProps extends RadioButtonProps {
-  /** accessibility label */
-  ariaLabel?: string;
   /** accessibility labelled by */
   ariaLabelledby?: string;
   /** If true, the ripple effect will be disabled. */

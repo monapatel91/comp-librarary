@@ -11,6 +11,8 @@ const MAX_ALLOWED_ITEMS = 7;
 export type RailItemsPosition = 'flex-start' | 'center' | 'flex-end';
 
 export interface RailItem {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** Id of the icon shown in the rail item */
   iconId: string;
   /** text displayed or title text if icon used */
@@ -29,6 +31,7 @@ export interface NavigationRailProps extends CommonProps {
 }
 
 export const DotNavigationRail = ({
+  ariaLabel,
   className,
   'data-testid': dataTestId,
   onChange,
@@ -54,28 +57,35 @@ export const DotNavigationRail = ({
   const renderRailItems = (): ReactNode => {
     return railItems
       ?.slice(0, MAX_ALLOWED_ITEMS)
-      .map(({ iconId, title }: RailItem, index: number) => (
-        <DotButton
-          className={combineClasses(
-            'rail-item-button',
-            checkIfSelected(index) && 'selected'
-          )}
-          data-testid={`rail-item-${index}`}
-          disableRipple={true}
-          key={index}
-          onClick={onItemSelect(index)}
-          type="text"
-        >
-          {iconId && (
-            <DotIcon className="rail-item-button-icon" iconId={iconId} />
-          )}
-          <DotTypography variant="body2">{title}</DotTypography>
-        </DotButton>
-      ));
+      .map(
+        (
+          { ariaLabel: itemAriaLabel, iconId, title }: RailItem,
+          index: number
+        ) => (
+          <DotButton
+            ariaLabel={itemAriaLabel}
+            className={combineClasses(
+              'rail-item-button',
+              checkIfSelected(index) && 'selected'
+            )}
+            data-testid={`rail-item-${index}`}
+            disableRipple={true}
+            key={index}
+            onClick={onItemSelect(index)}
+            type="text"
+          >
+            {iconId && (
+              <DotIcon className="rail-item-button-icon" iconId={iconId} />
+            )}
+            <DotTypography variant="body2">{title}</DotTypography>
+          </DotButton>
+        )
+      );
   };
 
   return (
     <StyledNavigationRail
+      aria-label={ariaLabel}
       className={rootClasses}
       data-testid={dataTestId}
       railItemPosition={railItemPosition}

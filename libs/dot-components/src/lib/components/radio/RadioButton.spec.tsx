@@ -12,6 +12,7 @@ describe('DotRadioButton', () => {
     const onChange = jest.fn();
     const inputRef = createRef<HTMLInputElement>();
     const props = {
+      ariaLabel: 'radio button',
       checked: false,
       className: 'test-class',
       'data-testid': 'testid',
@@ -111,6 +112,13 @@ describe('DotRadioButton', () => {
       expect(baseElement.querySelector('svg')).not.toHaveClass(
         'MuiSvgIcon-fontSizeSmall'
       );
+    });
+    it("should have 'aria-label' attribute with correct value", () => {
+      const ariaLabel = 'my label';
+      const dataTestId = 'test-radio-button';
+      render(<DotRadioButton ariaLabel={ariaLabel} data-testid={dataTestId} />);
+      const radioButtonElement = screen.getByTestId(dataTestId);
+      expect(radioButtonElement).toHaveAttribute('aria-label', ariaLabel);
     });
   });
 });

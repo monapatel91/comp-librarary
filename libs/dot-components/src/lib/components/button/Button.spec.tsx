@@ -11,6 +11,7 @@ describe('DotButton', () => {
 
   it('should have unchanged API', () => {
     const props = {
+      ariaLabel: 'my button',
       children: 'My Button',
       className: 'test-class',
       'data-testid': 'testid',
@@ -166,5 +167,16 @@ describe('DotButton', () => {
       </DotButton>
     );
     expect(screen.getByRole('button')).not.toHaveFocus();
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    render(
+      <DotButton ariaLabel={ariaLabel} onClick={testClick} type="primary">
+        Test
+      </DotButton>
+    );
+    const buttonElement = screen.getByRole('button');
+    expect(buttonElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

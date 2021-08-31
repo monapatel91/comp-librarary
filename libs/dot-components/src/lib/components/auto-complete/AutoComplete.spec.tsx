@@ -26,6 +26,7 @@ describe('AutoComplete', () => {
     const onChange = jest.fn();
     const inputRef = createRef<HTMLInputElement>();
     const props = {
+      ariaLabel: 'autocomplete',
       autoFocus: true,
       className: 'test-class',
       'data-testid': 'testid',
@@ -180,6 +181,22 @@ describe('AutoComplete', () => {
       ['Hulk'],
       'create-option'
     );
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-autocomplete';
+    render(
+      <DotAutoComplete
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        inputId="input-id"
+        label="Label"
+        options={dummyOptions}
+      />
+    );
+    const autocompleteElement = screen.getByTestId(dataTestId);
+    expect(autocompleteElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });
 

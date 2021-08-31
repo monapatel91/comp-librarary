@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent } from 'react';
 import { ToggleButton } from '@material-ui/lab';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { CommonProps } from '../CommonProps';
@@ -11,8 +11,6 @@ export type ButtonToggleOrientation = 'horizontal' | 'vertical';
 type ButtonToggleValue = string | number | boolean;
 
 export interface ButtonToggleProps extends CommonProps {
-  /** accessibility label */
-  ariaLabel: string;
   /** button props for each toggle button options*/
   buttonOptions: {
     ariaLabel: string;
@@ -51,6 +49,7 @@ export const DotButtonToggle = ({
     <StyledToggleButtonGroup
       aria-label={ariaLabel}
       classes={{ root: rootClasses }}
+      data-testid={dataTestId}
       exclusive
       onChange={onChange}
       orientation={orientation}

@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
 import {
   DotList,
+  DotListItem,
   ListItemProps,
   ListProps,
   NestedListProps,
@@ -63,6 +64,7 @@ describe('List', () => {
     expect(listProps).toEqual(props);
 
     const nProps = {
+      ariaLabel: 'nested list',
       anchorEl: null as Element,
       items: mockListItems,
       menuPlacement: 'right' as PopperPlacement,
@@ -123,5 +125,35 @@ describe('List', () => {
 
     userEvent.click(screen.getByText('Pipelines'));
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'dot-list';
+    render(
+      <DotList
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        items={mockListItems}
+      />
+    );
+    const linkElement = screen.getByTestId(dataTestId);
+    expect(linkElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+});
+
+describe('ListItem', () => {
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'dot-list-item';
+    render(
+      <DotListItem
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        items={mockListItems}
+      />
+    );
+    const linkElement = screen.getByTestId(dataTestId);
+    expect(linkElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

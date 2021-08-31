@@ -12,6 +12,7 @@ describe('DotIconButton', () => {
   it('should have unchanged API', () => {
     const onClick = jest.fn();
     const props = {
+      ariaLabel: 'icon button',
       className: 'test-class',
       color: 'primary' as IconButtonColor,
       'data-testid': 'testid',
@@ -55,5 +56,12 @@ describe('DotIconButton', () => {
     expect(screen.getByTestId('button-icon')).toBeVisible();
     expect(title[0]).toBeVisible();
     expect(title[1]).toBeVisible();
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    render(<DotIconButton ariaLabel={ariaLabel} iconId="download" />);
+    const buttonElement = screen.getByRole('button');
+    expect(buttonElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

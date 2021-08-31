@@ -14,6 +14,7 @@ describe('DotAvatar', () => {
     const onClick = jest.fn();
     const props = {
       alt: 'Avatar alt text',
+      ariaLabel: 'my avatar',
       className: 'test-class',
       color: 'red' as AvatarColor,
       'data-testid': 'testid',
@@ -103,5 +104,19 @@ describe('DotAvatar', () => {
     );
     const avatarImage = screen.getByAltText('test');
     expect(avatarImage).toHaveClass('dot-img');
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    render(
+      <DotAvatar
+        data-testid="test-avatar"
+        alt="test"
+        ariaLabel={ariaLabel}
+        type="image"
+      />
+    );
+    const linkElement = screen.getByTestId('test-avatar');
+    expect(linkElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

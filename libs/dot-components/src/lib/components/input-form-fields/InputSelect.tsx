@@ -19,6 +19,7 @@ export interface InputSelectProps extends InputProps {
 }
 
 export const DotInputSelect = ({
+  ariaLabel,
   autoFocus,
   className,
   'data-testid': dataTestId,
@@ -56,6 +57,7 @@ export const DotInputSelect = ({
       helperText={helperText}
       id={id}
       inputProps={{
+        'aria-label': ariaLabel,
         'data-testid': dataTestId,
         className: 'dot-select',
       }}

@@ -19,6 +19,7 @@ export interface EmptyStateProps extends CommonProps {
 }
 
 export const DotEmptyState = ({
+  ariaLabel,
   buttonProps,
   className,
   'data-testid': dataTestId,
@@ -30,7 +31,11 @@ export const DotEmptyState = ({
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   return (
-    <StyledEmptyState className={rootClasses} data-testid={dataTestId}>
+    <StyledEmptyState
+      aria-label={ariaLabel}
+      className={rootClasses}
+      data-testid={dataTestId}
+    >
       {imageSrc && (
         <img
           className="empty-state-image"

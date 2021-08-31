@@ -32,6 +32,7 @@ export interface TypographyProps extends CommonProps {
 }
 
 export const DotTypography = ({
+  ariaLabel,
   className,
   'data-testid': dataTestId,
   children,
@@ -43,6 +44,7 @@ export const DotTypography = ({
 
   return (
     <Typography
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       component={component}
       data-testid={dataTestId}

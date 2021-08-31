@@ -30,6 +30,7 @@ describe(' Sidebar', () => {
   it('should have unchanged API', () => {
     const titleAvatarProps = { alt: 'avatar alt text', text: 'BM' };
     const props = {
+      ariaLabel: 'sidebar',
       backItem: backItem,
       brandDesc: 'best brand',
       children: <TextField placeholder="search" variant="outlined" />,
@@ -99,5 +100,13 @@ describe(' Sidebar', () => {
     const backButton = screen.getByTestId('back-button');
     userEvent.click(backButton);
     expect(goBack).toHaveBeenCalledTimes(1);
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-sidebar';
+    render(<DotSidebar ariaLabel={ariaLabel} data-testid={dataTestId} />);
+    const sidebarElement = screen.getByTestId(`primaryNav ${dataTestId}`);
+    expect(sidebarElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

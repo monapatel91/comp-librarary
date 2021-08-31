@@ -15,6 +15,7 @@ describe('DotChip', () => {
     const onClick = jest.fn();
     const onDelete = jest.fn();
     const props = {
+      ariaLabel: 'my chip label',
       avatar: avatar,
       children: 'My Chip',
       className: 'test-class',
@@ -101,5 +102,17 @@ describe('DotChip', () => {
     expect(deleteIcon).toBeTruthy();
     userEvent.click(deleteIcon);
     expect(onDelete).toHaveBeenCalledTimes(1);
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-chip';
+    render(
+      <DotChip ariaLabel={ariaLabel} data-testid={dataTestId}>
+        Hello
+      </DotChip>
+    );
+    const chipElement = screen.getByTestId(dataTestId);
+    expect(chipElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });
