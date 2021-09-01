@@ -59,7 +59,7 @@ describe('Breadcrumbs', () => {
     const links = screen.getAllByRole('link');
 
     expect(links.length).toEqual(2);
-  })
+  });
 
   it('should hide additional breadcrumbs when more than maxItems', () => {
     render(<DotBreadcrumbs items={dummyItemsNoOnClick} maxItems={2} />);

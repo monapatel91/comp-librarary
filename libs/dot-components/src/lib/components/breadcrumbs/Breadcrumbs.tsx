@@ -1,4 +1,10 @@
-import React, { KeyboardEvent, useEffect, useState } from 'react';
+import React, {
+  KeyboardEvent,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
@@ -28,6 +34,10 @@ export interface BreadcrumbProps extends CommonProps {
   items: Array<BreadcrumbItem>;
   /** determines the maximum number of items to display */
   maxItems?: number;
+  /** minimum width before `maxItems` will be adjusted */
+  minWidth?: number;
+  /** container element, if smaller than breadcrumbs, `maxItems` will adjust */
+  parentRef?: MutableRefObject<Element | HTMLElement>;
 }
 
 export const DotBreadcrumbs = ({
@@ -36,20 +46,15 @@ export const DotBreadcrumbs = ({
   expansionMenu = false,
   items,
   maxItems = 3,
+  parentRef,
+  minWidth,
 }: BreadcrumbProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-  const breadcrumbWrapper = document.querySelector('.dot-breadcrumbs');
-  const breadcrumbList = document.querySelector('.dot-breadcrumbs > .dot-ol');
+  const breadcrumbRef = useRef();
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [adjustMaxItems, setAdjustMaxItems] = useState(false);
-
-  useEffect(() => {
-    setAdjustMaxItems(compareWidth(breadcrumbWrapper, breadcrumbList));
-    // possible helper to check for resize
-    // https://github.com/wellyshen/react-cool-dimensions
-  }, []);
 
   const clickListener = (event: MouseEvent) => {
     event.stopPropagation();
@@ -64,19 +69,6 @@ export const DotBreadcrumbs = ({
       ? elements[0].getElementsByClassName('MuiButtonBase-root')[0]
       : null;
   };
-
-  useEffect(() => {
-    if (expansionMenu) {
-      const expandElement = getExpandElement();
-      if (expandElement) {
-        setAnchorEl(expandElement);
-        expandElement.addEventListener('click', clickListener);
-        return () => {
-          expandElement.removeEventListener('click', clickListener);
-        };
-      }
-    }
-  }, []);
 
   const getMenuItems = () => {
     return items.slice(1, items.length - 2).map((item, index) => {
@@ -104,6 +96,25 @@ export const DotBreadcrumbs = ({
     setMenuOpen(false);
   };
 
+  useEffect(() => {
+    if (expansionMenu) {
+      const expandElement = getExpandElement();
+      if (expandElement) {
+        setAnchorEl(expandElement);
+        expandElement.addEventListener('click', clickListener);
+        return () => {
+          expandElement.removeEventListener('click', clickListener);
+        };
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (breadcrumbRef?.current && parentRef?.current) {
+      setAdjustMaxItems(compareWidth(parentRef.current, breadcrumbRef.current));
+    }
+  }, [breadcrumbRef.current, parentRef.current]);
+
   return (
     <>
       <StyledBreadcrumbs
@@ -116,7 +127,9 @@ export const DotBreadcrumbs = ({
         data-testid={dataTestId}
         itemsAfterCollapse={adjustMaxItems ? 1 : 2}
         maxItems={adjustMaxItems ? 2 : maxItems}
+        ref={breadcrumbRef}
         separator={<DotIcon iconId="chevron-right" className="separator" />}
+        style={{ width: minWidth }}
       >
         {items.map((item: BreadcrumbItem, index: number) => {
           const { ariaLabel, href, onClick, text, underline } = item;

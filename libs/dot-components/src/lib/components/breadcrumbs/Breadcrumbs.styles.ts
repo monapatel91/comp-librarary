@@ -8,7 +8,6 @@ export const StyledBreadcrumbs = styled(Breadcrumbs)`
     &.${rootClassName} {
       .MuiBreadcrumbs-ol {
         flex-wrap: nowrap;
-        width: 500px; /* must have width set here */
       }
       .MuiBreadcrumbs-li,
       .separator {
