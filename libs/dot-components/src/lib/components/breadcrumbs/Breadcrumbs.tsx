@@ -113,7 +113,7 @@ export const DotBreadcrumbs = ({
     if (breadcrumbRef?.current && parentRef?.current) {
       setAdjustMaxItems(compareWidth(parentRef.current, breadcrumbRef.current));
     }
-  }, [breadcrumbRef.current, parentRef.current]);
+  }, [breadcrumbRef?.current, parentRef?.current]);
 
   return (
     <>
