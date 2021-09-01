@@ -54,6 +54,13 @@ describe('Breadcrumbs', () => {
     expect(baseElement).toBeTruthy();
   });
 
+  xit('should hide additional breadcrumbs on smaller viewport', () => {
+    render(<DotBreadcrumbs items={dummyItemsNoOnClick} />);
+    const links = screen.getAllByRole('link');
+
+    expect(links.length).toEqual(2);
+  })
+
   it('should hide additional breadcrumbs when more than maxItems', () => {
     render(<DotBreadcrumbs items={dummyItemsNoOnClick} maxItems={2} />);
     const links = screen.getAllByRole('link');
