@@ -31,6 +31,7 @@ export interface DrawerProps extends CommonProps {
 
 export const DotDrawer = ({
   anchor = 'right',
+  ariaLabel,
   className,
   children,
   'data-testid': dataTestId,
@@ -45,6 +46,7 @@ export const DotDrawer = ({
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   return (
     <StyledDrawer
+      aria-label={ariaLabel}
       data-testid={dataTestId}
       anchor={anchor}
       classes={{ root: rootClasses, paper: 'dot-drawer-paper' }}

@@ -42,6 +42,7 @@ export interface RadioButtonProps extends RadioButtonBaseProps {
 }
 
 export function DotRadioButton({
+  ariaLabel,
   checked,
   className,
   'data-testid': dataTestId,
@@ -69,6 +70,7 @@ export function DotRadioButton({
       value={value}
       control={
         <StyledRadioButton
+          aria-label={ariaLabel}
           classes={{ root: rootRadioButtonClassName }}
           checked={checked}
           color="primary"

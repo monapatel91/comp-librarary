@@ -17,6 +17,7 @@ export interface SkeletonProps extends CommonProps {
 }
 
 export const DotSkeleton = ({
+  ariaLabel,
   children,
   className,
   'data-testid': dataTestId,
@@ -36,6 +37,7 @@ export const DotSkeleton = ({
   return (
     <StyledSkeleton
       animation="wave"
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       height={height}

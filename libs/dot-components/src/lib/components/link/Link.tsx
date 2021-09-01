@@ -38,6 +38,7 @@ export interface LinkProps extends CommonProps {
 }
 
 export const DotLink = ({
+  ariaLabel,
   children,
   className,
   color = 'primary',
@@ -55,6 +56,7 @@ export const DotLink = ({
 
   return (
     <StyledLink
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}

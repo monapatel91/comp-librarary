@@ -117,4 +117,22 @@ describe('DotInputSelect', () => {
     const inputField = screen.getByRole('combobox');
     expect(inputField).toBeDisabled();
   });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-input-select';
+    render(
+      <DotInputSelect
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        id="test-id"
+        label="Foo Bar"
+        name="foo"
+        options={sampleOptions}
+        value="Batman"
+      />
+    );
+    const inputSelectElement = screen.getByTestId(dataTestId);
+    expect(inputSelectElement).toHaveAttribute('aria-label', ariaLabel);
+  });
 });

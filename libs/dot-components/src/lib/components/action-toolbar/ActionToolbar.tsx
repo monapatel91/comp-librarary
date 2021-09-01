@@ -12,13 +12,21 @@ export interface DotActionBarProps extends CommonProps {
 }
 
 export const DotActionToolbar = ({
+  ariaLabel,
   children,
+  className,
+  'data-testid': dataTestId,
   variant = 'dense',
 }: DotActionBarProps) => {
-  const rootClasses = useStylesWithRootClass(rootClassName);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   return (
-    <StyledToolbar className={rootClasses} variant={variant}>
+    <StyledToolbar
+      aria-label={ariaLabel}
+      className={rootClasses}
+      data-testid={dataTestId}
+      variant={variant}
+    >
       {children}
     </StyledToolbar>
   );

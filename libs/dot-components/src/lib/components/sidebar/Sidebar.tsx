@@ -52,6 +52,7 @@ export interface SidebarProps extends CommonProps {
 }
 
 export const DotSidebar = ({
+  ariaLabel,
   backItem,
   brandDesc,
   children,
@@ -79,6 +80,7 @@ export const DotSidebar = ({
 
   return (
     <StyledSidebar
+      aria-label={ariaLabel}
       className={rootClasses}
       data-testid={`primaryNav ${dataTestId ? dataTestId : ''}`}
     >

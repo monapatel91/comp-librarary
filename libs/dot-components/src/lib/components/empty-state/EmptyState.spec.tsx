@@ -12,6 +12,7 @@ describe(' EmptyState', () => {
       'data-testid': 'testid',
     };
     const props = {
+      ariaLabel: 'my empty state label',
       buttonProps: buttonProps,
       className: 'test-class',
       'data-testid': 'testid',
@@ -80,11 +81,24 @@ describe(' EmptyState', () => {
           type: 'primary',
           onClick: clickHandler,
         }}
-        subtitle="I am a test"
         title="Hello World"
       />
     );
     userEvent.click(screen.getByRole('button', { name: 'Click Me' }));
     expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-empty-state';
+    render(
+      <DotEmptyState
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        title="Hello World"
+      />
+    );
+    const avatarGroupElement = screen.getByTestId(dataTestId);
+    expect(avatarGroupElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

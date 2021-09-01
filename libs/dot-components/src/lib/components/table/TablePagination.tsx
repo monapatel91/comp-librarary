@@ -24,6 +24,7 @@ export interface TablePaginationProps extends CommonProps {
 
 /** This component wraps the TablePagination component from @material-ui. */
 export const DotTablePagination = ({
+  ariaLabel,
   className,
   count,
   'data-testid': dataTestId,
@@ -46,6 +47,7 @@ export const DotTablePagination = ({
 
   return (
     <StyledTablePagination
+      aria-label={ariaLabel}
       classes={{
         root: rootClasses,
         selectIcon: 'dot-icon',

@@ -14,6 +14,7 @@ export interface ButtonProps extends BaseButtonProps {
 
 /** This component wraps the Button component from @material-ui. */
 export const DotButton = ({
+  ariaLabel,
   autoFocus = false,
   children,
   className,
@@ -54,6 +55,7 @@ export const DotButton = ({
 
   return (
     <StyledButton
+      aria-label={ariaLabel}
       autoFocus={autoFocus}
       classes={{ root: rootClasses }}
       color={color}

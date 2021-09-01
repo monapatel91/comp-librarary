@@ -52,6 +52,7 @@ export interface DialogProps extends CommonProps {
 }
 
 export const DotDialog = ({
+  ariaLabel,
   cancelButtonProps,
   className,
   'data-testid': dataTestId,
@@ -104,6 +105,7 @@ export const DotDialog = ({
 
   return (
     <StyledDialog
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       open={isOpen}

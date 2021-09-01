@@ -24,7 +24,6 @@ export interface TableRowProps extends CommonProps {
   rowData: any;
 }
 export interface TableProps extends CommonProps {
-  ariaLabel: string;
   /** The table header columns */
   columns: Array<DotColumnHeader>;
   /** Total number of items for paginated table.

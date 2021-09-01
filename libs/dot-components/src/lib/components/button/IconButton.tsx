@@ -24,6 +24,7 @@ export interface IconButtonProps extends CommonProps {
 
 /** This component wraps the IconButton component from @material-ui. */
 export const DotIconButton = ({
+  ariaLabel,
   className,
   color = 'inherit',
   'data-testid': dataTestId,
@@ -37,6 +38,7 @@ export const DotIconButton = ({
 
   return (
     <StyledIconButton
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}

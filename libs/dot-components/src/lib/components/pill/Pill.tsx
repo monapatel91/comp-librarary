@@ -25,6 +25,7 @@ export interface PillProps extends CommonProps {
 }
 
 export const DotPill = ({
+  ariaLabel,
   backgroundcolor,
   className,
   'data-testid': dataTestId,
@@ -37,6 +38,7 @@ export const DotPill = ({
 
   return (
     <StyledPill
+      aria-label={ariaLabel}
       backgroundcolor={backgroundcolor}
       classes={{ root: rootClasses }}
       clickable={false}

@@ -22,6 +22,7 @@ export interface ProgressProps extends CommonProps {
 }
 
 export const DotProgress = ({
+  ariaLabel,
   color = 'secondary',
   className,
   'data-testid': dataTestId,
@@ -35,6 +36,7 @@ export const DotProgress = ({
 
   return (
     <StyledCircularProgress
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}

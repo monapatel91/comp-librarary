@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { TableCell } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { CreateUUID } from '../createUUID';
@@ -19,6 +19,7 @@ export interface CellProps extends CommonProps {
  * A wrapper component around the TableCell component from @material-ui.
  */
 export const DotBodyCell = ({
+  ariaLabel,
   align,
   className,
   colspan,
@@ -47,6 +48,7 @@ export const DotBodyCell = ({
   );
   return (
     <TableCell
+      aria-label={ariaLabel}
       align={align}
       classes={{ root: rootClasses }}
       colSpan={colspan}

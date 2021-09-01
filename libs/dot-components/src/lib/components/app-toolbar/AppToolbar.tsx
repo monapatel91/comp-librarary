@@ -30,6 +30,7 @@ export interface AppToolbarProps extends CommonProps {
 }
 
 export const DotAppToolbar = ({
+  ariaLabel,
   avatar,
   borderColor,
   appName,
@@ -49,6 +50,7 @@ export const DotAppToolbar = ({
 
   return (
     <StyledAppToolbar
+      aria-label={ariaLabel}
       className={rootClasses}
       data-testid={dataTestId}
       style={{ borderBottomColor: borderColor }}
