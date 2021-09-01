@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
 import { BreadcrumbProps, BreadcrumbItem, DotBreadcrumbs } from './Breadcrumbs';
@@ -32,6 +32,8 @@ describe('Breadcrumbs', () => {
       expansionMenu: false,
       items: dummyItems,
       maxItems: 5,
+      minWidth: 500,
+      parentRef: useRef(),
     };
     const breadcrumbProps: BreadcrumbProps = props;
     expect(breadcrumbProps).toEqual(props);
