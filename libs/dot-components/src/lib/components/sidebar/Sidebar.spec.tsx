@@ -95,14 +95,23 @@ describe(' Sidebar', () => {
     expect(primaryNav).toHaveClass('expanded');
   });
 
-  it('calls backItem callback when back button clicked', async () => {
-    render(<DotSidebar backItem={backItem} goBack={true} />);
-    const backButton = screen.getByTestId('back-button');
-    userEvent.click(backButton);
-    expect(goBack).toHaveBeenCalledTimes(1);
-    const backButtonText = screen.getByText('Home');
-    userEvent.click(backButtonText);
-    expect(goBack).toHaveBeenCalledTimes(2);
+  describe('Backitem', () => {
+    beforeEach(() => {
+      render(<DotSidebar backItem={backItem} goBack={true} />);
+    });
+
+    it('calls backItem callback when back button clicked', () => {
+      const backButton = screen.getByTestId('back-button');
+      userEvent.click(backButton);
+      expect(goBack).toHaveBeenCalledTimes(1);
+      const backButtonText = screen.getByText('Home');
+      userEvent.click(backButtonText);
+      expect(goBack).toHaveBeenCalledTimes(2);
+    });
+
+    it('should use backItem.title for link and icon tooltips', () => {
+      expect(screen.getAllByTitle(backItem.title)).toHaveLength(2);
+    });
   });
 
   it("should have 'aria-label' attribute with correct value", () => {
