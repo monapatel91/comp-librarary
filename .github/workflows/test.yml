@@ -123,11 +123,12 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.branch.name=${GITHUB_REF#refs/heads/}
 
       # If you wish to fail your job when the Quality Gate is red, uncomment the
       # following lines. This would typically be used to fail a deployment.
-      # We do not recommend to use this in a pull request. Prefer using pull request
-      # decoration instead.
       - name: SonarQube Quailty Gate
         uses: sonarsource/sonarqube-quality-gate-action@master
         timeout-minutes: 5
