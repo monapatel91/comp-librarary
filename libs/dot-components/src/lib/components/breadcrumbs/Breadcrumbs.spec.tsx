@@ -25,6 +25,7 @@ describe('Breadcrumbs', () => {
     screen.getByRole('link', { name });
 
   it('should have unchanged API', () => {
+    let dummyRef: any;
     const props = {
       ariaLabel: 'breadcrumbs',
       className: 'test-class',
@@ -33,7 +34,7 @@ describe('Breadcrumbs', () => {
       items: dummyItems,
       maxItems: 5,
       minWidth: 500,
-      parentRef: useRef(),
+      parentRef: dummyRef,
     };
     const breadcrumbProps: BreadcrumbProps = props;
     expect(breadcrumbProps).toEqual(props);

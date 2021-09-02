@@ -43,3 +43,16 @@ describe('dot-components: Breadcrumbs component', () => {
     });
   });
 });
+
+describe('responsive tests', () => {
+  before(() =>
+    cy.visit(
+      '/iframe.html?id=components-breadcrumbs--default&args=minWidth:1200'
+    )
+  );
+  it('limits the maxItems shown when container smaller than breadcrumbs', () => {
+    cy.get('div').should('contain', 'Link 1');
+    cy.get('div').should('contain', 'Link 5');
+    cy.get('Link 4').should('not.exist');
+  });
+});

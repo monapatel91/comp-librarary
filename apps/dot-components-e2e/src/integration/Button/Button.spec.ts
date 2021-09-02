@@ -14,6 +14,10 @@ describe('dot-components: Button component', () => {
       cy.get('.dot-icon i').should('have.css', 'height', '35px');
     });
 
+    it('text should not wrap', () => {
+      cy.get('button.dot-button').should('have.css', 'white-space', 'nowrap');
+    });
+
     it('button is correct size', () => {
       cy.get('button.dot-button')
         .should('have.css', 'padding-top', '6px')
