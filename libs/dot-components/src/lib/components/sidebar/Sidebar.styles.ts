@@ -39,10 +39,16 @@ export const StyledSidebar = styled.aside`
         align-items: center;
         border-bottom: 1px solid ${theme.palette.grey[100]};
         display: flex;
-        padding: 6px;
+        padding-top: 6px;
+        padding-bottom: 6px;
 
-        .dot-icon-btn {
+        .dot-icon {
           margin-right: ${theme.spacing(1)}px;
+          padding: 12px;
+        }
+      
+        &:hover {
+          background-color: ${theme.palette.grey[100]};
         }
       }
 
