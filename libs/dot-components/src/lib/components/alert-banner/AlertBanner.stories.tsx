@@ -23,8 +23,7 @@ export default {
   },
 } as Meta;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Default: Story<AlertBannerProps> = (args: any) => {
+export const Default: Story<AlertBannerProps> = (args) => {
   const { action: actionButtonId } = args;
   const actionButton = actionButtonId && (
     <DotButton type="text" onClick={action('Undo Button clicked!!')}>
