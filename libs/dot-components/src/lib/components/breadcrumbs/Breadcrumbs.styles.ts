@@ -5,11 +5,15 @@ export const rootClassName = 'dot-breadcrumbs';
 
 export const StyledBreadcrumbs = styled(Breadcrumbs)`
   ${({ theme }) => css`
-    &.dot-breadcrumbs {
+    &.${rootClassName} {
+      .MuiBreadcrumbs-ol {
+        flex-wrap: nowrap;
+      }
       .MuiBreadcrumbs-li,
       .separator {
         color: ${theme.palette.grey[300]};
         margin: 0;
+        white-space: nowrap;
       }
       .separator {
         font-size: 12px;

@@ -30,6 +30,7 @@ export const DotBodyCell = ({
 }: CellProps) => {
   useEffect(() => {
     const noWrapTableCell = document.getElementsByClassName('noWrap');
+
     Array.from(noWrapTableCell as HTMLCollectionOf<HTMLElement>).forEach(
       (truncatedText) => {
         const isOverflowing =

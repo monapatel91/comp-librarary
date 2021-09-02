@@ -46,7 +46,7 @@ export const StyledSidebar = styled.aside`
           margin-right: ${theme.spacing(1)}px;
           padding: 12px;
         }
-      
+
         &:hover {
           background-color: ${theme.palette.grey[100]};
         }
