@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.0.9](https://github.com/digital-ai/dot-components/tree/1.0.9) (09/02/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.8...1.0.9)
+
+**Features:**
+
+- \[DotTable\] Ability to make table body cell centered [\#609](https://github.com/digital-ai/dot-components/issues/609)
+- \[DotTable\] Additional prop for making table cell field truncated and displayed in one line [\#602](https://github.com/digital-ai/dot-components/issues/602)
+
+**Fixed bugs:**
+
+- untouched modified files [\#660](https://github.com/digital-ai/dot-components/issues/660)
+- Update Agility colors [\#656](https://github.com/digital-ai/dot-components/issues/656)
+- Add aria-label property [\#632](https://github.com/digital-ai/dot-components/issues/632)
+
+**Merged pull requests:**
+
+- Release `1.0.8` [\#673](https://github.com/digital-ai/dot-components/pull/673) ([CWSites](https://github.com/CWSites))
+- D-18424: action toolbar support [\#671](https://github.com/digital-ai/dot-components/pull/671) ([CWSites](https://github.com/CWSites))
+- S-78572: Make entire sidebar backitem clickable [\#670](https://github.com/digital-ai/dot-components/pull/670) ([selsemore](https://github.com/selsemore))
+- improving table component by fixing issues reported on github [\#668](https://github.com/digital-ai/dot-components/pull/668) ([monapatel91](https://github.com/monapatel91))
+- S-78516 extra files being formatted [\#665](https://github.com/digital-ai/dot-components/pull/665) ([TheKeithStewart](https://github.com/TheKeithStewart))
+- S-78464: add main branch name [\#664](https://github.com/digital-ai/dot-components/pull/664) ([CWSites](https://github.com/CWSites))
+- S-78497: Add 'page' prop to DotTable [\#662](https://github.com/digital-ai/dot-components/pull/662) ([selsemore](https://github.com/selsemore))
+- S-78487: Add agility colors for Accordion, Pill and Tabs [\#661](https://github.com/digital-ai/dot-components/pull/661) ([angel-git](https://github.com/angel-git))
+- Issue \#632: Add aria-label property [\#659](https://github.com/digital-ai/dot-components/pull/659) ([dmiletic85](https://github.com/dmiletic85))
+- S-78464: SonarQube [\#657](https://github.com/digital-ai/dot-components/pull/657) ([CWSites](https://github.com/CWSites))
+- D-18607: Fix rowsPerPage parsing and do not pad table with empty rows [\#655](https://github.com/digital-ai/dot-components/pull/655) ([selsemore](https://github.com/selsemore))
+- S-78388: Export interfaces and types needed for table pagination and sorting [\#654](https://github.com/digital-ai/dot-components/pull/654) ([selsemore](https://github.com/selsemore))
+- S-77872: gather test coverage in sonarcloud [\#653](https://github.com/digital-ai/dot-components/pull/653) ([CWSites](https://github.com/CWSites))
+
 ## [1.0.8](https://github.com/digital-ai/dot-components/tree/1.0.8) (08/23/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.7...1.0.8)
@@ -312,7 +343,6 @@
 - Issue \#528: TypeScript Error:applicationName missing when required [\#532](https://github.com/digital-ai/dot-components/pull/532) ([dmiletic85](https://github.com/dmiletic85))
 - D-17908: Hover on progression board causes rerender of board [\#524](https://github.com/digital-ai/dot-components/pull/524) ([dmiletic85](https://github.com/dmiletic85))
 - Automation improvements [\#521](https://github.com/digital-ai/dot-components/pull/521) ([CWSites](https://github.com/CWSites))
-- Issue \#518 fix nested item icons [\#519](https://github.com/digital-ai/dot-components/pull/519) ([selsemore](https://github.com/selsemore))
 - Layout poc [\#510](https://github.com/digital-ai/dot-components/pull/510) ([j-schoen](https://github.com/j-schoen))
 
 ## [v0.0.0-alpha.33](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.33) (05/11/2021)
@@ -329,6 +359,7 @@
 
 **Merged pull requests:**
 
+- Issue \#518 fix nested item icons [\#519](https://github.com/digital-ai/dot-components/pull/519) ([selsemore](https://github.com/selsemore))
 - Issue \#494: add 'backgroundColor' and 'color' props to DotAvatar [\#516](https://github.com/digital-ai/dot-components/pull/516) ([selsemore](https://github.com/selsemore))
 
 ## [v0.0.0-alpha.32](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.32) (05/11/2021)
@@ -791,6 +822,7 @@
 - Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
 - 26 feb icon moon color remove [\#156](https://github.com/digital-ai/dot-components/pull/156) ([BojanKocijan](https://github.com/BojanKocijan))
 - issue \#138: update empty state based on UX feedback [\#150](https://github.com/digital-ai/dot-components/pull/150) ([CWSites](https://github.com/CWSites))
+- issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
 
 ## [0.0.0-alpha.3](https://github.com/digital-ai/dot-components/tree/0.0.0-alpha.3) (01/25/2021)
 
@@ -849,7 +881,6 @@
 
 **Merged pull requests:**
 
-- issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
 - Alpha 3 Release [\#145](https://github.com/digital-ai/dot-components/pull/145) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Change log updates [\#143](https://github.com/digital-ai/dot-components/pull/143) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Issue 112 drawer review [\#141](https://github.com/digital-ai/dot-components/pull/141) ([j-schoen](https://github.com/j-schoen))
