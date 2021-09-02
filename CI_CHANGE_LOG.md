@@ -1,5 +1,50 @@
 # Changelog
 
+## [1.0.9](https://github.com/digital-ai/dot-components/tree/1.0.9) (09/02/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.8...1.0.9)
+
+**Features:**
+
+- \[DotTable\] Ability to make table body cell centered [\#609](https://github.com/digital-ai/dot-components/issues/609)
+- \[DotTable\] Additional prop for making table cell field truncated and displayed in one line [\#602](https://github.com/digital-ai/dot-components/issues/602)
+
+**Fixed bugs:**
+
+- untouched modified files [\#660](https://github.com/digital-ai/dot-components/issues/660)
+- Update Agility colors [\#656](https://github.com/digital-ai/dot-components/issues/656)
+- Add aria-label property [\#632](https://github.com/digital-ai/dot-components/issues/632)
+
+**Merged pull requests:**
+
+- Release `1.0.8` [\#673](https://github.com/digital-ai/dot-components/pull/673) ([CWSites](https://github.com/CWSites))
+- D-18424: action toolbar support [\#671](https://github.com/digital-ai/dot-components/pull/671) ([CWSites](https://github.com/CWSites))
+- S-78572: Make entire sidebar backitem clickable [\#670](https://github.com/digital-ai/dot-components/pull/670) ([selsemore](https://github.com/selsemore))
+- improving table component by fixing issues reported on github [\#668](https://github.com/digital-ai/dot-components/pull/668) ([monapatel91](https://github.com/monapatel91))
+- S-78516 extra files being formatted [\#665](https://github.com/digital-ai/dot-components/pull/665) ([TheKeithStewart](https://github.com/TheKeithStewart))
+- S-78464: add main branch name [\#664](https://github.com/digital-ai/dot-components/pull/664) ([CWSites](https://github.com/CWSites))
+- S-78497: Add 'page' prop to DotTable [\#662](https://github.com/digital-ai/dot-components/pull/662) ([selsemore](https://github.com/selsemore))
+- S-78487: Add agility colors for Accordion, Pill and Tabs [\#661](https://github.com/digital-ai/dot-components/pull/661) ([angel-git](https://github.com/angel-git))
+- Issue \#632: Add aria-label property [\#659](https://github.com/digital-ai/dot-components/pull/659) ([dmiletic85](https://github.com/dmiletic85))
+- S-78464: SonarQube [\#657](https://github.com/digital-ai/dot-components/pull/657) ([CWSites](https://github.com/CWSites))
+- D-18607: Fix rowsPerPage parsing and do not pad table with empty rows [\#655](https://github.com/digital-ai/dot-components/pull/655) ([selsemore](https://github.com/selsemore))
+- S-78388: Export interfaces and types needed for table pagination and sorting [\#654](https://github.com/digital-ai/dot-components/pull/654) ([selsemore](https://github.com/selsemore))
+- S-77872: gather test coverage in sonarcloud [\#653](https://github.com/digital-ai/dot-components/pull/653) ([CWSites](https://github.com/CWSites))
+
+## [1.0.8](https://github.com/digital-ai/dot-components/tree/1.0.8) (08/23/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.7...1.0.8)
+
+**Fixed bugs:**
+
+- Some things that were being used by consumers were removed from the exports of the library [\#650](https://github.com/digital-ai/dot-components/issues/650)
+
+**Merged pull requests:**
+
+- add export back to component library [\#652](https://github.com/digital-ai/dot-components/pull/652) ([CWSites](https://github.com/CWSites))
+- add back missing items from export [\#651](https://github.com/digital-ai/dot-components/pull/651) ([TheKeithStewart](https://github.com/TheKeithStewart))
+- Master back into develop [\#649](https://github.com/digital-ai/dot-components/pull/649) ([CWSites](https://github.com/CWSites))
+
 ## [1.0.7](https://github.com/digital-ai/dot-components/tree/1.0.7) (08/23/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.6...1.0.7)
@@ -394,7 +439,6 @@
 - S-75356: Update VCS icons for progression board drawers [\#497](https://github.com/digital-ai/dot-components/pull/497) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#96 storybook themes [\#472](https://github.com/digital-ai/dot-components/pull/472) ([selsemore](https://github.com/selsemore))
 - Introduce SplitButton Component [\#465](https://github.com/digital-ai/dot-components/pull/465) ([syedsabbas360](https://github.com/syedsabbas360))
-- S-74523: Add Phases from the Progression Board Experience [\#456](https://github.com/digital-ai/dot-components/pull/456) ([dmiletic85](https://github.com/dmiletic85))
 
 ## [v0.0.0-alpha.27](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.27) (05/03/2021)
 
@@ -630,6 +674,7 @@
 - Issue 463 Tabs UX fixes and move to Components [\#467](https://github.com/digital-ai/dot-components/pull/467) ([selsemore](https://github.com/selsemore))
 - Fix test type error [\#462](https://github.com/digital-ai/dot-components/pull/462) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#450: Tabs component [\#459](https://github.com/digital-ai/dot-components/pull/459) ([selsemore](https://github.com/selsemore))
+- S-74523: Add Phases from the Progression Board Experience [\#456](https://github.com/digital-ai/dot-components/pull/456) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#332: Nested list add menu capability [\#453](https://github.com/digital-ai/dot-components/pull/453) ([CWSites](https://github.com/CWSites))
 - contributing docs - adding tree structure for components [\#451](https://github.com/digital-ai/dot-components/pull/451) ([CWSites](https://github.com/CWSites))
 - \#161: import image src rather than component [\#447](https://github.com/digital-ai/dot-components/pull/447) ([TheKeithStewart](https://github.com/TheKeithStewart))
