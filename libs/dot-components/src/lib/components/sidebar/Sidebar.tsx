@@ -14,6 +14,8 @@ import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
 import { ReactComponent as LogoDigitalAi } from '../../assets/logo_digital_ai.svg';
 import { rootClassName, StyledSidebar } from './Sidebar.styles';
 import { DotTypography } from '../typography/Typography';
+import { DotLink } from '../link/Link';
+import { DotIcon } from '../icon/Icon';
 
 export interface BackItemProps extends CommonProps {
   /** If provided, the icon ID which is displayed on the front of the list item */
@@ -97,15 +99,21 @@ export const DotSidebar = ({
         </header>
       )}
       {goBack && backItem && (
-        <div className="go-back">
-          <DotIconButton
-            data-testid="back-button"
-            iconId={backItem.iconId ? backItem.iconId : 'back'}
-            onClick={backItem.onClick}
-            titleTooltip={backItem.title || backItem.text}
-          />
-          <DotTypography variant="h4">{backItem.text}</DotTypography>
-        </div>
+        <DotLink
+          color="textPrimary"
+          onClick={backItem.onClick}
+          title={backItem.title || backItem.text}
+          underline="none"
+        >
+          <div className="go-back">
+            <DotIcon
+              data-testid="back-button"
+              iconId={backItem.iconId ? backItem.iconId : 'back'}
+              title={backItem.title || backItem.text}
+            />
+            <DotTypography variant="h4">{backItem.text}</DotTypography>
+          </div>
+        </DotLink>
       )}
       {navItems.length > 0 && (
         <DotList
