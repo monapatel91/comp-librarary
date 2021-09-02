@@ -137,13 +137,13 @@ describe('DotDialog', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
-        title='Dialog Title'
+        title="Dialog Title"
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
       >
         <p>Hello World</p>
-        <input name='text' type='text' />
+        <input name="text" type="text" />
       </DotDialog>
     );
 
@@ -192,7 +192,7 @@ describe('DotDialog', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
-        title='Dialog Title'
+        title="Dialog Title"
         open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
@@ -250,5 +250,22 @@ describe('DotDialog', () => {
     expect(
       screen.queryByRole('button', { name: /ok/i })
     ).not.toBeInTheDocument();
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-dialog';
+    render(
+      <DotDialog
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        title="Dialog Title"
+        open={true}
+      >
+        <p>Hello World</p>
+      </DotDialog>
+    );
+    const dialogElement = screen.getByTestId(dataTestId);
+    expect(dialogElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

@@ -1,11 +1,39 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { fireEvent, render, screen, waitFor } from '../../testing-utils';
-import { DotInlineEdit } from './InlineEdit';
+import { DotInlineEdit, InlineEditProps } from './InlineEdit';
+import { inputSizeOptions } from '../input-form-fields/InputFormFields.propTypes';
 
 const inlineEditName = 'inline-edit-wrapper';
 
 describe('DotInlineEdit', () => {
+  const onChange = jest.fn();
+  const onEditStateChange = jest.fn();
+  const onLabelChange = jest.fn();
+
+  it('should have unchanged API', () => {
+    const props = {
+      ariaLabel: 'icon',
+      autoFocus: true,
+      className: 'test-class',
+      'data-testid': 'testid',
+      disabled: false,
+      error: false,
+      fullWidth: true,
+      helperText: 'i need some help!',
+      name: 'my-inline-edit',
+      onChange: onChange,
+      onEditStateChange: onEditStateChange,
+      onLabelChange: onLabelChange,
+      readOnly: true,
+      required: true,
+      size: 'medium' as inputSizeOptions,
+      value: 'edit',
+    };
+    const inlineEditProps: InlineEditProps = props;
+    expect(inlineEditProps).toEqual(props);
+  });
+
   it('should render successfully', () => {
     const { baseElement } = render(
       <DotInlineEdit name="test" required={false} />
@@ -107,8 +135,6 @@ describe('DotInlineEdit', () => {
 
   it('can edit then hit enter to confirm', async () => {
     const originalValue = 'batman';
-    const onLabelChange = jest.fn();
-    const onEditStageChange = jest.fn();
 
     render(
       <DotInlineEdit
@@ -116,7 +142,7 @@ describe('DotInlineEdit', () => {
         value={originalValue}
         required={false}
         onLabelChange={onLabelChange}
-        onEditStateChange={onEditStageChange}
+        onEditStateChange={onEditStateChange}
         data-testid="test_field"
       />
     );
@@ -137,7 +163,20 @@ describe('DotInlineEdit', () => {
     await waitFor(() => {
       expect(textField).toHaveValue(originalValue + newValue);
       expect(onLabelChange).toHaveBeenCalledTimes(1);
-      expect(onEditStageChange).toHaveBeenCalledTimes(2);
+      expect(onEditStateChange).toHaveBeenCalledTimes(2);
     });
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    render(
+      <DotInlineEdit
+        ariaLabel={ariaLabel}
+        name="inline-edit"
+        required={false}
+      />
+    );
+    const inlineEditElement = screen.getByTestId(inlineEditName);
+    expect(inlineEditElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

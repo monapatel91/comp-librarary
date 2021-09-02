@@ -30,6 +30,7 @@ describe(' Sidebar', () => {
   it('should have unchanged API', () => {
     const titleAvatarProps = { alt: 'avatar alt text', text: 'BM' };
     const props = {
+      ariaLabel: 'sidebar',
       backItem: backItem,
       brandDesc: 'best brand',
       children: <TextField placeholder="search" variant="outlined" />,
@@ -94,10 +95,36 @@ describe(' Sidebar', () => {
     expect(primaryNav).toHaveClass('expanded');
   });
 
-  it('calls backItem callback when back button clicked', async () => {
+  it('calls backItem callback when back button clicked', () => {
     render(<DotSidebar backItem={backItem} goBack={true} />);
     const backButton = screen.getByTestId('back-button');
     userEvent.click(backButton);
     expect(goBack).toHaveBeenCalledTimes(1);
+    const backButtonText = screen.getByText('Home');
+    userEvent.click(backButtonText);
+    expect(goBack).toHaveBeenCalledTimes(2);
+  });
+
+  it('should use backItem.title for backItem link and icon tooltips when title is provided', () => {
+    render(<DotSidebar backItem={backItem} goBack={true} />);
+    expect(screen.getAllByTitle(backItem.title)).toHaveLength(2);
+  });
+
+  it('should use backItem.text for backItem link and icon tooltips when title is not provided', () => {
+    const noTitleBackItem: BackItemProps = {
+      iconId: 'back',
+      onClick: goBack,
+      text: 'Home',
+    };
+    render(<DotSidebar backItem={noTitleBackItem} goBack={true} />);
+    expect(screen.getAllByTitle(noTitleBackItem.text)).toHaveLength(2);
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-sidebar';
+    render(<DotSidebar ariaLabel={ariaLabel} data-testid={dataTestId} />);
+    const sidebarElement = screen.getByTestId(`primaryNav ${dataTestId}`);
+    expect(sidebarElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

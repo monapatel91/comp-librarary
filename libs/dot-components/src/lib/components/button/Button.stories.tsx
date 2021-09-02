@@ -28,8 +28,7 @@ export default {
   },
 } as Meta;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Default: Story<ButtonProps> = (args: any) => {
+export const Default: Story<ButtonProps> = (args) => {
   const { endIcon: endIconId } = args;
   const { startIcon: startIconId } = args;
   const startIcon = startIconId && <DotIcon iconId={startIconId} />;

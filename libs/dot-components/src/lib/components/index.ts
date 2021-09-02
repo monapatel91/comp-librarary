@@ -53,8 +53,9 @@ export {
 export { DotSplitButton } from './split-button/SplitButton';
 export { DotSwitch } from './switch/Switch';
 export { DotTable, TableRowProps } from './table/Table';
+export { Order } from './table/TableBody';
 export { DotHeaderRow, DotColumnHeader } from './table/TableHeader';
 export { TableDataWithPagination } from './table/TableDataWithPagination';
-export { DotTablePagination } from './table/TablePagination';
+export { DotTablePagination, RowsPerPageOption } from './table/TablePagination';
 export { DotTabs, TabProps } from './tabs/Tabs';
 export { DotTypography, TypographyVariant } from './typography/Typography';

@@ -92,3 +92,45 @@ jobs:
         run: yarn e2e:ci
         env:
           CI: true
+
+  sonarcloud:
+    name: SonarQube Scan # used for check-name on version.yml
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      # https://github.com/marketplace/actions/yarn-install-cache
+      - name: Cache yarn dependencies
+        uses: c-hive/gha-yarn-cache@v1
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Gather Test Coverage
+        run: yarn test-coverage
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.branch.name=${GITHUB_REF#refs/heads/}
+
+      # If you wish to fail your job when the Quality Gate is red, uncomment the
+      # following lines. This would typically be used to fail a deployment.
+      - name: SonarQube Quailty Gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}

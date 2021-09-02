@@ -5,8 +5,6 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { StyledFormGroup } from './FormGroup.styles';
 
 export interface FormGroupProps extends CommonProps {
-  /** accessibility label */
-  ariaLabel?: string;
   /** The text for the button. Button text should be in sentence case. */
   children: ReactNode;
   /** changes layout to be horizontal if true */

@@ -45,11 +45,20 @@ export const StyledTableContainer = styled(TableContainer)`
       }
 
       table {
+        width: 100%;
         thead,
         th {
           font-weight: 700;
+          &.MuiTableCell-alignCenter > span.MuiTableSortLabel-root {
+            padding-left: 26px;
+          }
         }
-
+        tbody > tr > td.noWrap {
+          max-width: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
         .empty-row td {
           text-align: center;
         }

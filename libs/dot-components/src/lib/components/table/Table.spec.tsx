@@ -4,8 +4,9 @@ import { render, screen, waitFor } from '../../testing-utils';
 import { DotActionToolbar } from '../action-toolbar/ActionToolbar';
 import { DotTable, TableProps } from './Table';
 import { Order } from '../table/TableBody';
-import { RowsPerPageOption } from './TablePagination';
+import { DotTablePagination, RowsPerPageOption } from './TablePagination';
 import { TableRowProps } from '@material-ui/core';
+import { DotBodyCell } from './TableCell';
 
 const mockFunc = jest.fn();
 
@@ -28,6 +29,7 @@ it('should have unchanged API', () => {
     orderBy: 'title',
     onRowClick: mockFunc,
     onUpdateData: mockFunc,
+    page: 1,
     rowsPerPage: 10 as RowsPerPageOption,
     sortable: true,
     stickyHeader: true,
@@ -46,7 +48,7 @@ it('should have unchanged API', () => {
 });
 
 const testCols = [
-  { id: 'name', label: 'Name' },
+  { id: 'name', label: 'Name', truncate: true },
   { id: 'type', label: 'Type' },
 ];
 const testData = [
@@ -147,6 +149,28 @@ describe(' Table', () => {
     expect(rowsShownText).toBeVisible();
   });
 
+  it("should have enabled 'Previous page' button when not on first page", () => {
+    render(
+      <DotTable
+        ariaLabel="super heroes!"
+        columns={testCols}
+        count={11}
+        data={testData}
+        onUpdateData={mockFunc}
+        orderBy="name"
+        page={1}
+        rowsPerPage={10}
+      />
+    );
+    const rowsShownText = screen.getByText('11-11 of 11');
+    expect(rowsShownText).toBeVisible();
+    const previousPage = screen.getByTitle('Previous page');
+    userEvent.click(previousPage);
+    waitFor(() => {
+      expect(mockFunc).toHaveBeenCalledWith('asc', 'name', 0, 10);
+    });
+  });
+
   it('should call onUpdateData when sort or page changes', () => {
     render(
       <DotTable
@@ -171,5 +195,53 @@ describe(' Table', () => {
     waitFor(() => {
       expect(mockFunc).toHaveBeenCalledWith('desc', 'name', 0, 10);
     });
+  });
+
+  it('should have noWrap class and Truncate table cell text if truncate prop is true', () => {
+    const { baseElement } = render(
+      <DotTable
+        ariaLabel="super heroes!"
+        columns={testCols}
+        data={testData}
+        orderBy="name"
+      />
+    );
+    testCols.map((cols) => {
+      const td = baseElement.querySelector('td');
+      return cols.truncate && expect(td).toHaveClass('noWrap');
+    });
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    render(
+      <DotTable ariaLabel={ariaLabel} columns={testCols} data={testData} />
+    );
+    const tableElement = screen.getByRole('table');
+    expect(tableElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  it("should have 'aria-label' attribute with correct value on DotBodyCell", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-body-cell';
+    render(<DotBodyCell ariaLabel={ariaLabel} data-testid={dataTestId} />);
+    const bodyCellElement = screen.getByTestId(dataTestId);
+    expect(bodyCellElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  it("should have 'aria-label' attribute with correct value on DotTablePagination", () => {
+    const onChangePage = jest.fn();
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-table-pagination';
+    render(
+      <DotTablePagination
+        ariaLabel={ariaLabel}
+        count={10}
+        data-testid={dataTestId}
+        onChangePage={onChangePage}
+      />
+    );
+    const tablePaginationElement = screen.getByTestId(dataTestId);
+    expect(tablePaginationElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

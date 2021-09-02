@@ -48,6 +48,8 @@ export interface MenuProps extends CommonProps {
 }
 
 export interface MenuItemProps {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** The text displayed on the item */
   children?: ReactNode;
   /** Space delimited CSS classes to be attributed to the menu item */
@@ -58,6 +60,7 @@ export interface MenuItemProps {
 
 export const DotMenu = ({
   anchorEl,
+  ariaLabel,
   className,
   'data-testid': dataTestId,
   disablePortal,
@@ -91,6 +94,7 @@ export const DotMenu = ({
   return (
     <StyledPopper
       anchorEl={anchorEl}
+      aria-label={ariaLabel}
       className={rootClasses}
       data-testid={dataTestId}
       disablePortal={disablePortal}
@@ -119,6 +123,7 @@ export const DotMenu = ({
                 {menuItems.map((item, index: number) => {
                   return (
                     <MenuItem
+                      aria-label={item.ariaLabel}
                       className={`dot-li ${item.classes ? item.classes : ''}`}
                       onClick={(event) => handleSelect(event, item.key)}
                       key={index}

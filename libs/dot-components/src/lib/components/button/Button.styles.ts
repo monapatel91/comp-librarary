@@ -8,6 +8,7 @@ export const StyledButton = styled(Button)`
   ${({ theme }) => css`
     &.${rootClassName} {
       margin: ${theme.spacing(0.5)}px;
+      white-space: nowrap;
 
       &.MuiButton-containedPrimary {
         background-color: ${theme.palette.product === 'agility' &&

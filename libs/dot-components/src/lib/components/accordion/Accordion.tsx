@@ -40,6 +40,7 @@ export interface AccordionProps extends CommonProps {
 
 export const DotAccordion = ({
   actions,
+  ariaLabel,
   children,
   className,
   'data-testid': dataTestId = 'dot-accordion',
@@ -60,6 +61,7 @@ export const DotAccordion = ({
 
   return (
     <StyledAccordion
+      aria-label={ariaLabel}
       className={rootClasses}
       data-testid={dataTestId}
       defaultExpanded={defaultExpanded}

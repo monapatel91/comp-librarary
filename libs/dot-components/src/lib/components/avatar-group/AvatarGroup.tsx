@@ -16,6 +16,7 @@ export interface AvatarGroupProps extends CommonProps {
 }
 
 export const DotAvatarGroup = ({
+  ariaLabel,
   avatars,
   className,
   'data-testid': dataTestId,
@@ -26,6 +27,7 @@ export const DotAvatarGroup = ({
 
   return (
     <AvatarGroup
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       max={max}

@@ -5,10 +5,12 @@ import Button from '@material-ui/core/Button';
 
 import { DotSnackbar, SnackbarProps, SnackbarSeverity } from './Snackbar';
 import { addAutoHideDuration } from './SnackbarHelper';
+
 describe('DotSnackbar', () => {
   it('should have unchanged API', () => {
     const props = {
       action: null as ReactNode,
+      ariaLabel: 'my snackbar label',
       children: null as ReactNode,
       className: 'test-class',
       'data-testid': 'testid',
@@ -130,5 +132,22 @@ describe('DotSnackbar', () => {
   it('should return null if the severity level is an "error"', () => {
     expect.assertions(1);
     expect(addAutoHideDuration('error')).toBeNull();
+  });
+
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-snackbar';
+    render(
+      <DotSnackbar
+        ariaLabel={ariaLabel}
+        data-testid={dataTestId}
+        severity="error"
+        open={true}
+      >
+        Dot component message.
+      </DotSnackbar>
+    );
+    const snackbarElement = screen.getByTestId(dataTestId);
+    expect(snackbarElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

@@ -52,6 +52,7 @@ export interface DialogProps extends CommonProps {
 }
 
 export const DotDialog = ({
+  ariaLabel,
   cancelButtonProps,
   className,
   'data-testid': dataTestId,
@@ -104,16 +105,17 @@ export const DotDialog = ({
 
   return (
     <StyledDialog
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       open={isOpen}
       onClose={handleClickAway}
-      aria-labelledby='MuiDialogTitle-root'
+      aria-labelledby="MuiDialogTitle-root"
     >
       <DialogTitle disableTypography={true}>
-        <DotTypography variant='h2'>{title}</DotTypography>
+        <DotTypography variant="h2">{title}</DotTypography>
         {closeIconVisible && (
-          <DotIconButton iconId='close' onClick={handleCancel} size='small' />
+          <DotIconButton iconId="close" onClick={handleCancel} size="small" />
         )}
       </DialogTitle>
       <DialogContent classes={{ root: `dot-dialog-content` }}>
@@ -130,7 +132,7 @@ export const DotDialog = ({
           startIcon={cancelButtonProps?.startIcon}
           onClick={handleCancel}
           titleTooltip={cancelButtonProps?.titleTooltip}
-          type='text'
+          type="text"
         >
           {cancelButtonProps?.label || 'Cancel'}
         </DotButton>

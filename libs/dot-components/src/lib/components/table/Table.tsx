@@ -24,7 +24,6 @@ export interface TableRowProps extends CommonProps {
   rowData: any;
 }
 export interface TableProps extends CommonProps {
-  ariaLabel: string;
   /** The table header columns */
   columns: Array<DotColumnHeader>;
   /** Total number of items for paginated table.
@@ -54,6 +53,8 @@ export interface TableProps extends CommonProps {
     page: number,
     rowsPerPage: number
   ) => void;
+  /** The zero-based index of the current page  for paginated table */
+  page?: number;
   /** Rows per page for paginated table */
   rowsPerPage?: RowsPerPageOption;
   /** Table is sortable */
@@ -117,6 +118,7 @@ export const DotTable = ({
   orderBy,
   onRowClick,
   onUpdateData,
+  page = 0,
   rowsPerPage,
   stickyHeader = true,
   sortable = true,
@@ -124,7 +126,7 @@ export const DotTable = ({
 }: TableProps) => {
   const [tableOrder, setOrder] = useState(order);
   const [tableOrderBy, setOrderBy] = useState(orderBy);
-  const [tablePage, setPage] = useState(0);
+  const [tablePage, setPage] = useState(page);
   const [tableRowsPerPage, setRowsPerPage] = useState(rowsPerPage);
   const getSortedData = () => {
     return onUpdateData
@@ -179,10 +181,7 @@ export const DotTable = ({
   const onChangeRowsPerPage = (
     evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
-    const newRowsPerPage = parseInt(
-      evt.target.value,
-      rowsPerPage
-    ) as RowsPerPageOption;
+    const newRowsPerPage = parseInt(evt.target.value) as RowsPerPageOption;
     setRowsPerPage(newRowsPerPage);
     setPage(0);
     onUpdateData
@@ -225,9 +224,6 @@ export const DotTable = ({
         : -1
       : data.length
     : null;
-  const emptyRows = rowsPerPage
-    ? Math.min(tableRowsPerPage - data.length, 10)
-    : 0;
 
   if (count && !rowsPerPage) {
     console.warn(
@@ -279,7 +275,6 @@ export const DotTable = ({
             columns={columns}
             data={getData()}
             emptyMessage={emptyMessage}
-            emptyRows={emptyRows}
             onRowClick={onRowClick}
           />
         </Table>

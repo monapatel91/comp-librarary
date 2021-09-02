@@ -29,6 +29,7 @@ export interface ChipProps extends CommonProps {
 }
 
 export const DotChip = ({
+  ariaLabel,
   avatar,
   children,
   className,
@@ -51,6 +52,7 @@ export const DotChip = ({
 
   return (
     <StyledChip
+      aria-label={ariaLabel}
       avatar={avatar}
       classes={{ root: rootClasses }}
       clickable={isClickable}

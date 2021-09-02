@@ -12,8 +12,6 @@ export type SwitchSize = 'medium' | 'small';
 export type SwitchLabelPlacement = 'bottom' | 'end' | 'start' | 'top';
 
 export interface SwitchProps extends CommonProps {
-  /** accessibility label */
-  ariaLabel?: string;
   /** determines the default state of the switch */
   checked?: boolean;
   /** color options available 'default', 'primary', 'secondary' */

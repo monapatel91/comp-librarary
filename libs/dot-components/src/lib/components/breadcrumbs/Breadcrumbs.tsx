@@ -1,12 +1,21 @@
-import React, { KeyboardEvent, useEffect, useState } from 'react';
-import { DotIcon } from '../icon/Icon';
-import { DotLink, LinkUnderline } from '../link/Link';
+import React, {
+  KeyboardEvent,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
+import { DotIcon } from '../icon/Icon';
+import { DotLink, LinkUnderline } from '../link/Link';
 import { DotMenu } from '../menu/Menu';
+import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
+import { compareWidth } from '../compareSize';
 
 export type BreadcrumbItem = {
+  /** Defines a string value that labels the current element **/
+  ariaLabel?: string;
   /** link the breadcrumb goes to */
   href?: string;
   // Using React.MouseEvent here rather than importing MouseEvent from 'react'
@@ -25,6 +34,10 @@ export interface BreadcrumbProps extends CommonProps {
   items: Array<BreadcrumbItem>;
   /** determines the maximum number of items to display */
   maxItems?: number;
+  /** minimum width before `maxItems` will be adjusted */
+  minWidth?: number;
+  /** container element, if smaller than breadcrumbs, `maxItems` will adjust */
+  parentRef?: MutableRefObject<Element | HTMLElement>;
 }
 
 export const DotBreadcrumbs = ({
@@ -33,11 +46,15 @@ export const DotBreadcrumbs = ({
   expansionMenu = false,
   items,
   maxItems = 3,
+  parentRef,
+  minWidth,
 }: BreadcrumbProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const breadcrumbRef = useRef();
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [adjustMaxItems, setAdjustMaxItems] = useState(false);
 
   const clickListener = (event: MouseEvent) => {
     event.stopPropagation();
@@ -53,23 +70,11 @@ export const DotBreadcrumbs = ({
       : null;
   };
 
-  useEffect(() => {
-    if (expansionMenu) {
-      const expandElement = getExpandElement();
-      if (expandElement) {
-        setAnchorEl(expandElement);
-        expandElement.addEventListener('click', clickListener);
-        return () => {
-          expandElement.removeEventListener('click', clickListener);
-        };
-      }
-    }
-  }, []);
-
   const getMenuItems = () => {
     return items.slice(1, items.length - 2).map((item, index) => {
       const itemChildren = (
         <DotLink
+          ariaLabel={item.ariaLabel}
           className="breadcrumb"
           color="inherit"
           href={item.href}
@@ -87,9 +92,28 @@ export const DotBreadcrumbs = ({
 
   const menuItems = items.length > maxItems ? getMenuItems() : null;
 
-  const onMenuLeave = (event: KeyboardEvent | React.MouseEvent) => {
+  const onMenuLeave = (_event: KeyboardEvent | React.MouseEvent) => {
     setMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (expansionMenu) {
+      const expandElement = getExpandElement();
+      if (expandElement) {
+        setAnchorEl(expandElement);
+        expandElement.addEventListener('click', clickListener);
+        return () => {
+          expandElement.removeEventListener('click', clickListener);
+        };
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (breadcrumbRef?.current && parentRef?.current) {
+      setAdjustMaxItems(compareWidth(parentRef.current, breadcrumbRef.current));
+    }
+  }, [breadcrumbRef?.current, parentRef?.current]);
 
   return (
     <>
@@ -101,21 +125,28 @@ export const DotBreadcrumbs = ({
           li: 'dot-li',
         }}
         data-testid={dataTestId}
-        itemsAfterCollapse={2}
-        maxItems={maxItems}
+        itemsAfterCollapse={adjustMaxItems ? 1 : 2}
+        maxItems={adjustMaxItems ? 2 : maxItems}
+        ref={breadcrumbRef}
         separator={<DotIcon iconId="chevron-right" className="separator" />}
+        style={{ width: minWidth }}
       >
         {items.map((item: BreadcrumbItem, index: number) => {
-          const { href, onClick, text, underline } = item;
+          const { ariaLabel, href, onClick, text, underline } = item;
           if (index === items.length - 1) {
             return (
-              <span className="breadcrumb current-page" key={index}>
+              <span
+                aria-label={ariaLabel}
+                className="breadcrumb current-page"
+                key={index}
+              >
                 {text}
               </span>
             );
           } else {
             return (
               <DotLink
+                ariaLabel={ariaLabel}
                 className="breadcrumb"
                 color="inherit"
                 href={href}

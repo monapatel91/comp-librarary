@@ -33,12 +33,14 @@ function checkForConflictingEventHandlers({
 }
 
 export const DotSnackbar = ({
-  open,
-  onClose,
-  severity,
-  children,
   action,
+  ariaLabel,
+  children,
   className,
+  'data-testid': dataTestId,
+  onClose,
+  open,
+  severity,
   width,
 }: SnackbarProps) => {
   const autoHideDuration = addAutoHideDuration(severity);
@@ -48,8 +50,10 @@ export const DotSnackbar = ({
   return (
     <StyledSnackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      aria-label={ariaLabel}
       autoHideDuration={autoHideDuration}
       classes={{ root: rootClasses }}
+      data-testid={dataTestId}
       onClose={onClose}
       open={open}
       severity={severity}

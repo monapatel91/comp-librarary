@@ -23,6 +23,7 @@ export interface CardHeaderProps extends CommonProps {
 
 export const DotCardHeader = ({
   action,
+  ariaLabel,
   avatar,
   className,
   'data-testid': dataTestId,
@@ -41,6 +42,7 @@ export const DotCardHeader = ({
   return (
     <CardHeader
       action={action}
+      aria-label={ariaLabel}
       avatar={avatar}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}

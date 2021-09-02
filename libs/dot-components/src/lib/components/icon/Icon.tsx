@@ -15,6 +15,7 @@ export interface IconProps extends CommonProps {
 }
 
 export const DotIcon = ({
+  ariaLabel,
   className,
   'data-testid': dataTestId,
   fontSize = 'default',
@@ -26,6 +27,7 @@ export const DotIcon = ({
   return (
     <StyledIcon
       aria-hidden="false"
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       fontSize={fontSize}

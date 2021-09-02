@@ -1,7 +1,3 @@
-module.exports = {
-  projects: [
-    '<rootDir>/apps/demo',
-    '<rootDir>/libs/dot-components',
-    '<rootDir>/apps/vsm-hub',
-  ],
-};
+const { getJestProjects } = require('@nrwl/jest');
+
+module.exports = { projects: getJestProjects() };
