@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
@@ -24,6 +23,7 @@ export default {
   },
 } as Meta;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Default: Story<AlertBannerProps> = (args: any) => {
   const { action: actionButtonId } = args;
   const actionButton = actionButtonId && (

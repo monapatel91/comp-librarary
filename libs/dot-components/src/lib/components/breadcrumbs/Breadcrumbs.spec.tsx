@@ -25,6 +25,7 @@ describe('Breadcrumbs', () => {
     screen.getByRole('link', { name });
 
   it('should have unchanged API', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let dummyRef: any;
     const props = {
       ariaLabel: 'breadcrumbs',
