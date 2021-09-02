@@ -2,6 +2,7 @@
 
 [![](https://img.shields.io/static/v1?label=slack&message=join%20us&color=blueviolet&style=flat-square&logo=slack)](https://digitalai.slack.com/app_redirect?channel=dot-components)
 [![npm version](https://badge.fury.io/js/%40digital-ai%2Fdot-components.svg)](https://badge.fury.io/js/%40digital-ai%2Fdot-components)
+
 <!-- [![Quality Gate Status](https://sonarqube.digital.ai/api/project_badges/measure?project=digital-ai_dot-components&metric=alert_status)](https://sonarqube.digital.ai/dashboard?id=digital-ai_dot-components)
 [![Maintainability Rating](https://sonarqube.digital.ai/api/project_badges/measure?project=digital-ai_dot-components&metric=sqale_rating)](https://sonarqube.digital.ai/dashboard?id=digital-ai_dot-components)
 [![Reliability Rating](https://sonarqube.digital.ai/api/project_badges/measure?project=digital-ai_dot-components&metric=reliability_rating)](https://sonarqube.digital.ai/dashboard?id=digital-ai_dot-components)
