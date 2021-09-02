@@ -40,13 +40,11 @@ export default {
   },
 } as Meta;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Default: Story<TabsProps> = (args: any) => {
+export const Default: Story<TabsProps> = (args) => {
   return <DotTabs {...args} />;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const TabsInActionBar: Story<TabsProps> = (args: any) => {
+export const TabsInActionBar: Story<TabsProps> = (args) => {
   const [selectedTab, setSelectedTab] = useState(2);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

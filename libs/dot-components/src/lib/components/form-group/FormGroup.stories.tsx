@@ -1,12 +1,8 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-
 import { DotFormGroup, FormGroupProps } from './FormGroup';
-import { DotIcon } from '../icon/Icon';
 import { DotCheckbox } from '../checkbox/Checkbox';
 import { DotInputText } from '../input-form-fields/InputText';
-
-const iconOptions = [null, 'warning-solid', 'error-solid'];
 
 export default {
   title: 'Components/Form Group',
@@ -16,8 +12,7 @@ export default {
   },
 } as Meta;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Default: Story<FormGroupProps> = (args: any) => {
+export const Default: Story<FormGroupProps> = (args) => {
   return (
     <DotFormGroup {...args}>
       <DotInputText
