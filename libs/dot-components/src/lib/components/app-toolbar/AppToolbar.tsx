@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode, useState } from 'react';
+import React, { Fragment, ReactNode, useEffect, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
@@ -10,6 +10,7 @@ import {
   StyledMainMenu,
 } from './AppToolbar.styles';
 import { DotTypography } from '../typography/Typography';
+
 export interface AppToolbarProps extends CommonProps {
   /** Product name displayed next to Digital.ai logo */
   appName?: string;
@@ -23,6 +24,8 @@ export interface AppToolbarProps extends CommonProps {
   customLogo?: ReactNode;
   /** If provided will display a hamburger main menu drawer */
   mainMenu?: ReactNode;
+  /** If true, main menu will be displayed */
+  mainMenuOpen?: boolean;
   /** Width of main menu drawer if mainMenu provided, defaults to 240px */
   mainMenuWidth?: number;
   /** Array of nav items to be displayed on the right side */
@@ -40,13 +43,16 @@ export const DotAppToolbar = ({
   'data-testid': dataTestId,
   navItems = [],
   mainMenu,
+  mainMenuOpen = false,
   mainMenuWidth = 240,
 }: AppToolbarProps) => {
   const rootClasses = useStylesWithRootClass(
     rootClassName,
     `dense ${className}`
   );
-  const [menuOpen, updateMenuOpen] = useState(false);
+  const [menuOpen, updateMenuOpen] = useState(mainMenuOpen);
+
+  console.log(`open: ${menuOpen}`);
 
   return (
     <StyledAppToolbar

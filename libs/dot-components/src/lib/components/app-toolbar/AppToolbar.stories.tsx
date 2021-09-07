@@ -7,6 +7,7 @@ import { ReactComponent as TestLogo } from '../../assets/test_logo.svg';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const logoOptions = ['Default', 'Custom'];
+let menuOpen = false;
 
 export default {
   title: 'Components/AppToolbar',
@@ -37,17 +38,22 @@ export default {
             {
               startIconId: 'process-template',
               text: 'Progressions',
-              href: '/progressions',
+              href: '#',
+              onClick: () => {
+                console.log(`menuOpen is currently ${menuOpen}`);
+                menuOpen = true;
+                console.log(`menuOpen now ${menuOpen}`);
+              },
             },
             {
               startIconId: 'satellite-group',
               text: 'Pipelines',
-              href: '/pipelines',
+              href: '#',
             },
             {
               startIconId: 'dashboard',
               text: 'Insights',
-              href: '/insights',
+              href: '#',
             },
             {
               text: 'Workflow',
@@ -56,32 +62,32 @@ export default {
             {
               startIconId: 'block',
               text: 'Packages',
-              href: '/packages',
+              href: '#',
             },
             {
               startIconId: 'flag',
               text: 'Features',
-              href: '/features',
+              href: '#',
             },
             {
               startIconId: 'collection',
               text: 'Projects',
-              href: '/projects',
+              href: '#',
             },
             {
               startIconId: 'file-lines',
               text: 'Workitems',
-              href: '/workitems',
+              href: '#',
             },
             {
               startIconId: 'change',
               text: 'Changes',
-              href: '/changes',
+              href: '#',
             },
             {
               startIconId: 'square-settings',
               text: 'Artifacts',
-              href: '/artifacts',
+              href: '#',
             },
             {
               text: 'System',
@@ -90,17 +96,17 @@ export default {
             {
               startIconId: 'monitor-gears',
               text: 'Tasks',
-              href: '/tasks',
+              href: '#',
             },
             {
               startIconId: 'archive',
               text: 'Buckets',
-              href: '/buckets',
+              href: '#',
             },
             {
               startIconId: 'monitor',
               text: 'Environment',
-              href: '/environment',
+              href: '#',
             },
           ]}
         />
@@ -134,5 +140,5 @@ export default {
 export const Default: Story<AppToolbarProps> = (args) => {
   const { customLogo: logoId } = args;
   const logo = logoId === 'Custom' && <TestLogo title="test.logo" />;
-  return <DotAppToolbar {...args} customLogo={logo} />;
+  return <DotAppToolbar {...args} customLogo={logo} mainMenuOpen={menuOpen} />;
 };
