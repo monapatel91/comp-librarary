@@ -31,6 +31,7 @@ export default {
       control: { type: 'select', options: logoOptions },
       defaultValue: 'Default',
     },
+<<<<<<< HEAD
     mainMenuItems: {
       defaultValue: [
         {
@@ -107,6 +108,88 @@ export default {
           href: '#',
         },
       ],
+=======
+    mainMenu: {
+      defaultValue: (
+        <DotSidebar
+          navItems={[
+            {
+              startIconId: 'process-template',
+              text: 'Progressions',
+              href: '#',
+              onClick: () => {
+                console.log(`menuOpen is currently ${menuOpen}`);
+                menuOpen = true;
+                console.log(`menuOpen now ${menuOpen}`);
+              },
+            },
+            {
+              startIconId: 'satellite-group',
+              text: 'Pipelines',
+              href: '#',
+            },
+            {
+              startIconId: 'dashboard',
+              text: 'Insights',
+              href: '#',
+            },
+            {
+              text: 'Workflow',
+              divider: true,
+            },
+            {
+              startIconId: 'block',
+              text: 'Packages',
+              href: '#',
+            },
+            {
+              startIconId: 'flag',
+              text: 'Features',
+              href: '#',
+            },
+            {
+              startIconId: 'collection',
+              text: 'Projects',
+              href: '#',
+            },
+            {
+              startIconId: 'file-lines',
+              text: 'Workitems',
+              href: '#',
+            },
+            {
+              startIconId: 'change',
+              text: 'Changes',
+              href: '#',
+            },
+            {
+              startIconId: 'square-settings',
+              text: 'Artifacts',
+              href: '#',
+            },
+            {
+              text: 'System',
+              divider: true,
+            },
+            {
+              startIconId: 'monitor-gears',
+              text: 'Tasks',
+              href: '#',
+            },
+            {
+              startIconId: 'archive',
+              text: 'Buckets',
+              href: '#',
+            },
+            {
+              startIconId: 'monitor',
+              text: 'Environment',
+              href: '#',
+            },
+          ]}
+        />
+      ),
+>>>>>>> b7373e61 (D-18421: troubleshooting hamburger navigation not closing on page change)
     },
     navItems: {
       defaultValue: [
