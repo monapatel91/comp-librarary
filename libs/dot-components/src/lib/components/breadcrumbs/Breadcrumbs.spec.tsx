@@ -35,7 +35,6 @@ describe('Breadcrumbs', () => {
       items: dummyItems,
       maxItems: 5,
       minWidth: 500,
-      parentRef: dummyRef,
     };
     const breadcrumbProps: BreadcrumbProps = props;
     expect(breadcrumbProps).toEqual(props);
