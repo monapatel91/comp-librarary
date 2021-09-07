@@ -3,6 +3,7 @@ import { MuiThemeProvider, StylesProvider, Theme } from '@material-ui/core';
 import { createTheme } from '@material-ui/core/styles';
 import { BreakpointsOptions } from '@material-ui/core/styles/createBreakpoints';
 import { TypographyOptions } from '@material-ui/core/styles/createTypography';
+import { AvatarPaletteColorOptions } from '../../../../../typings/material/index';
 import { ThemeProvider } from 'styled-components';
 import { GlobalFonts } from '../fonts/fonts';
 
@@ -104,7 +105,7 @@ const breakpointOptions: BreakpointsOptions = {
   },
 };
 
-export const avatarColors = {
+export const avatarColors: AvatarPaletteColorOptions = {
   default: {
     color: lightColors.n700,
     backgroundColor: lightColors.n100,
