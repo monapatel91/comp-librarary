@@ -1,4 +1,14 @@
-import '@material-ui/core/styles/createPalette';
+export interface AvatarPaletteColorOptions {
+  default: AvatarPaletteColorOption;
+  green: AvatarPaletteColorOption;
+  blue: AvatarPaletteColorOption;
+  orange: AvatarPaletteColorOption;
+  purple: AvatarPaletteColorOption;
+  yellow: AvatarPaletteColorOption;
+  red: AvatarPaletteColorOption;
+  darkGrey: AvatarPaletteColorOption;
+  lightGrey: AvatarPaletteColorOption;
+}
 
 declare module '@material-ui/core/styles/createPalette' {
   interface PaletteOptions {
@@ -7,18 +17,6 @@ declare module '@material-ui/core/styles/createPalette' {
     icon: IconPaletteColorOptions;
     layer: LayerPaletteColorOptions;
     product?: 'agility';
-  }
-
-  interface AvatarPaletteColorOptions {
-    default: AvatarPaletteColorOption;
-    green: AvatarPaletteColorOption;
-    blue: AvatarPaletteColorOption;
-    orange: AvatarPaletteColorOption;
-    purple: AvatarPaletteColorOption;
-    yellow: AvatarPaletteColorOption;
-    red: AvatarPaletteColorOption;
-    darkGrey: AvatarPaletteColorOption;
-    lightGrey: AvatarPaletteColorOption;
   }
 
   interface AvatarPaletteColorOption {

@@ -21,7 +21,7 @@ export { CheckboxProps, DotCheckbox } from './checkbox/Checkbox';
 export { DotCheckboxGroup } from './checkbox/CheckboxGroup';
 export { DotChip } from './chip/Chip';
 export { DotConfirmationDialog } from './confirmation-dialog/ConfirmationDialog';
-export { Cell } from './css-grid/CssCell';
+export { Cell, CssCell } from './css-grid/CssCell';
 export { CssGrid } from './css-grid/CssGrid';
 export { CssGridDebug } from './css-grid/CssGridDebug';
 export { DotDialog } from './dialog/Dialog';
