@@ -55,12 +55,23 @@ export const DotAppToolbar = ({
     rootClassName,
     `dense ${className}`
   );
-  const [menuOpen, updateMenuOpen] = useState(mainMenuOpen);
+  const [menuOpen, updateMenuOpen] = useState(false);
   const showMainMenu = mainMenu || mainMenuItems;
 
   useEffect(() => {
-    console.log(`menuOpen: ${menuOpen}`);
+    console.log('useEffect', mainMenuOpen);
+    handleMenuOpen(mainMenuOpen);
   }, [mainMenuOpen]);
+
+  const handleMenuOpen = (open: boolean) => {
+    console.log('local arg open', open);
+    console.log('prop passed mainMenuOpen', mainMenuOpen);
+    console.log('local state menuOpen', menuOpen);
+    // if(mainMenuOpen) {
+
+    // }
+    updateMenuOpen(open);
+  };
 
   return (
     <StyledAppToolbar
@@ -74,14 +85,14 @@ export const DotAppToolbar = ({
           <DotIconButton
             className="hamburger"
             iconId={menuOpen ? 'close' : 'menu'}
-            onClick={() => updateMenuOpen(!menuOpen)}
+            onClick={() => handleMenuOpen(!menuOpen)}
             size="small"
           />
           <StyledMainMenu
             anchor="left"
             className="dot-main-menu"
-            onClose={() => updateMenuOpen(false)}
-            open={menuOpen}
+            onClose={() => handleMenuOpen(false)}
+            open={mainMenuOpen || menuOpen}
             width={mainMenuWidth + 'px'}
           >
             <DotSidebar

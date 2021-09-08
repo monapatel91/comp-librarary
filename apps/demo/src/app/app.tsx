@@ -47,9 +47,7 @@ export const App = () => {
   const [menuOpen, updateMenuOpen] = useState(true);
 
   const handleNavClick = () => {
-    console.log('handleNavClick', menuOpen);
     updateMenuOpen(false);
-    console.log(`state change: ${menuOpen}`);
   };
 
   const sideNavItems: Array<ListItemProps> = [
