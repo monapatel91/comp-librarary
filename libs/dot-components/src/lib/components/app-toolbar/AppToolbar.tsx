@@ -1,4 +1,12 @@
-import React, { Fragment, ReactNode, useEffect, useState } from 'react';
+import React, {
+  Fragment,
+  MouseEvent,
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
@@ -48,7 +56,6 @@ export const DotAppToolbar = ({
   navItems = [],
   mainMenu,
   mainMenuItems,
-  mainMenuOpen = false,
   mainMenuWidth = 240,
 }: AppToolbarProps) => {
   const rootClasses = useStylesWithRootClass(
@@ -57,21 +64,30 @@ export const DotAppToolbar = ({
   );
   const [menuOpen, updateMenuOpen] = useState(false);
   const showMainMenu = mainMenu || mainMenuItems;
+  const mainMenuRef = useRef(null);
 
   useEffect(() => {
-    console.log('useEffect', mainMenuOpen);
-    handleMenuOpen(mainMenuOpen);
-  }, [mainMenuOpen]);
+    // check event.target
+    const doSomething = (event: MouseEvent) => {
+      console.log('doSomething', event.target);
 
-  const handleMenuOpen = (open: boolean) => {
-    console.log('local arg open', open);
-    console.log('prop passed mainMenuOpen', mainMenuOpen);
-    console.log('local state menuOpen', menuOpen);
-    // if(mainMenuOpen) {
+      if (mainMenuRef.current?.contains(event.target)) {
+        // if contains href set main menu open = false
+        console.log('user clicked inside main menu');
 
-    // }
-    updateMenuOpen(open);
-  };
+        updateMenuOpen(false);
+      }
+    };
+
+    // if user clicks inside of main menu...
+    if (mainMenuRef?.current) {
+      mainMenuRef.current.addEventListener('click', doSomething);
+
+      return () => {
+        mainMenuRef.current.removeEventListener('click', doSomething);
+      };
+    }
+  }, []);
 
   return (
     <StyledAppToolbar
@@ -81,30 +97,32 @@ export const DotAppToolbar = ({
       style={{ borderBottomColor: borderColor }}
     >
       {showMainMenu && (
-        <Fragment>
+        <>
           <DotIconButton
             className="hamburger"
             iconId={menuOpen ? 'close' : 'menu'}
-            onClick={() => handleMenuOpen(!menuOpen)}
+            onClick={() => updateMenuOpen(!menuOpen)}
             size="small"
           />
           <StyledMainMenu
             anchor="left"
             className="dot-main-menu"
-            onClose={() => handleMenuOpen(false)}
-            open={mainMenuOpen || menuOpen}
+            onClose={() => updateMenuOpen(false)}
+            open={menuOpen}
             width={mainMenuWidth + 'px'}
           >
-            <DotSidebar
-              children={mainMenu}
-              collapsable={false}
-              displayBrand={false}
-              goBack={false}
-              navItems={mainMenuItems}
-              nestedListType="menu"
-            />
+            <div ref={mainMenuRef}>
+              <DotSidebar
+                children={mainMenu}
+                collapsable={false}
+                displayBrand={false}
+                goBack={false}
+                navItems={mainMenuItems}
+                nestedListType="menu"
+              />
+            </div>
           </StyledMainMenu>
-        </Fragment>
+        </>
       )}
       <div className={`dot-branding ${showMainMenu ? 'hamburger' : ''}`}>
         <DotLink href="/">
