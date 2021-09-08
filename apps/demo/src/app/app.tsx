@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import {
   BackItemProps,
   DotAvatar,
@@ -33,39 +33,6 @@ const topNavItems: Array<IconButtonProps> = [
   },
 ];
 
-const sideNavItems: Array<ListItemProps> = [
-  {
-    startIconId: 'comment',
-    text: 'Demo Form',
-    component: forwardRef((props, ref) => (
-      <Link {...props} to="/demo-form" ref={ref} />
-    )),
-  },
-  {
-    startIconId: 'visibility-off',
-    text: 'Demo Form Uncontrolled',
-    component: forwardRef((props, ref) => (
-      <Link {...props} to="/demo-form-uncontrolled" ref={ref} />
-    )),
-  },
-  {
-    startIconId: 'package',
-    text: 'CSS Grid',
-    component: React.forwardRef((props, ref) => (
-      <Link {...props} to="/css-grid" ref={ref} />
-    )),
-  },
-  {
-    startIconId: 'package',
-    text: 'CSS Grid Template',
-    component: React.forwardRef((props, ref) => (
-      <Link {...props} to="/css-grid-template" ref={ref} />
-    )),
-  },
-];
-
-const mainMenu = <DotSidebar navItems={sideNavItems} />;
-
 const userAvatar = (
   <DotAvatar alt="Batman" text="BW" size="small" type="text" />
 );
@@ -77,6 +44,64 @@ export const App = () => {
     text: 'Home',
     title: `Go Back to Home`,
   };
+  const [menuOpen, updateMenuOpen] = useState(true);
+
+  const handleNavClick = () => {
+    console.log('handleNavClick', menuOpen);
+    updateMenuOpen(false);
+    console.log(`state change: ${menuOpen}`);
+  };
+
+  const sideNavItems: Array<ListItemProps> = [
+    {
+      startIconId: 'comment',
+      text: 'Demo Form',
+      component: forwardRef((props, ref) => (
+        <Link
+          {...props}
+          to="/demo-form"
+          onClick={() => handleNavClick()}
+          ref={ref}
+        />
+      )),
+    },
+    {
+      startIconId: 'visibility-off',
+      text: 'Demo Form Uncontrolled',
+      component: forwardRef((props, ref) => (
+        <Link
+          {...props}
+          to="/demo-form-uncontrolled"
+          onClick={() => handleNavClick()}
+          ref={ref}
+        />
+      )),
+    },
+    {
+      startIconId: 'package',
+      text: 'CSS Grid',
+      component: React.forwardRef((props, ref) => (
+        <Link
+          {...props}
+          to="/css-grid"
+          onClick={() => handleNavClick()}
+          ref={ref}
+        />
+      )),
+    },
+    {
+      startIconId: 'package',
+      text: 'CSS Grid Template',
+      component: React.forwardRef((props, ref) => (
+        <Link
+          {...props}
+          to="/css-grid-template"
+          onClick={() => handleNavClick()}
+          ref={ref}
+        />
+      )),
+    },
+  ];
 
   return (
     <>
@@ -84,7 +109,8 @@ export const App = () => {
         avatar={userAvatar}
         appName="Continuum"
         navItems={topNavItems}
-        mainMenu={mainMenu}
+        mainMenuItems={sideNavItems}
+        mainMenuOpen={menuOpen}
       />
       <main>
         <DotSidebar

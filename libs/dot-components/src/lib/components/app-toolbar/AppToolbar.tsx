@@ -58,10 +58,9 @@ export const DotAppToolbar = ({
   const [menuOpen, updateMenuOpen] = useState(mainMenuOpen);
   const showMainMenu = mainMenu || mainMenuItems;
 
-  // useEffect(() => {
-  // console.log(`useEffect called, mainMenuOpen: ${mainMenuOpen}`);
-  // updateMenuOpen(!mainMenuOpen);
-  // }, [menuOpen, mainMenuOpen]);
+  useEffect(() => {
+    console.log(`menuOpen: ${menuOpen}`);
+  }, [mainMenuOpen]);
 
   return (
     <StyledAppToolbar
