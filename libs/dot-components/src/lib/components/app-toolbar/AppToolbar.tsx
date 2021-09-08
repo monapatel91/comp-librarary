@@ -36,8 +36,6 @@ export interface AppToolbarProps extends CommonProps {
   mainMenu?: ReactNode;
   /** If provided will display the menu items within the main menu drawer */
   mainMenuItems?: Array<ListItemProps>;
-  /** If true, main menu will be displayed */
-  mainMenuOpen?: boolean;
   /** Width of main menu drawer if mainMenu provided, defaults to 240px */
   mainMenuWidth?: number;
   /** Array of nav items to be displayed on the right side */
