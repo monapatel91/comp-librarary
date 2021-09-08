@@ -24,7 +24,6 @@ describe('dot-components: Button component', () => {
         .and('have.css', 'padding-left', '16px')
         .and('have.css', 'padding-bottom', '6px')
         .and('have.css', 'padding-right', '16px')
-        .and('have.css', 'min-width', '64px')
         .and('have.css', 'font-size', '14px');
     });
 

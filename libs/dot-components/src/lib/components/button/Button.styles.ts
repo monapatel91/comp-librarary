@@ -8,6 +8,7 @@ export const StyledButton = styled(Button)`
   ${({ theme }) => css`
     &.${rootClassName} {
       margin: ${theme.spacing(0.5)}px;
+      min-width: auto;
       white-space: nowrap;
 
       &.MuiButton-containedPrimary {
