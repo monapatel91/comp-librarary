@@ -24,15 +24,10 @@ export interface AppToolbarProps extends CommonProps {
   children?: ReactNode;
   /** Allow to display custom logo */
   customLogo?: ReactNode;
-<<<<<<< HEAD
   /** If provided will display a custom component within the main menu drawer */
   mainMenuChildren?: ReactNode;
   /** If provided will display the menu items within the main menu drawer */
   mainMenuItems?: Array<ListItemProps>;
-=======
-  /** If provided will display a hamburger main menu drawer */
-  mainMenu?: ReactNode;
->>>>>>> b7373e61 (D-18421: troubleshooting hamburger navigation not closing on page change)
   /** If true, main menu will be displayed */
   mainMenuOpen?: boolean;
   /** Width of main menu drawer if mainMenu provided, defaults to 240px */
@@ -51,12 +46,8 @@ export const DotAppToolbar = ({
   customLogo,
   'data-testid': dataTestId,
   navItems = [],
-<<<<<<< HEAD
   mainMenuChildren,
   mainMenuItems,
-=======
-  mainMenu,
->>>>>>> b7373e61 (D-18421: troubleshooting hamburger navigation not closing on page change)
   mainMenuOpen = false,
   mainMenuWidth = 240,
 }: AppToolbarProps) => {
@@ -65,12 +56,7 @@ export const DotAppToolbar = ({
     `dense ${className}`
   );
   const [menuOpen, updateMenuOpen] = useState(mainMenuOpen);
-<<<<<<< HEAD
   const showMainMenu = mainMenuChildren || mainMenuItems;
-=======
-
-  console.log(`open: ${menuOpen}`);
->>>>>>> b7373e61 (D-18421: troubleshooting hamburger navigation not closing on page change)
 
   return (
     <StyledAppToolbar
