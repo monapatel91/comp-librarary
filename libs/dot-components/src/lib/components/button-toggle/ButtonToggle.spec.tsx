@@ -38,7 +38,7 @@ describe('DotButtonToggle', () => {
     expect(buttonToggleProps).toEqual(props);
   });
 
-  xit('should render successfully', () => {
+  it('should render successfully', () => {
     const { baseElement } = render(
       <DotButtonToggle
         buttonOptions={buttonOptions}
@@ -49,7 +49,7 @@ describe('DotButtonToggle', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  xit("should have 'aria-label' attribute with correct value", () => {
+  it("should have 'aria-label' attribute with correct value", () => {
     render(
       <DotButtonToggle
         ariaLabel={ariaLabel}

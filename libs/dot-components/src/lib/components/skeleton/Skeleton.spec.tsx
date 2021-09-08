@@ -17,12 +17,12 @@ describe('Skeleton', () => {
     expect(skeletonProps).toEqual(props);
   });
 
-  xit('should render successfully', () => {
+  it('should render successfully', () => {
     const { baseElement } = render(<DotSkeleton />);
     expect(baseElement).toBeTruthy();
   });
 
-  xit("should have 'aria-label' attribute with correct value", () => {
+  it("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
     const dataTestId = 'test-skeleton';
     render(<DotSkeleton ariaLabel={ariaLabel} data-testid={dataTestId} />);
