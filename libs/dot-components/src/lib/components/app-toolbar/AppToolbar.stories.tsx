@@ -31,86 +31,82 @@ export default {
       control: { type: 'select', options: logoOptions },
       defaultValue: 'Default',
     },
-    mainMenu: {
-      defaultValue: (
-        <DotSidebar
-          navItems={[
-            {
-              startIconId: 'process-template',
-              text: 'Progressions',
-              href: '#',
-              onClick: () => {
-                console.log(`menuOpen is currently ${menuOpen}`);
-                menuOpen = true;
-                console.log(`menuOpen now ${menuOpen}`);
-              },
-            },
-            {
-              startIconId: 'satellite-group',
-              text: 'Pipelines',
-              href: '#',
-            },
-            {
-              startIconId: 'dashboard',
-              text: 'Insights',
-              href: '#',
-            },
-            {
-              text: 'Workflow',
-              divider: true,
-            },
-            {
-              startIconId: 'block',
-              text: 'Packages',
-              href: '#',
-            },
-            {
-              startIconId: 'flag',
-              text: 'Features',
-              href: '#',
-            },
-            {
-              startIconId: 'collection',
-              text: 'Projects',
-              href: '#',
-            },
-            {
-              startIconId: 'file-lines',
-              text: 'Workitems',
-              href: '#',
-            },
-            {
-              startIconId: 'change',
-              text: 'Changes',
-              href: '#',
-            },
-            {
-              startIconId: 'square-settings',
-              text: 'Artifacts',
-              href: '#',
-            },
-            {
-              text: 'System',
-              divider: true,
-            },
-            {
-              startIconId: 'monitor-gears',
-              text: 'Tasks',
-              href: '#',
-            },
-            {
-              startIconId: 'archive',
-              text: 'Buckets',
-              href: '#',
-            },
-            {
-              startIconId: 'monitor',
-              text: 'Environment',
-              href: '#',
-            },
-          ]}
-        />
-      ),
+    mainMenuItems: {
+      defaultValue: [
+        {
+          startIconId: 'process-template',
+          text: 'Progressions',
+          href: '#',
+          onClick: () => {
+            console.log(`menuOpen is currently ${menuOpen}`);
+            menuOpen = true;
+            console.log(`menuOpen now ${menuOpen}`);
+          },
+        },
+        {
+          startIconId: 'satellite-group',
+          text: 'Pipelines',
+          href: '#',
+        },
+        {
+          startIconId: 'dashboard',
+          text: 'Insights',
+          href: '#',
+        },
+        {
+          text: 'Workflow',
+          divider: true,
+        },
+        {
+          startIconId: 'block',
+          text: 'Packages',
+          href: '#',
+        },
+        {
+          startIconId: 'flag',
+          text: 'Features',
+          href: '#',
+        },
+        {
+          startIconId: 'collection',
+          text: 'Projects',
+          href: '#',
+        },
+        {
+          startIconId: 'file-lines',
+          text: 'Workitems',
+          href: '#',
+        },
+        {
+          startIconId: 'change',
+          text: 'Changes',
+          href: '#',
+        },
+        {
+          startIconId: 'square-settings',
+          text: 'Artifacts',
+          href: '#',
+        },
+        {
+          text: 'System',
+          divider: true,
+        },
+        {
+          startIconId: 'monitor-gears',
+          text: 'Tasks',
+          href: '#',
+        },
+        {
+          startIconId: 'archive',
+          text: 'Buckets',
+          href: '#',
+        },
+        {
+          startIconId: 'monitor',
+          text: 'Environment',
+          href: '#',
+        },
+      ],
     },
     navItems: {
       defaultValue: [

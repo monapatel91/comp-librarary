@@ -1,8 +1,10 @@
-import React, { Fragment, ReactNode, useEffect, useState } from 'react';
+import React, { Fragment, ReactNode, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
 import { DotLink } from '../link/Link';
+import { ListItemProps } from '../list/List';
+import { DotSidebar } from '../sidebar/Sidebar';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
 import {
   rootClassName,
@@ -22,8 +24,10 @@ export interface AppToolbarProps extends CommonProps {
   children?: ReactNode;
   /** Allow to display custom logo */
   customLogo?: ReactNode;
-  /** If provided will display a hamburger main menu drawer */
-  mainMenu?: ReactNode;
+  /** If provided will display a custom component within the main menu drawer */
+  mainMenuChildren?: ReactNode;
+  /** If provided will display the menu items within the main menu drawer */
+  mainMenuItems?: Array<ListItemProps>;
   /** If true, main menu will be displayed */
   mainMenuOpen?: boolean;
   /** Width of main menu drawer if mainMenu provided, defaults to 240px */
@@ -42,7 +46,8 @@ export const DotAppToolbar = ({
   customLogo,
   'data-testid': dataTestId,
   navItems = [],
-  mainMenu,
+  mainMenuChildren,
+  mainMenuItems,
   mainMenuOpen = false,
   mainMenuWidth = 240,
 }: AppToolbarProps) => {
@@ -51,8 +56,7 @@ export const DotAppToolbar = ({
     `dense ${className}`
   );
   const [menuOpen, updateMenuOpen] = useState(mainMenuOpen);
-
-  console.log(`open: ${menuOpen}`);
+  const showMainMenu = mainMenuChildren || mainMenuItems;
 
   return (
     <StyledAppToolbar
@@ -61,7 +65,7 @@ export const DotAppToolbar = ({
       data-testid={dataTestId}
       style={{ borderBottomColor: borderColor }}
     >
-      {mainMenu && (
+      {showMainMenu && (
         <Fragment>
           <DotIconButton
             className="hamburger"
@@ -76,11 +80,18 @@ export const DotAppToolbar = ({
             open={menuOpen}
             width={mainMenuWidth + 'px'}
           >
-            {mainMenu}
+            <DotSidebar
+              children={mainMenuChildren}
+              collapsable={false}
+              displayBrand={false}
+              goBack={false}
+              navItems={mainMenuItems}
+              nestedListType="menu"
+            />
           </StyledMainMenu>
         </Fragment>
       )}
-      <div className={`dot-branding ${mainMenu ? 'hamburger' : ''}`}>
+      <div className={`dot-branding ${showMainMenu ? 'hamburger' : ''}`}>
         <DotLink href="/">
           {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>
