@@ -25,7 +25,7 @@ export interface AppToolbarProps extends CommonProps {
   /** Allow to display custom logo */
   customLogo?: ReactNode;
   /** If provided will display a custom component within the main menu drawer */
-  mainMenuChildren?: ReactNode;
+  mainMenu?: ReactNode;
   /** If provided will display the menu items within the main menu drawer */
   mainMenuItems?: Array<ListItemProps>;
   /** If true, main menu will be displayed */
@@ -46,7 +46,7 @@ export const DotAppToolbar = ({
   customLogo,
   'data-testid': dataTestId,
   navItems = [],
-  mainMenuChildren,
+  mainMenu,
   mainMenuItems,
   mainMenuOpen = false,
   mainMenuWidth = 240,
@@ -56,7 +56,12 @@ export const DotAppToolbar = ({
     `dense ${className}`
   );
   const [menuOpen, updateMenuOpen] = useState(mainMenuOpen);
-  const showMainMenu = mainMenuChildren || mainMenuItems;
+  const showMainMenu = mainMenu || mainMenuItems;
+
+  // useEffect(() => {
+  // console.log(`useEffect called, mainMenuOpen: ${mainMenuOpen}`);
+  // updateMenuOpen(!mainMenuOpen);
+  // }, [menuOpen, mainMenuOpen]);
 
   return (
     <StyledAppToolbar
@@ -81,7 +86,7 @@ export const DotAppToolbar = ({
             width={mainMenuWidth + 'px'}
           >
             <DotSidebar
-              children={mainMenuChildren}
+              children={mainMenu}
               collapsable={false}
               displayBrand={false}
               goBack={false}

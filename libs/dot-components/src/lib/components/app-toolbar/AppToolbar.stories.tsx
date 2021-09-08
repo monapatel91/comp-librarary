@@ -8,6 +8,11 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 const logoOptions = ['Default', 'Custom'];
 let menuOpen = false;
 
+const handleClick = () => {
+  console.log(`handleClick, menuOpen: ${menuOpen}`);
+  menuOpen = false;
+};
+
 export default {
   title: 'Components/AppToolbar',
   component: DotAppToolbar,
@@ -36,21 +41,19 @@ export default {
           startIconId: 'process-template',
           text: 'Progressions',
           href: '#',
-          onClick: () => {
-            console.log(`menuOpen is currently ${menuOpen}`);
-            menuOpen = true;
-            console.log(`menuOpen now ${menuOpen}`);
-          },
+          onClick: () => handleClick(),
         },
         {
           startIconId: 'satellite-group',
           text: 'Pipelines',
           href: '#',
+          onClick: () => handleClick(),
         },
         {
           startIconId: 'dashboard',
           text: 'Insights',
           href: '#',
+          onClick: () => handleClick(),
         },
         {
           text: 'Workflow',
@@ -60,31 +63,37 @@ export default {
           startIconId: 'block',
           text: 'Packages',
           href: '#',
+          onClick: () => handleClick(),
         },
         {
           startIconId: 'flag',
           text: 'Features',
           href: '#',
+          onClick: () => handleClick(),
         },
         {
           startIconId: 'collection',
           text: 'Projects',
           href: '#',
+          onClick: () => handleClick(),
         },
         {
           startIconId: 'file-lines',
           text: 'Workitems',
           href: '#',
+          onClick: () => handleClick(),
         },
         {
           startIconId: 'change',
           text: 'Changes',
           href: '#',
+          onClick: () => handleClick(),
         },
         {
           startIconId: 'square-settings',
           text: 'Artifacts',
           href: '#',
+          onClick: () => handleClick(),
         },
         {
           text: 'System',
@@ -94,16 +103,19 @@ export default {
           startIconId: 'monitor-gears',
           text: 'Tasks',
           href: '#',
+          onClick: () => handleClick(),
         },
         {
           startIconId: 'archive',
           text: 'Buckets',
           href: '#',
+          onClick: () => handleClick(),
         },
         {
           startIconId: 'monitor',
           text: 'Environment',
           href: '#',
+          onClick: () => handleClick(),
         },
       ],
     },
