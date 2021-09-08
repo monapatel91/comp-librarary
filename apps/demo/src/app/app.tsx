@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef } from 'react';
 import {
   BackItemProps,
   DotAvatar,
@@ -44,59 +44,34 @@ export const App = () => {
     text: 'Home',
     title: `Go Back to Home`,
   };
-  const [menuOpen, updateMenuOpen] = useState(true);
-
-  const handleNavClick = () => {
-    updateMenuOpen(false);
-  };
 
   const sideNavItems: Array<ListItemProps> = [
     {
       startIconId: 'comment',
       text: 'Demo Form',
       component: forwardRef((props, ref) => (
-        <Link
-          {...props}
-          to="/demo-form"
-          onClick={() => handleNavClick()}
-          ref={ref}
-        />
+        <Link {...props} to="/demo-form" ref={ref} />
       )),
     },
     {
       startIconId: 'visibility-off',
       text: 'Demo Form Uncontrolled',
       component: forwardRef((props, ref) => (
-        <Link
-          {...props}
-          to="/demo-form-uncontrolled"
-          onClick={() => handleNavClick()}
-          ref={ref}
-        />
+        <Link {...props} to="/demo-form-uncontrolled" ref={ref} />
       )),
     },
     {
       startIconId: 'package',
       text: 'CSS Grid',
       component: React.forwardRef((props, ref) => (
-        <Link
-          {...props}
-          to="/css-grid"
-          onClick={() => handleNavClick()}
-          ref={ref}
-        />
+        <Link {...props} to="/css-grid" ref={ref} />
       )),
     },
     {
       startIconId: 'package',
       text: 'CSS Grid Template',
       component: React.forwardRef((props, ref) => (
-        <Link
-          {...props}
-          to="/css-grid-template"
-          onClick={() => handleNavClick()}
-          ref={ref}
-        />
+        <Link {...props} to="/css-grid-template" ref={ref} />
       )),
     },
   ];
@@ -108,7 +83,6 @@ export const App = () => {
         appName="Continuum"
         navItems={topNavItems}
         mainMenuItems={sideNavItems}
-        mainMenuOpen={menuOpen}
       />
       <main>
         <DotSidebar
