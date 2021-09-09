@@ -1,4 +1,5 @@
-import { Tabs, fade } from '@material-ui/core';
+import { Tabs } from '@material-ui/core';
+import { alpha } from '@material-ui/core/styles';
 import styled, { css } from 'styled-components';
 import { agilityGreen } from '../../theme-provider/colors/light-theme-colors';
 
@@ -35,11 +36,11 @@ export const StyledTabs = styled(Tabs)`
         }
         &.MuiTab-textColorPrimary:hover {
           background-color: ${theme.palette.product !== 'agility' &&
-          fade(theme.palette.primary.main, 0.12)};
+          alpha(theme.palette.primary.main, 0.12)};
         }
         &.MuiTab-textColorSecondary:hover {
           background-color: ${theme.palette.product !== 'agility' &&
-          fade(theme.palette.secondary.main, 0.12)};
+          alpha(theme.palette.secondary.main, 0.12)};
         }
       }
       .MuiIcon-root {

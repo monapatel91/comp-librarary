@@ -3,6 +3,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledIcon } from './Icon.styles';
 
+// TO-DO: MUI 5 change IconFontSize 'default' to 'medium'
 export type IconFontSize = 'inherit' | 'default' | 'small';
 
 export interface IconProps extends CommonProps {
@@ -30,7 +31,7 @@ export const DotIcon = ({
       aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
-      fontSize={fontSize}
+      fontSize={fontSize === 'default' ? 'medium' : fontSize}
       title={title}
     >
       <i className={`icon-${iconId} dot-i`} />

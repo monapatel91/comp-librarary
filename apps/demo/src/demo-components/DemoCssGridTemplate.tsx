@@ -1,5 +1,5 @@
 import React from 'react';
-import { CssGrid, CssCell, CssGridDebug } from '@digital-ai/dot-components';
+import { CssGrid, CssGridDebug } from '@digital-ai/dot-components';
 import { useTheme } from '@material-ui/core/styles';
 import styled, { css } from 'styled-components';
 

@@ -1,10 +1,4 @@
-import React, {
-  KeyboardEvent,
-  MutableRefObject,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
@@ -36,8 +30,6 @@ export interface BreadcrumbProps extends CommonProps {
   maxItems?: number;
   /** minimum width before `maxItems` will be adjusted */
   minWidth?: number;
-  /** container element, if smaller than breadcrumbs, `maxItems` will adjust */
-  parentRef?: MutableRefObject<Element | HTMLElement>;
 }
 
 export const DotBreadcrumbs = ({
@@ -46,11 +38,11 @@ export const DotBreadcrumbs = ({
   expansionMenu = false,
   items,
   maxItems = 3,
-  parentRef,
   minWidth,
 }: BreadcrumbProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   const breadcrumbRef = useRef();
+  const wrapperRef = useRef();
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -110,13 +102,15 @@ export const DotBreadcrumbs = ({
   }, []);
 
   useEffect(() => {
-    if (breadcrumbRef?.current && parentRef?.current) {
-      setAdjustMaxItems(compareWidth(parentRef.current, breadcrumbRef.current));
+    if (breadcrumbRef?.current && wrapperRef?.current) {
+      setAdjustMaxItems(
+        compareWidth(wrapperRef.current, breadcrumbRef.current)
+      );
     }
-  }, [breadcrumbRef?.current, parentRef?.current]);
+  }, [breadcrumbRef?.current, wrapperRef?.current]);
 
   return (
-    <>
+    <div ref={wrapperRef} style={{ overflow: 'hidden' }}>
       <StyledBreadcrumbs
         aria-label="breadcrumb"
         classes={{
@@ -169,6 +163,6 @@ export const DotBreadcrumbs = ({
         onLeave={onMenuLeave}
         open={menuOpen}
       />
-    </>
+    </div>
   );
 };

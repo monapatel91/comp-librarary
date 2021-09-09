@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 
@@ -39,10 +39,5 @@ export default {
 } as Meta;
 
 export const Default: Story<BreadcrumbProps> = (args) => {
-  const wrapperRef = useRef();
-  return (
-    <div ref={wrapperRef} style={{ width: 500 }}>
-      <DotBreadcrumbs {...args} parentRef={wrapperRef} />
-    </div>
-  );
+  return <DotBreadcrumbs {...args} />;
 };

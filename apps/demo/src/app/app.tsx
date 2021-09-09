@@ -35,28 +35,28 @@ const topNavItems: Array<IconButtonProps> = [
 
 const sideNavItems: Array<ListItemProps> = [
   {
-    iconId: 'comment',
+    startIconId: 'comment',
     text: 'Demo Form',
     component: forwardRef((props, ref) => (
       <Link {...props} to="/demo-form" ref={ref} />
     )),
   },
   {
-    iconId: 'visibility-off',
+    startIconId: 'visibility-off',
     text: 'Demo Form Uncontrolled',
     component: forwardRef((props, ref) => (
       <Link {...props} to="/demo-form-uncontrolled" ref={ref} />
     )),
   },
   {
-    iconId: 'package',
+    startIconId: 'package',
     text: 'CSS Grid',
     component: React.forwardRef((props, ref) => (
       <Link {...props} to="/css-grid" ref={ref} />
     )),
   },
   {
-    iconId: 'package',
+    startIconId: 'package',
     text: 'CSS Grid Template',
     component: React.forwardRef((props, ref) => (
       <Link {...props} to="/css-grid-template" ref={ref} />
@@ -86,7 +86,6 @@ export const App = () => {
         navItems={topNavItems}
         mainMenu={mainMenu}
       />
-
       <main>
         <DotSidebar
           backItem={backItem}
