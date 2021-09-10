@@ -1,8 +1,18 @@
-import React, { Fragment, ReactNode, useState } from 'react';
+import React, {
+  Fragment,
+  MouseEvent,
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
 import { DotLink } from '../link/Link';
+import { ListItemProps } from '../list/List';
+import { DotSidebar } from '../sidebar/Sidebar';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
 import {
   rootClassName,
@@ -10,6 +20,7 @@ import {
   StyledMainMenu,
 } from './AppToolbar.styles';
 import { DotTypography } from '../typography/Typography';
+
 export interface AppToolbarProps extends CommonProps {
   /** Product name displayed next to Digital.ai logo */
   appName?: string;
@@ -21,8 +32,10 @@ export interface AppToolbarProps extends CommonProps {
   children?: ReactNode;
   /** Allow to display custom logo */
   customLogo?: ReactNode;
-  /** If provided will display a hamburger main menu drawer */
+  /** If provided will display a custom component within the main menu drawer */
   mainMenu?: ReactNode;
+  /** If provided will display the menu items within the main menu drawer */
+  mainMenuItems?: Array<ListItemProps>;
   /** Width of main menu drawer if mainMenu provided, defaults to 240px */
   mainMenuWidth?: number;
   /** Array of nav items to be displayed on the right side */
@@ -40,6 +53,7 @@ export const DotAppToolbar = ({
   'data-testid': dataTestId,
   navItems = [],
   mainMenu,
+  mainMenuItems,
   mainMenuWidth = 240,
 }: AppToolbarProps) => {
   const rootClasses = useStylesWithRootClass(
@@ -47,6 +61,31 @@ export const DotAppToolbar = ({
     `dense ${className}`
   );
   const [menuOpen, updateMenuOpen] = useState(false);
+  const showMainMenu = mainMenu || mainMenuItems;
+  const mainMenuRef = useRef(null);
+
+  useEffect(() => {
+    // check event.target
+    const doSomething = (event: MouseEvent) => {
+      console.log('doSomething', event.target);
+
+      if (mainMenuRef.current?.contains(event.target)) {
+        // if contains href set main menu open = false
+        console.log('user clicked inside main menu');
+
+        updateMenuOpen(false);
+      }
+    };
+
+    // if user clicks inside of main menu...
+    if (mainMenuRef?.current) {
+      mainMenuRef.current.addEventListener('click', doSomething);
+
+      return () => {
+        mainMenuRef.current.removeEventListener('click', doSomething);
+      };
+    }
+  }, []);
 
   return (
     <StyledAppToolbar
@@ -55,8 +94,8 @@ export const DotAppToolbar = ({
       data-testid={dataTestId}
       style={{ borderBottomColor: borderColor }}
     >
-      {mainMenu && (
-        <Fragment>
+      {showMainMenu && (
+        <>
           <DotIconButton
             className="hamburger"
             iconId={menuOpen ? 'close' : 'menu'}
@@ -70,11 +109,20 @@ export const DotAppToolbar = ({
             open={menuOpen}
             width={mainMenuWidth + 'px'}
           >
-            {mainMenu}
+            <div ref={mainMenuRef}>
+              <DotSidebar
+                children={mainMenu}
+                collapsable={false}
+                displayBrand={false}
+                goBack={false}
+                navItems={mainMenuItems}
+                nestedListType="menu"
+              />
+            </div>
           </StyledMainMenu>
-        </Fragment>
+        </>
       )}
-      <div className={`dot-branding ${mainMenu ? 'hamburger' : ''}`}>
+      <div className={`dot-branding ${showMainMenu ? 'hamburger' : ''}`}>
         <DotLink href="/">
           {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>

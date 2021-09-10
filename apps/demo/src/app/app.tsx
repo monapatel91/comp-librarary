@@ -33,39 +33,6 @@ const topNavItems: Array<IconButtonProps> = [
   },
 ];
 
-const sideNavItems: Array<ListItemProps> = [
-  {
-    startIconId: 'comment',
-    text: 'Demo Form',
-    component: forwardRef((props, ref) => (
-      <Link {...props} to="/demo-form" ref={ref} />
-    )),
-  },
-  {
-    startIconId: 'visibility-off',
-    text: 'Demo Form Uncontrolled',
-    component: forwardRef((props, ref) => (
-      <Link {...props} to="/demo-form-uncontrolled" ref={ref} />
-    )),
-  },
-  {
-    startIconId: 'package',
-    text: 'CSS Grid',
-    component: React.forwardRef((props, ref) => (
-      <Link {...props} to="/css-grid" ref={ref} />
-    )),
-  },
-  {
-    startIconId: 'package',
-    text: 'CSS Grid Template',
-    component: React.forwardRef((props, ref) => (
-      <Link {...props} to="/css-grid-template" ref={ref} />
-    )),
-  },
-];
-
-const mainMenu = <DotSidebar navItems={sideNavItems} />;
-
 const userAvatar = (
   <DotAvatar alt="Batman" text="BW" size="small" type="text" />
 );
@@ -78,13 +45,44 @@ export const App = () => {
     title: `Go Back to Home`,
   };
 
+  const sideNavItems: Array<ListItemProps> = [
+    {
+      startIconId: 'comment',
+      text: 'Demo Form',
+      component: forwardRef((props, ref) => (
+        <Link {...props} to="/demo-form" ref={ref} />
+      )),
+    },
+    {
+      startIconId: 'visibility-off',
+      text: 'Demo Form Uncontrolled',
+      component: forwardRef((props, ref) => (
+        <Link {...props} to="/demo-form-uncontrolled" ref={ref} />
+      )),
+    },
+    {
+      startIconId: 'package',
+      text: 'CSS Grid',
+      component: React.forwardRef((props, ref) => (
+        <Link {...props} to="/css-grid" ref={ref} />
+      )),
+    },
+    {
+      startIconId: 'package',
+      text: 'CSS Grid Template',
+      component: React.forwardRef((props, ref) => (
+        <Link {...props} to="/css-grid-template" ref={ref} />
+      )),
+    },
+  ];
+
   return (
     <>
       <DotAppToolbar
         avatar={userAvatar}
         appName="Continuum"
         navItems={topNavItems}
-        mainMenu={mainMenu}
+        mainMenuItems={sideNavItems}
       />
       <main>
         <DotSidebar
