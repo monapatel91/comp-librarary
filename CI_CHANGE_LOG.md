@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.0.10](https://github.com/digital-ai/dot-components/tree/1.0.10) (09/09/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.9...1.0.10)
+
+**Fixed bugs:**
+
+- Console warnings while running unit tests for codebase that is consuming dot-components library [\#629](https://github.com/digital-ai/dot-components/issues/629)
+
+**Merged pull requests:**
+
+- New patch release [\#677](https://github.com/digital-ai/dot-components/pull/677) ([CWSites](https://github.com/CWSites))
+- D-18424: include breadcrumb wrapper with breadcrumb component [\#675](https://github.com/digital-ai/dot-components/pull/675) ([CWSites](https://github.com/CWSites))
+- Merge `master` back to `develop` [\#674](https://github.com/digital-ai/dot-components/pull/674) ([CWSites](https://github.com/CWSites))
+- D-18536: material 4.12.3 upgrade [\#667](https://github.com/digital-ai/dot-components/pull/667) ([CWSites](https://github.com/CWSites))
+
 ## [1.0.9](https://github.com/digital-ai/dot-components/tree/1.0.9) (09/02/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.8...1.0.9)
@@ -819,7 +834,6 @@
 - defect \#166: updating margins based on UX feedback [\#169](https://github.com/digital-ai/dot-components/pull/169) ([CWSites](https://github.com/CWSites))
 - manual deployment of Storybook site [\#168](https://github.com/digital-ai/dot-components/pull/168) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - issue \#163: move ActionToolbar props and styles to separate files [\#164](https://github.com/digital-ai/dot-components/pull/164) ([selsemore](https://github.com/selsemore))
-- Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
 - 26 feb icon moon color remove [\#156](https://github.com/digital-ai/dot-components/pull/156) ([BojanKocijan](https://github.com/BojanKocijan))
 - issue \#138: update empty state based on UX feedback [\#150](https://github.com/digital-ai/dot-components/pull/150) ([CWSites](https://github.com/CWSites))
 - issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
@@ -881,6 +895,7 @@
 
 **Merged pull requests:**
 
+- Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
 - Alpha 3 Release [\#145](https://github.com/digital-ai/dot-components/pull/145) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Change log updates [\#143](https://github.com/digital-ai/dot-components/pull/143) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Issue 112 drawer review [\#141](https://github.com/digital-ai/dot-components/pull/141) ([j-schoen](https://github.com/j-schoen))
