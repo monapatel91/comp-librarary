@@ -4,6 +4,7 @@ import { render, screen } from '../../testing-utils';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { IconButtonProps } from '../button/IconButton';
+import { DotButton } from '../button/Button';
 import { DotSidebar } from '../sidebar/Sidebar';
 import { ReactComponent as LogoDigitalAiCustom } from '../../assets/logo_digital_ai.svg';
 
@@ -24,7 +25,8 @@ describe(' AppToolbar', () => {
       className: 'test-class',
       customLogo: customLogo,
       'data-testid': 'testid',
-      mainMenu: <DotSidebar />,
+      mainMenu: <DotButton>Batman was here</DotButton>,
+      mainMenuItems: menuItems,
       mainMenuWidth: 240,
       navItems: menuItems,
     };

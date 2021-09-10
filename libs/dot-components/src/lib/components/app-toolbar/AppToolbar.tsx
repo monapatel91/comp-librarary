@@ -1,9 +1,7 @@
 import React, {
-  Fragment,
   MouseEvent,
   ReactNode,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -118,6 +116,7 @@ export const DotAppToolbar = ({
                 navItems={mainMenuItems}
                 nestedListType="menu"
               />
+              {mainMenu}
             </div>
           </StyledMainMenu>
         </>
