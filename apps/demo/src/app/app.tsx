@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react';
 import {
-  BackItemProps,
   DotAvatar,
   DotAppToolbar,
   DotSidebar,
-  ListItemProps,
+  BackItemProps,
   IconButtonProps,
+  ListItemProps,
 } from '@digital-ai/dot-components';
 import { Routes } from '../app/routes/Routes';
 
@@ -32,6 +32,12 @@ const topNavItems: Array<IconButtonProps> = [
     titleTooltip: 'Toggle Theme',
   },
 ];
+
+const customMainMenu = (
+  <a style={{ paddingBottom: 50 }} href="#">
+    Batman was here
+  </a>
+);
 
 const userAvatar = (
   <DotAvatar alt="Batman" text="BW" size="small" type="text" />
@@ -82,6 +88,7 @@ export const App = () => {
         avatar={userAvatar}
         appName="Continuum"
         navItems={topNavItems}
+        mainMenu={customMainMenu}
         mainMenuItems={sideNavItems}
       />
       <main>
