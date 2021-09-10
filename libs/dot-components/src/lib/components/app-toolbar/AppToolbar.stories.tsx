@@ -2,6 +2,7 @@ import React from 'react';
 import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotButton } from '../button/Button';
+import { DotLink } from '../link/Link';
 import { ReactComponent as TestLogo } from '../../assets/test_logo.svg';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -28,6 +29,9 @@ export default {
     customLogo: {
       control: { type: 'select', options: logoOptions },
       defaultValue: 'Default',
+    },
+    mainMenu: {
+      defaultValue: <DotLink>Just a regular link</DotLink>,
     },
     mainMenuItems: {
       defaultValue: [

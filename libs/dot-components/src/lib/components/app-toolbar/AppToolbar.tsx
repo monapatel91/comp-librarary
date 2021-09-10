@@ -51,7 +51,7 @@ export const DotAppToolbar = ({
   'data-testid': dataTestId,
   navItems = [],
   mainMenu,
-  mainMenuItems,
+  mainMenuItems = [],
   mainMenuWidth = 240,
 }: AppToolbarProps) => {
   const rootClasses = useStylesWithRootClass(
