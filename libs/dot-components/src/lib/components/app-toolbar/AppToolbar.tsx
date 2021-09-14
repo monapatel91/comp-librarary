@@ -1,10 +1,4 @@
-import React, {
-  MouseEvent,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
@@ -63,8 +57,12 @@ export const DotAppToolbar = ({
   const mainMenuRef = useRef(null);
 
   useEffect(() => {
-    const handleInsideMenuClick = (event: MouseEvent) => {
-      if (mainMenuRef.current?.contains(event.target)) {
+    const handleInsideMenuClick = (event: Event) => {
+      const targetEl = event.target as HTMLElement;
+      const clickInsideMenu = mainMenuRef.current?.contains(targetEl);
+      const hasLink = targetEl.closest('a').hasAttribute('href');
+
+      if (clickInsideMenu && hasLink) {
         updateMenuOpen(false);
       }
     };

@@ -80,6 +80,15 @@ export const App = () => {
         <Link {...props} to="/css-grid-template" ref={ref} />
       )),
     },
+    {
+      text: 'Sample Header',
+      divider: true,
+    },
+    {
+      startIconId: 'collection',
+      onClick: () => null,
+      text: 'Sample onClick',
+    },
   ];
 
   return (
