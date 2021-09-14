@@ -63,24 +63,17 @@ export const DotAppToolbar = ({
   const mainMenuRef = useRef(null);
 
   useEffect(() => {
-    // check event.target
-    const doSomething = (event: MouseEvent) => {
-      console.log('doSomething', event.target);
-
+    const handleInsideMenuClick = (event: MouseEvent) => {
       if (mainMenuRef.current?.contains(event.target)) {
-        // if contains href set main menu open = false
-        console.log('user clicked inside main menu');
-
         updateMenuOpen(false);
       }
     };
 
-    // if user clicks inside of main menu...
     if (mainMenuRef?.current) {
-      mainMenuRef.current.addEventListener('click', doSomething);
+      mainMenuRef.current.addEventListener('click', handleInsideMenuClick);
 
       return () => {
-        mainMenuRef.current.removeEventListener('click', doSomething);
+        mainMenuRef.current.removeEventListener('click', handleInsideMenuClick);
       };
     }
   }, []);
@@ -106,6 +99,7 @@ export const DotAppToolbar = ({
             onClose={() => updateMenuOpen(false)}
             open={menuOpen}
             width={mainMenuWidth + 'px'}
+            variant="persistent"
           >
             <div ref={mainMenuRef}>
               <DotSidebar
@@ -116,7 +110,6 @@ export const DotAppToolbar = ({
                 navItems={mainMenuItems}
                 nestedListType="menu"
               />
-              {mainMenu}
             </div>
           </StyledMainMenu>
         </>

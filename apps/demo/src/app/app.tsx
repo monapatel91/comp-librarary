@@ -34,7 +34,7 @@ const topNavItems: Array<IconButtonProps> = [
 ];
 
 const customMainMenu = (
-  <a style={{ paddingBottom: 50 }} href="#">
+  <a style={{ paddingBottom: 50 }} href="/">
     Batman was here
   </a>
 );
