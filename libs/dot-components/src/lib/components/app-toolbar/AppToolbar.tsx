@@ -48,19 +48,23 @@ export const DotAppToolbar = ({
   mainMenuItems = [],
   mainMenuWidth = 240,
 }: AppToolbarProps) => {
+  const [menuOpen, updateMenuOpen] = useState(false);
+  const showMainMenu = mainMenu || mainMenuItems;
+  const mainMenuRef = useRef(null);
   const rootClasses = useStylesWithRootClass(
     rootClassName,
     `dense ${className}`
   );
-  const [menuOpen, updateMenuOpen] = useState(false);
-  const showMainMenu = mainMenu || mainMenuItems;
-  const mainMenuRef = useRef(null);
+  const mainMenuClasses = useStylesWithRootClass(
+    'dot-main-menu',
+    menuOpen ? 'open' : ''
+  );
 
   useEffect(() => {
     const handleInsideMenuClick = (event: Event) => {
       const targetEl = event.target as HTMLElement;
       const clickInsideMenu = mainMenuRef.current?.contains(targetEl);
-      const hasLink = targetEl.closest('a').hasAttribute('href');
+      const hasLink = targetEl.closest('a')?.hasAttribute('href');
 
       if (clickInsideMenu && hasLink) {
         updateMenuOpen(false);
@@ -71,7 +75,10 @@ export const DotAppToolbar = ({
       mainMenuRef.current.addEventListener('click', handleInsideMenuClick);
 
       return () => {
-        mainMenuRef.current.removeEventListener('click', handleInsideMenuClick);
+        mainMenuRef?.current.removeEventListener(
+          'click',
+          handleInsideMenuClick
+        );
       };
     }
   }, []);
@@ -87,13 +94,15 @@ export const DotAppToolbar = ({
         <>
           <DotIconButton
             className="hamburger"
+            data-testid="main-menu-icon"
             iconId={menuOpen ? 'close' : 'menu'}
             onClick={() => updateMenuOpen(!menuOpen)}
             size="small"
           />
           <StyledMainMenu
             anchor="left"
-            className="dot-main-menu"
+            className={mainMenuClasses}
+            data-testid="main-menu"
             onClose={() => updateMenuOpen(false)}
             open={menuOpen}
             width={mainMenuWidth + 'px'}

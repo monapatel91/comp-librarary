@@ -1,11 +1,10 @@
 import React from 'react';
 import { Input } from '@material-ui/core';
-import { render, screen } from '../../testing-utils';
+import { fireEvent, render, screen } from '../../testing-utils';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { IconButtonProps } from '../button/IconButton';
 import { DotButton } from '../button/Button';
-import { DotSidebar } from '../sidebar/Sidebar';
 import { ReactComponent as LogoDigitalAiCustom } from '../../assets/logo_digital_ai.svg';
 
 const menuItems = new Array<IconButtonProps>();
@@ -13,6 +12,22 @@ const userAvatar = (
   <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
 );
 const customLogo = <LogoDigitalAiCustom title="digital.ai.custom" />;
+const mainMenuItems = [
+  {
+    startIconId: 'satellite-group',
+    text: 'Link Item',
+    href: '#',
+  },
+  {
+    startIconId: 'dashboard',
+    text: 'onClick Item',
+    onClick: jest.fn(),
+  },
+  {
+    text: 'Header',
+    divider: true,
+  },
+];
 
 describe(' AppToolbar', () => {
   it('should have unchanged API', () => {
@@ -26,7 +41,7 @@ describe(' AppToolbar', () => {
       customLogo: customLogo,
       'data-testid': 'testid',
       mainMenu: <DotButton>Batman was here</DotButton>,
-      mainMenuItems: menuItems,
+      mainMenuItems: mainMenuItems,
       mainMenuWidth: 240,
       navItems: menuItems,
     };
@@ -70,5 +85,38 @@ describe(' AppToolbar', () => {
     );
     const appToolbarElement = screen.getByTestId(dataTestId);
     expect(appToolbarElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  it('should show/hide main menu when icon clicked', () => {
+    render(<DotAppToolbar mainMenuItems={mainMenuItems} />);
+    const mainMenuIcon = screen.getByTestId('main-menu-icon');
+    const mainMenu = screen.getByTestId('main-menu');
+
+    // click on hamburger
+    fireEvent.click(mainMenuIcon);
+    expect(mainMenu).toHaveClass('open');
+
+    // click on close icon
+    fireEvent.click(mainMenuIcon);
+    expect(mainMenu).not.toHaveClass('open');
+  });
+
+  it('should display main menu unless link with href clicked', () => {
+    render(<DotAppToolbar mainMenuItems={mainMenuItems} />);
+    const mainMenuIcon = screen.getByTestId('main-menu-icon');
+    const mainMenu = screen.getByTestId('main-menu');
+    const linkItem = screen.getByText('Link Item');
+    const onClickItem = screen.getByText('onClick Item');
+
+    // click on hamburger
+    fireEvent.click(mainMenuIcon);
+
+    // click on item with onClick
+    fireEvent.click(onClickItem);
+    expect(mainMenu).toHaveClass('open');
+
+    // click on item with href
+    fireEvent.click(linkItem);
+    expect(mainMenu).not.toHaveClass('open');
   });
 });
