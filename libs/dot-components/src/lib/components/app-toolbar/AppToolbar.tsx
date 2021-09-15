@@ -75,10 +75,7 @@ export const DotAppToolbar = ({
       mainMenuRef.current.addEventListener('click', handleInsideMenuClick);
 
       return () => {
-        mainMenuRef?.current.removeEventListener(
-          'click',
-          handleInsideMenuClick
-        );
+        mainMenuRef.current.removeEventListener('click', handleInsideMenuClick);
       };
     }
   }, []);
@@ -109,14 +106,17 @@ export const DotAppToolbar = ({
             variant="persistent"
           >
             <div ref={mainMenuRef}>
-              <DotSidebar
-                children={mainMenu}
-                collapsable={false}
-                displayBrand={false}
-                goBack={false}
-                navItems={mainMenuItems}
-                nestedListType="menu"
-              />
+              {mainMenu ? (
+                mainMenu
+              ) : (
+                <DotSidebar
+                  collapsable={false}
+                  displayBrand={false}
+                  goBack={false}
+                  navItems={mainMenuItems}
+                  nestedListType="menu"
+                />
+              )}
             </div>
           </StyledMainMenu>
         </>
