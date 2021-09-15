@@ -24,7 +24,7 @@ export interface AppToolbarProps extends CommonProps {
   children?: ReactNode;
   /** Allow to display custom logo */
   customLogo?: ReactNode;
-  /** If provided will display a custom component within the main menu drawer */
+  /** If provided will overwrite `mainMenuItems` and display within the main menu drawer */
   mainMenu?: ReactNode;
   /** If provided will display the menu items within the main menu drawer */
   mainMenuItems?: Array<ListItemProps>;
