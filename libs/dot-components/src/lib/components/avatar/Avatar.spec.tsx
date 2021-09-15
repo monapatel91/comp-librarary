@@ -119,4 +119,37 @@ describe('DotAvatar', () => {
     const linkElement = screen.getByTestId('test-avatar');
     expect(linkElement).toHaveAttribute('aria-label', ariaLabel);
   });
+
+  it('should display appropriate background color for given text input', () => {
+    const text = 'John Wayne';
+    const dataTestId = 'test-avatar';
+    render(
+      <DotAvatar alt="test" data-testid={dataTestId} type="text" text={text} />
+    );
+    const avatarElement = screen.getByTestId(dataTestId);
+    expect(avatarElement).toHaveAttribute('color', 'red');
+  });
+
+  it('should display default background color when no text is provided', () => {
+    const dataTestId = 'test-avatar';
+    render(<DotAvatar alt="test" data-testid={dataTestId} type="text" />);
+    const avatarElement = screen.getByTestId(dataTestId);
+    expect(avatarElement).toHaveAttribute('color', 'default');
+  });
+
+  it('should display correct background color when color and text are set via props', () => {
+    const color = 'yellow';
+    const dataTestId = 'test-avatar';
+    render(
+      <DotAvatar
+        alt="test"
+        color={color}
+        data-testid={dataTestId}
+        type="text"
+        text="John Wayne"
+      />
+    );
+    const avatarElement = screen.getByTestId(dataTestId);
+    expect(avatarElement).toHaveAttribute('color', color);
+  });
 });
