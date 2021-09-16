@@ -11,13 +11,12 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
   ${({ theme, railItemPosition }) => css`
     &.${rootClassName} {
       background-color: ${theme.palette.layer.n50};
+      border-left: 1px solid ${theme.palette.layer.n100};
       display: flex;
       flex-direction: column;
       justify-content: ${railItemPosition};
       padding: ${theme.spacing(1, 0, 0)};
-      text-align: center;
       width: 72px;
-      border-left: 1px solid ${theme.palette.layer.n100};
 
       .rail-item-button {
         flex-basis: 72px;
@@ -34,7 +33,6 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
         .MuiButton-label {
           display: flex;
           flex-direction: column;
-          gap: ${theme.spacing(0.5)}px;
           word-break: break-word;
         }
       }
