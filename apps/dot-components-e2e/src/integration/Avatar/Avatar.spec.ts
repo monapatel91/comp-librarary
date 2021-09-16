@@ -1,4 +1,4 @@
-describe.only('dot-components: Avatar component', () => {
+describe('dot-components: Avatar component', () => {
   before(() => cy.visit('/iframe.html?id=components-avatar--default'));
 
   it('should have a dot- prefix', () => {
