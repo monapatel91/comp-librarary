@@ -23,6 +23,7 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
         margin: 0;
         padding: 0;
         width: 100%;
+        white-space: normal;
 
         &.selected {
           background-color: ${theme.palette.layer.n0};
