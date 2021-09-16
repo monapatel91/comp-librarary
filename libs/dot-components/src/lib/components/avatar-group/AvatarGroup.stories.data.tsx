@@ -11,7 +11,7 @@ export const sampleAvatars: Array<AvatarProps> = [
   {
     alt: 'avatar alt text',
     'data-testid': 'test-avatar',
-    text: 'Superman',
+    text: 'Clark Kent',
     type: 'text',
   },
   {
