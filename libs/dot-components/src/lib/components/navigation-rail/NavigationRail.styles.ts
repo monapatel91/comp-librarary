@@ -34,6 +34,7 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
           flex-direction: column;
           padding: ${theme.spacing(2, 0.5)};
           gap: ${theme.spacing(0.5)}px;
+          word-break: break-word;
         }
       }
     }
