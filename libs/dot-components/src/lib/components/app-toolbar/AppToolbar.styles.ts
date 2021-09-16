@@ -6,9 +6,10 @@ export const rootClassName = 'dot-app-toolbar';
 export const StyledMainMenu = styled(DotDrawer)`
   ${({ theme }) => css`
     &.dot-main-menu .dot-drawer-paper {
-      padding: ${theme.spacing(6, 0, 0)};
+      top: 52px;
+      padding: 0;
       .dot-sidebar {
-        height: calc(100vh - 48px);
+        height: calc(100vh - 52px);
       }
     }
   `}
