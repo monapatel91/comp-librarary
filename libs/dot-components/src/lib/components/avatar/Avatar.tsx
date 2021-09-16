@@ -2,8 +2,9 @@ import React, { MouseEvent, CSSProperties } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledAvatar } from './Avatar.styles';
-import { DotIcon } from '../icon/Icon';
-import { DotTypography } from '../typography/Typography';
+import { DotIcon, IconFontSize } from '../icon/Icon';
+import { DotTypography, TypographyVariant } from '../typography/Typography';
+import { getAvatarColorForInputText } from '../helpers';
 
 export type AvatarSize = 'small' | 'medium' | 'large';
 export type AvatarType = 'image' | 'text' | 'icon';
@@ -32,7 +33,7 @@ export interface AvatarProps extends CommonProps {
   onClick?: (event: MouseEvent) => void;
   /** Size of avatar displayed */
   size?: AvatarSize;
-  /** To be used to override syles inline */
+  /** To be used to override styles inline */
   style?: CSSProperties;
   /** The text to be displayed. Only the first 2 letters will be displayed. */
   text?: string;
@@ -46,7 +47,7 @@ export const DotAvatar = ({
   alt,
   ariaLabel,
   className,
-  color = 'default',
+  color,
   'data-testid': dataTestId,
   iconId,
   imageSrc,
@@ -58,6 +59,12 @@ export const DotAvatar = ({
   style,
 }: AvatarProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
+
+  const getAvatarColor = (): AvatarColor => {
+    if (color) return color;
+    if (text && text !== alt) return getAvatarColorForInputText(text);
+    return 'default';
+  };
 
   const parsedText = () => {
     const textArray = text.split(' ');
@@ -72,12 +79,18 @@ export const DotAvatar = ({
     }
   };
 
+  const getHeadingFromAvatarSize = (): TypographyVariant =>
+    size === 'large' ? 'h1' : 'h3';
+
+  const getIconFontSizeFromAvatarSize = (): IconFontSize =>
+    size === 'small' ? size : 'default';
+
   return (
     <StyledAvatar
       alt={alt}
       aria-label={ariaLabel}
       className={size}
-      color={color}
+      color={getAvatarColor()}
       classes={{ root: rootClasses, img: 'dot-img' }}
       data-testid={dataTestId}
       onClick={(event: MouseEvent) => (onClick ? onClick(event) : null)}
@@ -89,13 +102,11 @@ export const DotAvatar = ({
         <DotIcon
           data-testid={`${dataTestId}-icon`}
           iconId={iconId ? iconId : 'user'}
-          fontSize={size === 'small' ? size : 'default'}
+          fontSize={getIconFontSizeFromAvatarSize()}
         />
       ) : type === 'text' ? (
         <DotTypography
-          variant={
-            size === 'small' ? 'caption' : size === 'large' ? 'h1' : 'h3'
-          }
+          variant={size === 'small' ? 'caption' : getHeadingFromAvatarSize()}
         >
           {parsedText()}
         </DotTypography>
