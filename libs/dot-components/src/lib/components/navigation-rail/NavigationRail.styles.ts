@@ -17,6 +17,7 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
       padding: ${theme.spacing(1, 0, 0)};
       text-align: center;
       width: 72px;
+      border-left: 1px solid ${theme.palette.layer.n100};
 
       .rail-item-button {
         flex-basis: 72px;
