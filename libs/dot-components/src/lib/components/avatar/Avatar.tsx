@@ -4,7 +4,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledAvatar } from './Avatar.styles';
 import { DotIcon, IconFontSize } from '../icon/Icon';
 import { DotTypography, TypographyVariant } from '../typography/Typography';
-import { getRandomAvatarColor } from '../helpers';
+import { getAvatarColorForInputText } from '../helpers';
 
 export type AvatarSize = 'small' | 'medium' | 'large';
 export type AvatarType = 'image' | 'text' | 'icon';
@@ -62,7 +62,7 @@ export const DotAvatar = ({
 
   const getAvatarColor = (): AvatarColor => {
     if (color) return color;
-    if (text && text !== alt) return getRandomAvatarColor(text);
+    if (text && text !== alt) return getAvatarColorForInputText(text);
     return 'default';
   };
 
