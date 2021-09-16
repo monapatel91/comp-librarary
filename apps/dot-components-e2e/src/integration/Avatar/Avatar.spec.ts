@@ -1,4 +1,4 @@
-describe('dot-components: Avatar component', () => {
+describe.only('dot-components: Avatar component', () => {
   before(() => cy.visit('/iframe.html?id=components-avatar--default'));
 
   it('should have a dot- prefix', () => {
@@ -20,12 +20,12 @@ describe('dot-components: Avatar component', () => {
       cy.get('div.dot-avatar').should(
         'have.css',
         'background-color',
-        'rgb(227, 229, 232)'
+        'rgb(61, 108, 158)'
       );
       cy.get('h3.dot-typography').should(
         'have.css',
         'color',
-        'rgb(59, 72, 92)'
+        'rgb(255, 255, 255)'
       );
     });
   });
