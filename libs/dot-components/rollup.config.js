@@ -9,7 +9,7 @@ module.exports = (config) => {
       ...config.plugins,
       url({
         // by default, rollup-plugin-url will not handle font files
-        include: ['**/*.woff', '**/*.woff2'],
+        include: ['**/*.woff'],
         // setting infinite limit will ensure that the files
         // are always bundled with the code, not copied to /dist
         limit: Infinity,

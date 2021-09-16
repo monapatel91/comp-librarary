@@ -20,12 +20,12 @@ describe('dot-components: Avatar component', () => {
       cy.get('div.dot-avatar').should(
         'have.css',
         'background-color',
-        'rgb(227, 229, 232)'
+        'rgb(61, 108, 158)'
       );
       cy.get('h3.dot-typography').should(
         'have.css',
         'color',
-        'rgb(59, 72, 92)'
+        'rgb(255, 255, 255)'
       );
     });
   });
@@ -60,7 +60,7 @@ describe('Agility theme style decisions', () => {
     cy.get('div.dot-avatar').should(
       'have.css',
       'background-color',
-      'rgb(5, 10, 10)'
+      'rgb(61, 108, 158)'
     );
     cy.get('h3.dot-typography').should(
       'have.css',

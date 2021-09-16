@@ -40,9 +40,5 @@ describe('dot-components: AppToolbar component', () => {
     it('hamburger menu has correct width', () => {
       cy.get('div.MuiPaper-root').should('have.css', 'width', '240px');
     });
-
-    it('hamburger menu has correct height', () => {
-      cy.get('.company-name').should('be.visible');
-    });
   });
 });
