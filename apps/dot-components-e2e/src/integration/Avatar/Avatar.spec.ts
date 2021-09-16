@@ -60,7 +60,7 @@ describe('Agility theme style decisions', () => {
     cy.get('div.dot-avatar').should(
       'have.css',
       'background-color',
-      'rgb(5, 10, 10)'
+      'rgb(61, 108, 158)'
     );
     cy.get('h3.dot-typography').should(
       'have.css',
