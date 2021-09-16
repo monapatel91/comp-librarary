@@ -19,6 +19,7 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
       width: 72px;
 
       .rail-item-button {
+        flex-basis: 72px;
         border-radius: 0;
         margin: 0;
         padding: 0;
@@ -32,7 +33,6 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
         .MuiButton-label {
           display: flex;
           flex-direction: column;
-          padding: ${theme.spacing(2, 0.5)};
           gap: ${theme.spacing(0.5)}px;
           word-break: break-word;
         }
