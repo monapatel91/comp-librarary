@@ -21,7 +21,7 @@ const mockRailItems: Array<RailItem> = [
   },
   {
     iconId: 'timeline',
-    title: 'Long Item Title',
+    title: 'Timeline',
   },
 ];
 
