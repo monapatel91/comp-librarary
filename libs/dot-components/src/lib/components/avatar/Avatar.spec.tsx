@@ -127,7 +127,7 @@ describe('DotAvatar', () => {
       <DotAvatar alt="test" data-testid={dataTestId} type="text" text={text} />
     );
     const avatarElement = screen.getByTestId(dataTestId);
-    expect(avatarElement).toHaveAttribute('color', 'red');
+    expect(avatarElement).toHaveAttribute('color', 'blue');
   });
 
   it('should display default background color when no text is provided', () => {
