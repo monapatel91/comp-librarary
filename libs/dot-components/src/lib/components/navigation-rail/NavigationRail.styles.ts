@@ -33,10 +33,7 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
           display: flex;
           flex-direction: column;
           padding: ${theme.spacing(2, 0.5)};
-
-          .rail-item-button-icon {
-            padding: ${theme.spacing(0, 0, 1, 0)};
-          }
+          gap: ${theme.spacing(0.5)}px;
         }
       }
     }
