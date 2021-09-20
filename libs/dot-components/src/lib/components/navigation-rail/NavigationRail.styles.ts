@@ -30,7 +30,7 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
           background-color: ${theme.palette.layer.n0};
         }
 
-        &:focus {
+        &:focus-visible {
           background-color: ${theme.palette.layer.n100};
         }
 
