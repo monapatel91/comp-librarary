@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.0.11](https://github.com/digital-ai/dot-components/tree/1.0.11) (09/16/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.10...1.0.11)
+
+**Fixed bugs:**
+
+- DotListItem [\#611](https://github.com/digital-ai/dot-components/issues/611)
+
+**Merged pull requests:**
+
+- Next Release [\#682](https://github.com/digital-ai/dot-components/pull/682) ([CWSites](https://github.com/CWSites))
+- S-78594: Update avatar component to randomly assign a color of the avatar background to the signed in user [\#680](https://github.com/digital-ai/dot-components/pull/680) ([dmiletic85](https://github.com/dmiletic85))
+- D-18421: close hamburger on navigate [\#679](https://github.com/digital-ai/dot-components/pull/679) ([CWSites](https://github.com/CWSites))
+- Bring `master` back into `develop` after release. [\#678](https://github.com/digital-ai/dot-components/pull/678) ([CWSites](https://github.com/CWSites))
+
 ## [1.0.10](https://github.com/digital-ai/dot-components/tree/1.0.10) (09/09/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.9...1.0.10)
@@ -33,7 +48,7 @@
 **Merged pull requests:**
 
 - Release `1.0.8` [\#673](https://github.com/digital-ai/dot-components/pull/673) ([CWSites](https://github.com/CWSites))
-- D-18424: action toolbar support [\#671](https://github.com/digital-ai/dot-components/pull/671) ([CWSites](https://github.com/CWSites))
+- D-18730: action toolbar support [\#671](https://github.com/digital-ai/dot-components/pull/671) ([CWSites](https://github.com/CWSites))
 - S-78572: Make entire sidebar backitem clickable [\#670](https://github.com/digital-ai/dot-components/pull/670) ([selsemore](https://github.com/selsemore))
 - improving table component by fixing issues reported on github [\#668](https://github.com/digital-ai/dot-components/pull/668) ([monapatel91](https://github.com/monapatel91))
 - S-78516 extra files being formatted [\#665](https://github.com/digital-ai/dot-components/pull/665) ([TheKeithStewart](https://github.com/TheKeithStewart))
@@ -834,6 +849,7 @@
 - defect \#166: updating margins based on UX feedback [\#169](https://github.com/digital-ai/dot-components/pull/169) ([CWSites](https://github.com/CWSites))
 - manual deployment of Storybook site [\#168](https://github.com/digital-ai/dot-components/pull/168) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - issue \#163: move ActionToolbar props and styles to separate files [\#164](https://github.com/digital-ai/dot-components/pull/164) ([selsemore](https://github.com/selsemore))
+- Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
 - 26 feb icon moon color remove [\#156](https://github.com/digital-ai/dot-components/pull/156) ([BojanKocijan](https://github.com/BojanKocijan))
 - issue \#138: update empty state based on UX feedback [\#150](https://github.com/digital-ai/dot-components/pull/150) ([CWSites](https://github.com/CWSites))
 - issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
@@ -895,7 +911,6 @@
 
 **Merged pull requests:**
 
-- Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
 - Alpha 3 Release [\#145](https://github.com/digital-ai/dot-components/pull/145) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Change log updates [\#143](https://github.com/digital-ai/dot-components/pull/143) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Issue 112 drawer review [\#141](https://github.com/digital-ai/dot-components/pull/141) ([j-schoen](https://github.com/j-schoen))
