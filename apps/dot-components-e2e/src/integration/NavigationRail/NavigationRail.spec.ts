@@ -13,7 +13,7 @@ describe('dot-components: Navigation Rail component', () => {
         .should('have.css', 'background-color', 'rgb(243, 245, 246)')
         .and('have.css', 'width', '72px')
         .and('have.css', 'padding-top', '8px')
-        .and('have.css', 'text-align', 'center');
+        .and('have.css', 'border-left', '1px solid rgb(227, 229, 232)');
     });
 
     it('selected item', () => {
