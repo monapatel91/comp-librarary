@@ -69,6 +69,7 @@ export const DotNavigationRail = ({
               checkIfSelected(index) && 'selected'
             )}
             data-testid={`rail-item-${index}`}
+            disableRipple={true}
             key={index}
             onClick={onItemSelect(index)}
             type="text"

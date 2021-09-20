@@ -30,6 +30,10 @@ export const StyledNavigationRail = styled.div<StyledNavigationRailType>`
           background-color: ${theme.palette.layer.n0};
         }
 
+        &:focus {
+          background-color: ${theme.palette.layer.n100};
+        }
+
         .MuiButton-label {
           display: flex;
           flex-direction: column;
