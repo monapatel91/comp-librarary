@@ -9,6 +9,8 @@ import {
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledPopper } from './Menu.styles';
+import { DotButton } from '../button/Button';
+import { DotIcon } from '../icon/Icon';
 
 const MENU_ITEM_HEIGHT = 31;
 const DEFAULT_MAX_VISIBLE_ITEMS = 7;
@@ -129,29 +131,40 @@ export const DotMenu = ({
         >
           <Paper>
             <ClickAwayListener onClickAway={handleClickAway}>
-              <MenuList
-                autoFocusItem={open}
-                className="dot-ul"
-                dense={true}
-                id={id}
-                onKeyDown={handleListKeyDown}
-                style={{
-                  height: calculateMaxHeight(),
-                }}
-              >
-                {menuItems.map((item, index: number) => {
-                  return (
-                    <MenuItem
-                      aria-label={item.ariaLabel}
-                      className={`dot-li ${item.classes ? item.classes : ''}`}
-                      onClick={(event) => handleSelect(event, item.key)}
-                      key={index}
-                    >
-                      {item.children}
-                    </MenuItem>
-                  );
-                })}
-              </MenuList>
+              <>
+                <MenuList
+                  autoFocusItem={open}
+                  className="dot-ul"
+                  dense={true}
+                  id={id}
+                  onKeyDown={handleListKeyDown}
+                  style={{
+                    height: calculateMaxHeight(),
+                  }}
+                >
+                  {menuItems.map((item, index: number) => {
+                    return (
+                      <MenuItem
+                        aria-label={item.ariaLabel}
+                        className={`dot-li ${item.classes ? item.classes : ''}`}
+                        onClick={(event) => handleSelect(event, item.key)}
+                        key={index}
+                      >
+                        {item.children}
+                      </MenuItem>
+                    );
+                  })}
+                </MenuList>
+                <div className="action-item">
+                  <DotButton
+                    fullWidth={true}
+                    type="text"
+                    startIcon={<DotIcon fontSize="small" iconId="add" />}
+                  >
+                    Add new server
+                  </DotButton>
+                </div>
+              </>
             </ClickAwayListener>
           </Paper>
         </Grow>
