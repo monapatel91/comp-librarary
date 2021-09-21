@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { TableCell } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { CreateUUID } from '../createUUID';
@@ -32,6 +32,7 @@ export const DotBodyCell = ({
 }: CellProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [open, setOpen] = useState(false);
+  const wrapperRef = useRef();
   useEffect(() => {
     const noWrapTableCell = document.getElementsByClassName('noWrap');
     Array.from(noWrapTableCell as HTMLCollectionOf<HTMLElement>).forEach(
@@ -45,11 +46,18 @@ export const DotBodyCell = ({
       }
     );
     // on window resize, set action column to menu or icon button
-    getActionColumn();
-    window.addEventListener('resize', getActionColumn);
-    return () => {
-      window.removeEventListener('resize', getActionColumn);
-    };
+    if (Array.isArray(value)) {
+      getActionColumn();
+    }
+    if (Array.isArray(value)) {
+      window.addEventListener('resize', getActionColumn);
+      return () => {
+        window.removeEventListener(
+          'resize',
+          Array.isArray(value) && getActionColumn
+        );
+      };
+    }
   });
   // on table cell resize, set action column to menu or icon button
   useEffect(() => {
@@ -77,7 +85,8 @@ export const DotBodyCell = ({
       (iconBtnWidth.length > 0 && iconBtnWidth[0].clientWidth);
 
     Array.from(actionColumn).forEach((column) => {
-      const isOverflowing = column.clientWidth < actionTableCellWidth;
+      const isOverflowing =
+        column.clientWidth < wrapperRef?.current.clientWidth;
       if (isOverflowing) {
         setShowMenu(true);
       } else {
@@ -102,38 +111,40 @@ export const DotBodyCell = ({
       data-testid={dataTestId}
       key={id}
     >
-      {Array.isArray(value)
-        ? showMenu
-          ? value.map((item) => (
-              <>
-                <DotIconButton iconId="options" onClick={handleToggle} />
-                <DotMenu
-                  menuItems={item.iconActions}
-                  id="action-buttons"
-                  open={open}
-                />
-              </>
-            ))
-          : value.map((item) =>
-              item.iconActions.map(
-                (
-                  icons: {
-                    key: string;
-                    onclick: (
-                      event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-                    ) => void;
-                  },
-                  index: React.Key
-                ) => (
-                  <DotIconButton
-                    key={index}
-                    iconId={icons.key}
-                    onClick={icons.onclick}
+      <div ref={wrapperRef} style={{ minWidth: 88 }}>
+        {Array.isArray(value)
+          ? showMenu
+            ? value.map((item) => (
+                <>
+                  <DotIconButton iconId="options" onClick={handleToggle} />
+                  <DotMenu
+                    menuItems={item.iconActions}
+                    id="action-buttons"
+                    open={open}
                   />
+                </>
+              ))
+            : value.map((item) =>
+                item.iconActions.map(
+                  (
+                    icons: {
+                      key: string;
+                      onclick: (
+                        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                      ) => void;
+                    },
+                    index: React.Key
+                  ) => (
+                    <DotIconButton
+                      key={index}
+                      iconId={icons.key}
+                      onClick={icons.onclick}
+                    />
+                  )
                 )
               )
-            )
-        : value}
+          : value}
+      </div>
     </TableCell>
   );
 };
