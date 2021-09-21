@@ -73,8 +73,8 @@ export const DotBodyCell = ({
       Array.isArray(value) && value[0].iconActions.length;
 
     const actionTableCellWidth =
-      getTotalActionItem * iconBtnWidth.length > 0 &&
-      iconBtnWidth[0].clientWidth;
+      getTotalActionItem *
+      (iconBtnWidth.length > 0 && iconBtnWidth[0].clientWidth);
 
     Array.from(actionColumn).forEach((column) => {
       const isOverflowing = column.clientWidth < actionTableCellWidth;
