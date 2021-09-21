@@ -7,10 +7,18 @@ import {
   parseAutoCompleteValue,
   AutoCompleteValue,
 } from './AutoComplete';
+import { ActionItem } from '../menu/Menu';
+import { DotIcon } from '../icon/Icon';
 
 const batman = { group: 'D.C.', title: 'Batman', error: true };
 
 const defaultValueWithError = [batman];
+
+const actionItem: ActionItem = {
+  icon: <DotIcon fontSize="small" iconId="add" />,
+  text: 'Add new option',
+  onClick: () => alert('New option added'),
+};
 
 export default {
   title: 'Components/Auto Complete',
@@ -36,6 +44,9 @@ export default {
       defaultValue: 'Select a hero',
     },
     onChange: { action: 'on change' },
+    actionItem: {
+      defaultValue: actionItem,
+    },
   },
 } as Meta;
 

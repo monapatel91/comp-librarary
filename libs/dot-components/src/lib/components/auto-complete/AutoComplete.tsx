@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, Ref } from 'react';
+import React, { useState, ChangeEvent, Ref, MouseEvent } from 'react';
 import { AutocompleteGetTagProps } from '@material-ui/lab';
 import { rootClassName, StyledAutocomplete } from './AutoComplete.styles';
 import { StyledPopper } from '../menu/Menu.styles';
@@ -9,6 +9,9 @@ import {
   StyledTextField,
   rootClassName as textFieldRootClassName,
 } from '../input-form-fields/InputFormFields.styles';
+import { MenuList, Paper } from '@material-ui/core';
+import { renderActionItemButton } from '../menu/helper';
+import { ActionItem } from '../menu/Menu';
 
 export type autoCompleteSize = 'medium' | 'small';
 export type AutoCompleteValue =
@@ -43,6 +46,8 @@ export const parseAutoCompleteValue = (value: AutoCompleteValue) => {
 };
 
 export interface AutoCompleteProps extends CommonProps {
+  /** Action button as the last element on the menu **/
+  actionItem?: ActionItem;
   /** This prop helps users to fill forms faster */
   autoFocus?: boolean;
   /** default option that is selected */
@@ -81,6 +86,7 @@ export interface AutoCompleteProps extends CommonProps {
   value?: AutoCompleteValue;
 }
 export const DotAutoComplete = ({
+  actionItem,
   ariaLabel,
   autoFocus,
   className,
@@ -149,7 +155,22 @@ export const DotAutoComplete = ({
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DotPopper = (props: any) => {
-    return <StyledPopper {...props} />;
+    if (!actionItem) return <StyledPopper {...props} />;
+    return (
+      <StyledPopper {...props}>
+        <Paper className="popper-paper">
+          <MenuList {...props.children.props} />
+          <div
+            className="action-item"
+            /* Add this to short circuit blur event (otherwise button click will not work):
+             * https://github.com/mui-org/material-ui/issues/19038 */
+            onMouseDown={(e: MouseEvent<HTMLDivElement>) => e.preventDefault()}
+          >
+            {renderActionItemButton(actionItem)}
+          </div>
+        </Paper>
+      </StyledPopper>
+    );
   };
 
   return (
