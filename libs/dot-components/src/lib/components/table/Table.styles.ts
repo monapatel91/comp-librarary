@@ -59,6 +59,12 @@ export const StyledTableContainer = styled(TableContainer)`
           text-overflow: ellipsis;
           white-space: nowrap;
         }
+        tbody > tr > td.actionItems {
+          max-width: 0;
+          overflow: hidden;
+          text-overflow: clip;
+          white-space: nowrap;
+        }
         .empty-row td {
           text-align: center;
         }

@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TableCell } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { CreateUUID } from '../createUUID';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { DotIconButton } from '../button/IconButton';
+import { DotMenu } from '@digital-ai/dot-components';
 
 export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
 
@@ -28,9 +30,10 @@ export const DotBodyCell = ({
   noWrap,
   value,
 }: CellProps) => {
+  const [showMenu, setShowMenu] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const noWrapTableCell = document.getElementsByClassName('noWrap');
-
     Array.from(noWrapTableCell as HTMLCollectionOf<HTMLElement>).forEach(
       (truncatedText) => {
         const isOverflowing =
@@ -41,11 +44,54 @@ export const DotBodyCell = ({
         }
       }
     );
+    // on window resize, set action column to menu or icon button
+    getActionColumn();
+    window.addEventListener('resize', getActionColumn);
+    return () => {
+      window.removeEventListener('resize', getActionColumn);
+    };
   });
+  // on table cell resize, set action column to menu or icon button
+  useEffect(() => {
+    const elements = document.getElementsByClassName('actionItems');
+    if (elements.length > 0) {
+      Array.from(elements).forEach((actionColumn) => {
+        actionColumn.addEventListener('resize', getActionColumn);
+        return () => {
+          actionColumn.removeEventListener('resize', getActionColumn);
+        };
+      });
+    }
+  }, []);
+
+  // Logic to determine action column as menu or icon button
+  const getActionColumn = () => {
+    const actionColumn = document.getElementsByClassName('actionItems');
+    const iconBtnWidth = document.getElementsByClassName('dot-icon-btn');
+    console.log(Array.isArray(value) && value);
+    const getTotalActionItem =
+      Array.isArray(value) && value[0].iconActions.length;
+
+    const actionTableCellWidth =
+      getTotalActionItem * iconBtnWidth.length > 0 &&
+      iconBtnWidth[0].clientWidth;
+
+    Array.from(actionColumn).forEach((column) => {
+      const isOverflowing = column.clientWidth < actionTableCellWidth;
+      if (isOverflowing) {
+        setShowMenu(true);
+      } else {
+        setShowMenu(false);
+      }
+    });
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
   const rootClasses = useStylesWithRootClass(
     'dot-td',
     className,
-    noWrap ? 'noWrap' : ''
+    noWrap ? 'noWrap' : Array.isArray(value) ? 'actionItems' : ''
   );
   return (
     <TableCell
@@ -56,7 +102,38 @@ export const DotBodyCell = ({
       data-testid={dataTestId}
       key={id}
     >
-      {value}
+      {Array.isArray(value)
+        ? showMenu
+          ? value.map((item) => (
+              <>
+                <DotIconButton iconId="options" onClick={handleToggle} />
+                <DotMenu
+                  menuItems={item.iconActions}
+                  id="action-buttons"
+                  open={open}
+                />
+              </>
+            ))
+          : value.map((item) =>
+              item.iconActions.map(
+                (
+                  icons: {
+                    key: string;
+                    onclick: (
+                      event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                    ) => void;
+                  },
+                  index: React.Key
+                ) => (
+                  <DotIconButton
+                    key={index}
+                    iconId={icons.key}
+                    onClick={icons.onclick}
+                  />
+                )
+              )
+            )
+        : value}
     </TableCell>
   );
 };

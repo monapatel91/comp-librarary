@@ -1,13 +1,50 @@
 import React from 'react';
 import { DotIconButton } from '../button/IconButton';
+import { DotButton } from '../button/Button';
 
 const deleteIcon = <DotIconButton iconId="delete" />;
+const handleEditClick = () => {
+  alert('Edit button clicked!!!');
+};
+const handleDeleteClick = () => {
+  alert('Delete button clicked!!!');
+};
+const actionItemArray = [
+  {
+    iconActions: [
+      {
+        children: (
+          <DotButton type="text" onClick={() => handleEditClick()}>
+            Edit
+          </DotButton>
+        ),
+        key: 'edit',
+        onclick: () => handleEditClick(),
+      },
+      {
+        children: (
+          <DotButton type="text" onClick={() => handleDeleteClick()}>
+            Delete
+          </DotButton>
+        ),
+        key: 'delete',
+        onclick: () => handleDeleteClick(),
+      },
+    ],
+  },
+];
 
 export const defaultColumns = [
   { id: 'title', label: 'Title', width: '30%', truncate: true },
   { id: 'hometown', label: 'Hometown', width: '30%' },
   { id: 'fans', label: 'Fan Base', align: 'center', width: '20%' },
-  { id: 'delete', sortable: false, width: '24px', align: 'right' },
+  {
+    id: 'delete',
+    label: 'Action',
+    sortable: false,
+    width: '24px',
+    align: 'right',
+  },
 ];
 
 export const defaultData = [
@@ -15,11 +52,10 @@ export const defaultData = [
     id: 'ironman',
     selected: false,
     rowData: {
-      title:
-        'Ironman batman Captain Marvel Superman ironman batman Captain Marvel Superman ironman batman',
+      title: 'Ironman batman Captain Marvel',
       hometown: 'Malibu',
       fans: 1,
-      delete: deleteIcon,
+      delete: actionItemArray,
     },
   },
   {
@@ -28,7 +64,7 @@ export const defaultData = [
       title: 'Batman',
       hometown: 'Gotham City',
       fans: 1012,
-      delete: deleteIcon,
+      delete: actionItemArray,
     },
   },
   {
@@ -37,7 +73,7 @@ export const defaultData = [
       title: 'Captain Marvel',
       hometown: 'Far Far Away',
       fans: 18,
-      delete: deleteIcon,
+      delete: actionItemArray,
     },
   },
   {
@@ -46,7 +82,7 @@ export const defaultData = [
       title: 'Superman',
       hometown: 'Metropolis',
       fans: 204,
-      delete: deleteIcon,
+      delete: actionItemArray,
     },
   },
 ];
