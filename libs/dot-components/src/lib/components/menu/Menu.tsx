@@ -10,6 +10,9 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledPopper } from './Menu.styles';
 
+const MENU_ITEM_HEIGHT = 31;
+const DEFAULT_MAX_VISIBLE_ITEMS = 7;
+
 export type PopperPlacement =
   | 'bottom-end'
   | 'bottom-start'
@@ -31,6 +34,8 @@ export interface MenuProps extends CommonProps {
   disablePortal?: boolean;
   /** Unique ID that ties a particular menu to a specific element */
   id: string;
+  /* Maximum number of visible menu items */
+  maxVisibleItems?: number;
   /** Array of items to be displayed inside the menu */
   menuItems: Array<MenuItemProps>;
   /** Determines the placement of the menu */
@@ -65,6 +70,7 @@ export const DotMenu = ({
   'data-testid': dataTestId,
   disablePortal,
   id,
+  maxVisibleItems = DEFAULT_MAX_VISIBLE_ITEMS,
   menuItems = [],
   menuPlacement = 'bottom',
   onLeave,
@@ -89,6 +95,16 @@ export const DotMenu = ({
     if (onLeave && (!anchorEl || !anchorEl.contains(event.currentTarget))) {
       onLeave(event);
     }
+  };
+
+  const calculateMaxHeight = (): number | undefined => {
+    let visibleItems = maxVisibleItems;
+    if (!maxVisibleItems || maxVisibleItems <= 0)
+      return DEFAULT_MAX_VISIBLE_ITEMS * MENU_ITEM_HEIGHT;
+    if (maxVisibleItems > menuItems.length) {
+      visibleItems = menuItems.length;
+    }
+    return visibleItems * MENU_ITEM_HEIGHT;
   };
 
   return (
@@ -119,6 +135,9 @@ export const DotMenu = ({
                 dense={true}
                 id={id}
                 onKeyDown={handleListKeyDown}
+                style={{
+                  height: calculateMaxHeight(),
+                }}
               >
                 {menuItems.map((item, index: number) => {
                   return (
