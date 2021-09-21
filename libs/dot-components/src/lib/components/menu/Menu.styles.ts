@@ -6,7 +6,7 @@ export const rootClassName = 'dot-menu';
 export const StyledPopper = styled(Popper)`
   ${({ theme }) => css`
     ul,
-    .list-subheader {
+    .action-item {
       background: ${
         theme.palette.product === 'agility' &&
         theme.palette.agilityInterface.menuBg
@@ -60,8 +60,16 @@ export const StyledPopper = styled(Popper)`
         height: 100%;
         margin: 0;
 
-        .dot-icon {
-          margin: ${theme.spacing(0, 3, 0, 0)};
+        .MuiButton-label {
+          gap: ${theme.spacing(3)}px;
+
+          .MuiButton-startIcon {
+            margin-left: 0;
+
+            .dot-icon {
+              flex-shrink: 0;
+            }
+          }
         }
       }
   `}
