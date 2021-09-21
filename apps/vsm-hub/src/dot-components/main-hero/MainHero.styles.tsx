@@ -7,29 +7,20 @@ export const rootClassName = 'dot-main-hero';
 export const imageRootClassName = 'dot-hero-image';
 export const actionToolbarRootClassName = 'dot-hero-action-toolbar';
 
-export const StyledHeroImage = styled.div`
-  ${({ theme }) => css`
-    &.${imageRootClassName} {
-    }
-  `}
-`;
-
 export const DotHeroBackground = ({
   actionToolbarContent,
   children,
   className,
 }: MainHeroProps) => {
   return (
-    <>
-      <StyledHeroImage className={`${imageRootClassName} ${className}`}>
-        {actionToolbarContent ? (
-          <DotActionToolbar className={actionToolbarRootClassName}>
-            {actionToolbarContent}
-          </DotActionToolbar>
-        ) : null}
-        {children}
-      </StyledHeroImage>
-    </>
+    <div className={`${imageRootClassName} ${className}`}>
+      {actionToolbarContent ? (
+        <DotActionToolbar className={actionToolbarRootClassName}>
+          {actionToolbarContent}
+        </DotActionToolbar>
+      ) : null}
+      {children}
+    </div>
   );
 };
 
