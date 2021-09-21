@@ -9,7 +9,7 @@ import {
   StyledTextField,
   rootClassName as textFieldRootClassName,
 } from '../input-form-fields/InputFormFields.styles';
-import { MenuList, Paper } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { renderActionItemButton } from '../menu/helper';
 import { ActionItem } from '../menu/Menu';
 
@@ -156,10 +156,12 @@ export const DotAutoComplete = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DotPopper = (props: any) => {
     if (!actionItem) return <StyledPopper {...props} />;
+    const paperProps = props.children.props;
+    const paperChildren = paperProps.children;
     return (
       <StyledPopper {...props}>
-        <Paper className="popper-paper">
-          <MenuList {...props.children.props} />
+        <Paper {...paperProps}>
+          {paperChildren}
           <div
             className="action-item"
             /* Add this to short circuit blur event (otherwise button click will not work):

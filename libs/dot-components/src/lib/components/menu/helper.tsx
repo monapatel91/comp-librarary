@@ -5,15 +5,8 @@ import { ActionItem } from './Menu';
 export const renderActionItemButton = (actionItem: ActionItem): ReactNode => {
   const { icon, text, onClick } = actionItem;
   return (
-    <div className="action-item">
-      <DotButton
-        fullWidth={true}
-        onClick={onClick}
-        startIcon={icon}
-        type="text"
-      >
-        {text}
-      </DotButton>
-    </div>
+    <DotButton fullWidth={true} onClick={onClick} startIcon={icon} type="text">
+      {text}
+    </DotButton>
   );
 };
