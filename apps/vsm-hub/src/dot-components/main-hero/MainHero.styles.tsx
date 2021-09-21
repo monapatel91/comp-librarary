@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { MainHeroProps } from './MainHero';
-import { DotActionToolbar } from '@digital-ai/dot-components';
+import { DotActionToolbar, themeVariables } from '@digital-ai/dot-components';
 
 export const rootClassName = 'dot-main-hero';
 export const imageRootClassName = 'dot-hero-image';
@@ -45,7 +45,7 @@ export const StyledMainHero = styled(DotHeroBackground)`
         top: 50%;
         left: 50%;
         width: 80%;
-        z-index: 10;
+        z-index: ${themeVariables.levelSecond};
         transform: translate(-50%, -50%);
         .hero-message-title {
           color: ${theme.palette.success[500]};
