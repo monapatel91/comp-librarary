@@ -10,7 +10,6 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledPopper } from './Menu.styles';
 import { DotButton } from '../button/Button';
-import { DotIcon } from '../icon/Icon';
 
 const MENU_ITEM_HEIGHT = 31;
 const DEFAULT_MAX_VISIBLE_ITEMS = 7;
@@ -29,7 +28,15 @@ export type PopperPlacement =
   | 'top-start'
   | 'top';
 
+export interface ActionItem {
+  icon: ReactNode;
+  onClick: () => void;
+  text: string;
+}
+
 export interface MenuProps extends CommonProps {
+  /** Action button as the last element on the menu **/
+  actionItem?: ActionItem;
   /** Element that menu is attached to */
   anchorEl?: Element;
   /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
@@ -66,6 +73,7 @@ export interface MenuItemProps {
 }
 
 export const DotMenu = ({
+  actionItem,
   anchorEl,
   ariaLabel,
   className,
@@ -107,6 +115,22 @@ export const DotMenu = ({
       visibleItems = menuItems.length;
     }
     return visibleItems * MENU_ITEM_HEIGHT;
+  };
+
+  const renderActionItem = (menuActionItem: ActionItem): ReactNode => {
+    const { icon, text, onClick } = menuActionItem;
+    return (
+      <div className="action-item">
+        <DotButton
+          fullWidth={true}
+          onClick={onClick}
+          startIcon={icon}
+          type="text"
+        >
+          {text}
+        </DotButton>
+      </div>
+    );
   };
 
   return (
@@ -155,15 +179,7 @@ export const DotMenu = ({
                     );
                   })}
                 </MenuList>
-                <div className="action-item">
-                  <DotButton
-                    fullWidth={true}
-                    type="text"
-                    startIcon={<DotIcon fontSize="small" iconId="add" />}
-                  >
-                    Add new server
-                  </DotButton>
-                </div>
+                {actionItem && renderActionItem(actionItem)}
               </>
             </ClickAwayListener>
           </Paper>

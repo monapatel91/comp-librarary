@@ -2,9 +2,10 @@ import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import { DotLink } from '../link/Link';
-import { DotMenu, MenuProps } from './Menu';
+import { ActionItem, DotMenu, MenuProps } from './Menu';
 import { DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
+import { DotIcon } from '../icon/Icon';
 
 const onLeave = (evt, setOpen) => {
   setOpen(false);
@@ -34,6 +35,11 @@ export const Default: Story<MenuProps> = (args) => {
   };
   const handleLeave = (evt) => {
     setOpen(false);
+  };
+  const actionItem: ActionItem = {
+    icon: <DotIcon fontSize="small" iconId="add" />,
+    text: 'Add new option',
+    onClick: () => alert('New option added'),
   };
   const menuItems = [
     {
@@ -81,6 +87,7 @@ export const Default: Story<MenuProps> = (args) => {
   return (
     <DotMenu
       {...args}
+      actionItem={actionItem}
       menuItems={menuItems}
       onLeave={handleLeave}
       onSelect={onItemSelect}
