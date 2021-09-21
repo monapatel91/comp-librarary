@@ -40,32 +40,25 @@ describe('Link', () => {
 
   it('should have an href is one is passed', () => {
     render(<DotLink href="someplace/cool">Sample Link</DotLink>);
-    expect(
-      screen.getByText('Sample Link').closest('a').getAttributeNode('href')
-        .value
-    ).toEqual('someplace/cool');
+    const Link = screen.getByText('Sample Link');
+    expect(Link.closest('a').getAttributeNode('href').value).toEqual(
+      'someplace/cool'
+    );
   });
 
   it('should call onClick if one is passed down as a prop', () => {
-    render(
-      <DotLink href="#" onClick={onClick}>
-        Sample Link
-      </DotLink>
-    );
+    render(<DotLink onClick={onClick}>Sample Link</DotLink>);
 
     userEvent.click(screen.getByText('Sample Link'));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it('should override href if onClick is passed', () => {
-    render(
-      <DotLink href="someplace/cool" onClick={onClick}>
-        Sample Link
-      </DotLink>
-    );
-    expect(
-      screen.getByText('Sample Link').closest('a').getAttributeNode('href')
-    ).toEqual(null);
+  it('should trigger onClick if Enter key is pressed while focused', () => {
+    render(<DotLink onClick={onClick}>Sample Link</DotLink>);
+    const Link = screen.getByText('Sample Link');
+
+    userEvent.type(Link, '{enter}');
+    expect(onClick).toHaveBeenCalledTimes(3);
   });
 
   it("should have 'aria-label' attribute with correct value", () => {

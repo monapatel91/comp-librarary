@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactNode } from 'react';
+import React, { Event, KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledLink } from './Link.styles';
@@ -22,7 +22,7 @@ export interface LinkProps extends CommonProps {
   /** href for the link. */
   href?: string;
   /** event callback */
-  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  onClick?: (event: Event<HTMLAnchorElement>) => void;
   /** mouse enter event callback */
   onMouseEnter?: (event: MouseEvent<HTMLAnchorElement>) => void;
   /** specifies the relationship between the current document and the linked document */
@@ -54,15 +54,23 @@ export const DotLink = ({
 }: LinkProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
+  const handleKeyPress = (event: Event<Element>) => {
+    if (onClick && event.key === 'Enter') {
+      event.preventDefault();
+      onClick(event);
+    }
+  };
+
   return (
     <StyledLink
       aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       color={color}
       data-testid={dataTestId}
-      href={onClick ? null : href}
+      href={href}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
+      onKeyPress={handleKeyPress}
       rel={rel}
       tabIndex={tabIndex}
       target={target}
