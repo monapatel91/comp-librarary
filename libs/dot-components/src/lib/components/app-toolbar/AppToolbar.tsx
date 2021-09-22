@@ -45,7 +45,7 @@ export const DotAppToolbar = ({
   'data-testid': dataTestId,
   navItems = [],
   mainMenu,
-  mainMenuItems = [],
+  mainMenuItems = null,
   mainMenuWidth = 240,
 }: AppToolbarProps) => {
   const [menuOpen, updateMenuOpen] = useState(false);
