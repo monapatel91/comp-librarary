@@ -13,6 +13,7 @@ import {
 export type autoCompleteSize = 'medium' | 'small';
 export type AutoCompleteValue =
   | string
+  | string[]
   | AutoCompleteOption
   | AutoCompleteOption[];
 
@@ -33,7 +34,11 @@ export const parseAutoCompleteValue = (value: AutoCompleteValue) => {
       if (index !== 0) {
         titles += ',';
       }
-      titles += val.title ? val.title : val;
+      if (typeof val === 'string') {
+        titles += val;
+      } else {
+        titles += val.title;
+      }
     });
     return titles;
   } else if (value && value.title) {
