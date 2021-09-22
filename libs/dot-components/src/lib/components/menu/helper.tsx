@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { DotButton } from '@digital-ai/dot-components';
+import { DotButton } from '../button/Button';
 import { ActionItem } from './Menu';
 
 export const renderActionItemButton = (actionItem: ActionItem): ReactNode => {
