@@ -102,6 +102,7 @@ export const DotMenu = ({
   };
 
   const handleClickAway = (event: MouseEvent<never>) => {
+    console.log('here');
     if (onLeave && (!anchorEl || !anchorEl.contains(event.currentTarget))) {
       onLeave(event);
     }
@@ -143,33 +144,31 @@ export const DotMenu = ({
         >
           <Paper>
             <ClickAwayListener onClickAway={handleClickAway}>
-              <>
-                <MenuList
-                  autoFocusItem={open}
-                  className="dot-ul"
-                  dense={true}
-                  id={id}
-                  onKeyDown={handleListKeyDown}
-                  style={{
-                    height: calculateMaxHeight(),
-                  }}
-                >
-                  {menuItems.map((item, index: number) => {
-                    return (
-                      <MenuItem
-                        aria-label={item.ariaLabel}
-                        className={`dot-li ${item.classes ? item.classes : ''}`}
-                        onClick={(event) => handleSelect(event, item.key)}
-                        key={index}
-                      >
-                        {item.children}
-                      </MenuItem>
-                    );
-                  })}
-                </MenuList>
-                {actionItem && renderActionItem(actionItem)}
-              </>
+              <MenuList
+                autoFocusItem={open}
+                className="dot-ul"
+                dense={true}
+                id={id}
+                onKeyDown={handleListKeyDown}
+                style={{
+                  height: calculateMaxHeight(),
+                }}
+              >
+                {menuItems.map((item, index: number) => {
+                  return (
+                    <MenuItem
+                      aria-label={item.ariaLabel}
+                      className={`dot-li ${item.classes ? item.classes : ''}`}
+                      onClick={(event) => handleSelect(event, item.key)}
+                      key={index}
+                    >
+                      {item.children}
+                    </MenuItem>
+                  );
+                })}
+              </MenuList>
             </ClickAwayListener>
+            {actionItem && renderActionItem(actionItem)}
           </Paper>
         </Grow>
       )}
