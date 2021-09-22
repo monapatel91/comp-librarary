@@ -68,7 +68,7 @@ export const DotLink = ({
       color={color}
       data-testid={dataTestId}
       href={href}
-      onClick={() => onClick}
+      onClick={onClick}
       onMouseEnter={onMouseEnter}
       onKeyPress={handleKeyPress}
       rel={rel}

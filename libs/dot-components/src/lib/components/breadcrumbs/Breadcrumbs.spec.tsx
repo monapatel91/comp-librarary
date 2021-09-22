@@ -7,15 +7,15 @@ import { LinkUnderline } from '../link/Link';
 describe('Breadcrumbs', () => {
   const onClick = jest.fn();
   const dummyItems: Array<BreadcrumbItem> = [
-    { ariaLabel: 'link-1', href: '#', onClick: onClick, text: 'Link 1' },
-    { ariaLabel: 'link-2', href: '#', onClick: onClick, text: 'Link 2' },
-    { ariaLabel: 'link-3', href: '#', onClick: onClick, text: 'Link 3' },
+    { ariaLabel: 'link-1', href: '/', onClick: onClick, text: 'Link 1' },
+    { ariaLabel: 'link-2', href: '/', onClick: onClick, text: 'Link 2' },
+    { ariaLabel: 'link-3', href: '/', onClick: onClick, text: 'Link 3' },
   ];
   const dummyItemsNoOnClick: Array<BreadcrumbItem> = [
-    { ariaLabel: 'link-1', href: '#', text: 'Link 1' },
-    { ariaLabel: 'link-2', href: '#', text: 'Link 2' },
-    { ariaLabel: 'link-3', href: '#', text: 'Link 3' },
-    { ariaLabel: 'link-4', href: '#', text: 'Link 4' },
+    { ariaLabel: 'link-1', href: '/', text: 'Link 1' },
+    { ariaLabel: 'link-2', href: '/', text: 'Link 2' },
+    { ariaLabel: 'link-3', href: '/', text: 'Link 3' },
+    { ariaLabel: 'link-4', href: '/', text: 'Link 4' },
   ];
 
   const getBreadcrumbItem = (text: string): HTMLElement =>
@@ -82,7 +82,6 @@ describe('Breadcrumbs', () => {
 
   it('should call onClick if one is passed down as a prop', () => {
     render(<DotBreadcrumbs items={dummyItems} />);
-
     userEvent.click(screen.getByText('Link 2'));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
