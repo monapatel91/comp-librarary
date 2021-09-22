@@ -77,7 +77,7 @@ export interface AutoCompleteProps extends CommonProps {
     reason: string
   ) => void;
   /** pre-defined options available to the user */
-  options: Array<AutoCompleteOption>;
+  options?: Array<AutoCompleteOption>;
   /** Placeholder text always displayed inside the input field */
   placeholder?: string;
   /** Determines the padding within the input field 'medium' or 'small' */
