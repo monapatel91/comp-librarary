@@ -10,9 +10,8 @@ import {
 } from './Link';
 
 describe('Link', () => {
-  const onClick = jest.fn();
-
   it('should have unchanged API', () => {
+    const onClick = jest.fn();
     const onMouseEnter = jest.fn();
     const props = {
       ariaLabel: 'my link',
@@ -40,6 +39,7 @@ describe('Link', () => {
 
   it('should have an href is one is passed', () => {
     render(<DotLink href="someplace/cool">Sample Link</DotLink>);
+
     expect(
       screen.getByText('Sample Link').closest('a').getAttributeNode('href')
         .value
@@ -47,25 +47,19 @@ describe('Link', () => {
   });
 
   it('should call onClick if one is passed down as a prop', () => {
-    render(
-      <DotLink href="#" onClick={onClick}>
-        Sample Link
-      </DotLink>
-    );
+    const onClick = jest.fn();
+    render(<DotLink onClick={onClick}>Sample Link</DotLink>);
 
     userEvent.click(screen.getByText('Sample Link'));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it('should override href if onClick is passed', () => {
-    render(
-      <DotLink href="someplace/cool" onClick={onClick}>
-        Sample Link
-      </DotLink>
-    );
-    expect(
-      screen.getByText('Sample Link').closest('a').getAttributeNode('href')
-    ).toEqual(null);
+  it('should trigger onClick if Enter key is pressed while focused', () => {
+    const onClick = jest.fn();
+    render(<DotLink onClick={onClick}>Sample Link</DotLink>);
+
+    userEvent.type(screen.getByText('Sample Link'), '{enter}');
+    expect(onClick).toHaveBeenCalledTimes(2);
   });
 
   it("should have 'aria-label' attribute with correct value", () => {
@@ -75,7 +69,6 @@ describe('Link', () => {
         Link
       </DotLink>
     );
-    const linkElement = screen.getByRole('link');
-    expect(linkElement).toHaveAttribute('aria-label', ariaLabel);
+    expect(screen.getByRole('link')).toHaveAttribute('aria-label', ariaLabel);
   });
 });
