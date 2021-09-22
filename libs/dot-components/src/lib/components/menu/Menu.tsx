@@ -29,6 +29,7 @@ export type PopperPlacement =
   | 'top';
 
 export interface ActionItem {
+  disableRipple?: boolean;
   icon: ReactNode;
   onClick: () => void;
   text: string;
