@@ -2,6 +2,7 @@ import React, { ChangeEvent } from 'react';
 import { useState, FormEvent } from 'react';
 import {
   CheckboxProps,
+  DotAutoComplete,
   DotButton,
   DotCheckboxGroup,
   DotForm,
@@ -157,6 +158,16 @@ export const DemoForm = () => {
               onChange={handleChange}
               options={['', 'React Dev', 'Angular Dev', 'Other Dev']}
               error={errors.devType && errors.devType !== ''}
+            />
+
+            <DotAutoComplete
+              inputId="autocomplete"
+              label="Super Heroes"
+              options={[
+                { title: 'Batman' },
+                { title: 'Robin' },
+                { title: 'Spiderman' },
+              ]}
             />
 
             <DotRadioGroup

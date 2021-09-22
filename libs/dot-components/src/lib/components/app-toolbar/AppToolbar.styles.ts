@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
+import { levelFourth } from '../../theme-provider/common/variables';
 import { DotDrawer } from '../drawer/Drawer';
 
 export const rootClassName = 'dot-app-toolbar';
 
 export const StyledMainMenu = styled(DotDrawer)`
-  ${({ theme }) => css`
+  ${() => css`
     &.dot-main-menu .dot-drawer-paper {
       top: 52px;
       padding: 0;
@@ -27,7 +28,7 @@ export const StyledAppToolbar = styled.header`
       padding-left: ${theme.spacing(0.5)}px;
       position: fixed;
       width: 100%;
-      z-index: 9999;
+      z-index: ${levelFourth};
       top: 0;
       left: 0;
       right: 0;

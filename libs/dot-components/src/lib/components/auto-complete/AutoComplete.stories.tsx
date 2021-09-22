@@ -24,6 +24,9 @@ export default {
   title: 'Components/Auto Complete',
   component: DotAutoComplete,
   argTypes: {
+    freesolo: {
+      defaultValue: true,
+    },
     inputId: {
       defaultValue: 'input-id',
     },

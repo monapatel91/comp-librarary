@@ -16,6 +16,7 @@ import { ActionItem } from '../menu/Menu';
 export type autoCompleteSize = 'medium' | 'small';
 export type AutoCompleteValue =
   | string
+  | string[]
   | AutoCompleteOption
   | AutoCompleteOption[];
 
@@ -36,7 +37,11 @@ export const parseAutoCompleteValue = (value: AutoCompleteValue) => {
       if (index !== 0) {
         titles += ',';
       }
-      titles += val.title ? val.title : val;
+      if (typeof val === 'string') {
+        titles += val;
+      } else {
+        titles += val.title;
+      }
     });
     return titles;
   } else if (value && value.title) {
@@ -77,7 +82,7 @@ export interface AutoCompleteProps extends CommonProps {
     reason: string
   ) => void;
   /** pre-defined options available to the user */
-  options: Array<AutoCompleteOption>;
+  options?: Array<AutoCompleteOption>;
   /** Placeholder text always displayed inside the input field */
   placeholder?: string;
   /** Determines the padding within the input field 'medium' or 'small' */

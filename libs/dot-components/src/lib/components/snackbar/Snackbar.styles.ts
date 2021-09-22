@@ -1,5 +1,6 @@
 import { Snackbar } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { levelFourth } from '../../theme-provider/common/variables';
 import { SnackbarSeverity } from './Snackbar';
 
 export const rootClassName = 'dot-snackbar';
@@ -23,7 +24,7 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
     }
     &.MuiSnackbar-anchorOriginTopRight{
       top: 0px;
-      z-index: 999;
+      z-index: ${levelFourth};
     }
     .MuiAlert-root {
       &.MuiAlert-standardInfo{
@@ -38,7 +39,7 @@ export const StyledSnackbar = styled(Snackbar)<StyledProps>`
       max-width: 500px;
       min-width: 344px;
       color: ${theme.palette.layer.n0};
-      z-index: 999;
+      z-index: ${levelFourth};
       position: relative;
       margin-top: 108px;
       background-color: ${(props: StyledProps) =>
