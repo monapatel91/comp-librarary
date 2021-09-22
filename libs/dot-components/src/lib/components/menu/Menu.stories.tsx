@@ -11,6 +11,12 @@ const onLeave = (evt, setOpen) => {
   setOpen(false);
 };
 
+const actionItem: ActionItem = {
+  icon: <DotIcon fontSize="small" iconId="add" />,
+  text: 'Add new option',
+  onClick: () => alert('New option added'),
+};
+
 export default {
   title: 'Components/Menu',
   component: DotMenu,
@@ -21,6 +27,9 @@ export default {
     menuPlacement: {
       defaultValue: 'bottom',
       name: 'Menu Placement',
+    },
+    actionItem: {
+      defaultValue: actionItem,
     },
   },
 } as Meta;
@@ -35,11 +44,6 @@ export const Default: Story<MenuProps> = (args) => {
   };
   const handleLeave = (evt) => {
     setOpen(false);
-  };
-  const actionItem: ActionItem = {
-    icon: <DotIcon fontSize="small" iconId="add" />,
-    text: 'Add new option',
-    onClick: () => alert('New option added'),
   };
   const menuItems = [
     {
@@ -87,7 +91,6 @@ export const Default: Story<MenuProps> = (args) => {
   return (
     <DotMenu
       {...args}
-      actionItem={actionItem}
       menuItems={menuItems}
       onLeave={handleLeave}
       onSelect={onItemSelect}
