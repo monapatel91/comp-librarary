@@ -51,7 +51,7 @@ export const StyledPopper = styled(Popper)`
       };
       line-height: inherit;
 
-      &, button {
+      button {
         border-radius: ${theme.spacing(0, 0, 0.5, 0.5)};
       }
 
