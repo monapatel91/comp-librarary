@@ -25,6 +25,7 @@ export const DotButton = ({
   fullWidth = false,
   isSubmit = false,
   onClick,
+  inputRef,
   size = 'medium',
   startIcon,
   titleTooltip,
@@ -65,6 +66,7 @@ export const DotButton = ({
       endIcon={endIcon}
       fullWidth={fullWidth}
       onClick={(event) => onClick && onClick(event)}
+      ref={inputRef}
       title={titleTooltip}
       variant={variant}
       size={size}

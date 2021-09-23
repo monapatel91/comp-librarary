@@ -1,4 +1,11 @@
-import React, { useState, ChangeEvent, Ref, MouseEvent } from 'react';
+import React, {
+  useState,
+  ChangeEvent,
+  Ref,
+  MouseEvent,
+  useRef,
+  ReactNode,
+} from 'react';
 import { AutocompleteGetTagProps } from '@material-ui/lab';
 import { rootClassName, StyledAutocomplete } from './AutoComplete.styles';
 import { StyledPopper } from '../menu/Menu.styles';
@@ -10,7 +17,14 @@ import {
   rootClassName as textFieldRootClassName,
 } from '../input-form-fields/InputFormFields.styles';
 import { Paper } from '@material-ui/core';
-import { ActionItem, renderActionItemButton } from './helper';
+import { DotButton } from '../button/Button';
+
+export interface ActionItem {
+  disableRipple?: boolean;
+  icon: ReactNode;
+  onClick: () => void;
+  text: string;
+}
 
 export type autoCompleteSize = 'medium' | 'small';
 export type AutoCompleteValue =
@@ -114,11 +128,20 @@ export const DotAutoComplete = ({
   const [showPlaceholder, setShowPlaceholder] = useState(
     !value && !defaultValue
   );
+  const [isOpened, setIsOpened] = useState<boolean>(false);
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   const textFieldRootClasses = useStylesWithRootClass(
     textFieldRootClassName,
     className
   );
+
+  // Used for focus management while popper is opened
+  const actionItemRef = useRef<HTMLInputElement>();
+  // Additional ref which will be used if 'inputRef' prop is not defined
+  const autocompleteInputRef = useRef<HTMLInputElement>();
+  // This way we will always have ref to the autocomplete input
+  const textFieldRef = inputRef || autocompleteInputRef;
+
   const getChips = (
     values: Array<AutoCompleteOption | string>,
     getTagProps: AutocompleteGetTagProps
@@ -156,12 +179,24 @@ export const DotAutoComplete = ({
         })
       : options;
   };
+  const getElementFromInputRef = () =>
+    'current' in textFieldRef && textFieldRef.current;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DotPopper = (props: any) => {
     if (!actionItem) return <StyledPopper {...props} />;
+    const { icon, text, onClick, disableRipple = false } = actionItem;
     const paperProps = props.children.props;
     const paperChildren = paperProps.children;
+
+    const onActionButtonClick = () => {
+      setIsOpened(false);
+      const inputElement = getElementFromInputRef();
+      // Focus autocomplete input element if its reference exists
+      inputElement?.focus();
+      onClick();
+    };
+
     return (
       <StyledPopper {...props}>
         <Paper {...paperProps}>
@@ -170,9 +205,33 @@ export const DotAutoComplete = ({
             className="action-item"
             /* Add this to short circuit blur event (otherwise button click will not work):
              * https://github.com/mui-org/material-ui/issues/19038 */
-            onMouseDown={(e: MouseEvent<HTMLDivElement>) => e.preventDefault()}
+            onMouseDown={(e: MouseEvent<HTMLDivElement>) => {
+              console.log('here');
+              e.preventDefault();
+            }}
+            onKeyDown={(event) => {
+              const inputElement = getElementFromInputRef();
+              if (event.key === 'Tab' && inputElement) {
+                event.preventDefault();
+                inputElement.focus();
+              }
+            }}
+            onBlur={(event) => {
+              // We want to close the popper each time focus is shifted from action item
+              event.relatedTarget !== actionItemRef.current &&
+                setIsOpened(false);
+            }}
           >
-            {renderActionItemButton(actionItem)}
+            <DotButton
+              disableRipple={disableRipple}
+              fullWidth={true}
+              onClick={onActionButtonClick}
+              inputRef={actionItemRef}
+              startIcon={icon}
+              type="text"
+            >
+              {text}
+            </DotButton>
           </div>
         </Paper>
       </StyledPopper>
@@ -193,11 +252,23 @@ export const DotAutoComplete = ({
       }
       groupBy={group ? (option: AutoCompleteOption) => option.group : undefined}
       multiple={multiple}
-      onChange={(_event, val: AutoCompleteValue, reason) =>
-        valuesChanged({ _event, val, reason })
-      }
+      onChange={(_event, val: AutoCompleteValue, reason) => {
+        valuesChanged({ _event, val, reason });
+        setIsOpened(false);
+      }}
+      open={isOpened}
       options={sortOptions()}
       PopperComponent={DotPopper}
+      onOpen={() => setIsOpened(true)}
+      onClose={(event) => {
+        // We want to close popper in each occasion where focus isn't set to action item
+        if (
+          event instanceof FocusEvent &&
+          event.relatedTarget !== actionItemRef.current
+        ) {
+          setIsOpened(false);
+        }
+      }}
       renderInput={(params) => (
         // We are not using DotInputText here because the {...params} spread
         // passed to renderInput includes inputProps and InputProps properties
@@ -216,12 +287,19 @@ export const DotAutoComplete = ({
           error={error}
           helperText={helperText}
           id={inputId}
-          inputRef={inputRef}
+          inputRef={textFieldRef}
           label={label}
           name={label}
           placeholder={showPlaceholder ? placeholder : undefined}
           required={false}
           variant="outlined"
+          onKeyDown={(event) => {
+            // Intercept 'tab' key press while action item element exists
+            if (event.key === 'Tab' && actionItemRef.current) {
+              event.preventDefault();
+              actionItemRef?.current?.focus();
+            }
+          }}
         />
       )}
       renderTags={

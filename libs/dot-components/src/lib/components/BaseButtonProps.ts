@@ -1,4 +1,4 @@
-import { MouseEvent, KeyboardEvent } from 'react';
+import { MouseEvent, KeyboardEvent, Ref } from 'react';
 import { CommonProps } from './CommonProps';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
@@ -17,6 +17,8 @@ export interface BaseButtonProps extends CommonProps {
   isSubmit?: boolean;
   /** Event callback */
   onClick?: (event: MouseEvent<Element> | KeyboardEvent<Element>) => void;
+  /** Provides a way to access the button element */
+  inputRef?: Ref<HTMLInputElement>;
   /** The size of the button */
   size?: ButtonSize;
   /** Help text to be displayed on hover */
