@@ -9,7 +9,6 @@ import {
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledPopper } from './Menu.styles';
-import { renderActionItemButton } from './helper';
 
 const MENU_ITEM_HEIGHT = 31;
 const DEFAULT_MAX_VISIBLE_ITEMS = 7;
@@ -28,16 +27,7 @@ export type PopperPlacement =
   | 'top-start'
   | 'top';
 
-export interface ActionItem {
-  disableRipple?: boolean;
-  icon: ReactNode;
-  onClick: () => void;
-  text: string;
-}
-
 export interface MenuProps extends CommonProps {
-  /** Action button as the last element on the menu **/
-  actionItem?: ActionItem;
   /** Element that menu is attached to */
   anchorEl?: Element;
   /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
@@ -74,7 +64,6 @@ export interface MenuItemProps {
 }
 
 export const DotMenu = ({
-  actionItem,
   anchorEl,
   ariaLabel,
   className,
@@ -117,10 +106,6 @@ export const DotMenu = ({
     }
     return visibleItems * MENU_ITEM_HEIGHT;
   };
-
-  const renderActionItem = (menuActionItem: ActionItem): ReactNode => (
-    <div className="action-item">{renderActionItemButton(menuActionItem)}</div>
-  );
 
   return (
     <StyledPopper
@@ -168,7 +153,6 @@ export const DotMenu = ({
                 })}
               </MenuList>
             </ClickAwayListener>
-            {actionItem && renderActionItem(actionItem)}
           </Paper>
         </Grow>
       )}

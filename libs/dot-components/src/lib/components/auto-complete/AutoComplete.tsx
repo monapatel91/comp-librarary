@@ -10,8 +10,7 @@ import {
   rootClassName as textFieldRootClassName,
 } from '../input-form-fields/InputFormFields.styles';
 import { Paper } from '@material-ui/core';
-import { renderActionItemButton } from '../menu/helper';
-import { ActionItem } from '../menu/Menu';
+import { ActionItem, renderActionItemButton } from './helper';
 
 export type autoCompleteSize = 'medium' | 'small';
 export type AutoCompleteValue =

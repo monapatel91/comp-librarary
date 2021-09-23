@@ -2,19 +2,12 @@ import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import { DotLink } from '../link/Link';
-import { ActionItem, DotMenu, MenuProps } from './Menu';
+import { DotMenu, MenuProps } from './Menu';
 import { DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
-import { DotIcon } from '../icon/Icon';
 
 const onLeave = (evt, setOpen) => {
   setOpen(false);
-};
-
-const actionItem: ActionItem = {
-  icon: <DotIcon fontSize="small" iconId="add" />,
-  text: 'Add new option',
-  onClick: () => alert('New option added'),
 };
 
 export default {
@@ -27,9 +20,6 @@ export default {
     menuPlacement: {
       defaultValue: 'bottom',
       name: 'Menu Placement',
-    },
-    actionItem: {
-      defaultValue: actionItem,
     },
   },
 } as Meta;
