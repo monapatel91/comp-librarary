@@ -1,5 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { action } from '@storybook/addon-actions';
 
 import { DotLink, LinkProps } from './Link';
 import { DotTypography } from '../typography/Typography';
@@ -8,7 +9,12 @@ export default {
   title: 'Components/Link',
   component: DotLink,
   argTypes: {
+    href: { defaultValue: 'http://www.google.com' },
     children: { defaultValue: 'Sample Link' },
+    onClick: {
+      defaultValue: action('click'),
+    },
+    target: { defaultValue: '_blank' },
   },
 } as Meta;
 
