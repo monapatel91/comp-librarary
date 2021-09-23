@@ -74,25 +74,22 @@ export const DotBodyCell = ({
 
   // Logic to determine action column as menu or icon button
   const getActionColumn = () => {
-    const actionColumn = document.getElementsByClassName('actionItems');
     const iconBtnWidth = document.getElementsByClassName('dot-icon-btn');
-    console.log(Array.isArray(value) && value);
+
     const getTotalActionItem =
       Array.isArray(value) && value[0].iconActions.length;
-
     const actionTableCellWidth =
       getTotalActionItem *
-      (iconBtnWidth.length > 0 && iconBtnWidth[0].clientWidth);
+        (iconBtnWidth.length > 0 && iconBtnWidth[0].clientWidth) +
+      16 * 2;
 
-    Array.from(actionColumn).forEach((column) => {
-      const isOverflowing =
-        column.clientWidth < wrapperRef?.current.clientWidth;
-      if (isOverflowing) {
-        setShowMenu(true);
-      } else {
-        setShowMenu(false);
-      }
-    });
+    const isOverflowing =
+      actionTableCellWidth > wrapperRef?.current.clientWidth;
+    if (isOverflowing) {
+      setShowMenu(true);
+    } else {
+      setShowMenu(false);
+    }
   };
   const handleToggle = () => {
     setOpen(!open);
@@ -111,7 +108,7 @@ export const DotBodyCell = ({
       data-testid={dataTestId}
       key={id}
     >
-      <div ref={wrapperRef} style={{ minWidth: 88 }}>
+      <div ref={wrapperRef} style={{ width: '100%' }}>
         {Array.isArray(value)
           ? showMenu
             ? value.map((item) => (
