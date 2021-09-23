@@ -104,7 +104,11 @@ export const UserTable = () => {
       },
     }));
 
-    return <DotTable ariaLabel="users table" columns={columns} data={data} />;
+    return (
+      <div style={{ margin: 20 }}>
+        <DotTable ariaLabel="users table" columns={columns} data={data} />
+      </div>
+    );
   };
 
   return <UsersTable />;
