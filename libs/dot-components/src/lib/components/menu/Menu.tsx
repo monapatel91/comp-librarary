@@ -99,8 +99,9 @@ export const DotMenu = ({
 
   const calculateMaxHeight = (): number | undefined => {
     let visibleItems = maxVisibleItems;
-    if (!maxVisibleItems || maxVisibleItems <= 0)
+    if (!maxVisibleItems || maxVisibleItems <= 0) {
       return DEFAULT_MAX_VISIBLE_ITEMS * MENU_ITEM_HEIGHT;
+    }
     if (maxVisibleItems > menuItems.length) {
       visibleItems = menuItems.length;
     }
