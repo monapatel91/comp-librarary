@@ -87,6 +87,12 @@ describe(' AppToolbar', () => {
     expect(appToolbarElement).toHaveAttribute('aria-label', ariaLabel);
   });
 
+  it('should not display main menu if mainMenu and MainMenuItems are undefined', () => {
+    render(<DotAppToolbar />);
+    const mainMenuIcon = screen.queryByTestId('main-menu-icon');
+    expect(mainMenuIcon).not.toBeInTheDocument();
+  });
+
   it('should show/hide main menu when icon clicked', () => {
     render(<DotAppToolbar mainMenuItems={mainMenuItems} />);
     const mainMenuIcon = screen.getByTestId('main-menu-icon');
