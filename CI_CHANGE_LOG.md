@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.0.12](https://github.com/digital-ai/dot-components/tree/1.0.12) (09/23/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.11...1.0.12)
+
+**Fixed bugs:**
+
+- `DotAppToobar` has z-index higher than autocomplete [\#669](https://github.com/digital-ai/dot-components/issues/669)
+- `Link` component is not triggered on `Enter` key [\#630](https://github.com/digital-ai/dot-components/issues/630)
+- `AutoComplete` component has incorrectly typed `AutoCompleteValue` in `onChange` signature [\#627](https://github.com/digital-ai/dot-components/issues/627)
+
+**Merged pull requests:**
+
+- Next Release [\#689](https://github.com/digital-ai/dot-components/pull/689) ([CWSites](https://github.com/CWSites))
+- D-18817: set mainMenuItems to `null` by default [\#688](https://github.com/digital-ai/dot-components/pull/688) ([CWSites](https://github.com/CWSites))
+- D-18664: update link to allow for keypress [\#686](https://github.com/digital-ai/dot-components/pull/686) ([CWSites](https://github.com/CWSites))
+- D-18665: AppToolbar z-index update [\#685](https://github.com/digital-ai/dot-components/pull/685) ([CWSites](https://github.com/CWSites))
+- D-18663: Update AutoComplete value typing [\#684](https://github.com/digital-ai/dot-components/pull/684) ([CWSites](https://github.com/CWSites))
+- Bring `master` back into `develop` [\#683](https://github.com/digital-ai/dot-components/pull/683) ([CWSites](https://github.com/CWSites))
+- S-78051: Feedback on Navigation Rail component [\#681](https://github.com/digital-ai/dot-components/pull/681) ([dmiletic85](https://github.com/dmiletic85))
+
 ## [1.0.11](https://github.com/digital-ai/dot-components/tree/1.0.11) (09/16/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.10...1.0.11)
@@ -194,6 +214,7 @@
 - New icons 27 5 2021 [\#564](https://github.com/digital-ai/dot-components/pull/564) ([BojanKocijan](https://github.com/BojanKocijan))
 - Add isUnderToolbar property to Sidebar for use beneath AppToolbar [\#560](https://github.com/digital-ai/dot-components/pull/560) ([selsemore](https://github.com/selsemore))
 - Move approved components to "Stable" [\#559](https://github.com/digital-ai/dot-components/pull/559) ([CWSites](https://github.com/CWSites))
+- Deploy Latest `master` [\#558](https://github.com/digital-ai/dot-components/pull/558) ([CWSites](https://github.com/CWSites))
 - merging master \> develop [\#557](https://github.com/digital-ai/dot-components/pull/557) ([CWSites](https://github.com/CWSites))
 - S-75998: \[PB Tech Debt\] Avoid unnecessary form re-renders when typing application name [\#556](https://github.com/digital-ai/dot-components/pull/556) ([dmiletic85](https://github.com/dmiletic85))
 - S-75991: \[PB Tech Debt\] Refactor and improve wrapper component in demo app [\#546](https://github.com/digital-ai/dot-components/pull/546) ([dmiletic85](https://github.com/dmiletic85))
@@ -275,7 +296,6 @@
 
 **Merged pull requests:**
 
-- Deploy Latest `master` [\#558](https://github.com/digital-ai/dot-components/pull/558) ([CWSites](https://github.com/CWSites))
 - Issue \#553: Add README.md example for using theme colors and spacing [\#554](https://github.com/digital-ai/dot-components/pull/554) ([selsemore](https://github.com/selsemore))
 - Issue \#527: resolve various issues [\#529](https://github.com/digital-ai/dot-components/pull/529) ([CWSites](https://github.com/CWSites))
 
