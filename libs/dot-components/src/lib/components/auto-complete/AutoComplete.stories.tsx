@@ -2,20 +2,19 @@ import React, { ChangeEvent, createRef, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import {
+  ActionItem,
   DotAutoComplete,
   AutoCompleteProps,
   parseAutoCompleteValue,
   AutoCompleteValue,
 } from './AutoComplete';
-import { ActionItem } from '../menu/Menu';
-import { DotIcon } from '../icon/Icon';
 
 const batman = { group: 'D.C.', title: 'Batman', error: true };
 
 const defaultValueWithError = [batman];
 
 const actionItem: ActionItem = {
-  icon: <DotIcon fontSize="small" iconId="add" />,
+  iconId: 'add',
   text: 'Add new option',
   onClick: () => alert('New option added'),
 };

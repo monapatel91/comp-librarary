@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  ChangeEvent,
-  Ref,
-  MouseEvent,
-  useRef,
-  ReactNode,
-} from 'react';
+import React, { useState, ChangeEvent, Ref, MouseEvent, useRef } from 'react';
 import { AutocompleteGetTagProps } from '@material-ui/lab';
 import { rootClassName, StyledAutocomplete } from './AutoComplete.styles';
 import { StyledPopper } from '../menu/Menu.styles';
@@ -18,11 +11,16 @@ import {
 } from '../input-form-fields/InputFormFields.styles';
 import { Paper } from '@material-ui/core';
 import { DotButton } from '../button/Button';
+import { DotIcon } from '../icon/Icon';
 
 export interface ActionItem {
+  /** If true, the ripple effect will be disabled. */
   disableRipple?: boolean;
-  icon: ReactNode;
+  /** The icon to display on the button */
+  iconId: string;
+  /** Event callback */
   onClick: () => void;
+  /** Text displayed */
   text: string;
 }
 
@@ -185,7 +183,7 @@ export const DotAutoComplete = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DotPopper = (props: any) => {
     if (!actionItem) return <StyledPopper {...props} />;
-    const { icon, text, onClick, disableRipple = false } = actionItem;
+    const { iconId, text, onClick, disableRipple = false } = actionItem;
     const paperProps = props.children.props;
     const paperChildren = paperProps.children;
 
@@ -226,7 +224,7 @@ export const DotAutoComplete = ({
               fullWidth={true}
               onClick={onActionButtonClick}
               inputRef={actionItemRef}
-              startIcon={icon}
+              startIcon={<DotIcon fontSize="small" iconId={iconId} />}
               type="text"
             >
               {text}
