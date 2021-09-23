@@ -1,4 +1,11 @@
-import React, { useState, ChangeEvent, Ref, MouseEvent, useRef } from 'react';
+import React, {
+  useState,
+  ChangeEvent,
+  Ref,
+  MouseEvent,
+  useRef,
+  FocusEvent,
+} from 'react';
 import { AutocompleteGetTagProps } from '@material-ui/lab';
 import { rootClassName, StyledAutocomplete } from './AutoComplete.styles';
 import { StyledPopper } from '../menu/Menu.styles';
@@ -180,6 +187,9 @@ export const DotAutoComplete = ({
   const getElementFromInputRef = () =>
     'current' in textFieldRef && textFieldRef.current;
 
+  const handleBlur = (event: FocusEvent<HTMLElement>): void =>
+    event.relatedTarget !== actionItemRef.current && setIsOpened(false);
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DotPopper = (props: any) => {
     if (!actionItem) return <StyledPopper {...props} />;
@@ -213,11 +223,8 @@ export const DotAutoComplete = ({
                 inputElement.focus();
               }
             }}
-            onBlur={(event) => {
-              // We want to close the popper each time focus is shifted from action item
-              event.relatedTarget !== actionItemRef.current &&
-                setIsOpened(false);
-            }}
+            // We want to close the popper each time focus is shifted from action item
+            onBlur={handleBlur}
           >
             <DotButton
               disableRipple={disableRipple}
@@ -256,7 +263,8 @@ export const DotAutoComplete = ({
       open={isOpened}
       options={sortOptions()}
       PopperComponent={DotPopper}
-      onOpen={() => setIsOpened(true)}
+      // We want to close the popper each time focus is shifted from the autocomplete
+      onBlur={handleBlur}
       onClose={(event) => {
         // We want to close popper in each occasion where focus isn't set to action item
         if (
@@ -266,6 +274,7 @@ export const DotAutoComplete = ({
           setIsOpened(false);
         }
       }}
+      onOpen={() => setIsOpened(true)}
       renderInput={(params) => (
         // We are not using DotInputText here because the {...params} spread
         // passed to renderInput includes inputProps and InputProps properties
