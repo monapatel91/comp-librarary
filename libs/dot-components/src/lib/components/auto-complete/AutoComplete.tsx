@@ -206,7 +206,6 @@ export const DotAutoComplete = ({
             /* Add this to short circuit blur event (otherwise button click will not work):
              * https://github.com/mui-org/material-ui/issues/19038 */
             onMouseDown={(e: MouseEvent<HTMLDivElement>) => {
-              console.log('here');
               e.preventDefault();
             }}
             onKeyDown={(event) => {
