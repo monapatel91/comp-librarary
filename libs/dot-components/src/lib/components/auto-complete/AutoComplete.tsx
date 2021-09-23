@@ -265,10 +265,10 @@ export const DotAutoComplete = ({
       PopperComponent={DotPopper}
       // We want to close the popper each time focus is shifted from the autocomplete
       onBlur={handleBlur}
-      onClose={(event) => {
+      onClose={(event: ChangeEvent | FocusEvent) => {
         // We want to close popper in each occasion where focus isn't set to action item
         if (
-          event instanceof FocusEvent &&
+          !('relatedTarget' in event) ||
           event.relatedTarget !== actionItemRef.current
         ) {
           setIsOpened(false);
