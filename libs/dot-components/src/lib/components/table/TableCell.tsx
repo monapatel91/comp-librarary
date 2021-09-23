@@ -32,7 +32,7 @@ export const DotBodyCell = ({
 }: CellProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [open, setOpen] = useState(false);
-  const wrapperRef = useRef();
+  const wrapperRef = useRef(null);
   useEffect(() => {
     const noWrapTableCell = document.getElementsByClassName('noWrap');
     Array.from(noWrapTableCell as HTMLCollectionOf<HTMLElement>).forEach(
