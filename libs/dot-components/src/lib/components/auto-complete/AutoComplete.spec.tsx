@@ -217,8 +217,9 @@ describe('AutoComplete', () => {
   });
 
   describe('action item', () => {
+    let containerElem: HTMLElement;
     beforeEach(() => {
-      render(
+      const { container } = render(
         <DotAutoComplete
           actionItem={actionItem}
           inputId="input-id"
@@ -226,6 +227,7 @@ describe('AutoComplete', () => {
           options={dummyOptions}
         />
       );
+      containerElem = container;
       const textField = getAutocompleteTextField();
       userEvent.click(textField);
     });
@@ -253,6 +255,18 @@ describe('AutoComplete', () => {
       expect(actionItemBtn).toHaveFocus();
       fireEvent.keyDown(actionItemBtn, { key: 'Tab', code: 'Tab' });
       expect(textField).toHaveFocus();
+      expect(screen.queryByText(actionItemText)).not.toBeInTheDocument();
+    });
+
+    it('should close popper when outside element is clicked', () => {
+      userEvent.click(containerElem);
+      expect(screen.queryByText(actionItemText)).not.toBeInTheDocument();
+    });
+
+    it('should close popper when action button has focus and outside element is clicked', () => {
+      const textField = getAutocompleteTextField();
+      fireEvent.keyDown(textField, { key: 'Tab', code: 'Tab' });
+      userEvent.click(containerElem);
       expect(screen.queryByText(actionItemText)).not.toBeInTheDocument();
     });
   });
