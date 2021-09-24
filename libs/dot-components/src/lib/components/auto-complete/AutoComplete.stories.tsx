@@ -47,7 +47,8 @@ export default {
     },
     onChange: { action: 'on change' },
     actionItem: {
-      defaultValue: actionItem,
+      control: { type: 'select', options: [null, actionItem] },
+      defaultValue: null,
     },
   },
 } as Meta;

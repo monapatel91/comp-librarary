@@ -192,7 +192,8 @@ export const DotAutoComplete = ({
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DotPopper = (props: any) => {
-    if (!actionItem) return <StyledPopper {...props} />;
+    if (!actionItem || Object.keys(actionItem).length === 0)
+      return <StyledPopper {...props} />;
     const { iconId, text, onClick, disableRipple = false } = actionItem;
     const paperProps = props.children.props;
     const paperChildren = paperProps.children;
