@@ -227,6 +227,7 @@ export const DotAutoComplete = ({
             onBlur={handleBlur}
           >
             <DotButton
+              data-testid="dot-action-item-btn"
               disableRipple={disableRipple}
               fullWidth={true}
               onClick={onActionButtonClick}

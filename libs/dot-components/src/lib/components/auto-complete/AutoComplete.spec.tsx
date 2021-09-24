@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '../../testing-utils';
+import { render, screen, fireEvent } from '../../testing-utils';
 import {
   ActionItem,
   AutoCompleteOption,
@@ -33,6 +33,8 @@ describe('AutoComplete', () => {
     onClick: handleActionItemClick,
   };
 
+  const queryActionItemButton = (): HTMLElement | undefined =>
+    screen.queryByTestId('dot-action-item-btn');
   const getAutocompleteTextField = (): HTMLElement =>
     screen.getByRole('textbox');
 
@@ -236,6 +238,19 @@ describe('AutoComplete', () => {
       const actionItemBtn = screen.getByText(actionItemText);
       userEvent.click(actionItemBtn);
       expect(handleActionItemClick).toHaveBeenCalled();
+    });
+
+    it('should close popper when action item is clicked', () => {
+      const actionItemBtn = screen.getByText(actionItemText);
+      userEvent.click(actionItemBtn);
+      expect(screen.queryByText(actionItemText)).not.toBeInTheDocument();
+    });
+
+    it("should navigate to action item via 'Tab' key", () => {
+      const textField = getAutocompleteTextField();
+      fireEvent.keyDown(textField, { key: 'Tab', code: 'Tab' });
+      const actionItemBtn = queryActionItemButton();
+      expect(actionItemBtn).toHaveFocus();
     });
   });
 });
