@@ -164,15 +164,15 @@ export const DotAutoComplete = ({
     });
   };
   const valuesChanged = ({
-    _event,
+    event,
     val,
     reason,
   }: {
-    _event: ChangeEvent<unknown>;
+    event: ChangeEvent<unknown>;
     val: AutoCompleteValue;
     reason: string;
   }) => {
-    onChange && onChange(_event, val, reason);
+    onChange && onChange(event, val, reason);
     setShowPlaceholder(parseAutoCompleteValue(val) === '');
   };
   const sortOptions = () => {
@@ -256,8 +256,8 @@ export const DotAutoComplete = ({
       }
       groupBy={group ? (option: AutoCompleteOption) => option.group : undefined}
       multiple={multiple}
-      onChange={(_event, val: AutoCompleteValue, reason) => {
-        valuesChanged({ _event, val, reason });
+      onChange={(event, val: AutoCompleteValue, reason) => {
+        valuesChanged({ event, val, reason });
         setIsOpened(false);
       }}
       open={isOpened}
