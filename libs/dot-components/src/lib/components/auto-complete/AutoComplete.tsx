@@ -210,7 +210,7 @@ export const DotAutoComplete = ({
         <Paper {...paperProps}>
           {paperChildren}
           <div
-            className="action-item"
+            className="dot-action-item"
             /* Add this to short circuit blur event (otherwise button click will not work):
              * https://github.com/mui-org/material-ui/issues/19038 */
             onMouseDown={(e: MouseEvent<HTMLDivElement>) => {

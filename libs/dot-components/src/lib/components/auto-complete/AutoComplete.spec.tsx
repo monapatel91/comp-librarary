@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
 import {
+  ActionItem,
   AutoCompleteOption,
   AutoCompleteProps,
   autoCompleteSize,
@@ -22,10 +23,24 @@ describe('AutoComplete', () => {
     { title: 'Underdog' },
   ];
 
+  const actionItemId = 'add';
+  const actionItemText = 'add';
+  const handleActionItemClick = jest.fn();
+
+  const actionItem: ActionItem = {
+    iconId: actionItemId,
+    text: actionItemText,
+    onClick: handleActionItemClick,
+  };
+
+  const getAutocompleteTextField = (): HTMLElement =>
+    screen.getByRole('textbox');
+
   it('should have unchanged API', () => {
     const onChange = jest.fn();
     const inputRef = createRef<HTMLInputElement>();
     const props = {
+      actionItem,
       ariaLabel: 'autocomplete',
       autoFocus: true,
       className: 'test-class',
@@ -197,6 +212,31 @@ describe('AutoComplete', () => {
     );
     const autocompleteElement = screen.getByTestId(dataTestId);
     expect(autocompleteElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  describe('action item', () => {
+    beforeEach(() => {
+      render(
+        <DotAutoComplete
+          actionItem={actionItem}
+          inputId="input-id"
+          label="Label"
+          options={dummyOptions}
+        />
+      );
+      const textField = getAutocompleteTextField();
+      userEvent.click(textField);
+    });
+
+    it('should display action item with appropriate text', () => {
+      expect(screen.getByText(actionItemText)).toBeVisible();
+    });
+
+    it('should execute correct event handler upon click', () => {
+      const actionItemBtn = screen.getByText(actionItemText);
+      userEvent.click(actionItemBtn);
+      expect(handleActionItemClick).toHaveBeenCalled();
+    });
   });
 });
 
