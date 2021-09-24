@@ -3,6 +3,8 @@ import { render, screen } from '../../testing-utils';
 import { DotMenu, MenuProps, MenuItemProps, PopperPlacement } from './Menu';
 
 describe('Menu', () => {
+  const maxVisibleItems = 3;
+
   it('should have unchanged API', () => {
     const onLeave = jest.fn();
     const onSelect = jest.fn();
@@ -13,6 +15,7 @@ describe('Menu', () => {
       'data-testid': 'testid',
       disablePortal: true,
       id: 'menu-id',
+      maxVisibleItems,
       menuItems: [{ children: 'opt 1' }],
       menuPlacement: 'bottom' as PopperPlacement,
       open: true,
