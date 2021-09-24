@@ -230,7 +230,7 @@ export const DotAutoComplete = ({
               disableRipple={disableRipple}
               fullWidth={true}
               onClick={onActionButtonClick}
-              inputRef={actionItemRef}
+              ref={actionItemRef}
               startIcon={<DotIcon fontSize="small" iconId={iconId} />}
               type="text"
             >
