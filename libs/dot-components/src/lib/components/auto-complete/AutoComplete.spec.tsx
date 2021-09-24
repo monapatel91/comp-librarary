@@ -246,11 +246,14 @@ describe('AutoComplete', () => {
       expect(screen.queryByText(actionItemText)).not.toBeInTheDocument();
     });
 
-    it("should navigate to action item via 'Tab' key", () => {
+    it("should navigate to action item via 'Tab' key and back to text input", () => {
       const textField = getAutocompleteTextField();
-      fireEvent.keyDown(textField, { key: 'Tab', code: 'Tab' });
       const actionItemBtn = queryActionItemButton();
+      fireEvent.keyDown(textField, { key: 'Tab', code: 'Tab' });
       expect(actionItemBtn).toHaveFocus();
+      fireEvent.keyDown(actionItemBtn, { key: 'Tab', code: 'Tab' });
+      expect(textField).toHaveFocus();
+      expect(screen.queryByText(actionItemText)).not.toBeInTheDocument();
     });
   });
 });
