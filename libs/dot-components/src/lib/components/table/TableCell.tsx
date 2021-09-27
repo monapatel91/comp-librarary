@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, MouseEvent, Key } from 'react';
 import { TableCell } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { CreateUUID } from '../createUUID';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton } from '../button/IconButton';
-import { DotMenu } from '@digital-ai/dot-components';
 
 export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
 
@@ -15,6 +14,8 @@ export interface CellProps extends CommonProps {
   noWrap?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value?: any;
+  onActionMenuTrigger?: (el: HTMLElement) => void;
+  key?: Key;
 }
 
 /**
@@ -29,10 +30,12 @@ export const DotBodyCell = ({
   id = CreateUUID(),
   noWrap,
   value,
+  onActionMenuTrigger,
+  key: cellKey,
 }: CellProps) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [open, setOpen] = useState(false);
   const wrapperRef = useRef(null);
+
   useEffect(() => {
     const noWrapTableCell = document.getElementsByClassName('noWrap');
     Array.from(noWrapTableCell as HTMLCollectionOf<HTMLElement>).forEach(
@@ -91,9 +94,6 @@ export const DotBodyCell = ({
       setShowMenu(false);
     }
   };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
   const rootClasses = useStylesWithRootClass(
     'dot-td',
     className,
@@ -106,41 +106,37 @@ export const DotBodyCell = ({
       classes={{ root: rootClasses }}
       colSpan={colspan}
       data-testid={dataTestId}
-      key={id}
     >
       <div ref={wrapperRef} style={{ width: '100%' }}>
-        {Array.isArray(value)
-          ? showMenu
-            ? value.map((item) => (
-                <>
-                  <DotIconButton iconId="options" onClick={handleToggle} />
-                  <DotMenu
-                    menuItems={item.iconActions}
-                    id="action-buttons"
-                    open={open}
+        {Array.isArray(value) ? (
+          showMenu ? (
+            <DotIconButton
+              key={`${cellKey}-action`}
+              iconId="options"
+              onClick={() => onActionMenuTrigger(wrapperRef.current)}
+            />
+          ) : (
+            value.map((item) =>
+              item.iconActions.map(
+                (
+                  icons: {
+                    key: string;
+                    onclick: (event: MouseEvent) => void;
+                  },
+                  index: React.Key
+                ) => (
+                  <DotIconButton
+                    key={index}
+                    iconId={icons.key}
+                    onClick={icons.onclick}
                   />
-                </>
-              ))
-            : value.map((item) =>
-                item.iconActions.map(
-                  (
-                    icons: {
-                      key: string;
-                      onclick: (
-                        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-                      ) => void;
-                    },
-                    index: React.Key
-                  ) => (
-                    <DotIconButton
-                      key={index}
-                      iconId={icons.key}
-                      onClick={icons.onclick}
-                    />
-                  )
                 )
               )
-          : value}
+            )
+          )
+        ) : (
+          value
+        )}
       </div>
     </TableCell>
   );

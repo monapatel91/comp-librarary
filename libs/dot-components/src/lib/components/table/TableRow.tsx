@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, Key } from 'react';
 import { TableRow } from '@material-ui/core';
 
 import { DotBodyCell } from './TableCell';
@@ -21,13 +21,22 @@ export interface RowProps extends CommonProps {
   onClick?: (event: MouseEvent, id: string) => void;
   /** if the row is selected */
   selected?: boolean;
+  onActionMenuTrigger: (el: HTMLElement) => void;
+  key: Key;
 }
 
 /**
  * A wrapper component around the TableRow component from @material-ui. This component can be used
  * for manipulating data prior to displaying the data inside the table
  */
-export const DotTableRow = ({ columns, data, onClick, selected }: RowProps) => {
+export const DotTableRow = ({
+  columns,
+  data,
+  onClick,
+  selected,
+  onActionMenuTrigger,
+  key: rowKey,
+}: RowProps) => {
   const id = data.id;
   const rowData = data.rowData;
   const handleOnClick = (event: MouseEvent) => {
@@ -36,17 +45,17 @@ export const DotTableRow = ({ columns, data, onClick, selected }: RowProps) => {
   return (
     <TableRow
       classes={{ root: 'dot-tr' }}
-      key={CreateUUID()}
       onClick={handleOnClick}
       selected={selected}
     >
-      {columns.map((column) => {
+      {columns.map((column, index) => {
         return (
           <DotBodyCell
             align={column.align}
-            key={CreateUUID()}
+            key={`${rowKey}-${index}`}
             noWrap={column.truncate}
             value={rowData[column.id]}
+            onActionMenuTrigger={(menuRef) => onActionMenuTrigger(menuRef)}
           />
         );
       })}
