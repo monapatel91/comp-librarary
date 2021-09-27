@@ -1,4 +1,5 @@
 describe('dot-components: AppToolbar component', () => {
+  // TO-DO: update this test class
   before(() => {
     cy.visit('/iframe.html?id=components-apptoolbar--default');
     cy.get('button.dot-icon-btn.hamburger').click();
@@ -29,6 +30,7 @@ describe('dot-components: AppToolbar component', () => {
       );
     });
 
+    // TO-DO: update this test class
     it('hamburger menu icon is correct color', () => {
       cy.get('button.dot-icon-btn.hamburger').should(
         'have.css',
@@ -37,6 +39,7 @@ describe('dot-components: AppToolbar component', () => {
       );
     });
 
+    // TO-DO: update this test class
     it('hamburger menu has correct width', () => {
       cy.get('div.MuiPaper-root').should('have.css', 'width', '240px');
     });

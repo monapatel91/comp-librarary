@@ -3,6 +3,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledIcon } from './Icon.styles';
 
+// TO-DO: 'inherit' uses container font size breaking vertical spacing of icon
 // TO-DO: MUI 5 change IconFontSize 'default' to 'medium'
 export type IconFontSize = 'inherit' | 'default' | 'small';
 

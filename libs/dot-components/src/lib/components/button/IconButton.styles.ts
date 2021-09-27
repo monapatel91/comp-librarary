@@ -5,18 +5,19 @@ export const rootClassName = 'dot-icon-btn';
 
 export const StyledIconButton = styled(IconButton)`
   ${({ theme }) => css`
-    &.dot-icon-btn {
-      &.MuiIconButton-sizeSmall {
-        padding: ${theme.spacing(0.25)}px;
+    &.${rootClassName} {
+      padding: 10px;
+
+      &.MuiIconButton-root {
+        font-size: inherit;
 
         .dot-icon {
-          height: 20px;
-          width: 20px;
+          /* padding: 1px; */
         }
       }
 
-      .dot-icon {
-        padding: 0;
+      &.MuiIconButton-sizeSmall {
+        padding: ${theme.spacing(0.25)}px;
       }
     }
   `}

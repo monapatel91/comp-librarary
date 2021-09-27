@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { levelFourth } from '../../theme-provider/common/variables';
+import { n400 } from '../../theme-provider/colors/light-theme-colors';
 import { DotDrawer } from '../drawer/Drawer';
 
 export const rootClassName = 'dot-app-toolbar';
@@ -7,10 +8,10 @@ export const rootClassName = 'dot-app-toolbar';
 export const StyledMainMenu = styled(DotDrawer)`
   ${() => css`
     &.dot-main-menu .dot-drawer-paper {
-      top: 52px;
+      top: 60px;
       padding: 0;
       .dot-sidebar {
-        height: calc(100vh - 52px);
+        height: calc(100vh - 60px);
       }
     }
   `}
@@ -18,63 +19,70 @@ export const StyledMainMenu = styled(DotDrawer)`
 
 export const StyledAppToolbar = styled.header`
   ${({ theme }) => css`
-    &.dot-app-toolbar {
+    &.${rootClassName} {
       align-items: center;
       background: ${theme.palette.grey[700]};
       border-bottom: 4px solid ${theme.palette.grey[100]};
+      box-sizing: border-box;
       color: ${theme.palette.grey[0]};
       display: flex;
-      height: 64px;
-      padding-left: ${theme.spacing(0.5)}px;
+      height: 56px;
+      padding: 12px 16px 14px 0;
       position: fixed;
       width: 100%;
       z-index: ${levelFourth};
       top: 0;
       left: 0;
       right: 0;
-      &.dense {
+      /* &.dense {
         height: 48px;
 
         .dot-icon-btn {
           margin-right: ${theme.spacing(3)}px;
           padding: ${theme.spacing(0.25)}px;
-
-          &.hamburger {
-            margin-left: 10px;
-            margin-right: ${theme.spacing(0.5)}px;
-          }
         }
 
         .dot-button {
           padding: ${theme.spacing(0.5, 1)};
           margin-right: ${theme.spacing(2)}px;
         }
+      } */
+
+      .divider {
+        height: 34px;
+        width: 1px;
+        background: ${n400};
+      }
+
+      .dot-icon-btn {
+        color: ${theme.palette.grey[100]};
+      }
+
+      .dot-main-menu-btn {
+        padding: ${theme.spacing(0, 1)};
+        text-align: center;
       }
 
       .dot-branding {
         align-items: center;
         display: flex;
-        margin-left: ${theme.spacing(1.5)}px;
+        padding: 0 17px;
 
-        &.hamburger {
-          margin-left: ${theme.spacing(1)}px;
+        .primary-logo {
+          margin-right: 10px;
+        }
+
+        .app-logo {
+          margin-right: 15px;
         }
 
         a {
           line-height: 0;
         }
 
-        .dot-product-name {
-          color: ${theme.palette.grey[100]};
-          font-size: 18px;
-          margin: ${theme.spacing(0, 1.5)};
+        .divider {
+          margin-left: 7px;
         }
-      }
-
-      .dot-icon-btn {
-        color: ${theme.palette.grey[100]};
-        margin-right: ${theme.spacing(1)}px;
-        padding: ${theme.spacing(1.5)}px;
       }
 
       div.dot-right-side {
@@ -83,8 +91,11 @@ export const StyledAppToolbar = styled.header`
         justify-content: flex-end;
       }
 
-      .dot-avatar {
-        margin: ${theme.spacing(0, 2, 0, 1)};
+      .avatar-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
       }
     }
   `}

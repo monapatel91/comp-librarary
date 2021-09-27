@@ -11,11 +11,10 @@ import {
   StyledAppToolbar,
   StyledMainMenu,
 } from './AppToolbar.styles';
-import { DotTypography } from '../typography/Typography';
 
 export interface AppToolbarProps extends CommonProps {
-  /** Product name displayed next to Digital.ai logo */
-  appName?: string;
+  /** If provided will display application logo */
+  appLogo?: ReactNode;
   /** User avatar component */
   avatar?: ReactNode;
   /** Control the bottom border of the toolbar, accepts any valid  */
@@ -38,7 +37,7 @@ export const DotAppToolbar = ({
   ariaLabel,
   avatar,
   borderColor,
-  appName,
+  appLogo,
   children,
   className,
   customLogo,
@@ -51,14 +50,12 @@ export const DotAppToolbar = ({
   const [menuOpen, updateMenuOpen] = useState(false);
   const showMainMenu = mainMenu || mainMenuItems;
   const mainMenuRef = useRef(null);
-  const rootClasses = useStylesWithRootClass(
-    rootClassName,
-    `dense ${className}`
-  );
+  const rootClasses = useStylesWithRootClass(rootClassName, `${className}`);
   const mainMenuClasses = useStylesWithRootClass(
     'dot-main-menu',
     menuOpen ? 'open' : ''
   );
+  const brandingClasses = useStylesWithRootClass('dot-branding');
 
   useEffect(() => {
     const handleInsideMenuClick = (event: Event) => {
@@ -89,13 +86,15 @@ export const DotAppToolbar = ({
     >
       {showMainMenu && (
         <>
-          <DotIconButton
-            className="hamburger"
-            data-testid="main-menu-icon"
-            iconId={menuOpen ? 'close' : 'menu'}
-            onClick={() => updateMenuOpen(!menuOpen)}
-            size="small"
-          />
+          <div className="dot-main-menu-btn">
+            <DotIconButton
+              data-testid="main-menu-icon"
+              iconId={menuOpen ? 'close' : 'menu'}
+              iconSize="default"
+              onClick={() => updateMenuOpen(!menuOpen)}
+            />
+          </div>
+          <div className="divider"></div>
           <StyledMainMenu
             anchor="left"
             className={mainMenuClasses}
@@ -121,13 +120,12 @@ export const DotAppToolbar = ({
           </StyledMainMenu>
         </>
       )}
-      <div className={`dot-branding ${showMainMenu ? 'hamburger' : ''}`}>
-        <DotLink href="/">
+      <div className={brandingClasses}>
+        <DotLink className="primary-logo" href="/">
           {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>
-        {appName && (
-          <DotTypography className="dot-product-name">{appName}</DotTypography>
-        )}
+        {appLogo && <div className="app-logo">{appLogo}</div>}
+        {children && <div className="divider"></div>}
       </div>
       {children}
       <div className="dot-right-side">
@@ -137,6 +135,7 @@ export const DotAppToolbar = ({
               <DotIconButton
                 className={item.className}
                 iconId={item.iconId}
+                iconSize="default"
                 onClick={(event) => item.onClick && item.onClick(event)}
                 key={index}
                 size={item.size}
@@ -145,7 +144,7 @@ export const DotAppToolbar = ({
             ))}
           </nav>
         )}
-        {avatar}
+        {avatar && <div className="avatar-wrapper">{avatar}</div>}
       </div>
     </StyledAppToolbar>
   );

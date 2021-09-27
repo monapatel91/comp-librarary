@@ -18,7 +18,7 @@ export default {
       ),
     },
     borderColor: {
-      defaultValue: '#1abc9c',
+      defaultValue: '#33d389',
     },
     appName: {
       defaultValue: 'Batman',
@@ -122,7 +122,6 @@ export default {
         {
           iconId: 'dark',
           onClick: () => console.log('theme clicked'),
-          size: 'small',
           titleTooltip: 'Toggle Theme',
         },
       ],
