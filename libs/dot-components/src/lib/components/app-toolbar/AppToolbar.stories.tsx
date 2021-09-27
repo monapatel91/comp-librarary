@@ -20,9 +20,6 @@ export default {
     borderColor: {
       defaultValue: '#33d389',
     },
-    appName: {
-      defaultValue: 'Batman',
-    },
     children: {
       defaultValue: <DotButton>Activate Bat Signal</DotButton>,
     },
@@ -132,5 +129,5 @@ export default {
 export const Default: Story<AppToolbarProps> = (args) => {
   const { customLogo: logoId } = args;
   const logo = logoId === 'Custom' && <TestLogo title="test.logo" />;
-  return <DotAppToolbar {...args} customLogo={logo} />;
+  return <DotAppToolbar {...args} customLogo={logo} appLogo={logo} />;
 };

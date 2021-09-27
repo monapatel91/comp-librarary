@@ -11,10 +11,6 @@ export const StyledIcon = styled(Icon)`
     font-size: 20px;
     justify-content: center;
 
-      /* &.MuiIcon-root {
-        font-size: inherit;
-      } */
-
       &.MuiIcon-fontSizeLarge {
         font-size: 28px;
         height: 35px;

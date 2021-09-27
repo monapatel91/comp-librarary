@@ -8,10 +8,10 @@ export const rootClassName = 'dot-app-toolbar';
 export const StyledMainMenu = styled(DotDrawer)`
   ${() => css`
     &.dot-main-menu .dot-drawer-paper {
-      top: 60px;
+      top: 64px;
       padding: 0;
       .dot-sidebar {
-        height: calc(100vh - 60px);
+        height: calc(100vh - 64px);
       }
     }
   `}
@@ -26,7 +26,7 @@ export const StyledAppToolbar = styled.header`
       box-sizing: border-box;
       color: ${theme.palette.grey[0]};
       display: flex;
-      height: 56px;
+      height: 64px;
       padding: 12px 16px 14px 0;
       position: fixed;
       width: 100%;
@@ -34,19 +34,6 @@ export const StyledAppToolbar = styled.header`
       top: 0;
       left: 0;
       right: 0;
-      /* &.dense {
-        height: 48px;
-
-        .dot-icon-btn {
-          margin-right: ${theme.spacing(3)}px;
-          padding: ${theme.spacing(0.25)}px;
-        }
-
-        .dot-button {
-          padding: ${theme.spacing(0.5, 1)};
-          margin-right: ${theme.spacing(2)}px;
-        }
-      } */
 
       .divider {
         height: 34px;
@@ -66,14 +53,14 @@ export const StyledAppToolbar = styled.header`
       .dot-branding {
         align-items: center;
         display: flex;
-        padding: 0 17px;
+        padding: ${theme.spacing(0, 2)};
 
         .primary-logo {
           margin-right: 10px;
         }
 
         .app-logo {
-          margin-right: 15px;
+          margin-right: 10px;
         }
 
         a {
@@ -81,7 +68,7 @@ export const StyledAppToolbar = styled.header`
         }
 
         .divider {
-          margin-left: 7px;
+          margin-left: 6px;
         }
       }
 

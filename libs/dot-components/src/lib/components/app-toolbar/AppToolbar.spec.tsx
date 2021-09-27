@@ -12,6 +12,7 @@ const userAvatar = (
   <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
 );
 const customLogo = <LogoDigitalAiCustom title="digital.ai.custom" />;
+const appLogo = <LogoDigitalAiCustom title="app logo" />;
 const mainMenuItems = [
   {
     startIconId: 'satellite-group',
@@ -32,7 +33,7 @@ const mainMenuItems = [
 describe(' AppToolbar', () => {
   it('should have unchanged API', () => {
     const props = {
-      appName: 'Batman',
+      appLogo: appLogo,
       ariaLabel: 'app toolbar',
       avatar: userAvatar,
       borderColor: '#1abc9c',
@@ -55,9 +56,9 @@ describe(' AppToolbar', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should display the application name', () => {
-    render(<DotAppToolbar appName="Lisbon" navItems={menuItems} />);
-    expect(screen.getByText('Lisbon')).toBeVisible();
+  it('should display the application logo', () => {
+    render(<DotAppToolbar appLogo={appLogo} navItems={menuItems} />);
+    expect(screen.getByTitle('app logo')).toBeVisible();
   });
 
   it('should display avatar if available', () => {
@@ -77,7 +78,6 @@ describe(' AppToolbar', () => {
     const dataTestId = 'test-app-toolbar';
     render(
       <DotAppToolbar
-        appName="Lisbon"
         ariaLabel={ariaLabel}
         data-testid={dataTestId}
         navItems={menuItems}

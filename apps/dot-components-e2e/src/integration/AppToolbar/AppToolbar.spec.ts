@@ -1,8 +1,7 @@
 describe('dot-components: AppToolbar component', () => {
-  // TO-DO: update this test class
   before(() => {
     cy.visit('/iframe.html?id=components-apptoolbar--default');
-    cy.get('button.dot-icon-btn.hamburger').click();
+    cy.get('.dot-main-menu-btn button.dot-icon-btn').click();
   });
 
   it('should have a dot- prefix', () => {
@@ -19,7 +18,7 @@ describe('dot-components: AppToolbar component', () => {
     });
 
     it('header sizing is correct', () => {
-      cy.get('header.dot-app-toolbar').should('have.css', 'height', '48px');
+      cy.get('header.dot-app-toolbar').should('have.css', 'height', '64px');
     });
 
     it('border thickness is correct', () => {
@@ -30,9 +29,8 @@ describe('dot-components: AppToolbar component', () => {
       );
     });
 
-    // TO-DO: update this test class
     it('hamburger menu icon is correct color', () => {
-      cy.get('button.dot-icon-btn.hamburger').should(
+      cy.get('.dot-main-menu-btn button.dot-icon-btn').should(
         'have.css',
         'color',
         'rgb(227, 229, 232)'

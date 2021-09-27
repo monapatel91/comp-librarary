@@ -55,7 +55,6 @@ export const DotAppToolbar = ({
     'dot-main-menu',
     menuOpen ? 'open' : ''
   );
-  const brandingClasses = useStylesWithRootClass('dot-branding');
 
   useEffect(() => {
     const handleInsideMenuClick = (event: Event) => {
@@ -122,7 +121,7 @@ export const DotAppToolbar = ({
           </StyledMainMenu>
         </>
       )}
-      <div className={brandingClasses}>
+      <div className="dot-branding">
         <DotLink className="primary-logo" href="/">
           {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>
@@ -140,7 +139,7 @@ export const DotAppToolbar = ({
                 iconSize="default"
                 onClick={(event) => item.onClick && item.onClick(event)}
                 key={index}
-                size={item.size}
+                size="medium"
                 titleTooltip={item.titleTooltip}
               />
             ))}
