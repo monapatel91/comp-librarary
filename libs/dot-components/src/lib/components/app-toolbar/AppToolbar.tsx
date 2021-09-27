@@ -15,6 +15,8 @@ import {
 export interface AppToolbarProps extends CommonProps {
   /** If provided will display application logo */
   appLogo?: ReactNode;
+  /** DEPRECATED, DO NOT USE */
+  appName?: string;
   /** User avatar component */
   avatar?: ReactNode;
   /** Control the bottom border of the toolbar, accepts any valid  */
@@ -34,10 +36,10 @@ export interface AppToolbarProps extends CommonProps {
 }
 
 export const DotAppToolbar = ({
+  appLogo,
   ariaLabel,
   avatar,
   borderColor,
-  appLogo,
   children,
   className,
   customLogo,
