@@ -105,16 +105,18 @@ export const DotAppToolbar = ({
             variant="persistent"
           >
             <div ref={mainMenuRef}>
-              {mainMenu ? (
-                mainMenu
-              ) : (
+              {mainMenuItems ? (
                 <DotSidebar
                   collapsable={false}
                   displayBrand={false}
                   goBack={false}
                   navItems={mainMenuItems}
                   nestedListType="menu"
-                />
+                >
+                  {mainMenu && mainMenu}
+                </DotSidebar>
+              ) : (
+                mainMenu
               )}
             </div>
           </StyledMainMenu>

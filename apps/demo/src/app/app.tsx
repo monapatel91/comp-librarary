@@ -96,7 +96,6 @@ export const App = () => {
     <>
       <DotAppToolbar
         avatar={userAvatar}
-        appName="Continuum"
         navItems={topNavItems}
         mainMenu={customMainMenu}
         mainMenuItems={sideNavItems}
