@@ -114,7 +114,7 @@ export const DotAppToolbar = ({
                   navItems={mainMenuItems}
                   nestedListType="menu"
                 >
-                  {mainMenu && mainMenu}
+                  {mainMenu}
                 </DotSidebar>
               ) : (
                 mainMenu
