@@ -21,7 +21,9 @@ export const StyledAppToolbar = styled.header`
   ${({ theme }) => css`
     &.${rootClassName} {
       align-items: center;
-      background: ${theme.palette.grey[700]};
+      background: ${theme.palette.product === 'agility'
+        ? theme.palette.agilityInterface.headerBg
+        : theme.palette.grey[700]};
       border-bottom: 4px solid ${theme.palette.grey[100]};
       box-sizing: border-box;
       color: ${theme.palette.grey[0]};
@@ -55,10 +57,7 @@ export const StyledAppToolbar = styled.header`
         display: flex;
         padding: ${theme.spacing(0, 2)};
 
-        .primary-logo {
-          margin-right: 10px;
-        }
-
+        .primary-logo,
         .app-logo {
           margin-right: 10px;
         }

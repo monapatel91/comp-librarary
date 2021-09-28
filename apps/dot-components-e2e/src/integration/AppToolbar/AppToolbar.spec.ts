@@ -37,7 +37,6 @@ describe('dot-components: AppToolbar component', () => {
       );
     });
 
-    // TO-DO: update this test class
     it('hamburger menu has correct width', () => {
       cy.get('div.MuiPaper-root').should('have.css', 'width', '240px');
     });
