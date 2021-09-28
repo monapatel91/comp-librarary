@@ -82,6 +82,13 @@ export const App = () => {
       )),
     },
     {
+      startIconId: 'package',
+      text: 'User List',
+      component: React.forwardRef((props, ref) => (
+        <Link {...props} to="/user-table" ref={ref} />
+      )),
+    },
+    {
       text: 'Sample Header',
       divider: true,
     },

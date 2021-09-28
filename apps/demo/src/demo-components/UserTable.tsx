@@ -61,14 +61,22 @@ export const UserTable = () => {
     };
     const actionItemArray = [
       {
-        iconActions: [
+        actions: [
           {
-            children: 'Edit',
+            children: (
+              <DotButton type="text" onClick={() => handleEditClick()}>
+                Edit
+              </DotButton>
+            ),
             key: 'edit',
             onclick: () => handleEditClick(),
           },
           {
-            children: 'Delete',
+            children: (
+              <DotButton type="text" onClick={() => handleDeleteClick()}>
+                Delete
+              </DotButton>
+            ),
             key: 'delete',
             onclick: () => handleDeleteClick(),
           },

@@ -17,12 +17,14 @@ export interface RowProps extends CommonProps {
   columns: Array<DotColumnHeader>;
   /** The table body row data */
   data: TableRowProps;
+  /** Event callback of action button of menu */
+  onActionMenuTrigger: (el: HTMLElement, menuItem: []) => void;
   /** Event callback */
   onClick?: (event: MouseEvent, id: string) => void;
+  /** uniques key of table cell */
+  rowKey: Key;
   /** if the row is selected */
   selected?: boolean;
-  onActionMenuTrigger: (el: HTMLElement) => void;
-  key: Key;
 }
 
 /**
@@ -32,10 +34,10 @@ export interface RowProps extends CommonProps {
 export const DotTableRow = ({
   columns,
   data,
-  onClick,
-  selected,
   onActionMenuTrigger,
-  key: rowKey,
+  onClick,
+  rowKey,
+  selected,
 }: RowProps) => {
   const id = data.id;
   const rowData = data.rowData;
@@ -52,10 +54,13 @@ export const DotTableRow = ({
         return (
           <DotBodyCell
             align={column.align}
-            key={`${rowKey}-${index}`}
+            cellKey={`${rowKey}-${index}`}
+            key={index}
             noWrap={column.truncate}
+            onActionMenuTrigger={(menuRef, menuItem) =>
+              onActionMenuTrigger(menuRef, menuItem)
+            }
             value={rowData[column.id]}
-            onActionMenuTrigger={(menuRef) => onActionMenuTrigger(menuRef)}
           />
         );
       })}

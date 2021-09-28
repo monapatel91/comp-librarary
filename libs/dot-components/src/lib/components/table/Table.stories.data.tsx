@@ -11,7 +11,7 @@ const handleDeleteClick = () => {
 };
 const actionItemArray = [
   {
-    iconActions: [
+    actions: [
       {
         children: (
           <DotButton type="text" onClick={() => handleEditClick()}>

@@ -10,12 +10,12 @@ export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
 export interface CellProps extends CommonProps {
   align?: textAlignment;
   colspan?: number;
+  cellKey?: Key;
   id?: string;
   noWrap?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value?: any;
-  onActionMenuTrigger?: (el: HTMLElement) => void;
-  key?: Key;
+  onActionMenuTrigger?: (el: HTMLElement, menuItem: []) => void;
 }
 
 /**
@@ -24,6 +24,7 @@ export interface CellProps extends CommonProps {
 export const DotBodyCell = ({
   ariaLabel,
   align,
+  cellKey,
   className,
   colspan,
   'data-testid': dataTestId,
@@ -31,7 +32,6 @@ export const DotBodyCell = ({
   noWrap,
   value,
   onActionMenuTrigger,
-  key: cellKey,
 }: CellProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const wrapperRef = useRef(null);
@@ -61,26 +61,13 @@ export const DotBodyCell = ({
         );
       };
     }
-  });
-  // on table cell resize, set action column to menu or icon button
-  useEffect(() => {
-    const elements = document.getElementsByClassName('actionItems');
-    if (elements.length > 0) {
-      Array.from(elements).forEach((actionColumn) => {
-        actionColumn.addEventListener('resize', getActionColumn);
-        return () => {
-          actionColumn.removeEventListener('resize', getActionColumn);
-        };
-      });
-    }
   }, []);
 
   // Logic to determine action column as menu or icon button
   const getActionColumn = () => {
     const iconBtnWidth = document.getElementsByClassName('dot-icon-btn');
 
-    const getTotalActionItem =
-      Array.isArray(value) && value[0].iconActions.length;
+    const getTotalActionItem = Array.isArray(value) && value[0].actions.length;
     const actionTableCellWidth =
       getTotalActionItem *
         (iconBtnWidth.length > 0 && iconBtnWidth[0].clientWidth) +
@@ -107,17 +94,19 @@ export const DotBodyCell = ({
       colSpan={colspan}
       data-testid={dataTestId}
     >
-      <div ref={wrapperRef} style={{ width: '100%' }}>
-        {Array.isArray(value) ? (
-          showMenu ? (
+      {Array.isArray(value) ? (
+        <div ref={wrapperRef} style={{ width: '100%' }}>
+          {showMenu ? (
             <DotIconButton
-              key={`${cellKey}-action`}
               iconId="options"
-              onClick={() => onActionMenuTrigger(wrapperRef.current)}
+              key={`${cellKey}-action`}
+              onClick={() =>
+                onActionMenuTrigger(wrapperRef.current, value[0].actions)
+              }
             />
           ) : (
             value.map((item) =>
-              item.iconActions.map(
+              item.actions.map(
                 (
                   icons: {
                     key: string;
@@ -126,18 +115,18 @@ export const DotBodyCell = ({
                   index: React.Key
                 ) => (
                   <DotIconButton
-                    key={index}
                     iconId={icons.key}
+                    key={index}
                     onClick={icons.onclick}
                   />
                 )
               )
             )
-          )
-        ) : (
-          value
-        )}
-      </div>
+          )}
+        </div>
+      ) : (
+        value
+      )}
     </TableCell>
   );
 };

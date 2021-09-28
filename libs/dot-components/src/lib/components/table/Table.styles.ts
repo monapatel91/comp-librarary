@@ -1,5 +1,6 @@
 import { Paper, TableContainer } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { DotMenu } from '../menu/Menu';
 
 export const rootClassName = 'dot-table';
 
@@ -53,17 +54,15 @@ export const StyledTableContainer = styled(TableContainer)`
             padding-left: 26px;
           }
         }
-        tbody > tr > td.noWrap {
+        tbody > tr > td.noWrap,
+        tbody > tr > td.actionItems {
           max-width: 0;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
         }
         tbody > tr > td.actionItems {
-          max-width: 0;
-          overflow: hidden;
           text-overflow: clip;
-          white-space: nowrap;
         }
         .empty-row td {
           text-align: center;
@@ -99,7 +98,22 @@ export const StyledTableContainer = styled(TableContainer)`
           padding-top: 0;
           padding-bottom: 0;
         }
+        .dot-icon-btn {
+          padding: 6px;
+        }
       }
     }
   `}
+`;
+
+export const StyledMenu = styled(DotMenu)`
+  .dot-ul {
+    > li {
+      padding: 0;
+      > button {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
 `;

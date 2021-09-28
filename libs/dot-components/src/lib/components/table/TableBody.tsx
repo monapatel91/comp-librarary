@@ -8,6 +8,7 @@ import { TableRowProps } from './Table';
 import { CommonProps } from '../CommonProps';
 import { DotMenu } from '../menu/Menu';
 import { useEffect } from 'react';
+import { StyledMenu } from './Table.styles';
 
 export type Order = 'asc' | 'desc';
 
@@ -33,14 +34,21 @@ export const DotTableBody = ({
   onRowClick,
 }: TableBodyProps) => {
   const [anchorEl, setAnchorEl] = useState(null);
-
+  const [menuProps, setMenuProps] = useState([]);
+  const [open, setOpen] = useState(false);
   let tableId: string;
+
   useEffect(() => {
     tableId = CreateUUID();
   });
 
-  const handleActionMenuTrigger = (el: HTMLElement) => {
+  const handleActionMenuTrigger = (el: HTMLElement, menuItem: []) => {
     setAnchorEl(el);
+    setMenuProps(menuItem);
+    setOpen(!open);
+  };
+  const onLeave = () => {
+    setOpen(false);
   };
 
   if (data.length === 0) {
@@ -51,9 +59,7 @@ export const DotTableBody = ({
     );
   }
 
-  const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
   return (
     <>
       <TableBody classes={{ root: 'dot-tbody' }}>
@@ -62,22 +68,20 @@ export const DotTableBody = ({
             <DotTableRow
               columns={columns}
               data={row}
-              key={`${tableId}-row-${index}`}
-              onClick={onRowClick}
-              selected={row.selected}
+              key={index}
               onActionMenuTrigger={handleActionMenuTrigger}
+              onClick={onRowClick}
+              rowKey={`${tableId}-row-${index}`}
+              selected={row.selected}
             />
           );
         })}
       </TableBody>
-      <DotMenu
+      <StyledMenu
         anchorEl={anchorEl}
-        menuItems={[
-          { children: 'blah' },
-          { children: 'blah' },
-          { children: 'blah' },
-        ]}
         id="action-menu"
+        menuItems={menuProps}
+        onLeave={onLeave}
         open={open}
       />
     </>
