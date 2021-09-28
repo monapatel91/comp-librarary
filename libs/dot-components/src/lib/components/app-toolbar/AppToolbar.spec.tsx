@@ -113,10 +113,24 @@ describe('Main Menu', () => {
     expect(mainMenuIcon).not.toBeInTheDocument();
   });
 
-  it('should display main menu if MainMenuItems are provided', () => {
+  it('should display main menu sidebar if MainMenuItems are provided', () => {
     render(<DotAppToolbar mainMenuItems={mainMenuItems} />);
+    const sidebar = screen.getByTestId('primaryNav');
     const mainMenuIcon = screen.queryByTestId('main-menu-icon');
     expect(mainMenuIcon).toBeInTheDocument();
+    expect(sidebar).toBeInTheDocument();
+  });
+
+  it('should not display Sidebar component if only custom mainMenu is provided', () => {
+    render(<DotAppToolbar mainMenu="I am Batman" />);
+    const sidebar = screen.queryByTestId('primaryNav');
+    const mainMenuIcon = screen.queryByTestId('main-menu-icon');
+
+    expect(mainMenuIcon).toBeInTheDocument();
+    fireEvent.click(mainMenuIcon);
+
+    expect(screen.getByText('I am Batman')).toBeVisible();
+    expect(sidebar).not.toBeInTheDocument();
   });
 
   it('should show/hide main menu when icon clicked', () => {
