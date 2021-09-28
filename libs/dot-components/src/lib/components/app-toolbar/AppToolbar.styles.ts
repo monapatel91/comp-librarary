@@ -29,7 +29,7 @@ export const StyledAppToolbar = styled.header`
       color: ${theme.palette.grey[0]};
       display: flex;
       height: 64px;
-      padding: 12px 16px 14px 0;
+      padding: 13px 16px 13px 0;
       position: fixed;
       width: 100%;
       z-index: ${levelFourth};

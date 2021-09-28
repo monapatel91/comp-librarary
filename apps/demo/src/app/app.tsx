@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react';
 import {
   DotAvatar,
   DotAppToolbar,
-  DotAutoComplete,
   DotSidebar,
   BackItemProps,
   IconButtonProps,
@@ -99,13 +98,7 @@ export const App = () => {
         navItems={topNavItems}
         mainMenu={customMainMenu}
         mainMenuItems={sideNavItems}
-      >
-        <DotAutoComplete
-          inputId="packages"
-          label="Packages"
-          options={[{ title: 'Option 1' }, { title: 'Option 2' }]}
-        />
-      </DotAppToolbar>
+      />
       <main>
         <DotSidebar
           backItem={backItem}
