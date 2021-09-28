@@ -2,6 +2,7 @@ import { useTheme } from '@material-ui/core';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
+import { levelBottom } from '../../theme-provider/common/variables';
 import { CssCell } from './CssCell';
 import { CssGrid, defaultColumns } from './CssGrid';
 
@@ -11,12 +12,9 @@ const cellClassName = 'debug-cell';
 
 const StyledGridOverlay = styled(CssGrid)`
   ${() => css`
-    .${gridClassContainer} {
-      /* position: relative; */
-    }
     &.${gridClassName} {
       position: absolute;
-      z-index: -1;
+      z-index: ${levelBottom};
       width: 100%;
       .${cellClassName} {
         background: rgba(255, 192, 203, 0.4);

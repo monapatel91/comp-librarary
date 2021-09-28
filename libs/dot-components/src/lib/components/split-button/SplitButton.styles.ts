@@ -1,5 +1,6 @@
 import { ButtonGroup } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { levelTop } from '../../theme-provider/common/variables';
 import { DotMenu } from '../menu/Menu';
 
 export const rootClassName = 'dot-split-button-group';
@@ -59,6 +60,6 @@ export const StyledSplitButtonGroup = styled(ButtonGroup)`
 
 export const StyledMenu = styled(DotMenu)`
   &.dot-menu {
-    z-index: 9999;
+    z-index: ${levelTop};
   }
 `;
