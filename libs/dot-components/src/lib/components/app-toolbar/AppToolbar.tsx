@@ -3,6 +3,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
 import { DotLink } from '../link/Link';
+import { DotTypography } from '../typography/Typography';
 import { ListItemProps } from '../list/List';
 import { DotSidebar } from '../sidebar/Sidebar';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
@@ -36,6 +37,7 @@ export interface AppToolbarProps extends CommonProps {
 }
 
 export const DotAppToolbar = ({
+  appName,
   appLogo,
   ariaLabel,
   avatar,
@@ -75,6 +77,13 @@ export const DotAppToolbar = ({
       return () => {
         mainMenuRef.current.removeEventListener('click', handleInsideMenuClick);
       };
+    }
+
+    // deprecation warning
+    if (appName) {
+      console.warn(
+        'The use of `appName` is deprecated and will be removed in the next major release, please use either `children` or `appLogo` isntead.'
+      );
     }
   }, []);
 
@@ -128,6 +137,9 @@ export const DotAppToolbar = ({
           {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>
         {appLogo && <div className="app-logo">{appLogo}</div>}
+        {appName && (
+          <DotTypography className="dot-product-name">{appName}</DotTypography>
+        )}
         {children && <div className="divider" data-testid="divider"></div>}
       </div>
       {children}

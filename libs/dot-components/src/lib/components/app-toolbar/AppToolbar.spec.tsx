@@ -7,6 +7,7 @@ import { IconButtonProps } from '../button/IconButton';
 import { DotButton } from '../button/Button';
 import { ReactComponent as LogoDigitalAiCustom } from '../../assets/logo_digital_ai.svg';
 
+const consoleSpy = jest.spyOn(global.console, 'warn');
 const menuItems = new Array<IconButtonProps>();
 const userAvatar = (
   <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
@@ -60,6 +61,11 @@ describe(' AppToolbar', () => {
   it('should display the application logo', () => {
     render(<DotAppToolbar appLogo={appLogo} navItems={menuItems} />);
     expect(screen.getByTitle('app logo')).toBeVisible();
+  });
+
+  it('should have a deprecation warning if appName is provided', () => {
+    render(<DotAppToolbar appName="Batman" />);
+    expect(consoleSpy).toBeCalled();
   });
 
   it('should display avatar if available', () => {

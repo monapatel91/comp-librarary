@@ -67,6 +67,12 @@ export const StyledAppToolbar = styled.header`
           line-height: 0;
         }
 
+        .dot-product-name {
+          color: ${theme.palette.grey[100]};
+          font-size: 18px;
+          margin: ${theme.spacing(0, 1.5)};
+        }
+
         .divider {
           margin-left: 6px;
         }
