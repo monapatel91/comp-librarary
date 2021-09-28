@@ -33,6 +33,7 @@ const mainMenuItems = [
 describe(' AppToolbar', () => {
   it('should have unchanged API', () => {
     const props = {
+      appName: 'Batman',
       appLogo: appLogo,
       ariaLabel: 'app toolbar',
       avatar: userAvatar,
@@ -65,14 +66,31 @@ describe(' AppToolbar', () => {
     render(<DotAppToolbar avatar={userAvatar} navItems={menuItems} />);
     expect(screen.getByText('BW')).toBeVisible();
   });
+
   it('should display default digital.ai logo if custom logo is not provided ', () => {
     render(<DotAppToolbar navItems={menuItems} />);
     expect(screen.getByTitle('digital.ai')).toBeVisible();
   });
+
   it('should display custom logo if provided', () => {
     render(<DotAppToolbar customLogo={customLogo} navItems={menuItems} />);
     expect(screen.getByTitle('digital.ai.custom')).toBeVisible();
   });
+
+  it('should display application logo if provided', () => {
+    render(<DotAppToolbar appLogo={appLogo} navItems={menuItems} />);
+    expect(screen.getByTitle('app logo')).toBeVisible();
+  });
+
+  it('should display dividers when necessary', () => {
+    render(
+      <DotAppToolbar mainMenuItems={mainMenuItems}>Hello World</DotAppToolbar>
+    );
+    const dividers = screen.getAllByTestId('divider');
+
+    expect(dividers.length).toEqual(2);
+  });
+
   it("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
     const dataTestId = 'test-app-toolbar';
@@ -86,11 +104,19 @@ describe(' AppToolbar', () => {
     const appToolbarElement = screen.getByTestId(dataTestId);
     expect(appToolbarElement).toHaveAttribute('aria-label', ariaLabel);
   });
+});
 
+describe('Main Menu', () => {
   it('should not display main menu if mainMenu and MainMenuItems are undefined', () => {
     render(<DotAppToolbar />);
     const mainMenuIcon = screen.queryByTestId('main-menu-icon');
     expect(mainMenuIcon).not.toBeInTheDocument();
+  });
+
+  it('should display main menu if MainMenuItems are provided', () => {
+    render(<DotAppToolbar mainMenuItems={mainMenuItems} />);
+    const mainMenuIcon = screen.queryByTestId('main-menu-icon');
+    expect(mainMenuIcon).toBeInTheDocument();
   });
 
   it('should show/hide main menu when icon clicked', () => {

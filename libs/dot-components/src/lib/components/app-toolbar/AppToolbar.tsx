@@ -95,7 +95,7 @@ export const DotAppToolbar = ({
               onClick={() => updateMenuOpen(!menuOpen)}
             />
           </div>
-          <div className="divider"></div>
+          <div className="divider" data-testid="divider"></div>
           <StyledMainMenu
             anchor="left"
             className={mainMenuClasses}
@@ -128,7 +128,7 @@ export const DotAppToolbar = ({
           {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>
         {appLogo && <div className="app-logo">{appLogo}</div>}
-        {children && <div className="divider"></div>}
+        {children && <div className="divider" data-testid="divider"></div>}
       </div>
       {children}
       <div className="dot-right-side">
