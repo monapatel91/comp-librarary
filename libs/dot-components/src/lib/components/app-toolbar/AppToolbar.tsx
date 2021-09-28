@@ -3,6 +3,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
 import { DotLink } from '../link/Link';
+import { DotTypography } from '../typography/Typography';
 import { ListItemProps } from '../list/List';
 import { DotSidebar } from '../sidebar/Sidebar';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
@@ -11,10 +12,11 @@ import {
   StyledAppToolbar,
   StyledMainMenu,
 } from './AppToolbar.styles';
-import { DotTypography } from '../typography/Typography';
 
 export interface AppToolbarProps extends CommonProps {
-  /** Product name displayed next to Digital.ai logo */
+  /** If provided will display application logo */
+  appLogo?: ReactNode;
+  /** DEPRECATED, DO NOT USE */
   appName?: string;
   /** User avatar component */
   avatar?: ReactNode;
@@ -35,10 +37,11 @@ export interface AppToolbarProps extends CommonProps {
 }
 
 export const DotAppToolbar = ({
+  appName,
+  appLogo,
   ariaLabel,
   avatar,
   borderColor,
-  appName,
   children,
   className,
   customLogo,
@@ -51,10 +54,7 @@ export const DotAppToolbar = ({
   const [menuOpen, updateMenuOpen] = useState(false);
   const showMainMenu = mainMenu || mainMenuItems;
   const mainMenuRef = useRef(null);
-  const rootClasses = useStylesWithRootClass(
-    rootClassName,
-    `dense ${className}`
-  );
+  const rootClasses = useStylesWithRootClass(rootClassName, `${className}`);
   const mainMenuClasses = useStylesWithRootClass(
     'dot-main-menu',
     menuOpen ? 'open' : ''
@@ -78,6 +78,13 @@ export const DotAppToolbar = ({
         mainMenuRef.current.removeEventListener('click', handleInsideMenuClick);
       };
     }
+
+    // deprecation warning
+    if (appName) {
+      console.warn(
+        'The use of `appName` is deprecated and will be removed in the next major release, please use either `children` or `appLogo` isntead.'
+      );
+    }
   }, []);
 
   return (
@@ -89,13 +96,15 @@ export const DotAppToolbar = ({
     >
       {showMainMenu && (
         <>
-          <DotIconButton
-            className="hamburger"
-            data-testid="main-menu-icon"
-            iconId={menuOpen ? 'close' : 'menu'}
-            onClick={() => updateMenuOpen(!menuOpen)}
-            size="small"
-          />
+          <div className="dot-main-menu-btn">
+            <DotIconButton
+              data-testid="main-menu-icon"
+              iconId={menuOpen ? 'close' : 'menu'}
+              iconSize="default"
+              onClick={() => updateMenuOpen(!menuOpen)}
+            />
+          </div>
+          <div className="divider" data-testid="divider"></div>
           <StyledMainMenu
             anchor="left"
             className={mainMenuClasses}
@@ -106,28 +115,32 @@ export const DotAppToolbar = ({
             variant="persistent"
           >
             <div ref={mainMenuRef}>
-              {mainMenu ? (
-                mainMenu
-              ) : (
+              {mainMenuItems ? (
                 <DotSidebar
                   collapsable={false}
                   displayBrand={false}
                   goBack={false}
                   navItems={mainMenuItems}
                   nestedListType="menu"
-                />
+                >
+                  {mainMenu}
+                </DotSidebar>
+              ) : (
+                mainMenu
               )}
             </div>
           </StyledMainMenu>
         </>
       )}
-      <div className={`dot-branding ${showMainMenu ? 'hamburger' : ''}`}>
-        <DotLink href="/">
+      <div className="dot-branding">
+        <DotLink className="primary-logo" href="/">
           {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>
+        {appLogo && <div className="app-logo">{appLogo}</div>}
         {appName && (
           <DotTypography className="dot-product-name">{appName}</DotTypography>
         )}
+        {children && <div className="divider" data-testid="divider"></div>}
       </div>
       {children}
       <div className="dot-right-side">
@@ -137,15 +150,16 @@ export const DotAppToolbar = ({
               <DotIconButton
                 className={item.className}
                 iconId={item.iconId}
+                iconSize="default"
                 onClick={(event) => item.onClick && item.onClick(event)}
                 key={index}
-                size={item.size}
+                size="medium"
                 titleTooltip={item.titleTooltip}
               />
             ))}
           </nav>
         )}
-        {avatar}
+        {avatar && <div className="avatar-wrapper">{avatar}</div>}
       </div>
     </StyledAppToolbar>
   );

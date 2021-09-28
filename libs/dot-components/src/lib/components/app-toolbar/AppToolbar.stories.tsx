@@ -18,10 +18,7 @@ export default {
       ),
     },
     borderColor: {
-      defaultValue: '#1abc9c',
-    },
-    appName: {
-      defaultValue: 'Batman',
+      defaultValue: '#33d389',
     },
     children: {
       defaultValue: <DotButton>Activate Bat Signal</DotButton>,
@@ -122,7 +119,6 @@ export default {
         {
           iconId: 'dark',
           onClick: () => console.log('theme clicked'),
-          size: 'small',
           titleTooltip: 'Toggle Theme',
         },
       ],
@@ -133,5 +129,5 @@ export default {
 export const Default: Story<AppToolbarProps> = (args) => {
   const { customLogo: logoId } = args;
   const logo = logoId === 'Custom' && <TestLogo title="test.logo" />;
-  return <DotAppToolbar {...args} customLogo={logo} />;
+  return <DotAppToolbar {...args} customLogo={logo} appLogo={logo} />;
 };

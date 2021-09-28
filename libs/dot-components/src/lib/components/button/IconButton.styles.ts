@@ -4,19 +4,20 @@ import styled, { css } from 'styled-components';
 export const rootClassName = 'dot-icon-btn';
 
 export const StyledIconButton = styled(IconButton)`
-  ${({ theme }) => css`
-    &.dot-icon-btn {
-      &.MuiIconButton-sizeSmall {
-        padding: ${theme.spacing(0.25)}px;
+  ${() => css`
+    &.${rootClassName} {
+      padding: 10px;
 
-        .dot-icon {
-          height: 20px;
-          width: 20px;
+      &.MuiIconButton-root {
+        font-size: inherit;
+
+        .dot-icon.MuiIcon-fontSizeSmall {
+          padding: 1px;
         }
       }
 
-      .dot-icon {
-        padding: 0;
+      &.MuiIconButton-sizeSmall {
+        padding: 3px;
       }
     }
   `}
