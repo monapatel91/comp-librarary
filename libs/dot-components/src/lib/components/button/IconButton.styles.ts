@@ -10,6 +10,10 @@ export const StyledIconButton = styled(IconButton)`
 
       &.MuiIconButton-root {
         font-size: inherit;
+
+        .dot-icon.MuiIcon-fontSizeSmall {
+          padding: 1px;
+        }
       }
 
       &.MuiIconButton-sizeSmall {

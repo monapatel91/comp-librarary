@@ -13,8 +13,8 @@ describe('dot-components: Icon component', () => {
   describe('style decisions', () => {
     it('spacing and sizing', () => {
       cy.get('span.dot-icon')
-        .should('have.css', 'width', '24px')
-        .and('have.css', 'height', '24px')
+        .should('have.css', 'width', '20px')
+        .and('have.css', 'height', '20px')
         .and('have.css', 'font-size', '20px');
     });
 
