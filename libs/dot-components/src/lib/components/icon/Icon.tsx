@@ -28,15 +28,10 @@ export const DotIcon = ({
   // deprecation warning(s)
   useEffect(() => {
     // 'inherit' causes the vertical alignment of the icon to be not be centered
-    if (fontSize === 'inherit') {
-      console.warn(
-        'The use of `fontSize: inherit` on `DotIcon` is deprecated and will be removed in the next release. Please consider using `fontSize: medium` instead.'
-      );
-    }
     // TO-DO: S-76846 MUI 5 change IconFontSize 'default' to 'medium'
-    if (fontSize === 'default') {
+    if (fontSize === 'inherit' || fontSize === 'default') {
       console.warn(
-        'The use of `fontSize: default` is being updated to `fontSize: "medium" in the upgrade to MUI v5'
+        `The use of \`fontSize: ${fontSize}\` on \`DotIcon\` is deprecated and will be removed in the next release. Please consider using \`fontSize: medium\` instead.`
       );
     }
   }, []);
