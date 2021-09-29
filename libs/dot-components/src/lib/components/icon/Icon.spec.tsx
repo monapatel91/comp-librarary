@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '../../testing-utils';
 import { DotIcon, IconFontSize, IconProps } from './Icon';
 
+const consoleSpy = jest.spyOn(global.console, 'warn');
 describe('DotIcon', () => {
   it('should have unchanged API', () => {
     const props = {
@@ -29,5 +30,15 @@ describe('DotIcon', () => {
     );
     const iconElement = screen.getByTestId(dataTestId);
     expect(iconElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  it('should have a deprecation warning if fontSize is set to "default"', () => {
+    render(<DotIcon iconId="home" fontSize="default" />);
+    expect(consoleSpy).toBeCalled();
+  });
+
+  it('should have a deprecation warning if fontSize is set to "inherit"', () => {
+    render(<DotIcon iconId="home" fontSize="inherit" />);
+    expect(consoleSpy).toBeCalled();
   });
 });
