@@ -77,6 +77,7 @@ export const DotTabs = ({
         disableRipple={true}
         key={index}
         label={label}
+        value={tab.value}
       />
     );
     tabArray.push(tabElement);
