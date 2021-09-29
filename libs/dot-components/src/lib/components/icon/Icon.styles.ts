@@ -9,9 +9,7 @@ export const StyledIcon = styled(Icon)`
     display: flex;
     float: left; // allows flex items to display inline
     font-size: 20px;
-    height: 24px;
     justify-content: center;
-    width: 24px;
 
       &.MuiIcon-fontSizeLarge {
         font-size: 28px;
@@ -23,9 +21,11 @@ export const StyledIcon = styled(Icon)`
         }
       }
       &.MuiIcon-fontSizeSmall {
-        font-size: 16px;
-        height: 20px;
-        width: 20px;
+        font-size: 18px;
+
+        i {
+          height: 18px;
+        }
       }
 
       i {

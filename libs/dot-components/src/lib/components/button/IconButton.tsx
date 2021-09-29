@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { DotIcon } from '../icon/Icon';
+import { DotIcon, IconFontSize } from '../icon/Icon';
 import { rootClassName, StyledIconButton } from './IconButton.styles';
 
 export type IconButtonColor = 'default' | 'inherit' | 'primary' | 'secondary';
@@ -14,6 +14,8 @@ export interface IconButtonProps extends CommonProps {
   disabled?: boolean;
   /** The icon to display on the button */
   iconId: string;
+  /** Determines the size of the icon itself and spacing around it */
+  iconSize?: IconFontSize;
   /** Event callback */
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   /** Determines the size of the button and padding around the icon */
@@ -22,7 +24,6 @@ export interface IconButtonProps extends CommonProps {
   titleTooltip?: string;
 }
 
-/** This component wraps the IconButton component from @material-ui. */
 export const DotIconButton = ({
   ariaLabel,
   className,
@@ -30,6 +31,7 @@ export const DotIconButton = ({
   'data-testid': dataTestId,
   disabled = false,
   iconId,
+  iconSize = 'small',
   onClick,
   titleTooltip,
   size = 'medium',
@@ -49,7 +51,7 @@ export const DotIconButton = ({
     >
       <DotIcon
         data-testid="button-icon"
-        fontSize="small"
+        fontSize={iconSize}
         iconId={iconId}
         title={titleTooltip}
       />

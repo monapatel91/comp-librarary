@@ -20,11 +20,17 @@ export default {
     onClick: {
       action: 'clicked',
     },
+    size: {
+      defaultValue: 'medium',
+    },
     text: {
       defaultValue: 'Bruce Wayne',
     },
     type: {
       defaultValue: 'text',
+    },
+    variant: {
+      defaultValue: 'circular',
     },
   },
 } as Meta;
