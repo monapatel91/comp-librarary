@@ -30,6 +30,7 @@ declare module '@material-ui/core/styles/createPalette' {
     cardBg: string;
     disabledText: string;
     fixedCol: string;
+    headerBg: string;
     helpColor: string;
     menuBg: string;
     panelBgActive: string;

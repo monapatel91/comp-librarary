@@ -7,11 +7,13 @@ import { IconButtonProps } from '../button/IconButton';
 import { DotButton } from '../button/Button';
 import { ReactComponent as LogoDigitalAiCustom } from '../../assets/logo_digital_ai.svg';
 
+const consoleSpy = jest.spyOn(global.console, 'warn');
 const menuItems = new Array<IconButtonProps>();
 const userAvatar = (
   <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
 );
 const customLogo = <LogoDigitalAiCustom title="digital.ai.custom" />;
+const appLogo = <LogoDigitalAiCustom title="app logo" />;
 const mainMenuItems = [
   {
     startIconId: 'satellite-group',
@@ -33,6 +35,7 @@ describe(' AppToolbar', () => {
   it('should have unchanged API', () => {
     const props = {
       appName: 'Batman',
+      appLogo: appLogo,
       ariaLabel: 'app toolbar',
       avatar: userAvatar,
       borderColor: '#1abc9c',
@@ -55,29 +58,50 @@ describe(' AppToolbar', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should display the application name', () => {
-    render(<DotAppToolbar appName="Lisbon" navItems={menuItems} />);
-    expect(screen.getByText('Lisbon')).toBeVisible();
+  it('should display the application logo', () => {
+    render(<DotAppToolbar appLogo={appLogo} navItems={menuItems} />);
+    expect(screen.getByTitle('app logo')).toBeVisible();
+  });
+
+  it('should have a deprecation warning if appName is provided', () => {
+    render(<DotAppToolbar appName="Batman" />);
+    expect(consoleSpy).toBeCalled();
   });
 
   it('should display avatar if available', () => {
     render(<DotAppToolbar avatar={userAvatar} navItems={menuItems} />);
     expect(screen.getByText('BW')).toBeVisible();
   });
+
   it('should display default digital.ai logo if custom logo is not provided ', () => {
     render(<DotAppToolbar navItems={menuItems} />);
     expect(screen.getByTitle('digital.ai')).toBeVisible();
   });
+
   it('should display custom logo if provided', () => {
     render(<DotAppToolbar customLogo={customLogo} navItems={menuItems} />);
     expect(screen.getByTitle('digital.ai.custom')).toBeVisible();
   });
+
+  it('should display application logo if provided', () => {
+    render(<DotAppToolbar appLogo={appLogo} navItems={menuItems} />);
+    expect(screen.getByTitle('app logo')).toBeVisible();
+  });
+
+  it('should display dividers when necessary', () => {
+    render(
+      <DotAppToolbar mainMenuItems={mainMenuItems}>Hello World</DotAppToolbar>
+    );
+    const dividers = screen.getAllByTestId('divider');
+
+    expect(dividers.length).toEqual(2);
+  });
+
   it("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
     const dataTestId = 'test-app-toolbar';
     render(
       <DotAppToolbar
-        appName="Lisbon"
         ariaLabel={ariaLabel}
         data-testid={dataTestId}
         navItems={menuItems}
@@ -86,11 +110,33 @@ describe(' AppToolbar', () => {
     const appToolbarElement = screen.getByTestId(dataTestId);
     expect(appToolbarElement).toHaveAttribute('aria-label', ariaLabel);
   });
+});
 
+describe('Main Menu', () => {
   it('should not display main menu if mainMenu and MainMenuItems are undefined', () => {
     render(<DotAppToolbar />);
     const mainMenuIcon = screen.queryByTestId('main-menu-icon');
     expect(mainMenuIcon).not.toBeInTheDocument();
+  });
+
+  it('should display main menu sidebar if MainMenuItems are provided', () => {
+    render(<DotAppToolbar mainMenuItems={mainMenuItems} />);
+    const sidebar = screen.getByTestId('primaryNav');
+    const mainMenuIcon = screen.queryByTestId('main-menu-icon');
+    expect(mainMenuIcon).toBeInTheDocument();
+    expect(sidebar).toBeInTheDocument();
+  });
+
+  it('should not display Sidebar component if only custom mainMenu is provided', () => {
+    render(<DotAppToolbar mainMenu="I am Batman" />);
+    const sidebar = screen.queryByTestId('primaryNav');
+    const mainMenuIcon = screen.queryByTestId('main-menu-icon');
+
+    expect(mainMenuIcon).toBeInTheDocument();
+    fireEvent.click(mainMenuIcon);
+
+    expect(screen.getByText('I am Batman')).toBeVisible();
+    expect(sidebar).not.toBeInTheDocument();
   });
 
   it('should show/hide main menu when icon clicked', () => {
