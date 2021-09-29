@@ -24,7 +24,7 @@ describe('AutoComplete', () => {
   ];
 
   const actionItemId = 'add';
-  const actionItemText = 'add';
+  const actionItemText = 'Add new item';
   const handleActionItemClick = jest.fn();
 
   const actionItem: ActionItem = {
