@@ -19,7 +19,7 @@ export const DotIcon = ({
   ariaLabel,
   className,
   'data-testid': dataTestId,
-  fontSize = 'default',
+  fontSize = 'medium',
   iconId,
   title = '',
 }: IconProps) => {

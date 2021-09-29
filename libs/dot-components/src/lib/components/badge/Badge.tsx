@@ -3,35 +3,37 @@ import { CommonProps } from '../CommonProps';
 import { rootClassName, StyledBadge } from './Badge.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
-export type BadgeColor = 'default' | 'error' | 'primary' | 'secondary';
 export type BadgeOverlap = 'circle' | 'rectangle' | 'circular' | 'rectangular';
 
-export interface DotBadgeProps extends CommonProps {
+export interface BadgeProps extends CommonProps {
+  /** custom color code for the badge */
   badgeColor?: string;
-  children?: ReactNode;
-  color?: BadgeColor;
+  /** component which will be wrapped with the badge */
+  children: ReactNode;
+  /** if true, the badge will be completely hidden*/
   invisible?: boolean;
+  /** outline shape of the child component */
   overlap?: BadgeOverlap;
 }
 
-export function DotBadge({
+export const DotBadge = ({
   ariaLabel,
-  badgeColor = '#33d389',
+  badgeColor,
   children,
   className,
-  color,
   'data-testid': dataTestId,
   invisible,
   overlap,
-}: DotBadgeProps) {
+}: BadgeProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   return (
     <StyledBadge
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       aria-label={ariaLabel}
+      badgeColor={badgeColor}
       classes={{ root: rootClasses }}
-      color={color}
+      color="primary"
       data-testid={dataTestId}
       invisible={invisible}
       overlap={overlap}
@@ -40,4 +42,4 @@ export function DotBadge({
       {children}
     </StyledBadge>
   );
-}
+};

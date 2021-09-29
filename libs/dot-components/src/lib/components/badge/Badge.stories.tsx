@@ -1,14 +1,22 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotIcon } from '../icon/Icon';
-import { DotBadge, DotBadgeProps } from './Badge';
+import { DotBadge, BadgeProps } from './Badge';
 
 export default {
   title: 'Components/Badge',
   component: DotBadge,
+  argTypes: {
+    color: {
+      defaultValue: 'primary',
+    },
+    overlap: {
+      defaultValue: 'rectangle',
+    },
+  },
 } as Meta;
 
-export const Default: Story<DotBadgeProps> = (args) => (
+export const Default: Story<BadgeProps> = (args) => (
   <DotBadge {...args}>
     <DotIcon iconId="apps" />
   </DotBadge>
