@@ -21,8 +21,6 @@ import { DotButton } from '../button/Button';
 import { DotIcon } from '../icon/Icon';
 
 export interface ActionItem {
-  /** If true, the ripple effect will be disabled. */
-  disableRipple?: boolean;
   /** The icon to display on the button */
   iconId: string;
   /** Event callback */
@@ -194,7 +192,7 @@ export const DotAutoComplete = ({
   const DotPopper = (props: any) => {
     if (!actionItem || Object.keys(actionItem).length === 0)
       return <StyledPopper {...props} />;
-    const { iconId, text, onClick, disableRipple = false } = actionItem;
+    const { iconId, text, onClick } = actionItem;
     const paperProps = props.children.props;
     const paperChildren = paperProps.children;
 
@@ -229,7 +227,7 @@ export const DotAutoComplete = ({
           >
             <DotButton
               data-testid="dot-action-item-btn"
-              disableRipple={disableRipple}
+              disableRipple={true}
               fullWidth={true}
               onClick={onActionButtonClick}
               ref={actionItemRef}

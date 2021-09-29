@@ -24,21 +24,20 @@ export const StyledPopper = styled(Popper)`
             theme.palette.product === 'agility' &&
             theme.palette.agilityInterface.fixedCol
           };
-
-          &:active,
-          &:focus {
-            background: ${
-              theme.palette.product === 'agility' &&
-              theme.palette.agilityInterface.activeCardBg
-            };
-          }
         }
 
-        .dot-link {
-          color: ${
-            theme.palette.product === 'agility' && theme.palette.layer.n700
+        &:active, &:focus {
+          background: ${
+            theme.palette.product === 'agility' &&
+            theme.palette.agilityInterface.activeCardBg
           };
         }
+      }
+
+      .dot-link {
+        color: ${
+          theme.palette.product === 'agility' && theme.palette.layer.n700
+        };
       }
     }
 
@@ -53,10 +52,12 @@ export const StyledPopper = styled(Popper)`
         height: 100%;
         margin: 0;
 
-        /* Hack to get ripple effect to span across whole width of the button */
-        .MuiTouchRipple-ripple {
-          left: 0 !important;
-          width: 100% !important;
+        &:focus-visible {
+          background-color: ${
+            theme.palette.product === 'agility' && theme.palette.type === 'dark'
+              ? theme.palette.layer.n200
+              : theme.palette.layer.n100
+          };
         }
 
         .MuiButton-label {
