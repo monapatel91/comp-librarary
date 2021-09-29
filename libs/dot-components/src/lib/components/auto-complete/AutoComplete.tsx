@@ -5,6 +5,7 @@ import React, {
   MouseEvent,
   useRef,
   FocusEvent,
+  MutableRefObject,
 } from 'react';
 import { AutocompleteGetTagProps } from '@material-ui/lab';
 import { rootClassName, StyledAutocomplete } from './AutoComplete.styles';
@@ -138,12 +139,24 @@ export const DotAutoComplete = ({
     className
   );
 
+  let textFieldInput: HTMLInputElement;
   // Used for focus management while popper is opened
   const actionItemRef = useRef<HTMLInputElement>();
-  // Additional ref which will be used if 'inputRef' prop is not defined
-  const autocompleteInputRef = useRef<HTMLInputElement>();
-  // This way we will always have ref to the autocomplete input
-  const textFieldRef = inputRef || autocompleteInputRef;
+
+  const textFieldRef = (element: HTMLInputElement) => {
+    // We want to use this element in callback function
+    textFieldInput = element;
+    // Check if ref is defined via props
+    if (inputRef) {
+      // Check if callback ref
+      if (typeof inputRef === 'function') {
+        inputRef(element);
+      } else {
+        // We are dealing with mutable ref object
+        (inputRef as MutableRefObject<HTMLInputElement>).current = element;
+      }
+    }
+  };
 
   const getChips = (
     values: Array<AutoCompleteOption | string>,
@@ -182,8 +195,6 @@ export const DotAutoComplete = ({
         })
       : options;
   };
-  const getElementFromInputRef = () =>
-    'current' in textFieldRef && textFieldRef.current;
 
   const handleBlur = (event: FocusEvent<HTMLElement>): void =>
     event.relatedTarget !== actionItemRef.current && setIsOpened(false);
@@ -198,9 +209,7 @@ export const DotAutoComplete = ({
 
     const onActionButtonClick = () => {
       setIsOpened(false);
-      const inputElement = getElementFromInputRef();
-      // Focus autocomplete input element if its reference exists
-      inputElement?.focus();
+      textFieldInput.focus();
       onClick();
     };
 
@@ -216,10 +225,9 @@ export const DotAutoComplete = ({
               e.preventDefault();
             }}
             onKeyDown={(event) => {
-              const inputElement = getElementFromInputRef();
-              if (event.key === 'Tab' && inputElement) {
+              if (event.key === 'Tab' && textFieldInput) {
                 event.preventDefault();
-                inputElement.focus();
+                textFieldInput.focus();
               }
             }}
             // We want to close the popper each time focus is shifted from action item
