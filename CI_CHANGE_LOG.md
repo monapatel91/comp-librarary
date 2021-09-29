@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0](https://github.com/digital-ai/dot-components/tree/1.1.0) (09/29/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.12...1.1.0)
+
+**Fixed bugs:**
+
+- value prop isn't being passed to tab [\#693](https://github.com/digital-ai/dot-components/issues/693)
+
+**Merged pull requests:**
+
+- MINOR release [\#695](https://github.com/digital-ai/dot-components/pull/695) ([CWSites](https://github.com/CWSites))
+- pass value to tab [\#694](https://github.com/digital-ai/dot-components/pull/694) ([kmmarsh](https://github.com/kmmarsh))
+- S-78831: update AppToolbar component for Agility [\#691](https://github.com/digital-ai/dot-components/pull/691) ([CWSites](https://github.com/CWSites))
+- Bring `master` back into `develop` [\#690](https://github.com/digital-ai/dot-components/pull/690) ([CWSites](https://github.com/CWSites))
+
 ## [1.0.12](https://github.com/digital-ai/dot-components/tree/1.0.12) (09/23/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.0.11...1.0.12)
@@ -80,6 +95,7 @@
 - D-18607: Fix rowsPerPage parsing and do not pad table with empty rows [\#655](https://github.com/digital-ai/dot-components/pull/655) ([selsemore](https://github.com/selsemore))
 - S-78388: Export interfaces and types needed for table pagination and sorting [\#654](https://github.com/digital-ai/dot-components/pull/654) ([selsemore](https://github.com/selsemore))
 - S-77872: gather test coverage in sonarcloud [\#653](https://github.com/digital-ai/dot-components/pull/653) ([CWSites](https://github.com/CWSites))
+- add back missing items from export [\#651](https://github.com/digital-ai/dot-components/pull/651) ([TheKeithStewart](https://github.com/TheKeithStewart))
 
 ## [1.0.8](https://github.com/digital-ai/dot-components/tree/1.0.8) (08/23/2021)
 
@@ -92,7 +108,6 @@
 **Merged pull requests:**
 
 - add export back to component library [\#652](https://github.com/digital-ai/dot-components/pull/652) ([CWSites](https://github.com/CWSites))
-- add back missing items from export [\#651](https://github.com/digital-ai/dot-components/pull/651) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Master back into develop [\#649](https://github.com/digital-ai/dot-components/pull/649) ([CWSites](https://github.com/CWSites))
 
 ## [1.0.7](https://github.com/digital-ai/dot-components/tree/1.0.7) (08/23/2021)
@@ -214,7 +229,6 @@
 - New icons 27 5 2021 [\#564](https://github.com/digital-ai/dot-components/pull/564) ([BojanKocijan](https://github.com/BojanKocijan))
 - Add isUnderToolbar property to Sidebar for use beneath AppToolbar [\#560](https://github.com/digital-ai/dot-components/pull/560) ([selsemore](https://github.com/selsemore))
 - Move approved components to "Stable" [\#559](https://github.com/digital-ai/dot-components/pull/559) ([CWSites](https://github.com/CWSites))
-- Deploy Latest `master` [\#558](https://github.com/digital-ai/dot-components/pull/558) ([CWSites](https://github.com/CWSites))
 - merging master \> develop [\#557](https://github.com/digital-ai/dot-components/pull/557) ([CWSites](https://github.com/CWSites))
 - S-75998: \[PB Tech Debt\] Avoid unnecessary form re-renders when typing application name [\#556](https://github.com/digital-ai/dot-components/pull/556) ([dmiletic85](https://github.com/dmiletic85))
 - S-75991: \[PB Tech Debt\] Refactor and improve wrapper component in demo app [\#546](https://github.com/digital-ai/dot-components/pull/546) ([dmiletic85](https://github.com/dmiletic85))
@@ -296,6 +310,7 @@
 
 **Merged pull requests:**
 
+- Deploy Latest `master` [\#558](https://github.com/digital-ai/dot-components/pull/558) ([CWSites](https://github.com/CWSites))
 - Issue \#553: Add README.md example for using theme colors and spacing [\#554](https://github.com/digital-ai/dot-components/pull/554) ([selsemore](https://github.com/selsemore))
 - Issue \#527: resolve various issues [\#529](https://github.com/digital-ai/dot-components/pull/529) ([CWSites](https://github.com/CWSites))
 
@@ -704,6 +719,7 @@
 - Icon size is wrong [\#191](https://github.com/digital-ai/dot-components/issues/191)
 - Alpha 5 release [\#187](https://github.com/digital-ai/dot-components/issues/187)
 - Separate DOM segments into separate styled components [\#182](https://github.com/digital-ai/dot-components/issues/182)
+- Move "styles" for styled components to separate file [\#163](https://github.com/digital-ai/dot-components/issues/163)
 - Investigate `\<Image\>` use in `\<DotEmptyState\>` component [\#161](https://github.com/digital-ai/dot-components/issues/161)
 - Create Issue and PR templates [\#144](https://github.com/digital-ai/dot-components/issues/144)
 - Contributing guidelines [\#134](https://github.com/digital-ai/dot-components/issues/134)
@@ -847,7 +863,6 @@
 
 - Alpha 4 release [\#184](https://github.com/digital-ai/dot-components/issues/184)
 - Make the deployment of the public Storybook site a manual action [\#167](https://github.com/digital-ai/dot-components/issues/167)
-- Move "styles" for styled components to separate file [\#163](https://github.com/digital-ai/dot-components/issues/163)
 - Links in change log and other markdown files should point to ZeroHeight rather than local files [\#157](https://github.com/digital-ai/dot-components/issues/157)
 - Empty state component [\#138](https://github.com/digital-ai/dot-components/issues/138)
 - Component Review - AppToolbar [\#111](https://github.com/digital-ai/dot-components/issues/111)
