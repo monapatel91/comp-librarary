@@ -1,7 +1,8 @@
 import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '../../testing-utils';
+import { render, screen, fireEvent, waitFor } from '../../testing-utils';
 import {
+  ActionItem,
   AutoCompleteOption,
   AutoCompleteProps,
   autoCompleteSize,
@@ -22,10 +23,26 @@ describe('AutoComplete', () => {
     { title: 'Underdog' },
   ];
 
+  const actionItemId = 'add';
+  const actionItemText = 'Add new item';
+  const handleActionItemClick = jest.fn();
+
+  const actionItem: ActionItem = {
+    iconId: actionItemId,
+    text: actionItemText,
+    onClick: handleActionItemClick,
+  };
+
+  const queryActionItemButton = (): HTMLElement | undefined =>
+    screen.queryByTestId('dot-action-item-btn');
+  const getAutocompleteTextField = (): HTMLElement =>
+    screen.getByRole('textbox');
+
   it('should have unchanged API', () => {
     const onChange = jest.fn();
     const inputRef = createRef<HTMLInputElement>();
     const props = {
+      actionItem,
       ariaLabel: 'autocomplete',
       autoFocus: true,
       className: 'test-class',
@@ -197,6 +214,73 @@ describe('AutoComplete', () => {
     );
     const autocompleteElement = screen.getByTestId(dataTestId);
     expect(autocompleteElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  describe('action item', () => {
+    let containerElem: HTMLElement;
+    beforeEach(() => {
+      const { container } = render(
+        <DotAutoComplete
+          actionItem={actionItem}
+          inputId="input-id"
+          label="Label"
+          options={dummyOptions}
+        />
+      );
+      containerElem = container;
+      const textField = getAutocompleteTextField();
+      userEvent.click(textField);
+    });
+
+    it('should display action item with appropriate text', () => {
+      expect(screen.getByText(actionItemText)).toBeVisible();
+    });
+
+    it('should execute correct event handler upon click', () => {
+      const actionItemBtn = screen.getByText(actionItemText);
+      userEvent.click(actionItemBtn);
+      expect(handleActionItemClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('should close popper when action item is clicked', () => {
+      const actionItemBtn = screen.getByText(actionItemText);
+      userEvent.click(actionItemBtn);
+      expect(screen.queryByText(actionItemText)).not.toBeInTheDocument();
+    });
+
+    it("should navigate to action item via 'Tab' key and back to text input", () => {
+      const textField = getAutocompleteTextField();
+      const actionItemBtn = queryActionItemButton();
+      fireEvent.keyDown(textField, { key: 'Tab', code: 'Tab' });
+      expect(actionItemBtn).toHaveFocus();
+      fireEvent.keyDown(actionItemBtn, { key: 'Tab', code: 'Tab' });
+      expect(textField).toHaveFocus();
+      expect(screen.queryByText(actionItemText)).not.toBeInTheDocument();
+    });
+
+    it('should close popper when outside element is clicked', () => {
+      userEvent.click(containerElem);
+      expect(screen.queryByText(actionItemText)).not.toBeInTheDocument();
+    });
+
+    it('should close popper when action button has focus and outside element is clicked', () => {
+      const textField = getAutocompleteTextField();
+      fireEvent.keyDown(textField, { key: 'Tab', code: 'Tab' });
+      userEvent.click(containerElem);
+      expect(screen.queryByText(actionItemText)).not.toBeInTheDocument();
+    });
+
+    it('should close popper when action item is navigated via tabs and enter is pressed', () => {
+      const textField = getAutocompleteTextField();
+      const actionItemBtn = queryActionItemButton();
+      fireEvent.keyDown(textField, { key: 'Tab', code: 'Tab' });
+      expect(actionItemBtn).toHaveFocus();
+      fireEvent.keyDown(actionItemBtn, { key: 'Enter', code: 'Enter' });
+      expect(handleActionItemClick).toHaveBeenCalledTimes(2);
+      waitFor(() =>
+        expect(screen.queryByText(actionItemText)).not.toBeInTheDocument()
+      );
+    });
   });
 });
 

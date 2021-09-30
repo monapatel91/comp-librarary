@@ -179,4 +179,17 @@ describe('DotButton', () => {
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toHaveAttribute('aria-label', ariaLabel);
   });
+
+  it('should forward ref to button element', () => {
+    let expectedElement;
+    const ref = (element: HTMLElement) => {
+      expectedElement = element;
+    };
+    render(
+      <DotButton onClick={testClick} type="primary" ref={ref}>
+        Test
+      </DotButton>
+    );
+    expect(expectedElement).toHaveClass('dot-button');
+  });
 });
