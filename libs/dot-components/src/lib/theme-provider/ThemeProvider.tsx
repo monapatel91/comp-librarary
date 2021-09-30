@@ -144,10 +144,13 @@ export const avatarColors: AvatarPaletteColorOptions = {
   },
 };
 
+export const SPACING = 8;
+
 export const agilityLightTheme = createTheme({
   breakpoints: {
     ...breakpointOptions,
   },
+  spacing: SPACING,
   palette: {
     type: 'light',
     product: 'agility',
@@ -212,6 +215,7 @@ export const agilityDarkTheme = createTheme({
   breakpoints: {
     ...breakpointOptions,
   },
+  spacing: SPACING,
   palette: {
     type: 'dark',
     product: 'agility',
@@ -276,6 +280,7 @@ export const darkTheme = createTheme({
   breakpoints: {
     ...breakpointOptions,
   },
+  spacing: SPACING,
   palette: {
     type: 'dark',
     avatarColors: {
@@ -323,6 +328,7 @@ export const lightTheme = createTheme({
   breakpoints: {
     ...breakpointOptions,
   },
+  spacing: SPACING,
   palette: {
     type: 'light',
     avatarColors: {

@@ -4,6 +4,7 @@ import { CommonProps } from '../CommonProps';
 import { CreateUUID } from '../createUUID';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton } from '../button/IconButton';
+import { SPACING } from '../../theme-provider/ThemeProvider';
 
 export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
 
@@ -71,7 +72,7 @@ export const DotBodyCell = ({
     const actionTableCellWidth =
       getTotalActionItem *
         (iconBtnWidth.length > 0 && iconBtnWidth[0].clientWidth) +
-      16 * 2;
+      SPACING * 2 * 2;
 
     const isOverflowing =
       actionTableCellWidth > wrapperRef?.current.clientWidth;
