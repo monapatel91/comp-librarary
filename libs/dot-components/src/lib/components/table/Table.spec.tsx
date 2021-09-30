@@ -7,9 +7,15 @@ import { Order } from '../table/TableBody';
 import { DotTablePagination, RowsPerPageOption } from './TablePagination';
 import { TableRowProps } from '@material-ui/core';
 import { DotBodyCell } from './TableCell';
+import { DotButton } from '../button/Button';
 
 const mockFunc = jest.fn();
-
+const handleEditClick = () => {
+  console.log('test click');
+};
+const handleDeleteClick = () => {
+  console.log('test click');
+};
 it('should have unchanged API', () => {
   const columns = [{ id: 'title', label: 'Title' }];
   const data = [
@@ -46,6 +52,30 @@ it('should have unchanged API', () => {
   const tableRowProps: TableRowProps = trProps;
   expect(tableRowProps).toEqual(trProps);
 });
+const actionItemArray = [
+  {
+    actions: [
+      {
+        children: (
+          <DotButton type="text" onClick={() => handleEditClick()}>
+            Edit
+          </DotButton>
+        ),
+        key: 'edit',
+        onclick: () => handleEditClick(),
+      },
+      {
+        children: (
+          <DotButton type="text" onClick={() => handleDeleteClick()}>
+            Delete
+          </DotButton>
+        ),
+        key: 'delete',
+        onclick: () => handleDeleteClick(),
+      },
+    ],
+  },
+];
 
 const testCols = [
   { id: 'name', label: 'Name', truncate: true },
@@ -209,6 +239,32 @@ describe(' Table', () => {
     testCols.map((cols) => {
       const td = baseElement.querySelector('td');
       return cols.truncate && expect(td).toHaveClass('noWrap');
+    });
+  });
+
+  it('should have actionItem class', () => {
+    const ationCol = [
+      { id: 'action', label: 'Action' },
+      { id: 'type', label: 'Type' },
+    ];
+    const tableData = [
+      { id: 'ironman', rowData: { action: actionItemArray, type: '5a' } },
+      { id: 'batman', rowData: { action: actionItemArray, type: '4b' } },
+    ];
+    const { baseElement } = render(
+      <DotTable
+        ariaLabel="super heroes!"
+        columns={ationCol}
+        data={tableData}
+        orderBy="name"
+      />
+    );
+    tableData.map((rows) => {
+      const td = baseElement.querySelector('td');
+      return (
+        Array.isArray(rows.rowData.action) &&
+        expect(td).toHaveClass('actionItems')
+      );
     });
   });
 

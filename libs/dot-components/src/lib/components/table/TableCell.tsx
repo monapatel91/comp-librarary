@@ -84,7 +84,8 @@ export const DotBodyCell = ({
   const rootClasses = useStylesWithRootClass(
     'dot-td',
     className,
-    noWrap ? 'noWrap' : Array.isArray(value) ? 'actionItems' : ''
+    noWrap && 'noWrap',
+    Array.isArray(value) && 'actionItems'
   );
   return (
     <TableCell
