@@ -13,6 +13,7 @@ describe('Menu', () => {
       ariaLabel: 'my menu label',
       className: 'test-class',
       'data-testid': 'testid',
+      dense: true,
       disablePortal: true,
       id: 'menu-id',
       maxVisibleItems,

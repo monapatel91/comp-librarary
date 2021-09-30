@@ -32,7 +32,7 @@ export interface MenuProps extends CommonProps {
   /** Element that menu is attached to */
   anchorEl?: Element;
   /** If true, compact vertical padding designed for keyboard and mouse input is used for the list and list items. **/
-  dense: boolean;
+  dense?: boolean;
   /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
   disablePortal?: boolean;
   /** Unique ID that ties a particular menu to a specific element */
