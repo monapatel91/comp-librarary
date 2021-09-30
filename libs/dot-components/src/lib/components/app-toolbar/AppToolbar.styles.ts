@@ -29,7 +29,7 @@ export const StyledAppToolbar = styled.header`
       color: ${theme.palette.grey[0]};
       display: flex;
       height: 64px;
-      padding: 13px 16px 13px 0;
+      padding: ${theme.spacing(1.5, 2, 1.5, 0)};
       position: fixed;
       width: 100%;
       z-index: ${levelFourth};
@@ -38,7 +38,7 @@ export const StyledAppToolbar = styled.header`
       right: 0;
 
       .divider {
-        height: 34px;
+        height: 36px;
         width: 1px;
         background: ${n400};
       }
