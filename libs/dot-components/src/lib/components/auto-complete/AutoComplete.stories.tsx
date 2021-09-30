@@ -46,15 +46,15 @@ export default {
       defaultValue: 'Select a hero',
     },
     onChange: { action: 'on change' },
-    actionItem: {
-      control: { type: 'select', options: [null, actionItem] },
-      defaultValue: null,
-    },
   },
 } as Meta;
 
 export const Default: Story<AutoCompleteProps> = (args) => (
   <DotAutoComplete {...args} />
+);
+
+export const WithActionItem: Story<AutoCompleteProps> = (args) => (
+  <DotAutoComplete {...args} actionItem={actionItem} />
 );
 
 export const WithError: Story<AutoCompleteProps> = ({ onChange, ...args }) => {
