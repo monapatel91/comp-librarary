@@ -10,6 +10,7 @@ export {
 } from './auto-complete/AutoComplete';
 export { AvatarProps, DotAvatar } from './avatar/Avatar';
 export { DotAvatarGroup } from './avatar-group/AvatarGroup';
+export { DotBadge } from './badge/Badge';
 export { BreadcrumbItem, DotBreadcrumbs } from './breadcrumbs/Breadcrumbs';
 export { DotButton } from './button/Button';
 export { DotButtonToggle } from './button-toggle/ButtonToggle';
