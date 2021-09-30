@@ -7,14 +7,23 @@ export default {
   title: 'Components/Icon Button',
   component: DotIconButton,
   argTypes: {
+    color: {
+      defaultValue: 'inherit',
+    },
     iconId: {
       defaultValue: 'script',
+    },
+    iconSize: {
+      defaultValue: 'small',
     },
     onClick: {
       action: 'clicked',
     },
     titleTooltip: {
       defaultValue: 'Hello World',
+    },
+    size: {
+      defaultValue: 'medium',
     },
   },
 } as Meta;
