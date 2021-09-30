@@ -15,7 +15,8 @@ describe('dot-components: Menu component', () => {
     it('ul has correct size constraints and overflow handling', () => {
       cy.get('ul.MuiList-root')
         .should('have.css', 'min-width', '112px')
-        .and('have.css', 'overflow', 'auto');
+        .and('have.css', 'overflow', 'auto')
+        .and('have.css', 'height', '217px');
     });
   });
 });
@@ -31,5 +32,15 @@ describe('Agility theme style decisions', () => {
       'background-color',
       'rgb(36, 68, 81)'
     );
+  });
+});
+
+describe('without dense option', () => {
+  before(() =>
+    cy.visit('/iframe.html?id=components-menu--default&args=dense:false')
+  );
+
+  it('ul has correct height', () => {
+    cy.get('.dot-menu ul.dot-ul').should('have.css', 'height', '252px');
   });
 });
