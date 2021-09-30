@@ -182,6 +182,9 @@ export const agilityLightTheme = createTheme({
       n800: '#14262E',
       n900: '#000',
     },
+    secondary: {
+      main: lightColors.g500,
+    },
     agilityInterface: {
       activeBg: 'rgba(121, 181, 34, 0.2)',
       activeCardBg: '#EDF9DD',
@@ -245,6 +248,9 @@ export const agilityDarkTheme = createTheme({
       n700: lightColors.n0, // text-0
       n800: lightColors.n0,
       n900: lightColors.n0,
+    },
+    secondary: {
+      main: lightColors.g500,
     },
     agilityInterface: {
       activeBg: 'rgba(121, 181, 34, 0.2)',

@@ -1,4 +1,9 @@
 import styled, { css } from 'styled-components';
+import {
+  agilityGreen,
+  agilityLightGreen,
+  n300,
+} from '../../theme-provider/colors/light-theme-colors';
 
 export const rootClassName = 'dot-sidebar';
 
@@ -7,14 +12,22 @@ export const StyledSidebar = styled.aside`
     &.dot-sidebar {
       align-items: stretch;
       background: ${theme.palette.grey[50]};
-      border-right: 1px solid ${theme.palette.grey[100]};
-      color: ${theme.palette.grey[700]};
+      border-width: 0 1px;
+      border-style: solid;
+      border-color: ${theme.palette.product === 'agility'
+        ? n300
+        : theme.palette.grey[100]};
+      box-shadow: ${theme.palette.product === 'agility' &&
+      '0 0 5px rgba(0, 0, 0, 0.15)'};
+      color: ${theme.palette.product === 'agility'
+        ? theme.palette.layer.n700
+        : theme.palette.grey[700]};
       display: flex;
       height: 100%;
       flex-direction: column;
       justify-content: space-between;
       letter-spacing: 0.01em;
-      padding-top: ${theme.spacing(0.5)}px;
+      padding: ${theme.spacing(2)}px;
       width: 240px;
       -o-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
       -moz-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
@@ -23,11 +36,14 @@ export const StyledSidebar = styled.aside`
 
       header {
         align-items: center;
-        border-bottom: 1px solid ${theme.palette.grey[100]};
+        border-bottom: 1px solid;
+        border-bottom-color: ${theme.palette.product === 'agility'
+          ? n300
+          : theme.palette.grey[100]};
         display: flex;
         flex-shrink: 0;
         overflow: hidden;
-        padding: ${theme.spacing(1, 2)};
+        padding: ${theme.spacing(0, 0, 1)};
         white-space: nowrap;
 
         .dot-avatar {
@@ -37,14 +53,16 @@ export const StyledSidebar = styled.aside`
 
       .go-back {
         align-items: center;
-        border-bottom: 1px solid ${theme.palette.grey[100]};
+        border-bottom: 1px solid;
+        border-bottom-color: ${theme.palette.product === 'agility'
+          ? n300
+          : theme.palette.grey[100]};
         display: flex;
-        padding-top: 6px;
-        padding-bottom: 6px;
 
         .dot-icon {
           margin-right: ${theme.spacing(1)}px;
-          padding: 12px;
+          width: 40px;
+          height: 40px;
         }
 
         &:hover {
@@ -53,17 +71,64 @@ export const StyledSidebar = styled.aside`
       }
 
       hr.MuiDivider-root {
-        background-color: ${theme.palette.grey[100]};
-        margin: ${theme.spacing(1, 0)};
+        background-color: ${theme.palette.product === 'agility'
+          ? n300
+          : theme.palette.grey[100]};
+        margin: ${theme.spacing(2, 0)};
+      }
+
+      .MuiTypography-subtitle2 {
+        border-bottom: 1px solid;
+        border-bottom-color: ${theme.palette.product === 'agility'
+          ? n300
+          : theme.palette.grey[100]};
+        margin: ${theme.spacing(0, 0, 1)};
       }
 
       ul.side-nav {
         flex-grow: 2;
         overflow-x: hidden;
         overflow-y: auto;
+        padding: 0;
 
         .dot-list-item {
-          height: 44px;
+          height: 40px;
+          padding: 0;
+          margin-bottom: ${theme.spacing(1)}px;
+
+          &:active,
+          &:focus {
+            background-color: ${theme.palette.product === 'agility' &&
+            agilityLightGreen};
+            border: ${theme.palette.product === 'agility'
+              ? `1px solid ${agilityGreen}`
+              : 'none'};
+            border-radius: ${theme.palette.product === 'agility' && '4px'};
+          }
+
+          &:hover {
+            background-color: ${theme.palette.product === 'agility' &&
+            'transparent'};
+            .dot-typography,
+            .dot-icon i.dot-i:before {
+              color: ${theme.palette.product === 'agility' &&
+              theme.palette.secondary.main};
+            }
+          }
+
+          .MuiTouchRipple-root {
+            display: ${theme.palette.product === 'agility' && 'none'};
+          }
+
+          .dot-list-item-link .dot-icon {
+            margin-right: ${theme.spacing(1)}px;
+          }
+
+          .dot-icon {
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+          }
         }
 
         li.dot-list-item .dot-typography {
@@ -72,8 +137,11 @@ export const StyledSidebar = styled.aside`
       }
 
       .toggle-nav {
-        border-top: 1px solid ${theme.palette.grey[100]};
-        padding: ${theme.spacing(1, 0.75, 0)};
+        border-top: 1px solid;
+        border-top-color: ${theme.palette.product === 'agility'
+          ? n300
+          : theme.palette.grey[100]};
+        padding: ${theme.spacing(1)}px;
         text-align: right;
 
         .dot-icon {
@@ -86,13 +154,15 @@ export const StyledSidebar = styled.aside`
       }
 
       .powered-by {
-        border-top: 1px solid ${theme.palette.grey[100]};
+        border-top: 1px solid;
+        border-top-color: ${theme.palette.product === 'agility'
+          ? n300
+          : theme.palette.grey[100]};
         color: ${theme.palette.grey[400]};
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
         font-size: 12px;
-        margin: ${theme.spacing(1)}px;
         overflow: hidden;
         padding: ${theme.spacing(1)}px;
 
@@ -154,33 +224,5 @@ export const StyledSidebar = styled.aside`
         }
       }
     }
-
-    /* .dot-flyout {
-      margin: 10px 0 0 190px;
-      width: 248px;
-
-      &.collapsed {
-        margin-left: 36px;
-      }
-
-      li {
-        &.active,
-        &:hover,
-        &:focus {
-          background: ${theme.palette.grey[100]};
-        }
-      }
-
-      a {
-        align-items: center;
-        color: ${theme.palette.grey[700]};
-        display: flex;
-        &.active,
-        &:hover,
-        &:focus {
-          background: transparent;
-        }
-      }
-    } */
   `}
 `;

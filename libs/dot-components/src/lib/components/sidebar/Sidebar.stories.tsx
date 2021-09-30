@@ -25,7 +25,7 @@ export default {
       defaultValue: true,
     },
     goBack: {
-      defaultValue: true,
+      defaultValue: false,
     },
     title: {
       defaultValue: 'Title Goes Here',

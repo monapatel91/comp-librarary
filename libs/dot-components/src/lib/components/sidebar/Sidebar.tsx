@@ -121,6 +121,7 @@ export const DotSidebar = ({
           className={`side-nav ${isOpen}`}
           data-testid="sideNav"
           dense={true}
+          disablePadding={true}
           items={navItems}
           nestedListType={nestedListType}
         />
