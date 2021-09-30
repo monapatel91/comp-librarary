@@ -10,7 +10,8 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledPopper } from './Menu.styles';
 
-const MENU_ITEM_HEIGHT = 31;
+const MENU_ITEM_HEIGHT_NORMAL = 36;
+const MENU_ITEM_HEIGHT_DENSE = 31;
 const DEFAULT_MAX_VISIBLE_ITEMS = 7;
 
 export type PopperPlacement =
@@ -30,6 +31,8 @@ export type PopperPlacement =
 export interface MenuProps extends CommonProps {
   /** Element that menu is attached to */
   anchorEl?: Element;
+  /** If true, compact vertical padding designed for keyboard and mouse input is used for the list and list items. **/
+  dense: boolean;
   /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
   disablePortal?: boolean;
   /** Unique ID that ties a particular menu to a specific element */
@@ -68,6 +71,7 @@ export const DotMenu = ({
   ariaLabel,
   className,
   'data-testid': dataTestId,
+  dense = true,
   disablePortal,
   id,
   maxVisibleItems = DEFAULT_MAX_VISIBLE_ITEMS,
@@ -99,13 +103,16 @@ export const DotMenu = ({
 
   const calculateMaxHeight = (): number => {
     let visibleItems = maxVisibleItems;
+    const menuItemHeight = dense
+      ? MENU_ITEM_HEIGHT_DENSE
+      : MENU_ITEM_HEIGHT_NORMAL;
     if (!maxVisibleItems || maxVisibleItems <= 0) {
-      return DEFAULT_MAX_VISIBLE_ITEMS * MENU_ITEM_HEIGHT;
+      return DEFAULT_MAX_VISIBLE_ITEMS * menuItemHeight;
     }
     if (maxVisibleItems > menuItems.length) {
       visibleItems = menuItems.length;
     }
-    return visibleItems * MENU_ITEM_HEIGHT;
+    return visibleItems * menuItemHeight;
   };
 
   return (
@@ -133,7 +140,7 @@ export const DotMenu = ({
               <MenuList
                 autoFocusItem={open}
                 className="dot-ul"
-                dense={true}
+                dense={dense}
                 id={id}
                 onKeyDown={handleListKeyDown}
                 style={{
