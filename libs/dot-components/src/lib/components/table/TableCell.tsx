@@ -52,8 +52,6 @@ export const DotBodyCell = ({
     // on window resize, set action column to menu or icon button
     if (Array.isArray(value)) {
       getActionColumn();
-    }
-    if (Array.isArray(value)) {
       window.addEventListener('resize', getActionColumn);
       return () => {
         window.removeEventListener(
@@ -66,21 +64,17 @@ export const DotBodyCell = ({
 
   // Logic to determine action column as menu or icon button
   const getActionColumn = () => {
-    const iconBtnWidth = document.getElementsByClassName('dot-icon-btn');
-
+    const iconBtnWidth = document.getElementsByClassName(
+      'dot-table-action-icon'
+    );
     const getTotalActionItem = Array.isArray(value) && value[0].actions.length;
     const actionTableCellWidth =
       getTotalActionItem *
-        (iconBtnWidth.length > 0 && iconBtnWidth[0].clientWidth) +
-      SPACING * 2 * 2;
+      (iconBtnWidth.length > 0 && iconBtnWidth[0].clientWidth);
 
     const isOverflowing =
       actionTableCellWidth > wrapperRef?.current.clientWidth;
-    if (isOverflowing) {
-      setShowMenu(true);
-    } else {
-      setShowMenu(false);
-    }
+    setShowMenu(isOverflowing);
   };
   const rootClasses = useStylesWithRootClass(
     'dot-td',
@@ -97,14 +91,17 @@ export const DotBodyCell = ({
       data-testid={dataTestId}
     >
       {Array.isArray(value) ? (
-        <div ref={wrapperRef} style={{ width: '100%' }}>
+        <div ref={wrapperRef} className="action-cell-wrapper">
           {showMenu ? (
             <DotIconButton
+              className="dot-table-action-icon"
               iconId="options"
+              iconSize="small"
               key={`${cellKey}-action`}
               onClick={() =>
                 onActionMenuTrigger(wrapperRef.current, value[0].actions)
               }
+              size="small"
             />
           ) : (
             value.map((item) =>
@@ -117,9 +114,12 @@ export const DotBodyCell = ({
                   index: React.Key
                 ) => (
                   <DotIconButton
+                    className="dot-table-action-icon"
                     iconId={icons.key}
+                    iconSize="small"
                     key={index}
                     onClick={icons.onclick}
+                    size="small"
                   />
                 )
               )

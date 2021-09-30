@@ -1,47 +1,10 @@
-import React, { ChangeEvent } from 'react';
-import { useState, FormEvent } from 'react';
+import React from 'react';
+
 import {
-  CheckboxProps,
   DotButton,
-  DotCheckboxGroup,
-  DotForm,
-  DotInputSelect,
-  DotInputText,
-  DotRadioGroup,
-  DotSwitch,
-  useDotSnackbarContext,
-  DotActionToolbar,
-  DotBreadcrumbs,
   DotColumnHeader,
-  TableRowProps,
   DotTable,
 } from '@digital-ai/dot-components';
-
-interface FormState {
-  firstName: string;
-  lastName: string;
-  devType: '' | 'React Dev' | 'Angular Dev' | 'Other Dev';
-  superHero: string;
-  favTrait: Array<CheckboxProps>;
-  childhoodHero: boolean;
-  cartoonComments: string;
-  commentField: string;
-}
-
-interface ErrorState {
-  [key: string]: string;
-}
-
-const initialFormState: FormState = {
-  firstName: '',
-  lastName: '',
-  devType: '',
-  superHero: '',
-  favTrait: [],
-  childhoodHero: false,
-  cartoonComments: '',
-  commentField: '',
-};
 
 export const UserTable = () => {
   const UsersTable = () => {
@@ -51,7 +14,7 @@ export const UserTable = () => {
       { id: 'username', label: 'Username' },
       { id: 'email', label: 'Email' },
       { id: 'roles', label: 'Roles' },
-      { id: 'actions', label: 'Actions', sortable: false, align: 'right' },
+      { id: 'actions', label: 'Actions', sortable: false },
     ];
     const handleEditClick = () => {
       alert('Edit button clicked!!!');
@@ -80,23 +43,32 @@ export const UserTable = () => {
             key: 'delete',
             onclick: () => handleDeleteClick(),
           },
+          {
+            children: (
+              <DotButton type="text" onClick={() => handleDeleteClick()}>
+                Delete
+              </DotButton>
+            ),
+            key: 'delete',
+            onclick: () => handleDeleteClick(),
+          },
         ],
       },
     ];
     const accounts = [
       {
-        given_name: 'Mona',
+        given_name: 'John',
         family_name: 'Patel',
-        username: 'monapatel91',
-        email: 'mona@gmail.com',
+        username: 'johnpatel',
+        email: 'john@gmail.com',
         roles: 'Account 1',
         actions: actionItemArray,
       },
       {
-        given_name: 'Palash',
+        given_name: 'Jeff',
         family_name: 'Shah',
-        username: 'palashshah003',
-        email: 'palash@gmail.com',
+        username: 'jeffshah',
+        email: 'jeff@gmail.com',
         roles: 'Account 2',
         actions: actionItemArray,
       },

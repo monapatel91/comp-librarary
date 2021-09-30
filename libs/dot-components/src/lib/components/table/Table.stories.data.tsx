@@ -42,8 +42,6 @@ export const defaultColumns = [
     id: 'delete',
     label: 'Action',
     sortable: false,
-    width: '24px',
-    align: 'right',
   },
 ];
 

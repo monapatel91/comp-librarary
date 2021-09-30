@@ -54,6 +54,9 @@ export const StyledTableContainer = styled(TableContainer)`
             padding-left: 26px;
           }
         }
+        thead > tr > th:last-child {
+          text-align: right;
+        }
         tbody > tr > td.noWrap,
         tbody > tr > td.actionItems {
           max-width: 0;
@@ -63,6 +66,7 @@ export const StyledTableContainer = styled(TableContainer)`
         }
         tbody > tr > td.actionItems {
           text-overflow: clip;
+          text-align: right;
         }
         .empty-row td {
           text-align: center;
@@ -98,8 +102,11 @@ export const StyledTableContainer = styled(TableContainer)`
           padding-top: 0;
           padding-bottom: 0;
         }
-        .dot-icon-btn {
+        .dot-table-action-icon {
           padding: 6px;
+        }
+        .action-cell-wrapper {
+          width: 100%;
         }
       }
     }
@@ -107,13 +114,11 @@ export const StyledTableContainer = styled(TableContainer)`
 `;
 
 export const StyledMenu = styled(DotMenu)`
-  .dot-ul {
-    > li {
-      padding: 0;
-      > button {
-        width: 100%;
-        margin: 0;
-      }
+  .dot-ul > li {
+    padding: 0;
+    > button {
+      width: 100%;
+      margin: 0;
     }
   }
 `;

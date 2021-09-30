@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent, useState, useEffect } from 'react';
 import { TableBody } from '@material-ui/core';
 
 import { CreateUUID } from '../createUUID';
@@ -6,8 +6,6 @@ import { DotTableRow, EmptyDotRow } from './TableRow';
 import { DotColumnHeader } from './TableHeader';
 import { TableRowProps } from './Table';
 import { CommonProps } from '../CommonProps';
-import { DotMenu } from '../menu/Menu';
-import { useEffect } from 'react';
 import { StyledMenu } from './Table.styles';
 
 export type Order = 'asc' | 'desc';
@@ -58,8 +56,6 @@ export const DotTableBody = ({
       </TableBody>
     );
   }
-
-  const id = open ? 'simple-popover' : undefined;
   return (
     <>
       <TableBody classes={{ root: 'dot-tbody' }}>
