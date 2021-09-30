@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useRef, MouseEvent, Key } from 'react';
 import { TableCell } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
-import { CreateUUID } from '../createUUID';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton } from '../button/IconButton';
-import { SPACING } from '../../theme-provider/ThemeProvider';
 
 export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
 
@@ -29,7 +27,6 @@ export const DotBodyCell = ({
   className,
   colspan,
   'data-testid': dataTestId,
-  id = CreateUUID(),
   noWrap,
   value,
   onActionMenuTrigger,
