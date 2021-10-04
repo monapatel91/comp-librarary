@@ -122,6 +122,7 @@ export const DotAppToolbar = ({
                   goBack={false}
                   navItems={mainMenuItems}
                   nestedListType="menu"
+                  width={mainMenuWidth}
                 >
                   {mainMenu}
                 </DotSidebar>

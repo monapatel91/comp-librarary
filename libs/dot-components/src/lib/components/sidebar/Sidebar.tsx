@@ -51,6 +51,8 @@ export interface SidebarProps extends CommonProps {
   title?: string;
   /** If provided, will display an avatar next to the title text */
   titleAvatarProps?: AvatarProps;
+  /** Width of main menu drawer if mainMenu provided, defaults to 240px */
+  width?: number;
 }
 
 export const DotSidebar = ({
@@ -68,6 +70,7 @@ export const DotSidebar = ({
   open = true,
   title,
   titleAvatarProps,
+  width,
 }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(open);
 
@@ -124,6 +127,7 @@ export const DotSidebar = ({
           disablePadding={true}
           items={navItems}
           nestedListType={nestedListType}
+          nestedDrawerSpacing={width}
         />
       )}
       {children}

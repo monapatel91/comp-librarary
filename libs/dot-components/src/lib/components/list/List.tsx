@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { DotDrawer } from '../drawer/Drawer';
 import { DotIcon } from '../icon/Icon';
 import { DotLink } from '../link/Link';
 import { DotMenu, PopperPlacement } from '../menu/Menu';
@@ -21,6 +22,7 @@ import {
   flyoutListItemClassName,
   listItemLinkClassName,
   listItemRootClass,
+  nestedDrawerClassName,
   nestedListClassName,
   rootClassName,
   StyledList,
@@ -29,7 +31,7 @@ import {
 import { CreateUUID } from '../createUUID';
 import { DotTypography } from '../typography/Typography';
 
-export type NestedListType = 'menu' | 'expandable';
+export type NestedListType = 'drawer' | 'expandable' | 'menu';
 
 export interface NestedListProps extends CommonProps {
   /** Element that menu is attached to */
@@ -38,6 +40,8 @@ export interface NestedListProps extends CommonProps {
   items: Array<ListItemProps>;
   /** If nested list type is 'menu', determines the placement of the menu */
   menuPlacement?: PopperPlacement;
+  /** If nested type is 'drawer', determines the width of the left spacing */
+  nestedDrawerSpacing?: number;
   /** Event callback when leaving menu via tab or clicking away */
   onMenuLeave?: (event: KeyboardEvent | MouseEvent) => void;
   /** if true the nested list is visible */
@@ -61,6 +65,8 @@ export interface ListProps extends CommonProps {
   items?: Array<ListItemProps>;
   /** If nested list type is 'menu', determines the placement of the menu */
   menuPlacement?: PopperPlacement;
+  /** If nested type is 'drawer', determines the width of the left spacing */
+  nestedDrawerSpacing?: number;
   /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
   nestedListType?: NestedListType;
 }
@@ -80,6 +86,8 @@ export interface ListItemProps extends CommonProps {
   items?: Array<ListItemProps>;
   /** If nested list type is 'menu', determines the placement of the menu */
   menuPlacement?: PopperPlacement;
+  /** If nested type is 'drawer', determines the width of the left spacing */
+  nestedDrawerSpacing?: number;
   /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
   nestedListType?: NestedListType;
   /** Event callback */
@@ -99,6 +107,7 @@ const NestedList = ({
   anchorEl,
   items,
   menuPlacement,
+  nestedDrawerSpacing,
   onMenuLeave,
   open,
   parentItemIndex,
@@ -112,7 +121,8 @@ const NestedList = ({
     listItemLinkClassName,
     flyoutItemLinkClassName
   );
-  if (type !== 'menu') {
+
+  if (type === 'expandable') {
     return (
       <Collapse in={open} timeout="auto" unmountOnExit>
         <DotList
@@ -124,7 +134,9 @@ const NestedList = ({
         />
       </Collapse>
     );
-  } else {
+  }
+
+  if (type === 'menu') {
     const menuItems = items.map((item, index) => {
       const { href, startIconId, onClick, title, text } = item;
       const startIcon = <DotIcon iconId={startIconId} title={title} />;
@@ -160,6 +172,26 @@ const NestedList = ({
       />
     );
   }
+
+  if (type === 'drawer') {
+    return (
+      <DotDrawer
+        anchor="left"
+        className={nestedDrawerClassName}
+        open={open}
+        PaperProps={{ style: { left: `${nestedDrawerSpacing}px`, zIndex: -1 } }}
+        variant="persistent"
+      >
+        <DotList
+          ariaLabel={ariaLabel}
+          className={nestedListClassName}
+          component="div"
+          disablePadding={true}
+          items={items}
+        />
+      </DotDrawer>
+    );
+  }
 };
 
 export const DotList = ({
@@ -172,6 +204,7 @@ export const DotList = ({
   disablePadding = false,
   items = [],
   menuPlacement = 'right-start',
+  nestedDrawerSpacing,
   nestedListType = 'expandable',
 }: ListProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -205,6 +238,7 @@ export const DotList = ({
             onClick={item.onClick}
             key={index}
             menuPlacement={menuPlacement}
+            nestedDrawerSpacing={nestedDrawerSpacing}
             nestedListType={nestedListType}
             selected={item.selected}
             startIconId={item.startIconId}
@@ -230,17 +264,22 @@ export const DotListItem = ({
   onClick,
   items = [],
   menuPlacement,
+  nestedDrawerSpacing,
   nestedListType,
   selected,
   startIconId,
   text,
   title,
 }: ListItemProps) => {
-  const rootClasses = useStylesWithRootClass(listItemRootClass, className);
   const textVariant = divider ? 'h5' : 'body1';
   const isFlyout = nestedListType === 'menu' && items.length > 0;
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [open, setOpen] = useState(false);
+  const rootClasses = useStylesWithRootClass(
+    listItemRootClass,
+    className,
+    open && 'open'
+  );
 
   const toggleOpen = (event: MouseEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -334,6 +373,7 @@ export const DotListItem = ({
           ariaLabel="nested list"
           anchorEl={anchorEl}
           items={items}
+          nestedDrawerSpacing={nestedDrawerSpacing}
           menuPlacement={menuPlacement}
           onMenuLeave={handleMenuLeave}
           open={open}
