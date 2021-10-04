@@ -21,8 +21,6 @@ export interface RowProps extends CommonProps {
   onActionMenuTrigger: (el: HTMLElement, menuItem: []) => void;
   /** Event callback */
   onClick?: (event: MouseEvent, id: string) => void;
-  /** uniques key of table cell */
-  rowKey: Key;
   /** if the row is selected */
   selected?: boolean;
 }
@@ -36,7 +34,6 @@ export const DotTableRow = ({
   data,
   onActionMenuTrigger,
   onClick,
-  rowKey,
   selected,
 }: RowProps) => {
   const id = data.id;
@@ -54,7 +51,6 @@ export const DotTableRow = ({
         return (
           <DotBodyCell
             align={column.align}
-            cellKey={`${rowKey}-${index}`}
             key={index}
             noWrap={column.truncate}
             onActionMenuTrigger={(menuRef, menuItem) =>

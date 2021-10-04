@@ -11,10 +11,10 @@ import { DotButton } from '../button/Button';
 
 const mockFunc = jest.fn();
 const handleEditClick = () => {
-  console.log('test click');
+  console.log('Edit button clicked!!!');
 };
 const handleDeleteClick = () => {
-  console.log('test click');
+  console.log('Delete button clicked!!!');
 };
 it('should have unchanged API', () => {
   const columns = [{ id: 'title', label: 'Title' }];

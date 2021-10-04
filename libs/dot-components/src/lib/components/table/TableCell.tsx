@@ -9,7 +9,6 @@ export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
 export interface CellProps extends CommonProps {
   align?: textAlignment;
   colspan?: number;
-  cellKey?: Key;
   id?: string;
   noWrap?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,7 +22,6 @@ export interface CellProps extends CommonProps {
 export const DotBodyCell = ({
   ariaLabel,
   align,
-  cellKey,
   className,
   colspan,
   'data-testid': dataTestId,
@@ -94,7 +92,6 @@ export const DotBodyCell = ({
               className="dot-table-action-icon"
               iconId="options"
               iconSize="small"
-              key={`${cellKey}-action`}
               onClick={() =>
                 onActionMenuTrigger(wrapperRef.current, value[0].actions)
               }

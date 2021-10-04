@@ -102,9 +102,6 @@ export const StyledTableContainer = styled(TableContainer)`
           padding-top: 0;
           padding-bottom: 0;
         }
-        .dot-table-action-icon {
-          padding: 6px;
-        }
         .action-cell-wrapper {
           width: 100%;
         }
