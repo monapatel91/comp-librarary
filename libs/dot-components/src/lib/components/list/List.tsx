@@ -234,6 +234,7 @@ export const DotList = ({
         ) : (
           <DotListItem
             component={item.component}
+            data-testid={`${dataTestId}-item`}
             divider={item.divider}
             endIconId={item.endIconId}
             href={item.href}

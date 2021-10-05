@@ -58,6 +58,7 @@ describe('List', () => {
       disablePadding: false,
       items: mockListItems,
       menuPlacement: 'right' as PopperPlacement,
+      nestedDrawerSpacing: 240,
       nestedListType: 'expandable' as NestedListType,
     };
     const listProps: ListProps = props;
@@ -68,6 +69,7 @@ describe('List', () => {
       anchorEl: null as Element,
       items: mockListItems,
       menuPlacement: 'right' as PopperPlacement,
+      nestedDrawerSpacing: 240,
       onMenuLeave: jest.fn(),
       open: false,
       parentItemIndex: 1,
@@ -143,7 +145,37 @@ describe('List', () => {
 });
 
 describe('ListItem', () => {
-  it("should have 'aria-label' attribute with correct value", () => {
+  it('should have unchanged API', () => {
+    const props = {
+      ariaLabel: 'hello',
+      child: <h3>Hello World</h3>,
+      className: 'foo-bar',
+      component: 'ul' as ElementType,
+      'data-testid': 'test-list',
+      divider: true,
+      endIconId: 'home',
+      href: 'http://www.digital.ai',
+      index: 0,
+      items: mockListItems,
+      menuPlacement: 'right' as PopperPlacement,
+      nestedDrawerSpacing: 240,
+      nestedListType: 'expandable' as NestedListType,
+      onClick: jest.fn(),
+      selected: true,
+      startIconId: 'home',
+      text: 'Hello World',
+      title: 'Hello App',
+    };
+    const listItemProps: ListItemProps = props;
+    expect(listItemProps).toEqual(props);
+  });
+
+  it('should render successfully', () => {
+    const { baseElement } = render(<DotListItem text="Hello" />);
+    expect(baseElement).toBeTruthy();
+  });
+
+  xit("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
     const dataTestId = 'dot-list-item';
     render(
