@@ -221,18 +221,22 @@ export const DotList = ({
       dense={dense}
       disablePadding={disablePadding}
     >
-      {items.map((item, index) =>
-        item.child ? (
-          item.child
-        ) : item.divider ? (
-          !item.text ? (
-            <Divider key={index} />
-          ) : (
+      {items.map((item, index) => {
+        if (item.child) {
+          return item.child;
+        }
+
+        if (item.divider) {
+          if (!item.text) {
+            return <Divider key={index} />;
+          } else {
             <ListSubheader disableSticky key={index}>
               <DotTypography variant="subtitle2">{item.text}</DotTypography>
-            </ListSubheader>
-          )
-        ) : (
+            </ListSubheader>;
+          }
+        }
+
+        return (
           <DotListItem
             component={item.component}
             data-testid={`${dataTestId}-item`}
@@ -251,8 +255,8 @@ export const DotList = ({
             text={item.text}
             title={item.title}
           />
-        )
-      )}
+        );
+      })}
       {children}
     </StyledList>
   );
@@ -327,6 +331,14 @@ export const DotListItem = ({
     setOpen(false);
   };
 
+  const getChevronIcon = () => {
+    if (nestedListType !== 'expandable') {
+      return 'chevron-right';
+    } else {
+      return open ? 'chevron-up' : 'chevron-down';
+    }
+  };
+
   const startIcon = (
     <ListItemIcon>
       <DotIcon iconId={startIconId} title={title} />
@@ -359,16 +371,7 @@ export const DotListItem = ({
         </span>
         {items.length > 0 ? (
           <DotLink color="inherit" onClick={toggleOpen} underline="none">
-            <DotIcon
-              className="toggle-display"
-              iconId={
-                nestedListType !== 'expandable'
-                  ? 'chevron-right'
-                  : open
-                  ? 'chevron-up'
-                  : 'chevron-down'
-              }
-            />
+            <DotIcon className="toggle-display" iconId={getChevronIcon()} />
           </DotLink>
         ) : (
           endIconId && endIcon
