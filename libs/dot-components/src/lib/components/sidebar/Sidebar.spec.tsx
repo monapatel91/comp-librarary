@@ -35,8 +35,8 @@ describe(' Sidebar', () => {
       brandDesc: 'best brand',
       children: <TextField placeholder="search" variant="outlined" />,
       className: 'test-class',
-      'data-testid': 'testid',
       collapsable: true,
+      'data-testid': 'testid',
       displayBrand: true,
       goBack: false,
       nestedListType: 'menu' as NestedListType,
@@ -44,6 +44,7 @@ describe(' Sidebar', () => {
       open: false,
       title: 'Captain Sidebar',
       titleAvatarProps: titleAvatarProps,
+      width: 240,
     };
     const sidebarProps: SidebarProps = props;
     expect(sidebarProps).toEqual(props);

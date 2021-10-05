@@ -147,7 +147,7 @@ const NestedList = ({
           <StyledListItem
             className={flyoutItemClasses}
             component={href && !onClick ? 'a' : null}
-            href={onClick ? null : href}
+            href={href}
             onClick={onClick}
           >
             <span className={flyoutSpanClasses}>
@@ -180,6 +180,7 @@ const NestedList = ({
       <DotDrawer
         anchor="left"
         className={nestedDrawerClassName}
+        data-testid="nested-drawer"
         open={open}
         PaperProps={{ style: { left: `${nestedDrawerSpacing}px` } }}
         variant="persistent"
@@ -361,7 +362,7 @@ export const DotListItem = ({
             <DotIcon
               className="toggle-display"
               iconId={
-                nestedListType === 'menu' || nestedListType === 'drawer'
+                nestedListType !== 'expandable'
                   ? 'chevron-right'
                   : open
                   ? 'chevron-up'

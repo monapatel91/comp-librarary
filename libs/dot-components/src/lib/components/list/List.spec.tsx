@@ -32,6 +32,9 @@ const mockListItems: Array<ListItemProps> = [
         text: 'Feature Progression',
         href: '/feature-progression',
       },
+      {
+        child: 'Hello Batman',
+      },
     ],
     text: 'Progressions',
   },
@@ -110,6 +113,19 @@ describe('List', () => {
     expect(screen.getByText(nestedItemText)).toBeVisible();
   });
 
+  it('should display nested drawer when clicked', () => {
+    render(<DotList items={mockListItems} nestedListType="drawer" />);
+    const item = screen.getAllByRole('button');
+    const nestedItemText = 'Package Progression';
+
+    waitFor(() => {
+      expect(screen.getByText(nestedItemText)).not.toBeVisible();
+    });
+
+    userEvent.click(item[1]);
+    expect(screen.getByText(nestedItemText)).toBeVisible();
+  });
+
   it('should have an href if one is passed', () => {
     render(<DotList items={mockListItems} />);
     expect(
@@ -168,11 +184,6 @@ describe('ListItem', () => {
     };
     const listItemProps: ListItemProps = props;
     expect(listItemProps).toEqual(props);
-  });
-
-  it('should render successfully', () => {
-    const { baseElement } = render(<DotListItem text="Hello" />);
-    expect(baseElement).toBeTruthy();
   });
 
   xit("should have 'aria-label' attribute with correct value", () => {
