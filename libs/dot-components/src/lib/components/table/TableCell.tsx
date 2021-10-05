@@ -77,15 +77,9 @@ export const DotBodyCell = ({
     noWrap && 'noWrap',
     Array.isArray(value) && 'actionItems'
   );
-  return (
-    <TableCell
-      aria-label={ariaLabel}
-      align={align}
-      classes={{ root: rootClasses }}
-      colSpan={colspan}
-      data-testid={dataTestId}
-    >
-      {Array.isArray(value) ? (
+  const getTableCellValue = () => {
+    if (Array.isArray(value)) {
+      return (
         <div ref={wrapperRef} className="action-cell-wrapper">
           {showMenu ? (
             <DotIconButton
@@ -105,7 +99,7 @@ export const DotBodyCell = ({
                     key: string;
                     onclick: (event: MouseEvent) => void;
                   },
-                  index: React.Key
+                  index: Key
                 ) => (
                   <DotIconButton
                     className="dot-table-action-icon"
@@ -120,9 +114,19 @@ export const DotBodyCell = ({
             )
           )}
         </div>
-      ) : (
-        value
-      )}
+      );
+    }
+    return value;
+  };
+  return (
+    <TableCell
+      aria-label={ariaLabel}
+      align={align}
+      classes={{ root: rootClasses }}
+      colSpan={colspan}
+      data-testid={dataTestId}
+    >
+      {getTableCellValue()}
     </TableCell>
   );
 };

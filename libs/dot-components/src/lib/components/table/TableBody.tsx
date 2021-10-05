@@ -34,17 +34,12 @@ export const DotTableBody = ({
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuProps, setMenuProps] = useState([]);
   const [open, setOpen] = useState(false);
-  let tableId: string;
-
-  useEffect(() => {
-    tableId = CreateUUID();
-  });
-
   const handleActionMenuTrigger = (el: HTMLElement, menuItem: []) => {
     setAnchorEl(el);
     setMenuProps(menuItem);
     setOpen(!open);
   };
+  const menuId = CreateUUID();
   const onLeave = () => {
     setOpen(false);
   };
@@ -74,7 +69,7 @@ export const DotTableBody = ({
       </TableBody>
       <StyledMenu
         anchorEl={anchorEl}
-        id="action-menu"
+        id={menuId}
         menuItems={menuProps}
         onLeave={onLeave}
         open={open}

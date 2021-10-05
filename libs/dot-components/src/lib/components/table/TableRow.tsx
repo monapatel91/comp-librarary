@@ -1,4 +1,4 @@
-import React, { MouseEvent, Key } from 'react';
+import React, { MouseEvent } from 'react';
 import { TableRow } from '@material-ui/core';
 
 import { DotBodyCell } from './TableCell';
