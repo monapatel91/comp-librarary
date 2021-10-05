@@ -119,6 +119,7 @@ export const DotSidebar = ({
         </DotLink>
       )}
       {navItems.length > 0 && (
+        // TO-DO: defect with secondary open while sidebar collapsed
         <DotList
           ariaLabel="left navigation"
           className={`side-nav ${isOpen}`}
@@ -145,6 +146,7 @@ export const DotSidebar = ({
           <DotTypography className="desc" variant="body2">
             {brandDesc}
           </DotTypography>
+          {/* TO-DO: need logo for dark theme */}
           <LogoDigitalAi className="company-name" title="digital.ai" />
           <LogoD className="d-icon" title="digital.ai" />
         </div>

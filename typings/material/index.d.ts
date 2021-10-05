@@ -38,6 +38,11 @@ declare module '@material-ui/core/styles/createPalette' {
     panelTextActive: string;
     panelTextDefault: string;
     projectNavBg: string;
+    sideNavBorder: string;
+    sideNavHoverBg: string;
+    sideNavHoverBorder: string;
+    sideNavHoverText: string;
+    sideNavSubHeaderText: string;
     warnCardBg: string;
   }
 

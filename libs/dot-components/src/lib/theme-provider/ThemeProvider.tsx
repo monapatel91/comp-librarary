@@ -183,9 +183,6 @@ export const agilityLightTheme = createTheme({
       n800: '#14262E',
       n900: '#000',
     },
-    secondary: {
-      main: lightColors.g500,
-    },
     agilityInterface: {
       activeBg: 'rgba(121, 181, 34, 0.2)',
       activeCardBg: '#EDF9DD',
@@ -200,6 +197,11 @@ export const agilityLightTheme = createTheme({
       panelTextActive: '#244451',
       panelTextDefault: '#244451',
       projectNavBg: 'rgba(67, 128, 152, 0.2)',
+      sideNavBorder: '#7CB0C5',
+      sideNavHoverBg: lightColors.agilityLightGreen,
+      sideNavHoverBorder: lightColors.agilityGreen,
+      sideNavHoverText: lightColors.g500,
+      sideNavSubHeaderText: '#589BB6',
       warnCardBg: '#FBE9E7',
     },
   },
@@ -250,9 +252,6 @@ export const agilityDarkTheme = createTheme({
       n800: lightColors.n0,
       n900: lightColors.n0,
     },
-    secondary: {
-      main: lightColors.g500,
-    },
     agilityInterface: {
       activeBg: 'rgba(121, 181, 34, 0.2)',
       activeCardBg: '#405F12',
@@ -267,6 +266,11 @@ export const agilityDarkTheme = createTheme({
       panelTextActive: '#14272E',
       panelTextDefault: '#9FC6D5',
       projectNavBg: 'rgba(67, 128, 152, 0.2)',
+      sideNavBorder: '#336275',
+      sideNavHoverBg: '#244451',
+      sideNavHoverBorder: '#7CB0C5',
+      sideNavHoverText: '#7CB0C5',
+      sideNavSubHeaderText: '#9FC6D5',
       warnCardBg: '#7A4637',
     },
   },

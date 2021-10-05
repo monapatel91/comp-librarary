@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import { List, ListItem } from '@material-ui/core';
 import { levelBottom } from './../../theme-provider/common/variables';
-import { n300 } from '../../theme-provider/colors/light-theme-colors';
 
 export const rootClassName = 'dot-list';
 export const listItemRootClass = 'dot-list-item';
@@ -20,7 +19,10 @@ export const StyledList = styled(List)`
         }
 
         .${nestedDrawerClassName} .dot-drawer-paper {
-          border-right: 1px solid ${n300};
+          border-right: 1px solid
+            ${theme.palette.product === 'agility'
+              ? theme.palette.agilityInterface.sideNavBorder
+              : theme.palette.grey[100]};
           box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
           padding-top: ${theme.palette.product === 'agility' && '10px'};
           z-index: ${levelBottom};

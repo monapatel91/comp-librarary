@@ -1,17 +1,11 @@
 import styled, { css } from 'styled-components';
-import {
-  agilityGreen,
-  agilityLightGreen,
-  n300,
-  n400,
-} from '../../theme-provider/colors/light-theme-colors';
 import { listItemRootClass, nestedDrawerClassName } from '../list/List.styles';
 
 export const rootClassName = 'dot-sidebar';
 
 export const StyledSidebar = styled.aside`
   ${({ theme }) => css`
-    &.dot-sidebar {
+    &.${rootClassName} {
       align-items: stretch;
       background: ${theme.palette.product === 'agility'
         ? theme.palette.layer.n50
@@ -19,7 +13,7 @@ export const StyledSidebar = styled.aside`
       border-width: 0 1px;
       border-style: solid;
       border-color: ${theme.palette.product === 'agility'
-        ? n300
+        ? theme.palette.agilityInterface.sideNavBorder
         : theme.palette.grey[100]};
       box-shadow: ${theme.palette.product === 'agility' &&
       '0 0 5px rgba(0, 0, 0, 0.15)'};
@@ -43,7 +37,7 @@ export const StyledSidebar = styled.aside`
         align-items: center;
         border-bottom: 1px solid;
         border-bottom-color: ${theme.palette.product === 'agility'
-          ? n300
+          ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
         display: flex;
         flex-shrink: 0;
@@ -61,7 +55,7 @@ export const StyledSidebar = styled.aside`
         align-items: center;
         border-bottom: 1px solid;
         border-bottom-color: ${theme.palette.product === 'agility'
-          ? n300
+          ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
         display: flex;
 
@@ -78,7 +72,7 @@ export const StyledSidebar = styled.aside`
 
       hr.MuiDivider-root {
         background-color: ${theme.palette.product === 'agility'
-          ? n300
+          ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
         margin: ${theme.spacing(2, 0)};
       }
@@ -86,7 +80,7 @@ export const StyledSidebar = styled.aside`
       .MuiTypography-subtitle2 {
         border-bottom: 1px solid;
         border-bottom-color: ${theme.palette.product === 'agility'
-          ? n300
+          ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
         margin: ${theme.spacing(0, 0, 1)};
       }
@@ -101,7 +95,8 @@ export const StyledSidebar = styled.aside`
           /* TO-DO: Add class for agility in cases like this? */
           .MuiTypography-root.MuiTypography-subtitle2 {
             border: ${theme.palette.product === 'agility' && 'none'};
-            color: ${theme.palette.product === 'agility' && n400};
+            color: ${theme.palette.product === 'agility' &&
+            theme.palette.agilityInterface.sideNavSubHeaderText};
             font-size: ${theme.palette.product === 'agility' && '11px'};
             line-height: 40px;
             margin: ${theme.palette.product === 'agility' && '10px 0 0'};
@@ -132,21 +127,21 @@ export const StyledSidebar = styled.aside`
             .dot-typography,
             .dot-icon i.dot-i:before {
               color: ${theme.palette.product === 'agility' &&
-              theme.palette.secondary.main};
+              theme.palette.agilityInterface.sideNavHoverText};
             }
           }
 
           &.open {
             background-color: ${theme.palette.product === 'agility' &&
-            agilityLightGreen};
+            theme.palette.agilityInterface.sideNavHoverBg};
             border: ${theme.palette.product === 'agility'
-              ? `1px solid ${agilityGreen}`
+              ? `1px solid ${theme.palette.agilityInterface.sideNavHoverBorder}`
               : 'none'};
             border-radius: ${theme.palette.product === 'agility' && '4px'};
 
             &:hover {
               background-color: ${theme.palette.product === 'agility' &&
-              agilityLightGreen};
+              theme.palette.agilityInterface.sideNavHoverBg};
             }
           }
 
@@ -173,7 +168,7 @@ export const StyledSidebar = styled.aside`
       .toggle-nav {
         border-top: 1px solid;
         border-top-color: ${theme.palette.product === 'agility'
-          ? n300
+          ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
         padding: ${theme.spacing(1)}px;
         text-align: right;
@@ -190,7 +185,7 @@ export const StyledSidebar = styled.aside`
       .powered-by {
         border-top: 1px solid;
         border-top-color: ${theme.palette.product === 'agility'
-          ? n300
+          ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
         color: ${theme.palette.grey[400]};
         display: flex;
@@ -214,14 +209,16 @@ export const StyledSidebar = styled.aside`
       }
 
       &.collapsed {
+        padding: ${theme.spacing(2, 0)};
         width: 56px;
         -o-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         -moz-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         -webkit-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
-        header {
-          padding: ${theme.spacing(1)}px;
+        header,
+        .dot-list-item {
+          margin-left: ${theme.spacing(1)}px;
         }
 
         .go-back .MuiTypography-root {

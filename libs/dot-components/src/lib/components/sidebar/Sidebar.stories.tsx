@@ -164,28 +164,6 @@ export const Default: Story<SidebarProps> = (args) => {
       selected: isSelected(12),
       text: 'Artifacts',
     },
-    {
-      text: 'System',
-      divider: true,
-    },
-    {
-      startIconId: 'monitor-gears',
-      onClick: (_event: MouseEvent) => handleClick(13),
-      selected: isSelected(13),
-      text: 'Tasks',
-    },
-    {
-      startIconId: 'archive',
-      onClick: (_event: MouseEvent) => handleClick(14),
-      selected: isSelected(14),
-      text: 'Buckets',
-    },
-    {
-      startIconId: 'monitor',
-      onClick: (_event: MouseEvent) => handleClick(15),
-      selected: isSelected(15),
-      text: 'Environment',
-    },
   ];
   return (
     <div style={{ top: '-1rem', left: '-1rem', position: 'relative' }}>
