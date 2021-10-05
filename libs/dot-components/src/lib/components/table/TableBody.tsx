@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState, useEffect } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { TableBody } from '@material-ui/core';
 
 import { CreateUUID } from '../createUUID';
