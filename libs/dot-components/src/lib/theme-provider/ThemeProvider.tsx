@@ -49,15 +49,16 @@ const typographyOptions: TypographyOptions = {
     letterSpacing: '0.03em',
   },
   subtitle1: {
-    fontSize: 17,
     fontFamily: 'LatoBold, sans-serif',
+    fontSize: 17,
     lineHeight: '23px',
     letterSpacing: '0.03em',
     marginBottom: 1,
   },
   subtitle2: {
+    fontFamily: 'Lato, sans-serif',
     fontSize: 14,
-    fontFamily: 'LatoBold, sans-serif',
+    fontWeight: 700,
     lineHeight: '20px',
     letterSpacing: '0.03em',
     marginBottom: 1,

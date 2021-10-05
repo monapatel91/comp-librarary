@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 import { List, ListItem } from '@material-ui/core';
+import { levelBottom } from './../../theme-provider/common/variables';
+import { n300 } from '../../theme-provider/colors/light-theme-colors';
 
 export const rootClassName = 'dot-list';
 export const listItemRootClass = 'dot-list-item';
@@ -17,14 +19,15 @@ export const StyledList = styled(List)`
           padding-left: ${theme.spacing(4)}px;
         }
 
-        &.${nestedDrawerClassName} {
-          border: 1px solid red;
-          z-index: -1;
+        .${nestedDrawerClassName} .dot-drawer-paper {
+          border-right: 1px solid ${n300};
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+          padding-top: ${theme.palette.product === 'agility' && '10px'};
+          z-index: ${levelBottom};
         }
 
         .MuiListSubheader-root {
           padding: 0;
-          /* border-bottom: 1px solid ${theme.palette.grey[100]}; */
 
           .MuiTypography-root {
             padding: ${theme.spacing(1)}px;

@@ -60,16 +60,35 @@ export const Default: Story<SidebarProps> = (args) => {
       startIconId: 'process-template',
       items: [
         {
-          startIconId: 'process-template',
+          text: 'PLANNING',
+          divider: true,
+        },
+        {
           onClick: (_event: MouseEvent) => handleClick(0),
           selected: isSelected(0),
           text: 'Package Progression',
         },
         {
-          startIconId: 'process-template',
           onClick: (_event: MouseEvent) => handleClick(1),
           selected: isSelected(1),
           text: 'Feature Progression',
+        },
+        {
+          text: 'PLANNING',
+          divider: true,
+        },
+        {
+          onClick: (_event: MouseEvent) => handleClick(0),
+          selected: isSelected(0),
+          text: 'Package Progression',
+        },
+        {
+          onClick: (_event: MouseEvent) => handleClick(1),
+          selected: isSelected(1),
+          text: 'Feature Progression',
+        },
+        {
+          child: <TextField placeholder="search" variant="outlined" />,
         },
       ],
       text: 'Progressions',
@@ -77,6 +96,10 @@ export const Default: Story<SidebarProps> = (args) => {
     {
       startIconId: 'satellite-group',
       items: [
+        {
+          text: 'PLANNING',
+          divider: true,
+        },
         {
           startIconId: 'block',
           onClick: (_event: MouseEvent) => handleClick(3),

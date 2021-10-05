@@ -53,7 +53,7 @@ export interface NestedListProps extends CommonProps {
 }
 
 export interface ListProps extends CommonProps {
-  /** string or JSX element that is displayed inside the toolbar */
+  /** string or JSX element that is displayed inside the list */
   children?: ReactNode;
   /** The component used for the root node. Either a string to use a HTML element or a component. */
   component?: ElementType;
@@ -72,6 +72,8 @@ export interface ListProps extends CommonProps {
 }
 
 export interface ListItemProps extends CommonProps {
+  /** string or JSX element that is displayed inside the list */
+  child?: ReactNode;
   /** The component used for the root node. Either a string to use a HTML element or a component. */
   component?: ElementType;
   /** If true, a 1px light border is added to the bottom of the list item. */
@@ -179,7 +181,7 @@ const NestedList = ({
         anchor="left"
         className={nestedDrawerClassName}
         open={open}
-        PaperProps={{ style: { left: `${nestedDrawerSpacing}px`, zIndex: -1 } }}
+        PaperProps={{ style: { left: `${nestedDrawerSpacing}px` } }}
         variant="persistent"
       >
         <DotList
@@ -219,7 +221,9 @@ export const DotList = ({
       disablePadding={disablePadding}
     >
       {items.map((item, index) =>
-        item.divider ? (
+        item.child ? (
+          item.child
+        ) : item.divider ? (
           !item.text ? (
             <Divider key={index} />
           ) : (
@@ -356,7 +360,7 @@ export const DotListItem = ({
             <DotIcon
               className="toggle-display"
               iconId={
-                nestedListType === 'menu'
+                nestedListType === 'menu' || nestedListType === 'drawer'
                   ? 'chevron-right'
                   : open
                   ? 'chevron-up'

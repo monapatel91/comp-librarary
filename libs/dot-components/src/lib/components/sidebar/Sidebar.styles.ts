@@ -3,7 +3,9 @@ import {
   agilityGreen,
   agilityLightGreen,
   n300,
+  n400,
 } from '../../theme-provider/colors/light-theme-colors';
+import { listItemRootClass, nestedDrawerClassName } from '../list/List.styles';
 
 export const rootClassName = 'dot-sidebar';
 
@@ -11,7 +13,9 @@ export const StyledSidebar = styled.aside`
   ${({ theme }) => css`
     &.dot-sidebar {
       align-items: stretch;
-      background: ${theme.palette.grey[50]};
+      background: ${theme.palette.product === 'agility'
+        ? theme.palette.layer.n50
+        : theme.palette.grey[50]};
       border-width: 0 1px;
       border-style: solid;
       border-color: ${theme.palette.product === 'agility'
@@ -24,7 +28,7 @@ export const StyledSidebar = styled.aside`
         ? theme.palette.layer.n700
         : theme.palette.grey[700]};
       display: flex;
-      height: 100%;
+      height: 100vh;
       flex-direction: column;
       justify-content: space-between;
       letter-spacing: 0.01em;
@@ -92,6 +96,23 @@ export const StyledSidebar = styled.aside`
         overflow-x: hidden;
         overflow-y: auto;
         padding: 0;
+
+        .${nestedDrawerClassName} {
+          /* TO-DO: Add class for agility in cases like this? */
+          .MuiTypography-root.MuiTypography-subtitle2 {
+            border: ${theme.palette.product === 'agility' && 'none'};
+            color: ${theme.palette.product === 'agility' && n400};
+            font-size: ${theme.palette.product === 'agility' && '11px'};
+            line-height: 40px;
+            margin: ${theme.palette.product === 'agility' && '10px 0 0'};
+            padding: ${theme.palette.product === 'agility' && '0 8px'};
+          }
+
+          .${listItemRootClass} {
+            margin: 0;
+            padding-left: ${theme.spacing(2)}px;
+          }
+        }
 
         .dot-list-item {
           height: 40px;
