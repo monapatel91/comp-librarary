@@ -17,6 +17,8 @@ export interface RowProps extends CommonProps {
   columns: Array<DotColumnHeader>;
   /** The table body row data */
   data: TableRowProps;
+  /** Event callback of action button of menu */
+  onActionMenuTrigger: (el: HTMLElement, menuItem: []) => void;
   /** Event callback */
   onClick?: (event: MouseEvent, id: string) => void;
   /** if the row is selected */
@@ -27,7 +29,13 @@ export interface RowProps extends CommonProps {
  * A wrapper component around the TableRow component from @material-ui. This component can be used
  * for manipulating data prior to displaying the data inside the table
  */
-export const DotTableRow = ({ columns, data, onClick, selected }: RowProps) => {
+export const DotTableRow = ({
+  columns,
+  data,
+  onActionMenuTrigger,
+  onClick,
+  selected,
+}: RowProps) => {
   const id = data.id;
   const rowData = data.rowData;
   const handleOnClick = (event: MouseEvent) => {
@@ -36,16 +44,18 @@ export const DotTableRow = ({ columns, data, onClick, selected }: RowProps) => {
   return (
     <TableRow
       classes={{ root: 'dot-tr' }}
-      key={CreateUUID()}
       onClick={handleOnClick}
       selected={selected}
     >
-      {columns.map((column) => {
+      {columns.map((column, index) => {
         return (
           <DotBodyCell
             align={column.align}
-            key={CreateUUID()}
+            key={index}
             noWrap={column.truncate}
+            onActionMenuTrigger={(menuRef, menuItem) =>
+              onActionMenuTrigger(menuRef, menuItem)
+            }
             value={rowData[column.id]}
           />
         );
