@@ -4,6 +4,7 @@ import { DemoForm } from '../../demo-components/DemoForm';
 import { DemoFormUncontrolled } from '../../demo-components/DemoFormUncontrolled';
 import { DemoCssGrid } from '../../demo-components/DemoCssGrid';
 import { DemoCssGridTemplate } from '../../demo-components/DemoCssGridTemplate';
+import { UserTable } from '../../demo-components/UserTable';
 
 export const Routes = () => {
   return (
@@ -16,6 +17,7 @@ export const Routes = () => {
       />
       <Route path="/css-grid" exact component={DemoCssGrid} />
       <Route path="/css-grid-template" exact component={DemoCssGridTemplate} />
+      <Route path="/user-table" exact component={UserTable} />
     </Switch>
   );
 };
