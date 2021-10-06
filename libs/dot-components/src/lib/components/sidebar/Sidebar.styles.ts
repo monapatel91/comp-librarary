@@ -220,6 +220,7 @@ export const StyledSidebar = styled.aside`
       }
 
       &.collapsed {
+        overflow: hidden;
         padding: ${theme.spacing(2, 0)};
         width: 56px;
         -o-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
@@ -227,12 +228,20 @@ export const StyledSidebar = styled.aside`
         -webkit-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
-        header,
+        header {
+          padding-left: ${theme.spacing(1)}px;
+        }
         .dot-list-item {
-          margin-left: ${theme.spacing(1)}px;
+          margin-left: 0;
+
+          .dot-icon {
+            margin-left: ${theme.spacing(1)}px;
+          }
         }
 
-        .go-back .MuiTypography-root {
+        .go-back .MuiTypography-root,
+        .MuiListItem-divider .dot-list-item-link,
+        .dot-drawer {
           display: none;
         }
 

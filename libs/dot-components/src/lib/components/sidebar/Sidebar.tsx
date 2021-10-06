@@ -78,9 +78,14 @@ export const DotSidebar = ({
     setIsOpen(open);
   }, [open]);
 
+  const collapseNav = () => {
+    setIsOpen(!isOpen);
+  };
+
   const rootClasses = useStylesWithRootClass(
     rootClassName,
-    `${!isOpen ? 'collapsed' : 'expanded'} ${className}`
+    !isOpen && 'collapsed',
+    className
   );
 
   return (
@@ -138,7 +143,7 @@ export const DotSidebar = ({
           <DotIconButton
             data-testid="toggle-nav"
             iconId="chevron-left"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={collapseNav}
           />
         </div>
       )}

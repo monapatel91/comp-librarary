@@ -93,7 +93,7 @@ describe(' Sidebar', () => {
     render(<DotSidebar navItems={navItems} />);
 
     const primaryNav = screen.getByTestId('primaryNav');
-    expect(primaryNav).toHaveClass('expanded');
+    expect(primaryNav).not.toHaveClass('collapsed');
   });
 
   it('calls backItem callback when back button clicked', () => {
