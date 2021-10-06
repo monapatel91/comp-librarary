@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import { useMediaQuery, Theme } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
@@ -16,6 +17,8 @@ import {
 export interface AppToolbarProps extends CommonProps {
   /** If provided will display application logo */
   appLogo?: ReactNode;
+  /** If provided will display application logo */
+  appLogoSmall?: ReactNode;
   /** DEPRECATED, DO NOT USE */
   appName?: string;
   /** User avatar component */
@@ -39,6 +42,7 @@ export interface AppToolbarProps extends CommonProps {
 export const DotAppToolbar = ({
   appName,
   appLogo,
+  appLogoSmall,
   ariaLabel,
   avatar,
   borderColor,
@@ -58,6 +62,10 @@ export const DotAppToolbar = ({
   const mainMenuClasses = useStylesWithRootClass(
     'dot-main-menu',
     menuOpen ? 'open' : ''
+  );
+
+  const targetBreakpoint = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.up('md')
   );
 
   useEffect(() => {
@@ -137,6 +145,7 @@ export const DotAppToolbar = ({
         <DotLink className="primary-logo" href="/">
           {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>
+        {appLogoSmall && <div className="app-logo-small">{appLogo}</div>}
         {appLogo && <div className="app-logo">{appLogo}</div>}
         {appName && (
           <DotTypography className="dot-product-name">{appName}</DotTypography>
