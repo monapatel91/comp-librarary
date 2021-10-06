@@ -14,17 +14,13 @@ export const StyledList = styled(List)`
   ${({ theme }) =>
     css`
       &.${rootClassName} {
+        background: ${theme.palette.layer.n0};
+
         &.${nestedListClassName} .${listItemRootClass} {
           padding-left: ${theme.spacing(4)}px;
         }
 
         .${nestedDrawerClassName} .dot-drawer-paper {
-          border-right: 1px solid
-            ${theme.palette.product === 'agility'
-              ? theme.palette.agilityInterface.sideNavBorder
-              : theme.palette.grey[100]};
-          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
-          padding-top: ${theme.palette.product === 'agility' && '10px'};
           z-index: ${levelBottom};
         }
 

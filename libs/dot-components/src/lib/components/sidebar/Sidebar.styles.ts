@@ -86,12 +86,23 @@ export const StyledSidebar = styled.aside`
       }
 
       ul.side-nav {
+        background: transparent;
         flex-grow: 2;
         overflow-x: hidden;
         overflow-y: auto;
         padding: 0;
+        width: auto;
 
         .${nestedDrawerClassName} {
+          .dot-drawer-paper {
+            border-right: 1px solid
+              ${theme.palette.product === 'agility'
+                ? theme.palette.agilityInterface.sideNavBorder
+                : theme.palette.grey[100]};
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+            padding-top: ${theme.palette.product === 'agility' && '10px'};
+          }
+
           /* TO-DO: Add class for agility in cases like this? */
           .MuiTypography-root.MuiTypography-subtitle2 {
             border: ${theme.palette.product === 'agility' && 'none'};

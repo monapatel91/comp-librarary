@@ -41,7 +41,7 @@ export interface NestedListProps extends CommonProps {
   /** If nested list type is 'menu', determines the placement of the menu */
   menuPlacement?: PopperPlacement;
   /** If nested type is 'drawer', determines the width of the left spacing */
-  nestedDrawerSpacing?: number;
+  nestedDrawerLeftSpacing?: number;
   /** Event callback when leaving menu via tab or clicking away */
   onMenuLeave?: (event: KeyboardEvent | MouseEvent) => void;
   /** if true the nested list is visible */
@@ -66,9 +66,11 @@ export interface ListProps extends CommonProps {
   /** If nested list type is 'menu', determines the placement of the menu */
   menuPlacement?: PopperPlacement;
   /** If nested type is 'drawer', determines the width of the left spacing */
-  nestedDrawerSpacing?: number;
+  nestedDrawerLeftSpacing?: number;
   /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
   nestedListType?: NestedListType;
+  /** Width of list, defaults to 240px */
+  width?: number;
 }
 
 export interface ListItemProps extends CommonProps {
@@ -89,7 +91,7 @@ export interface ListItemProps extends CommonProps {
   /** If nested list type is 'menu', determines the placement of the menu */
   menuPlacement?: PopperPlacement;
   /** If nested type is 'drawer', determines the width of the left spacing */
-  nestedDrawerSpacing?: number;
+  nestedDrawerLeftSpacing?: number;
   /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
   nestedListType?: NestedListType;
   /** Event callback */
@@ -109,7 +111,7 @@ const NestedList = ({
   anchorEl,
   items,
   menuPlacement,
-  nestedDrawerSpacing,
+  nestedDrawerLeftSpacing,
   onMenuLeave,
   open,
   parentItemIndex,
@@ -182,7 +184,7 @@ const NestedList = ({
         className={nestedDrawerClassName}
         data-testid="nested-drawer"
         open={open}
-        PaperProps={{ style: { left: `${nestedDrawerSpacing}px` } }}
+        PaperProps={{ style: { left: `${nestedDrawerLeftSpacing}px` } }}
         variant="persistent"
       >
         <DotList
@@ -207,8 +209,9 @@ export const DotList = ({
   disablePadding = false,
   items = [],
   menuPlacement = 'right-start',
-  nestedDrawerSpacing,
+  nestedDrawerLeftSpacing = 240,
   nestedListType = 'expandable',
+  width = 240,
 }: ListProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
@@ -220,6 +223,7 @@ export const DotList = ({
       data-testid={dataTestId}
       dense={dense}
       disablePadding={disablePadding}
+      style={{ width: `${width}px` }}
     >
       {items.map((item, index) => {
         if (item.child) {
@@ -248,7 +252,7 @@ export const DotList = ({
             onClick={item.onClick}
             key={index}
             menuPlacement={menuPlacement}
-            nestedDrawerSpacing={nestedDrawerSpacing}
+            nestedDrawerLeftSpacing={nestedDrawerLeftSpacing}
             nestedListType={nestedListType}
             selected={item.selected}
             startIconId={item.startIconId}
@@ -274,7 +278,7 @@ export const DotListItem = ({
   onClick,
   items = [],
   menuPlacement,
-  nestedDrawerSpacing,
+  nestedDrawerLeftSpacing,
   nestedListType,
   selected,
   startIconId,
@@ -382,7 +386,7 @@ export const DotListItem = ({
           ariaLabel="nested list"
           anchorEl={anchorEl}
           items={items}
-          nestedDrawerSpacing={nestedDrawerSpacing}
+          nestedDrawerLeftSpacing={nestedDrawerLeftSpacing}
           menuPlacement={menuPlacement}
           onMenuLeave={handleMenuLeave}
           open={open}

@@ -70,7 +70,7 @@ export const DotSidebar = ({
   open = true,
   title,
   titleAvatarProps,
-  width,
+  width = 240,
 }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(open);
 
@@ -127,8 +127,9 @@ export const DotSidebar = ({
           dense={true}
           disablePadding={true}
           items={navItems}
+          nestedDrawerLeftSpacing={width}
           nestedListType={nestedListType}
-          nestedDrawerSpacing={width}
+          width={width - 32}
         />
       )}
       {children}
