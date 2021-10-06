@@ -93,6 +93,10 @@ export const StyledSidebar = styled.aside`
         padding: 0;
         width: auto;
 
+        .dot-nested-list {
+          background: transparent;
+        }
+
         .${nestedDrawerClassName} {
           .dot-drawer-paper {
             border-right: 1px solid
