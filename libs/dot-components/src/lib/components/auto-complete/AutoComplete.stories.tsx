@@ -2,6 +2,7 @@ import React, { ChangeEvent, createRef, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import {
+  ActionItem,
   DotAutoComplete,
   AutoCompleteProps,
   parseAutoCompleteValue,
@@ -11,6 +12,12 @@ import {
 const batman = { group: 'D.C.', title: 'Batman', error: true };
 
 const defaultValueWithError = [batman];
+
+const actionItem: ActionItem = {
+  iconId: 'add',
+  text: 'Add new option',
+  onClick: () => alert('New option added'),
+};
 
 export default {
   title: 'Components/Auto Complete',
@@ -44,6 +51,10 @@ export default {
 
 export const Default: Story<AutoCompleteProps> = (args) => (
   <DotAutoComplete {...args} />
+);
+
+export const WithActionItem: Story<AutoCompleteProps> = (args) => (
+  <DotAutoComplete {...args} actionItem={actionItem} />
 );
 
 export const WithError: Story<AutoCompleteProps> = ({ onChange, ...args }) => {

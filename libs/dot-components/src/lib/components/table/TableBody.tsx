@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { TableBody } from '@material-ui/core';
 
 import { CreateUUID } from '../createUUID';
@@ -6,6 +6,7 @@ import { DotTableRow, EmptyDotRow } from './TableRow';
 import { DotColumnHeader } from './TableHeader';
 import { TableRowProps } from './Table';
 import { CommonProps } from '../CommonProps';
+import { StyledMenu } from './Table.styles';
 
 export type Order = 'asc' | 'desc';
 
@@ -30,6 +31,19 @@ export const DotTableBody = ({
   emptyMessage,
   onRowClick,
 }: TableBodyProps) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [menuProps, setMenuProps] = useState([]);
+  const [open, setOpen] = useState(false);
+  const handleActionMenuTrigger = (el: HTMLElement, menuItem: []) => {
+    setAnchorEl(el);
+    setMenuProps(menuItem);
+    setOpen(!open);
+  };
+  const menuId = CreateUUID();
+  const onLeave = () => {
+    setOpen(false);
+  };
+
   if (data.length === 0) {
     return (
       <TableBody>
@@ -38,18 +52,28 @@ export const DotTableBody = ({
     );
   }
   return (
-    <TableBody classes={{ root: 'dot-tbody' }}>
-      {data.map((row) => {
-        return (
-          <DotTableRow
-            columns={columns}
-            data={row}
-            key={CreateUUID()}
-            onClick={onRowClick}
-            selected={row.selected}
-          />
-        );
-      })}
-    </TableBody>
+    <>
+      <TableBody classes={{ root: 'dot-tbody' }}>
+        {data.map((row, index) => {
+          return (
+            <DotTableRow
+              columns={columns}
+              data={row}
+              key={index}
+              onActionMenuTrigger={handleActionMenuTrigger}
+              onClick={onRowClick}
+              selected={row.selected}
+            />
+          );
+        })}
+      </TableBody>
+      <StyledMenu
+        anchorEl={anchorEl}
+        id={menuId}
+        menuItems={menuProps}
+        onLeave={onLeave}
+        open={open}
+      />
+    </>
   );
 };
