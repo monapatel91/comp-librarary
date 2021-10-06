@@ -4,7 +4,6 @@ import React, {
   KeyboardEvent,
   ReactNode,
   useState,
-  useEffect,
 } from 'react';
 import {
   Collapse,
@@ -31,7 +30,6 @@ import {
 } from './List.styles';
 import { CreateUUID } from '../createUUID';
 import { DotTypography } from '../typography/Typography';
-import { use } from 'echarts';
 
 export type NestedListType = 'drawer' | 'expandable' | 'menu';
 

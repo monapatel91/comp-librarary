@@ -22,7 +22,7 @@ export const StyledSidebar = styled.aside`
         ? theme.palette.layer.n700
         : theme.palette.grey[700]};
       display: flex;
-      height: 100vh;
+      height: 100%;
       flex-direction: column;
       justify-content: space-between;
       letter-spacing: 0.01em;
