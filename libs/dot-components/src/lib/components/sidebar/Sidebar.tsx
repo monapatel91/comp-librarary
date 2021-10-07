@@ -51,6 +51,8 @@ export interface SidebarProps extends CommonProps {
   title?: string;
   /** If provided, will display an avatar next to the title text */
   titleAvatarProps?: AvatarProps;
+  /** Width of main menu drawer if mainMenu provided, defaults to 240px */
+  width?: number;
 }
 
 export const DotSidebar = ({
@@ -68,6 +70,7 @@ export const DotSidebar = ({
   open = true,
   title,
   titleAvatarProps,
+  width = 240,
 }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(open);
 
@@ -75,9 +78,14 @@ export const DotSidebar = ({
     setIsOpen(open);
   }, [open]);
 
+  const collapseNav = () => {
+    setIsOpen(!isOpen);
+  };
+
   const rootClasses = useStylesWithRootClass(
     rootClassName,
-    `${!isOpen ? 'collapsed' : 'expanded'} ${className}`
+    !isOpen && 'collapsed',
+    className
   );
 
   return (
@@ -116,13 +124,17 @@ export const DotSidebar = ({
         </DotLink>
       )}
       {navItems.length > 0 && (
+        // TO-DO: defect with secondary open while sidebar collapsed
         <DotList
           ariaLabel="left navigation"
           className={`side-nav ${isOpen}`}
           data-testid="sideNav"
           dense={true}
+          disablePadding={true}
           items={navItems}
+          nestedDrawerLeftSpacing={width}
           nestedListType={nestedListType}
+          width={width - 32}
         />
       )}
       {children}
@@ -131,7 +143,7 @@ export const DotSidebar = ({
           <DotIconButton
             data-testid="toggle-nav"
             iconId="chevron-left"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={collapseNav}
           />
         </div>
       )}
@@ -140,6 +152,7 @@ export const DotSidebar = ({
           <DotTypography className="desc" variant="body2">
             {brandDesc}
           </DotTypography>
+          {/* TO-DO: need logo for dark theme */}
           <LogoDigitalAi className="company-name" title="digital.ai" />
           <LogoD className="d-icon" title="digital.ai" />
         </div>

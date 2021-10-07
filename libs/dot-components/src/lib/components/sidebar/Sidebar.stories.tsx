@@ -2,6 +2,7 @@ import React, { MouseEvent, useState } from 'react';
 import { DotSidebar, SidebarProps } from './Sidebar';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { TextField } from '@material-ui/core';
+import { NestedListType } from '../list/List';
 
 export default {
   title: 'Components/Sidebar',
@@ -25,7 +26,10 @@ export default {
       defaultValue: true,
     },
     goBack: {
-      defaultValue: true,
+      defaultValue: false,
+    },
+    nestedListType: {
+      defaultValue: 'drawer' as NestedListType,
     },
     title: {
       defaultValue: 'Title Goes Here',
@@ -36,6 +40,9 @@ export default {
         iconId: 'user',
         type: 'icon',
       },
+    },
+    width: {
+      defaultValue: 240,
     },
   },
 } as Meta;
@@ -53,16 +60,35 @@ export const Default: Story<SidebarProps> = (args) => {
       startIconId: 'process-template',
       items: [
         {
-          startIconId: 'process-template',
-          onClick: (event: MouseEvent) => handleClick(0),
+          text: 'PLANNING',
+          divider: true,
+        },
+        {
+          onClick: (_event: MouseEvent) => handleClick(0),
           selected: isSelected(0),
           text: 'Package Progression',
         },
         {
-          startIconId: 'process-template',
-          onClick: (event: MouseEvent) => handleClick(1),
+          onClick: (_event: MouseEvent) => handleClick(1),
           selected: isSelected(1),
           text: 'Feature Progression',
+        },
+        {
+          text: 'PLANNING',
+          divider: true,
+        },
+        {
+          onClick: (_event: MouseEvent) => handleClick(0),
+          selected: isSelected(0),
+          text: 'Package Progression',
+        },
+        {
+          onClick: (_event: MouseEvent) => handleClick(1),
+          selected: isSelected(1),
+          text: 'Feature Progression',
+        },
+        {
+          child: <TextField placeholder="search" variant="outlined" />,
         },
       ],
       text: 'Progressions',
@@ -71,14 +97,18 @@ export const Default: Story<SidebarProps> = (args) => {
       startIconId: 'satellite-group',
       items: [
         {
+          text: 'PLANNING',
+          divider: true,
+        },
+        {
           startIconId: 'block',
-          onClick: (event: MouseEvent) => handleClick(3),
+          onClick: (_event: MouseEvent) => handleClick(3),
           selected: isSelected(3),
           text: 'Groups',
         },
         {
           startIconId: 'block',
-          onClick: (event: MouseEvent) => handleClick(4),
+          onClick: (_event: MouseEvent) => handleClick(4),
           selected: isSelected(4),
           text: 'Instances',
         },
@@ -87,7 +117,7 @@ export const Default: Story<SidebarProps> = (args) => {
     },
     {
       startIconId: 'dashboard',
-      onClick: (event: MouseEvent) => handleClick(6),
+      onClick: (_event: MouseEvent) => handleClick(6),
       selected: isSelected(6),
       text: 'Insights',
     },
@@ -97,19 +127,19 @@ export const Default: Story<SidebarProps> = (args) => {
     },
     {
       startIconId: 'block',
-      onClick: (event: MouseEvent) => handleClick(7),
+      onClick: (_event: MouseEvent) => handleClick(7),
       selected: isSelected(7),
       text: 'Packages',
     },
     {
       startIconId: 'flag',
-      onClick: (event: MouseEvent) => handleClick(8),
+      onClick: (_event: MouseEvent) => handleClick(8),
       selected: isSelected(8),
       text: 'Features',
     },
     {
       startIconId: 'collection',
-      onClick: (event: MouseEvent) => handleClick(9),
+      onClick: (_event: MouseEvent) => handleClick(9),
       selected: isSelected(9),
       text: 'Projects',
     },
@@ -118,44 +148,26 @@ export const Default: Story<SidebarProps> = (args) => {
     },
     {
       startIconId: 'file-lines',
-      onClick: (event: MouseEvent) => handleClick(10),
+      onClick: (_event: MouseEvent) => handleClick(10),
       selected: isSelected(10),
       text: 'Workitems',
     },
     {
       startIconId: 'change',
-      onClick: (event: MouseEvent) => handleClick(11),
+      onClick: (_event: MouseEvent) => handleClick(11),
       selected: isSelected(11),
       text: 'Changes',
     },
     {
       startIconId: 'square-settings',
-      onClick: (event: MouseEvent) => handleClick(12),
+      onClick: (_event: MouseEvent) => handleClick(12),
       selected: isSelected(12),
       text: 'Artifacts',
     },
-    {
-      text: 'System',
-      divider: true,
-    },
-    {
-      startIconId: 'monitor-gears',
-      onClick: (event: MouseEvent) => handleClick(13),
-      selected: isSelected(13),
-      text: 'Tasks',
-    },
-    {
-      startIconId: 'archive',
-      onClick: (event: MouseEvent) => handleClick(14),
-      selected: isSelected(14),
-      text: 'Buckets',
-    },
-    {
-      startIconId: 'monitor',
-      onClick: (event: MouseEvent) => handleClick(15),
-      selected: isSelected(15),
-      text: 'Environment',
-    },
   ];
-  return <DotSidebar {...args} navItems={navItems} />;
+  return (
+    <div style={{ top: '-1rem', left: '-1rem', position: 'relative' }}>
+      <DotSidebar {...args} navItems={navItems} />
+    </div>
+  );
 };

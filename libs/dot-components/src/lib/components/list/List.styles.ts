@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components';
 import { List, ListItem } from '@material-ui/core';
+import { levelBottom } from './../../theme-provider/common/variables';
 
 export const rootClassName = 'dot-list';
 export const listItemRootClass = 'dot-list-item';
 export const nestedListClassName = 'dot-nested-list';
+export const nestedDrawerClassName = 'dot-nested-drawer';
 export const flyoutListItemClassName = 'dot-flyout-list-item';
 export const flyoutItemLinkClassName = 'dot-flyout-item-link';
 export const listItemLinkClassName = 'dot-list-item-link';
@@ -12,13 +14,18 @@ export const StyledList = styled(List)`
   ${({ theme }) =>
     css`
       &.${rootClassName} {
+        background: ${theme.palette.layer.n0};
+
         &.${nestedListClassName} .${listItemRootClass} {
           padding-left: ${theme.spacing(4)}px;
         }
 
+        .${nestedDrawerClassName} .dot-drawer-paper {
+          z-index: ${levelBottom};
+        }
+
         .MuiListSubheader-root {
           padding: 0;
-          border-bottom: 1px solid ${theme.palette.grey[100]};
 
           .MuiTypography-root {
             padding: ${theme.spacing(1)}px;

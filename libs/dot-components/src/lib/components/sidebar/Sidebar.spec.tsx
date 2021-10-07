@@ -22,7 +22,15 @@ const navItems: Array<ListItemProps> = [
   {
     startIconId: 'change',
     text: 'Changes',
-    href: '/',
+    items: [
+      {
+        text: 'PLANNING',
+        divider: true,
+      },
+      {
+        text: 'Nested Link',
+      },
+    ],
   },
 ];
 
@@ -35,8 +43,8 @@ describe(' Sidebar', () => {
       brandDesc: 'best brand',
       children: <TextField placeholder="search" variant="outlined" />,
       className: 'test-class',
-      'data-testid': 'testid',
       collapsable: true,
+      'data-testid': 'testid',
       displayBrand: true,
       goBack: false,
       nestedListType: 'menu' as NestedListType,
@@ -44,6 +52,7 @@ describe(' Sidebar', () => {
       open: false,
       title: 'Captain Sidebar',
       titleAvatarProps: titleAvatarProps,
+      width: 240,
     };
     const sidebarProps: SidebarProps = props;
     expect(sidebarProps).toEqual(props);
@@ -92,7 +101,35 @@ describe(' Sidebar', () => {
     render(<DotSidebar navItems={navItems} />);
 
     const primaryNav = screen.getByTestId('primaryNav');
-    expect(primaryNav).toHaveClass('expanded');
+    expect(primaryNav).not.toHaveClass('collapsed');
+  });
+
+  it('nested drawer is hidden when sidebar collapsed', async () => {
+    render(
+      <DotSidebar
+        collapsable={true}
+        navItems={navItems}
+        nestedListType="drawer"
+        open={true}
+      />
+    );
+    const primaryNav = screen.getByTestId('primaryNav');
+    const changesLink = screen.getByText('Changes');
+
+    await waitFor(() => {
+      expect(primaryNav).toBeTruthy();
+    });
+
+    expect(changesLink).toBeVisible();
+    userEvent.click(changesLink);
+
+    await waitFor(() => {
+      expect(screen.getByText('Nested Link')).toBeVisible();
+    });
+
+    userEvent.click(screen.getByTestId('toggle-nav'));
+    expect(primaryNav).toHaveClass('collapsed');
+    expect(screen.getByText('Nested Link')).not.toBeVisible();
   });
 
   it('calls backItem callback when back button clicked', () => {
