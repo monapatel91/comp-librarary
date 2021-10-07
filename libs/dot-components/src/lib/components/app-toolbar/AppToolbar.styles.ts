@@ -73,7 +73,7 @@ export const StyledAppToolbar = styled.header`
         }
 
         .divider {
-          margin-left: 6px;
+          margin-left: ${theme.spacing(2)}px;
         }
       }
 

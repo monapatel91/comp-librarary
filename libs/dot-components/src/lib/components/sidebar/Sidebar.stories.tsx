@@ -2,7 +2,7 @@ import React, { MouseEvent, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { TextField } from '@material-ui/core';
 import { DotSidebar, SidebarProps } from './Sidebar';
-import { ReactComponent as DemoLogo } from '../../assets/demo-logo.svg';
+import { ReactComponent as DemoLogoDark } from '../../assets/demo-logo-dark.svg';
 import { ReactComponent as DemoLogoSmall } from '../../assets/demo-logo-small.svg';
 import { NestedListType } from '../list/List';
 
@@ -11,7 +11,7 @@ export default {
   component: DotSidebar,
   argTypes: {
     appLogo: {
-      defaultValue: <DemoLogo title="demo app logo" />,
+      defaultValue: <DemoLogoDark title="demo app logo" />,
     },
     appLogoSmall: {
       defaultValue: <DemoLogoSmall title="demo app logo small" />,
