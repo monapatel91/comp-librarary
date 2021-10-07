@@ -8,6 +8,16 @@ describe('dot-components: AppToolbar component', () => {
     cy.get('header').should('have.class', 'dot-app-toolbar');
   });
 
+  it('should display small app logo when screensize below 1024px', () => {
+    cy.viewport(1024, 768);
+    cy.get('.dot-app-logo').should('have.class', 'small');
+  });
+
+  it('should display regular app logo when screensize above 1024px', () => {
+    cy.viewport(1200, 768);
+    cy.get('.dot-app-logo').should('not.have.class', 'small');
+  });
+
   describe('style decisions', () => {
     it('header background is correct', () => {
       cy.get('header.dot-app-toolbar').should(

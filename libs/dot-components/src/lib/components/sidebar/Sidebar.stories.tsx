@@ -1,13 +1,21 @@
 import React, { MouseEvent, useState } from 'react';
-import { DotSidebar, SidebarProps } from './Sidebar';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { TextField } from '@material-ui/core';
+import { DotSidebar, SidebarProps } from './Sidebar';
+import { ReactComponent as DemoLogo } from '../../assets/demo-logo.svg';
+import { ReactComponent as DemoLogoSmall } from '../../assets/demo-logo-small.svg';
 import { NestedListType } from '../list/List';
 
 export default {
   title: 'Components/Sidebar',
   component: DotSidebar,
   argTypes: {
+    appLogo: {
+      defaultValue: <DemoLogo title="demo app logo" />,
+    },
+    appLogoSmall: {
+      defaultValue: <DemoLogoSmall title="demo app logo small" />,
+    },
     backItem: {
       defaultValue: {
         iconId: 'back',
@@ -23,6 +31,9 @@ export default {
       defaultValue: <TextField placeholder="search" variant="outlined" />,
     },
     collapsable: {
+      defaultValue: true,
+    },
+    displayAppLogo: {
       defaultValue: true,
     },
     goBack: {

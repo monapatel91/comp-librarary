@@ -59,7 +59,7 @@ export const StyledAppToolbar = styled.header`
 
         .primary-logo,
         .app-logo {
-          margin-right: 10px;
+          margin-right: ${theme.spacing(1.5)}px;
         }
 
         a {

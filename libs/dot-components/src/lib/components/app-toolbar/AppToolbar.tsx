@@ -8,6 +8,7 @@ import { DotTypography } from '../typography/Typography';
 import { ListItemProps } from '../list/List';
 import { DotSidebar } from '../sidebar/Sidebar';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
+import { DotAppLogo } from '../app-logo/AppLogo';
 import {
   rootClassName,
   StyledAppToolbar,
@@ -57,6 +58,7 @@ export const DotAppToolbar = ({
 }: AppToolbarProps) => {
   const [menuOpen, updateMenuOpen] = useState(false);
   const showMainMenu = mainMenu || mainMenuItems;
+  const displayAppLogo = appLogo || appLogoSmall;
   const mainMenuRef = useRef(null);
   const rootClasses = useStylesWithRootClass(rootClassName, `${className}`);
   const mainMenuClasses = useStylesWithRootClass(
@@ -145,8 +147,13 @@ export const DotAppToolbar = ({
         <DotLink className="primary-logo" href="/">
           {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>
-        {appLogoSmall && <div className="app-logo-small">{appLogo}</div>}
-        {appLogo && <div className="app-logo">{appLogo}</div>}
+        {displayAppLogo && (
+          <DotAppLogo
+            appLogo={appLogo}
+            appLogoSmall={appLogoSmall}
+            smallOnly={!targetBreakpoint}
+          />
+        )}
         {appName && (
           <DotTypography className="dot-product-name">{appName}</DotTypography>
         )}
