@@ -245,14 +245,8 @@ export const StyledSidebar = styled.aside`
           padding-left: ${theme.spacing(1)}px;
 
           .dot-app-logo {
-            height: 20px;
             text-align: center;
             width: 40px;
-
-            svg,
-            img {
-              height: 20px;
-            }
           }
         }
         .dot-list-item {
