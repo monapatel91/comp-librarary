@@ -17,7 +17,7 @@ const backItem: BackItemProps = {
 
 const appLogo = <DemoLogo title="app logo" />;
 const appLogoSmall = <DemoLogoSmall title="app logo small" />;
-
+const titleAvatarProps = { alt: 'avatar alt text', text: 'BM' };
 const navItems: Array<ListItemProps> = [
   {
     startIconId: 'block',
@@ -41,7 +41,6 @@ const navItems: Array<ListItemProps> = [
 
 describe(' Sidebar', () => {
   it('should have unchanged API', () => {
-    const titleAvatarProps = { alt: 'avatar alt text', text: 'BM' };
     const props = {
       appLogo: appLogo,
       appLogoSmall: appLogoSmall,
@@ -140,6 +139,16 @@ describe(' Sidebar', () => {
     expect(screen.getByText('Nested Link')).not.toBeVisible();
   });
 
+  it("should have 'aria-label' attribute with correct value", () => {
+    const ariaLabel = 'my label';
+    const dataTestId = 'test-sidebar';
+    render(<DotSidebar ariaLabel={ariaLabel} data-testid={dataTestId} />);
+    const sidebarElement = screen.getByTestId(`primaryNav ${dataTestId}`);
+    expect(sidebarElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+});
+
+describe(' Sidebar - Back Button', () => {
   it('calls backItem callback when back button clicked', () => {
     render(<DotSidebar backItem={backItem} goBack={true} />);
     const backButton = screen.getByTestId('back-button');
@@ -164,7 +173,9 @@ describe(' Sidebar', () => {
     render(<DotSidebar backItem={noTitleBackItem} goBack={true} />);
     expect(screen.getAllByTitle(noTitleBackItem.text)).toHaveLength(2);
   });
+});
 
+describe(' Sidebar - Application Logo', () => {
   it('should not display application logo by default', () => {
     render(<DotSidebar appLogo={appLogo} navItems={navItems} />);
     expect(screen.queryByTitle('app logo')).toBeNull();
@@ -190,11 +201,18 @@ describe(' Sidebar', () => {
     expect(screen.getByTitle('app logo small')).toBeVisible();
   });
 
-  it("should have 'aria-label' attribute with correct value", () => {
-    const ariaLabel = 'my label';
-    const dataTestId = 'test-sidebar';
-    render(<DotSidebar ariaLabel={ariaLabel} data-testid={dataTestId} />);
-    const sidebarElement = screen.getByTestId(`primaryNav ${dataTestId}`);
-    expect(sidebarElement).toHaveAttribute('aria-label', ariaLabel);
+  it('should not display header title if application logo provided', () => {
+    render(
+      <DotSidebar
+        appLogo={appLogo}
+        appLogoSmall={appLogoSmall}
+        displayAppLogo={true}
+        navItems={navItems}
+        open={true}
+        title="Wayne Enterprises"
+      />
+    );
+
+    expect(screen.queryByText('Wayne Enterprises')).toBeNull();
   });
 });

@@ -111,7 +111,7 @@ describe(' AppToolbar', () => {
   });
 });
 
-describe('Main Menu', () => {
+describe(' AppToolbar - Main Menu', () => {
   it('should not display main menu if mainMenu and MainMenuItems are undefined', () => {
     render(<DotAppToolbar />);
     const mainMenuIcon = screen.queryByTestId('main-menu-icon');
