@@ -215,4 +215,12 @@ describe(' Sidebar - Application Logo', () => {
 
     expect(screen.queryByText('Wayne Enterprises')).toBeNull();
   });
+
+  it('should display header title if provided and no logo provided', () => {
+    render(
+      <DotSidebar navItems={navItems} open={true} title="Wayne Enterprises" />
+    );
+
+    expect(screen.queryByText('Wayne Enterprises')).toBeVisible();
+  });
 });
