@@ -47,11 +47,9 @@ export const StyledSidebar = styled.aside`
         white-space: nowrap;
 
         .dot-app-logo {
-          height: 20px;
-
           svg,
           img {
-            height: 20px;
+            max-width: 206px;
           }
         }
 
