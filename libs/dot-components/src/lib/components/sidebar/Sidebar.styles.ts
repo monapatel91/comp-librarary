@@ -46,6 +46,13 @@ export const StyledSidebar = styled.aside`
         padding: ${theme.spacing(0, 0, 1)};
         white-space: nowrap;
 
+        .dot-app-logo {
+          svg,
+          img {
+            max-width: 206px;
+          }
+        }
+
         .dot-avatar {
           margin-right: ${theme.spacing(1)}px;
         }
@@ -226,7 +233,7 @@ export const StyledSidebar = styled.aside`
       &.collapsed {
         overflow: hidden;
         padding: ${theme.spacing(2, 0)};
-        width: 56px;
+        width: 58px;
         -o-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         -moz-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         -webkit-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
@@ -234,6 +241,11 @@ export const StyledSidebar = styled.aside`
 
         header {
           padding-left: ${theme.spacing(1)}px;
+
+          .dot-app-logo {
+            text-align: center;
+            width: 40px;
+          }
         }
         .dot-list-item {
           margin-left: 0;
