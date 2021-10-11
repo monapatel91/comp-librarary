@@ -8,7 +8,7 @@ import {
   LinkTarget,
   LinkUnderline,
 } from './Link';
-
+const consoleSpy = jest.spyOn(global.console, 'warn');
 describe('Link', () => {
   it('should have unchanged API', () => {
     const onClick = jest.fn();
@@ -71,5 +71,9 @@ describe('Link', () => {
       </DotLink>
     );
     expect(screen.getByRole('link')).toHaveAttribute('aria-label', ariaLabel);
+  });
+  it('should have a deprecation warning if titleTooltip is used', () => {
+    render(<DotLink title="icon button title">Link</DotLink>);
+    expect(consoleSpy).toBeCalled();
   });
 });

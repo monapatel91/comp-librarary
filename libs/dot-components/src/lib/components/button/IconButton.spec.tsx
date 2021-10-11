@@ -7,7 +7,7 @@ import {
   IconButtonColor,
   IconButtonSize,
 } from './IconButton';
-
+const consoleSpy = jest.spyOn(global.console, 'warn');
 describe('DotIconButton', () => {
   it('should have unchanged API', () => {
     const onClick = jest.fn();
@@ -62,5 +62,11 @@ describe('DotIconButton', () => {
     render(<DotIconButton ariaLabel={ariaLabel} iconId="download" />);
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+  it('should have a deprecation warning if titleTooltip is used', () => {
+    render(
+      <DotIconButton iconId="download" titleTooltip="icon button title" />
+    );
+    expect(consoleSpy).toBeCalled();
   });
 });

@@ -42,4 +42,8 @@ describe('DotIcon', () => {
     render(<DotIcon iconId="home" fontSize="inherit" />);
     expect(consoleSpy).toBeCalled();
   });
+  it('should have a deprecation warning if title is used', () => {
+    render(<DotIcon iconId="home" title="icon title" />);
+    expect(consoleSpy).toBeCalled();
+  });
 });
