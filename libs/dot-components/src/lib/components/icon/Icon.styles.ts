@@ -42,7 +42,6 @@ export const StyledIcon = styled(Icon)`
           -moz-osx-font-smoothing: grayscale;
         }
 
-
         &.icon-analytics:before {
           content: "\\e9d4";
         }
