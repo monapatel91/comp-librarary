@@ -4,7 +4,6 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledEmptyState } from './EmptyState.styles';
 import { DotTypography } from '../typography/Typography';
-import { DotTooltip } from '../tooltip/Tooltip';
 
 export interface EmptyStateProps extends CommonProps {
   /** primary button properties */
@@ -38,13 +37,12 @@ export const DotEmptyState = ({
       data-testid={dataTestId}
     >
       {imageSrc && (
-        <DotTooltip title={title}>
-          <img
-            className="empty-state-image"
-            alt={imageAltText || title}
-            src={imageSrc}
-          />
-        </DotTooltip>
+        <img
+          className="empty-state-image"
+          title={imageAltText || title}
+          alt={imageAltText || title}
+          src={imageSrc}
+        />
       )}
       <DotTypography variant="h2">{title}</DotTypography>
       {subtitle && <DotTypography variant="body1">{subtitle}</DotTypography>}
