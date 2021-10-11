@@ -3,7 +3,6 @@ describe('dot-components: Sidebar component', () => {
 
   it('should have a dot- prefix', () => {
     cy.get('aside').should('have.class', 'dot-sidebar');
-    cy.get('h4').should('have.class', 'dot-typography');
   });
 
   describe('style decisions', () => {

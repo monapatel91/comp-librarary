@@ -3,6 +3,8 @@ import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotButton } from '../button/Button';
 import { DotLink } from '../link/Link';
+import { ReactComponent as DemoLogo } from '../../assets/demo-logo.svg';
+import { ReactComponent as DemoLogoSmall } from '../../assets/demo-logo-small.svg';
 import { ReactComponent as TestLogo } from '../../assets/test_logo.svg';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -12,6 +14,12 @@ export default {
   title: 'Components/AppToolbar',
   component: DotAppToolbar,
   argTypes: {
+    appLogo: {
+      defaultValue: <DemoLogo title="demo app logo" />,
+    },
+    appLogoSmall: {
+      defaultValue: <DemoLogoSmall title="demo app logo small" />,
+    },
     avatar: {
       defaultValue: (
         <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
@@ -129,5 +137,5 @@ export default {
 export const Default: Story<AppToolbarProps> = (args) => {
   const { customLogo: logoId } = args;
   const logo = logoId === 'Custom' && <TestLogo title="test.logo" />;
-  return <DotAppToolbar {...args} customLogo={logo} appLogo={logo} />;
+  return <DotAppToolbar {...args} customLogo={logo} />;
 };

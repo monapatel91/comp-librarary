@@ -6,6 +6,8 @@ import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { IconButtonProps } from '../button/IconButton';
 import { DotButton } from '../button/Button';
 import { ReactComponent as LogoDigitalAiCustom } from '../../assets/logo_digital_ai.svg';
+import { ReactComponent as DemoLogo } from '../../assets/demo-logo.svg';
+import { ReactComponent as DemoLogoSmall } from '../../assets/demo-logo-small.svg';
 
 const consoleSpy = jest.spyOn(global.console, 'warn');
 const menuItems = new Array<IconButtonProps>();
@@ -13,7 +15,8 @@ const userAvatar = (
   <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
 );
 const customLogo = <LogoDigitalAiCustom title="digital.ai.custom" />;
-const appLogo = <LogoDigitalAiCustom title="app logo" />;
+const appLogo = <DemoLogo title="app logo" />;
+const appLogoSmall = <DemoLogoSmall title="app logo small" />;
 const mainMenuItems = [
   {
     startIconId: 'satellite-group',
@@ -36,6 +39,7 @@ describe(' AppToolbar', () => {
     const props = {
       appName: 'Batman',
       appLogo: appLogo,
+      appLogoSmall: appLogoSmall,
       ariaLabel: 'app toolbar',
       avatar: userAvatar,
       borderColor: '#1abc9c',
@@ -56,11 +60,6 @@ describe(' AppToolbar', () => {
   it('should render successfully', () => {
     const { baseElement } = render(<DotAppToolbar navItems={menuItems} />);
     expect(baseElement).toBeTruthy();
-  });
-
-  it('should display the application logo', () => {
-    render(<DotAppToolbar appLogo={appLogo} navItems={menuItems} />);
-    expect(screen.getByTitle('app logo')).toBeVisible();
   });
 
   it('should have a deprecation warning if appName is provided', () => {
@@ -112,7 +111,7 @@ describe(' AppToolbar', () => {
   });
 });
 
-describe('Main Menu', () => {
+describe(' AppToolbar - Main Menu', () => {
   it('should not display main menu if mainMenu and MainMenuItems are undefined', () => {
     render(<DotAppToolbar />);
     const mainMenuIcon = screen.queryByTestId('main-menu-icon');
