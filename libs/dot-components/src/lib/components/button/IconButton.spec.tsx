@@ -21,6 +21,7 @@ describe('DotIconButton', () => {
       onClick: onClick,
       size: 'small' as IconButtonSize,
       titleTooltip: 'click here',
+      tooltitooltip: 'Hello world',
     };
     const iconButtonProps: IconButtonProps = props;
     expect(iconButtonProps).toEqual(props);
@@ -50,12 +51,10 @@ describe('DotIconButton', () => {
   });
 
   it('should render an icon button with tooltip', () => {
-    render(<DotIconButton iconId="download" titleTooltip="Test title" />);
-    const title = screen.getAllByTitle('Test title');
-    expect(title).toHaveLength(2);
+    render(<DotIconButton iconId="download" tooltip="Test title" />);
+    const title = screen.getByTitle('Test title');
     expect(screen.getByTestId('button-icon')).toBeVisible();
-    expect(title[0]).toBeVisible();
-    expect(title[1]).toBeVisible();
+    expect(title).toBeVisible();
   });
 
   it("should have 'aria-label' attribute with correct value", () => {

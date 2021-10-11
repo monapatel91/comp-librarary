@@ -19,8 +19,10 @@ export interface BaseButtonProps extends CommonProps {
   onClick?: (event: MouseEvent<Element> | KeyboardEvent<Element>) => void;
   /** The size of the button */
   size?: ButtonSize;
-  /** Help text to be displayed on hover */
+  /** The use of `titleTooltip` is deprecated and will be removed in the next major release. */
   titleTooltip?: string;
+  /** Help text to be displayed on hover  */
+  tooltip?: string;
   /** The type of button */
   type?: ButtonType;
 }

@@ -4,6 +4,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledAvatar } from './Avatar.styles';
 import { DotIcon, IconFontSize } from '../icon/Icon';
 import { DotTypography, TypographyVariant } from '../typography/Typography';
+import { DotTooltip } from '../tooltip/Tooltip';
 import { getAvatarColorForInputText } from '../helpers';
 
 export type AvatarSize = 'small' | 'medium' | 'large';
@@ -39,6 +40,8 @@ export interface AvatarProps extends CommonProps {
   text?: string;
   /** The type of the avatar */
   type?: AvatarType;
+  /** Tooltip for avatar */
+  tooltip?: string;
   /** The shape of the avatar */
   variant?: AvatarVariant;
 }
@@ -55,6 +58,7 @@ export const DotAvatar = ({
   size = 'medium',
   text = alt,
   type = 'image',
+  tooltip,
   variant = 'circular',
   style,
 }: AvatarProps) => {
@@ -86,31 +90,33 @@ export const DotAvatar = ({
     size === 'small' ? size : 'default';
 
   return (
-    <StyledAvatar
-      alt={alt}
-      aria-label={ariaLabel}
-      className={size}
-      color={getAvatarColor()}
-      classes={{ root: rootClasses, img: 'dot-img' }}
-      data-testid={dataTestId}
-      onClick={(event: MouseEvent) => (onClick ? onClick(event) : null)}
-      src={type === 'image' ? imageSrc : null}
-      variant={variant}
-      style={style}
-    >
-      {type === 'icon' || (type === 'image' && !imageSrc) ? (
-        <DotIcon
-          data-testid={`${dataTestId}-icon`}
-          iconId={iconId ? iconId : 'user'}
-          fontSize={getIconFontSizeFromAvatarSize()}
-        />
-      ) : type === 'text' ? (
-        <DotTypography
-          variant={size === 'small' ? 'caption' : getHeadingFromAvatarSize()}
-        >
-          {parsedText()}
-        </DotTypography>
-      ) : null}
-    </StyledAvatar>
+    <DotTooltip title={tooltip}>
+      <StyledAvatar
+        alt={alt}
+        aria-label={ariaLabel}
+        className={size}
+        color={getAvatarColor()}
+        classes={{ root: rootClasses, img: 'dot-img' }}
+        data-testid={dataTestId}
+        onClick={(event: MouseEvent) => (onClick ? onClick(event) : null)}
+        src={type === 'image' ? imageSrc : null}
+        variant={variant}
+        style={style}
+      >
+        {type === 'icon' || (type === 'image' && !imageSrc) ? (
+          <DotIcon
+            data-testid={`${dataTestId}-icon`}
+            iconId={iconId ? iconId : 'user'}
+            fontSize={getIconFontSizeFromAvatarSize()}
+          />
+        ) : type === 'text' ? (
+          <DotTypography
+            variant={size === 'small' ? 'caption' : getHeadingFromAvatarSize()}
+          >
+            {parsedText()}
+          </DotTypography>
+        ) : null}
+      </StyledAvatar>
+    </DotTooltip>
   );
 };

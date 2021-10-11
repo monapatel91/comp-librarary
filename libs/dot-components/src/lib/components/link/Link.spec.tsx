@@ -26,6 +26,7 @@ describe('Link', () => {
       tabIndex: 0,
       target: '_self' as LinkTarget,
       title: 'Sir Link',
+      tooltip: 'test link',
       underline: 'always' as LinkUnderline,
     };
     const linkProps: LinkProps = props;

@@ -24,6 +24,7 @@ describe('DotAvatar', () => {
       size: 'small' as AvatarSize,
       style: { color: '#44b700' } as CSSProperties,
       text: 'BM',
+      tooltip: 'avatar tooltip',
       type: 'image' as AvatarType,
       variant: 'circular' as AvatarVariant,
     };

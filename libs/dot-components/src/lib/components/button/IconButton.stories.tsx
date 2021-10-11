@@ -22,6 +22,9 @@ export default {
     titleTooltip: {
       defaultValue: 'Hello World',
     },
+    tooltip: {
+      defaultValue: 'Hello World',
+    },
     size: {
       defaultValue: 'medium',
     },

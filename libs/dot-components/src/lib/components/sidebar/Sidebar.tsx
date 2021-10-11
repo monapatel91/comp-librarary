@@ -11,6 +11,7 @@ import { DotTypography } from '../typography/Typography';
 import { DotLink } from '../link/Link';
 import { DotIcon } from '../icon/Icon';
 import { DotAppLogo } from '../app-logo/AppLogo';
+import { DotTooltip } from '../tooltip/Tooltip';
 
 export interface BackItemProps extends CommonProps {
   /** If provided, the icon ID which is displayed on the front of the list item */
@@ -119,14 +120,14 @@ export const DotSidebar = ({
         <DotLink
           color="textPrimary"
           onClick={backItem.onClick}
-          title={backItem.title || backItem.text}
+          tooltip={backItem.title || backItem.text}
           underline="none"
         >
           <div className="go-back">
             <DotIcon
               data-testid="back-button"
               iconId={backItem.iconId ? backItem.iconId : 'back'}
-              title={backItem.title || backItem.text}
+              tooltip={backItem.title || backItem.text}
             />
             <DotTypography variant="h4">{backItem.text}</DotTypography>
           </div>
@@ -162,8 +163,12 @@ export const DotSidebar = ({
             {brandDesc}
           </DotTypography>
           {/* TO-DO: need logo for dark theme */}
-          <LogoDigitalAi className="company-name" title="digital.ai" />
-          <LogoD className="d-icon" title="digital.ai" />
+          <DotTooltip title="digital.ai">
+            <LogoDigitalAi className="company-name" />
+          </DotTooltip>
+          <DotTooltip title="digital.ai">
+            <LogoD className="d-icon" title="digital.ai" />
+          </DotTooltip>
         </div>
       )}
     </StyledSidebar>

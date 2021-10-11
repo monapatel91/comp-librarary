@@ -15,6 +15,7 @@ export default {
       defaultValue: action('click'),
     },
     target: { defaultValue: '_blank' },
+    tooltip: { defaultValue: 'test link' },
   },
 } as Meta;
 

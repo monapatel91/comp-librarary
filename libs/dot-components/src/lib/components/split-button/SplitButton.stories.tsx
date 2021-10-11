@@ -20,6 +20,7 @@ export default {
     label: { defaultValue: 'SplitButton Component' },
     options: { defaultValue: options },
     titleTooltip: { defaultValue: 'Submit your favorite option' },
+    tooltip: { defaultValue: 'Submit your favorite option' },
   },
 } as Meta;
 

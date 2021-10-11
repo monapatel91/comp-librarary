@@ -5,6 +5,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton, IconButtonProps } from '../button/IconButton';
 import { DotLink } from '../link/Link';
 import { DotTypography } from '../typography/Typography';
+import { DotTooltip } from '../tooltip/Tooltip';
 import { ListItemProps } from '../list/List';
 import { DotSidebar } from '../sidebar/Sidebar';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
@@ -112,6 +113,7 @@ export const DotAppToolbar = ({
               iconId={menuOpen ? 'close' : 'menu'}
               iconSize="default"
               onClick={() => updateMenuOpen(!menuOpen)}
+              tooltip="Open Menu"
             />
           </div>
           <div className="divider" data-testid="divider"></div>
@@ -145,7 +147,13 @@ export const DotAppToolbar = ({
       )}
       <div className="dot-branding">
         <DotLink className="primary-logo" href="/">
-          {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
+          {customLogo ? (
+            customLogo
+          ) : (
+            <DotTooltip title="digital.ai">
+              <LogoDigitalAiWhite />
+            </DotTooltip>
+          )}
         </DotLink>
         {displayAppLogo && (
           <DotAppLogo
@@ -171,7 +179,7 @@ export const DotAppToolbar = ({
                 onClick={(event) => item.onClick && item.onClick(event)}
                 key={index}
                 size="medium"
-                titleTooltip={item.titleTooltip}
+                tooltip={item.tooltip}
               />
             ))}
           </nav>

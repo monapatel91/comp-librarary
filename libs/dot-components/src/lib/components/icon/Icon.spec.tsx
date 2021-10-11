@@ -12,6 +12,7 @@ describe('DotIcon', () => {
       fontSize: 'default' as IconFontSize,
       iconId: 'home',
       title: 'icon title',
+      tooltip: 'Hello world',
     };
     const iconProps: IconProps = props;
     expect(iconProps).toEqual(props);
