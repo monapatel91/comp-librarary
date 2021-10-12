@@ -89,6 +89,7 @@ export const DotDynamicForm = ({
         [controlName]: {
           ...prevFormData[controlName],
           value: e.target.value,
+          isTouched: true,
         },
       }));
     };
@@ -101,6 +102,7 @@ export const DotDynamicForm = ({
         [controlName]: {
           ...prevFormData[controlName],
           value: e.target.checked,
+          isTouched: true,
         },
       }));
     };
