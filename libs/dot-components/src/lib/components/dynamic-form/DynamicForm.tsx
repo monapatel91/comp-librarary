@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDynamicForm } from './DynamicForm.styles';
@@ -10,7 +10,8 @@ import { ButtonProps, DotButton } from '../button/Button';
 export type DynamicFormControlType =
   | 'dot-input-text'
   | 'dot-checkbox'
-  | 'dot-button';
+  | 'dot-button'
+  | 'dot-reset';
 
 export type DynamicFormControlProps =
   | InputTextProps
@@ -93,10 +94,6 @@ export const DotDynamicForm = ({
 
   const [formData, setFormData] = useState<DynamicFormState>(getInitialState());
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   const handleInputTextChange =
     (controlName: string) => (e: ChangeEvent<HTMLInputElement>) => {
       setFormData((prevFormData) => ({
@@ -122,6 +119,8 @@ export const DotDynamicForm = ({
       }));
     };
 
+  const handleReset = () => setFormData(getInitialState());
+
   const buildFormControls = () => {
     return schema.controls.map(
       (
@@ -136,21 +135,24 @@ export const DotDynamicForm = ({
         switch (controlType) {
           case 'dot-input-text': {
             const props = controlProps as InputTextProps;
+            const value = (formData[controlName].value as string) || '';
             return (
               <DotInputText
                 key={index}
                 {...props}
-                value={initialValue as string}
+                value={value}
                 onChange={handleInputTextChange(controlName)}
               />
             );
           }
           case 'dot-checkbox': {
             const props = controlProps as CheckboxProps;
+            const checked = (formData[controlName].value as boolean) || false;
             return (
               <DotCheckbox
                 key={index}
                 {...props}
+                checked={checked}
                 onChange={handleCheckboxChange(controlName)}
               />
             );
@@ -159,6 +161,14 @@ export const DotDynamicForm = ({
             const props = controlProps as ButtonProps;
             return (
               <DotButton key={index} {...props}>
+                {props.children}
+              </DotButton>
+            );
+          }
+          case 'dot-reset': {
+            const props = controlProps as ButtonProps;
+            return (
+              <DotButton key={index} {...props} onClick={handleReset}>
                 {props.children}
               </DotButton>
             );

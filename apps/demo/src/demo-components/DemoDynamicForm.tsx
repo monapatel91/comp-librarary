@@ -37,7 +37,7 @@ export const DemoDynamicForm = () => {
       },
       {
         controlName: 'btnReset',
-        controlType: 'dot-button',
+        controlType: 'dot-reset',
         controlProps: {
           type: 'text',
           isSubmit: false,
