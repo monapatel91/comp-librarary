@@ -186,13 +186,13 @@ export const agilityLightTheme = createTheme({
     agilityInterface: {
       activeBg: 'rgba(121, 181, 34, 0.2)',
       activeCardBg: '#EDF9DD',
-      cardBg: '#FFF',
+      cardBg: lightColors.n0,
       disabledText: '#A1BFCB',
       fixedCol: '#E6F0F4',
-      headerBg: '#3b485c',
+      headerBg: lightColors.n700,
       helpColor: '#FF5722',
-      menuBg: '#FFF',
-      panelBgActive: '#FFF',
+      menuBg: lightColors.n0,
+      panelBgActive: lightColors.n0,
       panelBgDefault: '#9FC6D5',
       panelTextActive: '#244451',
       panelTextDefault: '#244451',
@@ -202,6 +202,8 @@ export const agilityLightTheme = createTheme({
       sideNavHoverBorder: lightColors.agilityGreen,
       sideNavHoverText: lightColors.g500,
       sideNavSubHeaderText: '#589BB6',
+      textColor: '#244451',
+      topBarIconHoverBg: '#667384',
       warnCardBg: '#FBE9E7',
     },
   },
@@ -242,7 +244,7 @@ export const agilityDarkTheme = createTheme({
     layer: {
       n0: '#050A0A', // level-0
       n50: '#14262E', // level-1
-      n100: '#244451', // level-2
+      n100: '#000000', // level-2
       n200: '#336275', // level-3
       n300: '#7CB0C5',
       n400: '#9FC5D5', // text-3
@@ -271,6 +273,8 @@ export const agilityDarkTheme = createTheme({
       sideNavHoverBorder: '#7CB0C5',
       sideNavHoverText: '#7CB0C5',
       sideNavSubHeaderText: '#9FC6D5',
+      textColor: lightColors.n0,
+      topBarIconHoverBg: '#244451',
       warnCardBg: '#7A4637',
     },
   },

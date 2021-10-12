@@ -44,7 +44,15 @@ export const StyledAppToolbar = styled.header`
       }
 
       .dot-icon-btn {
+        border: ${theme.palette.product === 'agility' && 'none'};
         color: ${theme.palette.grey[100]};
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: ${theme.palette.product === 'agility' &&
+          theme.palette.agilityInterface.topBarIconHoverBg};
+        }
       }
 
       .dot-main-menu-btn {
