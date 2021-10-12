@@ -1,7 +1,13 @@
 import React from 'react';
-import { CheckboxProps, DotDynamicForm } from '@digital-ai/dot-components';
-import { DynamicFormSchema } from '../../../../libs/dot-components/src/lib/components/dynamic-form/DynamicForm';
-import { InputTextProps } from '../../../../libs/dot-components/src/lib/components/input-form-fields/InputText';
+import {
+  CheckboxProps,
+  DotDynamicForm,
+  ButtonProps,
+  InputTextProps,
+  DynamicFormSchema,
+  DynamicFormState,
+} from '@digital-ai/dot-components';
+import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 
 export const DemoDynamicForm = () => {
   const schema: DynamicFormSchema = {
@@ -26,10 +32,39 @@ export const DemoDynamicForm = () => {
         controlType: 'dot-checkbox',
         controlProps: {
           label: 'Is Mandatory',
+          className: 'is-mandatory',
         } as CheckboxProps,
+      },
+      {
+        controlName: 'btnReset',
+        controlType: 'dot-button',
+        controlProps: {
+          type: 'text',
+          isSubmit: false,
+          children: 'Reset',
+          fullWidth: false,
+        } as ButtonProps,
+      },
+      {
+        controlName: 'btnSubmit',
+        controlType: 'dot-button',
+        controlProps: {
+          type: 'primary',
+          isSubmit: true,
+          children: 'Submit form',
+          fullWidth: false,
+        } as ButtonProps,
       },
     ],
   };
 
-  return <DotDynamicForm schema={schema} />;
+  const handleFormSubmit = (formData: DynamicFormState) => {
+    console.log(formData);
+  };
+
+  return (
+    <StyledDemoDynamicForm className={rootClassName}>
+      <DotDynamicForm schema={schema} onFormSubmit={handleFormSubmit} />
+    </StyledDemoDynamicForm>
+  );
 };

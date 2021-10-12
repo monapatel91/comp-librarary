@@ -12,7 +12,7 @@ export { AvatarProps, DotAvatar } from './avatar/Avatar';
 export { DotAvatarGroup } from './avatar-group/AvatarGroup';
 export { DotBadge } from './badge/Badge';
 export { BreadcrumbItem, DotBreadcrumbs } from './breadcrumbs/Breadcrumbs';
-export { DotButton } from './button/Button';
+export { DotButton, ButtonProps } from './button/Button';
 export { DotButtonToggle } from './button-toggle/ButtonToggle';
 export { DotCard } from './card/Card';
 export { DotCardContent } from './card/CardContent';
@@ -30,11 +30,15 @@ export { DotDrawer } from './drawer/Drawer';
 export { DotEmptyState } from './empty-state/EmptyState';
 export { DotForm } from './form/Form';
 export { DotFormGroup } from './form-group/FormGroup';
-export { DotDynamicForm } from './dynamic-form/DynamicForm';
+export {
+  DotDynamicForm,
+  DynamicFormSchema,
+  DynamicFormState,
+} from './dynamic-form/DynamicForm';
 export { DotIcon } from './icon/Icon';
 export { DotIconButton, IconButtonProps } from './button/IconButton';
 export { DotInlineEdit } from './inline-edit/InlineEdit';
-export { DotInputText } from './input-form-fields/InputText';
+export { DotInputText, InputTextProps } from './input-form-fields/InputText';
 export { DotInputSelect } from './input-form-fields/InputSelect';
 export { DotLink } from './link/Link';
 export { DotList, ListItemProps } from './list/List';

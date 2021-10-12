@@ -1,14 +1,21 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDynamicForm } from './DynamicForm.styles';
 import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
 import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
 import { DotForm } from '../form/Form';
+import { ButtonProps, DotButton } from '../button/Button';
 
-export type DynamicFormControlType = 'dot-input-text' | 'dot-checkbox';
+export type DynamicFormControlType =
+  | 'dot-input-text'
+  | 'dot-checkbox'
+  | 'dot-button';
 
-export type DynamicFormControlProps = InputTextProps | CheckboxProps;
+export type DynamicFormControlProps =
+  | InputTextProps
+  | CheckboxProps
+  | ButtonProps;
 
 export interface DynamicFormControl {
   controlName: string;
@@ -39,10 +46,6 @@ export interface DynamicFormValidation {
   maxLength?: Length;
 }
 
-export interface DynamicFormProps extends CommonProps {
-  schema: DynamicFormSchema;
-}
-
 export interface DynamicFormStateItem {
   value: unknown;
   isValid: boolean;
@@ -61,9 +64,15 @@ const initialStateItem: DynamicFormStateItem = {
   errorMessage: null,
 };
 
+export interface DynamicFormProps extends CommonProps {
+  onFormSubmit?: (formData: DynamicFormState) => void;
+  schema: DynamicFormSchema;
+}
+
 export const DotDynamicForm = ({
   className,
   'data-testid': dataTestId,
+  onFormSubmit,
   schema,
 }: DynamicFormProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -134,6 +143,14 @@ export const DotDynamicForm = ({
               />
             );
           }
+          case 'dot-button': {
+            const props = controlProps as ButtonProps;
+            return (
+              <DotButton key={index} {...props}>
+                {props.children}
+              </DotButton>
+            );
+          }
           default: {
             return '';
           }
@@ -142,11 +159,14 @@ export const DotDynamicForm = ({
     );
   };
 
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onFormSubmit?.(formData);
+  };
+
   return (
     <StyledDynamicForm className={rootClasses} data-testid={dataTestId}>
-      <DotForm onSubmit={() => console.log('submitted...')}>
-        {buildFormControls()}
-      </DotForm>
+      <DotForm onSubmit={handleFormSubmit}>{buildFormControls()}</DotForm>
     </StyledDynamicForm>
   );
 };
