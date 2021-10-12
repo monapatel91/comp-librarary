@@ -21,7 +21,7 @@ describe('DotIconButton', () => {
       onClick: onClick,
       size: 'small' as IconButtonSize,
       titleTooltip: 'click here',
-      tooltitooltip: 'Hello world',
+      tooltip: 'Hello world',
     };
     const iconButtonProps: IconButtonProps = props;
     expect(iconButtonProps).toEqual(props);

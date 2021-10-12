@@ -20,7 +20,7 @@ export type tooltipPlacement =
 export interface TooltipProps extends CommonProps {
   children: ReactElement;
   placement?: tooltipPlacement;
-  title?: ReactNode | string;
+  title?: ReactNode | string | number;
 }
 export const DotTooltip = ({
   ariaLabel,

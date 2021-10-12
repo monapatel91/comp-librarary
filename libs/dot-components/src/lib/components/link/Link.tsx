@@ -66,7 +66,6 @@ export const DotLink = ({
   };
   // deprecation warning(s)
   useEffect(() => {
-    // deprecation warning
     if (title) {
       console.warn(
         'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` isntead.'

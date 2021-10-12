@@ -24,7 +24,7 @@ export const DotIcon = ({
   'data-testid': dataTestId,
   fontSize = 'medium',
   iconId,
-  title = '',
+  title,
   tooltip,
 }: IconProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);

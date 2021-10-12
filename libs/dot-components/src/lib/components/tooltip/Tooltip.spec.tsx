@@ -17,22 +17,22 @@ describe('Tooltip', () => {
   });
   it('should render successfully', () => {
     const { baseElement } = render(
-      <DotTooltip title="Delete">
-        <div>{deleteIcon}</div>
-      </DotTooltip>
+      <DotTooltip title="Delete">{deleteIcon}</DotTooltip>
     );
     expect(baseElement).toBeTruthy();
   });
   it('should render tooltip if title is provided', () => {
-    const { baseElement } = render(
-      <DotTooltip title="Delete">{deleteIcon}</DotTooltip>
+    render(
+      <DotTooltip data-testid="test-tooltip" title="Delete">
+        {deleteIcon}
+      </DotTooltip>
     );
-    const tooltipElm = baseElement.querySelector('.dot-tooltip');
+    const tooltipElm = screen.queryByTestId('test-tooltip');
     expect(tooltipElm).toBeVisible();
   });
   it('should not render tooltip if title is not provided', () => {
-    const { baseElement } = render(<DotTooltip>{deleteIcon}</DotTooltip>);
-    const tooltipElm = baseElement.querySelector('.dot-tooltip');
+    render(<DotTooltip data-testid="test-tooltip">{deleteIcon}</DotTooltip>);
+    const tooltipElm = screen.queryByTestId('test-tooltip');
     expect(tooltipElm).toBeNull();
   });
 });
