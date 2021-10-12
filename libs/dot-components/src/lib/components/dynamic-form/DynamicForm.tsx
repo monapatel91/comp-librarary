@@ -21,6 +21,7 @@ export interface DynamicFormControl {
   controlName: string;
   controlType: DynamicFormControlType;
   controlProps: DynamicFormControlProps;
+  initialValue?: unknown;
   validation?: DynamicFormValidation;
 }
 
@@ -79,9 +80,14 @@ export const DotDynamicForm = ({
 
   const getInitialState = () => {
     const initialState: DynamicFormState = {};
-    schema.controls.forEach(({ controlName }: DynamicFormControl) => {
-      initialState[controlName] = initialStateItem;
-    });
+    schema.controls.forEach(
+      ({ controlName, initialValue }: DynamicFormControl) => {
+        initialState[controlName] = { ...initialStateItem };
+        if (initialValue) {
+          initialState[controlName].value = initialValue;
+        }
+      }
+    );
     return initialState;
   };
 
@@ -119,7 +125,12 @@ export const DotDynamicForm = ({
   const buildFormControls = () => {
     return schema.controls.map(
       (
-        { controlName, controlType, controlProps }: DynamicFormControl,
+        {
+          controlName,
+          controlType,
+          controlProps,
+          initialValue,
+        }: DynamicFormControl,
         index: number
       ) => {
         switch (controlType) {
@@ -129,6 +140,7 @@ export const DotDynamicForm = ({
               <DotInputText
                 key={index}
                 {...props}
+                value={initialValue as string}
                 onChange={handleInputTextChange(controlName)}
               />
             );
