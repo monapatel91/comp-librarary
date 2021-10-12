@@ -244,7 +244,7 @@ export const agilityDarkTheme = createTheme({
     layer: {
       n0: '#050A0A', // level-0
       n50: '#14262E', // level-1
-      n100: '#000000', // level-2
+      n100: '#244451', // level-2
       n200: '#336275', // level-3
       n300: '#7CB0C5',
       n400: '#9FC5D5', // text-3
