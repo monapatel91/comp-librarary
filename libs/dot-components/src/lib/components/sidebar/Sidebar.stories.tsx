@@ -50,6 +50,7 @@ export default {
         alt: 'Avatar goes here',
         iconId: 'user',
         type: 'icon',
+        tooltip: 'user',
       },
     },
     width: {

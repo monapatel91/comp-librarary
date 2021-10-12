@@ -159,14 +159,14 @@ export const DotInlineEdit = ({
             iconId="close"
             onClick={onCancel}
             size="small"
-            titleTooltip="Cancel [esc]"
+            tooltip="Cancel [esc]"
           />
           <DotIconButton
             data-testid="inline-edit-confirm"
             iconId="block"
             onClick={onConfirm}
             size="small"
-            titleTooltip="Confirm [enter]"
+            tooltip="Cancel [enter]"
           />
         </div>
       )}

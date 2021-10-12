@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CommonProps } from '../CommonProps';
+import { DotTooltip } from '../tooltip/Tooltip';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { StyledCircularProgress, rootClassName } from './Progress.styles';
 
@@ -13,8 +14,10 @@ export interface ProgressProps extends CommonProps {
   size?: number | string;
   /** controls thickness of the loading spinner border */
   thickness?: number;
-  /** Tooltip text that displays on hover */
+  /** DEPRECATED, DO NOT USE */
   title?: string;
+  /** Tooltip text displayed on hover */
+  tooltip?: string;
   /** If using static variant, this is the percent of loading complete */
   value?: number;
   /** type of progress spinner displayed */
@@ -29,22 +32,31 @@ export const DotProgress = ({
   size = 40,
   thickness = 3.6,
   title = 'loading data',
+  tooltip = 'loading data',
   value,
   variant = 'indeterminate',
 }: ProgressProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-
+  useEffect(() => {
+    // deprecation warning
+    if (title) {
+      console.warn(
+        'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` isntead.'
+      );
+    }
+  }, []);
   return (
-    <StyledCircularProgress
-      aria-label={ariaLabel}
-      classes={{ root: rootClasses }}
-      color={color}
-      data-testid={dataTestId}
-      size={size}
-      thickness={thickness}
-      title={title}
-      value={value}
-      variant={variant}
-    />
+    <DotTooltip title={tooltip}>
+      <StyledCircularProgress
+        aria-label={ariaLabel}
+        classes={{ root: rootClasses }}
+        color={color}
+        data-testid={dataTestId}
+        size={size}
+        thickness={thickness}
+        value={value}
+        variant={variant}
+      />
+    </DotTooltip>
   );
 };

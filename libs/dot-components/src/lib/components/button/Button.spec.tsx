@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../testing-utils';
 import { ButtonProps, DotButton } from './Button';
 import { DotIcon } from '../icon/Icon';
-
+const consoleSpy = jest.spyOn(global.console, 'warn');
 describe('DotButton', () => {
   const testClick = () => {
     console.log('test click');
@@ -191,5 +191,9 @@ describe('DotButton', () => {
       </DotButton>
     );
     expect(expectedElement).toHaveClass('dot-button');
+  });
+  it('should have a deprecation warning if titleTooltip is used', () => {
+    render(<DotButton titleTooltip="button title">Test</DotButton>);
+    expect(consoleSpy).toBeCalled();
   });
 });

@@ -17,6 +17,7 @@ describe(' Progress', () => {
       size: '33',
       thickness: 2,
       title: 'My progress',
+      tooltip: 'Hello world',
       value: 67,
       variant: 'determinate' as progressVariantOptions,
     };

@@ -3,6 +3,7 @@ import { DotAppToolbar, AppToolbarProps } from './AppToolbar';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotButton } from '../button/Button';
 import { DotLink } from '../link/Link';
+import { DotTooltip } from '../tooltip/Tooltip';
 import { ReactComponent as DemoLogo } from '../../assets/demo-logo.svg';
 import { ReactComponent as DemoLogoSmall } from '../../assets/demo-logo-small.svg';
 import { ReactComponent as TestLogo } from '../../assets/test_logo.svg';
@@ -22,7 +23,13 @@ export default {
     },
     avatar: {
       defaultValue: (
-        <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
+        <DotAvatar
+          alt="Batman"
+          text="Bruce Wayne"
+          size="small"
+          type="text"
+          tooltip="Bruce Wayne"
+        />
       ),
     },
     borderColor: {
@@ -114,20 +121,20 @@ export default {
       defaultValue: [
         {
           iconId: 'notification-bell',
-          titleTooltip: 'Alerts',
+          tooltip: 'Alerts',
         },
         {
           iconId: 'help',
-          titleTooltip: 'Help',
+          tooltip: 'Help',
         },
         {
           iconId: 'apps',
-          titleTooltip: 'Admin',
+          tooltip: 'Admin',
         },
         {
           iconId: 'dark',
           onClick: () => console.log('theme clicked'),
-          titleTooltip: 'Toggle Theme',
+          tooltip: 'Toggle Theme',
         },
       ],
     },
@@ -136,6 +143,10 @@ export default {
 
 export const Default: Story<AppToolbarProps> = (args) => {
   const { customLogo: logoId } = args;
-  const logo = logoId === 'Custom' && <TestLogo title="test.logo" />;
+  const logo = logoId === 'Custom' && (
+    <DotTooltip title="test.logo">
+      <TestLogo />
+    </DotTooltip>
+  );
   return <DotAppToolbar {...args} customLogo={logo} />;
 };

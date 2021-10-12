@@ -10,6 +10,7 @@ export default {
     iconId: { defaultValue: 'script' },
     fontSize: { defaultValue: 'default' },
     title: { defaultValue: 'Hello World' },
+    tooltip: { defaultValue: 'Hello World' },
   },
 } as Meta;
 

@@ -13,6 +13,7 @@ describe('CommonProps', () => {
       onClick: onClick,
       size: 'small' as ButtonSize,
       titleTooltip: 'click here',
+      tooltip: 'new prop click here',
       type: 'text' as ButtonType,
     };
     const buttonProps: BaseButtonProps = props;
