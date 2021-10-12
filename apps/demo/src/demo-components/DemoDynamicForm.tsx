@@ -1,32 +1,34 @@
 import React from 'react';
-import { DotDynamicForm } from '@digital-ai/dot-components';
-import { JSONSchema7 } from 'json-schema';
+import { CheckboxProps, DotDynamicForm } from '@digital-ai/dot-components';
+import { DynamicFormSchema } from '../../../../libs/dot-components/src/lib/components/dynamic-form/DynamicForm';
+import { InputTextProps } from '../../../../libs/dot-components/src/lib/components/input-form-fields/InputText';
 
 export const DemoDynamicForm = () => {
-  const schema: JSONSchema7 = {
-    type: 'object',
-    properties: {
-      firstName: {
-        type: 'object',
-        properties: {
-          label: {
-            type: 'string',
-            default: 'First Name',
-          },
-          autoFocus: {
-            type: 'boolean',
-            default: true,
-          },
-          required: {
-            type: 'boolean',
-            default: true,
+  const schema: DynamicFormSchema = {
+    controls: [
+      {
+        controlName: 'firstName',
+        controlType: 'dot-input-text',
+        controlProps: {
+          label: 'First Name',
+          autoFocus: true,
+          required: true,
+        } as InputTextProps,
+        validation: {
+          isRequired: {
+            errorMessage: 'Required field',
+            value: true,
           },
         },
       },
-      isMandatory: {
-        type: 'object',
+      {
+        controlName: 'isMandatory',
+        controlType: 'dot-checkbox',
+        controlProps: {
+          label: 'Is Mandatory',
+        } as CheckboxProps,
       },
-    },
+    ],
   };
 
   return <DotDynamicForm schema={schema} />;

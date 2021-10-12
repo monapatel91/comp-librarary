@@ -1,15 +1,65 @@
-import React from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDynamicForm } from './DynamicForm.styles';
-import { DotInputText } from '../input-form-fields/InputText';
-import Form, { FieldProps } from '@rjsf/core';
-import { JSONSchema7, JSONSchema7Definition } from 'json-schema';
-import { DotCheckbox } from '../checkbox/Checkbox';
+import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
+import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
+import { DotForm } from '../form/Form';
+
+export type DynamicFormControlType = 'dot-input-text' | 'dot-checkbox';
+
+export type DynamicFormControlProps = InputTextProps | CheckboxProps;
+
+export interface DynamicFormControl {
+  controlName: string;
+  controlType: DynamicFormControlType;
+  controlProps: DynamicFormControlProps;
+  validation?: DynamicFormValidation;
+}
+
+export interface DynamicFormSchema {
+  controls: DynamicFormControl[];
+}
+
+export interface ValidationField {
+  errorMessage: string;
+}
+
+export interface IsRequired extends ValidationField {
+  value: boolean;
+}
+
+export interface Length extends ValidationField {
+  value: number;
+}
+
+export interface DynamicFormValidation {
+  isRequired?: IsRequired;
+  minLength?: Length;
+  maxLength?: Length;
+}
 
 export interface DynamicFormProps extends CommonProps {
-  schema: JSONSchema7;
+  schema: DynamicFormSchema;
 }
+
+export interface DynamicFormStateItem {
+  value: unknown;
+  isValid: boolean;
+  isTouched: boolean;
+  errorMessage: string;
+}
+
+export interface DynamicFormState {
+  [key: string]: DynamicFormStateItem;
+}
+
+const initialStateItem: DynamicFormStateItem = {
+  value: null,
+  isValid: false,
+  isTouched: false,
+  errorMessage: null,
+};
 
 export const DotDynamicForm = ({
   className,
@@ -18,58 +68,83 @@ export const DotDynamicForm = ({
 }: DynamicFormProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-  const getSchemaProps = (props: FieldProps) => {
-    if (!props.schema.properties) return {};
-    const schemaProperties: { [p: string]: JSONSchema7Definition } =
-      props.schema.properties;
-    const cbProps: { [key: string]: unknown } = {};
-    Object.entries(schemaProperties).forEach(
-      ([key, value]: [string, { type: 'string'; default: string }]) => {
-        cbProps[key] = value.default;
+  const getInitialState = () => {
+    const initialState: DynamicFormState = {};
+    schema.controls.forEach(({ controlName }: DynamicFormControl) => {
+      initialState[controlName] = initialStateItem;
+    });
+    return initialState;
+  };
+
+  const [formData, setFormData] = useState<DynamicFormState>(getInitialState());
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
+  const handleInputTextChange =
+    (controlName: string) => (e: ChangeEvent<HTMLInputElement>) => {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [controlName]: {
+          ...prevFormData[controlName],
+          value: e.target.value,
+        },
+      }));
+    };
+
+  const handleCheckboxChange =
+    (controlName: string) =>
+    (e: ChangeEvent<HTMLInputElement>): void => {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [controlName]: {
+          ...prevFormData[controlName],
+          value: e.target.checked,
+        },
+      }));
+    };
+
+  const buildFormControls = () => {
+    return schema.controls.map(
+      (
+        { controlName, controlType, controlProps }: DynamicFormControl,
+        index: number
+      ) => {
+        switch (controlType) {
+          case 'dot-input-text': {
+            const props = controlProps as InputTextProps;
+            return (
+              <DotInputText
+                key={index}
+                {...props}
+                onChange={handleInputTextChange(controlName)}
+              />
+            );
+          }
+          case 'dot-checkbox': {
+            const props = controlProps as CheckboxProps;
+            return (
+              <DotCheckbox
+                key={index}
+                {...props}
+                onChange={handleCheckboxChange(controlName)}
+              />
+            );
+          }
+          default: {
+            return '';
+          }
+        }
       }
     );
-    return cbProps;
-  };
-
-  const DotCheckboxWidget = (props: FieldProps) => {
-    const cbProps = getSchemaProps(props);
-    return (
-      <DotCheckbox
-        {...cbProps}
-        onChange={(event) => {
-          props.onChange(event.target.checked);
-        }}
-      />
-    );
-  };
-
-  const DotInputTextWidget = (props: FieldProps) => {
-    const inputTextProps = getSchemaProps(props);
-    return <DotInputText id={props.id} name="input-text" {...inputTextProps} />;
-  };
-
-  const uiSchema = {
-    firstName: {
-      'ui:field': 'dot-input-text',
-    },
-    isMandatory: {
-      'ui:field': 'dot-checkbox',
-    },
-  };
-
-  const fields = {
-    'dot-input-text': DotInputTextWidget,
-    'dot-checkbox': DotCheckboxWidget,
   };
 
   return (
     <StyledDynamicForm className={rootClasses} data-testid={dataTestId}>
-      <Form
-        fields={fields}
-        schema={schema}
-        uiSchema={uiSchema}
-        onChange={(e) => console.log(e.formData)}
-      />
+      <DotForm onSubmit={() => console.log('submitted...')}>
+        {buildFormControls()}
+      </DotForm>
     </StyledDynamicForm>
   );
 };
