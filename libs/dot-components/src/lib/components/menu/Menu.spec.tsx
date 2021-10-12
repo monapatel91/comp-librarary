@@ -16,6 +16,7 @@ describe('Menu', () => {
       dense: true,
       disablePortal: true,
       id: 'menu-id',
+      loading: false,
       maxVisibleItems,
       menuItems: [{ children: 'opt 1' }],
       menuPlacement: 'bottom' as PopperPlacement,
@@ -56,6 +57,19 @@ describe('Menu', () => {
     render(<DotMenu id="foo_bar" menuItems={dummyMenuItems} />);
     const menuItem = screen.queryByText('Batman');
     expect(menuItem).toBeNull();
+  });
+
+  it('should display progress indicator when `loading` is true', () => {
+    render(
+      <DotMenu
+        id="foo_bar"
+        loading={true}
+        menuItems={dummyMenuItems}
+        open={true}
+      />
+    );
+    const loadingIndicator = screen.queryByTitle('Loading Data...');
+    expect(loadingIndicator).toBeVisible();
   });
 
   it("should have 'aria-label' attribute with correct value", () => {
