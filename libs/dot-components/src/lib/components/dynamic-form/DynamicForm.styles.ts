@@ -3,8 +3,9 @@ import styled, { css } from 'styled-components';
 export const rootClassName = 'dynamic-form';
 
 export const StyledDynamicForm = styled.div`
-  ${({ theme }) => css`
+  ${() => css`
     &.${rootClassName} {
+      margin: 16px;
     }
   `}
 `;

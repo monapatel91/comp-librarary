@@ -144,7 +144,6 @@ export const DotDynamicForm = ({
             const props = controlProps as InputTextProps;
             const value =
               getControlValue<string>(controlName, formState.data) || '';
-            //const value = (formState.data[controlName].value as string) || '';
             const errorMessage = formState.data[controlName].errorMessage;
             return (
               <DotInputText

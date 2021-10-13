@@ -6,6 +6,8 @@ import {
   InputTextProps,
   DynamicFormSchema,
   DynamicFormState,
+  DotBreadcrumbs,
+  DotActionToolbar,
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 
@@ -78,6 +80,10 @@ export const DemoDynamicForm = () => {
 
   return (
     <StyledDemoDynamicForm className={rootClassName}>
+      <DotActionToolbar>
+        <DotBreadcrumbs items={[{ text: 'Demo Dynamic Form' }]} />
+      </DotActionToolbar>
+
       <DotDynamicForm schema={schema} onFormSubmit={handleFormSubmit} />
     </StyledDemoDynamicForm>
   );
