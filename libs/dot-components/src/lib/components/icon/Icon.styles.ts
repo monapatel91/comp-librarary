@@ -42,6 +42,22 @@ export const StyledIcon = styled(Icon)`
           -moz-osx-font-smoothing: grayscale;
         }
 
+        &.icon-line-graph:before {
+          content: "\\e9d7";
+        }
+
+        &.icon-rocket-filled:before {
+          content: "\\e9d8";
+        }
+
+        &.icon-circle-check-outline:before {
+          content: "\\e9d9";
+        }
+
+        &.icon-circle-info-outline:before {
+          content: "\\e9da";
+        }
+
         &.icon-analytics:before {
           content: "\\e9d4";
         }
