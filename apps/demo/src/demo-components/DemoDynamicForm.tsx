@@ -12,6 +12,7 @@ import {
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 import { FieldValidation } from '../../../../libs/dot-components/src/lib/components/dynamic-form/models';
+import { AutoCompleteProps } from '../../../../libs/dot-components/src/lib/components/auto-complete/AutoComplete';
 
 export const DemoDynamicForm = () => {
   const schema: DynamicFormSchema = {
@@ -102,6 +103,34 @@ export const DemoDynamicForm = () => {
           maxLength: {
             errorMessage: 'Password cannot be longer than 15 characters',
             value: 15,
+          },
+        },
+      },
+      {
+        controlName: 'randomOption',
+        controlType: 'dot-autocomplete',
+        controlProps: {
+          label: 'Random option',
+          options: [
+            { title: 'Option 1' },
+            { title: 'Option 2' },
+            { title: 'Option 3' },
+            { title: 'Option 4' },
+            { title: 'Option 5' },
+          ],
+        } as AutoCompleteProps,
+        validation: {
+          isRequired: {
+            errorMessage: 'Required field',
+            value: true,
+          },
+          minLength: {
+            errorMessage: 'Pick at least 2 options',
+            value: 2,
+          },
+          maxLength: {
+            errorMessage: 'Maximum of 4 options allowed',
+            value: 4,
           },
         },
       },

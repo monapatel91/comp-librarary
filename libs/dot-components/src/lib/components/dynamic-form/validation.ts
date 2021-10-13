@@ -19,7 +19,10 @@ export const getFieldValidation = (
   // No validation checks are defined on the field
   if (!validation) return fieldValidation;
   // Field is required but value is not present
-  if (validation.isRequired && !value) {
+  if (
+    validation.isRequired &&
+    (!value || (Array.isArray(value) && !value.length))
+  ) {
     return {
       isValid: false,
       errorMessage: validation.isRequired.errorMessage,
@@ -27,7 +30,7 @@ export const getFieldValidation = (
   }
   // String value doesn't meet min-length requirement
   if (
-    typeof value === 'string' &&
+    (typeof value === 'string' || Array.isArray(value)) &&
     validation.minLength &&
     validation.minLength.value > value.length
   ) {
@@ -38,7 +41,7 @@ export const getFieldValidation = (
   }
   // String value doesn't meet max-length requirement
   if (
-    typeof value === 'string' &&
+    (typeof value === 'string' || Array.isArray(value)) &&
     validation.maxLength &&
     validation.maxLength.value < value.length
   ) {

@@ -1,17 +1,18 @@
-import {
-  ButtonProps,
-  CheckboxProps,
-  InputTextProps,
-} from '@digital-ai/dot-components';
+import { AutoCompleteProps } from '../auto-complete/AutoComplete';
+import { ButtonProps } from '../button/Button';
+import { CheckboxProps } from '../checkbox/Checkbox';
+import { InputTextProps } from '../input-form-fields/InputText';
 
 export type DynamicFormControlType =
   | 'dot-input-text'
   | 'dot-checkbox'
+  | 'dot-autocomplete'
   | 'dot-button'
   | 'dot-reset'
   | 'dot-submit';
 
 export type DynamicFormControlProps =
+  | AutoCompleteProps
   | InputTextProps
   | CheckboxProps
   | ButtonProps;

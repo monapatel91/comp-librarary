@@ -7,6 +7,11 @@ import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
 import { DotForm } from '../form/Form';
 import { ButtonProps, DotButton } from '../button/Button';
 import {
+  AutoCompleteProps,
+  AutoCompleteValue,
+  DotAutoComplete,
+} from '../auto-complete/AutoComplete';
+import {
   DynamicFormControl,
   DynamicFormControlType,
   DynamicFormSchema,
@@ -53,6 +58,7 @@ export const DotDynamicForm = ({
         validation,
       }: DynamicFormControl) => {
         const dataControls: DynamicFormControlType[] = [
+          'dot-autocomplete',
           'dot-input-text',
           'dot-checkbox',
         ];
@@ -125,6 +131,26 @@ export const DotDynamicForm = ({
       }));
     };
 
+  const handleAutocompleteChange =
+    (controlName: string) =>
+    (_: ChangeEvent<HTMLInputElement>, value: AutoCompleteValue): void => {
+      const validation = getControlValidationFromSchema(controlName, schema);
+      const fieldValidation = getFieldValidation(value, validation);
+      setFormState((prevFormState) => ({
+        ...prevFormState,
+        data: {
+          ...prevFormState.data,
+          [controlName]: {
+            ...prevFormState.data[controlName],
+            value: value,
+            isTouched: true,
+            isValid: fieldValidation.isValid,
+            errorMessage: fieldValidation.errorMessage,
+          },
+        },
+      }));
+    };
+
   const handleReset = () => setFormState(getInitialState());
 
   const getControlValue = <T extends unknown>(
@@ -159,6 +185,23 @@ export const DotDynamicForm = ({
                 error={!!errorMessage}
                 helperText={errorMessage ? errorMessage : props.helperText}
                 onChange={handleInputTextChange(controlName)}
+              />
+            );
+          }
+          case 'dot-autocomplete': {
+            const props = controlProps as AutoCompleteProps;
+            const value =
+              getControlValue<AutoCompleteValue>(controlName, formState.data) ||
+              [];
+            const errorMessage = formState.data[controlName].errorMessage;
+            return (
+              <DotAutoComplete
+                key={index}
+                {...props}
+                value={value}
+                error={!!errorMessage}
+                helperText={errorMessage ? errorMessage : props.helperText}
+                onChange={handleAutocompleteChange(controlName)}
               />
             );
           }
