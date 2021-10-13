@@ -30,11 +30,8 @@ export { DotDrawer } from './drawer/Drawer';
 export { DotEmptyState } from './empty-state/EmptyState';
 export { DotForm } from './form/Form';
 export { DotFormGroup } from './form-group/FormGroup';
-export {
-  DotDynamicForm,
-  DynamicFormSchema,
-  DynamicFormState,
-} from './dynamic-form/DynamicForm';
+export { DotDynamicForm } from './dynamic-form/DynamicForm';
+export { DynamicFormSchema, DynamicFormState } from './dynamic-form/models';
 export { DotIcon } from './icon/Icon';
 export { DotIconButton, IconButtonProps } from './button/IconButton';
 export { DotInlineEdit } from './inline-edit/InlineEdit';

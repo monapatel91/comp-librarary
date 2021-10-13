@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDynamicForm } from './DynamicForm.styles';
@@ -6,58 +6,14 @@ import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
 import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
 import { DotForm } from '../form/Form';
 import { ButtonProps, DotButton } from '../button/Button';
-
-export type DynamicFormControlType =
-  | 'dot-input-text'
-  | 'dot-checkbox'
-  | 'dot-button'
-  | 'dot-reset';
-
-export type DynamicFormControlProps =
-  | InputTextProps
-  | CheckboxProps
-  | ButtonProps;
-
-export interface DynamicFormControl {
-  controlName: string;
-  controlType: DynamicFormControlType;
-  controlProps: DynamicFormControlProps;
-  initialValue?: unknown;
-  validation?: DynamicFormValidation;
-}
-
-export interface DynamicFormSchema {
-  controls: DynamicFormControl[];
-}
-
-export interface ValidationField {
-  errorMessage: string;
-}
-
-export interface IsRequired extends ValidationField {
-  value: boolean;
-}
-
-export interface Length extends ValidationField {
-  value: number;
-}
-
-export interface DynamicFormValidation {
-  isRequired?: IsRequired;
-  minLength?: Length;
-  maxLength?: Length;
-}
-
-export interface DynamicFormStateItem {
-  value: unknown;
-  isValid: boolean;
-  isTouched: boolean;
-  errorMessage: string;
-}
-
-export interface DynamicFormState {
-  [key: string]: DynamicFormStateItem;
-}
+import {
+  DynamicFormControl,
+  DynamicFormSchema,
+  DynamicFormState,
+  DynamicFormStateData,
+  DynamicFormStateItem,
+} from './models';
+import { getFieldValidation } from './validation';
 
 const initialStateItem: DynamicFormStateItem = {
   value: null,
@@ -80,28 +36,61 @@ export const DotDynamicForm = ({
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   const getInitialState = () => {
-    const initialState: DynamicFormState = {};
+    const initialState: DynamicFormState = {
+      data: {},
+      isValid: false,
+    };
     schema.controls.forEach(
       ({ controlName, initialValue }: DynamicFormControl) => {
-        initialState[controlName] = { ...initialStateItem };
+        initialState.data[controlName] = { ...initialStateItem };
         if (initialValue) {
-          initialState[controlName].value = initialValue;
+          initialState.data[controlName].value = initialValue;
         }
       }
     );
     return initialState;
   };
 
-  const [formData, setFormData] = useState<DynamicFormState>(getInitialState());
+  const [formState, setFormState] = useState<DynamicFormState>(
+    getInitialState()
+  );
+
+  const checkIfFormDataValid = (formData: DynamicFormStateData): boolean => {
+    for (const formDataKey in formData) {
+      if (!formData[formDataKey].isValid) return false;
+    }
+    return true;
+  };
+
+  useEffect(() => {
+    console.log(formState);
+    const currentIsFormValid = checkIfFormDataValid(formState.data);
+    if (formState.isValid !== currentIsFormValid) {
+      setFormState((prevState) => ({
+        ...prevState,
+        isValid: currentIsFormValid,
+      }));
+    }
+  }, [formState]);
 
   const handleInputTextChange =
     (controlName: string) => (e: ChangeEvent<HTMLInputElement>) => {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [controlName]: {
-          ...prevFormData[controlName],
-          value: e.target.value,
-          isTouched: true,
+      const newValue = e.target.value;
+      const validation = schema.controls.find(
+        (control) => control.controlName === controlName
+      ).validation;
+      const fieldValidation = getFieldValidation(newValue, validation);
+      setFormState((prevFormState) => ({
+        ...prevFormState,
+        data: {
+          ...prevFormState.data,
+          [controlName]: {
+            ...prevFormState.data[controlName],
+            value: newValue,
+            isTouched: true,
+            isValid: fieldValidation.isValid,
+            errorMessage: fieldValidation.errorMessage,
+          },
         },
       }));
     };
@@ -109,17 +98,20 @@ export const DotDynamicForm = ({
   const handleCheckboxChange =
     (controlName: string) =>
     (e: ChangeEvent<HTMLInputElement>): void => {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [controlName]: {
-          ...prevFormData[controlName],
-          value: e.target.checked,
-          isTouched: true,
+      setFormState((prevFormState) => ({
+        ...prevFormState,
+        data: {
+          ...prevFormState.data,
+          [controlName]: {
+            ...prevFormState.data[controlName],
+            value: e.target.checked,
+            isTouched: true,
+          },
         },
       }));
     };
 
-  const handleReset = () => setFormData(getInitialState());
+  const handleReset = () => setFormState(getInitialState());
 
   const buildFormControls = () => {
     return schema.controls.map(
@@ -135,19 +127,23 @@ export const DotDynamicForm = ({
         switch (controlType) {
           case 'dot-input-text': {
             const props = controlProps as InputTextProps;
-            const value = (formData[controlName].value as string) || '';
+            //const value = (formState.data[controlName].value as string) || '';
+            const errorMessage = formState.data[controlName].errorMessage;
+            console.log(errorMessage);
             return (
               <DotInputText
                 key={index}
                 {...props}
-                value={value}
+                error={!!errorMessage}
+                helperText={errorMessage ? errorMessage : props.helperText}
                 onChange={handleInputTextChange(controlName)}
               />
             );
           }
           case 'dot-checkbox': {
             const props = controlProps as CheckboxProps;
-            const checked = (formData[controlName].value as boolean) || false;
+            const checked =
+              (formState.data[controlName].value as boolean) || false;
             return (
               <DotCheckbox
                 key={index}
@@ -183,7 +179,7 @@ export const DotDynamicForm = ({
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onFormSubmit?.(formData);
+    onFormSubmit?.(formState);
   };
 
   return (

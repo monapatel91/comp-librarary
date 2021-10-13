@@ -17,7 +17,22 @@ export const DemoDynamicForm = () => {
         controlType: 'dot-input-text',
         controlProps: {
           label: 'First Name',
+          helperText: 'Your first name goes here',
           autoFocus: true,
+          required: true,
+        } as InputTextProps,
+        validation: {
+          isRequired: {
+            errorMessage: 'Required field',
+            value: true,
+          },
+        },
+      },
+      {
+        controlName: 'lastName',
+        controlType: 'dot-input-text',
+        controlProps: {
+          label: 'Last Name',
           required: true,
         } as InputTextProps,
         validation: {
