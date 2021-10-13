@@ -49,6 +49,7 @@ export interface DynamicFormValidation {
   isRequired?: IsRequired;
   minLength?: Length;
   maxLength?: Length;
+  customValidator?: (value: unknown) => FieldValidation;
 }
 
 export interface DynamicFormStateItem {

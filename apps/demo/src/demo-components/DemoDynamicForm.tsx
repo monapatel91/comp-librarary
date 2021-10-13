@@ -11,6 +11,7 @@ import {
   DotIcon,
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
+import { FieldValidation } from '../../../../libs/dot-components/src/lib/components/dynamic-form/models';
 
 export const DemoDynamicForm = () => {
   const schema: DynamicFormSchema = {
@@ -49,6 +50,34 @@ export const DemoDynamicForm = () => {
           isRequired: {
             errorMessage: 'Required field',
             value: true,
+          },
+        },
+      },
+      {
+        controlName: 'username',
+        controlType: 'dot-input-text',
+        controlProps: {
+          label: 'Username',
+          required: true,
+        } as InputTextProps,
+        validation: {
+          isRequired: {
+            errorMessage: 'Required field',
+            value: true,
+          },
+          customValidator: (value: string): FieldValidation => {
+            // Examples of taken usernames to validate against
+            const takenUsernames = ['username', 'john', 'mark'];
+            if (takenUsernames.includes(value)) {
+              return {
+                isValid: false,
+                errorMessage: 'Username is already taken',
+              };
+            }
+            return {
+              isValid: true,
+              errorMessage: null,
+            };
           },
         },
       },

@@ -47,6 +47,16 @@ export const getFieldValidation = (
       errorMessage: validation.maxLength.errorMessage,
     };
   }
+  if (validation.customValidator) {
+    const customValidation = validation.customValidator(value);
+    if (!customValidation.isValid) {
+      return {
+        isValid: false,
+        errorMessage: customValidation.errorMessage,
+      };
+    }
+  }
+
   return fieldValidation;
 };
 
