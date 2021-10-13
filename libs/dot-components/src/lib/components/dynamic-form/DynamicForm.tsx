@@ -18,6 +18,7 @@ import {
   DynamicFormState,
   DynamicFormStateData,
   DynamicFormStateItem,
+  FormStateUpdateArgs,
 } from './models';
 import {
   checkIfFormDataValid,
@@ -94,61 +95,60 @@ export const DotDynamicForm = ({
     }
   }, [formState.data]);
 
+  const updateFormState = ({
+    controlName,
+    newValue,
+    formSchema,
+    validate = true,
+  }: FormStateUpdateArgs) => {
+    let validationFields = {};
+    if (validate) {
+      const validation = getControlValidationFromSchema(
+        controlName,
+        formSchema
+      );
+      const fieldValidation = getFieldValidation(newValue, validation);
+      validationFields = {
+        isValid: fieldValidation.isValid,
+        errorMessage: fieldValidation.errorMessage,
+      };
+    }
+    setFormState((prevFormState) => ({
+      ...prevFormState,
+      data: {
+        ...prevFormState.data,
+        [controlName]: {
+          ...prevFormState.data[controlName],
+          value: newValue,
+          isTouched: true,
+          ...validationFields,
+        },
+      },
+    }));
+  };
+
   const handleInputTextChange =
     (controlName: string) => (e: ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
-      const validation = getControlValidationFromSchema(controlName, schema);
-      const fieldValidation = getFieldValidation(newValue, validation);
-      setFormState((prevFormState) => ({
-        ...prevFormState,
-        data: {
-          ...prevFormState.data,
-          [controlName]: {
-            ...prevFormState.data[controlName],
-            value: newValue,
-            isTouched: true,
-            isValid: fieldValidation.isValid,
-            errorMessage: fieldValidation.errorMessage,
-          },
-        },
-      }));
+      updateFormState({ controlName, formSchema: schema, newValue });
     };
 
   const handleCheckboxChange =
     (controlName: string) =>
     (e: ChangeEvent<HTMLInputElement>): void => {
       const newValue = e.target.checked;
-      setFormState((prevFormState) => ({
-        ...prevFormState,
-        data: {
-          ...prevFormState.data,
-          [controlName]: {
-            ...prevFormState.data[controlName],
-            value: newValue,
-            isTouched: true,
-          },
-        },
-      }));
+      updateFormState({
+        controlName,
+        formSchema: schema,
+        newValue,
+        validate: false,
+      });
     };
 
   const handleAutocompleteChange =
     (controlName: string) =>
     (_: ChangeEvent<HTMLInputElement>, value: AutoCompleteValue): void => {
-      const validation = getControlValidationFromSchema(controlName, schema);
-      const fieldValidation = getFieldValidation(value, validation);
-      setFormState((prevFormState) => ({
-        ...prevFormState,
-        data: {
-          ...prevFormState.data,
-          [controlName]: {
-            ...prevFormState.data[controlName],
-            value: value,
-            isTouched: true,
-            isValid: fieldValidation.isValid,
-            errorMessage: fieldValidation.errorMessage,
-          },
-        },
-      }));
+      updateFormState({ controlName, formSchema: schema, newValue: value });
     };
 
   const handleReset = () => setFormState(getInitialState());

@@ -68,3 +68,10 @@ export interface DynamicFormState {
 export interface DynamicFormStateData {
   [key: string]: DynamicFormStateItem;
 }
+
+export interface FormStateUpdateArgs {
+  controlName: string;
+  newValue: unknown;
+  formSchema: DynamicFormSchema;
+  validate?: boolean;
+}
