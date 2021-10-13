@@ -31,6 +31,13 @@ export const DemoDynamicForm = () => {
         },
       },
       {
+        controlName: 'middleName',
+        controlType: 'dot-input-text',
+        controlProps: {
+          label: 'Middle Name',
+        } as InputTextProps,
+      },
+      {
         controlName: 'lastName',
         controlType: 'dot-input-text',
         controlProps: {

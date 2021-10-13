@@ -46,7 +46,12 @@ export const DotDynamicForm = ({
       isValid: false,
     };
     schema.controls.forEach(
-      ({ controlName, initialValue, controlType }: DynamicFormControl) => {
+      ({
+        controlName,
+        initialValue,
+        controlType,
+        validation,
+      }: DynamicFormControl) => {
         const dataControls: DynamicFormControlType[] = [
           'dot-input-text',
           'dot-checkbox',
@@ -57,7 +62,8 @@ export const DotDynamicForm = ({
           if (initialValue) {
             initialState.data[controlName].value = initialValue;
           }
-          if (controlType === 'dot-checkbox') {
+          // If there is no validation set up always set valid to true
+          if (!validation || controlType === 'dot-checkbox') {
             // Set always to valid for now
             initialState.data[controlName].isValid = true;
           }
