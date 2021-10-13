@@ -62,10 +62,9 @@ export const DemoDynamicForm = () => {
       },
       {
         controlName: 'btnSubmit',
-        controlType: 'dot-button',
+        controlType: 'dot-submit',
         controlProps: {
           type: 'primary',
-          isSubmit: true,
           children: 'Submit form',
           fullWidth: false,
         } as ButtonProps,

@@ -8,7 +8,8 @@ export type DynamicFormControlType =
   | 'dot-input-text'
   | 'dot-checkbox'
   | 'dot-button'
-  | 'dot-reset';
+  | 'dot-reset'
+  | 'dot-submit';
 
 export type DynamicFormControlProps =
   | InputTextProps

@@ -8,12 +8,14 @@ import { DotForm } from '../form/Form';
 import { ButtonProps, DotButton } from '../button/Button';
 import {
   DynamicFormControl,
+  DynamicFormControlType,
   DynamicFormSchema,
   DynamicFormState,
   DynamicFormStateData,
   DynamicFormStateItem,
 } from './models';
 import {
+  checkIfFormDataValid,
   getControlValidationFromSchema,
   getFieldValidation,
 } from './validation';
@@ -44,10 +46,21 @@ export const DotDynamicForm = ({
       isValid: false,
     };
     schema.controls.forEach(
-      ({ controlName, initialValue }: DynamicFormControl) => {
-        initialState.data[controlName] = { ...initialStateItem };
-        if (initialValue) {
-          initialState.data[controlName].value = initialValue;
+      ({ controlName, initialValue, controlType }: DynamicFormControl) => {
+        const dataControls: DynamicFormControlType[] = [
+          'dot-input-text',
+          'dot-checkbox',
+        ];
+        // Set only data controls (ignore buttons and other non-relevant elements)
+        if (dataControls.includes(controlType)) {
+          initialState.data[controlName] = { ...initialStateItem };
+          if (initialValue) {
+            initialState.data[controlName].value = initialValue;
+          }
+          if (controlType === 'dot-checkbox') {
+            // Set always to valid for now
+            initialState.data[controlName].isValid = true;
+          }
         }
       }
     );
@@ -58,13 +71,6 @@ export const DotDynamicForm = ({
     getInitialState()
   );
 
-  const checkIfFormDataValid = (formData: DynamicFormStateData): boolean => {
-    for (const formDataKey in formData) {
-      if (!formData[formDataKey].isValid) return false;
-    }
-    return true;
-  };
-
   useEffect(() => {
     console.log(formState);
     const currentIsFormValid = checkIfFormDataValid(formState.data);
@@ -74,7 +80,7 @@ export const DotDynamicForm = ({
         isValid: currentIsFormValid,
       }));
     }
-  }, [formState]);
+  }, [formState.data]);
 
   const handleInputTextChange =
     (controlName: string) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -115,6 +121,13 @@ export const DotDynamicForm = ({
 
   const handleReset = () => setFormState(getInitialState());
 
+  const getControlValue = <T extends unknown>(
+    controlName: string,
+    data: DynamicFormStateData
+  ): T => {
+    return data[controlName].value as T;
+  };
+
   const buildFormControls = () => {
     return schema.controls.map(
       (
@@ -129,13 +142,15 @@ export const DotDynamicForm = ({
         switch (controlType) {
           case 'dot-input-text': {
             const props = controlProps as InputTextProps;
+            const value =
+              getControlValue<string>(controlName, formState.data) || '';
             //const value = (formState.data[controlName].value as string) || '';
             const errorMessage = formState.data[controlName].errorMessage;
-            console.log(errorMessage);
             return (
               <DotInputText
                 key={index}
                 {...props}
+                value={value}
                 error={!!errorMessage}
                 helperText={errorMessage ? errorMessage : props.helperText}
                 onChange={handleInputTextChange(controlName)}
@@ -145,7 +160,7 @@ export const DotDynamicForm = ({
           case 'dot-checkbox': {
             const props = controlProps as CheckboxProps;
             const checked =
-              (formState.data[controlName].value as boolean) || false;
+              getControlValue<boolean>(controlName, formState.data) || false;
             return (
               <DotCheckbox
                 key={index}
@@ -167,6 +182,19 @@ export const DotDynamicForm = ({
             const props = controlProps as ButtonProps;
             return (
               <DotButton key={index} {...props} onClick={handleReset}>
+                {props.children}
+              </DotButton>
+            );
+          }
+          case 'dot-submit': {
+            const props = controlProps as ButtonProps;
+            return (
+              <DotButton
+                key={index}
+                {...props}
+                isSubmit={true}
+                disabled={!formState.isValid}
+              >
                 {props.children}
               </DotButton>
             );

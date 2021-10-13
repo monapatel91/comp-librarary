@@ -1,5 +1,6 @@
 import {
   DynamicFormSchema,
+  DynamicFormStateData,
   DynamicFormValidation,
   FieldValidation,
 } from './models';
@@ -33,4 +34,13 @@ export const getControlValidationFromSchema = (
 ): DynamicFormValidation | undefined => {
   return schema.controls.find((control) => control.controlName === controlName)
     ?.validation;
+};
+
+export const checkIfFormDataValid = (
+  formData: DynamicFormStateData
+): boolean => {
+  for (const formDataKey in formData) {
+    if (!formData[formDataKey].isValid) return false;
+  }
+  return true;
 };
