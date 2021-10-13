@@ -141,6 +141,12 @@ export const DemoDynamicForm = () => {
           label: 'Is Mandatory',
           className: 'is-mandatory',
         } as CheckboxProps,
+        validation: {
+          isRequired: {
+            errorMessage: 'Required field',
+            value: true,
+          },
+        },
       },
       {
         controlName: 'btnReset',

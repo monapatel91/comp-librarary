@@ -38,6 +38,18 @@ export interface DynamicFormProps extends CommonProps {
   schema: DynamicFormSchema;
 }
 
+/* Array of control types for which we manage form state */
+const DATA_CONTROLS: DynamicFormControlType[] = [
+  'dot-autocomplete',
+  'dot-input-text',
+  'dot-checkbox',
+];
+
+/* Array of control types for which don't have error state so validation doesn't make any sense */
+const DATA_CONTROLS_WITHOUT_VALIDATION: DynamicFormControlType[] = [
+  'dot-checkbox',
+];
+
 export const DotDynamicForm = ({
   className,
   'data-testid': dataTestId,
@@ -58,19 +70,25 @@ export const DotDynamicForm = ({
         controlType,
         validation,
       }: DynamicFormControl) => {
-        const dataControls: DynamicFormControlType[] = [
-          'dot-autocomplete',
-          'dot-input-text',
-          'dot-checkbox',
-        ];
         // Set only data controls (ignore buttons and other non-relevant elements)
-        if (dataControls.includes(controlType)) {
+        if (DATA_CONTROLS.includes(controlType)) {
           initialState.data[controlName] = { ...initialStateItem };
           if (initialValue) {
             initialState.data[controlName].value = initialValue;
+            initialState.data[controlName].isTouched = true;
+            const fieldValidation = getFieldValidation(
+              initialValue,
+              validation
+            );
+            initialState.data[controlName].isValid = fieldValidation.isValid;
+            initialState.data[controlName].errorMessage =
+              fieldValidation.errorMessage;
           }
-          // If there is no validation set up always set valid to true
-          if (!validation || controlType === 'dot-checkbox') {
+          // If no validation always set valid to true
+          if (
+            !validation ||
+            DATA_CONTROLS_WITHOUT_VALIDATION.includes(controlType)
+          ) {
             // Set always to valid for now
             initialState.data[controlName].isValid = true;
           }
