@@ -1,0 +1,11 @@
+export const n0 = '#E6F0F4'; // level-0
+export const n50 = '#FFFFFF'; // level-1
+export const n100 = '#C3DB34'; // level-2
+export const n200 = '#9FC5D5'; // level-3
+export const n300 = '#7CB0C5';
+export const n400 = '#589BB6'; // text-3
+export const n500 = '#438098'; // text-2
+export const n600 = '#326174'; // text-1
+export const n700 = '#244451'; // text-0
+export const n800 = '#14262E';
+export const n900 = '#000000';

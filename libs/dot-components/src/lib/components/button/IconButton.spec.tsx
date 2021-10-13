@@ -17,6 +17,7 @@ describe('DotIconButton', () => {
       color: 'primary' as IconButtonColor,
       'data-testid': 'testid',
       disabled: false,
+      disableRipple: false,
       iconId: 'save',
       onClick: onClick,
       size: 'small' as IconButtonSize,
