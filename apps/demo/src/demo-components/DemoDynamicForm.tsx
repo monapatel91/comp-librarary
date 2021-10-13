@@ -8,6 +8,7 @@ import {
   DynamicFormState,
   DotBreadcrumbs,
   DotActionToolbar,
+  DotIcon,
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 
@@ -48,6 +49,26 @@ export const DemoDynamicForm = () => {
           isRequired: {
             errorMessage: 'Required field',
             value: true,
+          },
+        },
+      },
+      {
+        controlName: 'password',
+        controlType: 'dot-input-text',
+        controlProps: {
+          label: 'Password',
+          required: true,
+          type: 'password',
+          endIcon: <DotIcon iconId="visibility-off" />,
+        } as InputTextProps,
+        validation: {
+          isRequired: {
+            errorMessage: 'Required field',
+            value: true,
+          },
+          minLength: {
+            errorMessage: 'Minimum of 6 characters required',
+            value: 6,
           },
         },
       },

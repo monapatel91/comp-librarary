@@ -25,6 +25,17 @@ export const getFieldValidation = (
       errorMessage: validation.isRequired.errorMessage,
     };
   }
+  // String value doesn't meet min-length requirement
+  if (
+    typeof value === 'string' &&
+    validation.minLength &&
+    validation.minLength.value > value.length
+  ) {
+    return {
+      isValid: false,
+      errorMessage: validation.minLength.errorMessage,
+    };
+  }
   return fieldValidation;
 };
 
