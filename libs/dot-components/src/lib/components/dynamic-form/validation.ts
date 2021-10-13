@@ -36,6 +36,17 @@ export const getFieldValidation = (
       errorMessage: validation.minLength.errorMessage,
     };
   }
+  // String value doesn't meet max-length requirement
+  if (
+    typeof value === 'string' &&
+    validation.maxLength &&
+    validation.maxLength.value < value.length
+  ) {
+    return {
+      isValid: false,
+      errorMessage: validation.maxLength.errorMessage,
+    };
+  }
   return fieldValidation;
 };
 

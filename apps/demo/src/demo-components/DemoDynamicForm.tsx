@@ -70,6 +70,10 @@ export const DemoDynamicForm = () => {
             errorMessage: 'Minimum of 6 characters required',
             value: 6,
           },
+          maxLength: {
+            errorMessage: 'Password cannot be longer than 15 characters',
+            value: 15,
+          },
         },
       },
       {
