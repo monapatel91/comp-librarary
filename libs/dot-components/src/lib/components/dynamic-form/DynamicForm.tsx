@@ -13,7 +13,10 @@ import {
   DynamicFormStateData,
   DynamicFormStateItem,
 } from './models';
-import { getFieldValidation } from './validation';
+import {
+  getControlValidationFromSchema,
+  getFieldValidation,
+} from './validation';
 
 const initialStateItem: DynamicFormStateItem = {
   value: null,
@@ -76,9 +79,7 @@ export const DotDynamicForm = ({
   const handleInputTextChange =
     (controlName: string) => (e: ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
-      const validation = schema.controls.find(
-        (control) => control.controlName === controlName
-      ).validation;
+      const validation = getControlValidationFromSchema(controlName, schema);
       const fieldValidation = getFieldValidation(newValue, validation);
       setFormState((prevFormState) => ({
         ...prevFormState,
@@ -98,13 +99,14 @@ export const DotDynamicForm = ({
   const handleCheckboxChange =
     (controlName: string) =>
     (e: ChangeEvent<HTMLInputElement>): void => {
+      const newValue = e.target.checked;
       setFormState((prevFormState) => ({
         ...prevFormState,
         data: {
           ...prevFormState.data,
           [controlName]: {
             ...prevFormState.data[controlName],
-            value: e.target.checked,
+            value: newValue,
             isTouched: true,
           },
         },
