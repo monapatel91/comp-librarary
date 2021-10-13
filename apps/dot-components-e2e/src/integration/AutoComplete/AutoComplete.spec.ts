@@ -13,30 +13,6 @@ describe('dot-components: Auto Complete component', () => {
     cy.get('input').should('have.class', 'MuiAutocomplete-input');
   });
 
-  describe('style decisions', () => {
-    it('sizing is correct', () => {
-      cy.get('div.dot-autocomplete div.MuiAutocomplete-inputRoot')
-        .should('have.css', 'padding-right', '12px')
-        .and('have.css', 'margin-bottom', '4px');
-    });
-
-    it('border is correct', () => {
-      cy.get('div.dot-autocomplete div.MuiAutocomplete-inputRoot').should(
-        'have.css',
-        'padding-right',
-        '12px'
-      );
-    });
-
-    it('end adornment is styled correctly', () => {
-      cy.get('div.dot-autocomplete div.MuiAutocomplete-endAdornment').should(
-        'have.css',
-        'right',
-        '9px'
-      );
-    });
-  });
-
   describe('with action item', () => {
     before(() => {
       cy.visit(withActionItemPath);
@@ -64,6 +40,30 @@ describe('dot-components: Auto Complete component', () => {
         'have.css',
         'background-color',
         'rgb(227, 229, 232)'
+      );
+    });
+  });
+
+  describe('style decisions', () => {
+    it('sizing is correct', () => {
+      cy.get('div.dot-autocomplete div.MuiAutocomplete-inputRoot')
+        .should('have.css', 'padding-right', '12px')
+        .and('have.css', 'margin-bottom', '4px');
+    });
+
+    it('border is correct', () => {
+      cy.get('div.dot-autocomplete div.MuiAutocomplete-inputRoot').should(
+        'have.css',
+        'padding-right',
+        '12px'
+      );
+    });
+
+    it('end adornment is styled correctly', () => {
+      cy.get('div.dot-autocomplete div.MuiAutocomplete-endAdornment').should(
+        'have.css',
+        'right',
+        '9px'
       );
     });
   });
