@@ -10,6 +10,15 @@ describe('dot-components: List component', () => {
     cy.get('span').should('contain', 'Progressions');
   });
 
+  it('divider item should not be interactable', () => {
+    cy.get('.MuiListSubheader-root:first-of-type').trigger('mouseover');
+    cy.get('.MuiListSubheader-root').should(
+      'have.css',
+      'background-color',
+      'rgba(0, 0, 0, 0)'
+    );
+  });
+
   describe('style decisions', () => {
     it('toggle icon is pushed to the right', () => {
       cy.get('span.dot-list-item-link').should('have.css', 'flex-grow', '2');
