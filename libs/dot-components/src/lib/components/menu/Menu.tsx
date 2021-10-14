@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { DotProgress } from '../progress/Progress';
 import { rootClassName, StyledPopper } from './Menu.styles';
 
 const MENU_ITEM_HEIGHT_NORMAL = 36;
@@ -37,6 +38,8 @@ export interface MenuProps extends CommonProps {
   disablePortal?: boolean;
   /** Unique ID that ties a particular menu to a specific element */
   id: string;
+  /** If true, will display a loading indicator in the menu */
+  loading?: boolean;
   /* Maximum number of visible menu items */
   maxVisibleItems?: number;
   /** Array of items to be displayed inside the menu */
@@ -74,6 +77,7 @@ export const DotMenu = ({
   dense = true,
   disablePortal,
   id,
+  loading = false,
   maxVisibleItems = DEFAULT_MAX_VISIBLE_ITEMS,
   menuItems = [],
   menuPlacement = 'bottom',
@@ -81,7 +85,11 @@ export const DotMenu = ({
   onSelect,
   open = false,
 }: MenuProps) => {
-  const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    className,
+    loading ? 'loading' : ''
+  );
 
   const handleSelect = (event: MouseEvent | KeyboardEvent, itemKey: string) => {
     onLeave && onLeave(event);
@@ -137,29 +145,37 @@ export const DotMenu = ({
         >
           <Paper>
             <ClickAwayListener onClickAway={handleClickAway}>
-              <MenuList
-                autoFocusItem={open}
-                className="dot-ul"
-                dense={dense}
-                id={id}
-                onKeyDown={handleListKeyDown}
-                style={{
-                  height: calculateMaxHeight(),
-                }}
-              >
-                {menuItems.map((item, index: number) => {
-                  return (
-                    <MenuItem
-                      aria-label={item.ariaLabel}
-                      className={`dot-li ${item.classes ? item.classes : ''}`}
-                      onClick={(event) => handleSelect(event, item.key)}
-                      key={index}
-                    >
-                      {item.children}
-                    </MenuItem>
-                  );
-                })}
-              </MenuList>
+              {loading ? (
+                <DotProgress
+                  title="Loading Data..."
+                  tooltip="Loading Data..."
+                  value={20}
+                />
+              ) : (
+                <MenuList
+                  autoFocusItem={open}
+                  className="dot-ul"
+                  dense={dense}
+                  id={id}
+                  onKeyDown={handleListKeyDown}
+                  style={{
+                    height: calculateMaxHeight(),
+                  }}
+                >
+                  {menuItems.map((item, index: number) => {
+                    return (
+                      <MenuItem
+                        aria-label={item.ariaLabel}
+                        className={`dot-li ${item.classes ? item.classes : ''}`}
+                        onClick={(event) => handleSelect(event, item.key)}
+                        key={index}
+                      >
+                        {item.children}
+                      </MenuItem>
+                    );
+                  })}
+                </MenuList>
+              )}
             </ClickAwayListener>
           </Paper>
         </Grow>

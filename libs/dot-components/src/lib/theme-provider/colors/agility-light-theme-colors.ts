@@ -1,6 +1,6 @@
 export const n0 = '#E6F0F4'; // level-0
 export const n50 = '#FFFFFF'; // level-1
-export const n100 = '#C3DB34'; // level-2
+export const n100 = '#C3DBE4'; // level-2
 export const n200 = '#9FC5D5'; // level-3
 export const n300 = '#7CB0C5';
 export const n400 = '#589BB6'; // text-3

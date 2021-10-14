@@ -34,7 +34,7 @@ describe('dot-components: Auto Complete component', () => {
       );
     });
 
-    xit('should render focused action item with correct styles', () => {
+    it('should render focused action item with correct styles', () => {
       cy.get('.dot-action-item .dot-button').focus();
       cy.get('.dot-action-item button:focus').should(
         'have.css',
@@ -84,7 +84,7 @@ describe('Agility theme(s) decisions', () => {
       );
     });
 
-    xit('should render focused action item with correct styles', () => {
+    it('should render focused action item with correct styles', () => {
       cy.get('.dot-action-item .dot-button').focus();
       cy.get('.dot-action-item button:focus-visible').should(
         'have.css',
@@ -116,7 +116,7 @@ describe('Agility theme(s) decisions', () => {
       );
     });
 
-    xit('should render focused action item with correct styles', () => {
+    it('should render focused action item with correct styles', () => {
       cy.get('.dot-action-item .dot-button').focus();
       cy.get('.dot-action-item button:focus-visible').should(
         'have.css',

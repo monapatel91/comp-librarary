@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import { AutocompleteGetTagProps } from '@material-ui/lab';
 import { rootClassName, StyledAutocomplete } from './AutoComplete.styles';
-import { StyledPopper } from '../menu/Menu.styles';
+import { popperClassName, StyledPopper } from '../menu/Menu.styles';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotChip } from '../chip/Chip';
@@ -202,7 +202,7 @@ export const DotAutoComplete = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DotPopper = (props: any) => {
     if (!actionItem || Object.keys(actionItem).length === 0)
-      return <StyledPopper {...props} />;
+      return <StyledPopper {...props} className={popperClassName} />;
     const { iconId, text, onClick } = actionItem;
     const paperProps = props.children.props;
     const paperChildren = paperProps.children;
@@ -214,7 +214,7 @@ export const DotAutoComplete = ({
     };
 
     return (
-      <StyledPopper {...props}>
+      <StyledPopper {...props} className={popperClassName}>
         <Paper {...paperProps}>
           {paperChildren}
           <div
