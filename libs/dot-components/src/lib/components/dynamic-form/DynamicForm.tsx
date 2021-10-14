@@ -29,6 +29,7 @@ import {
   buildButtonControl,
   buildCheckboxControl,
   buildCheckboxGroupControl,
+  buildInputSelectControl,
   buildInputTextControl,
   buildResetControl,
   buildSubmitControl,
@@ -52,6 +53,7 @@ export interface DynamicFormProps extends CommonProps {
 const DATA_CONTROLS: DynamicFormControlType[] = [
   'dot-autocomplete',
   'dot-input-text',
+  'dot-input-select',
   'dot-checkbox',
   'dot-checkbox-group',
 ];
@@ -163,7 +165,7 @@ export const DotDynamicForm = ({
     }));
   };
 
-  const handleInputTextChange =
+  const handleInputChange =
     (controlName: string) => (e: ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
       updateFormState({ controlName, formSchema: schema, newValue });
@@ -219,7 +221,16 @@ export const DotDynamicForm = ({
               controlProps,
               formData: formState.data,
               index,
-              handleChange: handleInputTextChange,
+              handleChange: handleInputChange,
+            });
+          }
+          case 'dot-input-select': {
+            return buildInputSelectControl({
+              controlName: inputControlName,
+              controlProps,
+              formData: formState.data,
+              index,
+              handleChange: handleInputChange,
             });
           }
           case 'dot-autocomplete': {

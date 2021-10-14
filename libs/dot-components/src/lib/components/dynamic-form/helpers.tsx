@@ -1,4 +1,8 @@
 import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
+import {
+  DotInputSelect,
+  InputSelectProps,
+} from '../input-form-fields/InputSelect';
 import React, { ChangeEvent } from 'react';
 import {
   DynamicFormControlProps,
@@ -67,6 +71,29 @@ export const buildInputTextControl = ({
   const handleChangeFn = handleChange as ChangeHandler;
   return (
     <DotInputText
+      key={index}
+      {...props}
+      value={value}
+      error={!!errorMessage}
+      helperText={errorMessage ? errorMessage : props.helperText}
+      onChange={handleChangeFn(controlName)}
+    />
+  );
+};
+
+export const buildInputSelectControl = ({
+  controlName,
+  controlProps,
+  formData,
+  handleChange,
+  index,
+}: ControlledInputArgs) => {
+  const props = controlProps as InputSelectProps;
+  const value = getControlValue<string>(controlName, formData) || '';
+  const errorMessage = formData[controlName].errorMessage;
+  const handleChangeFn = handleChange as ChangeHandler;
+  return (
+    <DotInputSelect
       key={index}
       {...props}
       value={value}

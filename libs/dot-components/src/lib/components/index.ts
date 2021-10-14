@@ -42,7 +42,10 @@ export { DotIcon } from './icon/Icon';
 export { DotIconButton, IconButtonProps } from './button/IconButton';
 export { DotInlineEdit } from './inline-edit/InlineEdit';
 export { DotInputText, InputTextProps } from './input-form-fields/InputText';
-export { DotInputSelect } from './input-form-fields/InputSelect';
+export {
+  DotInputSelect,
+  InputSelectProps,
+} from './input-form-fields/InputSelect';
 export { DotLink } from './link/Link';
 export { DotList, ListItemProps } from './list/List';
 export { DotMenu, MenuItemProps } from './menu/Menu';

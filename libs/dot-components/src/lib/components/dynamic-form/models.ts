@@ -2,11 +2,13 @@ import { AutoCompleteProps } from '../auto-complete/AutoComplete';
 import { ButtonProps } from '../button/Button';
 import { CheckboxProps } from '../checkbox/Checkbox';
 import { InputTextProps } from '../input-form-fields/InputText';
+import { InputSelectProps } from '../input-form-fields/InputSelect';
 import { ReactNode } from 'react';
 import { CheckboxGroupProps } from '../checkbox/CheckboxGroup';
 
 export type DynamicFormControlType =
   | 'dot-input-text'
+  | 'dot-input-select'
   | 'dot-checkbox'
   | 'dot-checkbox-group'
   | 'dot-autocomplete'
@@ -18,6 +20,7 @@ export type DynamicFormControlType =
 export type DynamicFormControlProps =
   | AutoCompleteProps
   | InputTextProps
+  | InputSelectProps
   | CheckboxProps
   | CheckboxGroupProps
   | ButtonProps;

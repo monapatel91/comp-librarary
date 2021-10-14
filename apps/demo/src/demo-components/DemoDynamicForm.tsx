@@ -12,6 +12,7 @@ import {
   DotActionToolbar,
   DotIcon,
   FieldValidation,
+  InputSelectProps,
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 import { Divider } from '@material-ui/core';
@@ -162,6 +163,24 @@ export const DemoDynamicForm = () => {
           minLength: {
             errorMessage: 'Pick at least 2 options',
             value: 2,
+          },
+        },
+      },
+      {
+        controlName: 'superheroes',
+        controlType: 'dot-input-select',
+        controlProps: {
+          id: 'devType',
+          label: 'Dev Type',
+          name: 'devType',
+          required: true,
+          size: 'small',
+          options: ['', 'React Dev', 'Angular Dev', 'Other Dev'],
+        } as InputSelectProps,
+        validation: {
+          isRequired: {
+            errorMessage: 'Required field',
+            value: true,
           },
         },
       },
