@@ -9,7 +9,7 @@ describe('DotIcon', () => {
       ariaLabel: 'icon',
       className: 'test-class',
       'data-testid': 'testid',
-      fontSize: 'default' as IconFontSize,
+      fontSize: 'medium' as IconFontSize,
       iconId: 'home',
       title: 'icon title',
       tooltip: 'Hello world',
