@@ -28,10 +28,12 @@ import {
   buildAutocompleteControl,
   buildButtonControl,
   buildCheckboxControl,
+  buildCheckboxGroupControl,
   buildInputTextControl,
   buildResetControl,
   buildSubmitControl,
 } from './helpers';
+import { CheckboxProps } from '../checkbox/Checkbox';
 
 const initialStateItem: DynamicFormStateItem = {
   value: null,
@@ -51,6 +53,7 @@ const DATA_CONTROLS: DynamicFormControlType[] = [
   'dot-autocomplete',
   'dot-input-text',
   'dot-checkbox',
+  'dot-checkbox-group',
 ];
 
 /* Array of control types for which don't have error state so validation doesn't make any sense */
@@ -178,6 +181,16 @@ export const DotDynamicForm = ({
       });
     };
 
+  const handleCheckboxGroupChange =
+    (controlName: string) =>
+    (e: ChangeEvent<HTMLInputElement>, value: CheckboxProps[]): void => {
+      updateFormState({
+        controlName,
+        formSchema: schema,
+        newValue: value,
+      });
+    };
+
   const handleAutocompleteChange =
     (controlName: string) =>
     (_: ChangeEvent<HTMLInputElement>, value: AutoCompleteValue): void => {
@@ -225,6 +238,15 @@ export const DotDynamicForm = ({
               formData: formState.data,
               index,
               handleChange: handleCheckboxChange,
+            });
+          }
+          case 'dot-checkbox-group': {
+            return buildCheckboxGroupControl({
+              controlName: inputControlName,
+              controlProps,
+              formData: formState.data,
+              index,
+              handleChange: handleCheckboxGroupChange,
             });
           }
           case 'dot-button': {

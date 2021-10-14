@@ -12,14 +12,31 @@ import {
 } from '../auto-complete/AutoComplete';
 import { ButtonProps, DotButton } from '../button/Button';
 import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
+import {
+  DotCheckboxGroup,
+  CheckboxGroupProps,
+} from '../checkbox/CheckboxGroup';
+
+type AutoCompleteChangeHandler = (
+  controlName: string
+) => (e: ChangeEvent<HTMLInputElement>, value: AutoCompleteValue) => void;
+
+type ChangeHandler = (
+  controlName: string
+) => (e: ChangeEvent<HTMLInputElement>) => void;
+
+type CheckboxGroupChangeHandler = (
+  controlName: string
+) => (event: ChangeEvent<HTMLInputElement>, value: CheckboxProps[]) => void;
 
 export interface ControlledInputArgs {
   controlName: string;
   controlProps: DynamicFormControlProps;
   formData: DynamicFormStateData;
-  handleChange: (
-    controlName: string
-  ) => (e: ChangeEvent<HTMLInputElement>, value?: AutoCompleteValue) => void;
+  handleChange:
+    | AutoCompleteChangeHandler
+    | ChangeHandler
+    | CheckboxGroupChangeHandler;
   index: number;
 }
 
@@ -47,6 +64,7 @@ export const buildInputTextControl = ({
   const props = controlProps as InputTextProps;
   const value = getControlValue<string>(controlName, formData) || '';
   const errorMessage = formData[controlName].errorMessage;
+  const handleChangeFn = handleChange as ChangeHandler;
   return (
     <DotInputText
       key={index}
@@ -54,7 +72,7 @@ export const buildInputTextControl = ({
       value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
-      onChange={handleChange(controlName)}
+      onChange={handleChangeFn(controlName)}
     />
   );
 };
@@ -69,6 +87,7 @@ export const buildAutocompleteControl = ({
   const props = controlProps as AutoCompleteProps;
   const value = getControlValue<AutoCompleteValue>(controlName, formData) || [];
   const errorMessage = formData[controlName].errorMessage;
+  const handleChangeFn = handleChange as AutoCompleteChangeHandler;
   return (
     <DotAutoComplete
       key={index}
@@ -76,7 +95,7 @@ export const buildAutocompleteControl = ({
       value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
-      onChange={handleChange(controlName)}
+      onChange={handleChangeFn(controlName)}
     />
   );
 };
@@ -90,12 +109,34 @@ export const buildCheckboxControl = ({
 }: ControlledInputArgs) => {
   const props = controlProps as CheckboxProps;
   const checked = getControlValue<boolean>(controlName, formData) || false;
+  const handleChangeFn = handleChange as ChangeHandler;
   return (
     <DotCheckbox
       key={index}
       {...props}
       checked={checked}
-      onChange={handleChange(controlName)}
+      onChange={handleChangeFn(controlName)}
+    />
+  );
+};
+
+export const buildCheckboxGroupControl = ({
+  controlName,
+  controlProps,
+  formData,
+  handleChange,
+  index,
+}: ControlledInputArgs) => {
+  const props = controlProps as CheckboxGroupProps;
+  const errorMessage = formData[controlName].errorMessage;
+  const handleChangeFn = handleChange as CheckboxGroupChangeHandler;
+  return (
+    <DotCheckboxGroup
+      key={index}
+      {...props}
+      error={!!errorMessage}
+      helperText={errorMessage ? errorMessage : props.helperText}
+      onChange={handleChangeFn(controlName)}
     />
   );
 };

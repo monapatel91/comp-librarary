@@ -21,7 +21,7 @@ export { DotCardContent } from './card/CardContent';
 export { DotCardFooter } from './card/CardFooter';
 export { DotCardHeader } from './card/CardHeader';
 export { CheckboxProps, DotCheckbox } from './checkbox/Checkbox';
-export { DotCheckboxGroup } from './checkbox/CheckboxGroup';
+export { DotCheckboxGroup, CheckboxGroupProps } from './checkbox/CheckboxGroup';
 export { DotChip } from './chip/Chip';
 export { DotConfirmationDialog } from './confirmation-dialog/ConfirmationDialog';
 export { Cell, CssCell } from './css-grid/CssCell';

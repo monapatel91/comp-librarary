@@ -2,6 +2,7 @@ import React from 'react';
 import {
   AutoCompleteProps,
   CheckboxProps,
+  CheckboxGroupProps,
   DotDynamicForm,
   ButtonProps,
   InputTextProps,
@@ -132,6 +133,35 @@ export const DemoDynamicForm = () => {
           maxLength: {
             errorMessage: 'Maximum of 4 options allowed',
             value: 4,
+          },
+        },
+      },
+      {
+        controlName: 'receive',
+        controlType: 'dot-checkbox-group',
+        controlProps: {
+          groupLabel: 'I would like to receive',
+          required: true,
+          options: [
+            {
+              label: 'Notification of new releases',
+              value: 'releases',
+            },
+            {
+              label: 'Concert schedule information',
+              value: 'concerts',
+            },
+            { label: 'A free poster', value: 'poster' },
+          ],
+        } as CheckboxGroupProps,
+        validation: {
+          isRequired: {
+            errorMessage: 'Required field',
+            value: true,
+          },
+          minLength: {
+            errorMessage: 'Pick at least 2 options',
+            value: 2,
           },
         },
       },
