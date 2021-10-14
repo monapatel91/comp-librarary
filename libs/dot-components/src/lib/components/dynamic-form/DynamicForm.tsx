@@ -2,21 +2,14 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDynamicForm } from './DynamicForm.styles';
-import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
-import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
 import { DotForm } from '../form/Form';
 import { ButtonProps, DotButton } from '../button/Button';
-import {
-  AutoCompleteProps,
-  AutoCompleteValue,
-  DotAutoComplete,
-} from '../auto-complete/AutoComplete';
+import { AutoCompleteValue } from '../auto-complete/AutoComplete';
 import {
   DynamicFormControl,
   DynamicFormControlType,
   DynamicFormSchema,
   DynamicFormState,
-  DynamicFormStateData,
   DynamicFormStateItem,
   FormStateUpdateArgs,
 } from './models';
@@ -25,6 +18,11 @@ import {
   getControlValidationFromSchema,
   getFieldValidation,
 } from './validation';
+import {
+  buildAutocompleteControl,
+  buildCheckboxControl,
+  buildInputTextControl,
+} from './helpers';
 
 const initialStateItem: DynamicFormStateItem = {
   value: null,
@@ -179,13 +177,6 @@ export const DotDynamicForm = ({
 
   const handleReset = () => setFormState(getInitialState());
 
-  const getControlValue = <T extends unknown>(
-    controlName: string,
-    data: DynamicFormStateData
-  ): T => {
-    return data[controlName].value as T;
-  };
-
   const buildFormControls = () => {
     return schema.controls.map(
       (
@@ -199,50 +190,31 @@ export const DotDynamicForm = ({
       ) => {
         switch (controlType) {
           case 'dot-input-text': {
-            const props = controlProps as InputTextProps;
-            const value =
-              getControlValue<string>(controlName, formState.data) || '';
-            const errorMessage = formState.data[controlName].errorMessage;
-            return (
-              <DotInputText
-                key={index}
-                {...props}
-                value={value}
-                error={!!errorMessage}
-                helperText={errorMessage ? errorMessage : props.helperText}
-                onChange={handleInputTextChange(controlName)}
-              />
-            );
+            return buildInputTextControl({
+              controlName,
+              controlProps,
+              formData: formState.data,
+              index,
+              handleChange: handleInputTextChange,
+            });
           }
           case 'dot-autocomplete': {
-            const props = controlProps as AutoCompleteProps;
-            const value =
-              getControlValue<AutoCompleteValue>(controlName, formState.data) ||
-              [];
-            const errorMessage = formState.data[controlName].errorMessage;
-            return (
-              <DotAutoComplete
-                key={index}
-                {...props}
-                value={value}
-                error={!!errorMessage}
-                helperText={errorMessage ? errorMessage : props.helperText}
-                onChange={handleAutocompleteChange(controlName)}
-              />
-            );
+            return buildAutocompleteControl({
+              controlName,
+              controlProps,
+              formData: formState.data,
+              index,
+              handleChange: handleAutocompleteChange,
+            });
           }
           case 'dot-checkbox': {
-            const props = controlProps as CheckboxProps;
-            const checked =
-              getControlValue<boolean>(controlName, formState.data) || false;
-            return (
-              <DotCheckbox
-                key={index}
-                {...props}
-                checked={checked}
-                onChange={handleCheckboxChange(controlName)}
-              />
-            );
+            return buildCheckboxControl({
+              controlName,
+              controlProps,
+              formData: formState.data,
+              index,
+              handleChange: handleCheckboxChange,
+            });
           }
           case 'dot-button': {
             const props = controlProps as ButtonProps;
