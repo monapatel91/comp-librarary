@@ -43,6 +43,8 @@ declare module '@material-ui/core/styles/createPalette' {
     sideNavHoverBorder: string;
     sideNavHoverText: string;
     sideNavSubHeaderText: string;
+    textColor: string;
+    topBarIconHoverBg: string;
     warnCardBg: string;
   }
 
