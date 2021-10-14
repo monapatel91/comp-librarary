@@ -3,7 +3,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDynamicForm } from './DynamicForm.styles';
 import { DotForm } from '../form/Form';
-import { ButtonProps, DotButton } from '../button/Button';
+
 import { AutoCompleteValue } from '../auto-complete/AutoComplete';
 import {
   DynamicFormControl,
@@ -20,8 +20,11 @@ import {
 } from './validation';
 import {
   buildAutocompleteControl,
+  buildButtonControl,
   buildCheckboxControl,
   buildInputTextControl,
+  buildResetControl,
+  buildSubmitControl,
 } from './helpers';
 
 const initialStateItem: DynamicFormStateItem = {
@@ -217,33 +220,17 @@ export const DotDynamicForm = ({
             });
           }
           case 'dot-button': {
-            const props = controlProps as ButtonProps;
-            return (
-              <DotButton key={index} {...props}>
-                {props.children}
-              </DotButton>
-            );
+            return buildButtonControl({ controlProps, index });
           }
           case 'dot-reset': {
-            const props = controlProps as ButtonProps;
-            return (
-              <DotButton key={index} {...props} onClick={handleReset}>
-                {props.children}
-              </DotButton>
-            );
+            return buildResetControl({
+              controlProps,
+              handleClick: handleReset,
+              index,
+            });
           }
           case 'dot-submit': {
-            const props = controlProps as ButtonProps;
-            return (
-              <DotButton
-                key={index}
-                {...props}
-                isSubmit={true}
-                disabled={!formState.isValid}
-              >
-                {props.children}
-              </DotButton>
-            );
+            return buildSubmitControl({ controlProps, formState, index });
           }
           default: {
             return '';

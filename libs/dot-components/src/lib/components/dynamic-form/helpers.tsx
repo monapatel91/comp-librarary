@@ -1,20 +1,32 @@
 import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
 import React, { ChangeEvent } from 'react';
-import { DynamicFormControlProps, DynamicFormStateData } from './models';
+import {
+  DynamicFormControlProps,
+  DynamicFormState,
+  DynamicFormStateData,
+} from './models';
 import {
   AutoCompleteProps,
   AutoCompleteValue,
   DotAutoComplete,
 } from '../auto-complete/AutoComplete';
-import { CheckboxProps, DotCheckbox } from '@digital-ai/dot-components';
+import { ButtonProps, DotButton } from '../button/Button';
+import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
 
-export interface BuildControlArgs {
+export interface ControlledInputArgs {
   controlName: string;
   controlProps: DynamicFormControlProps;
-  formData?: DynamicFormStateData;
+  formData: DynamicFormStateData;
   handleChange: (
     controlName: string
   ) => (e: ChangeEvent<HTMLInputElement>, value?: AutoCompleteValue) => void;
+  index: number;
+}
+
+export interface UncontrolledInputArgs {
+  controlProps: DynamicFormControlProps;
+  formState?: DynamicFormState;
+  handleClick?: () => void;
   index: number;
 }
 
@@ -31,7 +43,7 @@ export const buildInputTextControl = ({
   formData,
   handleChange,
   index,
-}: BuildControlArgs) => {
+}: ControlledInputArgs) => {
   const props = controlProps as InputTextProps;
   const value = getControlValue<string>(controlName, formData) || '';
   const errorMessage = formData[controlName].errorMessage;
@@ -53,7 +65,7 @@ export const buildAutocompleteControl = ({
   formData,
   handleChange,
   index,
-}: BuildControlArgs) => {
+}: ControlledInputArgs) => {
   const props = controlProps as AutoCompleteProps;
   const value = getControlValue<AutoCompleteValue>(controlName, formData) || [];
   const errorMessage = formData[controlName].errorMessage;
@@ -75,7 +87,7 @@ export const buildCheckboxControl = ({
   formData,
   handleChange,
   index,
-}: BuildControlArgs) => {
+}: ControlledInputArgs) => {
   const props = controlProps as CheckboxProps;
   const checked = getControlValue<boolean>(controlName, formData) || false;
   return (
@@ -85,5 +97,55 @@ export const buildCheckboxControl = ({
       checked={checked}
       onChange={handleChange(controlName)}
     />
+  );
+};
+
+export const buildButtonControl = ({
+  controlProps,
+  index,
+}: UncontrolledInputArgs) => {
+  const props = controlProps as ButtonProps;
+  return (
+    <DotButton key={index} {...props}>
+      {props.children}
+    </DotButton>
+  );
+};
+
+export const buildResetControl = ({
+  controlProps,
+  handleClick,
+  index,
+}: UncontrolledInputArgs) => {
+  const props = controlProps as ButtonProps;
+  return (
+    <DotButton
+      key={index}
+      {...props}
+      onClick={(e) => {
+        props.onClick?.(e);
+        handleClick();
+      }}
+    >
+      {props.children}
+    </DotButton>
+  );
+};
+
+export const buildSubmitControl = ({
+  controlProps,
+  formState,
+  index,
+}: UncontrolledInputArgs) => {
+  const props = controlProps as ButtonProps;
+  return (
+    <DotButton
+      key={index}
+      {...props}
+      isSubmit={true}
+      disabled={!formState.isValid}
+    >
+      {props.children}
+    </DotButton>
   );
 };
