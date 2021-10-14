@@ -7,6 +7,8 @@ import { AvatarPaletteColorOptions } from '../../../../../typings/material/index
 import { ThemeProvider } from 'styled-components';
 import { GlobalFonts } from '../fonts/fonts';
 
+import * as agilityLight from './colors/agility-light-theme-colors';
+import * as agilityDark from './colors/agility-dark-theme-colors';
 import * as lightColors from './colors/light-theme-colors';
 
 export type ThemeOptions = 'light' | 'dark' | 'agility-light' | 'agility-dark';
@@ -156,7 +158,7 @@ export const agilityLightTheme = createTheme({
       ...avatarColors,
     },
     background: {
-      default: '#E6F0F4',
+      default: agilityLight.n0,
     },
     icon: {
       checkOutline: '#1E88E5',
@@ -171,37 +173,39 @@ export const agilityLightTheme = createTheme({
       unknownHover: '#71828B',
     },
     layer: {
-      n0: '#E6F0F4', // level-0
-      n50: lightColors.n0, // level-1
-      n100: '#C3DBE4', // level-2
-      n200: '#9FC5D5', // level-3
-      n300: '#7CB0C5',
-      n400: '#589BB6', // text-3
-      n500: '#438098', // text-2
-      n600: '#326174', // text-1
-      n700: '#244451', // text-0
-      n800: '#14262E',
-      n900: '#000',
+      n0: agilityLight.n0,
+      n50: agilityLight.n50,
+      n100: agilityLight.n100,
+      n200: agilityLight.n200,
+      n300: agilityLight.n300,
+      n400: agilityLight.n400,
+      n500: agilityLight.n500,
+      n600: agilityLight.n600,
+      n700: agilityLight.n700,
+      n800: agilityLight.n800,
+      n900: agilityLight.n900,
     },
     agilityInterface: {
       activeBg: 'rgba(121, 181, 34, 0.2)',
       activeCardBg: '#EDF9DD',
-      cardBg: '#FFF',
+      cardBg: agilityLight.n50,
       disabledText: '#A1BFCB',
-      fixedCol: '#E6F0F4',
-      headerBg: '#3b485c',
+      fixedCol: agilityLight.n0,
+      headerBg: lightColors.n700,
       helpColor: '#FF5722',
-      menuBg: '#FFF',
-      panelBgActive: '#FFF',
+      menuBg: agilityLight.n50,
+      panelBgActive: agilityLight.n50,
       panelBgDefault: '#9FC6D5',
-      panelTextActive: '#244451',
-      panelTextDefault: '#244451',
+      panelTextActive: agilityLight.n700,
+      panelTextDefault: agilityLight.n700,
       projectNavBg: 'rgba(67, 128, 152, 0.2)',
-      sideNavBorder: '#7CB0C5',
+      sideNavBorder: agilityLight.n300,
       sideNavHoverBg: lightColors.agilityLightGreen,
       sideNavHoverBorder: lightColors.agilityGreen,
       sideNavHoverText: lightColors.g500,
-      sideNavSubHeaderText: '#589BB6',
+      sideNavSubHeaderText: agilityLight.n400,
+      textColor: agilityLight.n700,
+      topBarIconHoverBg: '#667384',
       warnCardBg: '#FBE9E7',
     },
   },
@@ -209,7 +213,7 @@ export const agilityLightTheme = createTheme({
     ...typographyOptions,
     allVariants: {
       ...typographyOptions.allVariants,
-      color: '#244451',
+      color: agilityLight.n700,
     },
   },
 });
@@ -225,7 +229,7 @@ export const agilityDarkTheme = createTheme({
       ...avatarColors,
     },
     background: {
-      default: '#050A0A',
+      default: agilityDark.n0,
     },
     icon: {
       checkOutline: '#42A5F5',
@@ -240,37 +244,39 @@ export const agilityDarkTheme = createTheme({
       unknownHover: '#88979D',
     },
     layer: {
-      n0: '#050A0A', // level-0
-      n50: '#14262E', // level-1
-      n100: '#244451', // level-2
-      n200: '#336275', // level-3
-      n300: '#7CB0C5',
-      n400: '#9FC5D5', // text-3
-      n500: '#E6F0F4', // text-2
-      n600: '#C3DBE4', // text-1
-      n700: lightColors.n0, // text-0
-      n800: lightColors.n0,
-      n900: lightColors.n0,
+      n0: agilityDark.n0,
+      n50: agilityDark.n50,
+      n100: agilityDark.n100,
+      n200: agilityDark.n200,
+      n300: agilityDark.n300,
+      n400: agilityDark.n400,
+      n500: agilityDark.n500,
+      n600: agilityDark.n600,
+      n700: agilityDark.n700,
+      n800: agilityDark.n700,
+      n900: agilityDark.n700,
     },
     agilityInterface: {
       activeBg: 'rgba(121, 181, 34, 0.2)',
       activeCardBg: '#405F12',
-      cardBg: '#336275',
-      disabledText: '#336275',
+      cardBg: agilityDark.n200,
+      disabledText: agilityDark.n200,
       fixedCol: '#1C3540',
       headerBg: '#14272E',
       helpColor: '#FF5722',
-      menuBg: '#244451',
-      panelBgActive: '#7CB0C5',
+      menuBg: agilityDark.n100,
+      panelBgActive: agilityDark.n300,
       panelBgDefault: '#14272E',
       panelTextActive: '#14272E',
       panelTextDefault: '#9FC6D5',
       projectNavBg: 'rgba(67, 128, 152, 0.2)',
-      sideNavBorder: '#336275',
-      sideNavHoverBg: '#244451',
-      sideNavHoverBorder: '#7CB0C5',
-      sideNavHoverText: '#7CB0C5',
+      sideNavBorder: agilityDark.n200,
+      sideNavHoverBg: agilityDark.n100,
+      sideNavHoverBorder: agilityDark.n300,
+      sideNavHoverText: agilityDark.n300,
       sideNavSubHeaderText: '#9FC6D5',
+      textColor: agilityDark.n700,
+      topBarIconHoverBg: agilityDark.n100,
       warnCardBg: '#7A4637',
     },
   },
@@ -278,7 +284,7 @@ export const agilityDarkTheme = createTheme({
     ...typographyOptions,
     allVariants: {
       ...typographyOptions.allVariants,
-      color: lightColors.n0,
+      color: agilityDark.n700,
     },
   },
 });
