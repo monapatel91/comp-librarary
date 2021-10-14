@@ -4,6 +4,7 @@ import React, {
   KeyboardEvent,
   ReactNode,
   useState,
+  useEffect,
 } from 'react';
 import {
   Collapse,
@@ -17,6 +18,7 @@ import { DotDrawer } from '../drawer/Drawer';
 import { DotIcon } from '../icon/Icon';
 import { DotLink } from '../link/Link';
 import { DotMenu, PopperPlacement } from '../menu/Menu';
+import { DotTooltip } from '../tooltip/Tooltip';
 import {
   flyoutItemLinkClassName,
   flyoutListItemClassName,
@@ -102,8 +104,10 @@ export interface ListItemProps extends CommonProps {
   startIconId?: string;
   /** Text which is displayed in the list item */
   text?: string;
-  /** The tooltip text displayed on hover */
+  /** DEPRECATED, DO NOT USE */
   title?: string;
+  /** Tooltip text displayed on hover */
+  tooltip?: string;
 }
 
 const NestedList = ({
@@ -257,7 +261,7 @@ export const DotList = ({
             selected={item.selected}
             startIconId={item.startIconId}
             text={item.text}
-            title={item.title}
+            tooltip={item.title}
           />
         );
       })}
@@ -284,6 +288,7 @@ export const DotListItem = ({
   startIconId,
   text,
   title,
+  tooltip,
 }: ListItemProps) => {
   const textVariant = divider ? 'h5' : 'body1';
   const isFlyout = nestedListType === 'menu' && items.length > 0;
@@ -345,7 +350,7 @@ export const DotListItem = ({
 
   const startIcon = (
     <ListItemIcon>
-      <DotIcon iconId={startIconId} title={title} />
+      <DotIcon iconId={startIconId} tooltip={tooltip} />
     </ListItemIcon>
   );
 
@@ -354,33 +359,42 @@ export const DotListItem = ({
       <DotIcon iconId={endIconId} />
     </ListItemIcon>
   );
-
+  useEffect(() => {
+    // deprecation warning
+    if (title) {
+      console.warn(
+        'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` isntead.'
+      );
+    }
+  }, []);
   return (
     <>
-      <StyledListItem
-        aria-label={ariaLabel}
-        button
-        classes={{ root: rootClasses }}
-        component={href && !onClick ? 'a' : component}
-        data-testid={dataTestId}
-        divider={divider}
-        href={onClick ? null : href}
-        onClick={onClick || !href ? handleClick : null}
-        selected={isFlyout ? open : selected}
-        title={title}
-      >
-        <span className={listItemLinkClassName}>
-          {startIconId && startIcon}
-          <DotTypography variant={textVariant}>{text}</DotTypography>
-        </span>
-        {items.length > 0 ? (
-          <DotLink color="inherit" onClick={toggleOpen} underline="none">
-            <DotIcon className="toggle-display" iconId={getChevronIcon()} />
-          </DotLink>
-        ) : (
-          endIconId && endIcon
-        )}
-      </StyledListItem>
+      <DotTooltip title={tooltip}>
+        <StyledListItem
+          aria-label={ariaLabel}
+          button
+          classes={{ root: rootClasses }}
+          component={href && !onClick ? 'a' : component}
+          data-testid={dataTestId}
+          divider={divider}
+          href={onClick ? null : href}
+          onClick={onClick || !href ? handleClick : null}
+          selected={isFlyout ? open : selected}
+          title={title}
+        >
+          <span className={listItemLinkClassName}>
+            {startIconId && startIcon}
+            <DotTypography variant={textVariant}>{text}</DotTypography>
+          </span>
+          {items.length > 0 ? (
+            <DotLink color="inherit" onClick={toggleOpen} underline="none">
+              <DotIcon className="toggle-display" iconId={getChevronIcon()} />
+            </DotLink>
+          ) : (
+            endIconId && endIcon
+          )}
+        </StyledListItem>
+      </DotTooltip>
       {items.length > 0 && (
         <NestedList
           ariaLabel="nested list"

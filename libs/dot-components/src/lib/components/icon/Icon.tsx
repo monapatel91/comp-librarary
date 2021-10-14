@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { CommonProps } from '../CommonProps';
+import { DotTooltip } from '../tooltip/Tooltip';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledIcon } from './Icon.styles';
 
@@ -11,8 +12,10 @@ export interface IconProps extends CommonProps {
   fontSize?: IconFontSize;
   /** The ID of the icon to display on the button */
   iconId: string;
-  /** Tooltip text displayed on hover */
+  /** DEPRECATED, DO NOT USE */
   title?: string;
+  /** Tooltip text displayed on hover */
+  tooltip?: string;
 }
 
 export const DotIcon = ({
@@ -21,7 +24,8 @@ export const DotIcon = ({
   'data-testid': dataTestId,
   fontSize = 'medium',
   iconId,
-  title = '',
+  title,
+  tooltip,
 }: IconProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
@@ -34,18 +38,25 @@ export const DotIcon = ({
         `The use of \`fontSize: ${fontSize}\` on \`DotIcon\` is deprecated and will be removed in the next release. Please consider using \`fontSize: medium\` instead.`
       );
     }
+    // deprecation warning
+    if (title) {
+      console.warn(
+        'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` isntead.'
+      );
+    }
   }, []);
 
   return (
-    <StyledIcon
-      aria-hidden="false"
-      aria-label={ariaLabel}
-      classes={{ root: rootClasses }}
-      data-testid={dataTestId}
-      fontSize={fontSize === 'small' ? fontSize : 'medium'}
-      title={title}
-    >
-      <i className={`icon-${iconId} dot-i`} />
-    </StyledIcon>
+    <DotTooltip title={tooltip}>
+      <StyledIcon
+        aria-hidden="false"
+        aria-label={ariaLabel}
+        classes={{ root: rootClasses }}
+        data-testid={dataTestId}
+        fontSize={fontSize === 'small' ? fontSize : 'medium'}
+      >
+        <i className={`icon-${iconId} dot-i`} />
+      </StyledIcon>
+    </DotTooltip>
   );
 };

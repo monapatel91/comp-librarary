@@ -1,13 +1,21 @@
 import React, { MouseEvent, useState } from 'react';
-import { DotSidebar, SidebarProps } from './Sidebar';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { TextField } from '@material-ui/core';
+import { DotSidebar, SidebarProps } from './Sidebar';
+import { ReactComponent as DemoLogoDark } from '../../assets/demo-logo-dark.svg';
+import { ReactComponent as DemoLogoSmall } from '../../assets/demo-logo-small.svg';
 import { NestedListType } from '../list/List';
 
 export default {
   title: 'Components/Sidebar',
   component: DotSidebar,
   argTypes: {
+    appLogo: {
+      defaultValue: <DemoLogoDark title="demo app logo" />,
+    },
+    appLogoSmall: {
+      defaultValue: <DemoLogoSmall title="demo app logo small" />,
+    },
     backItem: {
       defaultValue: {
         iconId: 'back',
@@ -25,6 +33,9 @@ export default {
     collapsable: {
       defaultValue: true,
     },
+    displayAppLogo: {
+      defaultValue: true,
+    },
     goBack: {
       defaultValue: false,
     },
@@ -39,6 +50,7 @@ export default {
         alt: 'Avatar goes here',
         iconId: 'user',
         type: 'icon',
+        tooltip: 'user',
       },
     },
     width: {

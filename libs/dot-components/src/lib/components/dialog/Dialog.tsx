@@ -131,7 +131,7 @@ export const DotDialog = ({
           endIcon={cancelButtonProps?.endIcon}
           startIcon={cancelButtonProps?.startIcon}
           onClick={handleCancel}
-          titleTooltip={cancelButtonProps?.titleTooltip}
+          titleTooltip={cancelButtonProps?.tooltip}
           type="text"
         >
           {cancelButtonProps?.label || 'Cancel'}
@@ -146,7 +146,7 @@ export const DotDialog = ({
             endIcon={submitButtonProps?.endIcon}
             startIcon={submitButtonProps?.startIcon}
             onClick={handleSubmit}
-            titleTooltip={submitButtonProps?.titleTooltip}
+            titleTooltip={submitButtonProps?.tooltip}
             type={submitButtonProps?.type || 'primary'}
           >
             {submitButtonProps?.label || 'OK'}

@@ -1,5 +1,6 @@
-import React, { ForwardedRef, ReactNode } from 'react';
+import React, { ForwardedRef, ReactNode, useEffect } from 'react';
 import { BaseButtonProps } from '../BaseButtonProps';
+import { DotTooltip } from '../tooltip/Tooltip';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledButton } from './Button.styles';
 
@@ -29,7 +30,9 @@ export const DotButton = React.forwardRef(
       onClick,
       size = 'medium',
       startIcon,
+      /** The use of `titleTooltip` is deprecated and will be removed in the next major release */
       titleTooltip,
+      tooltip,
       type = 'primary',
     }: ButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
@@ -56,28 +59,36 @@ export const DotButton = React.forwardRef(
         variant = 'text';
         break;
     }
-
+    useEffect(() => {
+      // deprecation warning
+      if (titleTooltip) {
+        console.warn(
+          'The use of `titleTooltip` is deprecated and will be removed in the next major release, please use `tooltip` isntead.'
+        );
+      }
+    }, []);
     return (
-      <StyledButton
-        aria-label={ariaLabel}
-        autoFocus={autoFocus}
-        classes={{ root: rootClasses }}
-        color={color}
-        data-testid={dataTestId}
-        disabled={disabled}
-        disableRipple={disableRipple}
-        endIcon={endIcon}
-        fullWidth={fullWidth}
-        onClick={(event) => onClick && onClick(event)}
-        ref={ref}
-        title={titleTooltip}
-        variant={variant}
-        size={size}
-        startIcon={startIcon}
-        type={isSubmit ? 'submit' : 'button'}
-      >
-        {children}
-      </StyledButton>
+      <DotTooltip title={tooltip}>
+        <StyledButton
+          aria-label={ariaLabel}
+          autoFocus={autoFocus}
+          classes={{ root: rootClasses }}
+          color={color}
+          data-testid={dataTestId}
+          disabled={disabled}
+          disableRipple={disableRipple}
+          endIcon={endIcon}
+          fullWidth={fullWidth}
+          onClick={(event) => onClick && onClick(event)}
+          ref={ref}
+          variant={variant}
+          size={size}
+          startIcon={startIcon}
+          type={isSubmit ? 'submit' : 'button'}
+        >
+          {children}
+        </StyledButton>
+      </DotTooltip>
     );
   }
 );

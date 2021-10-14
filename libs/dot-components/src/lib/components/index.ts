@@ -1,6 +1,7 @@
 export { DotAccordion } from './accordion/Accordion';
 export { DotActionToolbar } from './action-toolbar/ActionToolbar';
 export { DotAlertBanner } from './alert-banner/AlertBanner';
+export { DotAppLogo } from './app-logo/AppLogo';
 export { DotAppToolbar, AppToolbarProps } from './app-toolbar/AppToolbar';
 export {
   AutoCompleteOption,
