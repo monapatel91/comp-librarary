@@ -1,5 +1,6 @@
-import React, { KeyboardEvent, MouseEvent, ReactNode } from 'react';
+import React, { KeyboardEvent, MouseEvent, ReactNode, useEffect } from 'react';
 import { CommonProps } from '../CommonProps';
+import { DotTooltip } from '../tooltip/Tooltip';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledLink } from './Link.styles';
 
@@ -31,8 +32,10 @@ export interface LinkProps extends CommonProps {
   tabIndex?: number;
   /** where to open the link */
   target?: LinkTarget;
-  /** tooltip text displayed on hover, useful for screen readers */
+  /** DEPRECATED, DO NOT USE */
   title?: string;
+  /** Tooltip text displayed on hover */
+  tooltip?: string;
   /**  underline the link */
   underline?: LinkUnderline;
 }
@@ -50,6 +53,7 @@ export const DotLink = ({
   tabIndex = 0,
   target,
   title,
+  tooltip,
   underline = 'always',
 }: LinkProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -60,24 +64,32 @@ export const DotLink = ({
       onClick(event);
     }
   };
-
+  // deprecation warning(s)
+  useEffect(() => {
+    if (title) {
+      console.warn(
+        'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` isntead.'
+      );
+    }
+  }, []);
   return (
-    <StyledLink
-      aria-label={ariaLabel}
-      classes={{ root: rootClasses }}
-      color={color}
-      data-testid={dataTestId}
-      href={href}
-      onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      onKeyPress={handleKeyPress}
-      rel={rel}
-      tabIndex={tabIndex}
-      target={target}
-      title={title}
-      underline={underline}
-    >
-      {children}
-    </StyledLink>
+    <DotTooltip title={tooltip}>
+      <StyledLink
+        aria-label={ariaLabel}
+        classes={{ root: rootClasses }}
+        color={color}
+        data-testid={dataTestId}
+        href={href}
+        onClick={onClick}
+        onMouseEnter={onMouseEnter}
+        onKeyPress={handleKeyPress}
+        rel={rel}
+        tabIndex={tabIndex}
+        target={target}
+        underline={underline}
+      >
+        {children}
+      </StyledLink>
+    </DotTooltip>
   );
 };

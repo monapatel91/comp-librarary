@@ -2,6 +2,7 @@ import React, { ReactNode, useState, useEffect } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography } from '../typography/Typography';
+import { DotTooltip } from '../tooltip/Tooltip';
 import {
   AccordionActions,
   AccordionDetails,
@@ -76,13 +77,9 @@ export const DotAccordion = ({
       >
         {startIcon}
         <DotTypography variant="body1" noWrap={noWrap}>
-          <Tooltip
-            className="dot-tooltip"
-            placement="top-start"
-            title={noWrap ? summary : ''}
-          >
+          <DotTooltip title={noWrap ? summary : ''}>
             <span>{summary}</span>
-          </Tooltip>
+          </DotTooltip>
         </DotTypography>
       </AccordionSummary>
       <AccordionDetails

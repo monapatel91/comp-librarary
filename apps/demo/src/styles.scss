@@ -69,10 +69,10 @@ p {
 main {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: calc(100vh - 60px);
   overflow: hidden;
   position: relative;
-  top: 48px;
+  top: 60px;
   width: 100vw;
   margin-top: 4px;
 

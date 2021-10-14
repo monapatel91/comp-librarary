@@ -1,10 +1,4 @@
-import React, {
-  Fragment,
-  MouseEvent,
-  ReactNode,
-  useEffect,
-  useState,
-} from 'react';
+import React, { MouseEvent, ReactNode, useEffect, useState } from 'react';
 import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 import { DotIconButton } from '../button/IconButton';
 import { DotList, ListItemProps, NestedListType } from '../list/List';
@@ -16,6 +10,8 @@ import { rootClassName, StyledSidebar } from './Sidebar.styles';
 import { DotTypography } from '../typography/Typography';
 import { DotLink } from '../link/Link';
 import { DotIcon } from '../icon/Icon';
+import { DotAppLogo } from '../app-logo/AppLogo';
+import { DotTooltip } from '../tooltip/Tooltip';
 
 export interface BackItemProps extends CommonProps {
   /** If provided, the icon ID which is displayed on the front of the list item */
@@ -29,6 +25,10 @@ export interface BackItemProps extends CommonProps {
 }
 
 export interface SidebarProps extends CommonProps {
+  /** If provided will display application logo */
+  appLogo?: ReactNode;
+  /** If provided will display application logo */
+  appLogoSmall?: ReactNode;
   /** props used by the back item */
   backItem?: BackItemProps;
   /** If displayBrand is true this text will be displayed above the Digital.ai branding */
@@ -37,6 +37,8 @@ export interface SidebarProps extends CommonProps {
   children?: ReactNode;
   /** If true will display the expand/collapse icon button */
   collapsable?: boolean;
+  /** If true will display appLogo provided at the top */
+  displayAppLogo?: boolean;
   /** If true will display Digital.ai branding at the bottom */
   displayBrand?: boolean;
   /** If true will display the go back nav item at the top of the sidebar */
@@ -51,9 +53,13 @@ export interface SidebarProps extends CommonProps {
   title?: string;
   /** If provided, will display an avatar next to the title text */
   titleAvatarProps?: AvatarProps;
+  /** Width of main menu drawer if mainMenu provided, defaults to 240px */
+  width?: number;
 }
 
 export const DotSidebar = ({
+  appLogo,
+  appLogoSmall,
   ariaLabel,
   backItem,
   brandDesc,
@@ -61,6 +67,7 @@ export const DotSidebar = ({
   className,
   collapsable = false,
   'data-testid': dataTestId,
+  displayAppLogo = false,
   displayBrand = true,
   goBack = false,
   navItems = [],
@@ -68,16 +75,23 @@ export const DotSidebar = ({
   open = true,
   title,
   titleAvatarProps,
+  width = 240,
 }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(open);
+  const displayHeader = title || (displayAppLogo && appLogo);
 
   useEffect(() => {
     setIsOpen(open);
   }, [open]);
 
+  const collapseNav = () => {
+    setIsOpen(!isOpen);
+  };
+
   const rootClasses = useStylesWithRootClass(
     rootClassName,
-    `${!isOpen ? 'collapsed' : 'expanded'} ${className}`
+    !isOpen && 'collapsed',
+    className
   );
 
   return (
@@ -86,15 +100,19 @@ export const DotSidebar = ({
       className={rootClasses}
       data-testid={`primaryNav ${dataTestId ? dataTestId : ''}`}
     >
-      {title && (
+      {displayHeader && (
         <header>
-          {isOpen ? (
-            <Fragment>
-              <DotAvatar {...titleAvatarProps} />
-              <DotTypography variant="h4">{title}</DotTypography>
-            </Fragment>
+          {displayAppLogo && appLogo ? (
+            <DotAppLogo
+              appLogo={appLogo}
+              appLogoSmall={appLogoSmall}
+              smallOnly={!isOpen}
+            />
           ) : (
-            <DotAvatar {...titleAvatarProps} />
+            <>
+              <DotAvatar {...titleAvatarProps} />
+              {isOpen && <DotTypography variant="h4">{title}</DotTypography>}
+            </>
           )}
         </header>
       )}
@@ -102,27 +120,31 @@ export const DotSidebar = ({
         <DotLink
           color="textPrimary"
           onClick={backItem.onClick}
-          title={backItem.title || backItem.text}
+          tooltip={backItem.title || backItem.text}
           underline="none"
         >
           <div className="go-back">
             <DotIcon
               data-testid="back-button"
               iconId={backItem.iconId ? backItem.iconId : 'back'}
-              title={backItem.title || backItem.text}
+              tooltip={backItem.title || backItem.text}
             />
             <DotTypography variant="h4">{backItem.text}</DotTypography>
           </div>
         </DotLink>
       )}
       {navItems.length > 0 && (
+        // TO-DO: defect with secondary open while sidebar collapsed
         <DotList
           ariaLabel="left navigation"
           className={`side-nav ${isOpen}`}
           data-testid="sideNav"
           dense={true}
+          disablePadding={true}
           items={navItems}
+          nestedDrawerLeftSpacing={width}
           nestedListType={nestedListType}
+          width={width - 32}
         />
       )}
       {children}
@@ -131,7 +153,7 @@ export const DotSidebar = ({
           <DotIconButton
             data-testid="toggle-nav"
             iconId="chevron-left"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={collapseNav}
           />
         </div>
       )}
@@ -140,8 +162,13 @@ export const DotSidebar = ({
           <DotTypography className="desc" variant="body2">
             {brandDesc}
           </DotTypography>
-          <LogoDigitalAi className="company-name" title="digital.ai" />
-          <LogoD className="d-icon" title="digital.ai" />
+          {/* TO-DO: need logo for dark theme */}
+          <DotTooltip title="digital.ai">
+            <LogoDigitalAi className="company-name" />
+          </DotTooltip>
+          <DotTooltip title="digital.ai">
+            <LogoD className="d-icon" title="digital.ai" />
+          </DotTooltip>
         </div>
       )}
     </StyledSidebar>

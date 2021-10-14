@@ -22,6 +22,9 @@ export default {
       control: { type: 'select', options: iconOptions },
       defaultValue: 'help',
     },
+    tooltip: {
+      defaultValue: 'Hello world',
+    },
     type: {
       defaultValue: 'primary',
     },

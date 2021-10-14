@@ -1,5 +1,9 @@
+const basePath = '/iframe.html?id=components-auto-complete--default';
+const withActionItemPath =
+  '/iframe.html?id=components-auto-complete--with-action-item';
+
 describe('dot-components: Auto Complete component', () => {
-  before(() => cy.visit('/iframe.html?id=components-auto-complete--default'));
+  before(() => cy.visit(basePath));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-autocomplete');
@@ -7,6 +11,37 @@ describe('dot-components: Auto Complete component', () => {
 
   it('should render the component', () => {
     cy.get('input').should('have.class', 'MuiAutocomplete-input');
+  });
+
+  describe('with action item', () => {
+    before(() => {
+      cy.visit(withActionItemPath);
+      cy.get('.dot-autocomplete .MuiAutocomplete-input').click();
+    });
+
+    it('should render action item with correct styles', () => {
+      cy.get('.dot-action-item .dot-button')
+        .should('have.css', 'height', '56px')
+        .and('have.css', 'padding', '6px 16px')
+        .and('have.css', 'margin', '0px');
+    });
+
+    it('should render non-focused action item with correct styles', () => {
+      cy.get('.dot-action-item .dot-button').should(
+        'have.css',
+        'background-color',
+        'rgba(0, 0, 0, 0)'
+      );
+    });
+
+    it('should render focused action item with correct styles', () => {
+      cy.get('.dot-action-item .dot-button').focus();
+      cy.get('.dot-action-item button:focus').should(
+        'have.css',
+        'background-color',
+        'rgb(227, 229, 232)'
+      );
+    });
   });
 
   describe('style decisions', () => {
@@ -34,66 +69,10 @@ describe('dot-components: Auto Complete component', () => {
   });
 });
 
-describe('Agility theme style decisions', () => {
-  before(() =>
-    cy.visit(
-      '/iframe.html?id=components-auto-complete--default&theme=agility-dark'
-    )
-  );
-
-  it('should apply the correct theme colors', () => {
-    cy.get('.dot-text-field').should(
-      'have.css',
-      'background-color',
-      'rgba(0, 0, 0, 0)'
-    );
-  });
-});
-
-describe('with action item', () => {
-  const basePath = '/iframe.html?id=components-auto-complete--with-action-item';
-
-  describe('style decisions', () => {
-    before(() => {
-      cy.visit(basePath);
-      cy.get('.dot-autocomplete .MuiAutocomplete-input').click();
-    });
-
-    it('should render action item with correct styles', () => {
-      cy.get('.dot-action-item .dot-button')
-        .should('have.css', 'height', '56px')
-        .and('have.css', 'padding', '6px 16px')
-        .and('have.css', 'margin', '0px');
-    });
-  });
-
-  describe('light theme style decisions', () => {
-    before(() => {
-      cy.visit(`${basePath}&theme=light`);
-      cy.get('.dot-autocomplete .MuiAutocomplete-input').click();
-    });
-
-    it('should render non-focused action item with correct styles', () => {
-      cy.get('.dot-action-item .dot-button').should(
-        'have.css',
-        'background-color',
-        'rgba(0, 0, 0, 0)'
-      );
-    });
-
-    it('should render focused action item with correct styles', () => {
-      cy.get('.dot-action-item .dot-button').focus();
-      cy.get('.dot-action-item button:focus-visible').should(
-        'have.css',
-        'background-color',
-        'rgb(227, 229, 232)'
-      );
-    });
-  });
-
+describe('Agility theme(s) decisions', () => {
   describe('agility-light theme style decisions', () => {
     before(() => {
-      cy.visit(`${basePath}&theme=agility-light`);
+      cy.visit(`${withActionItemPath}&theme=agility-light`);
       cy.get('.dot-autocomplete .MuiAutocomplete-input').click();
     });
 
@@ -117,8 +96,16 @@ describe('with action item', () => {
 
   describe('agility-dark theme style decisions', () => {
     before(() => {
-      cy.visit(`${basePath}&theme=agility-dark`);
+      cy.visit(`${withActionItemPath}&theme=agility-dark`);
       cy.get('.dot-autocomplete .MuiAutocomplete-input').click();
+    });
+
+    it('should apply the correct theme colors', () => {
+      cy.get('.dot-text-field').should(
+        'have.css',
+        'background-color',
+        'rgba(0, 0, 0, 0)'
+      );
     });
 
     it('should render non-focused action item with correct styles', () => {

@@ -32,6 +32,9 @@ const mockListItems: Array<ListItemProps> = [
         text: 'Feature Progression',
         href: '/feature-progression',
       },
+      {
+        child: 'Hello Batman',
+      },
     ],
     text: 'Progressions',
   },
@@ -58,6 +61,7 @@ describe('List', () => {
       disablePadding: false,
       items: mockListItems,
       menuPlacement: 'right' as PopperPlacement,
+      nestedDrawerSpacing: 240,
       nestedListType: 'expandable' as NestedListType,
     };
     const listProps: ListProps = props;
@@ -68,6 +72,7 @@ describe('List', () => {
       anchorEl: null as Element,
       items: mockListItems,
       menuPlacement: 'right' as PopperPlacement,
+      nestedDrawerSpacing: 240,
       onMenuLeave: jest.fn(),
       open: false,
       parentItemIndex: 1,
@@ -97,6 +102,19 @@ describe('List', () => {
 
   it('should display nested menu when clicked', () => {
     render(<DotList items={mockListItems} nestedListType="menu" />);
+    const item = screen.getAllByRole('button');
+    const nestedItemText = 'Package Progression';
+
+    waitFor(() => {
+      expect(screen.getByText(nestedItemText)).not.toBeVisible();
+    });
+
+    userEvent.click(item[1]);
+    expect(screen.getByText(nestedItemText)).toBeVisible();
+  });
+
+  it('should display nested drawer when clicked', () => {
+    render(<DotList items={mockListItems} nestedListType="drawer" />);
     const item = screen.getAllByRole('button');
     const nestedItemText = 'Package Progression';
 
@@ -143,7 +161,32 @@ describe('List', () => {
 });
 
 describe('ListItem', () => {
-  it("should have 'aria-label' attribute with correct value", () => {
+  it('should have unchanged API', () => {
+    const props = {
+      ariaLabel: 'hello',
+      child: <h3>Hello World</h3>,
+      className: 'foo-bar',
+      component: 'ul' as ElementType,
+      'data-testid': 'test-list',
+      divider: true,
+      endIconId: 'home',
+      href: 'http://www.digital.ai',
+      index: 0,
+      items: mockListItems,
+      menuPlacement: 'right' as PopperPlacement,
+      nestedDrawerSpacing: 240,
+      nestedListType: 'expandable' as NestedListType,
+      onClick: jest.fn(),
+      selected: true,
+      startIconId: 'home',
+      text: 'Hello World',
+      title: 'Hello App',
+    };
+    const listItemProps: ListItemProps = props;
+    expect(listItemProps).toEqual(props);
+  });
+
+  xit("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
     const dataTestId = 'dot-list-item';
     render(

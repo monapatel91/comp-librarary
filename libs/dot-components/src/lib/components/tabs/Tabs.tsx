@@ -55,7 +55,7 @@ export const DotTabs = ({
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleChange = (event: ChangeEvent<unknown>, val: any) => {
+  const handleChange = (_event: ChangeEvent<unknown>, val: any) => {
     setValue(val);
     onChange && onChange(val);
   };

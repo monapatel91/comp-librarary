@@ -28,6 +28,7 @@ describe('DotDialog', () => {
       size: 'small' as ButtonSize,
       startIcon: <i className="box" />,
       titleTooltip: 'I am Batman',
+      tooltip: 'I am Batman',
       type: 'text' as ButtonType,
     };
 

@@ -17,6 +17,9 @@ export default {
     id: {
       defaultValue: 'foobar',
     },
+    loading: {
+      defaultValue: false,
+    },
     menuPlacement: {
       defaultValue: 'bottom',
       name: 'Menu Placement',

@@ -185,7 +185,7 @@ export default {
 } as Meta;
 
 export const Default: Story<ListProps> = (args) => (
-  <div style={{ width: '300px' }}>
+  <div style={{ top: '-1rem', left: '-1rem', position: 'relative' }}>
     <DotList {...args} />
   </div>
 );

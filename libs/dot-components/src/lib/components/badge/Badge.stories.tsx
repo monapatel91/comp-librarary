@@ -7,9 +7,6 @@ export default {
   title: 'Components/Badge',
   component: DotBadge,
   argTypes: {
-    color: {
-      defaultValue: 'primary',
-    },
     overlap: {
       defaultValue: 'rectangle',
     },

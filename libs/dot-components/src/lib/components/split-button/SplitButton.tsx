@@ -4,6 +4,7 @@ import React, {
   ReactNode,
   useRef,
   useState,
+  useEffect,
 } from 'react';
 import { DotIcon } from '../icon/Icon';
 import { MenuItemProps } from '../menu/Menu';
@@ -48,7 +49,9 @@ export const DotSplitButton = ({
   onSelect,
   options = [],
   size = 'medium',
+  /** The use of `titleTooltip` is deprecated and will be removed in the next major release */
   titleTooltip,
+  tooltip,
   type = 'primary',
 }: SplitButtonProps) => {
   type OptionIndexMap = {
@@ -81,7 +84,14 @@ export const DotSplitButton = ({
       onClick && onClick(event);
     }
   };
-
+  useEffect(() => {
+    // deprecation warning
+    if (titleTooltip) {
+      console.warn(
+        'The use of `titleTooltip` is deprecated and will be removed in the next major release, please use `tooltip` isntead.'
+      );
+    }
+  }, []);
   return (
     <>
       <StyledSplitButtonGroup
@@ -99,7 +109,7 @@ export const DotSplitButton = ({
           isSubmit={isSubmit}
           onClick={(event) => handleClick(event)}
           size={size}
-          titleTooltip={titleTooltip}
+          tooltip={tooltip}
           type={type}
         >
           {children}
@@ -113,7 +123,7 @@ export const DotSplitButton = ({
           size={size}
           type={type}
         >
-          <DotIcon fontSize="small" iconId="arrow-down" title={titleTooltip} />
+          <DotIcon fontSize="small" iconId="arrow-down" tooltip={tooltip} />
         </DotButton>
       </StyledSplitButtonGroup>
       <StyledMenu

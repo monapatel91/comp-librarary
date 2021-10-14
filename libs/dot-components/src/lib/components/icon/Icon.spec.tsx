@@ -9,9 +9,10 @@ describe('DotIcon', () => {
       ariaLabel: 'icon',
       className: 'test-class',
       'data-testid': 'testid',
-      fontSize: 'default' as IconFontSize,
+      fontSize: 'medium' as IconFontSize,
       iconId: 'home',
       title: 'icon title',
+      tooltip: 'Hello world',
     };
     const iconProps: IconProps = props;
     expect(iconProps).toEqual(props);
@@ -39,6 +40,10 @@ describe('DotIcon', () => {
 
   it('should have a deprecation warning if fontSize is set to "inherit"', () => {
     render(<DotIcon iconId="home" fontSize="inherit" />);
+    expect(consoleSpy).toBeCalled();
+  });
+  it('should have a deprecation warning if title is used', () => {
+    render(<DotIcon iconId="home" title="icon title" />);
     expect(consoleSpy).toBeCalled();
   });
 });

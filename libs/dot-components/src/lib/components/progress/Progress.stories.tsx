@@ -16,6 +16,9 @@ export default {
     title: {
       defaultValue: 'Loading Data...',
     },
+    tooltip: {
+      defaultValue: 'Loading Data...',
+    },
     value: {
       defaultValue: 20,
       control: { type: 'range', min: 0, max: 100, step: 1 },

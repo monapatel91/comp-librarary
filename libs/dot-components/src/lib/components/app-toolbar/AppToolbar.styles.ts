@@ -44,7 +44,15 @@ export const StyledAppToolbar = styled.header`
       }
 
       .dot-icon-btn {
+        border: ${theme.palette.product === 'agility' && 'none'};
         color: ${theme.palette.grey[100]};
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: ${theme.palette.product === 'agility' &&
+          theme.palette.agilityInterface.topBarIconHoverBg};
+        }
       }
 
       .dot-main-menu-btn {
@@ -59,7 +67,18 @@ export const StyledAppToolbar = styled.header`
 
         .primary-logo,
         .app-logo {
-          margin-right: 10px;
+          margin-right: ${theme.spacing(1.5)}px;
+        }
+
+        .primary-logo,
+        .dot-app-logo {
+          display: flex;
+          max-width: 200px;
+          svg,
+          img {
+            max-height: 36px;
+            max-width: 200px;
+          }
         }
 
         a {
@@ -73,7 +92,7 @@ export const StyledAppToolbar = styled.header`
         }
 
         .divider {
-          margin-left: 6px;
+          margin-left: ${theme.spacing(2)}px;
         }
       }
 
