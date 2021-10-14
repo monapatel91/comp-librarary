@@ -36,6 +36,14 @@ describe('dot-components: Dialog component', () => {
         .and('have.css', 'padding-bottom', '8px');
     });
 
+    it('dialog alert banner styles', () => {
+      cy.get('.dot-alert-banner').should(
+        'have.css',
+        'background-color',
+        'rgb(250, 232, 232)'
+      );
+    });
+
     it('dialog content sizing', () => {
       cy.get('div.dot-dialog-content')
         .should('have.css', 'padding-top', '8px')
