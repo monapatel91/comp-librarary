@@ -2,10 +2,11 @@ import { Popper } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-menu';
+export const popperClassName = 'dot-popper';
 
 export const StyledPopper = styled(Popper)`
   ${({ theme }) => css`
-    &.${rootClassName} {
+    &.${rootClassName}, &.${popperClassName} {
       &.loading .MuiPaper-root {
         align-items: center;
         display: flex;
@@ -49,7 +50,7 @@ export const StyledPopper = styled(Popper)`
         border-top: 1px solid ${theme.palette.grey[100]};
         line-height: inherit;
 
-        button {
+        button.dot-button {
           border-radius: ${theme.spacing(0, 0, 0.5, 0.5)};
           justify-content: flex-start;
           height: 100%;
