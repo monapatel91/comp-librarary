@@ -70,6 +70,17 @@ export const StyledAppToolbar = styled.header`
           margin-right: ${theme.spacing(1.5)}px;
         }
 
+        .primary-logo,
+        .dot-app-logo {
+          display: flex;
+          max-width: 200px;
+          svg,
+          img {
+            max-height: 36px;
+            max-width: 200px;
+          }
+        }
+
         a {
           line-height: 0;
         }
