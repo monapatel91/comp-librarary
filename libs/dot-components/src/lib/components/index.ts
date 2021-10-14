@@ -5,6 +5,7 @@ export { DotAppLogo } from './app-logo/AppLogo';
 export { DotAppToolbar, AppToolbarProps } from './app-toolbar/AppToolbar';
 export {
   AutoCompleteOption,
+  AutoCompleteProps,
   DotAutoComplete,
   AutoCompleteValue,
   parseAutoCompleteValue,
@@ -32,7 +33,11 @@ export { DotEmptyState } from './empty-state/EmptyState';
 export { DotForm } from './form/Form';
 export { DotFormGroup } from './form-group/FormGroup';
 export { DotDynamicForm } from './dynamic-form/DynamicForm';
-export { DynamicFormSchema, DynamicFormState } from './dynamic-form/models';
+export {
+  DynamicFormSchema,
+  DynamicFormState,
+  FieldValidation,
+} from './dynamic-form/models';
 export { DotIcon } from './icon/Icon';
 export { DotIconButton, IconButtonProps } from './button/IconButton';
 export { DotInlineEdit } from './inline-edit/InlineEdit';
