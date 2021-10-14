@@ -174,13 +174,21 @@ export const DemoDynamicForm = () => {
     console.log(formData);
   };
 
+  const handleChange = (formData: DynamicFormState) => {
+    console.log(formData);
+  };
+
   return (
     <StyledDemoDynamicForm className={rootClassName}>
       <DotActionToolbar>
         <DotBreadcrumbs items={[{ text: 'Demo Dynamic Form' }]} />
       </DotActionToolbar>
 
-      <DotDynamicForm schema={schema} onFormSubmit={handleFormSubmit} />
+      <DotDynamicForm
+        schema={schema}
+        onChange={handleChange}
+        onFormSubmit={handleFormSubmit}
+      />
     </StyledDemoDynamicForm>
   );
 };

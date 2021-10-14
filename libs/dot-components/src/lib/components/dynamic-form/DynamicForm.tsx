@@ -34,6 +34,7 @@ const initialStateItem: DynamicFormStateItem = {
 };
 
 export interface DynamicFormProps extends CommonProps {
+  onChange?: (formData: DynamicFormState) => void;
   onFormSubmit?: (formData: DynamicFormState) => void;
   schema: DynamicFormSchema;
 }
@@ -53,6 +54,7 @@ const DATA_CONTROLS_WITHOUT_VALIDATION: DynamicFormControlType[] = [
 export const DotDynamicForm = ({
   className,
   'data-testid': dataTestId,
+  onChange,
   onFormSubmit,
   schema,
 }: DynamicFormProps) => {
@@ -103,15 +105,21 @@ export const DotDynamicForm = ({
   );
 
   useEffect(() => {
-    console.log(formState);
     const currentIsFormValid = checkIfFormDataValid(formState.data);
+    // Check if validity state has changed
     if (formState.isValid !== currentIsFormValid) {
-      setFormState((prevState) => ({
-        ...prevState,
-        isValid: currentIsFormValid,
-      }));
+      setFormState((prevState) => {
+        const newState = {
+          ...prevState,
+          isValid: currentIsFormValid,
+        };
+        onChange?.(newState);
+        return newState;
+      });
+    } else {
+      onChange?.(formState);
     }
-  }, [formState.data]);
+  }, [formState]);
 
   const updateFormState = ({
     controlName,
