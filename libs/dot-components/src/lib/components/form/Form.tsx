@@ -7,7 +7,7 @@ export interface FormProps extends CommonProps {
   /** The content for the Form. **/
   children: ReactNode;
   /** Callback function when form is submitted **/
-  onSubmit: (event: FormEvent) => void;
+  onSubmit?: (event: FormEvent) => void;
 }
 
 export const DotForm = ({
