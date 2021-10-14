@@ -62,7 +62,9 @@ export const StyledAppToolbar = styled.header`
           margin-right: ${theme.spacing(1.5)}px;
         }
 
-        .primary-logo {
+        .primary-logo,
+        .dot-app-logo {
+          display: flex;
           max-width: 200px;
           svg,
           img {
