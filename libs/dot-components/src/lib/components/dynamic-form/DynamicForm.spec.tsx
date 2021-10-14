@@ -1,10 +1,15 @@
-import { render } from '@testing-library/react';
+import React, { render } from '@testing-library/react';
+import { DotThemeProvider } from '../../theme-provider/ThemeProvider';
 
-import DynamicForm from './DynamicForm';
+import { DotDynamicForm } from './DynamicForm';
 
-describe('DynamicForm', () => {
+describe('DotDynamicForm', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<DynamicForm />);
+    const { baseElement } = render(
+      <DotThemeProvider>
+        <DotDynamicForm schema={{}} />
+      </DotThemeProvider>
+    );
     expect(baseElement).toBeTruthy();
   });
 });
