@@ -1,4 +1,10 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useState,
+  Fragment,
+} from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDynamicForm } from './DynamicForm.styles';
@@ -186,15 +192,17 @@ export const DotDynamicForm = ({
         {
           controlName,
           controlType,
-          controlProps,
+          controlProps = {},
+          customElement,
           initialValue,
         }: DynamicFormControl,
         index: number
       ) => {
+        const inputControlName = controlName ? controlName : `control-${index}`;
         switch (controlType) {
           case 'dot-input-text': {
             return buildInputTextControl({
-              controlName,
+              controlName: inputControlName,
               controlProps,
               formData: formState.data,
               index,
@@ -203,7 +211,7 @@ export const DotDynamicForm = ({
           }
           case 'dot-autocomplete': {
             return buildAutocompleteControl({
-              controlName,
+              controlName: inputControlName,
               controlProps,
               formData: formState.data,
               index,
@@ -212,7 +220,7 @@ export const DotDynamicForm = ({
           }
           case 'dot-checkbox': {
             return buildCheckboxControl({
-              controlName,
+              controlName: inputControlName,
               controlProps,
               formData: formState.data,
               index,
@@ -231,6 +239,9 @@ export const DotDynamicForm = ({
           }
           case 'dot-submit': {
             return buildSubmitControl({ controlProps, formState, index });
+          }
+          case 'custom-element': {
+            return <Fragment key={index}>{customElement}</Fragment>;
           }
           default: {
             return '';

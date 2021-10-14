@@ -2,6 +2,7 @@ import { AutoCompleteProps } from '../auto-complete/AutoComplete';
 import { ButtonProps } from '../button/Button';
 import { CheckboxProps } from '../checkbox/Checkbox';
 import { InputTextProps } from '../input-form-fields/InputText';
+import { ReactNode } from 'react';
 
 export type DynamicFormControlType =
   | 'dot-input-text'
@@ -9,7 +10,8 @@ export type DynamicFormControlType =
   | 'dot-autocomplete'
   | 'dot-button'
   | 'dot-reset'
-  | 'dot-submit';
+  | 'dot-submit'
+  | 'custom-element';
 
 export type DynamicFormControlProps =
   | AutoCompleteProps
@@ -18,11 +20,12 @@ export type DynamicFormControlProps =
   | ButtonProps;
 
 export interface DynamicFormControl {
-  controlName: string;
+  controlName?: string;
   controlType: DynamicFormControlType;
-  controlProps: DynamicFormControlProps;
+  controlProps?: DynamicFormControlProps;
   initialValue?: unknown;
   validation?: DynamicFormValidation;
+  customElement?: ReactNode;
 }
 
 export interface FieldValidation {

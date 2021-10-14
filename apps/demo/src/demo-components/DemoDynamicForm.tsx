@@ -13,6 +13,7 @@ import {
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 import { FieldValidation } from '../../../../libs/dot-components/src/lib/components/dynamic-form/models';
 import { AutoCompleteProps } from '../../../../libs/dot-components/src/lib/components/auto-complete/AutoComplete';
+import { Divider } from '@material-ui/core';
 
 export const DemoDynamicForm = () => {
   const schema: DynamicFormSchema = {
@@ -147,6 +148,10 @@ export const DemoDynamicForm = () => {
             value: true,
           },
         },
+      },
+      {
+        controlType: 'custom-element',
+        customElement: <Divider className="divider" />,
       },
       {
         controlName: 'btnReset',
