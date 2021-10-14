@@ -35,7 +35,7 @@ const initialStateItem: DynamicFormStateItem = {
 
 export interface DynamicFormProps extends CommonProps {
   onChange?: (formData: DynamicFormState) => void;
-  onFormSubmit?: (formData: DynamicFormState) => void;
+  onSubmit?: (formData: DynamicFormState) => void;
   schema: DynamicFormSchema;
 }
 
@@ -55,7 +55,7 @@ export const DotDynamicForm = ({
   className,
   'data-testid': dataTestId,
   onChange,
-  onFormSubmit,
+  onSubmit,
   schema,
 }: DynamicFormProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -283,7 +283,7 @@ export const DotDynamicForm = ({
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onFormSubmit?.(formState);
+    onSubmit?.(formState);
   };
 
   return (

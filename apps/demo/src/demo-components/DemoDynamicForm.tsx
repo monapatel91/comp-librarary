@@ -170,7 +170,7 @@ export const DemoDynamicForm = () => {
     ],
   };
 
-  const handleFormSubmit = (formData: DynamicFormState) => {
+  const handleSubmit = (formData: DynamicFormState) => {
     console.log(formData);
   };
 
@@ -187,7 +187,7 @@ export const DemoDynamicForm = () => {
       <DotDynamicForm
         schema={schema}
         onChange={handleChange}
-        onFormSubmit={handleFormSubmit}
+        onSubmit={handleSubmit}
       />
     </StyledDemoDynamicForm>
   );
