@@ -5,6 +5,7 @@ import { InputTextProps } from '../input-form-fields/InputText';
 import { InputSelectProps } from '../input-form-fields/InputSelect';
 import { ReactNode } from 'react';
 import { CheckboxGroupProps } from '../checkbox/CheckboxGroup';
+import { RadioGroupProps } from '../radio/RadioGroup';
 
 export type DynamicFormControlType =
   | 'dot-input-text'
@@ -13,6 +14,7 @@ export type DynamicFormControlType =
   | 'dot-checkbox-group'
   | 'dot-autocomplete'
   | 'dot-button'
+  | 'dot-radio-group'
   | 'dot-reset'
   | 'dot-submit'
   | 'custom-element';
@@ -23,7 +25,8 @@ export type DynamicFormControlProps =
   | InputSelectProps
   | CheckboxProps
   | CheckboxGroupProps
-  | ButtonProps;
+  | ButtonProps
+  | RadioGroupProps;
 
 export interface DynamicFormControl {
   controlName?: string;

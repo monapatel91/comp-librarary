@@ -20,6 +20,7 @@ import {
   DotCheckboxGroup,
   CheckboxGroupProps,
 } from '../checkbox/CheckboxGroup';
+import { DotRadioGroup, RadioGroupProps } from '../radio/RadioGroup';
 
 type AutoCompleteChangeHandler = (
   controlName: string
@@ -120,6 +121,29 @@ export const buildAutocompleteControl = ({
       key={index}
       {...props}
       value={value}
+      error={!!errorMessage}
+      helperText={errorMessage ? errorMessage : props.helperText}
+      onChange={handleChangeFn(controlName)}
+    />
+  );
+};
+
+export const buildRadioGroupControl = ({
+  controlName,
+  controlProps,
+  formData,
+  handleChange,
+  index,
+}: ControlledInputArgs) => {
+  const props = controlProps as RadioGroupProps;
+  const value = getControlValue<string>(controlName, formData) || '';
+  const errorMessage = formData[controlName].errorMessage;
+  const handleChangeFn = handleChange as ChangeHandler;
+  return (
+    <DotRadioGroup
+      key={index}
+      {...props}
+      value={props.value ? props.value : value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
       onChange={handleChangeFn(controlName)}

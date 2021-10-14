@@ -13,6 +13,7 @@ import {
   DotIcon,
   FieldValidation,
   InputSelectProps,
+  RadioGroupProps,
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 import { Divider } from '@material-ui/core';
@@ -183,6 +184,23 @@ export const DemoDynamicForm = () => {
             value: true,
           },
         },
+      },
+      {
+        controlName: 'superHero',
+        controlType: 'dot-radio-group',
+        controlProps: {
+          id: 'superHero',
+          name: 'superHero',
+          groupLabel: 'Select Your Favorite Superhero',
+          required: true,
+          value: 'None',
+          options: [
+            { label: 'None', value: 'None' },
+            { label: 'Batman', value: 'Batman' },
+            { label: 'Superman', value: 'Superman' },
+            { label: 'Spiderman', value: 'Spiderman' },
+          ],
+        } as RadioGroupProps,
       },
       {
         controlName: 'isMandatory',

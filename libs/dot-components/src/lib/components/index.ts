@@ -53,7 +53,7 @@ export { DotNavigationRail, RailItem } from './navigation-rail/NavigationRail';
 export { DotPill } from './pill/Pill';
 export { DotProgress } from './progress/Progress';
 export { DotRadioButton, RadioButtonProps } from './radio/RadioButton';
-export { DotRadioGroup } from './radio/RadioGroup';
+export { DotRadioGroup, RadioGroupProps } from './radio/RadioGroup';
 export { BackItemProps, DotSidebar, SidebarProps } from './sidebar/Sidebar';
 export { DotSkeleton } from './skeleton/Skeleton';
 export { DotSnackbar } from './snackbar/Snackbar';

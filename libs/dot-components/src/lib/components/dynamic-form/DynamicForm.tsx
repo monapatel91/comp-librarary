@@ -31,6 +31,7 @@ import {
   buildCheckboxGroupControl,
   buildInputSelectControl,
   buildInputTextControl,
+  buildRadioGroupControl,
   buildResetControl,
   buildSubmitControl,
 } from './helpers';
@@ -56,6 +57,7 @@ const DATA_CONTROLS: DynamicFormControlType[] = [
   'dot-input-select',
   'dot-checkbox',
   'dot-checkbox-group',
+  'dot-radio-group',
 ];
 
 /* Array of control types for which don't have error state so validation doesn't make any sense */
@@ -240,6 +242,15 @@ export const DotDynamicForm = ({
               formData: formState.data,
               index,
               handleChange: handleAutocompleteChange,
+            });
+          }
+          case 'dot-radio-group': {
+            return buildRadioGroupControl({
+              controlName: inputControlName,
+              controlProps,
+              formData: formState.data,
+              index,
+              handleChange: handleInputChange,
             });
           }
           case 'dot-checkbox': {
