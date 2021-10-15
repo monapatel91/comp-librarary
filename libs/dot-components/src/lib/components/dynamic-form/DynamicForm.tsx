@@ -13,10 +13,8 @@ import { DotForm } from '../form/Form';
 import { AutoCompleteValue } from '../auto-complete/AutoComplete';
 import {
   DynamicFormControl,
-  DynamicFormControlType,
   DynamicFormSchema,
   DynamicFormState,
-  DynamicFormStateItem,
   FormStateUpdateArgs,
 } from './models';
 import {
@@ -35,37 +33,16 @@ import {
   buildResetControl,
   buildSubmitControl,
   DynamicFormOutputData,
+  getInitialFormState,
   getOutputFormData,
 } from './helpers';
 import { CheckboxProps } from '../checkbox/Checkbox';
-
-const initialStateItem: DynamicFormStateItem = {
-  value: null,
-  isValid: false,
-  isTouched: false,
-  errorMessage: null,
-};
 
 export interface DynamicFormProps extends CommonProps {
   onChange?: (formData: DynamicFormState) => void;
   onSubmit?: (formData: DynamicFormOutputData) => void;
   schema: DynamicFormSchema;
 }
-
-/* Array of control types for which we manage form state */
-const DATA_CONTROLS: DynamicFormControlType[] = [
-  'dot-autocomplete',
-  'dot-input-text',
-  'dot-input-select',
-  'dot-checkbox',
-  'dot-checkbox-group',
-  'dot-radio-group',
-];
-
-/* Array of control types for which don't have error state so validation doesn't make any sense */
-const DATA_CONTROLS_WITHOUT_VALIDATION: DynamicFormControlType[] = [
-  'dot-checkbox',
-];
 
 export const DotDynamicForm = ({
   className,
@@ -76,49 +53,10 @@ export const DotDynamicForm = ({
 }: DynamicFormProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-  const getInitialState = () => {
-    const initialState: DynamicFormState = {
-      data: {},
-      isValid: false,
-    };
-    schema.controls.forEach(
-      ({
-        controlName,
-        initialValue,
-        controlType,
-        validation,
-      }: DynamicFormControl) => {
-        // Set only data controls (ignore buttons and other non-relevant elements)
-        if (DATA_CONTROLS.includes(controlType)) {
-          initialState.data[controlName] = { ...initialStateItem };
-          if (initialValue) {
-            initialState.data[controlName].value = initialValue;
-            initialState.data[controlName].isTouched = true;
-            const fieldValidation = getFieldValidation(
-              initialValue,
-              validation
-            );
-            initialState.data[controlName].isValid = fieldValidation.isValid;
-            initialState.data[controlName].errorMessage =
-              fieldValidation.errorMessage;
-          }
-          // If no validation always set valid to true
-          if (
-            !validation ||
-            DATA_CONTROLS_WITHOUT_VALIDATION.includes(controlType)
-          ) {
-            // Set always to valid for now
-            initialState.data[controlName].isValid = true;
-          }
-        }
-      }
-    );
-    return initialState;
-  };
+  const initialFormState = getInitialFormState(schema);
 
-  const [formState, setFormState] = useState<DynamicFormState>(
-    getInitialState()
-  );
+  const [formState, setFormState] =
+    useState<DynamicFormState>(initialFormState);
 
   useEffect(() => {
     const currentIsFormValid = checkIfFormDataValid(formState.data);
@@ -203,7 +141,7 @@ export const DotDynamicForm = ({
       updateFormState({ controlName, formSchema: schema, newValue: value });
     };
 
-  const handleReset = () => setFormState(getInitialState());
+  const handleReset = () => setFormState(initialFormState);
 
   const buildFormControls = () => {
     return schema.controls.map(
