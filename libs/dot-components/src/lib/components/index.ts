@@ -1,4 +1,3 @@
-import { DotTooltip } from './tooltip/Tooltip';
 export { DotAccordion } from './accordion/Accordion';
 export { DotActionToolbar } from './action-toolbar/ActionToolbar';
 export { DotAlertBanner } from './alert-banner/AlertBanner';
