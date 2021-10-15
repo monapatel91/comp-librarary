@@ -76,6 +76,20 @@ When working on something that is part of a Digital.ai Agility issue we request 
 - Thoroughly review and complete the **Author Checklist** on your pull request.
 - Update your PR with the issue # that your PR resolves if applicable. [More info](https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword.)
 
+## Versioning
+
+We use Semantic Versioning to the best of our ability. When submitting a PR please make a note of which version number should be updated.
+
+- `MAJOR` - Incompatible API changes
+- `MINOR` - Adding functionality which is backwards compatible
+- `PATCH` - Updates and bug fixes to codebase which are backwards compatible.
+
+If your PR requires a `MAJOR` change, please apply the `breaking change` label and detail the upgrade path in the pull request.
+
+### Example
+
+`SampleComponent` now uses `tooltip` prop instead of `title` prop.
+
 # Component vs. Demo
 
 If you're creating or modifying an existing component, such as a `<Button>`, then your code changes will be in the `libs/dot-components/src` portion of our codebase.

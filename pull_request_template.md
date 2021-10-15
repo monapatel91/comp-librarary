@@ -1,7 +1,7 @@
 ## Submitting a PR
 
 - Please provide enough information so that others can review your pull request.
-- If adding additional functionality please extend `e2e` and `unit` tests accordingly.
+- If adding additional functionality or resolving a defect, please extend `e2e` and `unit` tests accordingly.
 - Update your PR with the issue # that your PR resolves if applicable. [More info](https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword.)
 - PR should be marked as `draft` if still a work in progress
 - PR should be marked as `ready` when your code changes are complete and ready for review.
@@ -28,7 +28,8 @@ For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot
   - [ ] `testing-library` imports are from `testing-utils`
   - [ ] modified props have been added to API unit test
 - [ ] `e2e` test coverage updated
-- [ ] breaking changes are specified as such
+- [ ] `MAJOR` changes have `breaking change` label applied
+  - [ ] upgrade path specified in PR description
 - [ ] Related issue(s) linked to PR
 
 ## Reviewer Checklist
