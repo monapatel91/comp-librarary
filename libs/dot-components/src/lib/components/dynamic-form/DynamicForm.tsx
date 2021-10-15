@@ -5,6 +5,7 @@ import Form, {
   ISubmitEvent,
   ObjectFieldTemplateProps,
   UiSchema,
+  FormValidation,
 } from 'react-jsonschema-form';
 import { JSONSchema6 } from 'json-schema';
 
@@ -12,13 +13,21 @@ import { StyledFormContainer, rootClassName } from '../form/Form.styles';
 import { CustomTextWidget, CustomCheckboxWidget } from './custom-widgets';
 import { DotButton } from '../button/Button';
 
-export interface DynamicFormProps {
+export interface DynamicFormProps<T> {
   schema: JSONSchema6;
-  formData?: any;
-  onSubmit?: (event: ISubmitEvent<any>) => void;
+  formData?: T;
+  onSubmit?: (event: ISubmitEvent<T>) => void;
+  validate?:
+    | ((formData: T, errors: FormValidation) => FormValidation)
+    | undefined;
 }
 
-function DotDynamicForm({ schema, formData, onSubmit }: DynamicFormProps) {
+function DotDynamicForm<T>({
+  schema,
+  formData,
+  onSubmit,
+  validate,
+}: DynamicFormProps<T>) {
   const ObjectFieldTemplate = ({ properties }: ObjectFieldTemplateProps) => (
     <StyledFormContainer className={rootClassName}>
       {properties.map((property) => property.content)}
@@ -63,6 +72,7 @@ function DotDynamicForm({ schema, formData, onSubmit }: DynamicFormProps) {
         liveValidate={true}
         formData={formData}
         onSubmit={onSubmit}
+        validate={validate}
       >
         <div>
           <DotButton isSubmit>Submit</DotButton>

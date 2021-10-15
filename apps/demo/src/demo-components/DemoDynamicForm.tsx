@@ -7,6 +7,7 @@ import {
 import { JSONSchema6 } from 'json-schema';
 
 import { StyledDemoDynamicForm, rootClassName } from './DemoDynamicForm.styles';
+import { FormValidation } from 'react-jsonschema-form';
 
 const DemoDynamicForm = () => {
   const schema: JSONSchema6 = {
@@ -28,20 +29,6 @@ const DemoDynamicForm = () => {
       username: {
         type: 'string',
         title: 'Username',
-        // customValidator: (value: string): FieldValidation => {
-        //   // Examples of taken usernames to validate against
-        //   const takenUsernames = ['username', 'john', 'mark'];
-        //   if (takenUsernames.includes(value)) {
-        //     return {
-        //       isValid: false,
-        //       errorMessage: 'Username is already taken',
-        //     };
-        //   }
-        //   return {
-        //     isValid: true,
-        //     errorMessage: null,
-        //   };
-        // },
       },
       password: {
         type: 'string',
@@ -151,6 +138,19 @@ const DemoDynamicForm = () => {
     required: ['firstName', 'lastName', 'username', 'password'],
   };
 
+  const validate: (formData: any, errors: FormValidation) => FormValidation = (
+    formData,
+    errors
+  ) => {
+    // Examples of taken usernames to validate against
+    const takenUsernames = ['username', 'john', 'mark'];
+    if (takenUsernames.includes(formData.username)) {
+      errors.username.addError('Username is already taken');
+    }
+
+    return errors;
+  };
+
   const handleSubmit = (formData) => {
     console.log('***', formData);
   };
@@ -165,6 +165,7 @@ const DemoDynamicForm = () => {
         schema={schema}
         // onChange={handleChange}
         onSubmit={handleSubmit}
+        validate={validate}
       />
     </StyledDemoDynamicForm>
   );
