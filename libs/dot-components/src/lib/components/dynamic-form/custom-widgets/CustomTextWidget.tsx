@@ -18,8 +18,15 @@ export const CustomTextWidget = ({
   const [helperText, setHelperText] = useState<string>();
 
   useEffect(() => {
-    setError(rawErrors?.length > 0 ? true : false);
-    setHelperText(rawErrors?.length > 0 ? rawErrors[0] : null);
+    const hasError = rawErrors?.length > 0 ? true : false;
+
+    if (hasError) {
+      setError(true);
+      setHelperText(rawErrors[0]);
+    } else {
+      setError(false);
+      setHelperText(schema.description);
+    }
   }, [rawErrors]);
 
   return (
