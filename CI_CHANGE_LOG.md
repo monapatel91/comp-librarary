@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.2.0](https://github.com/digital-ai/dot-components/tree/1.2.0) (10/14/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.1.1...1.2.0)
+
+**Fixed bugs:**
+
+- Missing return on `List` [\#721](https://github.com/digital-ai/dot-components/issues/721)
+- Menu className doesn't apply to relevant attribute or theming not correct [\#711](https://github.com/digital-ai/dot-components/issues/711)
+- `Avatar` component is using `default` value for icon font size and is generating console warning [\#708](https://github.com/digital-ai/dot-components/issues/708)
+- Wrong background colour on `DotAlertBanner` on top of a `DotDialog` [\#702](https://github.com/digital-ai/dot-components/issues/702)
+
+**Merged pull requests:**
+
+- D-18961: update dialog styles to be more explicit [\#726](https://github.com/digital-ai/dot-components/pull/726) ([CWSites](https://github.com/CWSites))
+- D-18964: update icon fontSize to use `medium` instead of `default` [\#725](https://github.com/digital-ai/dot-components/pull/725) ([CWSites](https://github.com/CWSites))
+- D-18973: `DotList` missing return statement [\#724](https://github.com/digital-ai/dot-components/pull/724) ([CWSites](https://github.com/CWSites))
+- D-18972: custom logo height constraints [\#723](https://github.com/digital-ai/dot-components/pull/723) ([CWSites](https://github.com/CWSites))
+- D-18970: remove color prop from Badge storybook config [\#722](https://github.com/digital-ai/dot-components/pull/722) ([CWSites](https://github.com/CWSites))
+- MINOR release [\#719](https://github.com/digital-ai/dot-components/pull/719) ([CWSites](https://github.com/CWSites))
+- Icons oct 13 2021 [\#718](https://github.com/digital-ai/dot-components/pull/718) ([BojanKocijan](https://github.com/BojanKocijan))
+- S-78918: add loading indicator to menu [\#716](https://github.com/digital-ai/dot-components/pull/716) ([CWSites](https://github.com/CWSites))
+- S-78834: update icon buttons to follow agility theme more closely [\#715](https://github.com/digital-ai/dot-components/pull/715) ([CWSites](https://github.com/CWSites))
+- S-77041: New component tooltip [\#713](https://github.com/digital-ai/dot-components/pull/713) ([monapatel91](https://github.com/monapatel91))
+- S-76773: product badges in app toolbar and sidebar [\#712](https://github.com/digital-ai/dot-components/pull/712) ([CWSites](https://github.com/CWSites))
+- Icons update oct 7th 2021 [\#709](https://github.com/digital-ai/dot-components/pull/709) ([BojanKocijan](https://github.com/BojanKocijan))
+- Bring `master` back into `develop` [\#705](https://github.com/digital-ai/dot-components/pull/705) ([CWSites](https://github.com/CWSites))
+- S-78833 agility sidebar [\#701](https://github.com/digital-ai/dot-components/pull/701) ([CWSites](https://github.com/CWSites))
+
 ## [1.1.1](https://github.com/digital-ai/dot-components/tree/1.1.1) (10/06/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.1.0...1.1.1)
