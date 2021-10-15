@@ -151,6 +151,7 @@ export const DotSidebar = ({
       {collapsable && (
         <div className="toggle-nav">
           <DotIconButton
+            ariaLabel="collapse sidebar navigation"
             data-testid="toggle-nav"
             iconId="chevron-left"
             onClick={collapseNav}
