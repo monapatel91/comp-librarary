@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.2.1](https://github.com/digital-ai/dot-components/tree/1.2.1) (10/15/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.2.0...1.2.1)
+
+**Fixed bugs:**
+
+- Alpha .25 doesn't work well within agility dark theme [\#710](https://github.com/digital-ai/dot-components/issues/710)
+
+**Closed issues:**
+
+- Add `ariaLabel` prop on `DotIconButton` instance within `Sidebar` component [\#703](https://github.com/digital-ai/dot-components/issues/703)
+
+**Merged pull requests:**
+
+- next release [\#732](https://github.com/digital-ai/dot-components/pull/732) ([CWSites](https://github.com/CWSites))
+- D-18963: add ariaLabel to sidebar collapse button [\#731](https://github.com/digital-ai/dot-components/pull/731) ([CWSites](https://github.com/CWSites))
+- S-76840: update contributing guidelines and PR template [\#730](https://github.com/digital-ai/dot-components/pull/730) ([CWSites](https://github.com/CWSites))
+- D-18979: export `Tooltip` component [\#729](https://github.com/digital-ai/dot-components/pull/729) ([CWSites](https://github.com/CWSites))
+- Merge pull request \#719 from digital-ai/develop [\#727](https://github.com/digital-ai/dot-components/pull/727) ([CWSites](https://github.com/CWSites))
+
 ## [1.2.0](https://github.com/digital-ai/dot-components/tree/1.2.0) (10/14/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.1.1...1.2.0)
@@ -547,7 +567,6 @@
 - Issue \#496: Fix List onClick and href handling [\#501](https://github.com/digital-ai/dot-components/pull/501) ([selsemore](https://github.com/selsemore))
 - D-17864: Fix Payload URL's documentation link [\#500](https://github.com/digital-ai/dot-components/pull/500) ([dmiletic85](https://github.com/dmiletic85))
 - D-17861: Webhook help icon missing on new application drawer [\#499](https://github.com/digital-ai/dot-components/pull/499) ([dmiletic85](https://github.com/dmiletic85))
-- S-75356: Update VCS icons for progression board drawers [\#497](https://github.com/digital-ai/dot-components/pull/497) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#96 storybook themes [\#472](https://github.com/digital-ai/dot-components/pull/472) ([selsemore](https://github.com/selsemore))
 - Introduce SplitButton Component [\#465](https://github.com/digital-ai/dot-components/pull/465) ([syedsabbas360](https://github.com/syedsabbas360))
 
@@ -566,6 +585,7 @@
 **Merged pull requests:**
 
 - 5/3/2021-report-icon-upload [\#498](https://github.com/digital-ai/dot-components/pull/498) ([BojanKocijan](https://github.com/BojanKocijan))
+- S-75356: Update VCS icons for progression board drawers [\#497](https://github.com/digital-ai/dot-components/pull/497) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#491: breadcrumbs expand menu [\#495](https://github.com/digital-ai/dot-components/pull/495) ([selsemore](https://github.com/selsemore))
 
 ## [v0.0.0-alpha.26](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.26) (04/30/2021)
