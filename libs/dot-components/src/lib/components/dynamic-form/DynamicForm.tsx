@@ -8,7 +8,7 @@ import Form, {
 } from 'react-jsonschema-form';
 import { JSONSchema6 } from 'json-schema';
 
-import { DotForm } from '../form/Form';
+import { StyledFormContainer, rootClassName } from '../form/Form.styles';
 import { CustomTextWidget, CustomCheckboxWidget } from './custom-widgets';
 import { DotButton } from '../button/Button';
 
@@ -20,7 +20,9 @@ export interface DynamicFormProps {
 
 function DotDynamicForm({ schema, formData, onSubmit }: DynamicFormProps) {
   const ObjectFieldTemplate = ({ properties }: ObjectFieldTemplateProps) => (
-    <DotForm>{properties.map((property) => property.content)}</DotForm>
+    <StyledFormContainer className={rootClassName}>
+      {properties.map((property) => property.content)}
+    </StyledFormContainer>
   );
 
   const FieldTemplate = ({ classNames, children }: FieldTemplateProps) => (
