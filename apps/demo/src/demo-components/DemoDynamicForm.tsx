@@ -194,7 +194,7 @@ export const DemoDynamicForm = () => {
           name: 'superHero',
           groupLabel: 'Select Your Favorite Superhero',
           required: true,
-          value: 'None',
+          defaultValue: 'None',
           options: [
             { label: 'None', value: 'None' },
             { label: 'Batman', value: 'Batman' },

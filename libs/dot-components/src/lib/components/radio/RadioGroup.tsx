@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, ReactNode } from 'react';
+import React, { useState, ChangeEvent, ReactNode, useEffect } from 'react';
 import { FormHelperText, FormLabel } from '@material-ui/core';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
@@ -75,9 +75,15 @@ export const DotRadioGroup = ({
     className,
     placement
   );
-  const [selectedValue, setSelectedValue] = useState(
-    value ? value : defaultValue
-  );
+
+  const radioValue = value ? value : defaultValue;
+
+  const [selectedValue, setSelectedValue] = useState(radioValue);
+
+  /* This will ensure that value can be updated from the outside */
+  useEffect(() => {
+    setSelectedValue(radioValue);
+  }, [radioValue]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);

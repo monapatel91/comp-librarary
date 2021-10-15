@@ -155,7 +155,7 @@ export const buildRadioGroupControl = ({
     <DotRadioGroup
       key={index}
       {...props}
-      value={props.value ? props.value : value}
+      value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
       onChange={handleChangeFn(controlName)}
