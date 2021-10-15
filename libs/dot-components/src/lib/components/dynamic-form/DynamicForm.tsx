@@ -42,6 +42,7 @@ function DotDynamicForm({ schema, formData, onSubmit }: DynamicFormProps) {
 
   const widgets = {
     TextWidget: CustomTextWidget,
+    PasswordWidget: CustomTextWidget,
     CheckboxWidget: CustomCheckboxWidget,
   };
 

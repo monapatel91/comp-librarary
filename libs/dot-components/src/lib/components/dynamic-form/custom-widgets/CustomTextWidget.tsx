@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { DotInputText } from '@digital-ai/dot-components';
 import { WidgetProps } from 'react-jsonschema-form';
+
+import { DotInputText } from '../../input-form-fields/InputText';
+import { DotIcon } from '../../icon/Icon';
 
 export const CustomTextWidget = ({
   id,
@@ -10,6 +12,7 @@ export const CustomTextWidget = ({
   onChange,
   required,
   rawErrors,
+  schema,
 }: WidgetProps) => {
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState<string>();
@@ -30,6 +33,10 @@ export const CustomTextWidget = ({
       required={required}
       error={error}
       helperText={helperText}
+      type={schema.format === 'password' && 'password'}
+      endIcon={
+        schema.format === 'password' && <DotIcon iconId="visibility-off" />
+      }
     />
   );
 };

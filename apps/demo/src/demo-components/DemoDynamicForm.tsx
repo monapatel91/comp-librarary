@@ -46,16 +46,9 @@ const DemoDynamicForm = () => {
       password: {
         type: 'string',
         title: 'Password',
-        // type: 'password',
-        // endIcon: <DotIcon iconId="visibility-off" />,
-        // minLength: {
-        //   errorMessage: 'Minimum of 6 characters required',
-        //   value: 6,
-        // },
-        // maxLength: {
-        //   errorMessage: 'Password cannot be longer than 15 characters',
-        //   value: 15,
-        // },
+        format: 'password',
+        minLength: 6,
+        maxLength: 15,
       },
       // randomOption: {
       // type: 'dot-autocomplete',
