@@ -9,7 +9,7 @@ import Form, {
 import { JSONSchema6 } from 'json-schema';
 
 import { DotForm } from '../form/Form';
-import { CustomTextWidget } from './custom-widgets/CustomTextWidget';
+import { CustomTextWidget, CustomCheckboxWidget } from './custom-widgets';
 import { DotButton } from '../button/Button';
 
 export interface DynamicFormProps {
@@ -40,6 +40,7 @@ function DotDynamicForm({ schema, formData, onSubmit }: DynamicFormProps) {
 
   const widgets = {
     TextWidget: CustomTextWidget,
+    CheckboxWidget: CustomCheckboxWidget,
   };
 
   const uiSchema: UiSchema = {
