@@ -1,3 +1,4 @@
+import { DotTooltip } from './tooltip/Tooltip';
 export { DotAccordion } from './accordion/Accordion';
 export { DotActionToolbar } from './action-toolbar/ActionToolbar';
 export { DotAlertBanner } from './alert-banner/AlertBanner';
@@ -55,6 +56,7 @@ export {
 export { DotSplitButton } from './split-button/SplitButton';
 export { DotSwitch } from './switch/Switch';
 export { DotTable, TableRowProps } from './table/Table';
+export { DotTooltip } from './tooltip/Tooltip';
 export { Order } from './table/TableBody';
 export { DotHeaderRow, DotColumnHeader } from './table/TableHeader';
 export { TableDataWithPagination } from './table/TableDataWithPagination';
