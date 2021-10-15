@@ -17,6 +17,7 @@ import {
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 import { Divider } from '@material-ui/core';
+import { DynamicFormOutputData } from '../../../../libs/dot-components/src/lib/components/dynamic-form/helpers';
 
 export const DemoDynamicForm = () => {
   const schema: DynamicFormSchema = {
@@ -242,7 +243,7 @@ export const DemoDynamicForm = () => {
     ],
   };
 
-  const handleSubmit = (formData: DynamicFormState) => {
+  const handleSubmit = (formData: DynamicFormOutputData) => {
     console.log(formData);
   };
 

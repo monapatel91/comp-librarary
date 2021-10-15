@@ -52,6 +52,18 @@ export interface UncontrolledInputArgs {
   index: number;
 }
 
+export interface DynamicFormOutputData {
+  [key: string]: unknown;
+}
+
+export const getOutputFormData = (formState: DynamicFormState) => {
+  const outputData: DynamicFormOutputData = {};
+  for (const dataKey in formState.data) {
+    outputData[dataKey] = formState.data[dataKey].value;
+  }
+  return outputData;
+};
+
 const getControlValue = <T extends unknown>(
   controlName: string,
   data: DynamicFormStateData

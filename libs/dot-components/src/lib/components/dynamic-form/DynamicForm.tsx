@@ -34,6 +34,8 @@ import {
   buildRadioGroupControl,
   buildResetControl,
   buildSubmitControl,
+  DynamicFormOutputData,
+  getOutputFormData,
 } from './helpers';
 import { CheckboxProps } from '../checkbox/Checkbox';
 
@@ -46,7 +48,7 @@ const initialStateItem: DynamicFormStateItem = {
 
 export interface DynamicFormProps extends CommonProps {
   onChange?: (formData: DynamicFormState) => void;
-  onSubmit?: (formData: DynamicFormState) => void;
+  onSubmit?: (formData: DynamicFormOutputData) => void;
   schema: DynamicFormSchema;
 }
 
@@ -297,7 +299,8 @@ export const DotDynamicForm = ({
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit?.(formState);
+    const formOutputData = getOutputFormData(formState);
+    onSubmit?.(formOutputData);
   };
 
   return (
