@@ -22,6 +22,7 @@ import { DotButton } from '../button/Button';
 export interface DynamicFormProps<T> {
   schema: JSONSchema6;
   formData?: T;
+  liveValidate?: boolean;
   onSubmit?: (event: ISubmitEvent<T>) => void;
   validate?:
     | ((formData: T, errors: FormValidation) => FormValidation)
@@ -32,6 +33,7 @@ export interface DynamicFormProps<T> {
 function DotDynamicForm<T>({
   schema,
   formData = {} as T,
+  liveValidate,
   onSubmit,
   validate,
   onChange,
@@ -73,7 +75,7 @@ function DotDynamicForm<T>({
         FieldTemplate={FieldTemplate}
         ObjectFieldTemplate={ObjectFieldTemplate}
         ErrorList={ErrorList}
-        liveValidate={true}
+        liveValidate={liveValidate}
         formData={formData}
         onSubmit={onSubmit}
         validate={validate}

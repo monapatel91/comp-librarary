@@ -151,6 +151,7 @@ const DemoDynamicForm = () => {
 
       <DotDynamicForm
         formData={formData}
+        liveValidate
         schema={schema}
         onChange={(event) => {
           console.log('*** onChange', event);
