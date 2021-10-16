@@ -156,7 +156,7 @@ const DemoDynamicForm = () => {
 
       <DotDynamicForm
         schema={schema}
-        // onChange={handleChange}
+        onChange={(event) => console.log('*** onChange', event)}
         onSubmit={handleSubmit}
         validate={validate}
       />

@@ -26,6 +26,7 @@ export interface DynamicFormProps<T> {
   validate?:
     | ((formData: T, errors: FormValidation) => FormValidation)
     | undefined;
+  onChange?: ((e: IChangeEvent<T>, es?: ErrorSchema) => any) | undefined;
 }
 
 function DotDynamicForm<T>({
@@ -33,6 +34,7 @@ function DotDynamicForm<T>({
   formData,
   onSubmit,
   validate,
+  onChange,
 }: DynamicFormProps<T>) {
   const ObjectFieldTemplate = ({ properties }: ObjectFieldTemplateProps) => (
     <StyledFormContainer className={rootClassName}>
@@ -75,6 +77,7 @@ function DotDynamicForm<T>({
         formData={formData}
         onSubmit={onSubmit}
         validate={validate}
+        onChange={onChange}
       >
         <div>
           <DotButton isSubmit>Submit</DotButton>
