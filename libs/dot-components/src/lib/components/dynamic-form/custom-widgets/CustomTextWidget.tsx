@@ -5,6 +5,7 @@ import { DotInputText } from '../../input-form-fields/InputText';
 import { DotIcon } from '../../icon/Icon';
 
 export const CustomTextWidget = ({
+  autofocus,
   id,
   label,
   value,
@@ -31,6 +32,7 @@ export const CustomTextWidget = ({
 
   return (
     <DotInputText
+      autoFocus={autofocus}
       id={id}
       name={id}
       label={label}
@@ -40,7 +42,7 @@ export const CustomTextWidget = ({
       required={required}
       error={error}
       helperText={helperText}
-      type={schema.format === 'password' && 'password'}
+      type={schema.format === 'password' ? 'password' : 'text'}
       endIcon={
         schema.format === 'password' && <DotIcon iconId="visibility-off" />
       }
