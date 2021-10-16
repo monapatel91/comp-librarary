@@ -108,25 +108,10 @@ const DemoDynamicForm = () => {
       //       ],
       //     } as RadioGroupProps,
       //   },
-      //   isMandatory: {
-
-      //   }
-      //     controlType: 'dot-checkbox',
-      //     controlProps: {
-      //       label: 'Is Mandatory',
-      //       className: 'is-mandatory',
-      //     } as CheckboxProps,
-      //     validation: {
-      //       isRequired: {
-      //         errorMessage: 'Required field',
-      //         value: true,
-      //       },
-      //     },
-      //   },
-      //   {
-      //     controlType: 'custom-element',
-      //     customElement: <Divider className="divider" />,
-      //   },
+      isMandatory: {
+        type: 'boolean',
+        title: 'Is Mandatory',
+      },
     },
     required: ['firstName', 'lastName', 'username', 'password', 'receive'],
   };
@@ -139,6 +124,10 @@ const DemoDynamicForm = () => {
     const takenUsernames = ['username', 'john', 'mark'];
     if (takenUsernames.includes(formData.username)) {
       errors.username.addError('Username is already taken');
+    }
+
+    if (!formData.isMandatory) {
+      errors.isMandatory.addError('Is Mandatory must be true');
     }
 
     return errors;
