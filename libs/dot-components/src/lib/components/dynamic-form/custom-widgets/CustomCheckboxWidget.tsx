@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { DotCheckbox } from '@digital-ai/dot-components';
 import { WidgetProps } from 'react-jsonschema-form';
+
+import { DotCheckbox } from '../../checkbox/Checkbox';
 
 export const CustomCheckboxWidget = ({
   id,
@@ -26,7 +27,7 @@ export const CustomCheckboxWidget = ({
       label={label}
       value={value}
       disabled={disabled}
-      onChange={(event) => onChange(event.target.value)}
+      onChange={(_event, value) => onChange(value)}
       required={required}
       // error={error}
       // helperText={helperText}

@@ -57,25 +57,18 @@ const DemoDynamicForm = () => {
       // },
       // },
       receive: {
-        type: 'object',
-        // controlType: 'dot-checkbox-group',
+        type: 'array',
         title: 'I would like to receive',
-        properties: {
-          releases: { type: 'boolean', title: 'Notification of new releases' },
-          concerts: { type: 'boolean', title: 'Concert schedule information' },
-          poster: { type: 'boolean', title: 'A free poster' },
-        },
         uniqueItems: true,
-        // validation: {
-        //   isRequired: {
-        //     errorMessage: 'Required field',
-        //     value: true,
-        //   },
-        //   minLength: {
-        //     errorMessage: 'Pick at least 2 options',
-        //     value: 2,
-        //   },
-        // },
+        items: {
+          type: 'string',
+          enum: [
+            'Notification of new releases',
+            'Concert schedule information',
+            'A free poster',
+          ],
+        },
+        minItems: 2,
       },
 
       //   superheroes: {
@@ -135,7 +128,7 @@ const DemoDynamicForm = () => {
       //     customElement: <Divider className="divider" />,
       //   },
     },
-    required: ['firstName', 'lastName', 'username', 'password'],
+    required: ['firstName', 'lastName', 'username', 'password', 'receive'],
   };
 
   const validate: (formData: any, errors: FormValidation) => FormValidation = (

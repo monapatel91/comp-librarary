@@ -4,13 +4,19 @@ import Form, {
   FieldTemplateProps,
   ISubmitEvent,
   ObjectFieldTemplateProps,
-  UiSchema,
   FormValidation,
+  Widget,
+  IChangeEvent,
+  ErrorSchema,
 } from 'react-jsonschema-form';
 import { JSONSchema6 } from 'json-schema';
 
 import { StyledFormContainer, rootClassName } from '../form/Form.styles';
-import { CustomTextWidget, CustomCheckboxWidget } from './custom-widgets';
+import {
+  CustomTextWidget,
+  CustomCheckboxWidget,
+  CustomCheckboxesWidget,
+} from './custom-widgets';
 import { DotButton } from '../button/Button';
 
 export interface DynamicFormProps<T> {
@@ -38,25 +44,22 @@ function DotDynamicForm<T>({
     <div className={classNames}>{children}</div>
   );
 
-  const ErrorList = ({ errors }: ErrorListProps) => (
-    <div>
-      <div>There were some errors:</div>
-      {errors.map((error) => (
-        <div>
-          {error.property} --- {error.message}
-        </div>
-      ))}
-    </div>
-  );
+  const ErrorList = ({ errors }: ErrorListProps) => {
+    return (
+      <div>
+        <div>There were some errors:</div>
+        {errors.map((error, index) => (
+          <div key={`${index}-error`}>{error.stack}</div>
+        ))}
+      </div>
+    );
+  };
 
-  const widgets = {
+  const widgets: { [name: string]: Widget } = {
     TextWidget: CustomTextWidget,
     PasswordWidget: CustomTextWidget,
     CheckboxWidget: CustomCheckboxWidget,
-  };
-
-  const uiSchema: UiSchema = {
-    'ui:options': {},
+    SelectWidget: CustomCheckboxesWidget,
   };
 
   return (
@@ -65,7 +68,6 @@ function DotDynamicForm<T>({
       <Form
         schema={schema}
         widgets={widgets}
-        uiSchema={uiSchema}
         FieldTemplate={FieldTemplate}
         ObjectFieldTemplate={ObjectFieldTemplate}
         ErrorList={ErrorList}
