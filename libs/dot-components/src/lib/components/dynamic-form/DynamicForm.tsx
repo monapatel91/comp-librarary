@@ -31,7 +31,7 @@ export interface DynamicFormProps<T> {
 
 function DotDynamicForm<T>({
   schema,
-  formData,
+  formData = {} as T,
   onSubmit,
   validate,
   onChange,

@@ -10,6 +10,12 @@ import { StyledDemoDynamicForm, rootClassName } from './DemoDynamicForm.styles';
 import { FormValidation } from 'react-jsonschema-form';
 
 const DemoDynamicForm = () => {
+  const formData = {
+    firstName: 'First',
+    middleName: 'Middle',
+    lastName: 'Last',
+  };
+
   const schema: JSONSchema6 = {
     properties: {
       firstName: {
@@ -117,24 +123,24 @@ const DemoDynamicForm = () => {
   };
 
   const validate: (formData: any, errors: FormValidation) => FormValidation = (
-    formData,
+    data,
     errors
   ) => {
     // Examples of taken usernames to validate against
     const takenUsernames = ['username', 'john', 'mark'];
-    if (takenUsernames.includes(formData.username)) {
+    if (takenUsernames.includes(data.username)) {
       errors.username.addError('Username is already taken');
     }
 
-    if (!formData.isMandatory) {
+    if (!data.isMandatory) {
       errors.isMandatory.addError('Is Mandatory must be true');
     }
 
     return errors;
   };
 
-  const handleSubmit = (formData) => {
-    console.log('***', formData);
+  const handleSubmit = (data) => {
+    console.log('***', data);
   };
 
   return (
@@ -144,8 +150,11 @@ const DemoDynamicForm = () => {
       </DotActionToolbar>
 
       <DotDynamicForm
+        formData={formData}
         schema={schema}
-        onChange={(event) => console.log('*** onChange', event)}
+        onChange={(event) => {
+          console.log('*** onChange', event);
+        }}
         onSubmit={handleSubmit}
         validate={validate}
       />
