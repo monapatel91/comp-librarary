@@ -153,6 +153,11 @@ const DemoDynamicForm = () => {
         formData={formData}
         liveValidate
         schema={schema}
+        uiSchema={{
+          receive: {
+            'ui:widget': 'checkboxes',
+          },
+        }}
         onChange={(event) => {
           console.log('*** onChange', event);
         }}

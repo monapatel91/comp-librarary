@@ -66,7 +66,7 @@ function DotDynamicForm<T>({
     TextWidget: CustomTextWidget,
     PasswordWidget: CustomTextWidget,
     CheckboxWidget: CustomCheckboxWidget,
-    SelectWidget: CustomCheckboxesWidget,
+    CheckboxesWidget: CustomCheckboxesWidget,
   };
 
   return (
