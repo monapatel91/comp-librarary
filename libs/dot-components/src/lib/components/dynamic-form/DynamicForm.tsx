@@ -8,6 +8,7 @@ import Form, {
   Widget,
   IChangeEvent,
   ErrorSchema,
+  UiSchema,
 } from 'react-jsonschema-form';
 import { JSONSchema6 } from 'json-schema';
 
@@ -24,6 +25,7 @@ export interface DynamicFormProps<T> {
   formData?: T;
   liveValidate?: boolean;
   onSubmit?: (event: ISubmitEvent<T>) => void;
+  uiSchema?: UiSchema;
   validate?:
     | ((formData: T, errors: FormValidation) => FormValidation)
     | undefined;
@@ -35,6 +37,7 @@ function DotDynamicForm<T>({
   formData = {} as T,
   liveValidate,
   onSubmit,
+  uiSchema,
   validate,
   onChange,
 }: DynamicFormProps<T>) {
@@ -72,6 +75,7 @@ function DotDynamicForm<T>({
       <Form
         schema={schema}
         widgets={widgets}
+        uiSchema={uiSchema}
         FieldTemplate={FieldTemplate}
         ObjectFieldTemplate={ObjectFieldTemplate}
         ErrorList={ErrorList}
