@@ -76,26 +76,15 @@ const DemoDynamicForm = () => {
         },
         minItems: 2,
       },
-
-      //   superheroes: {
-
-      //   }
-      //     controlType: 'dot-input-select',
-      //     controlProps: {
-      //       id: 'devType',
-      //       label: 'Dev Type',
-      //       name: 'devType',
-      //       required: true,
-      //       size: 'small',
-      //       options: ['', 'React Dev', 'Angular Dev', 'Other Dev'],
-      //     } as InputSelectProps,
-      //     validation: {
-      //       isRequired: {
-      //         errorMessage: 'Required field',
-      //         value: true,
-      //       },
-      //     },
-      //   },
+      devType: {
+        type: 'string',
+        title: 'Dev Type',
+        uniqueItems: true,
+        items: {
+          type: 'string',
+          enum: ['', 'React Dev', 'Angular Dev', 'Other Dev'],
+        },
+      },
       //   superHero: {
 
       //   }
@@ -119,7 +108,14 @@ const DemoDynamicForm = () => {
         title: 'Is Mandatory',
       },
     },
-    required: ['firstName', 'lastName', 'username', 'password', 'receive'],
+    required: [
+      'firstName',
+      'lastName',
+      'username',
+      'password',
+      'receive',
+      'devType',
+    ],
   };
 
   const validate: (formData: any, errors: FormValidation) => FormValidation = (
@@ -156,6 +152,9 @@ const DemoDynamicForm = () => {
         uiSchema={{
           receive: {
             'ui:widget': 'checkboxes',
+          },
+          devType: {
+            'ui:widget': 'select',
           },
         }}
         onChange={(event) => {
