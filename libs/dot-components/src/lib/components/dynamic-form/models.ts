@@ -28,6 +28,13 @@ export type DynamicFormControlProps =
   | ButtonProps
   | RadioGroupProps;
 
+export type HiddenControl = boolean | ConditionControl[];
+
+export interface ConditionControl {
+  controlName: string;
+  controlValue: string;
+}
+
 export interface DynamicFormControl {
   controlName?: string;
   controlType: DynamicFormControlType;
@@ -35,6 +42,7 @@ export interface DynamicFormControl {
   initialValue?: unknown;
   validation?: DynamicFormValidation;
   customElement?: ReactNode;
+  hidden?: HiddenControl;
 }
 
 export interface FieldValidation {
@@ -70,6 +78,7 @@ export interface DynamicFormStateItem {
   isValid: boolean;
   isTouched: boolean;
   errorMessage: string;
+  hidden?: HiddenControl;
 }
 
 export interface DynamicFormState {

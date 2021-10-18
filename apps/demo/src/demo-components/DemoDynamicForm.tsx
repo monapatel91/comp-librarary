@@ -39,11 +39,28 @@ export const DemoDynamicForm = () => {
         },
       },
       {
+        controlName: 'hasMiddleName',
+        controlType: 'dot-radio-group',
+        controlProps: {
+          id: 'hasMiddleName',
+          name: 'hasMiddleName',
+          groupLabel: 'Do you have middle name?',
+          required: true,
+          defaultValue: 'no',
+          options: [
+            { label: 'No', value: 'no' },
+            { label: 'Yes', value: 'yes' },
+          ],
+        } as RadioGroupProps,
+        initialValue: 'no',
+      },
+      {
         controlName: 'middleName',
         controlType: 'dot-input-text',
         controlProps: {
           label: 'Middle Name',
         } as InputTextProps,
+        hidden: [{ controlName: 'hasMiddleName', controlValue: 'no' }],
       },
       {
         controlName: 'lastName',

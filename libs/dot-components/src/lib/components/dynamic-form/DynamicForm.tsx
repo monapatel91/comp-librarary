@@ -32,6 +32,7 @@ import {
   buildRadioGroupControl,
   buildResetControl,
   buildSubmitControl,
+  checkIfHiddenControl,
   DynamicFormOutputData,
   getInitialFormState,
   getOutputFormData,
@@ -151,11 +152,13 @@ export const DotDynamicForm = ({
           controlType,
           controlProps = {},
           customElement,
+          hidden,
           initialValue,
         }: DynamicFormControl,
         index: number
       ) => {
         const inputControlName = controlName ? controlName : `control-${index}`;
+        if (checkIfHiddenControl(hidden, formState.data)) return '';
         switch (controlType) {
           case 'dot-input-text': {
             return buildInputTextControl({

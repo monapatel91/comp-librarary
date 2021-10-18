@@ -10,6 +10,7 @@ import {
   DynamicFormSchema,
   DynamicFormState,
   DynamicFormStateData,
+  HiddenControl,
 } from './models';
 import {
   AutoCompleteProps,
@@ -71,6 +72,18 @@ const getControlValue = <T extends unknown>(
   return data[controlName].value as T;
 };
 
+export const checkIfHiddenControl = (
+  hidden: HiddenControl,
+  formData: DynamicFormStateData
+) => {
+  if (!hidden) return false;
+  if (typeof hidden === 'boolean') return hidden;
+  return hidden.every(
+    ({ controlName, controlValue }) =>
+      formData[controlName].value === controlValue
+  );
+};
+
 export const getInitialFormState = (
   schema: DynamicFormSchema
 ): DynamicFormState => {
@@ -85,25 +98,27 @@ export const getInitialFormState = (
       controlType,
       validation,
     }: DynamicFormControl) => {
-      // Set only data controls (ignore buttons and other non-relevant elements)
-      if (DATA_CONTROLS.includes(controlType)) {
-        initialState.data[controlName] = { ...INITIAL_STATE_ITEM };
-        if (initialValue) {
-          initialState.data[controlName].value = initialValue;
-          initialState.data[controlName].isTouched = true;
-          const fieldValidation = getFieldValidation(initialValue, validation);
-          initialState.data[controlName].isValid = fieldValidation.isValid;
-          initialState.data[controlName].errorMessage =
-            fieldValidation.errorMessage;
-        }
-        // If no validation always set valid to true
-        if (
-          !validation ||
-          DATA_CONTROLS_WITHOUT_VALIDATION.includes(controlType)
-        ) {
-          // Set always to valid for now
-          initialState.data[controlName].isValid = true;
-        }
+      // Skip non-data controls (ignore buttons and other non-relevant elements)
+      // or hidden elements
+      if (!DATA_CONTROLS.includes(controlType)) return;
+
+      initialState.data[controlName] = { ...INITIAL_STATE_ITEM };
+
+      if (initialValue) {
+        initialState.data[controlName].value = initialValue;
+        initialState.data[controlName].isTouched = true;
+        const fieldValidation = getFieldValidation(initialValue, validation);
+        initialState.data[controlName].isValid = fieldValidation.isValid;
+        initialState.data[controlName].errorMessage =
+          fieldValidation.errorMessage;
+      }
+      // If no validation always set valid to true
+      if (
+        !validation ||
+        DATA_CONTROLS_WITHOUT_VALIDATION.includes(controlType)
+      ) {
+        // Set always to valid for now
+        initialState.data[controlName].isValid = true;
       }
     }
   );
