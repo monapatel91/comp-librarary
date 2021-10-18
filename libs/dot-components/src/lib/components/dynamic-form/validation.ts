@@ -1,5 +1,5 @@
 import {
-  DynamicFormSchema,
+  DynamicFormConfig,
   DynamicFormStateData,
   DynamicFormValidation,
   FieldValidation,
@@ -64,11 +64,11 @@ export const getFieldValidation = (
   return fieldValidation;
 };
 
-export const getControlValidationFromSchema = (
+export const getControlValidationFromConfig = (
   controlName: string,
-  schema: DynamicFormSchema
+  config: DynamicFormConfig
 ): DynamicFormValidation | undefined => {
-  const formControl = schema.controls.find(
+  const formControl = config.controls.find(
     (control) => control.controlName === controlName
   );
   // Returned undefined if there is no such form control or is included in

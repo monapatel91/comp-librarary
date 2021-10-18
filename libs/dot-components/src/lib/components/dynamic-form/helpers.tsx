@@ -7,7 +7,7 @@ import React, { ChangeEvent } from 'react';
 import {
   DynamicFormControl,
   DynamicFormControlProps,
-  DynamicFormSchema,
+  DynamicFormConfig,
   DynamicFormState,
   DynamicFormStateData,
   HiddenControl,
@@ -87,14 +87,14 @@ export const checkIfHiddenControl = (
 };
 
 export const getInitialFormState = (
-  schema: DynamicFormSchema,
+  config: DynamicFormConfig,
   liveValidation: boolean
 ): DynamicFormState => {
   const initialState: DynamicFormState = {
     data: {},
     isValid: false,
   };
-  schema.controls.forEach(
+  config.controls.forEach(
     ({
       controlName,
       initialValue,

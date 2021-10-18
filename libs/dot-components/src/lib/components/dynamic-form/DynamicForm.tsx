@@ -13,14 +13,14 @@ import { DotForm } from '../form/Form';
 import { AutoCompleteValue } from '../auto-complete/AutoComplete';
 import {
   DynamicFormControl,
-  DynamicFormSchema,
+  DynamicFormConfig,
   DynamicFormState,
   DynamicFormStateData,
   FormStateUpdateArgs,
 } from './models';
 import {
   checkIfFormDataValid,
-  getControlValidationFromSchema,
+  getControlValidationFromConfig,
   getFieldValidation,
 } from './validation';
 import {
@@ -45,7 +45,7 @@ export interface DynamicFormProps extends CommonProps {
   liveValidation?: boolean;
   onChange?: (formData: DynamicFormState) => void;
   onSubmit?: (formData: DynamicFormOutputData) => void;
-  schema: DynamicFormSchema;
+  config: DynamicFormConfig;
 }
 
 export const DotDynamicForm = ({
@@ -54,11 +54,11 @@ export const DotDynamicForm = ({
   liveValidation = true,
   onChange,
   onSubmit,
-  schema,
+  config,
 }: DynamicFormProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-  const initialFormState = getInitialFormState(schema, liveValidation);
+  const initialFormState = getInitialFormState(config, liveValidation);
 
   const [formState, setFormState] =
     useState<DynamicFormState>(initialFormState);
@@ -85,14 +85,14 @@ export const DotDynamicForm = ({
   const updateFormState = ({
     controlName,
     newValue,
-    formSchema,
+    formConfig,
     validate = true,
   }: FormStateUpdateArgs) => {
     let validationFields = {};
     if (validate && liveValidation) {
-      const validation = getControlValidationFromSchema(
+      const validation = getControlValidationFromConfig(
         controlName,
-        formSchema
+        formConfig
       );
       const fieldValidation = getFieldValidation(newValue, validation);
       validationFields = {
@@ -120,7 +120,7 @@ export const DotDynamicForm = ({
     let isValid = true;
     for (const formDataKey in formData) {
       const formControl = formData[formDataKey];
-      const validation = getControlValidationFromSchema(formDataKey, schema);
+      const validation = getControlValidationFromConfig(formDataKey, config);
       const fieldValidation = getFieldValidation(formControl.value, validation);
       const isFieldValid = fieldValidation.isValid;
       newFormData[formDataKey] = {
@@ -139,7 +139,7 @@ export const DotDynamicForm = ({
   const handleInputChange =
     (controlName: string) => (e: ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
-      updateFormState({ controlName, formSchema: schema, newValue });
+      updateFormState({ controlName, formConfig: config, newValue });
     };
 
   const handleCheckboxChange =
@@ -148,7 +148,7 @@ export const DotDynamicForm = ({
       const newValue = e.target.checked;
       updateFormState({
         controlName,
-        formSchema: schema,
+        formConfig: config,
         newValue,
         validate: false,
       });
@@ -159,7 +159,7 @@ export const DotDynamicForm = ({
     (e: ChangeEvent<HTMLInputElement>, value: CheckboxProps[]): void => {
       updateFormState({
         controlName,
-        formSchema: schema,
+        formConfig: config,
         newValue: value,
       });
     };
@@ -167,13 +167,13 @@ export const DotDynamicForm = ({
   const handleAutocompleteChange =
     (controlName: string) =>
     (_: ChangeEvent<HTMLInputElement>, value: AutoCompleteValue): void => {
-      updateFormState({ controlName, formSchema: schema, newValue: value });
+      updateFormState({ controlName, formConfig: config, newValue: value });
     };
 
   const handleReset = () => setFormState(initialFormState);
 
   const buildFormControls = () => {
-    return schema.controls.map(
+    return config.controls.map(
       (
         {
           controlName,

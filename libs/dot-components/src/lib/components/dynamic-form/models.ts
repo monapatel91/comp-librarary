@@ -50,7 +50,7 @@ export interface FieldValidation {
   errorMessage: string | null;
 }
 
-export interface DynamicFormSchema {
+export interface DynamicFormConfig {
   controls: DynamicFormControl[];
 }
 
@@ -93,6 +93,6 @@ export interface DynamicFormStateData {
 export interface FormStateUpdateArgs {
   controlName: string;
   newValue: unknown;
-  formSchema: DynamicFormSchema;
+  formConfig: DynamicFormConfig;
   validate?: boolean;
 }

@@ -34,7 +34,7 @@ export { DotForm } from './form/Form';
 export { DotFormGroup } from './form-group/FormGroup';
 export { DotDynamicForm } from './dynamic-form/DynamicForm';
 export {
-  DynamicFormSchema,
+  DynamicFormConfig,
   DynamicFormState,
   FieldValidation,
 } from './dynamic-form/models';

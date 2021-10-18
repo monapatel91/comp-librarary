@@ -6,7 +6,7 @@ import {
   DotDynamicForm,
   ButtonProps,
   InputTextProps,
-  DynamicFormSchema,
+  DynamicFormConfig,
   DynamicFormState,
   DotBreadcrumbs,
   DotActionToolbar,
@@ -20,7 +20,7 @@ import { Divider } from '@material-ui/core';
 import { DynamicFormOutputData } from '../../../../libs/dot-components/src/lib/components/dynamic-form/helpers';
 
 export const DemoDynamicForm = () => {
-  const schema: DynamicFormSchema = {
+  const config: DynamicFormConfig = {
     controls: [
       {
         controlName: 'firstName',
@@ -276,7 +276,7 @@ export const DemoDynamicForm = () => {
 
       <DotDynamicForm
         liveValidation={false}
-        schema={schema}
+        config={config}
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
