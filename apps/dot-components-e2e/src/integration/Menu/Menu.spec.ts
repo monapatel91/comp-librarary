@@ -16,6 +16,7 @@ describe('dot-components: Menu component', () => {
       cy.get('ul.MuiList-root')
         .should('have.css', 'min-width', '112px')
         .and('have.css', 'overflow', 'auto')
+        .and('have.css', 'box-sizing', 'content-box')
         .and('have.css', 'height', '217px');
     });
   });
