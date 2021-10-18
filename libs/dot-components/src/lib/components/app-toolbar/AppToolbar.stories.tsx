@@ -42,6 +42,9 @@ export default {
       control: { type: 'select', options: logoOptions },
       defaultValue: 'Default',
     },
+    dense: {
+      defaultValue: true,
+    },
     mainMenu: {
       defaultValue: <DotLink>Just a regular link</DotLink>,
     },

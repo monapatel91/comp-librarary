@@ -4,14 +4,26 @@ import { n400 } from '../../theme-provider/colors/light-theme-colors';
 import { DotDrawer } from '../drawer/Drawer';
 
 export const rootClassName = 'dot-app-toolbar';
+export const denseClassName = 'dense';
 
 export const StyledMainMenu = styled(DotDrawer)`
   ${() => css`
-    &.dot-main-menu .dot-drawer-paper {
-      top: 64px;
-      padding: 0;
-      .dot-sidebar {
-        height: calc(100vh - 64px);
+    &.dot-main-menu {
+      &.${denseClassName} .dot-drawer-paper {
+        top: 48px;
+
+        .dot-sidebar {
+          height: calc(100vh - 48px);
+        }
+      }
+
+      .dot-drawer-paper {
+        top: 64px;
+        padding: 0;
+
+        .dot-sidebar {
+          height: calc(100vh - 64px);
+        }
       }
     }
   `}
@@ -36,6 +48,14 @@ export const StyledAppToolbar = styled.header`
       top: 0;
       left: 0;
       right: 0;
+
+      &.${denseClassName} {
+        height: 48px;
+
+        .divider {
+          height: 32px;
+        }
+      }
 
       .divider {
         height: 36px;
