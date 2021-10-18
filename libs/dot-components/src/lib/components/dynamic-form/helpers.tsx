@@ -43,22 +43,24 @@ type CheckboxGroupChangeHandler = (
   controlName: string
 ) => (event: ChangeEvent<HTMLInputElement>, value: CheckboxProps[]) => void;
 
-export interface ControlledInputArgs {
-  controlName: string;
+export interface InputBaseArgs {
   controlProps: DynamicFormControlProps;
+  index: number;
+  liveValidation: boolean;
+}
+
+export interface ControlledInputArgs extends InputBaseArgs {
+  controlName: string;
   formData: DynamicFormStateData;
   handleChange:
     | AutoCompleteChangeHandler
     | ChangeHandler
     | CheckboxGroupChangeHandler;
-  index: number;
 }
 
-export interface UncontrolledInputArgs {
-  controlProps: DynamicFormControlProps;
+export interface UncontrolledInputArgs extends InputBaseArgs {
   formState?: DynamicFormState;
   handleClick?: () => void;
-  index: number;
 }
 
 export interface DynamicFormOutputData {
@@ -85,7 +87,8 @@ export const checkIfHiddenControl = (
 };
 
 export const getInitialFormState = (
-  schema: DynamicFormSchema
+  schema: DynamicFormSchema,
+  liveValidation: boolean
 ): DynamicFormState => {
   const initialState: DynamicFormState = {
     data: {},
@@ -106,11 +109,14 @@ export const getInitialFormState = (
 
       if (initialValue) {
         initialState.data[controlName].value = initialValue;
-        initialState.data[controlName].isTouched = true;
-        const fieldValidation = getFieldValidation(initialValue, validation);
-        initialState.data[controlName].isValid = fieldValidation.isValid;
-        initialState.data[controlName].errorMessage =
-          fieldValidation.errorMessage;
+
+        if (liveValidation) {
+          initialState.data[controlName].isTouched = true;
+          const fieldValidation = getFieldValidation(initialValue, validation);
+          initialState.data[controlName].isValid = fieldValidation.isValid;
+          initialState.data[controlName].errorMessage =
+            fieldValidation.errorMessage;
+        }
       }
       // If no validation always set valid to true
       if (
@@ -302,15 +308,12 @@ export const buildSubmitControl = ({
   controlProps,
   formState,
   index,
+  liveValidation,
 }: UncontrolledInputArgs) => {
   const props = controlProps as ButtonProps;
+  const isDisabled = liveValidation && !formState.isValid;
   return (
-    <DotButton
-      key={index}
-      {...props}
-      isSubmit={true}
-      disabled={!formState.isValid}
-    >
+    <DotButton key={index} {...props} isSubmit={true} disabled={isDisabled}>
       {props.children}
     </DotButton>
   );

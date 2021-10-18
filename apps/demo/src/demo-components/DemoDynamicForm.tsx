@@ -275,6 +275,7 @@ export const DemoDynamicForm = () => {
       </DotActionToolbar>
 
       <DotDynamicForm
+        liveValidation={false}
         schema={schema}
         onChange={handleChange}
         onSubmit={handleSubmit}
