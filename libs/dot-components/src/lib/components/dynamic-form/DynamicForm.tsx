@@ -23,6 +23,7 @@ import {
 import { DotButton } from '../button/Button';
 
 export interface DynamicFormProps<T> {
+  disabled?: boolean;
   schema: JSONSchema6;
   formData?: T;
   liveValidate?: boolean;
@@ -38,6 +39,7 @@ export interface DynamicFormProps<T> {
 }
 
 function DotDynamicForm<T>({
+  disabled = false,
   schema,
   formData = {} as T,
   liveValidate,
@@ -83,6 +85,7 @@ function DotDynamicForm<T>({
     <>
       <div>Dynamic Form:</div>
       <Form
+        disabled={disabled}
         schema={schema}
         widgets={widgets}
         uiSchema={uiSchema}

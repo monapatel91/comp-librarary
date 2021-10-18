@@ -139,6 +139,7 @@ const DemoDynamicForm = () => {
       </DotActionToolbar>
 
       <DotDynamicForm
+        disabled={false}
         formData={formData}
         liveValidate
         schema={schema}

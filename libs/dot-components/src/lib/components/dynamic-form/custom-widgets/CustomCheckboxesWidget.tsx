@@ -11,6 +11,7 @@ export const CustomCheckboxesWidget = ({
   required,
   rawErrors,
   schema,
+  disabled,
 }: WidgetProps) => {
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState<string>();
@@ -32,6 +33,7 @@ export const CustomCheckboxesWidget = ({
       id={id}
       name={id}
       groupLabel={schema.title}
+      disableGroup={disabled}
       value={value}
       // disabled={disabled}
       onChange={(_event, value) => onChange(value.map((item) => item.value))}
