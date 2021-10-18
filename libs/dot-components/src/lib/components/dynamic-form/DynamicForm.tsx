@@ -18,6 +18,7 @@ import {
   CustomCheckboxWidget,
   CustomCheckboxesWidget,
   CustomSelectWidget,
+  CustomRadioWidget,
 } from './custom-widgets';
 import { DotButton } from '../button/Button';
 
@@ -69,6 +70,7 @@ function DotDynamicForm<T>({
     CheckboxWidget: CustomCheckboxWidget,
     CheckboxesWidget: CustomCheckboxesWidget,
     SelectWidget: CustomSelectWidget,
+    RadioWidget: CustomRadioWidget,
   };
 
   return (

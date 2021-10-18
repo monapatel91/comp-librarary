@@ -14,6 +14,7 @@ const DemoDynamicForm = () => {
     firstName: 'First',
     middleName: 'Middle',
     lastName: 'Last',
+    superHero: 'Batman',
   };
 
   const schema: JSONSchema6 = {
@@ -85,24 +86,15 @@ const DemoDynamicForm = () => {
           enum: ['', 'React Dev', 'Angular Dev', 'Other Dev'],
         },
       },
-      //   superHero: {
-
-      //   }
-      //     controlType: 'dot-radio-group',
-      //     controlProps: {
-      //       id: 'superHero',
-      //       name: 'superHero',
-      //       groupLabel: 'Select Your Favorite Superhero',
-      //       required: true,
-      //       value: 'None',
-      //       options: [
-      //         { label: 'None', value: 'None' },
-      //         { label: 'Batman', value: 'Batman' },
-      //         { label: 'Superman', value: 'Superman' },
-      //         { label: 'Spiderman', value: 'Spiderman' },
-      //       ],
-      //     } as RadioGroupProps,
-      //   },
+      superHero: {
+        type: 'string',
+        title: 'Select Your Favorite Superhero',
+        uniqueItems: true,
+        items: {
+          type: 'string',
+          enum: ['None', 'Batman', 'Superman', 'Spiderman'],
+        },
+      },
       isMandatory: {
         type: 'boolean',
         title: 'Is Mandatory',
@@ -115,6 +107,7 @@ const DemoDynamicForm = () => {
       'password',
       'receive',
       'devType',
+      'superHero',
     ],
   };
 
@@ -155,6 +148,9 @@ const DemoDynamicForm = () => {
           },
           devType: {
             'ui:widget': 'select',
+          },
+          superHero: {
+            'ui:widget': 'radio',
           },
         }}
         onChange={(event) => {

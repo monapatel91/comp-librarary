@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { WidgetProps } from 'react-jsonschema-form';
+import { RadioButtonProps } from '../../radio/RadioButton';
 
-import { DotInputSelect } from '../../input-form-fields/InputSelect';
+import { DotRadioGroup } from '../../radio/RadioGroup';
 
-export const CustomSelectWidget = ({
+export const CustomRadioWidget = ({
   autofocus,
   id,
   label,
@@ -30,17 +31,20 @@ export const CustomSelectWidget = ({
   }, [rawErrors]);
 
   const items: any = schema.items;
-  const options: string[] = items.enum;
+  const options: RadioButtonProps[] = items.enum.map((item: string) => ({
+    label: item,
+    value: item,
+  }));
 
   return (
-    <DotInputSelect
-      autoFocus={autofocus}
+    <DotRadioGroup
+      // autoFocus={autofocus}
       options={options}
       id={id}
       name={id}
-      label={label}
+      groupLabel={label}
       value={value}
-      disabled={disabled}
+      disableGroup={disabled}
       onChange={(event) => onChange(event.target.value)}
       required={required}
       error={error}
