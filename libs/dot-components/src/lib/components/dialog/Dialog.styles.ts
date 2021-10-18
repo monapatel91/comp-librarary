@@ -6,7 +6,7 @@ export const rootClassName = 'dot-dialog';
 export const StyledDialog = styled(Dialog)`
   ${({ theme }) => css`
     &.${rootClassName} {
-      .MuiPaper-root {
+      .MuiDialog-paper {
         background-color: ${theme.palette.product === 'agility' &&
         theme.palette.layer.n50};
         min-width: 280px;

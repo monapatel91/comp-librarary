@@ -87,7 +87,7 @@ export const DotAvatar = ({
     size === 'large' ? 'h1' : 'h3';
 
   const getIconFontSizeFromAvatarSize = (): IconFontSize =>
-    size === 'small' ? size : 'default';
+    size === 'small' ? size : 'medium';
 
   return (
     <DotTooltip title={tooltip}>

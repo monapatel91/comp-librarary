@@ -159,6 +159,7 @@ export const DotAppToolbar = ({
           <DotAppLogo
             appLogo={appLogo}
             appLogoSmall={appLogoSmall}
+            className="dot-app-logo"
             smallOnly={!targetBreakpoint}
           />
         )}

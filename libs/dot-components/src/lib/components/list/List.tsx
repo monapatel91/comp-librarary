@@ -238,9 +238,11 @@ export const DotList = ({
           if (!item.text) {
             return <Divider key={index} />;
           } else {
-            <ListSubheader disableSticky key={index}>
-              <DotTypography variant="subtitle2">{item.text}</DotTypography>
-            </ListSubheader>;
+            return (
+              <ListSubheader disableSticky key={index}>
+                <DotTypography variant="subtitle2">{item.text}</DotTypography>
+              </ListSubheader>
+            );
           }
         }
 
