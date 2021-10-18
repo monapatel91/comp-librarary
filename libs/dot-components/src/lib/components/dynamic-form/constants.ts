@@ -10,7 +10,7 @@ export const DATA_CONTROLS: DynamicFormControlType[] = [
   'dot-radio-group',
 ];
 
-/* Array of control types for which don't have error state so validation doesn't make any sense */
+/* Array of control types for which we don't have error state so validation doesn't make any sense */
 export const DATA_CONTROLS_WITHOUT_VALIDATION: DynamicFormControlType[] = [
   'dot-checkbox',
 ];
