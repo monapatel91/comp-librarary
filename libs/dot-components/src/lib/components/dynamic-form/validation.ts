@@ -4,6 +4,7 @@ import {
   DynamicFormValidation,
   FieldValidation,
 } from './models';
+import { DATA_CONTROLS_WITHOUT_VALIDATION } from './constants';
 
 export const isStringEmpty = (stringToCheck: string): boolean =>
   stringToCheck.trim() === '';
@@ -67,8 +68,17 @@ export const getControlValidationFromSchema = (
   controlName: string,
   schema: DynamicFormSchema
 ): DynamicFormValidation | undefined => {
-  return schema.controls.find((control) => control.controlName === controlName)
-    ?.validation;
+  const formControl = schema.controls.find(
+    (control) => control.controlName === controlName
+  );
+  // Returned undefined if there is no such form control or is included in
+  // array of controls for which we don't do validation
+  if (
+    !formControl ||
+    DATA_CONTROLS_WITHOUT_VALIDATION.includes(formControl.controlType)
+  )
+    return;
+  return formControl.validation;
 };
 
 export const checkIfFormDataValid = (

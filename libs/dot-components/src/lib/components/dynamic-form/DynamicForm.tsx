@@ -15,6 +15,7 @@ import {
   DynamicFormControl,
   DynamicFormSchema,
   DynamicFormState,
+  DynamicFormStateData,
   FormStateUpdateArgs,
 } from './models';
 import {
@@ -111,6 +112,28 @@ export const DotDynamicForm = ({
         },
       },
     }));
+  };
+
+  const validateForm = (): boolean => {
+    const newFormData: DynamicFormStateData = {};
+    const formData = formState.data;
+    let isValid = true;
+    for (const formDataKey in formData) {
+      const formControl = formData[formDataKey];
+      const validation = getControlValidationFromSchema(formDataKey, schema);
+      const fieldValidation = getFieldValidation(formControl.value, validation);
+      const isFieldValid = fieldValidation.isValid;
+      newFormData[formDataKey] = {
+        ...formControl,
+        isValid: isFieldValid,
+        errorMessage: fieldValidation.errorMessage,
+      };
+      if (!isFieldValid && isValid) {
+        isValid = false;
+      }
+    }
+    setFormState((prevState) => ({ ...prevState, data: newFormData }));
+    return isValid;
   };
 
   const handleInputChange =
@@ -245,6 +268,12 @@ export const DotDynamicForm = ({
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    let isFormValid = true;
+    // If live validation is turned off we have to validate form before submitting it
+    if (!liveValidation) {
+      isFormValid = validateForm();
+    }
+    if (!isFormValid) return;
     const formOutputData = getOutputFormData(formState);
     onSubmit?.(formOutputData);
   };
