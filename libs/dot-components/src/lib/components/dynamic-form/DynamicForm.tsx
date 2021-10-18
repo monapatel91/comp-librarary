@@ -26,22 +26,28 @@ export interface DynamicFormProps<T> {
   schema: JSONSchema6;
   formData?: T;
   liveValidate?: boolean;
+  onBlur?: (id: string, value: boolean | number | string | null) => void;
+  onChange?: ((e: IChangeEvent<T>, es?: ErrorSchema) => any) | undefined;
+  onError?: (e: any) => any;
+  onFocus?: (id: string, value: boolean | number | string | null) => void;
   onSubmit?: (event: ISubmitEvent<T>) => void;
   uiSchema?: UiSchema;
   validate?:
     | ((formData: T, errors: FormValidation) => FormValidation)
     | undefined;
-  onChange?: ((e: IChangeEvent<T>, es?: ErrorSchema) => any) | undefined;
 }
 
 function DotDynamicForm<T>({
   schema,
   formData = {} as T,
   liveValidate,
+  onBlur,
+  onChange,
+  onError,
+  onFocus,
   onSubmit,
   uiSchema,
   validate,
-  onChange,
 }: DynamicFormProps<T>) {
   const ObjectFieldTemplate = ({ properties }: ObjectFieldTemplateProps) => (
     <StyledFormContainer className={rootClassName}>
@@ -85,9 +91,12 @@ function DotDynamicForm<T>({
         ErrorList={ErrorList}
         liveValidate={liveValidate}
         formData={formData}
+        onBlur={onBlur}
+        onChange={onChange}
+        onError={onError}
+        onFocus={onFocus}
         onSubmit={onSubmit}
         validate={validate}
-        onChange={onChange}
       >
         <div>
           <DotButton isSubmit>Submit</DotButton>

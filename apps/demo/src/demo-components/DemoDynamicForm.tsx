@@ -153,9 +153,12 @@ const DemoDynamicForm = () => {
             'ui:widget': 'radio',
           },
         }}
+        onBlur={(event) => console.log('*** onBlur', event)}
         onChange={(event) => {
           console.log('*** onChange', event);
         }}
+        onError={(event) => console.log('*** onError', event)}
+        onFocus={(event) => console.log('*** onFocus', event)}
         onSubmit={handleSubmit}
         validate={validate}
       />
