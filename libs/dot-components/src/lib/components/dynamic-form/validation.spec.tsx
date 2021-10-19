@@ -6,6 +6,7 @@ import {
   ValidationField,
 } from './models';
 import {
+  checkIfFormDataValid,
   checkIfValidationApplies,
   getControlValidationFromConfig,
   getFieldValidation,
@@ -382,6 +383,44 @@ describe('validation functions', () => {
     it('should return undefined if passed in control is not found in config object', () => {
       const validation = getControlValidationFromConfig('1234', config);
       expect(validation).toBeUndefined();
+    });
+  });
+
+  describe('checkIfFormDataValid', () => {
+    const validFormData = {
+      firstName: {
+        isValid: true,
+      },
+      lastName: {
+        isValid: true,
+      },
+      username: {
+        isValid: true,
+      },
+    } as never;
+
+    const invalidFormData = {
+      firstName: {
+        isValid: true,
+      },
+      lastName: {
+        isValid: false,
+      },
+    } as never;
+
+    it('should return false when form data is not valid', () => {
+      const isValid = checkIfFormDataValid(invalidFormData);
+      expect(isValid).toBe(false);
+    });
+
+    it('should return true when undefined form data is passed in', () => {
+      const isValid = checkIfFormDataValid(undefined);
+      expect(isValid).toBe(false);
+    });
+
+    it('should return true when form data is valid', () => {
+      const isValid = checkIfFormDataValid(validFormData);
+      expect(isValid).toBe(true);
     });
   });
 });

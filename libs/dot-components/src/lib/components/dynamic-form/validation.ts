@@ -98,6 +98,7 @@ export const getControlValidationFromConfig = (
 export const checkIfFormDataValid = (
   formData: DynamicFormStateData
 ): boolean => {
+  if (!formData) return false;
   for (const formDataKey in formData) {
     if (!formData[formDataKey].isValid) return false;
   }
