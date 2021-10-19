@@ -1,6 +1,7 @@
 import {
   ConditionControl,
   DynamicFormValidation,
+  FieldValidation,
   ValidationField,
 } from './models';
 import { checkIfValidationApplies, getFieldValidation } from './validation';
@@ -281,6 +282,45 @@ describe('validation functions', () => {
           isValid: false,
           errorMessage: maxLengthErrorMsg,
         });
+      });
+    });
+
+    describe('customValidator', () => {
+      const takenUsername = {
+        isValid: false,
+        errorMessage: 'Username is already taken',
+      };
+      const validField = {
+        isValid: true,
+        errorMessage: null,
+      } as never;
+
+      const validatorFunction = (value: string): FieldValidation => {
+        // Examples of taken usernames to validate against
+        const takenUsernames = ['username', 'john', 'mark'];
+        if (takenUsernames.includes(value)) {
+          return takenUsername;
+        }
+        return validField;
+      };
+
+      it('should return correct object when passing in data which does not satisfy custom validation', () => {
+        const customValidation: DynamicFormValidation = {
+          customValidator: validatorFunction,
+        };
+        const result = getFieldValidation(
+          'username',
+          customValidation,
+          formValues
+        );
+        expect(result).toEqual(takenUsername);
+      });
+      it('should return correct object when passing in data which satisfies custom validation', () => {
+        const customValidation: DynamicFormValidation = {
+          customValidator: validatorFunction,
+        };
+        const result = getFieldValidation('1234', customValidation, formValues);
+        expect(result).toEqual(validField);
       });
     });
   });
