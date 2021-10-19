@@ -74,6 +74,7 @@ export const DemoDynamicForm = () => {
           isRequired: {
             errorMessage: 'Required field',
             value: true,
+            condition: [{ controlName: 'hasMiddleName', controlValue: 'no' }],
           },
         },
       },

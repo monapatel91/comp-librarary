@@ -97,7 +97,12 @@ export const DotDynamicForm = ({
         controlName,
         formConfig
       );
-      const fieldValidation = getFieldValidation(newValue, validation);
+      const formValues = getOutputFormData(formState);
+      const fieldValidation = getFieldValidation(
+        newValue,
+        validation,
+        formValues
+      );
       validationFields = {
         isValid: fieldValidation.isValid,
         errorMessage: fieldValidation.errorMessage,
@@ -124,7 +129,12 @@ export const DotDynamicForm = ({
     for (const formDataKey in formData) {
       const formControl = formData[formDataKey];
       const validation = getControlValidationFromConfig(formDataKey, config);
-      const fieldValidation = getFieldValidation(formControl.value, validation);
+      const formValues = getOutputFormData(formState);
+      const fieldValidation = getFieldValidation(
+        formControl.value,
+        validation,
+        formValues
+      );
       const isFieldValid = fieldValidation.isValid;
       newFormData[formDataKey] = {
         ...formControl,

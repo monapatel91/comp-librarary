@@ -1,17 +1,31 @@
 import {
   DynamicFormConfig,
+  DynamicFormOutputData,
   DynamicFormStateData,
   DynamicFormValidation,
   FieldValidation,
+  ValidationField,
 } from './models';
 import { DATA_CONTROLS_WITHOUT_VALIDATION } from './constants';
 
 export const isStringEmpty = (stringToCheck: string): boolean =>
   stringToCheck.trim() === '';
 
+export const checkIfValidationApplies = (
+  validationField: ValidationField,
+  formValues: DynamicFormOutputData
+) => {
+  const condition = validationField.condition;
+  if (!condition) return true;
+  return condition.every(
+    ({ controlName, controlValue }) => formValues[controlName] === controlValue
+  );
+};
+
 export const getFieldValidation = (
   value: unknown,
-  validation: DynamicFormValidation
+  validation: DynamicFormValidation,
+  formValues: DynamicFormOutputData
 ): FieldValidation => {
   const fieldValidation: FieldValidation = {
     isValid: true,
@@ -22,6 +36,7 @@ export const getFieldValidation = (
   // Field is required but value is not present
   if (
     validation.isRequired &&
+    checkIfValidationApplies(validation.isRequired, formValues) &&
     (!value || (Array.isArray(value) && !value.length))
   ) {
     return {
@@ -33,6 +48,7 @@ export const getFieldValidation = (
   if (
     (typeof value === 'string' || Array.isArray(value)) &&
     validation.minLength &&
+    checkIfValidationApplies(validation.minLength, formValues) &&
     validation.minLength.value > value.length
   ) {
     return {
@@ -44,6 +60,7 @@ export const getFieldValidation = (
   if (
     (typeof value === 'string' || Array.isArray(value)) &&
     validation.maxLength &&
+    checkIfValidationApplies(validation.maxLength, formValues) &&
     validation.maxLength.value < value.length
   ) {
     return {

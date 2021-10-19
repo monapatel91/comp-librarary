@@ -89,6 +89,7 @@ export const getInitialFormState = (
   config: DynamicFormConfig,
   liveValidation: boolean
 ): DynamicFormState => {
+  const formValues = getFormDataFromInitialValues(config);
   const initialState: DynamicFormState = {
     data: {},
     isValid: false,
@@ -111,7 +112,11 @@ export const getInitialFormState = (
 
         if (liveValidation) {
           initialState.data[controlName].isTouched = true;
-          const fieldValidation = getFieldValidation(initialValue, validation);
+          const fieldValidation = getFieldValidation(
+            initialValue,
+            validation,
+            formValues
+          );
           initialState.data[controlName].isValid = fieldValidation.isValid;
           initialState.data[controlName].errorMessage =
             fieldValidation.errorMessage;
@@ -136,6 +141,20 @@ export const getOutputFormData = (formState: DynamicFormState) => {
     outputData[dataKey] = formState.data[dataKey].value;
   }
   return outputData;
+};
+
+export const getFormDataFromInitialValues = (config: DynamicFormConfig) => {
+  const formValues: DynamicFormOutputData = {};
+  config.controls.forEach(
+    ({ controlName, initialValue, controlType }: DynamicFormControl) => {
+      // Skip non-data controls (ignore buttons and other non-relevant elements)
+      // or hidden elements
+      if (!DATA_CONTROLS.includes(controlType)) return;
+
+      formValues[controlName] = initialValue ? initialValue : undefined;
+    }
+  );
+  return formValues;
 };
 
 export const buildInputTextControl = ({

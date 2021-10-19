@@ -62,6 +62,7 @@ export interface DynamicFormConfig {
 }
 
 export interface ValidationField {
+  condition?: ConditionControl[];
   errorMessage: string;
 }
 
