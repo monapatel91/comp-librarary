@@ -261,6 +261,7 @@ export const DemoDynamicForm = () => {
   };
 
   const [isFormDisabled, setIsFormDisabled] = useState(false);
+  const [hasLiveValidation, setHasLiveValidation] = useState(false);
 
   const handleSubmit = (formData: DynamicFormOutputData) => {
     console.log(formData);
@@ -282,13 +283,18 @@ export const DemoDynamicForm = () => {
           checked={isFormDisabled}
           onChange={() => setIsFormDisabled((prevState) => !prevState)}
         />
+        <DotSwitch
+          label="Live validation"
+          checked={hasLiveValidation}
+          onChange={() => setHasLiveValidation((prevState) => !prevState)}
+        />
       </div>
 
       <Divider />
 
       <DotDynamicForm
         disabled={isFormDisabled}
-        liveValidation={false}
+        liveValidation={hasLiveValidation}
         config={config}
         onChange={handleChange}
         onSubmit={handleSubmit}

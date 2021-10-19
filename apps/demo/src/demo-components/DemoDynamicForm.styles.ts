@@ -6,7 +6,9 @@ export const StyledDemoDynamicForm = styled.div`
   ${() => css`
     &.${rootClassName} {
       .options {
+        display: flex;
         margin: 16px 16px;
+        gap: 32px;
       }
 
       .divider {
