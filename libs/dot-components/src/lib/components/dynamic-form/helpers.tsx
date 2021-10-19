@@ -45,6 +45,7 @@ type CheckboxGroupChangeHandler = (
 
 export interface InputBaseArgs {
   controlProps: DynamicFormControlProps;
+  disabled?: boolean;
   index: number;
   liveValidation: boolean;
 }
@@ -142,6 +143,7 @@ export const getOutputFormData = (formState: DynamicFormState) => {
 export const buildInputTextControl = ({
   controlName,
   controlProps,
+  disabled,
   formData,
   handleChange,
   index,
@@ -154,6 +156,7 @@ export const buildInputTextControl = ({
     <DotInputText
       key={index}
       {...props}
+      disabled={disabled}
       value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
@@ -165,6 +168,7 @@ export const buildInputTextControl = ({
 export const buildInputSelectControl = ({
   controlName,
   controlProps,
+  disabled,
   formData,
   handleChange,
   index,
@@ -177,6 +181,7 @@ export const buildInputSelectControl = ({
     <DotInputSelect
       key={index}
       {...props}
+      disabled={disabled}
       value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
@@ -188,6 +193,7 @@ export const buildInputSelectControl = ({
 export const buildAutocompleteControl = ({
   controlName,
   controlProps,
+  disabled,
   formData,
   handleChange,
   index,
@@ -200,6 +206,7 @@ export const buildAutocompleteControl = ({
     <DotAutoComplete
       key={index}
       {...props}
+      disabled={disabled}
       value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
@@ -211,6 +218,7 @@ export const buildAutocompleteControl = ({
 export const buildRadioGroupControl = ({
   controlName,
   controlProps,
+  disabled,
   formData,
   handleChange,
   index,
@@ -223,6 +231,7 @@ export const buildRadioGroupControl = ({
     <DotRadioGroup
       key={index}
       {...props}
+      disableGroup={disabled}
       value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
@@ -234,6 +243,7 @@ export const buildRadioGroupControl = ({
 export const buildCheckboxControl = ({
   controlName,
   controlProps,
+  disabled,
   formData,
   handleChange,
   index,
@@ -245,6 +255,7 @@ export const buildCheckboxControl = ({
     <DotCheckbox
       key={index}
       {...props}
+      disabled={disabled}
       checked={checked}
       onChange={handleChangeFn(controlName)}
     />
@@ -254,6 +265,7 @@ export const buildCheckboxControl = ({
 export const buildCheckboxGroupControl = ({
   controlName,
   controlProps,
+  disabled,
   formData,
   handleChange,
   index,
@@ -265,6 +277,7 @@ export const buildCheckboxGroupControl = ({
     <DotCheckboxGroup
       key={index}
       {...props}
+      disableGroup={disabled}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
       onChange={handleChangeFn(controlName)}
@@ -274,11 +287,12 @@ export const buildCheckboxGroupControl = ({
 
 export const buildButtonControl = ({
   controlProps,
+  disabled,
   index,
 }: UncontrolledInputArgs) => {
   const props = controlProps as ButtonProps;
   return (
-    <DotButton key={index} {...props}>
+    <DotButton key={index} {...props} disabled={disabled}>
       {props.children}
     </DotButton>
   );
@@ -286,6 +300,7 @@ export const buildButtonControl = ({
 
 export const buildResetControl = ({
   controlProps,
+  disabled,
   handleClick,
   index,
 }: UncontrolledInputArgs) => {
@@ -294,6 +309,7 @@ export const buildResetControl = ({
     <DotButton
       key={index}
       {...props}
+      disabled={disabled}
       onClick={(e) => {
         props.onClick?.(e);
         handleClick();
@@ -306,12 +322,13 @@ export const buildResetControl = ({
 
 export const buildSubmitControl = ({
   controlProps,
+  disabled,
   formState,
   index,
   liveValidation,
 }: UncontrolledInputArgs) => {
   const props = controlProps as ButtonProps;
-  const isDisabled = liveValidation && !formState.isValid;
+  const isDisabled = disabled || (liveValidation && !formState.isValid);
   return (
     <DotButton key={index} {...props} isSubmit={true} disabled={isDisabled}>
       {props.children}

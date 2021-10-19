@@ -42,6 +42,7 @@ import {
 import { CheckboxProps } from '../checkbox/Checkbox';
 
 export interface DynamicFormProps extends CommonProps {
+  disabled?: boolean;
   liveValidation?: boolean;
   onChange?: (formData: DynamicFormState) => void;
   onSubmit?: (formData: DynamicFormOutputData) => void;
@@ -51,6 +52,7 @@ export interface DynamicFormProps extends CommonProps {
 export const DotDynamicForm = ({
   className,
   'data-testid': dataTestId,
+  disabled,
   liveValidation = true,
   onChange,
   onSubmit,
@@ -190,6 +192,7 @@ export const DotDynamicForm = ({
 
         const control: InputBaseArgs = {
           controlProps,
+          disabled,
           index,
           liveValidation,
         };
