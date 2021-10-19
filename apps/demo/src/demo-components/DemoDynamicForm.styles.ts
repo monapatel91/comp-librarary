@@ -9,6 +9,10 @@ export const StyledDemoDynamicForm = styled.div`
         width: 100%;
       }
 
+      .options {
+        margin: 16px 16px;
+      }
+
       .divider {
         margin: 16px 0 32px;
       }

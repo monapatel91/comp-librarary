@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AutoCompleteProps,
   CheckboxProps,
@@ -14,6 +14,7 @@ import {
   FieldValidation,
   InputSelectProps,
   RadioGroupProps,
+  DotSwitch,
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 import { Divider } from '@material-ui/core';
@@ -260,6 +261,8 @@ export const DemoDynamicForm = () => {
     ],
   };
 
+  const [isFormDisabled, setIsFormDisabled] = useState(false);
+
   const handleSubmit = (formData: DynamicFormOutputData) => {
     console.log(formData);
   };
@@ -274,7 +277,18 @@ export const DemoDynamicForm = () => {
         <DotBreadcrumbs items={[{ text: 'Demo Dynamic Form' }]} />
       </DotActionToolbar>
 
+      <div className="options">
+        <DotSwitch
+          label="Disable form"
+          checked={isFormDisabled}
+          onChange={() => setIsFormDisabled((prevState) => !prevState)}
+        />
+      </div>
+
+      <Divider />
+
       <DotDynamicForm
+        disabled={isFormDisabled}
         liveValidation={false}
         config={config}
         onChange={handleChange}
