@@ -1,12 +1,10 @@
 import React from 'react';
-import {
-  AutoCompleteProps,
-  ButtonProps,
-  CheckboxProps,
-  DynamicFormConfig,
-  InputTextProps,
-  RadioGroupProps,
-} from '@digital-ai/dot-components';
+import { AutoCompleteProps } from '../auto-complete/AutoComplete';
+import { ButtonProps } from '../button/Button';
+import { CheckboxProps } from '../checkbox/Checkbox';
+import { InputTextProps } from '../input-form-fields/InputText';
+import { RadioGroupProps } from '../radio/RadioGroup';
+import { DynamicFormConfig, DynamicFormState } from './models';
 
 export const getSampleConfig = (): DynamicFormConfig => ({
   controls: [
@@ -117,4 +115,44 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       } as ButtonProps,
     },
   ],
+});
+
+export const getSampleFormState = (): DynamicFormState => ({
+  data: {
+    firstName: {
+      errorMessage: null,
+      isTouched: true,
+      isValid: true,
+      value: 'my first name',
+    },
+    hasMiddleName: {
+      errorMessage: null,
+      isTouched: true,
+      isValid: true,
+      value: 'no',
+    },
+    isMandatory: {
+      errorMessage: null,
+      isTouched: false,
+      isValid: true,
+      value: null,
+    },
+    middleName: {
+      errorMessage: null,
+      isTouched: false,
+      isValid: true,
+      value: null,
+    },
+    randomOption: {
+      errorMessage: 'Pick at least 2 options',
+      isTouched: true,
+      isValid: false,
+      value: [
+        {
+          title: 'Option 1',
+        },
+      ],
+    },
+  },
+  isValid: false,
 });

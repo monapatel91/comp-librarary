@@ -2,8 +2,9 @@ import {
   checkIfHiddenControl,
   getControlValue,
   getInitialFormState,
+  getOutputFormData,
 } from './helpers';
-import { getSampleConfig } from './sample';
+import { getSampleConfig, getSampleFormState } from './sample';
 
 describe('dynamic form helper functions', () => {
   const data = {
@@ -61,46 +62,9 @@ describe('dynamic form helper functions', () => {
   describe('getInitialFormState', () => {
     it('should return correct initial state based on a given form config with live validation', () => {
       const sampleConfig = getSampleConfig();
+      const expectedFormState = getSampleFormState();
       const initialFormState = getInitialFormState(sampleConfig, true);
-      expect(initialFormState).toEqual({
-        data: {
-          firstName: {
-            errorMessage: null,
-            isTouched: true,
-            isValid: true,
-            value: 'my first name',
-          },
-          hasMiddleName: {
-            errorMessage: null,
-            isTouched: true,
-            isValid: true,
-            value: 'no',
-          },
-          isMandatory: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: true,
-            value: null,
-          },
-          middleName: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: true,
-            value: null,
-          },
-          randomOption: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: false,
-            value: [
-              {
-                title: 'Option 1',
-              },
-            ],
-          },
-        },
-        isValid: false,
-      });
+      expect(initialFormState).toEqual(expectedFormState);
     });
     it('should return correct initial state based on a given form config without live validation', () => {
       const sampleConfig = getSampleConfig();
@@ -143,6 +107,23 @@ describe('dynamic form helper functions', () => {
           },
         },
         isValid: false,
+      });
+    });
+  });
+
+  describe('getOutputFormData', () => {
+    it('should return correct output data', () => {
+      const formData = getOutputFormData(getSampleFormState());
+      expect(formData).toEqual({
+        firstName: 'my first name',
+        hasMiddleName: 'no',
+        isMandatory: null,
+        middleName: null,
+        randomOption: [
+          {
+            title: 'Option 1',
+          },
+        ],
       });
     });
   });
