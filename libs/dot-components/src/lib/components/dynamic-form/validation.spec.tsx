@@ -217,5 +217,71 @@ describe('validation functions', () => {
         });
       });
     });
+
+    describe('maxLength', () => {
+      it('should return correct object when string does not satisfy maxLength validation ', () => {
+        const result = getFieldValidation(
+          'aaaaabbbbbbbbbbb',
+          validation,
+          formValues
+        );
+        expect(result).toEqual({
+          isValid: false,
+          errorMessage: maxLengthErrorMsg,
+        });
+      });
+      it('should return correct object when array does not satisfy maxLength validation ', () => {
+        const result = getFieldValidation(
+          ['1', '2', '3', '4', '5', '6', '7'],
+          validation,
+          formValues
+        );
+        expect(result).toEqual({
+          isValid: false,
+          errorMessage: maxLengthErrorMsg,
+        });
+      });
+      it('should return correct object when passing in value and it satisfies maxLength validation', () => {
+        const result = getFieldValidation('abcd', validation, formValues);
+        expect(result).toEqual({
+          isValid: true,
+          errorMessage: null,
+        });
+      });
+      it('should return correct object when passing in non-valid value but validation conditions are not met', () => {
+        const customValidation: DynamicFormValidation = {
+          maxLength: {
+            ...validation.maxLength,
+            condition: nonMatchingCondition,
+          },
+        };
+        const result = getFieldValidation(
+          'aaaaabbbbbbbbbbb',
+          customValidation,
+          formValues
+        );
+        expect(result).toEqual({
+          isValid: true,
+          errorMessage: null,
+        });
+      });
+      it('should return correct object when passing in non-valid value and validation conditions are met', () => {
+        const customValidation: DynamicFormValidation = {
+          maxLength: {
+            ...validation.maxLength,
+            condition: matchingCondition,
+          },
+        };
+        const result = getFieldValidation(
+          'aaaaabbbbbbbbbbb',
+          customValidation,
+          formValues
+        );
+        expect(result).toEqual({
+          isValid: false,
+          errorMessage: maxLengthErrorMsg,
+        });
+      });
+    });
   });
 });
