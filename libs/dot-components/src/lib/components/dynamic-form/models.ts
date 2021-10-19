@@ -6,6 +6,7 @@ import { InputSelectProps } from '../input-form-fields/InputSelect';
 import { ReactNode } from 'react';
 import { CheckboxGroupProps } from '../checkbox/CheckboxGroup';
 import { RadioGroupProps } from '../radio/RadioGroup';
+import { SwitchProps } from '../switch/Switch';
 
 export type DynamicFormControlType =
   | 'dot-input-text'
@@ -17,6 +18,7 @@ export type DynamicFormControlType =
   | 'dot-radio-group'
   | 'dot-reset'
   | 'dot-submit'
+  | 'dot-switch'
   | 'custom-element';
 
 export type DynamicFormControlProps =
@@ -26,7 +28,8 @@ export type DynamicFormControlProps =
   | CheckboxProps
   | CheckboxGroupProps
   | ButtonProps
-  | RadioGroupProps;
+  | RadioGroupProps
+  | SwitchProps;
 
 export type HiddenControl = boolean | ConditionControl[];
 

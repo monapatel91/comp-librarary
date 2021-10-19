@@ -33,6 +33,7 @@ import {
   buildRadioGroupControl,
   buildResetControl,
   buildSubmitControl,
+  buildSwitchControl,
   checkIfHiddenControl,
   DynamicFormOutputData,
   getInitialFormState,
@@ -144,7 +145,7 @@ export const DotDynamicForm = ({
       updateFormState({ controlName, formConfig: config, newValue });
     };
 
-  const handleCheckboxChange =
+  const handleCheckChange =
     (controlName: string) =>
     (e: ChangeEvent<HTMLInputElement>): void => {
       const newValue = e.target.checked;
@@ -235,7 +236,7 @@ export const DotDynamicForm = ({
               ...control,
               controlName: inputControlName,
               formData: formState.data,
-              handleChange: handleCheckboxChange,
+              handleChange: handleCheckChange,
             });
           }
           case 'dot-checkbox-group': {
@@ -244,6 +245,14 @@ export const DotDynamicForm = ({
               controlName: inputControlName,
               formData: formState.data,
               handleChange: handleCheckboxGroupChange,
+            });
+          }
+          case 'dot-switch': {
+            return buildSwitchControl({
+              ...control,
+              controlName: inputControlName,
+              formData: formState.data,
+              handleChange: handleCheckChange,
             });
           }
           case 'dot-button': {

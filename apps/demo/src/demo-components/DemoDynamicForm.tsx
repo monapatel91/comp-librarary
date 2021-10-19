@@ -223,10 +223,9 @@ export const DemoDynamicForm = () => {
       },
       {
         controlName: 'isMandatory',
-        controlType: 'dot-checkbox',
+        controlType: 'dot-switch',
         controlProps: {
           label: 'Is Mandatory',
-          className: 'is-mandatory',
         } as CheckboxProps,
         validation: {
           isRequired: {

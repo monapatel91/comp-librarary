@@ -30,6 +30,7 @@ import {
   DATA_CONTROLS_WITHOUT_VALIDATION,
   INITIAL_STATE_ITEM,
 } from './constants';
+import { DotSwitch } from '../switch/Switch';
 
 type AutoCompleteChangeHandler = (
   controlName: string
@@ -280,6 +281,28 @@ export const buildCheckboxGroupControl = ({
       disableGroup={disabled}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
+      onChange={handleChangeFn(controlName)}
+    />
+  );
+};
+
+export const buildSwitchControl = ({
+  controlName,
+  controlProps,
+  disabled,
+  formData,
+  handleChange,
+  index,
+}: ControlledInputArgs) => {
+  const props = controlProps as CheckboxGroupProps;
+  const checked = getControlValue<boolean>(controlName, formData) || false;
+  const handleChangeFn = handleChange as ChangeHandler;
+  return (
+    <DotSwitch
+      key={index}
+      {...props}
+      disabled={disabled}
+      checked={checked}
       onChange={handleChangeFn(controlName)}
     />
   );
