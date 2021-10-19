@@ -1,10 +1,16 @@
 import {
   ConditionControl,
+  DynamicFormConfig,
   DynamicFormValidation,
   FieldValidation,
   ValidationField,
 } from './models';
-import { checkIfValidationApplies, getFieldValidation } from './validation';
+import {
+  checkIfValidationApplies,
+  getControlValidationFromConfig,
+  getFieldValidation,
+} from './validation';
+import { InputTextProps } from '../input-form-fields/InputText';
 
 describe('validation functions', () => {
   const formValues = {
@@ -322,6 +328,60 @@ describe('validation functions', () => {
         const result = getFieldValidation('1234', customValidation, formValues);
         expect(result).toEqual(validField);
       });
+    });
+  });
+
+  describe('getControlValidationFromConfig', () => {
+    const controlValidation: DynamicFormValidation = {
+      isRequired: {
+        errorMessage: 'Required field',
+        value: true,
+      },
+      minLength: {
+        value: 3,
+        errorMessage: 'Please enter minimum 3 characters',
+      },
+    };
+
+    const config: DynamicFormConfig = {
+      controls: [
+        {
+          controlName: 'option',
+          controlType: 'dot-checkbox',
+          controlProps: {
+            label: 'My checkbox',
+          } as InputTextProps,
+          validation: {
+            isRequired: {
+              errorMessage: 'Required field',
+              value: true,
+            },
+          },
+        },
+        {
+          controlName: 'username',
+          controlType: 'dot-input-text',
+          controlProps: {
+            label: 'Username',
+          } as InputTextProps,
+          validation: controlValidation,
+        },
+      ],
+    };
+
+    it('should return correct validation object', () => {
+      const validation = getControlValidationFromConfig('username', config);
+      expect(validation).toEqual(controlValidation);
+    });
+
+    it('should return undefined if control is listed as data control without validation', () => {
+      const validation = getControlValidationFromConfig('option', config);
+      expect(validation).toBeUndefined();
+    });
+
+    it('should return undefined if passed in control is not found in config object', () => {
+      const validation = getControlValidationFromConfig('1234', config);
+      expect(validation).toBeUndefined();
     });
   });
 });
