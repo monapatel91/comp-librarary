@@ -15,10 +15,10 @@ import {
   InputSelectProps,
   RadioGroupProps,
   DotSwitch,
+  DynamicFormOutputData,
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 import { Divider } from '@material-ui/core';
-import { DynamicFormOutputData } from '../../../../libs/dot-components/src/lib/components/dynamic-form/helpers';
 
 export const DemoDynamicForm = () => {
   const config: DynamicFormConfig = {

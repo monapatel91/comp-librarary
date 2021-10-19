@@ -31,6 +31,10 @@ export type DynamicFormControlProps =
   | RadioGroupProps
   | SwitchProps;
 
+export interface DynamicFormOutputData {
+  [key: string]: unknown;
+}
+
 export type HiddenControl = boolean | ConditionControl[];
 
 export interface ConditionControl {

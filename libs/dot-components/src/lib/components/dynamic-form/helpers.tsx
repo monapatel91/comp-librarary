@@ -11,6 +11,7 @@ import {
   DynamicFormState,
   DynamicFormStateData,
   HiddenControl,
+  DynamicFormOutputData,
 } from './models';
 import {
   AutoCompleteProps,
@@ -63,10 +64,6 @@ export interface ControlledInputArgs extends InputBaseArgs {
 export interface UncontrolledInputArgs extends InputBaseArgs {
   formState?: DynamicFormState;
   handleClick?: () => void;
-}
-
-export interface DynamicFormOutputData {
-  [key: string]: unknown;
 }
 
 const getControlValue = <T extends unknown>(

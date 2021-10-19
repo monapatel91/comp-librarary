@@ -17,6 +17,7 @@ import {
   DynamicFormState,
   DynamicFormStateData,
   FormStateUpdateArgs,
+  DynamicFormOutputData,
 } from './models';
 import {
   checkIfFormDataValid,
@@ -35,7 +36,6 @@ import {
   buildSubmitControl,
   buildSwitchControl,
   checkIfHiddenControl,
-  DynamicFormOutputData,
   getInitialFormState,
   getOutputFormData,
   InputBaseArgs,
