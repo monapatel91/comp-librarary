@@ -66,7 +66,7 @@ export interface UncontrolledInputArgs extends InputBaseArgs {
   handleClick?: () => void;
 }
 
-const getControlValue = <T extends unknown>(
+export const getControlValue = <T extends unknown>(
   controlName: string,
   data: DynamicFormStateData
 ): T => {
