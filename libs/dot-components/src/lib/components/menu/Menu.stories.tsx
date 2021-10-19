@@ -6,7 +6,7 @@ import { DotMenu, MenuProps } from './Menu';
 import { DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
 
-const onLeave = (evt, setOpen) => {
+const onLeave = (_evt, setOpen) => {
   setOpen(false);
 };
 
@@ -29,13 +29,13 @@ export default {
 
 export const Default: Story<MenuProps> = (args) => {
   const [open, setOpen] = useState(true);
-  const onItemSelect = (event, menuId, itemKey) => {
+  const onItemSelect = (_event, _menuId, itemKey) => {
     alert(
       itemKey +
         " selected. Click the 'open' toggle in Controls to redisplay menu."
     );
   };
-  const handleLeave = (evt) => {
+  const handleLeave = (_evt) => {
     setOpen(false);
   };
   const menuItems = [
@@ -100,7 +100,7 @@ export const ButtonMenu: Story<MenuProps> = (args) => {
     setAnchorEl(event.currentTarget);
     setOpen(!open);
   };
-  const onItemSelect = (event, menuId, itemKey) => {
+  const onItemSelect = (_event, _menuId, itemKey) => {
     alert(itemKey + ' rules!');
   };
 
@@ -118,9 +118,13 @@ export const ButtonMenu: Story<MenuProps> = (args) => {
     { children: 'Batman', key: 'Batman' },
     { children: 'Robin', key: 'Robin' },
     { children: 'Bat Girl', key: 'Bat Girl' },
+    { children: 'Superman', key: 'Superman' },
+    { children: 'Supergirl', key: 'Supergirl' },
+    { children: 'The Flash', key: 'The Flash' },
+    { children: 'Green Arrow', key: 'Green Arrow' },
   ];
   return (
-    <div>
+    <>
       <DotButton type="text" onClick={handleToggle}>
         Menu Button
       </DotButton>
@@ -132,7 +136,7 @@ export const ButtonMenu: Story<MenuProps> = (args) => {
         onSelect={onItemSelect}
         open={open}
       ></DotMenu>
-    </div>
+    </>
   );
 };
 
