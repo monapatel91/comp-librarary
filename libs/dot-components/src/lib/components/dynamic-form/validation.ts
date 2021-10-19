@@ -8,9 +8,6 @@ import {
 } from './models';
 import { DATA_CONTROLS_WITHOUT_VALIDATION } from './constants';
 
-export const isStringEmpty = (stringToCheck: string): boolean =>
-  stringToCheck.trim() === '';
-
 export const checkIfValidationApplies = (
   validationField: ValidationField,
   formValues: DynamicFormOutputData
