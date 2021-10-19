@@ -18,6 +18,7 @@ import {
   DynamicFormStateData,
   FormStateUpdateArgs,
   DynamicFormOutputData,
+  FieldValidation,
 } from './models';
 import {
   checkIfFormDataValid,
@@ -85,28 +86,33 @@ export const DotDynamicForm = ({
     }
   }, [formState]);
 
+  const getControlValidation = (
+    controlName: string,
+    controlValue: unknown,
+    formConfig: DynamicFormConfig
+  ): FieldValidation => {
+    const validation = getControlValidationFromConfig(controlName, formConfig);
+    const formValues = getOutputFormData(formState);
+    const fieldValidation = getFieldValidation(
+      controlValue,
+      validation,
+      formValues
+    );
+    return {
+      isValid: fieldValidation.isValid,
+      errorMessage: fieldValidation.errorMessage,
+    };
+  };
+
   const updateFormState = ({
     controlName,
     newValue,
     formConfig,
     validate = true,
   }: FormStateUpdateArgs) => {
-    let validationFields = {};
+    let fieldValidation = {};
     if (validate && liveValidation) {
-      const validation = getControlValidationFromConfig(
-        controlName,
-        formConfig
-      );
-      const formValues = getOutputFormData(formState);
-      const fieldValidation = getFieldValidation(
-        newValue,
-        validation,
-        formValues
-      );
-      validationFields = {
-        isValid: fieldValidation.isValid,
-        errorMessage: fieldValidation.errorMessage,
-      };
+      fieldValidation = getControlValidation(controlName, newValue, formConfig);
     }
     setFormState((prevFormState) => ({
       ...prevFormState,
@@ -116,7 +122,7 @@ export const DotDynamicForm = ({
           ...prevFormState.data[controlName],
           value: newValue,
           isTouched: true,
-          ...validationFields,
+          ...fieldValidation,
         },
       },
     }));
@@ -128,12 +134,10 @@ export const DotDynamicForm = ({
     let isValid = true;
     for (const formDataKey in formData) {
       const formControl = formData[formDataKey];
-      const validation = getControlValidationFromConfig(formDataKey, config);
-      const formValues = getOutputFormData(formState);
-      const fieldValidation = getFieldValidation(
+      const fieldValidation = getControlValidation(
+        formDataKey,
         formControl.value,
-        validation,
-        formValues
+        config
       );
       const isFieldValid = fieldValidation.isValid;
       newFormData[formDataKey] = {
