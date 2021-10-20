@@ -27,6 +27,21 @@ describe('DotDynamicForm', () => {
   const getAutocompleteElement = (): HTMLElement =>
     screen.getByTestId('randomOption');
 
+  const removeAutocompleteOption = (autocompleteElement: HTMLElement): void => {
+    const closeElement =
+      autocompleteElement.getElementsByClassName('MuiChip-deleteIcon')[0];
+    userEvent.click(closeElement);
+  };
+
+  const addAutocompleteOption = (
+    option: string,
+    autocompleteElement: HTMLElement
+  ): void => {
+    userEvent.click(within(autocompleteElement).getByRole('textbox'));
+    const popperElement = screen.getByRole('presentation');
+    userEvent.click(within(popperElement).getByText(option));
+  };
+
   it('should have unchanged API', () => {
     const props = {
       className: 'test-class',
@@ -81,10 +96,24 @@ describe('DotDynamicForm', () => {
 
     it('should display correct error message when option is removed from the autocomplete field', () => {
       const autocompleteElement = getAutocompleteElement();
-      const closeElement =
-        autocompleteElement.getElementsByClassName('MuiChip-deleteIcon')[0];
-      userEvent.click(closeElement);
+      removeAutocompleteOption(autocompleteElement);
       within(autocompleteElement).getByText('Required field');
+    });
+
+    it('should display correct error message when minLength condition is not satisfied', () => {
+      const autocompleteElement = getAutocompleteElement();
+      removeAutocompleteOption(autocompleteElement);
+      addAutocompleteOption('Option 1', autocompleteElement);
+      within(autocompleteElement).getByText('Pick at least 2 options');
+    });
+
+    it('should display correct error message when maxLength condition is not satisfied', () => {
+      const autocompleteElement = getAutocompleteElement();
+      addAutocompleteOption('Option 2', autocompleteElement);
+      addAutocompleteOption('Option 3', autocompleteElement);
+      addAutocompleteOption('Option 4', autocompleteElement);
+      addAutocompleteOption('Option 5', autocompleteElement);
+      within(autocompleteElement).getByText('Maximum of 4 options allowed');
     });
   });
 });
