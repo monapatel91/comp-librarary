@@ -1,11 +1,15 @@
+import React from 'react';
 import {
+  buildInputTextControl,
   checkIfHiddenControl,
+  ControlledInputArgs,
   getControlValue,
   getFormDataFromInitialValues,
   getInitialFormState,
   getOutputFormData,
 } from './helpers';
 import { getSampleConfig, getSampleFormState } from './sample';
+import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
 
 describe('dynamic form helper functions', () => {
   const data = {
@@ -136,6 +140,92 @@ describe('dynamic form helper functions', () => {
         isMandatory: undefined,
         middleName: undefined,
         randomOption: [{ title: 'Option 1' }],
+      });
+    });
+  });
+  describe('buildInputTextControl', () => {
+    const value = 'my first name';
+    const handleChange = jest.fn();
+    const controlProps: InputTextProps = {
+      id: 'my-id',
+      label: 'my control label',
+      name: 'my-name',
+    };
+    const formData = {
+      firstName: {
+        errorMessage: null,
+        isTouched: true,
+        isValid: true,
+        value,
+      },
+    } as never;
+    const props: ControlledInputArgs = {
+      controlName: 'firstName',
+      controlProps: controlProps,
+      disabled: false,
+      formData,
+      handleChange,
+      index: 0,
+      liveValidation: false,
+    };
+    const expectedResult = (
+      <DotInputText
+        key={props.index}
+        disabled={false}
+        error={false}
+        id={controlProps.id}
+        label={controlProps.label}
+        name={controlProps.name}
+        value={value}
+      />
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildInputTextControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        disabled: true,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+      };
+      const result = buildInputTextControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
+      });
+    });
+
+    it('should return component instance with error message handled', () => {
+      const errorMessage = 'my error';
+      const customFormData = {
+        firstName: {
+          errorMessage,
+          isTouched: true,
+          isValid: false,
+          value,
+        },
+      } as never;
+      const customProps = {
+        ...props,
+        formData: customFormData,
+      };
+      const result = buildInputTextControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          error: true,
+          helperText: errorMessage,
+        },
       });
     });
   });
