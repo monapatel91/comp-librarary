@@ -8,6 +8,7 @@ import {
   buildInputTextControl,
   buildRadioGroupControl,
   buildResetControl,
+  buildSubmitControl,
   buildSwitchControl,
   checkIfHiddenControl,
   ControlledInputArgs,
@@ -835,6 +836,81 @@ describe('dynamic form helper functions', () => {
       expect(getRelevantProps(result)).toEqual({
         ...expectedResult.props,
         disabled: true,
+      });
+    });
+  });
+
+  describe('buildSubmitControl', () => {
+    const handleClick = jest.fn();
+    const controlProps: ButtonProps = {
+      size: 'large',
+      type: 'primary',
+      children: 'Submit',
+    };
+    const formState = {
+      isValid: true,
+    } as never;
+    const props: UncontrolledInputArgs = {
+      controlProps: controlProps,
+      disabled: false,
+      formState,
+      handleClick,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotButton
+        key={props.index}
+        disabled={false}
+        isSubmit={true}
+        size={controlProps.size}
+        type={controlProps.type}
+      >
+        {controlProps.children}
+      </DotButton>
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildSubmitControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        disabled: true,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+      };
+      const result = buildSubmitControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
+      });
+    });
+
+    it('should return component instance with disabled prop when live validation is on and form validity is false', () => {
+      const customProps = {
+        ...props,
+        formState: {
+          isValid: false,
+        } as never,
+        controlProps: {
+          ...controlProps,
+        },
+      };
+      const result = buildSubmitControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
       });
     });
   });
