@@ -30,6 +30,8 @@ describe('DotDynamicForm', () => {
   const getRadioGroupElement = (): HTMLElement =>
     screen.getByTestId('hasMiddleName');
 
+  const getSwitchElement = (): HTMLElement => screen.getByTestId('isMandatory');
+
   const queryMiddleNameTextboxElement = (): HTMLElement | undefined =>
     screen.queryByTestId('middleName');
 
@@ -47,6 +49,12 @@ describe('DotDynamicForm', () => {
     const popperElement = screen.getByRole('presentation');
     userEvent.click(within(popperElement).getByText(option));
   };
+
+  const selectRadioGroupOption = (
+    position: number,
+    radioGroupElement: HTMLElement
+  ): void =>
+    userEvent.click(within(radioGroupElement).getAllByRole('radio')[position]);
 
   it('should have unchanged API', () => {
     const props = {
@@ -145,6 +153,30 @@ describe('DotDynamicForm', () => {
     it('should NOT render middle name textbox by default', () => {
       const textboxElement = queryMiddleNameTextboxElement();
       expect(textboxElement).not.toBeInTheDocument();
+    });
+
+    it("should render middle name textbox when middle name radio group option is set to 'Yes'", () => {
+      const radioGroupElement = getRadioGroupElement();
+      selectRadioGroupOption(1, radioGroupElement);
+      const textboxElement = queryMiddleNameTextboxElement();
+      expect(textboxElement).toBeVisible();
+      expect(textboxElement).toBeEnabled();
+      expect(textboxElement).toBeEmptyDOMElement();
+    });
+
+    it('should render custom element', () => {
+      const customElement = screen.getByTestId('customElement');
+      expect(customElement).toBeVisible();
+    });
+
+    it('should render isMandatory switch element with correct initial value', () => {
+      const switchElement = getSwitchElement();
+      expect(switchElement).toBeVisible();
+      expect(switchElement).toHaveClass('MuiSwitch-switchBase');
+      // Confirm that it is not checked (as per initial value)
+      expect(switchElement).not.toHaveClass('Mui-checked');
+      const checkboxElement = within(switchElement).getByRole('checkbox');
+      expect(checkboxElement).toBeEnabled();
     });
   });
 });

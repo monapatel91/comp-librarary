@@ -84,14 +84,16 @@ export const getSampleConfig = (): DynamicFormConfig => ({
     },
     {
       controlType: 'custom-element',
-      customElement: <p>test</p>,
+      customElement: <p data-testid="customElement">test</p>,
     },
     {
       controlName: 'isMandatory',
       controlType: 'dot-switch',
       controlProps: {
+        'data-testid': 'isMandatory',
         label: 'Is Mandatory',
       } as CheckboxProps,
+      initialValue: false,
       validation: {
         isRequired: {
           errorMessage: 'Required field',
