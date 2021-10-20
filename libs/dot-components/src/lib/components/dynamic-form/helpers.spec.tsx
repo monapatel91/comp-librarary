@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   buildAutocompleteControl,
+  buildButtonControl,
   buildCheckboxControl,
   buildCheckboxGroupControl,
   buildInputSelectControl,
@@ -13,6 +14,7 @@ import {
   getFormDataFromInitialValues,
   getInitialFormState,
   getOutputFormData,
+  UncontrolledInputArgs,
 } from './helpers';
 import { getSampleConfig, getSampleFormState } from './sample';
 import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
@@ -27,6 +29,7 @@ import {
 import { DotRadioGroup, RadioGroupProps } from '../radio/RadioGroup';
 import { DotCheckbox, CheckboxProps } from '../checkbox/Checkbox';
 import { DotSwitch, SwitchProps } from '../switch/Switch';
+import { DotButton, ButtonProps } from '../button/Button';
 import {
   DotCheckboxGroup,
   CheckboxGroupProps,
@@ -720,6 +723,56 @@ describe('dynamic form helper functions', () => {
         },
       };
       const result = buildSwitchControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
+      });
+    });
+  });
+
+  describe('buildButtonControl', () => {
+    const handleClick = jest.fn();
+    const controlProps: ButtonProps = {
+      size: 'small',
+      type: 'primary',
+      children: 'My Button',
+    };
+    const props: UncontrolledInputArgs = {
+      controlProps: controlProps,
+      disabled: false,
+      handleClick,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotButton
+        key={props.index}
+        disabled={false}
+        size={controlProps.size}
+        type={controlProps.type}
+      >
+        {controlProps.children}
+      </DotButton>
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildButtonControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        disabled: true,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+      };
+      const result = buildButtonControl(customProps);
       expect(result).toEqual({
         ...expectedResult,
         props: {
