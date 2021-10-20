@@ -6,6 +6,7 @@ import {
   buildInputSelectControl,
   buildInputTextControl,
   buildRadioGroupControl,
+  buildSwitchControl,
   checkIfHiddenControl,
   ControlledInputArgs,
   getControlValue,
@@ -25,6 +26,7 @@ import {
 } from '../auto-complete/AutoComplete';
 import { DotRadioGroup, RadioGroupProps } from '../radio/RadioGroup';
 import { DotCheckbox, CheckboxProps } from '../checkbox/Checkbox';
+import { DotSwitch, SwitchProps } from '../switch/Switch';
 import {
   DotCheckboxGroup,
   CheckboxGroupProps,
@@ -664,6 +666,65 @@ describe('dynamic form helper functions', () => {
           ...expectedResult.props,
           error: true,
           helperText: errorMessage,
+        },
+      });
+    });
+  });
+
+  describe('buildSwitchControl', () => {
+    const value = true;
+    const handleChange = jest.fn();
+    const controlProps: SwitchProps = {
+      id: 'my-switch-id',
+      label: 'switch label',
+    };
+    const formData = {
+      isSwitched: {
+        errorMessage: null,
+        isTouched: true,
+        isValid: true,
+        value,
+      },
+    } as never;
+    const props: ControlledInputArgs = {
+      controlName: 'isSwitched',
+      controlProps: controlProps,
+      disabled: false,
+      formData,
+      handleChange,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotSwitch
+        checked={value}
+        key={props.index}
+        disabled={false}
+        id={controlProps.id}
+        label={controlProps.label}
+      />
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildSwitchControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        disabled: true,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+      };
+      const result = buildSwitchControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
         },
       });
     });
