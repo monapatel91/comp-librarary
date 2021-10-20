@@ -3,6 +3,7 @@ import {
   buildAutocompleteControl,
   buildInputSelectControl,
   buildInputTextControl,
+  buildRadioGroupControl,
   checkIfHiddenControl,
   ControlledInputArgs,
   getControlValue,
@@ -20,6 +21,7 @@ import {
   DotAutoComplete,
   AutoCompleteProps,
 } from '../auto-complete/AutoComplete';
+import { DotRadioGroup, RadioGroupProps } from '../radio/RadioGroup';
 
 describe('dynamic form helper functions', () => {
   const data = {
@@ -407,6 +409,97 @@ describe('dynamic form helper functions', () => {
         formData: customFormData,
       };
       const result = buildAutocompleteControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          error: true,
+          helperText: errorMessage,
+        },
+      });
+    });
+  });
+
+  describe('buildRadioGroupControl', () => {
+    const value = 'my radio group';
+    const handleChange = jest.fn();
+    const options = [
+      { label: 'None', value: 'None' },
+      { label: 'Batman', value: 'Batman' },
+    ];
+    const controlProps: RadioGroupProps = {
+      id: 'my-radio-group-id',
+      groupLabel: 'Select Your Favorite Superhero',
+      options,
+    };
+    const formData = {
+      superHero: {
+        errorMessage: null,
+        isTouched: true,
+        isValid: true,
+        value,
+      },
+    } as never;
+    const props: ControlledInputArgs = {
+      controlName: 'superHero',
+      controlProps: controlProps,
+      disabled: false,
+      formData,
+      handleChange,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotRadioGroup
+        key={props.index}
+        disableGroup={false}
+        error={false}
+        id={controlProps.id}
+        groupLabel={controlProps.groupLabel}
+        options={options}
+        value={value}
+      />
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildRadioGroupControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        disabled: true,
+        controlProps: {
+          ...controlProps,
+          disableGroup: false,
+        },
+      };
+      const result = buildRadioGroupControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disableGroup: true,
+        },
+      });
+    });
+
+    it('should return component instance with error message handled', () => {
+      const errorMessage = 'my error';
+      const customFormData = {
+        superHero: {
+          errorMessage,
+          isTouched: true,
+          isValid: false,
+          value,
+        },
+      } as never;
+      const customProps = {
+        ...props,
+        formData: customFormData,
+      };
+      const result = buildRadioGroupControl(customProps);
       expect(result).toEqual({
         ...expectedResult,
         props: {
