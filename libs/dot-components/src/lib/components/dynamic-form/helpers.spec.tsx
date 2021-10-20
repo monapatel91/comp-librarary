@@ -2,6 +2,7 @@ import React from 'react';
 import {
   buildAutocompleteControl,
   buildCheckboxControl,
+  buildCheckboxGroupControl,
   buildInputSelectControl,
   buildInputTextControl,
   buildRadioGroupControl,
@@ -24,6 +25,10 @@ import {
 } from '../auto-complete/AutoComplete';
 import { DotRadioGroup, RadioGroupProps } from '../radio/RadioGroup';
 import { DotCheckbox, CheckboxProps } from '../checkbox/Checkbox';
+import {
+  DotCheckboxGroup,
+  CheckboxGroupProps,
+} from '../checkbox/CheckboxGroup';
 
 describe('dynamic form helper functions', () => {
   const data = {
@@ -569,6 +574,96 @@ describe('dynamic form helper functions', () => {
         props: {
           ...expectedResult.props,
           disabled: true,
+        },
+      });
+    });
+  });
+
+  describe('buildCheckboxGroupControl', () => {
+    const value = 'my checkbox group';
+    const handleChange = jest.fn();
+    const options = [
+      { label: 'Concert', value: 'concerts' },
+      { label: 'A free poster', value: 'poster' },
+    ];
+    const controlProps: CheckboxGroupProps = {
+      id: 'my-checkbox-group-id',
+      groupLabel: 'I would like to receive',
+      options,
+    };
+    const formData = {
+      receive: {
+        errorMessage: null,
+        isTouched: true,
+        isValid: true,
+        value,
+      },
+    } as never;
+    const props: ControlledInputArgs = {
+      controlName: 'receive',
+      controlProps: controlProps,
+      disabled: false,
+      formData,
+      handleChange,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotCheckboxGroup
+        key={props.index}
+        disableGroup={false}
+        error={false}
+        id={controlProps.id}
+        groupLabel={controlProps.groupLabel}
+        options={options}
+      />
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildCheckboxGroupControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        disabled: true,
+        controlProps: {
+          ...controlProps,
+          disableGroup: false,
+        },
+      };
+      const result = buildCheckboxGroupControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disableGroup: true,
+        },
+      });
+    });
+
+    it('should return component instance with error message handled', () => {
+      const errorMessage = 'my error';
+      const customFormData = {
+        receive: {
+          errorMessage,
+          isTouched: true,
+          isValid: false,
+          value,
+        },
+      } as never;
+      const customProps = {
+        ...props,
+        formData: customFormData,
+      };
+      const result = buildCheckboxGroupControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          error: true,
+          helperText: errorMessage,
         },
       });
     });
