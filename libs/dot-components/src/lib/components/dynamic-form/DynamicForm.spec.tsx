@@ -1,0 +1,90 @@
+import React from 'react';
+import userEvent from '@testing-library/user-event';
+import { render, screen, RenderResult, within } from '../../testing-utils';
+import { DotDynamicForm, DynamicFormProps } from './DynamicForm';
+import { getSampleConfig } from './sample';
+
+describe('DotDynamicForm', () => {
+  const handleChange = jest.fn();
+  const handleSubmit = jest.fn();
+  const config = getSampleConfig();
+
+  const componentProps: DynamicFormProps = {
+    className: 'test-class',
+    'data-testid': 'testid',
+    disabled: false,
+    liveValidation: true,
+    onChange: handleChange,
+    onSubmit: handleSubmit,
+    config,
+  };
+
+  const renderComponent = (props?: DynamicFormProps): RenderResult => {
+    const renderProps = props ? props : componentProps;
+    return render(<DotDynamicForm {...renderProps} />);
+  };
+
+  const getAutocompleteElement = (): HTMLElement =>
+    screen.getByTestId('randomOption');
+
+  it('should have unchanged API', () => {
+    const props = {
+      className: 'test-class',
+      'data-testid': 'testid',
+      disabled: false,
+      liveValidation: true,
+      onChange: handleChange,
+      onSubmit: handleSubmit,
+      config,
+    };
+    expect(componentProps).toEqual(props);
+  });
+
+  describe('with default props', () => {
+    beforeEach(() => {
+      renderComponent();
+    });
+
+    it('should render successfully', () => {
+      const { baseElement } = renderComponent();
+      expect(baseElement).toBeTruthy();
+    });
+
+    it('should render input text with appropriate initial value', () => {
+      const inputElement = screen.getByTestId('firstName');
+      expect(inputElement).toBeVisible();
+      expect(inputElement).toHaveClass('dot-input');
+      expect(inputElement).toHaveValue('my first name');
+      expect(inputElement).toBeEnabled();
+    });
+
+    it('should render input text with appropriate label', () => {
+      const inputElement = screen.getByText('First Name');
+      expect(inputElement).toBeVisible();
+    });
+
+    it('should render input text with appropriate helper text', () => {
+      const inputElement = screen.getByText('Your first name goes here');
+      expect(inputElement).toBeVisible();
+    });
+
+    it('should render autocomplete control with appropriate initial value', () => {
+      const autocompleteElement = getAutocompleteElement();
+      expect(autocompleteElement).toBeVisible();
+      expect(autocompleteElement).toHaveClass('dot-autocomplete');
+      const inputElement = within(autocompleteElement).getByRole('textbox');
+      expect(inputElement).toBeEnabled();
+      const selectedOptionElement =
+        within(autocompleteElement).getByText('Option 1');
+      expect(selectedOptionElement).toBeVisible();
+    });
+
+    it('should display correct error message when option is removed from the autocomplete field', () => {
+      const autocompleteElement = getAutocompleteElement();
+      const closeElement =
+        autocompleteElement.getElementsByClassName('MuiChip-deleteIcon')[0];
+      userEvent.click(closeElement);
+      within(autocompleteElement).getByText('Required field');
+    });
+  });
+});

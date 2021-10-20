@@ -12,6 +12,7 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       controlName: 'firstName',
       controlType: 'dot-input-text',
       controlProps: {
+        'data-testid': 'firstName',
         label: 'First Name',
         helperText: 'Your first name goes here',
         autoFocus: true,
@@ -29,6 +30,7 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       controlName: 'randomOption',
       controlType: 'dot-autocomplete',
       controlProps: {
+        'data-testid': 'randomOption',
         label: 'Random option',
         options: [
           { title: 'Option 1' },
