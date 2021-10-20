@@ -150,7 +150,6 @@ export const getFormDataFromInitialValues = (config: DynamicFormConfig) => {
       // Skip non-data controls (ignore buttons and other non-relevant elements)
       // or hidden elements
       if (!DATA_CONTROLS.includes(controlType)) return;
-
       formValues[controlName] = initialValue ? initialValue : undefined;
     }
   );

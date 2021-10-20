@@ -1,6 +1,7 @@
 import {
   checkIfHiddenControl,
   getControlValue,
+  getFormDataFromInitialValues,
   getInitialFormState,
   getOutputFormData,
 } from './helpers';
@@ -110,7 +111,6 @@ describe('dynamic form helper functions', () => {
       });
     });
   });
-
   describe('getOutputFormData', () => {
     it('should return correct output data', () => {
       const formData = getOutputFormData(getSampleFormState());
@@ -124,6 +124,18 @@ describe('dynamic form helper functions', () => {
             title: 'Option 1',
           },
         ],
+      });
+    });
+  });
+  describe('getFormDataFromInitialValues', () => {
+    it('should return object with correct initial values', () => {
+      const initialValues = getFormDataFromInitialValues(getSampleConfig());
+      expect(initialValues).toEqual({
+        firstName: 'my first name',
+        hasMiddleName: 'no',
+        isMandatory: undefined,
+        middleName: undefined,
+        randomOption: [{ title: 'Option 1' }],
       });
     });
   });
