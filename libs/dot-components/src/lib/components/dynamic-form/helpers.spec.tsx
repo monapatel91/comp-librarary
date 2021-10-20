@@ -7,6 +7,7 @@ import {
   buildInputSelectControl,
   buildInputTextControl,
   buildRadioGroupControl,
+  buildResetControl,
   buildSwitchControl,
   checkIfHiddenControl,
   ControlledInputArgs,
@@ -779,6 +780,61 @@ describe('dynamic form helper functions', () => {
           ...expectedResult.props,
           disabled: true,
         },
+      });
+    });
+  });
+
+  describe('buildResetControl', () => {
+    const propOnClick = jest.fn();
+    const handleClick = jest.fn();
+    const controlProps: ButtonProps = {
+      size: 'medium',
+      type: 'text',
+      children: 'My Reset Button',
+      onClick: propOnClick,
+    };
+    const props: UncontrolledInputArgs = {
+      controlProps: controlProps,
+      disabled: false,
+      handleClick,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotButton
+        key={props.index}
+        size={controlProps.size}
+        type={controlProps.type}
+        disabled={false}
+      >
+        {controlProps.children}
+      </DotButton>
+    );
+
+    /* We need to omit onClick prop because it won't work, and is not relevant in this test */
+    const getRelevantProps = (result: JSX.Element) => {
+      const { onClick, ...relevantProps } = result.props;
+      return relevantProps;
+    };
+
+    it('should return correct component instance', () => {
+      const result = buildResetControl(props);
+      expect(getRelevantProps(result)).toEqual(expectedResult.props);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        disabled: true,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+      };
+      const result = buildResetControl(customProps);
+      expect(getRelevantProps(result)).toEqual({
+        ...expectedResult.props,
+        disabled: true,
       });
     });
   });
