@@ -60,6 +60,7 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       controlName: 'hasMiddleName',
       controlType: 'dot-radio-group',
       controlProps: {
+        'data-testid': 'hasMiddleName',
         id: 'hasMiddleName',
         name: 'hasMiddleName',
         groupLabel: 'Do you have middle name?',
@@ -76,6 +77,7 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       controlName: 'middleName',
       controlType: 'dot-input-text',
       controlProps: {
+        'data-testid': 'middleName',
         label: 'Middle Name',
       } as InputTextProps,
       hidden: [{ controlName: 'hasMiddleName', controlValue: 'no' }],

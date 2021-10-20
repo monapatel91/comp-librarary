@@ -27,6 +27,12 @@ describe('DotDynamicForm', () => {
   const getAutocompleteElement = (): HTMLElement =>
     screen.getByTestId('randomOption');
 
+  const getRadioGroupElement = (): HTMLElement =>
+    screen.getByTestId('hasMiddleName');
+
+  const queryMiddleNameTextboxElement = (): HTMLElement | undefined =>
+    screen.queryByTestId('middleName');
+
   const removeAutocompleteOption = (autocompleteElement: HTMLElement): void => {
     const closeElement =
       autocompleteElement.getElementsByClassName('MuiChip-deleteIcon')[0];
@@ -114,6 +120,31 @@ describe('DotDynamicForm', () => {
       addAutocompleteOption('Option 4', autocompleteElement);
       addAutocompleteOption('Option 5', autocompleteElement);
       within(autocompleteElement).getByText('Maximum of 4 options allowed');
+    });
+
+    it('should render radio group control with correct radio buttons and initial value', () => {
+      const radioGroupElement = getRadioGroupElement();
+      expect(radioGroupElement).toBeVisible();
+      expect(radioGroupElement).toHaveClass('dot-radio-group');
+      const radioButtons = within(radioGroupElement).getAllByRole('radio');
+      const radioButtonNo = radioButtons[0];
+      const radioButtonYes = radioButtons[1];
+      expect(radioButtonNo).toBeInTheDocument();
+      expect(radioButtonNo).toBeEnabled();
+      expect(radioButtonNo).toBeChecked();
+      expect(radioButtonYes).toBeInTheDocument();
+      expect(radioButtonYes).toBeEnabled();
+      expect(radioButtonYes).not.toBeChecked();
+    });
+
+    it('should render radio group control with correct label', () => {
+      const labelElement = screen.getByText('Do you have middle name?');
+      expect(labelElement).toBeVisible();
+    });
+
+    it('should NOT render middle name textbox by default', () => {
+      const textboxElement = queryMiddleNameTextboxElement();
+      expect(textboxElement).not.toBeInTheDocument();
     });
   });
 });
