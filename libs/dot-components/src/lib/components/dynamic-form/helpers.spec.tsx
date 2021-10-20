@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  buildAutocompleteControl,
   buildInputSelectControl,
   buildInputTextControl,
   checkIfHiddenControl,
@@ -15,6 +16,10 @@ import {
   DotInputSelect,
   InputSelectProps,
 } from '../input-form-fields/InputSelect';
+import {
+  DotAutoComplete,
+  AutoCompleteProps,
+} from '../auto-complete/AutoComplete';
 
 describe('dynamic form helper functions', () => {
   const data = {
@@ -314,6 +319,94 @@ describe('dynamic form helper functions', () => {
         formData: customFormData,
       };
       const result = buildInputSelectControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          error: true,
+          helperText: errorMessage,
+        },
+      });
+    });
+  });
+
+  describe('buildAutocompleteControl', () => {
+    const value = 'my autocomplete';
+    const handleChange = jest.fn();
+    const options = [{ title: 'Option 1' }, { title: 'Option 2' }];
+    const controlProps: AutoCompleteProps = {
+      inputId: 'my-autocomplete-id',
+      label: 'autocomplete label',
+      options,
+    };
+    const formData = {
+      randomOption: {
+        errorMessage: null,
+        isTouched: true,
+        isValid: true,
+        value,
+      },
+    } as never;
+    const props: ControlledInputArgs = {
+      controlName: 'randomOption',
+      controlProps: controlProps,
+      disabled: false,
+      formData,
+      handleChange,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotAutoComplete
+        key={props.index}
+        disabled={false}
+        error={false}
+        inputId={controlProps.inputId}
+        label={controlProps.label}
+        options={options}
+        value={value}
+      />
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildAutocompleteControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        disabled: true,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+      };
+      const result = buildAutocompleteControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
+      });
+    });
+
+    it('should return component instance with error message handled', () => {
+      const errorMessage = 'my error';
+      const customFormData = {
+        randomOption: {
+          errorMessage,
+          isTouched: true,
+          isValid: false,
+          value,
+        },
+      } as never;
+      const customProps = {
+        ...props,
+        formData: customFormData,
+      };
+      const result = buildAutocompleteControl(customProps);
       expect(result).toEqual({
         ...expectedResult,
         props: {
