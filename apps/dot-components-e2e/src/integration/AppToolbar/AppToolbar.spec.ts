@@ -1,6 +1,7 @@
+const baseUrl = '/iframe.html?id=components-apptoolbar--default';
 describe('dot-components: AppToolbar component', () => {
   before(() => {
-    cy.visit('/iframe.html?id=components-apptoolbar--default');
+    cy.visit(baseUrl);
     cy.get('.dot-main-menu-btn button.dot-icon-btn').click();
   });
 
@@ -18,7 +19,17 @@ describe('dot-components: AppToolbar component', () => {
     cy.get('.dot-app-logo').should('not.have.class', 'small');
   });
 
+  it('should display dense version appropriately', () => {
+    cy.visit(`${baseUrl}&args=dense:true`);
+    cy.get('header.dot-app-toolbar').should('have.class', 'dense');
+    cy.get('header.dot-app-toolbar').should('have.css', 'height', '48px');
+  });
+
   describe('style decisions', () => {
+    before(() => {
+      cy.visit(`${baseUrl}&args=dense:false`);
+    });
+
     it('header background is correct', () => {
       cy.get('header.dot-app-toolbar').should(
         'have.css',

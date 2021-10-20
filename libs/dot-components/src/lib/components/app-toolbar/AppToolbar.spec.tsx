@@ -47,6 +47,7 @@ describe(' AppToolbar', () => {
       className: 'test-class',
       customLogo: customLogo,
       'data-testid': 'testid',
+      dense: true,
       mainMenu: <DotButton>Batman was here</DotButton>,
       mainMenuItems: mainMenuItems,
       mainMenuWidth: 240,
