@@ -27,10 +27,19 @@ describe('DotDynamicForm', () => {
   const getAutocompleteElement = (): HTMLElement =>
     screen.getByTestId('randomOption');
 
+  const getAutocompleteTextboxElement = (): HTMLElement =>
+    within(getAutocompleteElement()).getByRole('textbox');
+
   const getRadioGroupElement = (): HTMLElement =>
     screen.getByTestId('hasMiddleName');
 
   const getSwitchElement = (): HTMLElement => screen.getByTestId('isMandatory');
+
+  const getResetButton = (): HTMLElement =>
+    screen.getByRole('button', { name: 'Reset' });
+
+  const getFirstNameTextbox = (): HTMLElement =>
+    screen.getByTestId('firstName');
 
   const queryMiddleNameTextboxElement = (): HTMLElement | undefined =>
     screen.queryByTestId('middleName');
@@ -39,6 +48,16 @@ describe('DotDynamicForm', () => {
     const closeElement =
       autocompleteElement.getElementsByClassName('MuiChip-deleteIcon')[0];
     userEvent.click(closeElement);
+  };
+
+  const expectSwitchToBeChecked = (
+    switchElement: HTMLElement,
+    shouldBeChecked = true
+  ): void => {
+    const className = 'Mui-checked';
+    shouldBeChecked
+      ? expect(switchElement).toHaveClass(className)
+      : expect(switchElement).not.toHaveClass(className);
   };
 
   const addAutocompleteOption = (
@@ -80,7 +99,7 @@ describe('DotDynamicForm', () => {
     });
 
     it('should render input text with appropriate initial value', () => {
-      const inputElement = screen.getByTestId('firstName');
+      const inputElement = getFirstNameTextbox();
       expect(inputElement).toBeVisible();
       expect(inputElement).toHaveClass('dot-input');
       expect(inputElement).toHaveValue('my first name');
@@ -101,7 +120,7 @@ describe('DotDynamicForm', () => {
       const autocompleteElement = getAutocompleteElement();
       expect(autocompleteElement).toBeVisible();
       expect(autocompleteElement).toHaveClass('dot-autocomplete');
-      const inputElement = within(autocompleteElement).getByRole('textbox');
+      const inputElement = getAutocompleteTextboxElement();
       expect(inputElement).toBeEnabled();
       const selectedOptionElement =
         within(autocompleteElement).getByText('Option 1');
@@ -174,9 +193,32 @@ describe('DotDynamicForm', () => {
       expect(switchElement).toBeVisible();
       expect(switchElement).toHaveClass('MuiSwitch-switchBase');
       // Confirm that it is not checked (as per initial value)
-      expect(switchElement).not.toHaveClass('Mui-checked');
+      expectSwitchToBeChecked(switchElement, false);
       const checkboxElement = within(switchElement).getByRole('checkbox');
       expect(checkboxElement).toBeEnabled();
+    });
+
+    it('should render enabled reset button', () => {
+      const resetButton = getResetButton();
+      expect(resetButton).toBeVisible();
+      expect(resetButton).toBeEnabled();
+    });
+
+    it('should remove all values from the form inputs', () => {
+      const hasMiddleNameElement = getRadioGroupElement();
+      const switchElement = getSwitchElement();
+      selectRadioGroupOption(1, hasMiddleNameElement);
+      userEvent.click(switchElement);
+      const resetButton = getResetButton();
+      userEvent.click(resetButton);
+      const firstNameElement = getFirstNameTextbox();
+      const autocompleteTextboxElement = getAutocompleteTextboxElement();
+      expect(firstNameElement).toBeEmptyDOMElement();
+      expect(autocompleteTextboxElement).toBeEmptyDOMElement();
+      expect(
+        within(hasMiddleNameElement).getAllByRole('radio')[0]
+      ).toBeChecked();
+      expectSwitchToBeChecked(switchElement, false);
     });
   });
 });
