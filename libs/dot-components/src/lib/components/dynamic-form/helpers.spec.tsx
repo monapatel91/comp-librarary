@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   buildAutocompleteControl,
+  buildCheckboxControl,
   buildInputSelectControl,
   buildInputTextControl,
   buildRadioGroupControl,
@@ -22,6 +23,7 @@ import {
   AutoCompleteProps,
 } from '../auto-complete/AutoComplete';
 import { DotRadioGroup, RadioGroupProps } from '../radio/RadioGroup';
+import { DotCheckbox, CheckboxProps } from '../checkbox/Checkbox';
 
 describe('dynamic form helper functions', () => {
   const data = {
@@ -506,6 +508,67 @@ describe('dynamic form helper functions', () => {
           ...expectedResult.props,
           error: true,
           helperText: errorMessage,
+        },
+      });
+    });
+  });
+
+  describe('buildCheckboxControl', () => {
+    const value = false;
+    const handleChange = jest.fn();
+    const controlProps: CheckboxProps = {
+      id: 'my-radio-group-id',
+      label: 'my checkbox',
+      name: 'my checkbox name',
+    };
+    const formData = {
+      isMandatory: {
+        errorMessage: null,
+        isTouched: true,
+        isValid: true,
+        value,
+      },
+    } as never;
+    const props: ControlledInputArgs = {
+      controlName: 'isMandatory',
+      controlProps: controlProps,
+      disabled: false,
+      formData,
+      handleChange,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotCheckbox
+        checked={false}
+        disabled={false}
+        key={props.index}
+        id={controlProps.id}
+        label={controlProps.label}
+        name={controlProps.name}
+      />
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildCheckboxControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        disabled: true,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+      };
+      const result = buildCheckboxControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
         },
       });
     });
