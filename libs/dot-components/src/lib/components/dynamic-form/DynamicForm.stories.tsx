@@ -228,6 +228,19 @@ const config: DynamicFormConfig = {
     },
     {
       controlType: 'custom-element',
+      customElement: <br />,
+    },
+    {
+      controlName: 'terms',
+      controlType: 'dot-checkbox',
+      controlProps: {
+        'data-testid': 'terms',
+        label: 'I agree to terms and conditions',
+      } as CheckboxProps,
+      initialValue: false,
+    },
+    {
+      controlType: 'custom-element',
       customElement: (
         <Divider className="divider" style={{ margin: '32px 0' }} />
       ),
