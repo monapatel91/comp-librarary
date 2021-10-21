@@ -1,9 +1,9 @@
+import React, { ChangeEvent } from 'react';
 import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
 import {
   DotInputSelect,
   InputSelectProps,
 } from '../input-form-fields/InputSelect';
-import React, { ChangeEvent } from 'react';
 import {
   DynamicFormConfig,
   DynamicFormControl,
@@ -173,10 +173,10 @@ export const buildInputTextControl = ({
       key={index}
       {...props}
       disabled={disabled}
-      value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
       onChange={handleChangeFn(controlName)}
+      value={value}
     />
   );
 };
@@ -198,10 +198,10 @@ export const buildInputSelectControl = ({
       key={index}
       {...props}
       disabled={disabled}
-      value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
       onChange={handleChangeFn(controlName)}
+      value={value}
     />
   );
 };
@@ -223,10 +223,10 @@ export const buildAutocompleteControl = ({
       key={index}
       {...props}
       disabled={disabled}
-      value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
       onChange={handleChangeFn(controlName)}
+      value={value}
     />
   );
 };
@@ -248,10 +248,10 @@ export const buildRadioGroupControl = ({
       key={index}
       {...props}
       disableGroup={disabled}
-      value={value}
       error={!!errorMessage}
       helperText={errorMessage ? errorMessage : props.helperText}
       onChange={handleChangeFn(controlName)}
+      value={value}
     />
   );
 };
@@ -271,8 +271,8 @@ export const buildCheckboxControl = ({
     <DotCheckbox
       key={index}
       {...props}
-      disabled={disabled}
       checked={checked}
+      disabled={disabled}
       onChange={handleChangeFn(controlName)}
     />
   );
@@ -316,8 +316,8 @@ export const buildSwitchControl = ({
     <DotSwitch
       key={index}
       {...props}
-      disabled={disabled}
       checked={checked}
+      disabled={disabled}
       onChange={handleChangeFn(controlName)}
     />
   );
@@ -368,7 +368,7 @@ export const buildSubmitControl = ({
   const props = controlProps as ButtonProps;
   const isDisabled = disabled || (liveValidation && !formState.isValid);
   return (
-    <DotButton key={index} {...props} isSubmit={true} disabled={isDisabled}>
+    <DotButton key={index} {...props} disabled={isDisabled} isSubmit={true}>
       {props.children}
     </DotButton>
   );
