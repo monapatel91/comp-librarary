@@ -10,6 +10,7 @@ describe('DotDynamicForm', () => {
   const config = getSampleConfig();
 
   const componentProps: DynamicFormProps = {
+    ariaLabel: 'my-aria',
     className: 'test-class',
     'data-testid': 'testid',
     disabled: false,
@@ -141,6 +142,7 @@ describe('DotDynamicForm', () => {
 
   it('should have unchanged API', () => {
     const props = {
+      ariaLabel: 'my-aria',
       className: 'test-class',
       'data-testid': 'testid',
       disabled: false,
