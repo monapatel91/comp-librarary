@@ -50,6 +50,8 @@ describe('DotDynamicForm', () => {
   const getCheckboxElement = (): HTMLElement =>
     screen.getByTestId('receiveNewsletters');
 
+  const getSelectElement = (): HTMLElement => screen.getByTestId('gender');
+
   const queryMiddleNameTextboxElement = (): HTMLElement | undefined =>
     screen.queryByTestId('middleName');
 
@@ -86,6 +88,11 @@ describe('DotDynamicForm', () => {
 
   const toggleSwitch = (): void => {
     userEvent.click(getSwitchElement());
+  };
+
+  const selectGender = (gender: string): void => {
+    const selectElement = getSelectElement();
+    userEvent.selectOptions(selectElement, gender);
   };
 
   const addAutocompleteOption = (
@@ -224,6 +231,17 @@ describe('DotDynamicForm', () => {
       expect(textboxElement).toBeEmptyDOMElement();
     });
 
+    it('should render select element', () => {
+      const selectElement = getSelectElement();
+      expect(selectElement).toBeVisible();
+      expect(selectElement).toBeEnabled();
+      expect(selectElement).toHaveValue('');
+      const options = within(selectElement).getAllByRole('option');
+      expect(options[0]).toHaveValue('');
+      expect(options[1]).toHaveValue('Male');
+      expect(options[2]).toHaveValue('Female');
+    });
+
     it('should render custom element', () => {
       const customElement = screen.getByTestId('customElement');
       expect(customElement).toBeVisible();
@@ -283,6 +301,7 @@ describe('DotDynamicForm', () => {
     it('should execute correct event handler when form is submitted', () => {
       typeFirstName('first name');
       addAutocompleteOption('Option 2');
+      selectGender('Male');
       toggleSwitch();
       const submitButton = getSubmitButton();
       expect(submitButton).toBeEnabled();

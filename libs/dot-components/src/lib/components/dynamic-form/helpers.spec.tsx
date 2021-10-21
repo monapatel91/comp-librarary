@@ -108,11 +108,23 @@ describe('dynamic form helper functions', () => {
             isValid: false,
             value: 'my first name',
           },
+          gender: {
+            errorMessage: null,
+            isTouched: false,
+            isValid: false,
+            value: null,
+          },
           hasMiddleName: {
             errorMessage: null,
             isTouched: false,
             isValid: true,
             value: 'no',
+          },
+          receiveNewsletters: {
+            errorMessage: null,
+            isTouched: false,
+            isValid: true,
+            value: null,
           },
           isMandatory: {
             errorMessage: null,
@@ -146,6 +158,7 @@ describe('dynamic form helper functions', () => {
       const formData = getOutputFormData(getSampleFormState());
       expect(formData).toEqual({
         firstName: 'my first name',
+        gender: null,
         hasMiddleName: 'no',
         isMandatory: null,
         middleName: null,
@@ -154,6 +167,7 @@ describe('dynamic form helper functions', () => {
             title: 'Option 1',
           },
         ],
+        receiveNewsletters: null,
       });
     });
   });

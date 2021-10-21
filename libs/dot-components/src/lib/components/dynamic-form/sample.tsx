@@ -3,6 +3,7 @@ import { AutoCompleteProps } from '../auto-complete/AutoComplete';
 import { ButtonProps } from '../button/Button';
 import { CheckboxProps } from '../checkbox/Checkbox';
 import { InputTextProps } from '../input-form-fields/InputText';
+import { InputSelectProps } from '../input-form-fields/InputSelect';
 import { RadioGroupProps } from '../radio/RadioGroup';
 import { DynamicFormConfig, DynamicFormState } from './models';
 
@@ -83,6 +84,25 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       hidden: [{ controlName: 'hasMiddleName', controlValue: 'no' }],
     },
     {
+      controlName: 'gender',
+      controlType: 'dot-input-select',
+      controlProps: {
+        'data-testid': 'gender',
+        id: 'gender',
+        label: 'Gender',
+        name: 'gender',
+        required: true,
+        size: 'small',
+        options: ['', 'Male', 'Female'],
+      } as InputSelectProps,
+      validation: {
+        isRequired: {
+          errorMessage: 'Required field',
+          value: true,
+        },
+      },
+    },
+    {
       controlType: 'custom-element',
       customElement: <p data-testid="customElement">test</p>,
     },
@@ -149,11 +169,23 @@ export const getSampleFormState = (): DynamicFormState => ({
       isValid: true,
       value: 'my first name',
     },
+    gender: {
+      errorMessage: null,
+      isTouched: false,
+      isValid: false,
+      value: null,
+    },
     hasMiddleName: {
       errorMessage: null,
       isTouched: true,
       isValid: true,
       value: 'no',
+    },
+    receiveNewsletters: {
+      errorMessage: null,
+      isTouched: false,
+      isValid: true,
+      value: null,
     },
     isMandatory: {
       errorMessage: null,
