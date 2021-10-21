@@ -35,6 +35,9 @@ describe('DotDynamicForm', () => {
 
   const getSwitchElement = (): HTMLElement => screen.getByTestId('isMandatory');
 
+  const getSwitchInputElement = (): HTMLElement =>
+    within(getSwitchElement()).getByRole('checkbox');
+
   const getResetButton = (): HTMLElement =>
     screen.getByRole('button', { name: 'Reset' });
 
@@ -75,6 +78,13 @@ describe('DotDynamicForm', () => {
     shouldBeChecked
       ? expect(switchElement).toHaveClass(className)
       : expect(switchElement).not.toHaveClass(className);
+  };
+
+  const expectCheckboxGroupToBeEnabled = (shouldBeEnabled = true): void => {
+    const checkboxElements = getCheckboxGroupInputElements();
+    checkboxElements.forEach((cb) => {
+      shouldBeEnabled ? expect(cb).toBeEnabled() : expect(cb).toBeDisabled();
+    });
   };
 
   const expectAutocompleteMinLengthErrorMessage = (
@@ -361,6 +371,34 @@ describe('DotDynamicForm', () => {
         resetForm();
         const autocompleteElement = getAutocompleteElement();
         expectAutocompleteMinLengthErrorMessage(autocompleteElement, false);
+      });
+    });
+
+    describe('disabled form', () => {
+      const customProps: DynamicFormProps = {
+        ...componentProps,
+        disabled: true,
+      };
+
+      beforeEach(() => renderComponent(customProps));
+
+      it('should display disabled elements', () => {
+        const firstNameTextboxElement = getFirstNameTextbox();
+        const autocompleteTextboxElement = getAutocompleteTextboxElement();
+        const selectElement = getSelectElement();
+        const switchInputElement = getSwitchInputElement();
+        const testButtonElement = getTestButton();
+        const resetButton = getResetButton();
+        const submitButton = getSubmitButton();
+
+        expect(firstNameTextboxElement).toBeDisabled();
+        expect(autocompleteTextboxElement).toBeDisabled();
+        expect(selectElement).toBeDisabled();
+        expectCheckboxGroupToBeEnabled(false);
+        expect(switchInputElement).toBeDisabled();
+        expect(testButtonElement).toBeDisabled();
+        expect(resetButton).toBeDisabled();
+        expect(submitButton).toBeDisabled();
       });
     });
   });
