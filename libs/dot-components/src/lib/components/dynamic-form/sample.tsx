@@ -102,6 +102,15 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       },
     },
     {
+      controlName: 'btnTest',
+      controlType: 'dot-button',
+      controlProps: {
+        type: 'outlined',
+        children: 'Test',
+        fullWidth: false,
+      } as ButtonProps,
+    },
+    {
       controlName: 'btnReset',
       controlType: 'dot-reset',
       controlProps: {

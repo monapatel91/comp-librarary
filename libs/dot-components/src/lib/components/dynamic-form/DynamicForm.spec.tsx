@@ -41,6 +41,9 @@ describe('DotDynamicForm', () => {
   const getSubmitButton = (): HTMLElement =>
     screen.getByRole('button', { name: 'Submit form' });
 
+  const getTestButton = (): HTMLElement =>
+    screen.getByRole('button', { name: 'Test' });
+
   const getFirstNameTextbox = (): HTMLElement =>
     screen.getByTestId('firstName');
 
@@ -231,6 +234,12 @@ describe('DotDynamicForm', () => {
       expectSwitchToBeChecked(switchElement, false);
       const checkboxElement = within(switchElement).getByRole('checkbox');
       expect(checkboxElement).toBeEnabled();
+    });
+
+    it('should render enabled custom button', () => {
+      const testButton = getTestButton();
+      expect(testButton).toBeVisible();
+      expect(testButton).toBeEnabled();
     });
 
     it('should render enabled reset button', () => {
