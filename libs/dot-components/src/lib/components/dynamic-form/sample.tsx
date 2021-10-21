@@ -102,6 +102,15 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       },
     },
     {
+      controlName: 'receiveNewsletters',
+      controlType: 'dot-checkbox',
+      controlProps: {
+        'data-testid': 'receiveNewsletters',
+        label: 'Receive Newsletters?',
+      } as CheckboxProps,
+      initialValue: false,
+    },
+    {
       controlName: 'btnTest',
       controlType: 'dot-button',
       controlProps: {

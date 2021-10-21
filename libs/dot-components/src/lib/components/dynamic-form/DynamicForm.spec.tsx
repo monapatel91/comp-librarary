@@ -47,6 +47,9 @@ describe('DotDynamicForm', () => {
   const getFirstNameTextbox = (): HTMLElement =>
     screen.getByTestId('firstName');
 
+  const getCheckboxElement = (): HTMLElement =>
+    screen.getByTestId('receiveNewsletters');
+
   const queryMiddleNameTextboxElement = (): HTMLElement | undefined =>
     screen.queryByTestId('middleName');
 
@@ -234,6 +237,12 @@ describe('DotDynamicForm', () => {
       expectSwitchToBeChecked(switchElement, false);
       const checkboxElement = within(switchElement).getByRole('checkbox');
       expect(checkboxElement).toBeEnabled();
+    });
+
+    it('should render unchecked checkbox element', () => {
+      const checkboxElement = getCheckboxElement();
+      expect(checkboxElement).toBeVisible();
+      expect(checkboxElement).not.toBeChecked();
     });
 
     it('should render enabled custom button', () => {
