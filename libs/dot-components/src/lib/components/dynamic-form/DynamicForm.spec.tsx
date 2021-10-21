@@ -38,6 +38,9 @@ describe('DotDynamicForm', () => {
   const getResetButton = (): HTMLElement =>
     screen.getByRole('button', { name: 'Reset' });
 
+  const getSubmitButton = (): HTMLElement =>
+    screen.getByRole('button', { name: 'Submit form' });
+
   const getFirstNameTextbox = (): HTMLElement =>
     screen.getByTestId('firstName');
 
@@ -60,13 +63,45 @@ describe('DotDynamicForm', () => {
       : expect(switchElement).not.toHaveClass(className);
   };
 
+  const expectAutocompleteMinLengthErrorMessage = (
+    autocompleteElement: HTMLElement,
+    shouldDisplayError = true
+  ) => {
+    const errorMessage = within(autocompleteElement).queryByText(
+      'Pick at least 2 options'
+    );
+    shouldDisplayError
+      ? expect(errorMessage).toBeVisible()
+      : expect(errorMessage).not.toBeInTheDocument();
+  };
+
+  const typeFirstName = (text: string): void =>
+    userEvent.type(getFirstNameTextbox(), text);
+
+  const toggleSwitch = (): void => {
+    userEvent.click(getSwitchElement());
+  };
+
   const addAutocompleteOption = (
     option: string,
-    autocompleteElement: HTMLElement
+    autocompleteElement?: HTMLElement
   ): void => {
+    if (!autocompleteElement) {
+      autocompleteElement = getAutocompleteElement();
+    }
     userEvent.click(within(autocompleteElement).getByRole('textbox'));
     const popperElement = screen.getByRole('presentation');
     userEvent.click(within(popperElement).getByText(option));
+  };
+
+  const submitForm = (): void => {
+    const submitButton = getSubmitButton();
+    userEvent.click(submitButton);
+  };
+
+  const resetForm = (): void => {
+    const resetButton = getResetButton();
+    userEvent.click(resetButton);
   };
 
   const selectRadioGroupOption = (
@@ -137,7 +172,7 @@ describe('DotDynamicForm', () => {
       const autocompleteElement = getAutocompleteElement();
       removeAutocompleteOption(autocompleteElement);
       addAutocompleteOption('Option 1', autocompleteElement);
-      within(autocompleteElement).getByText('Pick at least 2 options');
+      expectAutocompleteMinLengthErrorMessage(autocompleteElement);
     });
 
     it('should display correct error message when maxLength condition is not satisfied', () => {
@@ -219,6 +254,60 @@ describe('DotDynamicForm', () => {
         within(hasMiddleNameElement).getAllByRole('radio')[0]
       ).toBeChecked();
       expectSwitchToBeChecked(switchElement, false);
+    });
+
+    it('should render disabled Submit button when live validation is on', () => {
+      const submitButton = getSubmitButton();
+      expect(submitButton).toBeVisible();
+      expect(submitButton).toBeDisabled();
+    });
+
+    it('should execute correct event handler when form is submitted', () => {
+      typeFirstName('first name');
+      addAutocompleteOption('Option 2');
+      toggleSwitch();
+      const submitButton = getSubmitButton();
+      expect(submitButton).toBeEnabled();
+      userEvent.click(submitButton);
+      expect(handleSubmit).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('with custom props', () => {
+    describe('without live validation', () => {
+      const customProps: DynamicFormProps = {
+        ...componentProps,
+        liveValidation: false,
+      };
+
+      beforeEach(() => renderComponent(customProps));
+
+      it('should display enabled Submit button', () => {
+        const submitButton = getSubmitButton();
+        expect(submitButton).toBeVisible();
+        expect(submitButton).toBeEnabled();
+      });
+
+      it('should NOT render error message when field is edited and validation is not satisfied', () => {
+        const autocompleteElement = getAutocompleteElement();
+        removeAutocompleteOption(autocompleteElement);
+        addAutocompleteOption('Option 1', autocompleteElement);
+        expectAutocompleteMinLengthErrorMessage(autocompleteElement, false);
+      });
+
+      it('should render error message on submit button click', () => {
+        const autocompleteElement = getAutocompleteElement();
+        submitForm();
+        expectAutocompleteMinLengthErrorMessage(autocompleteElement, true);
+      });
+
+      it('should NOT render error message after form is reset', () => {
+        // Trigger error message display
+        submitForm();
+        resetForm();
+        const autocompleteElement = getAutocompleteElement();
+        expectAutocompleteMinLengthErrorMessage(autocompleteElement, false);
+      });
     });
   });
 });
