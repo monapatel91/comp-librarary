@@ -608,7 +608,6 @@ describe('dynamic form helper functions', () => {
   });
 
   describe('buildCheckboxGroupControl', () => {
-    const value = 'my checkbox group';
     const handleChange = jest.fn();
     const options = [
       { label: 'Concert', value: 'concerts' },
@@ -624,7 +623,7 @@ describe('dynamic form helper functions', () => {
         errorMessage: null,
         isTouched: true,
         isValid: true,
-        value,
+        value: null,
       },
     } as never;
     const props: ControlledInputArgs = {
@@ -638,6 +637,7 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotCheckboxGroup
+        defaultValues={[]}
         disableGroup={false}
         error={false}
         groupLabel={controlProps.groupLabel}
@@ -678,7 +678,7 @@ describe('dynamic form helper functions', () => {
           errorMessage,
           isTouched: true,
           isValid: false,
-          value,
+          value: null,
         },
       } as never;
       const customProps = {
