@@ -1,37 +1,37 @@
+import { Divider } from '@material-ui/core';
 import React, { useState } from 'react';
 import {
   AutoCompleteProps,
-  CheckboxProps,
-  CheckboxGroupProps,
-  DotDynamicForm,
   ButtonProps,
-  InputTextProps,
-  DynamicFormConfig,
-  DynamicFormState,
-  DotBreadcrumbs,
+  CheckboxGroupProps,
+  CheckboxProps,
   DotActionToolbar,
+  DotBreadcrumbs,
+  DotDynamicForm,
   DotIcon,
+  DotSwitch,
+  DynamicFormConfig,
+  DynamicFormOutputData,
+  DynamicFormState,
   FieldValidation,
   InputSelectProps,
+  InputTextProps,
   RadioGroupProps,
-  DotSwitch,
-  DynamicFormOutputData,
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
-import { Divider } from '@material-ui/core';
 
 export const DemoDynamicForm = () => {
   const config: DynamicFormConfig = {
     controls: [
       {
         controlName: 'firstName',
-        controlType: 'dot-input-text',
         controlProps: {
-          label: 'First Name',
-          helperText: 'Your first name goes here',
           autoFocus: true,
+          helperText: 'Your first name goes here',
+          label: 'First Name',
           required: true,
         } as InputTextProps,
+        controlType: 'dot-input-text',
         validation: {
           isRequired: {
             errorMessage: 'Required field',
@@ -41,50 +41,50 @@ export const DemoDynamicForm = () => {
       },
       {
         controlName: 'hasMiddleName',
-        controlType: 'dot-radio-group',
         controlProps: {
+          defaultValue: 'no',
+          groupLabel: 'Do you have middle name?',
           id: 'hasMiddleName',
           name: 'hasMiddleName',
-          groupLabel: 'Do you have middle name?',
-          required: true,
-          defaultValue: 'no',
           options: [
             { label: 'No', value: 'no' },
             { label: 'Yes', value: 'yes' },
           ],
+          required: true,
         } as RadioGroupProps,
+        controlType: 'dot-radio-group',
         initialValue: 'no',
       },
       {
         controlName: 'middleName',
-        controlType: 'dot-input-text',
         controlProps: {
           label: 'Middle Name',
         } as InputTextProps,
+        controlType: 'dot-input-text',
         hidden: [{ controlName: 'hasMiddleName', controlValue: 'no' }],
       },
       {
         controlName: 'lastName',
-        controlType: 'dot-input-text',
         controlProps: {
           label: 'Last Name',
           required: true,
         } as InputTextProps,
+        controlType: 'dot-input-text',
         validation: {
           isRequired: {
+            condition: [{ controlName: 'hasMiddleName', controlValue: 'no' }],
             errorMessage: 'Required field',
             value: true,
-            condition: [{ controlName: 'hasMiddleName', controlValue: 'no' }],
           },
         },
       },
       {
         controlName: 'username',
-        controlType: 'dot-input-text',
         controlProps: {
           label: 'Username',
           required: true,
         } as InputTextProps,
+        controlType: 'dot-input-text',
         validation: {
           isRequired: {
             errorMessage: 'Required field',
@@ -108,13 +108,13 @@ export const DemoDynamicForm = () => {
       },
       {
         controlName: 'password',
-        controlType: 'dot-input-text',
         controlProps: {
+          endIcon: <DotIcon iconId="visibility-off" />,
           label: 'Password',
           required: true,
           type: 'password',
-          endIcon: <DotIcon iconId="visibility-off" />,
         } as InputTextProps,
+        controlType: 'dot-input-text',
         validation: {
           isRequired: {
             errorMessage: 'Required field',
@@ -132,7 +132,6 @@ export const DemoDynamicForm = () => {
       },
       {
         controlName: 'randomOption',
-        controlType: 'dot-autocomplete',
         controlProps: {
           label: 'Random option',
           options: [
@@ -143,6 +142,7 @@ export const DemoDynamicForm = () => {
             { title: 'Option 5' },
           ],
         } as AutoCompleteProps,
+        controlType: 'dot-autocomplete',
         validation: {
           isRequired: {
             errorMessage: 'Required field',
@@ -160,10 +160,8 @@ export const DemoDynamicForm = () => {
       },
       {
         controlName: 'receive',
-        controlType: 'dot-checkbox-group',
         controlProps: {
           groupLabel: 'I would like to receive',
-          required: true,
           options: [
             {
               label: 'Notification of new releases',
@@ -175,7 +173,9 @@ export const DemoDynamicForm = () => {
             },
             { label: 'A free poster', value: 'poster' },
           ],
+          required: true,
         } as CheckboxGroupProps,
+        controlType: 'dot-checkbox-group',
         validation: {
           isRequired: {
             errorMessage: 'Required field',
@@ -189,7 +189,6 @@ export const DemoDynamicForm = () => {
       },
       {
         controlName: 'superheroes',
-        controlType: 'dot-input-select',
         controlProps: {
           id: 'devType',
           label: 'Dev Type',
@@ -198,6 +197,7 @@ export const DemoDynamicForm = () => {
           size: 'small',
           options: ['', 'React Dev', 'Angular Dev', 'Other Dev'],
         } as InputSelectProps,
+        controlType: 'dot-input-select',
         validation: {
           isRequired: {
             errorMessage: 'Required field',
@@ -207,7 +207,6 @@ export const DemoDynamicForm = () => {
       },
       {
         controlName: 'superHero',
-        controlType: 'dot-radio-group',
         controlProps: {
           id: 'superHero',
           name: 'superHero',
@@ -221,13 +220,14 @@ export const DemoDynamicForm = () => {
             { label: 'Spiderman', value: 'Spiderman' },
           ],
         } as RadioGroupProps,
+        controlType: 'dot-radio-group',
       },
       {
         controlName: 'isMandatory',
-        controlType: 'dot-switch',
         controlProps: {
           label: 'Is Mandatory',
         } as CheckboxProps,
+        controlType: 'dot-switch',
         validation: {
           isRequired: {
             errorMessage: 'Required field',
@@ -241,22 +241,22 @@ export const DemoDynamicForm = () => {
       },
       {
         controlName: 'btnReset',
-        controlType: 'dot-reset',
         controlProps: {
-          type: 'text',
-          isSubmit: false,
           children: 'Reset',
           fullWidth: false,
+          isSubmit: false,
+          type: 'text',
         } as ButtonProps,
+        controlType: 'dot-reset',
       },
       {
         controlName: 'btnSubmit',
-        controlType: 'dot-submit',
         controlProps: {
-          type: 'primary',
           children: 'Submit form',
           fullWidth: false,
+          type: 'primary',
         } as ButtonProps,
+        controlType: 'dot-submit',
       },
     ],
   };

@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  ControlledInputArgs,
+  UncontrolledInputArgs,
   buildAutocompleteControl,
   buildButtonControl,
   buildCheckboxControl,
@@ -11,12 +13,10 @@ import {
   buildSubmitControl,
   buildSwitchControl,
   checkIfHiddenControl,
-  ControlledInputArgs,
   getControlValue,
   getFormDataFromInitialValues,
   getInitialFormState,
   getOutputFormData,
-  UncontrolledInputArgs,
 } from './helpers';
 import { getSampleConfig, getSampleFormState } from './sample';
 import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
@@ -29,12 +29,12 @@ import {
   AutoCompleteProps,
 } from '../auto-complete/AutoComplete';
 import { DotRadioGroup, RadioGroupProps } from '../radio/RadioGroup';
-import { DotCheckbox, CheckboxProps } from '../checkbox/Checkbox';
+import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
 import { DotSwitch, SwitchProps } from '../switch/Switch';
-import { DotButton, ButtonProps } from '../button/Button';
+import { ButtonProps, DotButton } from '../button/Button';
 import {
-  DotCheckboxGroup,
   CheckboxGroupProps,
+  DotCheckboxGroup,
 } from '../checkbox/CheckboxGroup';
 
 describe('dynamic form helper functions', () => {
@@ -235,11 +235,11 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop', () => {
       const customProps = {
         ...props,
-        disabled: true,
         controlProps: {
           ...controlProps,
           disabled: false,
         },
+        disabled: true,
       };
       const result = buildInputTextControl(customProps);
       expect(result).toEqual({
@@ -306,10 +306,10 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotInputSelect
-        key={props.index}
         disabled={false}
         error={false}
         id={controlProps.id}
+        key={props.index}
         label={controlProps.label}
         name={controlProps.name}
         options={options}
@@ -325,11 +325,11 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop', () => {
       const customProps = {
         ...props,
-        disabled: true,
         controlProps: {
           ...controlProps,
           disabled: false,
         },
+        disabled: true,
       };
       const result = buildInputSelectControl(customProps);
       expect(result).toEqual({
@@ -395,10 +395,10 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotAutoComplete
-        key={props.index}
         disabled={false}
         error={false}
         inputId={controlProps.inputId}
+        key={props.index}
         label={controlProps.label}
         options={options}
         value={value}
@@ -413,11 +413,11 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop', () => {
       const customProps = {
         ...props,
-        disabled: true,
         controlProps: {
           ...controlProps,
           disabled: false,
         },
+        disabled: true,
       };
       const result = buildAutocompleteControl(customProps);
       expect(result).toEqual({
@@ -486,11 +486,11 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotRadioGroup
-        key={props.index}
         disableGroup={false}
         error={false}
-        id={controlProps.id}
         groupLabel={controlProps.groupLabel}
+        id={controlProps.id}
+        key={props.index}
         options={options}
         value={value}
       />
@@ -504,11 +504,11 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop', () => {
       const customProps = {
         ...props,
-        disabled: true,
         controlProps: {
           ...controlProps,
           disableGroup: false,
         },
+        disabled: true,
       };
       const result = buildRadioGroupControl(customProps);
       expect(result).toEqual({
@@ -575,8 +575,8 @@ describe('dynamic form helper functions', () => {
       <DotCheckbox
         checked={false}
         disabled={false}
-        key={props.index}
         id={controlProps.id}
+        key={props.index}
         label={controlProps.label}
         name={controlProps.name}
       />
@@ -590,11 +590,11 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop', () => {
       const customProps = {
         ...props,
-        disabled: true,
         controlProps: {
           ...controlProps,
           disabled: false,
         },
+        disabled: true,
       };
       const result = buildCheckboxControl(customProps);
       expect(result).toEqual({
@@ -638,11 +638,11 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotCheckboxGroup
-        key={props.index}
         disableGroup={false}
         error={false}
-        id={controlProps.id}
         groupLabel={controlProps.groupLabel}
+        id={controlProps.id}
+        key={props.index}
         options={options}
       />
     );
@@ -655,11 +655,11 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop', () => {
       const customProps = {
         ...props,
-        disabled: true,
         controlProps: {
           ...controlProps,
           disableGroup: false,
         },
+        disabled: true,
       };
       const result = buildCheckboxGroupControl(customProps);
       expect(result).toEqual({
@@ -724,9 +724,9 @@ describe('dynamic form helper functions', () => {
     const expectedResult = (
       <DotSwitch
         checked={value}
-        key={props.index}
         disabled={false}
         id={controlProps.id}
+        key={props.index}
         label={controlProps.label}
       />
     );
@@ -739,11 +739,11 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop', () => {
       const customProps = {
         ...props,
-        disabled: true,
         controlProps: {
           ...controlProps,
           disabled: false,
         },
+        disabled: true,
       };
       const result = buildSwitchControl(customProps);
       expect(result).toEqual({
@@ -759,9 +759,9 @@ describe('dynamic form helper functions', () => {
   describe('buildButtonControl', () => {
     const handleClick = jest.fn();
     const controlProps: ButtonProps = {
+      children: 'My Button',
       size: 'small',
       type: 'primary',
-      children: 'My Button',
     };
     const props: UncontrolledInputArgs = {
       controlProps: controlProps,
@@ -772,8 +772,8 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotButton
-        key={props.index}
         disabled={false}
+        key={props.index}
         size={controlProps.size}
         type={controlProps.type}
       >
@@ -789,11 +789,11 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop', () => {
       const customProps = {
         ...props,
-        disabled: true,
         controlProps: {
           ...controlProps,
           disabled: false,
         },
+        disabled: true,
       };
       const result = buildButtonControl(customProps);
       expect(result).toEqual({
@@ -810,10 +810,10 @@ describe('dynamic form helper functions', () => {
     const propOnClick = jest.fn();
     const handleClick = jest.fn();
     const controlProps: ButtonProps = {
-      size: 'medium',
-      type: 'text',
       children: 'My Reset Button',
       onClick: propOnClick,
+      size: 'medium',
+      type: 'text',
     };
     const props: UncontrolledInputArgs = {
       controlProps: controlProps,
@@ -824,10 +824,10 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotButton
+        disabled={false}
         key={props.index}
         size={controlProps.size}
         type={controlProps.type}
-        disabled={false}
       >
         {controlProps.children}
       </DotButton>
@@ -847,11 +847,11 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop', () => {
       const customProps = {
         ...props,
-        disabled: true,
         controlProps: {
           ...controlProps,
           disabled: false,
         },
+        disabled: true,
       };
       const result = buildResetControl(customProps);
       expect(getRelevantProps(result)).toEqual({
@@ -864,9 +864,9 @@ describe('dynamic form helper functions', () => {
   describe('buildSubmitControl', () => {
     const handleClick = jest.fn();
     const controlProps: ButtonProps = {
+      children: 'Submit',
       size: 'large',
       type: 'primary',
-      children: 'Submit',
     };
     const formState = {
       isValid: true,
@@ -881,9 +881,9 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotButton
-        key={props.index}
         disabled={false}
         isSubmit={true}
+        key={props.index}
         size={controlProps.size}
         type={controlProps.type}
       >
@@ -899,11 +899,11 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop', () => {
       const customProps = {
         ...props,
-        disabled: true,
         controlProps: {
           ...controlProps,
           disabled: false,
         },
+        disabled: true,
       };
       const result = buildSubmitControl(customProps);
       expect(result).toEqual({
@@ -918,12 +918,12 @@ describe('dynamic form helper functions', () => {
     it('should return component instance with disabled prop when live validation is on and form validity is false', () => {
       const customProps = {
         ...props,
-        formState: {
-          isValid: false,
-        } as never,
         controlProps: {
           ...controlProps,
         },
+        formState: {
+          isValid: false,
+        } as never,
       };
       const result = buildSubmitControl(customProps);
       expect(result).toEqual({
