@@ -174,7 +174,7 @@ export const buildInputTextControl = ({
       {...props}
       disabled={disabled}
       error={!!errorMessage}
-      helperText={errorMessage ? errorMessage : props.helperText}
+      helperText={errorMessage || props.helperText}
       onChange={handleChangeFn(controlName)}
       value={value}
     />
@@ -199,7 +199,7 @@ export const buildInputSelectControl = ({
       {...props}
       disabled={disabled}
       error={!!errorMessage}
-      helperText={errorMessage ? errorMessage : props.helperText}
+      helperText={errorMessage || props.helperText}
       onChange={handleChangeFn(controlName)}
       value={value}
     />
@@ -224,7 +224,7 @@ export const buildAutocompleteControl = ({
       {...props}
       disabled={disabled}
       error={!!errorMessage}
-      helperText={errorMessage ? errorMessage : props.helperText}
+      helperText={errorMessage || props.helperText}
       onChange={handleChangeFn(controlName)}
       value={value}
     />
@@ -249,7 +249,7 @@ export const buildRadioGroupControl = ({
       {...props}
       disableGroup={disabled}
       error={!!errorMessage}
-      helperText={errorMessage ? errorMessage : props.helperText}
+      helperText={errorMessage || props.helperText}
       onChange={handleChangeFn(controlName)}
       value={value}
     />
@@ -295,7 +295,7 @@ export const buildCheckboxGroupControl = ({
       {...props}
       disableGroup={disabled}
       error={!!errorMessage}
-      helperText={errorMessage ? errorMessage : props.helperText}
+      helperText={errorMessage || props.helperText}
       onChange={handleChangeFn(controlName)}
     />
   );
