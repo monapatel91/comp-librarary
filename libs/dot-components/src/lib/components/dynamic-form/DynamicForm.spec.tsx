@@ -8,9 +8,10 @@ describe('DotDynamicForm', () => {
   const handleChange = jest.fn();
   const handleSubmit = jest.fn();
   const config = getSampleConfig();
+  const ariaLabel = 'my aria label';
 
   const componentProps: DynamicFormProps = {
-    ariaLabel: 'my-aria',
+    ariaLabel,
     className: 'test-class',
     'data-testid': 'testid',
     disabled: false,
@@ -30,6 +31,8 @@ describe('DotDynamicForm', () => {
 
   const getAutocompleteTextboxElement = (): HTMLElement =>
     within(getAutocompleteElement()).getByRole('textbox');
+
+  const getFormElement = (): HTMLElement => screen.getByRole('form');
 
   const getRadioGroupElement = (): HTMLElement =>
     screen.getByTestId('hasMiddleName');
@@ -142,7 +145,7 @@ describe('DotDynamicForm', () => {
 
   it('should have unchanged API', () => {
     const props = {
-      ariaLabel: 'my-aria',
+      ariaLabel,
       className: 'test-class',
       'data-testid': 'testid',
       disabled: false,
@@ -162,6 +165,11 @@ describe('DotDynamicForm', () => {
     it('should render successfully', () => {
       const { baseElement } = renderComponent();
       expect(baseElement).toBeTruthy();
+    });
+
+    it('should have form element with aria label', () => {
+      const formElement = getFormElement();
+      expect(formElement).toHaveAttribute('aria-label', ariaLabel);
     });
 
     it('should render input text with appropriate initial value', () => {

@@ -51,6 +51,7 @@ export interface DynamicFormProps extends CommonProps {
 }
 
 export const DotDynamicForm = ({
+  ariaLabel,
   className,
   'data-testid': dataTestId,
   config,
@@ -298,7 +299,9 @@ export const DotDynamicForm = ({
 
   return (
     <StyledDynamicForm className={rootClasses} data-testid={dataTestId}>
-      <DotForm onSubmit={handleFormSubmit}>{buildFormControls()}</DotForm>
+      <DotForm ariaLabel={ariaLabel} onSubmit={handleFormSubmit}>
+        {buildFormControls()}
+      </DotForm>
     </StyledDynamicForm>
   );
 };
