@@ -152,10 +152,10 @@ export const DotDynamicForm = ({
     return isValid;
   };
 
-  const handleInputChange =
-    (controlName: string) => (e: ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
-      updateFormState({ controlName, formConfig: config, newValue });
+  const handleAutocompleteChange =
+    (controlName: string) =>
+    (_event: ChangeEvent<HTMLInputElement>, value: AutoCompleteValue): void => {
+      updateFormState({ controlName, formConfig: config, newValue: value });
     };
 
   const handleCheckChange =
@@ -180,10 +180,22 @@ export const DotDynamicForm = ({
       });
     };
 
-  const handleAutocompleteChange =
-    (controlName: string) =>
-    (_event: ChangeEvent<HTMLInputElement>, value: AutoCompleteValue): void => {
-      updateFormState({ controlName, formConfig: config, newValue: value });
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    let isFormValid = true;
+    // If live validation is turned off we have to validate form before submitting it
+    if (!liveValidation) {
+      isFormValid = validateForm();
+    }
+    if (!isFormValid) return;
+    const formOutputData = getOutputFormData(formState);
+    onSubmit?.(formOutputData);
+  };
+
+  const handleInputChange =
+    (controlName: string) => (e: ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value;
+      updateFormState({ controlName, formConfig: config, newValue });
     };
 
   const handleReset = () => setFormState(initialFormState);
@@ -282,18 +294,6 @@ export const DotDynamicForm = ({
         }
       }
     );
-  };
-
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    let isFormValid = true;
-    // If live validation is turned off we have to validate form before submitting it
-    if (!liveValidation) {
-      isFormValid = validateForm();
-    }
-    if (!isFormValid) return;
-    const formOutputData = getOutputFormData(formState);
-    onSubmit?.(formOutputData);
   };
 
   return (
