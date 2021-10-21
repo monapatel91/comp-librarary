@@ -212,60 +212,52 @@ export const DotDynamicForm = ({
           liveValidation,
         };
 
+        const commonControlledInputArgs = {
+          ...control,
+          controlName: inputControlName,
+          formData: formState.data,
+        };
+
         switch (controlType) {
           case 'dot-input-text': {
             return buildInputTextControl({
-              ...control,
-              controlName: inputControlName,
-              formData: formState.data,
+              ...commonControlledInputArgs,
               handleChange: handleInputChange,
             });
           }
           case 'dot-input-select': {
             return buildInputSelectControl({
-              ...control,
-              controlName: inputControlName,
-              formData: formState.data,
+              ...commonControlledInputArgs,
               handleChange: handleInputChange,
             });
           }
           case 'dot-autocomplete': {
             return buildAutocompleteControl({
-              ...control,
-              controlName: inputControlName,
-              formData: formState.data,
+              ...commonControlledInputArgs,
               handleChange: handleAutocompleteChange,
             });
           }
           case 'dot-radio-group': {
             return buildRadioGroupControl({
-              ...control,
-              controlName: inputControlName,
-              formData: formState.data,
+              ...commonControlledInputArgs,
               handleChange: handleInputChange,
             });
           }
           case 'dot-checkbox': {
             return buildCheckboxControl({
-              ...control,
-              controlName: inputControlName,
-              formData: formState.data,
+              ...commonControlledInputArgs,
               handleChange: handleCheckChange,
             });
           }
           case 'dot-checkbox-group': {
             return buildCheckboxGroupControl({
-              ...control,
-              controlName: inputControlName,
-              formData: formState.data,
+              ...commonControlledInputArgs,
               handleChange: handleCheckboxGroupChange,
             });
           }
           case 'dot-switch': {
             return buildSwitchControl({
-              ...control,
-              controlName: inputControlName,
-              formData: formState.data,
+              ...commonControlledInputArgs,
               handleChange: handleCheckChange,
             });
           }
