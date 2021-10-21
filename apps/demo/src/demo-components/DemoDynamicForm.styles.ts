@@ -3,16 +3,16 @@ import styled, { css } from 'styled-components';
 export const rootClassName = 'demo-dynamic-form';
 
 export const StyledDemoDynamicForm = styled.div`
-  ${() => css`
+  ${({ theme }) => css`
     &.${rootClassName} {
       .options {
         display: flex;
-        margin: 16px 16px;
-        gap: 32px;
+        margin: ${theme.spacing(2, 2)};
+        gap: ${theme.spacing(4)}px;
       }
 
       .divider {
-        margin: 16px 0 32px;
+        margin: ${theme.spacing(2, 0, 4)};
       }
     }
   `}
