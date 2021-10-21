@@ -84,6 +84,21 @@ describe('DotDynamicForm', () => {
       : expect(switchElement).not.toHaveClass(className);
   };
 
+  const expectCheckboxGroupElementToBeChecked = (
+    position: number,
+    shouldBeChecked = true,
+    checkboxGroupElement?: HTMLElement
+  ): void => {
+    if (!checkboxGroupElement) {
+      checkboxGroupElement = getCheckboxGroupElement();
+    }
+    const checkboxElement =
+      within(checkboxGroupElement).getAllByRole('checkbox')[position];
+    shouldBeChecked
+      ? expect(checkboxElement).toBeChecked()
+      : expect(checkboxElement).not.toBeChecked();
+  };
+
   const expectCheckboxGroupToBeEnabled = (shouldBeEnabled = true): void => {
     const checkboxElements = getCheckboxGroupInputElements();
     checkboxElements.forEach((cb) => {
@@ -142,6 +157,18 @@ describe('DotDynamicForm', () => {
     radioGroupElement: HTMLElement
   ): void =>
     userEvent.click(within(radioGroupElement).getAllByRole('radio')[position]);
+
+  const selectCheckboxGroupOption = (
+    position: number,
+    checkboxGroupElement?: HTMLElement
+  ): void => {
+    if (!checkboxGroupElement) {
+      checkboxGroupElement = getCheckboxGroupElement();
+    }
+    userEvent.click(
+      within(checkboxGroupElement).getAllByRole('checkbox')[position]
+    );
+  };
 
   it('should have unchanged API', () => {
     const props = {
@@ -314,8 +341,12 @@ describe('DotDynamicForm', () => {
 
     it('should remove all values from the form inputs', () => {
       const hasMiddleNameElement = getRadioGroupElement();
+      const checkboxGroupElement = getCheckboxGroupElement();
       const switchElement = getSwitchElement();
       selectRadioGroupOption(1, hasMiddleNameElement);
+      selectCheckboxGroupOption(0, checkboxGroupElement);
+      selectCheckboxGroupOption(1, checkboxGroupElement);
+
       userEvent.click(switchElement);
       const resetButton = getResetButton();
       userEvent.click(resetButton);
@@ -326,6 +357,9 @@ describe('DotDynamicForm', () => {
       expect(
         within(hasMiddleNameElement).getAllByRole('radio')[0]
       ).toBeChecked();
+      expectCheckboxGroupElementToBeChecked(0, false, checkboxGroupElement);
+      expectCheckboxGroupElementToBeChecked(1, false, checkboxGroupElement);
+      expectCheckboxGroupElementToBeChecked(2, false, checkboxGroupElement);
       expectSwitchToBeChecked(switchElement, false);
     });
 

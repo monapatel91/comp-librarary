@@ -288,11 +288,13 @@ export const buildCheckboxGroupControl = ({
 }: ControlledInputArgs) => {
   const props = controlProps as CheckboxGroupProps;
   const errorMessage = formData[controlName].errorMessage;
+  const values = getControlValue<CheckboxProps[]>(controlName, formData) || [];
   const handleChangeFn = handleChange as CheckboxGroupChangeHandler;
   return (
     <DotCheckboxGroup
       key={index}
       {...props}
+      defaultValues={values}
       disableGroup={disabled}
       error={!!errorMessage}
       helperText={errorMessage || props.helperText}
