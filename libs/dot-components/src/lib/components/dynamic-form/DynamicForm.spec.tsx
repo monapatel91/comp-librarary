@@ -1,6 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, screen, RenderResult, within } from '../../testing-utils';
+import { render, RenderResult, screen, within } from '../../testing-utils';
 import { DotDynamicForm, DynamicFormProps } from './DynamicForm';
 import { getSampleConfig } from './sample';
 

@@ -5,13 +5,13 @@ import {
 } from '../input-form-fields/InputSelect';
 import React, { ChangeEvent } from 'react';
 import {
+  DynamicFormConfig,
   DynamicFormControl,
   DynamicFormControlProps,
-  DynamicFormConfig,
+  DynamicFormOutputData,
   DynamicFormState,
   DynamicFormStateData,
   HiddenControl,
-  DynamicFormOutputData,
 } from './models';
 import {
   AutoCompleteProps,
@@ -21,8 +21,8 @@ import {
 import { ButtonProps, DotButton } from '../button/Button';
 import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
 import {
-  DotCheckboxGroup,
   CheckboxGroupProps,
+  DotCheckboxGroup,
 } from '../checkbox/CheckboxGroup';
 import { DotRadioGroup, RadioGroupProps } from '../radio/RadioGroup';
 import { getFieldValidation } from './validation';

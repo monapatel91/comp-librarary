@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  ControlledInputArgs,
-  UncontrolledInputArgs,
   buildAutocompleteControl,
   buildButtonControl,
   buildCheckboxControl,
@@ -13,10 +11,12 @@ import {
   buildSubmitControl,
   buildSwitchControl,
   checkIfHiddenControl,
+  ControlledInputArgs,
   getControlValue,
   getFormDataFromInitialValues,
   getInitialFormState,
   getOutputFormData,
+  UncontrolledInputArgs,
 } from './helpers';
 import { getSampleConfig, getSampleFormState } from './sample';
 import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
@@ -25,8 +25,8 @@ import {
   InputSelectProps,
 } from '../input-form-fields/InputSelect';
 import {
-  DotAutoComplete,
   AutoCompleteProps,
+  DotAutoComplete,
 } from '../auto-complete/AutoComplete';
 import { DotRadioGroup, RadioGroupProps } from '../radio/RadioGroup';
 import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';

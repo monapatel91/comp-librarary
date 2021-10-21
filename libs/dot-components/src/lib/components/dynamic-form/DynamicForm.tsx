@@ -1,24 +1,23 @@
 import React, {
   ChangeEvent,
   FormEvent,
+  Fragment,
   useEffect,
   useState,
-  Fragment,
 } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDynamicForm } from './DynamicForm.styles';
 import { DotForm } from '../form/Form';
-
 import { AutoCompleteValue } from '../auto-complete/AutoComplete';
 import {
-  DynamicFormControl,
   DynamicFormConfig,
+  DynamicFormControl,
+  DynamicFormOutputData,
   DynamicFormState,
   DynamicFormStateData,
-  FormStateUpdateArgs,
-  DynamicFormOutputData,
   FieldValidation,
+  FormStateUpdateArgs,
 } from './models';
 import {
   checkIfFormDataValid,
@@ -44,21 +43,21 @@ import {
 import { CheckboxProps } from '../checkbox/Checkbox';
 
 export interface DynamicFormProps extends CommonProps {
+  config: DynamicFormConfig;
   disabled?: boolean;
   liveValidation?: boolean;
   onChange?: (formData: DynamicFormState) => void;
   onSubmit?: (formData: DynamicFormOutputData) => void;
-  config: DynamicFormConfig;
 }
 
 export const DotDynamicForm = ({
   className,
   'data-testid': dataTestId,
+  config,
   disabled,
   liveValidation = true,
   onChange,
   onSubmit,
-  config,
 }: DynamicFormProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
