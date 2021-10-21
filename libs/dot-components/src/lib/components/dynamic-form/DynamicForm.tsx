@@ -182,7 +182,7 @@ export const DotDynamicForm = ({
 
   const handleAutocompleteChange =
     (controlName: string) =>
-    (_: ChangeEvent<HTMLInputElement>, value: AutoCompleteValue): void => {
+    (_event: ChangeEvent<HTMLInputElement>, value: AutoCompleteValue): void => {
       updateFormState({ controlName, formConfig: config, newValue: value });
     };
 
