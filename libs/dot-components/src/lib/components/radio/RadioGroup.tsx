@@ -76,7 +76,7 @@ export const DotRadioGroup = ({
     placement
   );
 
-  const radioValue = value ? value : defaultValue;
+  const radioValue = value || defaultValue;
 
   const [selectedValue, setSelectedValue] = useState(radioValue);
 
