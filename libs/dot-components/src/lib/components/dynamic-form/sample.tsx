@@ -4,6 +4,7 @@ import { ButtonProps } from '../button/Button';
 import { CheckboxProps } from '../checkbox/Checkbox';
 import { InputTextProps } from '../input-form-fields/InputText';
 import { InputSelectProps } from '../input-form-fields/InputSelect';
+import { CheckboxGroupProps } from '../checkbox/CheckboxGroup';
 import { RadioGroupProps } from '../radio/RadioGroup';
 import { DynamicFormConfig, DynamicFormState } from './models';
 
@@ -103,6 +104,26 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       },
     },
     {
+      controlName: 'receive',
+      controlType: 'dot-checkbox-group',
+      controlProps: {
+        'data-testid': 'receive',
+        groupLabel: 'I would like to receive',
+        required: true,
+        options: [
+          {
+            label: 'Notification of new releases',
+            value: 'releases',
+          },
+          {
+            label: 'Concert schedule information',
+            value: 'concerts',
+          },
+          { label: 'A free poster', value: 'poster' },
+        ],
+      } as CheckboxGroupProps,
+    },
+    {
       controlType: 'custom-element',
       customElement: <p data-testid="customElement">test</p>,
     },
@@ -180,6 +201,12 @@ export const getSampleFormState = (): DynamicFormState => ({
       isTouched: true,
       isValid: true,
       value: 'no',
+    },
+    receive: {
+      errorMessage: null,
+      isTouched: false,
+      isValid: true,
+      value: null,
     },
     receiveNewsletters: {
       errorMessage: null,

@@ -120,6 +120,12 @@ describe('dynamic form helper functions', () => {
             isValid: true,
             value: 'no',
           },
+          receive: {
+            errorMessage: null,
+            isTouched: false,
+            isValid: true,
+            value: null,
+          },
           receiveNewsletters: {
             errorMessage: null,
             isTouched: false,
@@ -167,6 +173,7 @@ describe('dynamic form helper functions', () => {
             title: 'Option 1',
           },
         ],
+        receive: null,
         receiveNewsletters: null,
       });
     });

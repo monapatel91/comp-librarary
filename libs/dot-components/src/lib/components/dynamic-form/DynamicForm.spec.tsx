@@ -52,6 +52,12 @@ describe('DotDynamicForm', () => {
 
   const getSelectElement = (): HTMLElement => screen.getByTestId('gender');
 
+  const getCheckboxGroupElement = (): HTMLElement =>
+    screen.getByTestId('receive');
+
+  const getCheckboxGroupInputElements = (): HTMLElement[] =>
+    within(getCheckboxGroupElement()).getAllByRole('checkbox');
+
   const queryMiddleNameTextboxElement = (): HTMLElement | undefined =>
     screen.queryByTestId('middleName');
 
@@ -240,6 +246,17 @@ describe('DotDynamicForm', () => {
       expect(options[0]).toHaveValue('');
       expect(options[1]).toHaveValue('Male');
       expect(options[2]).toHaveValue('Female');
+    });
+
+    it('should render checkbox group element', () => {
+      const checkboxGroupElement = getCheckboxGroupElement();
+      expect(checkboxGroupElement).toBeVisible();
+      const checkboxElements = getCheckboxGroupInputElements();
+      checkboxElements.forEach((cb) => {
+        expect(cb).toBeEnabled();
+        expect(cb).not.toBeChecked();
+      });
+      expect(checkboxElements).toHaveLength(3);
     });
 
     it('should render custom element', () => {
