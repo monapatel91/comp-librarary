@@ -339,7 +339,7 @@ describe('DotDynamicForm', () => {
       expect(resetButton).toBeEnabled();
     });
 
-    it('should remove all values from the form inputs', () => {
+    it('should remove all values from the form inputs when clicking Reset button', () => {
       const hasMiddleNameElement = getRadioGroupElement();
       const checkboxGroupElement = getCheckboxGroupElement();
       const switchElement = getSwitchElement();

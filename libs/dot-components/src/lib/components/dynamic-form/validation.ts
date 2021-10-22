@@ -1,12 +1,13 @@
 import {
   DynamicFormConfig,
   DynamicFormOutputData,
-  DynamicFormStateData,
+  DynamicFormState,
   DynamicFormValidation,
   FieldValidation,
   ValidationField,
 } from './models';
 import { DATA_CONTROLS_WITHOUT_VALIDATION } from './constants';
+import { checkIfHiddenControl, getOutputFormData } from './helpers';
 
 export const checkIfValidationApplies = (
   validationField: ValidationField,
@@ -17,7 +18,6 @@ export const checkIfValidationApplies = (
   try {
     return condition(formValues);
   } catch (e) {
-    console.warn(e);
     return false;
   }
 };
@@ -98,12 +98,16 @@ export const getControlValidationFromConfig = (
   return formControl.validation;
 };
 
-export const checkIfFormDataValid = (
-  formData: DynamicFormStateData
-): boolean => {
-  if (!formData) return false;
+export const checkIfFormDataValid = (formState: DynamicFormState): boolean => {
+  if (!formState || !('data' in formState)) return false;
+  const formData = formState.data;
   for (const formDataKey in formData) {
-    if (!formData[formDataKey].isValid) return false;
+    const formValues = getOutputFormData(formState);
+    const isHidden = checkIfHiddenControl(
+      formData[formDataKey].hidden,
+      formValues
+    );
+    if (!formData[formDataKey].isValid && !isHidden) return false;
   }
   return true;
 };

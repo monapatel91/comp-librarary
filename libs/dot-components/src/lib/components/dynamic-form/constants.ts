@@ -3,10 +3,10 @@ import { DynamicFormControlType, DynamicFormStateItem } from './models';
 
 export const DATA_CONTROLS: DynamicFormControlType[] = [
   'dot-autocomplete',
-  'dot-input-text',
-  'dot-input-select',
   'dot-checkbox',
   'dot-checkbox-group',
+  'dot-input-select',
+  'dot-input-text',
   'dot-radio-group',
   'dot-switch',
 ];
@@ -18,8 +18,8 @@ export const DATA_CONTROLS_WITHOUT_VALIDATION: DynamicFormControlType[] = [
 ];
 
 export const INITIAL_STATE_ITEM: DynamicFormStateItem = {
-  value: null,
-  isValid: false,
-  isTouched: false,
   errorMessage: null,
+  isTouched: false,
+  isValid: false,
+  value: null,
 };

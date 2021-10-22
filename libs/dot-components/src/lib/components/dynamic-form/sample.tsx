@@ -12,6 +12,9 @@ import {
   DynamicFormState,
 } from './models';
 
+export const sampleMiddleNameHiddenFn = (formValues: DynamicFormOutputData) =>
+  formValues['hasMiddleName'] === 'no';
+
 export const getSampleConfig = (): DynamicFormConfig => ({
   controls: [
     {
@@ -86,8 +89,15 @@ export const getSampleConfig = (): DynamicFormConfig => ({
         'data-testid': 'middleName',
         label: 'Middle Name',
       } as InputTextProps,
-      hidden: (formValues: DynamicFormOutputData) =>
-        formValues['hasMiddleName'] === 'no',
+      hidden: sampleMiddleNameHiddenFn,
+      validation: {
+        isRequired: {
+          condition: (formValues: DynamicFormOutputData) =>
+            formValues['hasMiddleName'] === 'yes',
+          errorMessage: 'Required field',
+          value: true,
+        },
+      },
     },
     {
       controlName: 'gender',
@@ -227,8 +237,9 @@ export const getSampleFormState = (): DynamicFormState => ({
     },
     middleName: {
       errorMessage: null,
+      hidden: sampleMiddleNameHiddenFn,
       isTouched: false,
-      isValid: true,
+      isValid: false,
       value: null,
     },
     randomOption: {

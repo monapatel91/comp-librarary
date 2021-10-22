@@ -70,7 +70,7 @@ export const DotDynamicForm = ({
   useEffect(() => {
     // Skip if live validation is turned off
     if (!liveValidation) return;
-    const currentIsFormValid = checkIfFormDataValid(formState.data);
+    const currentIsFormValid = checkIfFormDataValid(formState);
     // Check if validity state has changed
     if (formState.isValid !== currentIsFormValid) {
       setFormState((prevState) => {
@@ -215,8 +215,9 @@ export const DotDynamicForm = ({
         index: number
       ) => {
         const inputControlName = controlName || `control-${index}`;
+        const formValues = getOutputFormData(formState);
 
-        if (checkIfHiddenControl(hidden, formState)) return '';
+        if (checkIfHiddenControl(hidden, formValues)) return '';
 
         const control: InputBaseArgs = {
           controlProps,

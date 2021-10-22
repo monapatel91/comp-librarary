@@ -2,6 +2,7 @@ import {
   ConditionFunction,
   DynamicFormConfig,
   DynamicFormOutputData,
+  DynamicFormState,
   DynamicFormValidation,
   FieldValidation,
   ValidationField,
@@ -49,6 +50,18 @@ describe('validation functions', () => {
       const result = checkIfValidationApplies(field, formValues);
       expect(result).toBe(false);
     });
+
+    it('should return false when exception occurs', () => {
+      const field: ValidationField = {
+        ...validationField,
+        condition: (_formValues: DynamicFormOutputData) => {
+          throw new Error();
+        },
+      };
+      const result = checkIfValidationApplies(field, formValues);
+      expect(result).toBe(false);
+    });
+
     it("should return true when 'condition' property is not defined", () => {
       const field: ValidationField = {
         ...validationField,
@@ -387,29 +400,39 @@ describe('validation functions', () => {
   });
 
   describe('checkIfFormDataValid', () => {
-    const validFormData = {
-      firstName: {
-        isValid: true,
+    const validFormState: DynamicFormState = {
+      data: {
+        firstName: {
+          isValid: true,
+        } as never,
+        lastName: {
+          isValid: true,
+        } as never,
+        username: {
+          isValid: true,
+        } as never,
       },
-      lastName: {
-        isValid: true,
-      },
-      username: {
-        isValid: true,
-      },
-    } as never;
+      isValid: true,
+    };
 
-    const invalidFormData = {
-      firstName: {
-        isValid: true,
+    const invalidFormState: DynamicFormState = {
+      data: {
+        firstName: {
+          isValid: false,
+        } as never,
+        lastName: {
+          isValid: true,
+          value: '33',
+        } as never,
+        username: {
+          isValid: true,
+        } as never,
       },
-      lastName: {
-        isValid: false,
-      },
-    } as never;
+      isValid: true,
+    };
 
     it('should return false when form data is not valid', () => {
-      const isValid = checkIfFormDataValid(invalidFormData);
+      const isValid = checkIfFormDataValid(invalidFormState);
       expect(isValid).toBe(false);
     });
 
@@ -419,7 +442,23 @@ describe('validation functions', () => {
     });
 
     it('should return true when form data is valid', () => {
-      const isValid = checkIfFormDataValid(validFormData);
+      const isValid = checkIfFormDataValid(validFormState);
+      expect(isValid).toBe(true);
+    });
+
+    it('should return true when form data is valid2', () => {
+      const formState: DynamicFormState = {
+        ...invalidFormState,
+        data: {
+          ...invalidFormState.data,
+          firstName: {
+            isValid: false,
+            hidden: (formValues: DynamicFormOutputData) =>
+              formValues['lastName'] === '33',
+          } as never,
+        },
+      };
+      const isValid = checkIfFormDataValid(formState);
       expect(isValid).toBe(true);
     });
   });

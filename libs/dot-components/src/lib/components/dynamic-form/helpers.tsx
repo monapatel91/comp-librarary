@@ -70,19 +70,18 @@ export const getControlValue = <T extends unknown>(
   controlName: string,
   data: DynamicFormStateData
 ): T => {
-  return data[controlName].value as T;
+  return controlName in data && (data[controlName].value as T);
 };
 
 export const checkIfHiddenControl = (
   hidden: HiddenControl,
-  formState: DynamicFormState
+  formValues: DynamicFormOutputData
 ) => {
   if (!hidden) return false;
   if (typeof hidden === 'boolean') return hidden;
   try {
-    return hidden(getOutputFormData(formState));
+    return hidden(formValues);
   } catch (e) {
-    console.warn(e);
     return false;
   }
 };
@@ -99,6 +98,7 @@ export const getInitialFormState = (
   config.controls.forEach(
     ({
       controlName,
+      hidden,
       initialValue,
       controlType,
       validation,
@@ -108,20 +108,27 @@ export const getInitialFormState = (
       if (!DATA_CONTROLS.includes(controlType)) return;
 
       initialState.data[controlName] = { ...INITIAL_STATE_ITEM };
-
+      if (hidden) initialState.data[controlName].hidden = hidden;
       if (initialValue) {
         initialState.data[controlName].value = initialValue;
 
         if (liveValidation) {
+          const isHidden = checkIfHiddenControl(hidden, formValues);
           initialState.data[controlName].isTouched = true;
-          const fieldValidation = getFieldValidation(
-            initialValue,
-            validation,
-            formValues
-          );
-          initialState.data[controlName].isValid = fieldValidation.isValid;
-          initialState.data[controlName].errorMessage =
-            fieldValidation.errorMessage;
+          // Since it is hidden field we will mark valid field to true so that is doesn't
+          // prevent form submission
+          if (isHidden) {
+            initialState.data[controlName].isValid = true;
+          } else {
+            const fieldValidation = getFieldValidation(
+              initialValue,
+              validation,
+              formValues
+            );
+            initialState.data[controlName].isValid = fieldValidation.isValid;
+            initialState.data[controlName].errorMessage =
+              fieldValidation.errorMessage;
+          }
         }
       }
       // If no validation always set valid to true
@@ -168,7 +175,8 @@ export const buildInputTextControl = ({
 }: ControlledInputArgs) => {
   const props = controlProps as InputTextProps;
   const value = getControlValue<string>(controlName, formData) || '';
-  const errorMessage = formData[controlName].errorMessage;
+  const errorMessage =
+    controlName in formData && formData[controlName].errorMessage;
   const handleChangeFn = handleChange as ChangeHandler;
   return (
     <DotInputText

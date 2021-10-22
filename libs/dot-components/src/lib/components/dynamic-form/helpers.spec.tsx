@@ -18,7 +18,11 @@ import {
   getOutputFormData,
   UncontrolledInputArgs,
 } from './helpers';
-import { getSampleConfig, getSampleFormState } from './sample';
+import {
+  getSampleConfig,
+  getSampleFormState,
+  sampleMiddleNameHiddenFn,
+} from './sample';
 import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
 import {
   DotInputSelect,
@@ -52,36 +56,38 @@ describe('dynamic form helper functions', () => {
     });
   });
   describe('checkIfHiddenControl', () => {
-    const formData = {
-      data: {
-        firstName: {
-          value: 'firstName',
-        } as never,
-        lastName: {
-          value: 'lastName',
-        } as never,
-      },
-      isValid: true,
+    const formValues = {
+      firstName: 'firstName',
+      lastName: 'lastName',
     };
 
     it('should return false when hidden is false', () => {
-      const isHidden = checkIfHiddenControl(false, formData);
+      const isHidden = checkIfHiddenControl(false, formValues);
       expect(isHidden).toBe(false);
     });
     it('should return false when hidden is undefined', () => {
-      const isHidden = checkIfHiddenControl(undefined, formData as never);
+      const isHidden = checkIfHiddenControl(undefined, formValues);
       expect(isHidden).toBe(false);
     });
     it('should return false when hidden condition does not match', () => {
       const isHidden = checkIfHiddenControl(
         (formValues: DynamicFormOutputData) =>
           formValues['firstName'] === '123',
-        formData as never
+        formValues
+      );
+      expect(isHidden).toBe(false);
+    });
+    it('should return false when exception occurs', () => {
+      const isHidden = checkIfHiddenControl(
+        (_formValues: DynamicFormOutputData) => {
+          throw new Error();
+        },
+        formValues
       );
       expect(isHidden).toBe(false);
     });
     it('should return true when hidden is set to true', () => {
-      const isHidden = checkIfHiddenControl(true, formData as never);
+      const isHidden = checkIfHiddenControl(true, formValues);
       expect(isHidden).toBe(true);
     });
     it('should return true when hidden condition does satisfy all cases', () => {
@@ -89,7 +95,7 @@ describe('dynamic form helper functions', () => {
         (formValues: DynamicFormOutputData) =>
           formValues['firstName'] === 'firstName' &&
           formValues['lastName'] === 'lastName',
-        formData as never
+        formValues
       );
       expect(isHidden).toBe(true);
     });
@@ -144,8 +150,9 @@ describe('dynamic form helper functions', () => {
           },
           middleName: {
             errorMessage: null,
+            hidden: sampleMiddleNameHiddenFn,
             isTouched: false,
-            isValid: true,
+            isValid: false,
             value: null,
           },
           randomOption: {
