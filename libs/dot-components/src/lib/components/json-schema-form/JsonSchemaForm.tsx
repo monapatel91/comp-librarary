@@ -81,20 +81,20 @@ function DotJsonSchemaForm<T>({
   return (
     <Form
       disabled={disabled}
-      schema={schema}
-      widgets={widgets}
-      uiSchema={uiSchema}
-      FieldTemplate={FieldTemplate}
-      ObjectFieldTemplate={ObjectFieldTemplate}
       ErrorList={ErrorList}
-      liveValidate={liveValidate}
+      FieldTemplate={FieldTemplate}
       formData={formData}
+      liveValidate={liveValidate}
+      ObjectFieldTemplate={ObjectFieldTemplate}
       onBlur={onBlur}
       onChange={onChange}
       onError={onError}
       onFocus={onFocus}
       onSubmit={onSubmit}
+      schema={schema}
+      uiSchema={uiSchema}
       validate={validate}
+      widgets={widgets}
     >
       <div>
         <DotButton isSubmit>Submit</DotButton>
