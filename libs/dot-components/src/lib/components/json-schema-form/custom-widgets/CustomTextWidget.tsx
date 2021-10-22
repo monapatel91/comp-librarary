@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { WidgetProps } from 'react-jsonschema-form';
 
 import { DotInputText } from '../../input-form-fields/InputText';
 import { DotIcon } from '../../icon/Icon';
+import { useProcessRawErrors } from './helpers';
 
 export const CustomTextWidget = ({
   autofocus,
@@ -15,20 +16,9 @@ export const CustomTextWidget = ({
   rawErrors,
   schema,
 }: WidgetProps) => {
-  const [error, setError] = useState(false);
-  const [helperText, setHelperText] = useState<string>();
+  const { error, errorHelperText } = useProcessRawErrors(rawErrors);
 
-  useEffect(() => {
-    const hasError = rawErrors?.length > 0;
-
-    if (hasError) {
-      setError(true);
-      setHelperText(rawErrors[0]);
-    } else {
-      setError(false);
-      setHelperText(schema.description);
-    }
-  }, [rawErrors]);
+  const helperText = errorHelperText || schema.description;
 
   return (
     <DotInputText

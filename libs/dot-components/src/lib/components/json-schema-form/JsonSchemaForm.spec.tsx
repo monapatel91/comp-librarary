@@ -3,7 +3,7 @@ import { DotThemeProvider } from '../../theme-provider/ThemeProvider';
 
 import { DotJsonSchemaForm } from './JsonSchemaForm';
 
-describe('DotDynamicForm', () => {
+describe('DotJsonSchemaForm', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <DotThemeProvider>
