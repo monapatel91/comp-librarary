@@ -5,7 +5,6 @@ import { RadioButtonProps } from '../../radio/RadioButton';
 import { DotRadioGroup } from '../../radio/RadioGroup';
 
 export const CustomRadioWidget = ({
-  autofocus,
   id,
   label,
   value,
@@ -38,7 +37,6 @@ export const CustomRadioWidget = ({
 
   return (
     <DotRadioGroup
-      // autoFocus={autofocus}
       options={options}
       id={id}
       name={id}

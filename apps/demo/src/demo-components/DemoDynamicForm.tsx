@@ -144,6 +144,9 @@ const DemoDynamicForm = () => {
         liveValidate
         schema={schema}
         uiSchema={{
+          firstName: {
+            'ui:autofocus': true,
+          },
           receive: {
             'ui:widget': 'checkboxes',
           },
