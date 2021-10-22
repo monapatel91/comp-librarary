@@ -28,8 +28,10 @@ interface JsonSchemaFormProps<T> {
   formData?: T;
   liveValidate?: boolean;
   onBlur?: (id: string, value: boolean | number | string | null) => void;
-  onChange?: ((e: IChangeEvent<T>, es?: ErrorSchema) => any) | undefined;
-  onError?: (e: any) => any;
+  onChange?:
+    | ((event: IChangeEvent<T>, errorSchema?: ErrorSchema) => unknown)
+    | undefined;
+  onError?: (event: unknown) => unknown;
   onFocus?: (id: string, value: boolean | number | string | null) => void;
   onSubmit?: (event: ISubmitEvent<T>) => void;
   uiSchema?: UiSchema;
