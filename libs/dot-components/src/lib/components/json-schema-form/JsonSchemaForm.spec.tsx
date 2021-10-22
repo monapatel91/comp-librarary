@@ -85,5 +85,26 @@ describe('DotJsonSchemaForm', () => {
       const error = screen.queryByText('is a required property');
       expect(error).not.toBeInTheDocument();
     });
+
+    it('should render a password field if that is the format specified', () => {
+      render(
+        <DotThemeProvider>
+          <DotJsonSchemaForm
+            schema={{
+              properties: {
+                stringField: {
+                  type: 'string',
+                  title: 'Password',
+                  format: 'password',
+                },
+              },
+            }}
+          />
+        </DotThemeProvider>
+      );
+
+      const inputElement = screen.getByLabelText('Password');
+      expect(inputElement).toHaveAttribute('type', 'password');
+    });
   });
 });
