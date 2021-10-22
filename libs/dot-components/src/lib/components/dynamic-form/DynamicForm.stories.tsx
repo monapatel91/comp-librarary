@@ -146,6 +146,8 @@ const config: DynamicFormConfig = {
     {
       controlName: 'userType',
       controlProps: {
+        helperText:
+          "Select predefined type or 'Other' to display custom type textbox",
         id: 'userType',
         label: 'User Type',
         name: 'userType',
