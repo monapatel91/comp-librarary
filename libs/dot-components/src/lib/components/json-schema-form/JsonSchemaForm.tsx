@@ -29,17 +29,13 @@ interface JsonSchemaFormProps<T> {
   formData?: T;
   liveValidate?: boolean;
   onBlur?: (id: string, value: BoolNumStr) => void;
-  onChange?:
-    | ((event: IChangeEvent<T>, errorSchema?: ErrorSchema) => unknown)
-    | undefined;
+  onChange?: (event: IChangeEvent<T>, errorSchema?: ErrorSchema) => unknown;
   onError?: (event: unknown) => unknown;
   onFocus?: (id: string, value: BoolNumStr) => void;
   onSubmit?: (event: ISubmitEvent<T>) => void;
   schema: JSONSchema6;
   uiSchema?: UiSchema;
-  validate?:
-    | ((formData: T, errors: FormValidation) => FormValidation)
-    | undefined;
+  validate?: (formData: T, errors: FormValidation) => FormValidation;
 }
 
 function DotJsonSchemaForm<T>({
