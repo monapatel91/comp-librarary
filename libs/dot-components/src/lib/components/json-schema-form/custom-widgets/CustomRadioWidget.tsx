@@ -18,7 +18,7 @@ export const CustomRadioWidget = ({
   const [helperText, setHelperText] = useState<string>();
 
   useEffect(() => {
-    const hasError = rawErrors?.length > 0 ? true : false;
+    const hasError = rawErrors?.length > 0;
 
     if (hasError) {
       setError(true);

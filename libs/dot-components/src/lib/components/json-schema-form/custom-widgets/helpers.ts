@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-types
+/* eslint-disable @typescript-eslint/ban-types */
 export const getOptionsFromSchema = (optionsObj: {
   [key: string]: boolean | number | string | object | null;
 }) => {

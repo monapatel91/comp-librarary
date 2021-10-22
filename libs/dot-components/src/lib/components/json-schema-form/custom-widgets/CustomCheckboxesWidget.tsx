@@ -19,7 +19,7 @@ export const CustomCheckboxesWidget = ({
   const [helperText, setHelperText] = useState<string>();
 
   useEffect(() => {
-    setError(rawErrors?.length > 0 ? true : false);
+    setError(rawErrors?.length > 0);
     setHelperText(rawErrors?.length > 0 ? rawErrors[0] : null);
   }, [rawErrors]);
 
