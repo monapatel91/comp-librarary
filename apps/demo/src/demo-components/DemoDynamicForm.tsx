@@ -69,10 +69,10 @@ const DemoDynamicForm = () => {
         uniqueItems: true,
         items: {
           type: 'string',
-          enum: [
-            'Notification of new releases',
-            'Concert schedule information',
-            'A free poster',
+          anyOf: [
+            { title: 'Notification of new releases', const: 'releases' },
+            { title: 'Concert schedule information', const: 'concerts' },
+            { title: 'A free poster', const: 'poster' },
           ],
         },
         minItems: 2,

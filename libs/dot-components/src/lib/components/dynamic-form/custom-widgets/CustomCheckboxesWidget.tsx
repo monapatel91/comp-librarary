@@ -3,6 +3,7 @@ import { WidgetProps } from 'react-jsonschema-form';
 
 import { CheckboxProps } from '../../checkbox/Checkbox';
 import { DotCheckboxGroup } from '../../checkbox/CheckboxGroup';
+import { getOptionsFromSchema } from './helpers';
 
 export const CustomCheckboxesWidget = ({
   id,
@@ -12,6 +13,7 @@ export const CustomCheckboxesWidget = ({
   rawErrors,
   schema,
   disabled,
+  options: optionsObj,
 }: WidgetProps) => {
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState<string>();
@@ -21,11 +23,7 @@ export const CustomCheckboxesWidget = ({
     setHelperText(rawErrors?.length > 0 ? rawErrors[0] : null);
   }, [rawErrors]);
 
-  const items = schema.items as { enum: Array<string> };
-  const options: CheckboxProps[] = items.enum.map((item) => ({
-    value: item,
-    label: item,
-  }));
+  const options: Array<CheckboxProps> = getOptionsFromSchema(optionsObj);
 
   return (
     <DotCheckboxGroup
@@ -35,7 +33,6 @@ export const CustomCheckboxesWidget = ({
       groupLabel={schema.title}
       disableGroup={disabled}
       value={value}
-      // disabled={disabled}
       onChange={(_event, value) => onChange(value.map((item) => item.value))}
       required={required}
       error={error}
