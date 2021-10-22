@@ -1,39 +1,41 @@
 import React from 'react';
 import Form, {
   ErrorListProps,
+  ErrorSchema,
   FieldTemplateProps,
+  FormValidation,
+  IChangeEvent,
   ISubmitEvent,
   ObjectFieldTemplateProps,
-  FormValidation,
-  Widget,
-  IChangeEvent,
-  ErrorSchema,
   UiSchema,
+  Widget,
 } from 'react-jsonschema-form';
 import { JSONSchema6 } from 'json-schema';
 
 import { StyledFormContainer, rootClassName } from '../form/Form.styles';
 import {
-  CustomTextWidget,
-  CustomCheckboxWidget,
   CustomCheckboxesWidget,
-  CustomSelectWidget,
+  CustomCheckboxWidget,
   CustomRadioWidget,
+  CustomSelectWidget,
+  CustomTextWidget,
 } from './custom-widgets';
 import { DotButton } from '../button/Button';
 
+type BoolNumStr = boolean | number | string;
+
 interface JsonSchemaFormProps<T> {
   disabled?: boolean;
-  schema: JSONSchema6;
   formData?: T;
   liveValidate?: boolean;
-  onBlur?: (id: string, value: boolean | number | string | null) => void;
+  onBlur?: (id: string, value: BoolNumStr) => void;
   onChange?:
     | ((event: IChangeEvent<T>, errorSchema?: ErrorSchema) => unknown)
     | undefined;
   onError?: (event: unknown) => unknown;
-  onFocus?: (id: string, value: boolean | number | string | null) => void;
+  onFocus?: (id: string, value: BoolNumStr) => void;
   onSubmit?: (event: ISubmitEvent<T>) => void;
+  schema: JSONSchema6;
   uiSchema?: UiSchema;
   validate?:
     | ((formData: T, errors: FormValidation) => FormValidation)
@@ -42,7 +44,6 @@ interface JsonSchemaFormProps<T> {
 
 function DotJsonSchemaForm<T>({
   disabled = false,
-  schema,
   formData = {} as T,
   liveValidate,
   onBlur,
@@ -50,6 +51,7 @@ function DotJsonSchemaForm<T>({
   onError,
   onFocus,
   onSubmit,
+  schema,
   uiSchema,
   validate,
 }: JsonSchemaFormProps<T>) {
