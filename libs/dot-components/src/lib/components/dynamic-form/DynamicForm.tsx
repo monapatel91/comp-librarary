@@ -216,7 +216,7 @@ export const DotDynamicForm = ({
       ) => {
         const inputControlName = controlName || `control-${index}`;
 
-        if (checkIfHiddenControl(hidden, formState.data)) return '';
+        if (checkIfHiddenControl(hidden, formState)) return '';
 
         const control: InputBaseArgs = {
           controlProps,

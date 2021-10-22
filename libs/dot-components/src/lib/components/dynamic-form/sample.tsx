@@ -6,7 +6,11 @@ import { InputTextProps } from '../input-form-fields/InputText';
 import { InputSelectProps } from '../input-form-fields/InputSelect';
 import { CheckboxGroupProps } from '../checkbox/CheckboxGroup';
 import { RadioGroupProps } from '../radio/RadioGroup';
-import { DynamicFormConfig, DynamicFormState } from './models';
+import {
+  DynamicFormConfig,
+  DynamicFormOutputData,
+  DynamicFormState,
+} from './models';
 
 export const getSampleConfig = (): DynamicFormConfig => ({
   controls: [
@@ -82,7 +86,8 @@ export const getSampleConfig = (): DynamicFormConfig => ({
         'data-testid': 'middleName',
         label: 'Middle Name',
       } as InputTextProps,
-      hidden: [{ controlName: 'hasMiddleName', controlValue: 'no' }],
+      hidden: (formValues: DynamicFormOutputData) =>
+        formValues['hasMiddleName'] === 'no',
     },
     {
       controlName: 'gender',

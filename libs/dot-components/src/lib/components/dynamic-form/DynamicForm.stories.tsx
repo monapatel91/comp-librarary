@@ -2,7 +2,11 @@ import React from 'react';
 import { Divider } from '@material-ui/core';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { DotDynamicForm, DynamicFormProps } from './DynamicForm';
-import { DynamicFormConfig, FieldValidation } from './models';
+import {
+  DynamicFormConfig,
+  DynamicFormOutputData,
+  FieldValidation,
+} from './models';
 import { InputTextProps } from '../input-form-fields/InputText';
 import { RadioGroupProps } from '../radio/RadioGroup';
 import { DotIcon } from '../icon/Icon';
@@ -118,6 +122,7 @@ const config: DynamicFormConfig = {
       controlName: 'password',
       controlProps: {
         endIcon: <DotIcon iconId="visibility-off" />,
+        helperText: 'Any string between 6 and 15 characters',
         label: 'Password',
         required: true,
         type: 'password',
@@ -143,7 +148,7 @@ const config: DynamicFormConfig = {
       controlProps: {
         id: 'userType',
         label: 'User Type',
-        name: 'devType',
+        name: 'userType',
         required: true,
         size: 'small',
         options: ['', 'Basic user', 'Administrator', 'Other'],
@@ -156,6 +161,26 @@ const config: DynamicFormConfig = {
         },
       },
     },
+
+    {
+      controlName: 'customUserType',
+      controlType: 'dot-input-text',
+      controlProps: {
+        'data-testid': 'customUserType',
+        label: 'Custom user type',
+        required: true,
+      } as InputTextProps,
+      hidden: (formValues: DynamicFormOutputData) =>
+        formValues['userType'] !== 'Other',
+      validation: {
+        isRequired: {
+          condition: [{ controlName: 'userType', controlValue: 'Other' }],
+          errorMessage: 'Required field',
+          value: true,
+        },
+      },
+    },
+
     {
       controlName: 'interests',
       controlProps: {

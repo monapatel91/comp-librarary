@@ -36,6 +36,7 @@ import {
   CheckboxGroupProps,
   DotCheckboxGroup,
 } from '../checkbox/CheckboxGroup';
+import { DynamicFormOutputData } from './models';
 
 describe('dynamic form helper functions', () => {
   const data = {
@@ -52,16 +53,19 @@ describe('dynamic form helper functions', () => {
   });
   describe('checkIfHiddenControl', () => {
     const formData = {
-      firstName: {
-        value: 'firstName',
+      data: {
+        firstName: {
+          value: 'firstName',
+        } as never,
+        lastName: {
+          value: 'lastName',
+        } as never,
       },
-      lastName: {
-        value: 'lastName',
-      },
+      isValid: true,
     };
 
     it('should return false when hidden is false', () => {
-      const isHidden = checkIfHiddenControl(false, formData as never);
+      const isHidden = checkIfHiddenControl(false, formData);
       expect(isHidden).toBe(false);
     });
     it('should return false when hidden is undefined', () => {
@@ -70,7 +74,8 @@ describe('dynamic form helper functions', () => {
     });
     it('should return false when hidden condition does not match', () => {
       const isHidden = checkIfHiddenControl(
-        [{ controlName: 'firstName', controlValue: '123' }],
+        (formValues: DynamicFormOutputData) =>
+          formValues['firstName'] === '123',
         formData as never
       );
       expect(isHidden).toBe(false);
@@ -81,10 +86,9 @@ describe('dynamic form helper functions', () => {
     });
     it('should return true when hidden condition does satisfy all cases', () => {
       const isHidden = checkIfHiddenControl(
-        [
-          { controlName: 'firstName', controlValue: formData.firstName.value },
-          { controlName: 'lastName', controlValue: formData.lastName.value },
-        ],
+        (formValues: DynamicFormOutputData) =>
+          formValues['firstName'] === 'firstName' &&
+          formValues['lastName'] === 'lastName',
         formData as never
       );
       expect(isHidden).toBe(true);

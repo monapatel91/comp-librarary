@@ -35,7 +35,9 @@ export interface DynamicFormOutputData {
   [key: string]: unknown;
 }
 
-export type HiddenControl = boolean | ConditionControl[];
+export type ConditionFunction = (formValues: DynamicFormOutputData) => boolean;
+
+export type HiddenControl = boolean | ConditionFunction;
 
 export interface ConditionControl {
   controlName: string;

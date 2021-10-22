@@ -61,7 +61,8 @@ export const DemoDynamicForm = () => {
           label: 'Middle Name',
         } as InputTextProps,
         controlType: 'dot-input-text',
-        hidden: [{ controlName: 'hasMiddleName', controlValue: 'no' }],
+        hidden: (formValues: DynamicFormOutputData) =>
+          formValues['hasMiddleName'] === 'no',
       },
       {
         controlName: 'lastName',

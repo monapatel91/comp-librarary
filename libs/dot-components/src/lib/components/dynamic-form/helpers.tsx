@@ -75,14 +75,16 @@ export const getControlValue = <T extends unknown>(
 
 export const checkIfHiddenControl = (
   hidden: HiddenControl,
-  formData: DynamicFormStateData
+  formState: DynamicFormState
 ) => {
   if (!hidden) return false;
   if (typeof hidden === 'boolean') return hidden;
-  return hidden.every(
-    ({ controlName, controlValue }) =>
-      formData[controlName].value === controlValue
-  );
+  try {
+    return hidden(getOutputFormData(formState));
+  } catch (e) {
+    console.warn(e);
+    return false;
+  }
 };
 
 export const getInitialFormState = (
