@@ -29,6 +29,7 @@ export const CustomRadioWidget = ({
     }
   }, [rawErrors]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const items: any = schema.items;
   const options: RadioButtonProps[] = items.enum.map((item: string) => ({
     label: item,
