@@ -1,6 +1,7 @@
 import {
-  ConditionControl,
+  ConditionFunction,
   DynamicFormConfig,
+  DynamicFormOutputData,
   DynamicFormValidation,
   FieldValidation,
   ValidationField,
@@ -22,19 +23,18 @@ describe('validation functions', () => {
     username: '',
   };
 
-  const matchingCondition: ConditionControl[] = [
-    { controlName: 'hasAccount', controlValue: 'no' },
-    { controlName: 'age', controlValue: '55' },
-  ];
+  const matchingCondition: ConditionFunction = (
+    formValues: DynamicFormOutputData
+  ) => formValues['hasAccount'] === 'no' && formValues['age'] === '55';
 
-  const nonMatchingCondition: ConditionControl[] = [
-    { controlName: 'hasAccount', controlValue: 'no' },
-    { controlName: 'age', controlValue: '33' },
-  ];
+  const nonMatchingCondition: ConditionFunction = (
+    formValues: DynamicFormOutputData
+  ) => formValues['hasAccount'] === 'no' && formValues['age'] === '33';
 
   describe('checkIfValidationApplies', () => {
     const validationField: ValidationField = {
-      condition: [{ controlName: 'hasAccount', controlValue: 'yes' }],
+      condition: (formValues: DynamicFormOutputData) =>
+        formValues['hasAccount'] === 'yes',
       errorMessage: 'error',
     };
     it('should return false when single condition is not met', () => {

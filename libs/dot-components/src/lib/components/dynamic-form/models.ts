@@ -39,11 +39,6 @@ export type ConditionFunction = (formValues: DynamicFormOutputData) => boolean;
 
 export type HiddenControl = boolean | ConditionFunction;
 
-export interface ConditionControl {
-  controlName: string;
-  controlValue: string;
-}
-
 export interface DynamicFormControl {
   controlName?: string;
   controlType: DynamicFormControlType;
@@ -64,7 +59,7 @@ export interface DynamicFormConfig {
 }
 
 export interface ValidationField {
-  condition?: ConditionControl[];
+  condition?: ConditionFunction;
   errorMessage: string;
 }
 

@@ -73,7 +73,8 @@ export const DemoDynamicForm = () => {
         controlType: 'dot-input-text',
         validation: {
           isRequired: {
-            condition: [{ controlName: 'hasMiddleName', controlValue: 'no' }],
+            condition: (formValues: DynamicFormOutputData) =>
+              formValues['hasMiddleName'] === 'no',
             errorMessage: 'Required field',
             value: true,
           },

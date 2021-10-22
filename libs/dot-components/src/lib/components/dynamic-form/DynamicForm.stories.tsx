@@ -161,7 +161,6 @@ const config: DynamicFormConfig = {
         },
       },
     },
-
     {
       controlName: 'customUserType',
       controlType: 'dot-input-text',
@@ -174,13 +173,13 @@ const config: DynamicFormConfig = {
         formValues['userType'] !== 'Other',
       validation: {
         isRequired: {
-          condition: [{ controlName: 'userType', controlValue: 'Other' }],
+          condition: (formValues: DynamicFormOutputData) =>
+            formValues['userType'] === 'Other',
           errorMessage: 'Required field',
           value: true,
         },
       },
     },
-
     {
       controlName: 'interests',
       controlProps: {

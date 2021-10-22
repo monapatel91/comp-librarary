@@ -14,9 +14,12 @@ export const checkIfValidationApplies = (
 ) => {
   const condition = validationField.condition;
   if (!condition) return true;
-  return condition.every(
-    ({ controlName, controlValue }) => formValues[controlName] === controlValue
-  );
+  try {
+    return condition(formValues);
+  } catch (e) {
+    console.warn(e);
+    return false;
+  }
 };
 
 export const getFieldValidation = (
