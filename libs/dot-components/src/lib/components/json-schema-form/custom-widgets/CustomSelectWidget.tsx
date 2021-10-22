@@ -5,14 +5,14 @@ import { DotInputSelect } from '../../input-form-fields/InputSelect';
 
 export const CustomSelectWidget = ({
   autofocus,
+  disabled,
   id,
   label,
-  value,
-  disabled,
   onChange,
-  required,
   rawErrors,
+  required,
   schema,
+  value,
 }: WidgetProps) => {
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState<string>();
