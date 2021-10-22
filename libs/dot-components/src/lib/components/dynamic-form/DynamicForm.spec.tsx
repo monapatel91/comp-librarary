@@ -396,6 +396,18 @@ describe('DotDynamicForm', () => {
         expect(submitButton).toBeEnabled();
       });
 
+      it('should display error message when submitting a form while middle name is displayed and empty', () => {
+        const radioGroupElement = getRadioGroupElement();
+        selectRadioGroupOption(1, radioGroupElement);
+        submitForm();
+        const middleNameTextboxElement = queryMiddleNameTextboxElement();
+        expect(
+          within(middleNameTextboxElement.closest('.dot-text-field')).getByText(
+            'Required field'
+          )
+        );
+      });
+
       it('should NOT render error message when field is edited and validation is not satisfied', () => {
         const autocompleteElement = getAutocompleteElement();
         removeAutocompleteOption(autocompleteElement);

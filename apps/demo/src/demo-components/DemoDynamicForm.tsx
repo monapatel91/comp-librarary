@@ -42,6 +42,7 @@ export const DemoDynamicForm = () => {
       {
         controlName: 'hasMiddleName',
         controlProps: {
+          'data-testid': 'hasMiddleName',
           defaultValue: 'no',
           groupLabel: 'Do you have middle name?',
           id: 'hasMiddleName',
