@@ -23,7 +23,6 @@ const DemoDynamicForm = () => {
         type: 'string',
         title: 'First Name',
         description: 'Your first name goes here',
-        // autoFocus: true,
       },
       middleName: {
         type: 'string',
