@@ -29,6 +29,7 @@ export const CustomSelectWidget = ({
     }
   }, [rawErrors]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const items: any = schema.items;
   const options: string[] = items.enum;
 
