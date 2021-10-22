@@ -1,11 +1,11 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { DotDynamicForm, DynamicFormProps } from './DynamicForm';
-import { schemaSet } from './DynamicForm.stories.data';
+import { DotJsonSchemaForm, JsonSchemaFormProps } from './JsonSchemaForm';
+import { schemaSet } from './JsonSchemaForm.stories.data';
 
 export default {
-  title: 'Components/Dynamic Form',
-  component: DotDynamicForm,
+  title: 'Experimental/JSON Schema Form',
+  component: DotJsonSchemaForm,
   argTypes: {
     schema: {
       defaultValue: schemaSet[1].schema,
@@ -22,6 +22,6 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<DynamicFormProps> = (args) => (
-  <DotDynamicForm {...args} />
+export const Default: Story<JsonSchemaFormProps<unknown>> = (args) => (
+  <DotJsonSchemaForm {...args} />
 );

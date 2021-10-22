@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-export const rootClassName = 'demo-dynamic-form';
+export const rootClassName = 'demo-json-schema-form';
 
-export const StyledDemoDynamicForm = styled.div`
+export const StyledDemoJsonSchemaForm = styled.div`
   ${() => css`
     &.${rootClassName} {
       margin: 20px;

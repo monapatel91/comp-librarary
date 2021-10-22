@@ -1,13 +1,13 @@
 import React, { render } from '@testing-library/react';
 import { DotThemeProvider } from '../../theme-provider/ThemeProvider';
 
-import { DotDynamicForm } from './DynamicForm';
+import { DotJsonSchemaForm } from './JsonSchemaForm';
 
 describe('DotDynamicForm', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <DotThemeProvider>
-        <DotDynamicForm schema={{}} />
+        <DotJsonSchemaForm schema={{}} />
       </DotThemeProvider>
     );
     expect(baseElement).toBeTruthy();

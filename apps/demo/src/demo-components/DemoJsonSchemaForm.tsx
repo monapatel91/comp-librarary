@@ -2,14 +2,17 @@ import React from 'react';
 import {
   DotActionToolbar,
   DotBreadcrumbs,
-  DotDynamicForm,
+  DotJsonSchemaForm,
 } from '@digital-ai/dot-components';
 import { JSONSchema6 } from 'json-schema';
 
-import { StyledDemoDynamicForm, rootClassName } from './DemoDynamicForm.styles';
+import {
+  StyledDemoJsonSchemaForm,
+  rootClassName,
+} from './DemoJsonSchemaForm.styles';
 import { FormValidation } from 'react-jsonschema-form';
 
-const DemoDynamicForm = () => {
+const DemoJsonSchemaForm = () => {
   const formData = {
     firstName: 'First',
     middleName: 'Middle',
@@ -132,12 +135,12 @@ const DemoDynamicForm = () => {
   };
 
   return (
-    <StyledDemoDynamicForm className={rootClassName}>
+    <StyledDemoJsonSchemaForm className={rootClassName}>
       <DotActionToolbar>
         <DotBreadcrumbs items={[{ text: 'Demo Dynamic Form' }]} />
       </DotActionToolbar>
 
-      <DotDynamicForm
+      <DotJsonSchemaForm
         disabled={false}
         formData={formData}
         liveValidate
@@ -165,8 +168,8 @@ const DemoDynamicForm = () => {
         onSubmit={handleSubmit}
         validate={validate}
       />
-    </StyledDemoDynamicForm>
+    </StyledDemoJsonSchemaForm>
   );
 };
 
-export { DemoDynamicForm };
+export { DemoJsonSchemaForm };

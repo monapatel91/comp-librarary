@@ -22,7 +22,7 @@ import {
 } from './custom-widgets';
 import { DotButton } from '../button/Button';
 
-export interface DynamicFormProps<T> {
+interface JsonSchemaFormProps<T> {
   disabled?: boolean;
   schema: JSONSchema6;
   formData?: T;
@@ -38,7 +38,7 @@ export interface DynamicFormProps<T> {
     | undefined;
 }
 
-function DotDynamicForm<T>({
+function DotJsonSchemaForm<T>({
   disabled = false,
   schema,
   formData = {} as T,
@@ -50,7 +50,7 @@ function DotDynamicForm<T>({
   onSubmit,
   uiSchema,
   validate,
-}: DynamicFormProps<T>) {
+}: JsonSchemaFormProps<T>) {
   const ObjectFieldTemplate = ({ properties }: ObjectFieldTemplateProps) => (
     <StyledFormContainer className={rootClassName}>
       {properties.map((property) => property.content)}
@@ -110,4 +110,4 @@ function DotDynamicForm<T>({
   );
 }
 
-export { DotDynamicForm };
+export { DotJsonSchemaForm, JsonSchemaFormProps };
