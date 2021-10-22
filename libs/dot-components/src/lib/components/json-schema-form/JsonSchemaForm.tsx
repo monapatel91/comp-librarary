@@ -65,16 +65,9 @@ function DotJsonSchemaForm<T>({
     <div className={classNames}>{children}</div>
   );
 
-  const ErrorList = ({ errors }: ErrorListProps) => {
-    return (
-      <div>
-        <div>There were some errors:</div>
-        {errors.map((error, index) => (
-          <div key={`${index}-error`}>{error.stack}</div>
-        ))}
-      </div>
-    );
-  };
+  const ErrorList = (_props: ErrorListProps) => (
+    <div>There were some errors:</div>
+  );
 
   const widgets: { [name: string]: Widget } = {
     TextWidget: CustomTextWidget,
@@ -86,31 +79,28 @@ function DotJsonSchemaForm<T>({
   };
 
   return (
-    <>
-      <div>Dynamic Form:</div>
-      <Form
-        disabled={disabled}
-        schema={schema}
-        widgets={widgets}
-        uiSchema={uiSchema}
-        FieldTemplate={FieldTemplate}
-        ObjectFieldTemplate={ObjectFieldTemplate}
-        ErrorList={ErrorList}
-        liveValidate={liveValidate}
-        formData={formData}
-        onBlur={onBlur}
-        onChange={onChange}
-        onError={onError}
-        onFocus={onFocus}
-        onSubmit={onSubmit}
-        validate={validate}
-      >
-        <div>
-          <DotButton isSubmit>Submit</DotButton>
-          <DotButton type="text">Cancel</DotButton>
-        </div>
-      </Form>
-    </>
+    <Form
+      disabled={disabled}
+      schema={schema}
+      widgets={widgets}
+      uiSchema={uiSchema}
+      FieldTemplate={FieldTemplate}
+      ObjectFieldTemplate={ObjectFieldTemplate}
+      ErrorList={ErrorList}
+      liveValidate={liveValidate}
+      formData={formData}
+      onBlur={onBlur}
+      onChange={onChange}
+      onError={onError}
+      onFocus={onFocus}
+      onSubmit={onSubmit}
+      validate={validate}
+    >
+      <div>
+        <DotButton isSubmit>Submit</DotButton>
+        <DotButton type="text">Cancel</DotButton>
+      </div>
+    </Form>
   );
 }
 
