@@ -22,12 +22,13 @@ export const DotForm = ({
   return (
     <form
       aria-label={ariaLabel}
-      className={rootClasses}
       data-testid={dataTestId}
       noValidate
       onSubmit={onSubmit}
     >
-      <StyledFormContainer>{children}</StyledFormContainer>
+      <StyledFormContainer className={rootClasses}>
+        {children}
+      </StyledFormContainer>
     </form>
   );
 };
