@@ -16,6 +16,7 @@ describe('DotJsonSchemaForm', () => {
 
   describe('string fields', () => {
     it('should use DotInputText components for string fields', () => {
+      expect.assertions(1);
       render(
         <DotThemeProvider>
           <DotJsonSchemaForm
@@ -36,6 +37,7 @@ describe('DotJsonSchemaForm', () => {
     });
 
     it('should display error in hint if there is an error', () => {
+      expect.assertions(2);
       render(
         <DotThemeProvider>
           <DotJsonSchemaForm
@@ -61,6 +63,7 @@ describe('DotJsonSchemaForm', () => {
     });
 
     it('should display description in hint if there is no error', () => {
+      expect.assertions(2);
       render(
         <DotThemeProvider>
           <DotJsonSchemaForm
@@ -87,6 +90,7 @@ describe('DotJsonSchemaForm', () => {
     });
 
     it('should render a password field if that is the format specified', () => {
+      expect.assertions(1);
       render(
         <DotThemeProvider>
           <DotJsonSchemaForm
