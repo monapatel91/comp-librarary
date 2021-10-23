@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const rootClassName = '<%=classname%>';
+export const rootClassName = '<%=className%>';
 
 // If using MUI component, replace `styled.div` with `styled(MUIComponent)`
 export const <%=styledName%> = styled.div`

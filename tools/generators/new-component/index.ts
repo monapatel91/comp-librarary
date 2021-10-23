@@ -31,7 +31,7 @@ export default async function (tree: Tree, schema: NewComponentSchemaOptions) {
     joinPathFragments(__dirname, './files/component/'),
     `./libs/dot-components/src/lib/components/${names(schema.name).fileName}/`,
     {
-      classname: `dot-${names(schema.name).fileName}`, // dot-app-toolbar
+      className: `dot-${names(schema.name).fileName}`, // dot-app-toolbar
       componentName: `Dot${names(schema.name).className}`, // DotAppToolbar
       fileName: names(schema.name).fileName, // app-toolbar
       normalizedName: names(schema.name).className, // AppToolbar
@@ -48,7 +48,7 @@ export default async function (tree: Tree, schema: NewComponentSchemaOptions) {
       names(schema.name).className
     }/`,
     {
-      classname: `dot-${names(schema.name).fileName}`, // dot-app-toolbar
+      className: `dot-${names(schema.name).fileName}`, // dot-app-toolbar
       fileName: names(schema.name).fileName, // app-toolbar
       normalizedName: names(schema.name).className, // AppToolbar
     }

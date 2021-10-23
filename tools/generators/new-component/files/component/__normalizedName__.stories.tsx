@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { <%=componentName%>, <%=propsName%> } from './<%=normalizedName%>';
 
 export default {
-  title: 'Components/<%=normalizedName%>',
+  title: 'Experimental/<%=normalizedName%>',
   component: <%=componentName%>,
   argTypes: {
     className: {
