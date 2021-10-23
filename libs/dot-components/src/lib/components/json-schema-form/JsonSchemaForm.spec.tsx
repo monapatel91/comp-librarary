@@ -129,4 +129,37 @@ describe('DotJsonSchemaForm', () => {
       expect(inputElement).toHaveAttribute('type', 'password');
     });
   });
+
+  describe('select fields', () => {
+    it('should use a select field when specific in the uiSchema', () => {
+      expect.assertions(1);
+      render(
+        <DotThemeProvider>
+          <DotJsonSchemaForm
+            schema={{
+              properties: {
+                selectField: {
+                  type: 'string',
+                  title: 'Select field',
+                  uniqueItems: true,
+                  items: {
+                    type: 'string',
+                    enum: ['', 'Option 1', 'Option 2', 'Option 3'],
+                  },
+                },
+              },
+            }}
+            uiSchema={{
+              selectField: {
+                'ui:widget': 'select',
+              },
+            }}
+          />
+        </DotThemeProvider>
+      );
+
+      const selectElement = screen.getByLabelText('Select field');
+      expect(selectElement).toHaveClass('dot-select');
+    });
+  });
 });
