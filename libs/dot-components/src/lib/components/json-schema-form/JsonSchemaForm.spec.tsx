@@ -199,4 +199,37 @@ describe('DotJsonSchemaForm', () => {
       expect(checkboxes.length).toEqual(3);
     });
   });
+
+  describe('radio fields', () => {
+    it('should use a radio field when specific in the uiSchema', () => {
+      expect.assertions(1);
+      render(
+        <DotThemeProvider>
+          <DotJsonSchemaForm
+            schema={{
+              properties: {
+                radioField: {
+                  type: 'string',
+                  title: 'Radio field',
+                  uniqueItems: true,
+                  items: {
+                    type: 'string',
+                    enum: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+                  },
+                },
+              },
+            }}
+            uiSchema={{
+              radioField: {
+                'ui:widget': 'radio',
+              },
+            }}
+          />
+        </DotThemeProvider>
+      );
+
+      const radios = screen.getAllByRole('radio');
+      expect(radios.length).toEqual(4);
+    });
+  });
 });
