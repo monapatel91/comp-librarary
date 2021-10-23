@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { WidgetProps } from 'react-jsonschema-form';
 
 import { DotInputSelect } from '../../input-form-fields/InputSelect';
+import { useProcessRawErrors } from './helpers';
 
 export const CustomSelectWidget = ({
   autofocus,
@@ -14,20 +15,9 @@ export const CustomSelectWidget = ({
   schema,
   value,
 }: WidgetProps) => {
-  const [error, setError] = useState(false);
-  const [helperText, setHelperText] = useState<string>();
+  const { error, errorHelperText } = useProcessRawErrors(rawErrors);
 
-  useEffect(() => {
-    const hasError = rawErrors?.length > 0;
-
-    if (hasError) {
-      setError(true);
-      setHelperText(rawErrors[0]);
-    } else {
-      setError(false);
-      setHelperText(schema.description);
-    }
-  }, [rawErrors]);
+  const helperText = errorHelperText || schema.description;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const items: any = schema.items;
