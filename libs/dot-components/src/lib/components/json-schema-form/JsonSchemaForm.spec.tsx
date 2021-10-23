@@ -162,4 +162,41 @@ describe('DotJsonSchemaForm', () => {
       expect(selectElement).toHaveClass('dot-select');
     });
   });
+
+  describe('checkboxes fields', () => {
+    it('should use a checkboxes field when specific in the uiSchema', () => {
+      expect.assertions(1);
+      render(
+        <DotThemeProvider>
+          <DotJsonSchemaForm
+            schema={{
+              properties: {
+                checkboxesField: {
+                  type: 'array',
+                  title: 'Checkboxes field',
+                  uniqueItems: true,
+                  items: {
+                    type: 'string',
+                    anyOf: [
+                      { title: 'Title 1', const: 'value1' },
+                      { title: 'Title 2', const: 'value2' },
+                      { title: 'Title 3', const: 'value3' },
+                    ],
+                  },
+                },
+              },
+            }}
+            uiSchema={{
+              checkboxesField: {
+                'ui:widget': 'checkboxes',
+              },
+            }}
+          />
+        </DotThemeProvider>
+      );
+
+      const checkboxes = screen.getAllByRole('checkbox');
+      expect(checkboxes.length).toEqual(3);
+    });
+  });
 });
