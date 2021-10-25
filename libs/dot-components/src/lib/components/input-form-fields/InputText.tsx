@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { InputProps } from './InputFormFields.propTypes';
 import { DotIcon } from '../icon/Icon';
@@ -10,7 +10,11 @@ import {
   StyledAdornment,
 } from './InputFormFields.styles';
 
+export const DELAY_MS = 300;
+
 export interface InputTextProps extends InputProps {
+  /** If true, the input will use debounce functionality. **/
+  hasDebounce?: boolean;
   /** if multiline it wil render multiple lines */
   multiline?: boolean;
   /** Placeholder text always displayed inside the input field */
@@ -33,6 +37,7 @@ export const DotInputText = ({
   disabled = false,
   error = false,
   fullWidth = true,
+  hasDebounce,
   helperText,
   endIcon,
   id,
@@ -53,6 +58,10 @@ export const DotInputText = ({
   warning = false,
 }: InputTextProps) => {
   const hasWarning = !error && warning ? warningClassName : '';
+
+  const [changeEvent, setChangeEvent] =
+    useState<ChangeEvent<HTMLInputElement>>(null);
+
   const rootStyles = useStylesWithRootClass(
     rootClassName,
     className,
@@ -72,6 +81,19 @@ export const DotInputText = ({
         iconId="warning-solid"
       />
     ));
+
+  // Improve performance by avoiding callback execution
+  // on each keystroke (if debounce feature is active)
+  useEffect(() => {
+    if (!hasDebounce || changeEvent === null) return;
+    const handler = setTimeout(() => {
+      onChange(changeEvent);
+    }, DELAY_MS);
+    return () => clearTimeout(handler);
+  }, [changeEvent]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void =>
+    setChangeEvent(e);
 
   return (
     <StyledTextField
@@ -112,7 +134,7 @@ export const DotInputText = ({
       label={label}
       multiline={multiline}
       name={name}
-      onChange={onChange}
+      onChange={hasDebounce ? handleChange : onChange}
       placeholder={placeholder}
       required={required}
       rows={multiline ? rows : null}
