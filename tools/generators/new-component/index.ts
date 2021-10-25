@@ -31,12 +31,12 @@ export default async function (tree: Tree, schema: NewComponentSchemaOptions) {
     joinPathFragments(__dirname, './files/component/'),
     `./libs/dot-components/src/lib/components/${names(schema.name).fileName}/`,
     {
-      className: `dot-${names(schema.name).fileName}`, // dot-app-toolbar
-      componentName: `Dot${names(schema.name).className}`, // DotAppToolbar
-      fileName: names(schema.name).fileName, // app-toolbar
-      normalizedName: names(schema.name).className, // AppToolbar
-      propsName: `${names(schema.name).className}Props`, // AppToolbarProps
-      styledName: `Styled${names(schema.name).className}`, // StyledAppToolbar
+      className: `dot-${names(schema.name).fileName}`, // e.g. dot-app-toolbar
+      componentName: `Dot${names(schema.name).className}`, // e.g. DotAppToolbar
+      fileName: names(schema.name).fileName, // e.g. app-toolbar
+      normalizedName: names(schema.name).className, // e.g. AppToolbar
+      propsName: `${names(schema.name).className}Props`, // e.g. AppToolbarProps
+      styledName: `Styled${names(schema.name).className}`, // e.g. StyledAppToolbar
     }
   );
 
@@ -48,9 +48,9 @@ export default async function (tree: Tree, schema: NewComponentSchemaOptions) {
       names(schema.name).className
     }/`,
     {
-      className: `dot-${names(schema.name).fileName}`, // dot-app-toolbar
-      fileName: names(schema.name).fileName, // app-toolbar
-      normalizedName: names(schema.name).className, // AppToolbar
+      className: `dot-${names(schema.name).fileName}`, // e.g. dot-app-toolbar
+      fileName: names(schema.name).fileName, // e.g. app-toolbar
+      normalizedName: names(schema.name).className, // e.g. AppToolbar
     }
   );
 

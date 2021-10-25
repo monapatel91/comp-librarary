@@ -6,8 +6,8 @@ export default {
   title: 'Experimental/<%=normalizedName%>',
   component: <%=componentName%>,
   argTypes: {
-    className: {
-      defaultValue: '<%=fileName%>',
+    dataTestId: {
+      defaultValue: '<%=fileName%>-test-id',
     },
   },
 } as Meta;
