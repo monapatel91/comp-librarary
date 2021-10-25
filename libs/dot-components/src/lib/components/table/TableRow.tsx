@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import { TableRow } from '@material-ui/core';
 
 import { DotBodyCell } from './TableCell';
@@ -18,7 +18,7 @@ export interface RowProps extends CommonProps {
   /** The table body row data */
   data: TableRowProps;
   /** Event callback of action button of menu */
-  onActionMenuTrigger: (el: HTMLElement, menuItem: []) => void;
+  onActionMenuTrigger: (el: HTMLElement, menuItem: Array<ReactNode>) => void;
   /** Event callback */
   onClick?: (event: MouseEvent, id: string) => void;
   /** if the row is selected */

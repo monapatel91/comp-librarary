@@ -11,26 +11,22 @@ const handleDeleteClick = () => {
 };
 const actionItemArray = [
   {
-    actions: [
-      {
-        children: (
-          <DotButton type="text" onClick={() => handleEditClick()}>
-            Edit
-          </DotButton>
-        ),
-        key: 'edit',
-        onclick: () => handleEditClick(),
-      },
-      {
-        children: (
-          <DotButton type="text" onClick={() => handleDeleteClick()}>
-            Delete
-          </DotButton>
-        ),
-        key: 'delete',
-        onclick: () => handleDeleteClick(),
-      },
-    ],
+    children: (
+      <DotButton type="text" onClick={() => handleEditClick()}>
+        Edit
+      </DotButton>
+    ),
+    key: 'edit',
+    onclick: () => handleEditClick(),
+  },
+  {
+    children: (
+      <DotButton type="text" onClick={() => handleDeleteClick()}>
+        Delete
+      </DotButton>
+    ),
+    key: 'delete',
+    onclick: () => handleDeleteClick(),
   },
 ];
 

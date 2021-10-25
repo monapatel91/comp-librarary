@@ -1,4 +1,11 @@
-import React, { useEffect, useState, useRef, MouseEvent, Key } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  MouseEvent,
+  Key,
+  ReactNode,
+} from 'react';
 import { TableCell } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -13,7 +20,7 @@ export interface CellProps extends CommonProps {
   noWrap?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value?: any;
-  onActionMenuTrigger?: (el: HTMLElement, menuItem: []) => void;
+  onActionMenuTrigger?: (el: HTMLElement, menuItem: Array<ReactNode>) => void;
 }
 
 /**
@@ -62,7 +69,7 @@ export const DotBodyCell = ({
     const iconBtnWidth = document.getElementsByClassName(
       'dot-table-action-icon'
     );
-    const getTotalActionItem = Array.isArray(value) && value[0].actions.length;
+    const getTotalActionItem = Array.isArray(value) && value.length;
     const actionTableCellWidth =
       getTotalActionItem *
       (iconBtnWidth.length > 0 && iconBtnWidth[0].clientWidth);
@@ -86,32 +93,21 @@ export const DotBodyCell = ({
               className="dot-table-action-icon"
               iconId="options"
               iconSize="small"
-              onClick={() =>
-                onActionMenuTrigger(wrapperRef.current, value[0].actions)
-              }
+              onClick={() => onActionMenuTrigger(wrapperRef.current, value)}
               size="small"
             />
           ) : (
-            value.map((item) =>
-              item.actions.map(
-                (
-                  icons: {
-                    key: string;
-                    onclick: (event: MouseEvent) => void;
-                  },
-                  index: Key
-                ) => (
-                  <DotIconButton
-                    className="dot-table-action-icon"
-                    iconId={icons.key}
-                    iconSize="small"
-                    key={index}
-                    onClick={icons.onclick}
-                    size="small"
-                  />
-                )
-              )
-            )
+            value.map((item, index) => (
+              <DotIconButton
+                className="dot-table-action-icon"
+                iconId={item.key}
+                iconSize="small"
+                key={index}
+                onClick={item.onclick}
+                size="small"
+                disabled={item.disabled}
+              />
+            ))
           )}
         </div>
       );
