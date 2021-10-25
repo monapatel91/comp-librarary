@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '../../testing-utils';
+import { render, screen, waitFor } from '../../testing-utils';
 import { inputSizeOptions } from '../input-form-fields/InputFormFields.propTypes';
 import { DotInputText, InputTextProps } from './InputText';
 import { DotIcon } from '../icon/Icon';
@@ -156,5 +156,51 @@ describe('DotInputText', () => {
     );
     const inputField = screen.getByTestId('test-input');
     expect(inputField).toBeDisabled();
+  });
+
+  it('should execute callback function for each key stroke', () => {
+    const dataTestId = 'test-input';
+    const handleChange = jest.fn();
+    const textToWrite = 'my sample text';
+    render(
+      <DotInputText
+        data-testid={dataTestId}
+        id="id-test"
+        label="Test"
+        name="test"
+        onChange={handleChange}
+      />
+    );
+    const inputField = screen.getByTestId(dataTestId);
+    userEvent.type(inputField, textToWrite);
+    expect(handleChange).toHaveBeenCalledTimes(textToWrite.length);
+  });
+
+  it('should execute callback function only after text has been entered', async () => {
+    const dataTestId = 'test-input';
+    const handleChange = jest.fn();
+    const textToWrite = 'my sample text';
+    render(
+      <DotInputText
+        data-testid={dataTestId}
+        hasDebounce={true}
+        id="id-test"
+        name="test"
+        onChange={handleChange}
+      />
+    );
+    const inputField = screen.getByTestId(dataTestId);
+    userEvent.type(inputField, textToWrite);
+    expect(inputField).toHaveValue(textToWrite);
+    await waitFor(() => {
+      expect(handleChange).toHaveBeenCalledTimes(1);
+      expect(handleChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          target: expect.objectContaining({
+            value: textToWrite,
+          }),
+        })
+      );
+    });
   });
 });
