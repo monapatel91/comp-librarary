@@ -30,6 +30,14 @@ describe('validation functions', () => {
     errorMessage: errorMsg,
   });
 
+  const getFieldValidationObject = (
+    isValid: boolean,
+    errorMessage: string = null
+  ): FieldValidation => ({
+    isValid,
+    errorMessage,
+  });
+
   const matchingCondition: ConditionFunction = (
     formValues: DynamicFormOutputData
   ) => formValues['hasAccount'] === 'no' && formValues['age'] === '55';
@@ -109,48 +117,44 @@ describe('validation functions', () => {
       },
     };
 
+    const fieldValidationRequired = getFieldValidationObject(
+      false,
+      requiredErrorMsg
+    );
+    const fieldValidationMinLength = getFieldValidationObject(
+      false,
+      minLengthErrorMsg
+    );
+    const fieldValidationMaxLength = getFieldValidationObject(
+      false,
+      maxLengthErrorMsg
+    );
+    const fieldValidationValid = getFieldValidationObject(true);
+
     describe('isRequired', () => {
       it('should return correct object when passing in empty string when value is required', () => {
         const result = getFieldValidation('', validation, formValues);
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: requiredErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationRequired);
       });
       it('should return correct object when passing in null value when value is required', () => {
         const result = getFieldValidation(null, validation, formValues);
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: requiredErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationRequired);
       });
       it('should return correct object when passing in undefined value when value is required', () => {
         const result = getFieldValidation(undefined, validation, formValues);
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: requiredErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationRequired);
       });
       it('should return correct object when passing in empty array when value is required', () => {
         const result = getFieldValidation([], validation, formValues);
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: requiredErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationRequired);
       });
       it('should return correct object when passing in empty string when value is NOT required', () => {
         const result = getFieldValidation('', undefined, formValues);
-        expect(result).toEqual({
-          isValid: true,
-          errorMessage: null,
-        });
+        expect(result).toEqual(fieldValidationValid);
       });
       it('should return correct object when passing in value and value is required', () => {
         const result = getFieldValidation('abc', validation, formValues);
-        expect(result).toEqual({
-          isValid: true,
-          errorMessage: null,
-        });
+        expect(result).toEqual(fieldValidationValid);
       });
       it('should return correct object when passing in value and value is required but conditions are NOT met', () => {
         const customValidation: DynamicFormValidation = {
@@ -160,10 +164,7 @@ describe('validation functions', () => {
           },
         };
         const result = getFieldValidation('', customValidation, formValues);
-        expect(result).toEqual({
-          isValid: true,
-          errorMessage: null,
-        });
+        expect(result).toEqual(fieldValidationValid);
       });
       it('should return correct object when passing value is required and conditions are met', () => {
         const customValidation: DynamicFormValidation = {
@@ -173,27 +174,18 @@ describe('validation functions', () => {
           },
         };
         const result = getFieldValidation('', customValidation, formValues);
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: requiredErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationRequired);
       });
     });
 
     describe('minLength', () => {
       it('should return correct object when string does not satisfy minLength validation ', () => {
         const result = getFieldValidation('ab', validation, formValues);
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: minLengthErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationMinLength);
       });
       it('should return correct object when array does not satisfy minLength validation ', () => {
         const result = getFieldValidation(['1', '2'], validation, formValues);
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: minLengthErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationMinLength);
       });
       it('should return correct object when passing in empty string when minLength validation is NOT defined', () => {
         const result = getFieldValidation(
@@ -201,17 +193,11 @@ describe('validation functions', () => {
           requiredOnlyValidation,
           formValues
         );
-        expect(result).toEqual({
-          isValid: true,
-          errorMessage: null,
-        });
+        expect(result).toEqual(fieldValidationValid);
       });
       it('should return correct object when passing in value and it satisfies minLength validation', () => {
         const result = getFieldValidation('abc', validation, formValues);
-        expect(result).toEqual({
-          isValid: true,
-          errorMessage: null,
-        });
+        expect(result).toEqual(fieldValidationValid);
       });
       it('should return correct object when passing in non-valid value but validation conditions are not met', () => {
         const customValidation: DynamicFormValidation = {
@@ -221,10 +207,7 @@ describe('validation functions', () => {
           },
         };
         const result = getFieldValidation('ab', customValidation, formValues);
-        expect(result).toEqual({
-          isValid: true,
-          errorMessage: null,
-        });
+        expect(result).toEqual(fieldValidationValid);
       });
       it('should return correct object when passing in non-valid value and validation conditions are met', () => {
         const customValidation: DynamicFormValidation = {
@@ -234,10 +217,7 @@ describe('validation functions', () => {
           },
         };
         const result = getFieldValidation('ab', customValidation, formValues);
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: minLengthErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationMinLength);
       });
     });
 
@@ -248,10 +228,7 @@ describe('validation functions', () => {
           validation,
           formValues
         );
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: maxLengthErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationMaxLength);
       });
       it('should return correct object when array does not satisfy maxLength validation ', () => {
         const result = getFieldValidation(
@@ -259,17 +236,11 @@ describe('validation functions', () => {
           validation,
           formValues
         );
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: maxLengthErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationMaxLength);
       });
       it('should return correct object when passing in value and it satisfies maxLength validation', () => {
         const result = getFieldValidation('abcd', validation, formValues);
-        expect(result).toEqual({
-          isValid: true,
-          errorMessage: null,
-        });
+        expect(result).toEqual(fieldValidationValid);
       });
       it('should return correct object when passing in non-valid value but validation conditions are not met', () => {
         const customValidation: DynamicFormValidation = {
@@ -283,10 +254,7 @@ describe('validation functions', () => {
           customValidation,
           formValues
         );
-        expect(result).toEqual({
-          isValid: true,
-          errorMessage: null,
-        });
+        expect(result).toEqual(fieldValidationValid);
       });
       it('should return correct object when passing in non-valid value and validation conditions are met', () => {
         const customValidation: DynamicFormValidation = {
@@ -300,10 +268,7 @@ describe('validation functions', () => {
           customValidation,
           formValues
         );
-        expect(result).toEqual({
-          isValid: false,
-          errorMessage: maxLengthErrorMsg,
-        });
+        expect(result).toEqual(fieldValidationMaxLength);
       });
     });
 
@@ -312,10 +277,6 @@ describe('validation functions', () => {
         isValid: false,
         errorMessage: 'Username is already taken',
       };
-      const validField = {
-        isValid: true,
-        errorMessage: null,
-      } as never;
 
       const validatorFunction = (value: string): FieldValidation => {
         // Examples of taken usernames to validate against
@@ -323,7 +284,7 @@ describe('validation functions', () => {
         if (takenUsernames.includes(value)) {
           return takenUsername;
         }
-        return validField;
+        return fieldValidationValid;
       };
 
       it('should return correct object when passing in data which does not satisfy custom validation', () => {
@@ -342,7 +303,7 @@ describe('validation functions', () => {
           customValidator: validatorFunction,
         };
         const result = getFieldValidation('1234', customValidation, formValues);
-        expect(result).toEqual(validField);
+        expect(result).toEqual(fieldValidationValid);
       });
     });
   });
