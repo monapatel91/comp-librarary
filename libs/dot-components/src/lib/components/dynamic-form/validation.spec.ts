@@ -5,6 +5,7 @@ import {
   DynamicFormState,
   DynamicFormValidation,
   FieldValidation,
+  IsRequired,
   ValidationField,
 } from './models';
 import {
@@ -23,6 +24,11 @@ describe('validation functions', () => {
     hasAccount: 'no',
     username: '',
   };
+
+  const getRequiredValidationObject = (errorMsg: string): IsRequired => ({
+    value: true,
+    errorMessage: errorMsg,
+  });
 
   const matchingCondition: ConditionFunction = (
     formValues: DynamicFormOutputData
@@ -85,18 +91,14 @@ describe('validation functions', () => {
     const minLengthErrorMsg = 'Min length validation failed';
     const maxLengthErrorMsg = 'Max length validation failed';
 
+    const isRequired = getRequiredValidationObject(requiredErrorMsg);
+
     const requiredOnlyValidation: DynamicFormValidation = {
-      isRequired: {
-        value: true,
-        errorMessage: requiredErrorMsg,
-      },
+      isRequired,
     };
 
     const validation: DynamicFormValidation = {
-      isRequired: {
-        value: true,
-        errorMessage: requiredErrorMsg,
-      },
+      isRequired,
       minLength: {
         value: 3,
         errorMessage: minLengthErrorMsg,
@@ -346,11 +348,10 @@ describe('validation functions', () => {
   });
 
   describe('getControlValidationFromConfig', () => {
+    const isRequired = getRequiredValidationObject('Required field');
+
     const controlValidation: DynamicFormValidation = {
-      isRequired: {
-        errorMessage: 'Required field',
-        value: true,
-      },
+      isRequired,
       minLength: {
         value: 3,
         errorMessage: 'Please enter minimum 3 characters',
@@ -366,10 +367,7 @@ describe('validation functions', () => {
             label: 'My checkbox',
           } as InputTextProps,
           validation: {
-            isRequired: {
-              errorMessage: 'Required field',
-              value: true,
-            },
+            isRequired,
           },
         },
         {
