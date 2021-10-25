@@ -10,4 +10,4 @@ libs/dot-components/src/lib/font-icon/**
 CI_CHANGE_LOG.md
 
 # nx generator
-/tools
+/tools/generators
