@@ -19,6 +19,7 @@ describe('DotInputText', () => {
       endIcon: <DotIcon iconId="save" />,
       error: true,
       fullWidth: true,
+      hasDebounce: false,
       helperText: 'help me',
       id: 'text-id',
       inputRef: inputRef,
