@@ -173,6 +173,7 @@ describe('DotInputText', () => {
     );
     const inputField = screen.getByTestId(dataTestId);
     userEvent.type(inputField, textToWrite);
+    expect(inputField).toHaveValue(textToWrite);
     expect(handleChange).toHaveBeenCalledTimes(textToWrite.length);
   });
 

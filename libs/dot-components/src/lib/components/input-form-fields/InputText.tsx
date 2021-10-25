@@ -12,6 +12,11 @@ import {
 
 export const DELAY_MS = 300;
 
+interface InputTextState {
+  changeEvent?: ChangeEvent<HTMLInputElement>;
+  inputValue: string;
+}
+
 export interface InputTextProps extends InputProps {
   /** If true, the input will use debounce functionality. **/
   hasDebounce?: boolean;
@@ -59,8 +64,12 @@ export const DotInputText = ({
 }: InputTextProps) => {
   const hasWarning = !error && warning ? warningClassName : '';
 
-  const [changeEvent, setChangeEvent] =
-    useState<ChangeEvent<HTMLInputElement>>(null);
+  // This state is used only with debounce feature enabled
+  const [inputTextState, setInputTextState] = useState<InputTextState>(
+    hasDebounce && {
+      inputValue: value || '',
+    }
+  );
 
   const rootStyles = useStylesWithRootClass(
     rootClassName,
@@ -85,15 +94,27 @@ export const DotInputText = ({
   // Improve performance by avoiding callback execution
   // on each keystroke (if debounce feature is active)
   useEffect(() => {
-    if (!hasDebounce || changeEvent === null) return;
+    // Do not proceed if debounce feature is turned
+    // off or there is no event defined
+    if (!hasDebounce || !inputTextState || !inputTextState.changeEvent) return;
     const handler = setTimeout(() => {
-      onChange(changeEvent);
+      onChange(inputTextState.changeEvent);
     }, DELAY_MS);
     return () => clearTimeout(handler);
-  }, [changeEvent]);
+  }, [inputTextState]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>): void =>
-    setChangeEvent(e);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    // We need to have control over change event and input value separately
+    // so that we can set initial state via 'value' prop (if needed)
+    hasDebounce
+      ? setInputTextState({
+          changeEvent: e,
+          inputValue: e.target.value,
+        })
+      : onChange(e);
+  };
+
+  const inputTextValue = hasDebounce ? inputTextState.inputValue : value;
 
   return (
     <StyledTextField
@@ -142,7 +163,7 @@ export const DotInputText = ({
       size={size}
       type={type}
       variant="outlined"
-      value={value}
+      value={inputTextValue}
     />
   );
 };
