@@ -42,6 +42,10 @@ export const StyledIcon = styled(Icon)`
           -moz-osx-font-smoothing: grayscale;
         }
 
+        &.icon-integrations:before {
+          content: "\\e9db";
+        }
+
         &.icon-line-graph:before {
           content: "\\e9d7";
         }
