@@ -1,4 +1,12 @@
-import React, { MouseEvent, useEffect, useRef, useState } from 'react';
+import React, {
+  Dispatch,
+  KeyboardEvent,
+  MouseEvent,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import { DotLink } from '../link/Link';
@@ -6,7 +14,10 @@ import { DotMenu, MenuProps } from './Menu';
 import { DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
 
-const onLeave = (_evt, setOpen) => {
+const onLeave = (
+  _evt: KeyboardEvent | MouseEvent,
+  setOpen: Dispatch<SetStateAction<boolean>>
+) => {
   setOpen(false);
 };
 
@@ -29,13 +40,17 @@ export default {
 
 export const Default: Story<MenuProps> = (args) => {
   const [open, setOpen] = useState(true);
-  const onItemSelect = (_event, _menuId, itemKey) => {
+  const onItemSelect = (
+    _event: MouseEvent,
+    _menuId: string,
+    itemKey: string
+  ) => {
     alert(
       itemKey +
         " selected. Click the 'open' toggle in Controls to redisplay menu."
     );
   };
-  const handleLeave = (_evt) => {
+  const handleLeave = (_evt: MouseEvent) => {
     setOpen(false);
   };
   const menuItems = [
@@ -94,20 +109,24 @@ export const Default: Story<MenuProps> = (args) => {
 
 // Menu with a button anchor
 export const ButtonMenu: Story<MenuProps> = (args) => {
-  const [anchorEl, setAnchorEl] = useState<null | Element>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(false);
   const handleToggle = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
     setOpen(!open);
   };
-  const onItemSelect = (_event, _menuId, itemKey) => {
+  const onItemSelect = (
+    _event: MouseEvent,
+    _menuId: string,
+    itemKey: string
+  ) => {
     alert(itemKey + ' rules!');
   };
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = useRef(open);
   useEffect(() => {
-    if (anchorEl && prevOpen.current === true && open === false) {
+    if (anchorEl && prevOpen.current && !open) {
       anchorEl.focus();
     }
 
@@ -145,12 +164,16 @@ export const TableMenu: Story<MenuProps> = (args) => {
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(null);
-  const handleToggle = (event, menuId: string) => {
+  const handleToggle = (event: MouseEvent, menuId: string) => {
     setId(menuId);
     setAnchorEl(event.currentTarget);
     setOpen(!open);
   };
-  const onItemSelect = (event, menuId, itemKey) => {
+  const onItemSelect = (
+    _event: KeyboardEvent | MouseEvent,
+    menuId: string,
+    itemKey: string
+  ) => {
     const correct =
       (menuId === 'batman' && itemKey === 'gotham') ||
       (menuId === 'superman' && itemKey === 'metropolis') ||
