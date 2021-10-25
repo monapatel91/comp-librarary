@@ -69,12 +69,7 @@ When working on something that is part of a Digital.ai Agility issue we request 
 
 ## Submitting Pull Requests
 
-- If related to an issue then format the title as `Issue #1: Title Here`
-- If related to a story/defect in Agility then format the title as `S-12345: Story Title Here` or `D-12345: Defect Title`.
-- PR should be marked as `draft` if still a work in progress and `ready for review` once your code changes are complete.
-- List of **Changes Made** should be added at the top of the pull request
-- Thoroughly review and complete the **Author Checklist** on your pull request.
-- Update your PR with the issue # that your PR resolves if applicable. [More info](https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword.)
+When submitting a pull request there will be a template that is used. Please follow all directions outlined in the template and be sure to use the **Author Checklist**.
 
 ## Versioning
 
@@ -109,14 +104,14 @@ See [how to run storybook](#run-storybook) for more details.
 
 ## Generating a Component
 
-You may either generate a new component with [NX](https://nx.dev/) or via command line with the following commands:
+**Note:** All new components MUST be generated with [NX](https://nx.dev/) or via command line with the following commands. This will ensure that our requirements and folder structure remain intact.
 
 ```sh
 # dry run to see what files will be generated
-yarn generate:comp:dry --name=[name of component] --export --pascalCaseFiles --style=styled-components --directory=components
+yarn nx workspace-schematic new-component --name=[name of component] --dry-run
 
 # the real thing
-yarn generate:comp --name=[name of component] --export --pascalCaseFiles --style=styled-components --directory=components
+yarn nx workspace-schematic new-component -name=[name of component]
 ```
 
 ### Component Structure
@@ -160,7 +155,7 @@ export default {
 };
 ```
 
-Please make sure to document each `prop` in your components interface accordingly, it will populate Storybook with these details. All props should extend `CommonProps` which contains `className` and `data-testId`.
+Please make sure to document each `prop` in your components interface accordingly, it will populate Storybook with these details. All props should extend `CommonProps` which contain a few props that are used throughout the component library.
 
 **`Button.tsx`**
 
@@ -216,11 +211,14 @@ Please import from our `testing-utils` first so that our `ThemeProvider` is used
 import { render, screen } from '../../testing-utils';
 ```
 
-All components must have at a _minimum_ one unit test which validates that the API is unchanged. **Every** prop in the API needs to be evaluated in this test.
+All components must have at a _minimum_ two unit tests. The first will validate that the API is unchanged. **Every** prop in the API needs to be evaluated in this test. The second will validate that the component can render successfully.
 
 **`Button.spec.tsx`**
 
 ```typescript
+import { render } from '../../testing-utils';
+import { ButtonProps } from './Button';
+
 describe('DotButton', () => {
   it('should have unchanged API', () => {
     const onClick = jest.fn();
@@ -232,33 +230,16 @@ describe('DotButton', () => {
       type: 'text',
     };
 
-    const buttonProps: ButtonProps = {
-      children: 'My Button',
-      disabled: false,
-      fullWidth: true,
-      onClick: onClick,
-      type: 'text',
-    };
-    expect(buttonProps).toEqual(props);
+    const componentProps: ButtonProps = props;
+    expect(componentProps).toEqual(props);
+  });
+
+  it('should render successfully', () => {
+    const { baseElement } = render(<DotButton>Hello World</DotButton>);
+    expect(baseElement).toBeTruthy();
   });
 });
 ```
-
-## Component Author Checklist
-
-- [ ] Checklist of changes made added to PR description
-- [ ] New component?
-  - [ ] is it being exported from library?
-  - [ ] Make sure there are no `default` exports
-  - [ ] Component is a styled component
-  - [ ] Component props extends `commonProps`
-- [ ] Storybook configurations up-to-date
-- [ ] `unit` test coverage updated
-  - [ ] `testing-library` imports are from `testing-utils`
-  - [ ] modified props have been added to API unit test
-- [ ] `e2e` test coverage updated
-- [ ] `CHANGE_LOG.md` updated
-  - [ ] breaking changes are specified as such
 
 # Contributing to Demo App
 
