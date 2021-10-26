@@ -9,6 +9,7 @@ import {
   ValidationField,
 } from './models';
 import {
+  checkIfArray,
   checkIfEmptyString,
   checkIfEmptyValue,
   checkIfFormDataValid,
@@ -139,6 +140,24 @@ describe('validation functions', () => {
     });
     it('should return true if empty string is passed in', () => {
       expect(checkIfEmptyString('')).toBe(true);
+    });
+  });
+
+  describe('checkIfArray', () => {
+    it('should return false if number is passed in', () => {
+      expect(checkIfArray(23)).toBe(false);
+    });
+    it('should return false if boolean is passed in', () => {
+      expect(checkIfArray(true)).toBe(false);
+    });
+    it('should return false if object is passed in', () => {
+      expect(checkIfArray({ isValid: true })).toBe(false);
+    });
+    it('should return false if string is passed in', () => {
+      expect(checkIfArray('abc')).toBe(false);
+    });
+    it('should return true if array is passed in', () => {
+      expect(checkIfArray(['one', 'two'])).toBe(true);
     });
   });
 
