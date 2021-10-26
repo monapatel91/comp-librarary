@@ -4,6 +4,14 @@ import { DotMenu, MenuProps, MenuItemProps, PopperPlacement } from './Menu';
 
 describe('Menu', () => {
   const maxVisibleItems = 3;
+  const dummyMenuItems = [
+    { ariaLabel: 'item-1', children: <span>Batman</span> },
+    { ariaLabel: 'item-2', children: <span>Robin</span> },
+    { ariaLabel: 'item-3', children: <span>Bat Girl</span> },
+  ];
+
+  const getMenuListItem = (text: string): HTMLElement =>
+    screen.getByText(text).closest('li');
 
   it('should have unchanged API', () => {
     const onLeave = jest.fn();
@@ -18,6 +26,7 @@ describe('Menu', () => {
       id: 'menu-id',
       loading: false,
       maxVisibleItems,
+      menuItemHeight: 40,
       menuItems: [{ children: 'opt 1' }],
       menuPlacement: 'bottom' as PopperPlacement,
       open: true,
@@ -26,6 +35,7 @@ describe('Menu', () => {
     };
     const menuProps: MenuProps = mProps;
     expect(menuProps).toEqual(mProps);
+
     const iProps = {
       ariaLabel: 'aria-label',
       children: 'opt 1',
@@ -37,15 +47,6 @@ describe('Menu', () => {
     const menuItemProps: MenuItemProps = iProps;
     expect(menuItemProps).toEqual(iProps);
   });
-
-  const getMenuListItem = (text: string): HTMLElement =>
-    screen.getByText(text).closest('li');
-
-  const dummyMenuItems = [
-    { ariaLabel: 'item-1', children: <span>Batman</span> },
-    { ariaLabel: 'item-2', children: <span>Robin</span> },
-    { ariaLabel: 'item-3', children: <span>Bat Girl</span> },
-  ];
 
   it('should show menu items when open', () => {
     render(<DotMenu id="foo_bar" menuItems={dummyMenuItems} open={true} />);
