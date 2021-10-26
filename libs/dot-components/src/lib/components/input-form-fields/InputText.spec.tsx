@@ -1,9 +1,10 @@
-import React, { createRef } from 'react';
+import React, { createRef, useState } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
 import { inputSizeOptions } from '../input-form-fields/InputFormFields.propTypes';
 import { DotInputText, InputTextProps } from './InputText';
 import { DotIcon } from '../icon/Icon';
+import { DotButton } from '../button/Button';
 
 const mockFunc = jest.fn();
 const inputRef = createRef<HTMLInputElement>();
@@ -203,5 +204,31 @@ describe('DotInputText', () => {
         })
       );
     });
+  });
+
+  it('should set text value from the outside when debounce feature is enabled', () => {
+    const dataTestId = 'test-input';
+    const initialValue = 'my initial value';
+    const Component = () => {
+      const [text, setText] = useState(initialValue);
+      const handleReset = () => setText('');
+      return (
+        <>
+          <DotInputText
+            data-testid={dataTestId}
+            hasDebounce={true}
+            id="id-test"
+            name="test"
+            value={text}
+          />
+          <DotButton onClick={handleReset}>Reset</DotButton>
+        </>
+      );
+    };
+    render(<Component />);
+    const inputField = screen.getByTestId(dataTestId);
+    expect(inputField).toHaveValue(initialValue);
+    userEvent.click(screen.getByText('Reset'));
+    expect(inputField).toHaveValue('');
   });
 });

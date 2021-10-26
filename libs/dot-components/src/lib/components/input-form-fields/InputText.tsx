@@ -34,6 +34,10 @@ export interface InputTextProps extends InputProps {
   value?: string;
 }
 
+const getInitialState = (value: string): InputTextState => ({
+  inputValue: value || '',
+});
+
 export const DotInputText = ({
   autoFocus,
   className,
@@ -66,9 +70,7 @@ export const DotInputText = ({
 
   // This state is used only with debounce feature enabled
   const [inputTextState, setInputTextState] = useState<InputTextState>(
-    hasDebounce && {
-      inputValue: value || '',
-    }
+    hasDebounce && getInitialState(value)
   );
 
   const rootStyles = useStylesWithRootClass(
@@ -90,6 +92,14 @@ export const DotInputText = ({
         iconId="warning-solid"
       />
     ));
+
+  // Used to control text value from the consumer component
+  // when debounce feature is enabled
+  useEffect(() => {
+    if (hasDebounce && value !== inputTextState.inputValue) {
+      setInputTextState(getInitialState(value));
+    }
+  }, [value]);
 
   // Improve performance by avoiding callback execution
   // on each keystroke (if debounce feature is active)
