@@ -23,6 +23,7 @@ import {
   getControlValidationFromConfig,
   getFieldValidation,
   getInvalidFieldValidation,
+  getMaxLengthFieldValidationError,
   getMinLengthFieldValidationError,
   getRequiredFieldValidationError,
 } from './validation';
@@ -65,6 +66,13 @@ describe('validation functions', () => {
     minLength: {
       value: 3,
       errorMessage: 'min length',
+    },
+  };
+
+  const sampleMaxLengthValidation: DynamicFormValidation = {
+    maxLength: {
+      value: 5,
+      errorMessage: 'max length',
     },
   };
 
@@ -403,6 +411,17 @@ describe('validation functions', () => {
       );
       expect(
         getMinLengthFieldValidationError(sampleMinLengthValidation)
+      ).toEqual(expectedResult);
+    });
+  });
+
+  describe('getMaxLengthFieldValidationError', () => {
+    it('should return correct value', () => {
+      const expectedResult = getInvalidFieldValidation(
+        sampleMaxLengthValidation.maxLength.errorMessage
+      );
+      expect(
+        getMaxLengthFieldValidationError(sampleMaxLengthValidation)
       ).toEqual(expectedResult);
     });
   });
