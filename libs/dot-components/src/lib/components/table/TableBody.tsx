@@ -62,6 +62,7 @@ export const DotTableBody = ({
               key={index}
               onActionMenuTrigger={handleActionMenuTrigger}
               onClick={onRowClick}
+              rowKey={`${CreateUUID()}-row-${index}`}
               selected={row.selected}
             />
           );

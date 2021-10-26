@@ -1,11 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  MouseEvent,
-  Key,
-  ReactNode,
-} from 'react';
+import React, { useEffect, useState, useRef, Key, ReactNode } from 'react';
 import { TableCell } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -15,6 +8,7 @@ export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
 
 export interface CellProps extends CommonProps {
   align?: textAlignment;
+  cellKey?: Key;
   colspan?: number;
   id?: string;
   noWrap?: boolean;
@@ -29,6 +23,7 @@ export interface CellProps extends CommonProps {
 export const DotBodyCell = ({
   ariaLabel,
   align,
+  cellKey,
   className,
   colspan,
   'data-testid': dataTestId,
@@ -102,7 +97,7 @@ export const DotBodyCell = ({
                 className="dot-table-action-icon"
                 iconId={item.key}
                 iconSize="small"
-                key={index}
+                key={`${cellKey}-icon-${index}`}
                 onClick={item.onclick}
                 size="small"
                 disabled={item.disabled}

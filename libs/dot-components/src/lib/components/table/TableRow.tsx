@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactNode } from 'react';
+import React, { MouseEvent, ReactNode, Key } from 'react';
 import { TableRow } from '@material-ui/core';
 
 import { DotBodyCell } from './TableCell';
@@ -21,6 +21,8 @@ export interface RowProps extends CommonProps {
   onActionMenuTrigger: (el: HTMLElement, menuItem: Array<ReactNode>) => void;
   /** Event callback */
   onClick?: (event: MouseEvent, id: string) => void;
+  /** uniques key of table cell */
+  rowKey: Key;
   /** if the row is selected */
   selected?: boolean;
 }
@@ -34,6 +36,7 @@ export const DotTableRow = ({
   data,
   onActionMenuTrigger,
   onClick,
+  rowKey,
   selected,
 }: RowProps) => {
   const id = data.id;
@@ -51,6 +54,7 @@ export const DotTableRow = ({
         return (
           <DotBodyCell
             align={column.align}
+            cellKey={rowKey}
             key={index}
             noWrap={column.truncate}
             onActionMenuTrigger={(menuRef, menuItem) =>
