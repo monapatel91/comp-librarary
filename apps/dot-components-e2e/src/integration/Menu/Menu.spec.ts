@@ -1,5 +1,7 @@
+const menuBaseUrl = '/iframe.html?id=components-menu--default';
+
 describe('dot-components: Menu component', () => {
-  before(() => cy.visit('/iframe.html?id=components-menu--default'));
+  before(() => cy.visit(menuBaseUrl));
 
   it('should have a dot- prefix', () => {
     cy.get('div').should('have.class', 'dot-menu');
@@ -23,9 +25,7 @@ describe('dot-components: Menu component', () => {
 });
 
 describe('Agility theme style decisions', () => {
-  before(() =>
-    cy.visit('/iframe.html?id=components-menu--default&theme=agility-dark')
-  );
+  before(() => cy.visit(`${menuBaseUrl}&theme=agility-dark`));
 
   it('should apply the correct theme colors', () => {
     cy.get('.dot-menu ul.dot-ul').should(
@@ -36,12 +36,14 @@ describe('Agility theme style decisions', () => {
   });
 });
 
-describe('without dense option', () => {
-  before(() =>
-    cy.visit('/iframe.html?id=components-menu--default&args=dense:false')
-  );
-
+describe('correct height based on props', () => {
   it('ul has correct height', () => {
+    cy.visit(`${menuBaseUrl}&args=dense:false`);
     cy.get('.dot-menu ul.dot-ul').should('have.css', 'height', '252px');
+  });
+
+  it('should apply custom menu item height', () => {
+    cy.visit(`${menuBaseUrl}&args=menuItemHeight:50`);
+    cy.get('.dot-menu ul.dot-ul').should('have.css', 'height', '371px');
   });
 });

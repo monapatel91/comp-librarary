@@ -60,6 +60,7 @@ export const Default: Story<MenuProps> = (args) => {
           Batman
         </DotLink>
       ),
+      classes: 'batman-class',
       key: 'batman',
     },
     { children: 'Robin', key: 'robin' },

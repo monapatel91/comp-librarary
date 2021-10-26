@@ -1,13 +1,18 @@
 import React from 'react';
 import { render, screen } from '../../testing-utils';
+import userEvent from '@testing-library/user-event';
 import { DotMenu, MenuProps, MenuItemProps, PopperPlacement } from './Menu';
 
 describe('Menu', () => {
   const maxVisibleItems = 3;
   const dummyMenuItems = [
-    { ariaLabel: 'item-1', children: <span>Batman</span> },
+    { ariaLabel: 'item-1', children: <span>Batman</span>, classes: 'batman' },
     { ariaLabel: 'item-2', children: <span>Robin</span> },
     { ariaLabel: 'item-3', children: <span>Bat Girl</span> },
+    { ariaLabel: 'item-4', children: <span>Flash</span> },
+    { ariaLabel: 'item-5', children: <span>Arrow</span> },
+    { ariaLabel: 'item-6', children: <span>Wonderwoman</span> },
+    { ariaLabel: 'item-7', children: <span>Superman</span> },
   ];
 
   const getMenuListItem = (text: string): HTMLElement =>
@@ -60,6 +65,11 @@ describe('Menu', () => {
     expect(menuItem).toBeNull();
   });
 
+  it('should apply classes to the menu item', () => {
+    render(<DotMenu id="foo_bar" menuItems={dummyMenuItems} open={true} />);
+    expect(getMenuListItem('Batman')).toHaveClass('batman');
+  });
+
   it('should display progress indicator when `loading` is true', () => {
     render(
       <DotMenu
@@ -71,6 +81,21 @@ describe('Menu', () => {
     );
     const loadingIndicator = screen.queryByTitle('Loading Data...');
     expect(loadingIndicator).toBeVisible();
+  });
+
+  it('should close menu when "Tab" pressed', () => {
+    const onLeave = jest.fn();
+    render(
+      <DotMenu
+        id="foo_bar"
+        menuItems={dummyMenuItems}
+        onLeave={onLeave}
+        open={true}
+      />
+    );
+    const menuItem = getMenuListItem('Batman');
+    userEvent.type(menuItem, '{tab}');
+    expect(onLeave).toHaveBeenCalled();
   });
 
   it("should have 'aria-label' attribute with correct value", () => {
