@@ -21,6 +21,7 @@ import {
   checkIfStringRequiredInvalid,
   checkIfValidationApplies,
   getControlValidationFromConfig,
+  getEmptyValueValidationError,
   getFieldValidation,
   getInvalidFieldValidation,
   getMaxLengthFieldValidationError,
@@ -423,6 +424,34 @@ describe('validation functions', () => {
       expect(
         getMaxLengthFieldValidationError(sampleMaxLengthValidation)
       ).toEqual(expectedResult);
+    });
+  });
+
+  describe('getEmptyValueValidationError', () => {
+    const validation: DynamicFormValidation = {
+      isRequired: getRequiredValidationObject('required'),
+    };
+    const validationWithNonPassingCondition: DynamicFormValidation = {
+      isRequired: {
+        ...getRequiredValidationObject('required'),
+        condition: failingCondition,
+      },
+    };
+    it('should return null', () => {
+      const expectedResult = getEmptyValueValidationError(
+        validationWithNonPassingCondition,
+        formValues
+      );
+      expect(expectedResult).toBeNull();
+    });
+    it('should return correct error object', () => {
+      const expectedResult = getEmptyValueValidationError(
+        validation,
+        formValues
+      );
+      expect(expectedResult).toEqual(
+        getRequiredFieldValidationError(validation)
+      );
     });
   });
 
