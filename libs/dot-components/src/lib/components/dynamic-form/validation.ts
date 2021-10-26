@@ -41,36 +41,44 @@ export const checkIfStringRequiredInvalid = (
   validation: DynamicFormValidation,
   formValues: DynamicFormOutputData
 ): boolean =>
-  validation.isRequired &&
-  checkIfValidationApplies(validation.isRequired, formValues) &&
-  checkIfEmptyString(value);
+  !!(
+    validation.isRequired &&
+    checkIfValidationApplies(validation.isRequired, formValues) &&
+    checkIfEmptyString(value)
+  );
 
 export const checkIfArrayRequiredInvalid = (
   value: unknown[],
   validation: DynamicFormValidation,
   formValues: DynamicFormOutputData
 ): boolean =>
-  validation.isRequired &&
-  checkIfValidationApplies(validation.isRequired, formValues) &&
-  checkIfEmptyArray(value);
+  !!(
+    validation.isRequired &&
+    checkIfValidationApplies(validation.isRequired, formValues) &&
+    checkIfEmptyArray(value)
+  );
 
 export const checkIfMinLengthInvalid = (
   value: string | unknown[],
   validation: DynamicFormValidation,
   formValues: DynamicFormOutputData
 ): boolean =>
-  validation.minLength &&
-  checkIfValidationApplies(validation.minLength, formValues) &&
-  value.length < validation.minLength.value;
+  !!(
+    validation.minLength &&
+    checkIfValidationApplies(validation.minLength, formValues) &&
+    value.length < validation.minLength.value
+  );
 
 export const checkIfMaxLengthInvalid = (
   value: string | unknown[],
   validation: DynamicFormValidation,
   formValues: DynamicFormOutputData
 ): boolean =>
-  validation.maxLength &&
-  checkIfValidationApplies(validation.maxLength, formValues) &&
-  value.length > validation.maxLength.value;
+  !!(
+    validation.maxLength &&
+    checkIfValidationApplies(validation.maxLength, formValues) &&
+    value.length > validation.maxLength.value
+  );
 
 export const getInvalidFieldValidation = (
   errorMessage: string

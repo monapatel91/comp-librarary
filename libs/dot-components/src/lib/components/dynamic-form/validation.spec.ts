@@ -10,11 +10,15 @@ import {
 } from './models';
 import {
   checkIfArray,
+  checkIfArrayRequiredInvalid,
   checkIfEmptyArray,
   checkIfEmptyString,
   checkIfEmptyValue,
   checkIfFormDataValid,
+  checkIfMaxLengthInvalid,
+  checkIfMinLengthInvalid,
   checkIfString,
+  checkIfStringRequiredInvalid,
   checkIfValidationApplies,
   getControlValidationFromConfig,
   getFieldValidation,
@@ -29,6 +33,9 @@ describe('validation functions', () => {
     hasAccount: 'no',
     username: '',
   };
+
+  const failingCondition = (formValues: DynamicFormOutputData) =>
+    formValues['firstName'] === 'Steve';
 
   const getRequiredValidationObject = (errorMsg: string): IsRequired => ({
     value: true,
@@ -168,6 +175,188 @@ describe('validation functions', () => {
     });
     it('should return true is empty array is passed in', () => {
       expect(checkIfEmptyArray([])).toBe(true);
+    });
+  });
+
+  describe('required/minLength/maxLength invalid', () => {
+    const requiredValidation: DynamicFormValidation = {
+      isRequired: getRequiredValidationObject('required'),
+    };
+    const requiredValidationWithCondition: DynamicFormValidation = {
+      isRequired: {
+        ...getRequiredValidationObject('required'),
+        condition: failingCondition,
+      },
+    };
+    const minLengthValidation: DynamicFormValidation = {
+      minLength: {
+        value: 3,
+        errorMessage: 'min length error',
+      },
+    };
+
+    const minLengthValidationWithCondition: DynamicFormValidation = {
+      minLength: {
+        ...minLengthValidation.minLength,
+        condition: failingCondition,
+      },
+    };
+
+    const maxLengthValidation: DynamicFormValidation = {
+      maxLength: {
+        value: 5,
+        errorMessage: 'max length error',
+      },
+    };
+
+    const maxLengthValidationWithCondition: DynamicFormValidation = {
+      maxLength: {
+        ...maxLengthValidation.maxLength,
+        condition: failingCondition,
+      },
+    };
+
+    describe('checkIfStringRequiredInvalid', () => {
+      it('should return false if no required validation is set', () => {
+        const result = checkIfStringRequiredInvalid(
+          '123',
+          minLengthValidation,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+
+      it('should return false if required validation is set but condition is not passing', () => {
+        const result = checkIfStringRequiredInvalid(
+          '123',
+          requiredValidationWithCondition,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return false if required validation is set, string is empty but condition is not passing', () => {
+        const result = checkIfStringRequiredInvalid(
+          '',
+          requiredValidationWithCondition,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return true if required validation is set but string is empty', () => {
+        const result = checkIfStringRequiredInvalid(
+          '',
+          requiredValidation,
+          formValues
+        );
+        expect(result).toBe(true);
+      });
+    });
+
+    describe('checkIfArrayRequiredInvalid', () => {
+      it('should return false if no required validation is set', () => {
+        const result = checkIfArrayRequiredInvalid(
+          ['1', '2'],
+          minLengthValidation,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return false if required validation is set but condition is not passing', () => {
+        const result = checkIfArrayRequiredInvalid(
+          ['1', '2'],
+          requiredValidationWithCondition,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return false if required validation is set, string is empty but condition is not passing', () => {
+        const result = checkIfArrayRequiredInvalid(
+          [],
+          requiredValidationWithCondition,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return true if required validation is set but string is empty', () => {
+        const result = checkIfArrayRequiredInvalid(
+          [],
+          requiredValidation,
+          formValues
+        );
+        expect(result).toBe(true);
+      });
+    });
+
+    describe('checkIfMinLengthInvalid', () => {
+      it('should return false if no min length validation is set', () => {
+        const result = checkIfMinLengthInvalid(
+          ['1', '2'],
+          requiredValidation,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return false if min length validation is set but condition is not passing', () => {
+        const result = checkIfMinLengthInvalid(
+          ['1', '2'],
+          minLengthValidationWithCondition,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return false if min length validation is set, array is empty but condition is not passing', () => {
+        const result = checkIfMinLengthInvalid(
+          [],
+          minLengthValidationWithCondition,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return true if min length validation is set but min length is not satisfied', () => {
+        const result = checkIfMinLengthInvalid(
+          ['1'],
+          minLengthValidation,
+          formValues
+        );
+        expect(result).toBe(true);
+      });
+    });
+
+    describe('checkIfMaxLengthInvalid', () => {
+      const invalidArray = ['1', '2', '3', '4', '5', '6'];
+
+      it('should return false if no max length validation is set', () => {
+        const result = checkIfMaxLengthInvalid(
+          invalidArray,
+          requiredValidation,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return false if max length validation is set but condition is not passing', () => {
+        const result = checkIfMaxLengthInvalid(
+          invalidArray,
+          maxLengthValidationWithCondition,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return false if max length validation is set, max-length is not satisfied but condition is not passing', () => {
+        const result = checkIfMaxLengthInvalid(
+          invalidArray,
+          maxLengthValidationWithCondition,
+          formValues
+        );
+        expect(result).toBe(false);
+      });
+      it('should return true if max length validation is set but max length is not satisfied', () => {
+        const result = checkIfMaxLengthInvalid(
+          invalidArray,
+          maxLengthValidation,
+          formValues
+        );
+        expect(result).toBe(true);
+      });
     });
   });
 
