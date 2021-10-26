@@ -17,15 +17,10 @@ For more information, see the [`CONTRIBUTING`](https://github.com/digital-ai/dot
 
 ## Author Checklist
 
-- [ ] Checklist of changes made added to PR description
-- [ ] New component?
-  - [ ] is it being exported from library?
-  - [ ] Make sure there are no `default` exports
-  - [ ] Component is a styled component
-  - [ ] Component props extends `commonProps`
+- [ ] Checklist of **changes made** added to PR description
+- [ ] If new component, was it created using the dot-component schematic?
 - [ ] Storybook configurations up-to-date
 - [ ] `unit` test coverage updated
-  - [ ] `testing-library` imports are from `testing-utils`
   - [ ] modified props have been added to API unit test
 - [ ] `e2e` test coverage updated
 - [ ] `MAJOR` changes have `breaking change` label applied
