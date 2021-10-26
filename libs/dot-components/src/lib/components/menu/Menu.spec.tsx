@@ -145,6 +145,21 @@ describe('Menu', () => {
       const menuElement = screen.getByTestId(`${dataTestId}-menu`);
       expect(menuElement).toHaveStyle({ height: '196px' });
     });
+
+    it('when maxVisibleItems is not default of 7', () => {
+      const dataTestId = 'test-id';
+      render(
+        <DotMenu
+          data-testid={dataTestId}
+          id="foo_bar"
+          maxVisibleItems={null}
+          menuItems={dummyMenuItems}
+          open={true}
+        />
+      );
+      const menuElement = screen.getByTestId(`${dataTestId}-menu`);
+      expect(menuElement).toHaveStyle({ height: '217px' });
+    });
   });
 
   describe('Accessibility', () => {
