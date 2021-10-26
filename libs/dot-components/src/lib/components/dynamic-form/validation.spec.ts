@@ -9,6 +9,7 @@ import {
   ValidationField,
 } from './models';
 import {
+  checkIfEmptyValue,
   checkIfFormDataValid,
   checkIfValidationApplies,
   getControlValidationFromConfig,
@@ -91,6 +92,21 @@ describe('validation functions', () => {
       };
       const result = checkIfValidationApplies(field, formValues);
       expect(result).toBe(true);
+    });
+  });
+
+  describe('checkIfEmptyValue', () => {
+    it('should return false if non-empty value is passed in', () => {
+      expect(checkIfEmptyValue('abc')).toBe(false);
+    });
+    it('should return true if empty string is passed in', () => {
+      expect(checkIfEmptyValue('')).toBe(true);
+    });
+    it('should return true if null is passed in', () => {
+      expect(checkIfEmptyValue(null)).toBe(true);
+    });
+    it('should return true if undefined is passed in', () => {
+      expect(checkIfEmptyValue(undefined)).toBe(true);
     });
   });
 
