@@ -22,6 +22,133 @@ export const checkIfValidationApplies = (
   }
 };
 
+export const checkIfEmptyValue = (value: unknown): boolean =>
+  value === '' || value === null || value === undefined;
+
+export const checkIfString = (value: unknown): boolean =>
+  typeof value === 'string';
+
+export const checkIfEmptyString = (value: string): boolean =>
+  value.trim() === '';
+
+export const checkIfArray = (value: unknown): boolean => Array.isArray(value);
+
+export const checkIfEmptyArray = (value: Array<unknown>): boolean =>
+  !value.length;
+
+export const checkIfStringRequiredInvalid = (
+  value: string,
+  validation: DynamicFormValidation,
+  formValues: DynamicFormOutputData
+): boolean =>
+  validation.isRequired &&
+  checkIfValidationApplies(validation.isRequired, formValues) &&
+  checkIfEmptyString(value);
+
+export const checkIfArrayRequiredInvalid = (
+  value: unknown[],
+  validation: DynamicFormValidation,
+  formValues: DynamicFormOutputData
+): boolean =>
+  validation.isRequired &&
+  checkIfValidationApplies(validation.isRequired, formValues) &&
+  checkIfEmptyArray(value);
+
+export const checkIfMinLengthInvalid = (
+  value: string | unknown[],
+  validation: DynamicFormValidation,
+  formValues: DynamicFormOutputData
+): boolean =>
+  validation.minLength &&
+  checkIfValidationApplies(validation.minLength, formValues) &&
+  value.length < validation.minLength.value;
+
+export const checkIfMaxLengthInvalid = (
+  value: string | unknown[],
+  validation: DynamicFormValidation,
+  formValues: DynamicFormOutputData
+): boolean =>
+  validation.maxLength &&
+  checkIfValidationApplies(validation.maxLength, formValues) &&
+  value.length > validation.maxLength.value;
+
+export const getInvalidFieldValidation = (
+  errorMessage: string
+): FieldValidation => ({
+  isValid: false,
+  errorMessage,
+});
+
+export const getRequiredFieldValidationError = (
+  validation: DynamicFormValidation,
+  formValues: DynamicFormOutputData
+) =>
+  checkIfValidationApplies(validation.isRequired, formValues) &&
+  getInvalidFieldValidation(validation.isRequired.errorMessage);
+
+export const getMinLengthFieldValidationError = (
+  validation: DynamicFormValidation
+) => getInvalidFieldValidation(validation.minLength.errorMessage);
+
+export const getMaxLengthFieldValidationError = (
+  validation: DynamicFormValidation
+) => getInvalidFieldValidation(validation.maxLength.errorMessage);
+
+export const getEmptyValueValidationError = (
+  validation: DynamicFormValidation,
+  formValues: DynamicFormOutputData
+): FieldValidation | null => {
+  if (
+    validation.isRequired &&
+    checkIfValidationApplies(validation.isRequired, formValues)
+  ) {
+    return getRequiredFieldValidationError(validation, formValues);
+  }
+  return null;
+};
+
+export const getStringValidationError = (
+  value: string,
+  validation: DynamicFormValidation,
+  formValues: DynamicFormOutputData
+): FieldValidation | null => {
+  if (checkIfStringRequiredInvalid(value, validation, formValues))
+    return getRequiredFieldValidationError(validation, formValues);
+  if (checkIfMinLengthInvalid(value, validation, formValues))
+    return getMinLengthFieldValidationError(validation);
+  if (checkIfMaxLengthInvalid(value, validation, formValues))
+    return getMaxLengthFieldValidationError(validation);
+  return null;
+};
+
+export const getArrayValidationError = (
+  array: unknown[],
+  validation: DynamicFormValidation,
+  formValues: DynamicFormOutputData
+): FieldValidation | null => {
+  if (checkIfArrayRequiredInvalid(array, validation, formValues))
+    return getRequiredFieldValidationError(validation, formValues);
+  if (checkIfMinLengthInvalid(array, validation, formValues))
+    return getMinLengthFieldValidationError(validation);
+  if (checkIfMaxLengthInvalid(array, validation, formValues))
+    return getMaxLengthFieldValidationError(validation);
+  return null;
+};
+
+export const getCustomValidationError = (
+  value: unknown,
+  validation: DynamicFormValidation
+) => {
+  const customValidation = validation.customValidator(value);
+  if (!customValidation.isValid) {
+    return {
+      isValid: false,
+      errorMessage: customValidation.errorMessage,
+    };
+  }
+  return null;
+};
+
 export const getFieldValidation = (
   value: unknown,
   validation: DynamicFormValidation,
@@ -33,51 +160,38 @@ export const getFieldValidation = (
   };
   // No validation checks are defined on the field
   if (!validation) return fieldValidation;
-  // Field is required but value is not present
-  if (
-    validation.isRequired &&
-    checkIfValidationApplies(validation.isRequired, formValues) &&
-    (!value || (Array.isArray(value) && !value.length))
-  ) {
-    return {
-      isValid: false,
-      errorMessage: validation.isRequired.errorMessage,
-    };
-  }
-  // String value doesn't meet min-length requirement
-  if (
-    (typeof value === 'string' || Array.isArray(value)) &&
-    validation.minLength &&
-    checkIfValidationApplies(validation.minLength, formValues) &&
-    validation.minLength.value > value.length
-  ) {
-    return {
-      isValid: false,
-      errorMessage: validation.minLength.errorMessage,
-    };
-  }
-  // String value doesn't meet max-length requirement
-  if (
-    (typeof value === 'string' || Array.isArray(value)) &&
-    validation.maxLength &&
-    checkIfValidationApplies(validation.maxLength, formValues) &&
-    validation.maxLength.value < value.length
-  ) {
-    return {
-      isValid: false,
-      errorMessage: validation.maxLength.errorMessage,
-    };
-  }
-  if (validation.customValidator) {
-    const customValidation = validation.customValidator(value);
-    if (!customValidation.isValid) {
-      return {
-        isValid: false,
-        errorMessage: customValidation.errorMessage,
-      };
-    }
+
+  // Empty value validation
+  if (checkIfEmptyValue(value)) {
+    const emptyValueError = getEmptyValueValidationError(
+      validation,
+      formValues
+    );
+    if (emptyValueError) return emptyValueError;
   }
 
+  // String validations
+  if (checkIfString(value)) {
+    const stringValidationError = getStringValidationError(
+      value as string,
+      validation,
+      formValues
+    );
+    if (stringValidationError) return stringValidationError;
+  }
+  // Array validations
+  if (checkIfArray(value)) {
+    const arrayValidationError = getArrayValidationError(
+      value as unknown[],
+      validation,
+      formValues
+    );
+    if (arrayValidationError) return arrayValidationError;
+  }
+  if (validation.customValidator) {
+    const customValidatorError = getCustomValidationError(value, validation);
+    if (customValidatorError) return customValidatorError;
+  }
   return fieldValidation;
 };
 
