@@ -207,30 +207,17 @@ describe('validation functions', () => {
         condition: failingCondition,
       },
     };
-    const minLengthValidation: DynamicFormValidation = {
-      minLength: {
-        value: 3,
-        errorMessage: 'min length error',
-      },
-    };
 
     const minLengthValidationWithCondition: DynamicFormValidation = {
       minLength: {
-        ...minLengthValidation.minLength,
+        ...sampleMinLengthValidation.minLength,
         condition: failingCondition,
-      },
-    };
-
-    const maxLengthValidation: DynamicFormValidation = {
-      maxLength: {
-        value: 5,
-        errorMessage: 'max length error',
       },
     };
 
     const maxLengthValidationWithCondition: DynamicFormValidation = {
       maxLength: {
-        ...maxLengthValidation.maxLength,
+        ...sampleMaxLengthValidation.maxLength,
         condition: failingCondition,
       },
     };
@@ -239,7 +226,7 @@ describe('validation functions', () => {
       it('should return false if no required validation is set', () => {
         const result = checkIfStringRequiredInvalid(
           '123',
-          minLengthValidation,
+          sampleMinLengthValidation,
           formValues
         );
         expect(result).toBe(false);
@@ -275,7 +262,7 @@ describe('validation functions', () => {
       it('should return false if no required validation is set', () => {
         const result = checkIfArrayRequiredInvalid(
           ['1', '2'],
-          minLengthValidation,
+          sampleMinLengthValidation,
           formValues
         );
         expect(result).toBe(false);
@@ -334,7 +321,7 @@ describe('validation functions', () => {
       it('should return true if min length validation is set but min length is not satisfied', () => {
         const result = checkIfMinLengthInvalid(
           ['1'],
-          minLengthValidation,
+          sampleMinLengthValidation,
           formValues
         );
         expect(result).toBe(true);
@@ -371,7 +358,7 @@ describe('validation functions', () => {
       it('should return true if max length validation is set but max length is not satisfied', () => {
         const result = checkIfMaxLengthInvalid(
           invalidArray,
-          maxLengthValidation,
+          sampleMaxLengthValidation,
           formValues
         );
         expect(result).toBe(true);
