@@ -88,11 +88,8 @@ export const getInvalidFieldValidation = (
 });
 
 export const getRequiredFieldValidationError = (
-  validation: DynamicFormValidation,
-  formValues: DynamicFormOutputData
-) =>
-  checkIfValidationApplies(validation.isRequired, formValues) &&
-  getInvalidFieldValidation(validation.isRequired.errorMessage);
+  validation: DynamicFormValidation
+) => getInvalidFieldValidation(validation.isRequired.errorMessage);
 
 export const getMinLengthFieldValidationError = (
   validation: DynamicFormValidation
@@ -110,7 +107,7 @@ export const getEmptyValueValidationError = (
     validation.isRequired &&
     checkIfValidationApplies(validation.isRequired, formValues)
   ) {
-    return getRequiredFieldValidationError(validation, formValues);
+    return getRequiredFieldValidationError(validation);
   }
   return null;
 };
@@ -121,7 +118,7 @@ export const getStringValidationError = (
   formValues: DynamicFormOutputData
 ): FieldValidation | null => {
   if (checkIfStringRequiredInvalid(value, validation, formValues))
-    return getRequiredFieldValidationError(validation, formValues);
+    return getRequiredFieldValidationError(validation);
   if (checkIfMinLengthInvalid(value, validation, formValues))
     return getMinLengthFieldValidationError(validation);
   if (checkIfMaxLengthInvalid(value, validation, formValues))
@@ -135,7 +132,7 @@ export const getArrayValidationError = (
   formValues: DynamicFormOutputData
 ): FieldValidation | null => {
   if (checkIfArrayRequiredInvalid(array, validation, formValues))
-    return getRequiredFieldValidationError(validation, formValues);
+    return getRequiredFieldValidationError(validation);
   if (checkIfMinLengthInvalid(array, validation, formValues))
     return getMinLengthFieldValidationError(validation);
   if (checkIfMaxLengthInvalid(array, validation, formValues))

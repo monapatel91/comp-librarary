@@ -23,6 +23,8 @@ import {
   getControlValidationFromConfig,
   getFieldValidation,
   getInvalidFieldValidation,
+  getMinLengthFieldValidationError,
+  getRequiredFieldValidationError,
 } from './validation';
 import { InputTextProps } from '../input-form-fields/InputText';
 
@@ -58,6 +60,13 @@ describe('validation functions', () => {
   const nonMatchingCondition: ConditionFunction = (
     formValues: DynamicFormOutputData
   ) => formValues['hasAccount'] === 'no' && formValues['age'] === '33';
+
+  const sampleMinLengthValidation: DynamicFormValidation = {
+    minLength: {
+      value: 3,
+      errorMessage: 'min length',
+    },
+  };
 
   describe('checkIfValidationApplies', () => {
     const validationField: ValidationField = {
@@ -369,6 +378,32 @@ describe('validation functions', () => {
         isValid: false,
         errorMessage,
       });
+    });
+  });
+
+  describe('getRequiredFieldValidationError', () => {
+    const validation: DynamicFormValidation = {
+      isRequired: getRequiredValidationObject('required'),
+    };
+
+    it('should return correct value', () => {
+      const expectedResult = getInvalidFieldValidation(
+        validation.isRequired.errorMessage
+      );
+      expect(getRequiredFieldValidationError(validation)).toEqual(
+        expectedResult
+      );
+    });
+  });
+
+  describe('getMinLengthFieldValidationError', () => {
+    it('should return correct value', () => {
+      const expectedResult = getInvalidFieldValidation(
+        sampleMinLengthValidation.minLength.errorMessage
+      );
+      expect(
+        getMinLengthFieldValidationError(sampleMinLengthValidation)
+      ).toEqual(expectedResult);
     });
   });
 
