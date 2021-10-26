@@ -10,6 +10,7 @@ import {
 } from './models';
 import {
   checkIfArray,
+  checkIfEmptyArray,
   checkIfEmptyString,
   checkIfEmptyValue,
   checkIfFormDataValid,
@@ -158,6 +159,15 @@ describe('validation functions', () => {
     });
     it('should return true if array is passed in', () => {
       expect(checkIfArray(['one', 'two'])).toBe(true);
+    });
+  });
+
+  describe('checkIfEmptyArray', () => {
+    it('should return false is non-empty array is passed in', () => {
+      expect(checkIfEmptyArray([1, 2, 3])).toBe(false);
+    });
+    it('should return true is empty array is passed in', () => {
+      expect(checkIfEmptyArray([])).toBe(true);
     });
   });
 
