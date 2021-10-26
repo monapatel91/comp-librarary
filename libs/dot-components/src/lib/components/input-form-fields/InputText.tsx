@@ -106,7 +106,13 @@ export const DotInputText = ({
   useEffect(() => {
     // Do not proceed if debounce feature is turned
     // off or there is no event defined
-    if (!hasDebounce || !inputTextState || !inputTextState.changeEvent) return;
+    if (
+      !hasDebounce ||
+      !inputTextState ||
+      !inputTextState.changeEvent ||
+      !onChange
+    )
+      return;
     const handler = setTimeout(() => {
       onChange(inputTextState.changeEvent);
     }, DELAY_MS);
@@ -121,10 +127,13 @@ export const DotInputText = ({
           changeEvent: e,
           inputValue: e.target.value,
         })
-      : onChange(e);
+      : onChange?.(e);
   };
 
   const inputTextValue = hasDebounce ? inputTextState.inputValue : value;
+  // Don't use default value when debounce feature is enabled because
+  // in that case component is controlled
+  const defaultInputValue = hasDebounce ? undefined : defaultValue;
 
   return (
     <StyledTextField
@@ -133,7 +142,7 @@ export const DotInputText = ({
       autoComplete="off"
       autoFocus={autoFocus}
       classes={{ root: rootStyles }}
-      defaultValue={defaultValue}
+      defaultValue={defaultInputValue}
       disabled={disabled}
       error={error}
       fullWidth={fullWidth}

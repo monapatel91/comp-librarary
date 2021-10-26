@@ -1,7 +1,6 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { DotInputText } from './InputText';
-import { InputTextProps } from './InputText';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import { DotInputText, InputTextProps } from './InputText';
 import { DotIcon } from '../icon/Icon';
 
 const iconOptions = [null, 'warning-solid', 'error-solid'];

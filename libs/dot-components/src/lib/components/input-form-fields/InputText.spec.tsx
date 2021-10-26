@@ -231,4 +231,33 @@ describe('DotInputText', () => {
     userEvent.click(screen.getByText('Reset'));
     expect(inputField).toHaveValue('');
   });
+
+  describe('with defaultProp', () => {
+    const dataTestId = 'test-input';
+    const defaultValue = 'my default value';
+
+    const renderComponent = (hasDebounce = true) => {
+      render(
+        <DotInputText
+          data-testid={dataTestId}
+          defaultValue={defaultValue}
+          hasDebounce={hasDebounce ? true : undefined}
+          id="id-test"
+          name="test"
+        />
+      );
+    };
+
+    it("should render text coming from 'defaultValue' prop when 'hasDebounce' feature is NOT enabled", async () => {
+      renderComponent(false);
+      const inputField = screen.getByTestId(dataTestId);
+      expect(inputField).toHaveValue(defaultValue);
+    });
+
+    it("should NOT render text coming from 'defaultValue' prop when 'hasDebounce' feature is enabled", async () => {
+      renderComponent(true);
+      const inputField = screen.getByTestId(dataTestId);
+      expect(inputField).not.toHaveValue(defaultValue);
+    });
+  });
 });
