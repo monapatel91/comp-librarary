@@ -11,6 +11,7 @@ import {
 import {
   checkIfEmptyValue,
   checkIfFormDataValid,
+  checkIfString,
   checkIfValidationApplies,
   getControlValidationFromConfig,
   getFieldValidation,
@@ -107,6 +108,24 @@ describe('validation functions', () => {
     });
     it('should return true if undefined is passed in', () => {
       expect(checkIfEmptyValue(undefined)).toBe(true);
+    });
+  });
+
+  describe('checkIfString', () => {
+    it('should return false if number is passed in', () => {
+      expect(checkIfString(23)).toBe(false);
+    });
+    it('should return false if array is passed in', () => {
+      expect(checkIfString(['one', 'two'])).toBe(false);
+    });
+    it('should return false if boolean is passed in', () => {
+      expect(checkIfString(true)).toBe(false);
+    });
+    it('should return false if object is passed in', () => {
+      expect(checkIfString({ isValid: true })).toBe(false);
+    });
+    it('should return true if string is passed in', () => {
+      expect(checkIfString('abc')).toBe(true);
     });
   });
 
