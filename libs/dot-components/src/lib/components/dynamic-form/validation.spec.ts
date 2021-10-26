@@ -9,6 +9,7 @@ import {
   ValidationField,
 } from './models';
 import {
+  checkIfEmptyString,
   checkIfEmptyValue,
   checkIfFormDataValid,
   checkIfString,
@@ -126,6 +127,18 @@ describe('validation functions', () => {
     });
     it('should return true if string is passed in', () => {
       expect(checkIfString('abc')).toBe(true);
+    });
+  });
+
+  describe('checkIfEmptyString', () => {
+    it('should return false if non-empty string is passed in', () => {
+      expect(checkIfEmptyString('abc')).toBe(false);
+    });
+    it('should return true if empty space is passed in', () => {
+      expect(checkIfEmptyString(' ')).toBe(true);
+    });
+    it('should return true if empty string is passed in', () => {
+      expect(checkIfEmptyString('')).toBe(true);
     });
   });
 
