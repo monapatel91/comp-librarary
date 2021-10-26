@@ -83,7 +83,7 @@ describe('Menu', () => {
     expect(loadingIndicator).toBeVisible();
   });
 
-  it('should close menu when "Tab" pressed', () => {
+  it('should trigger handleListKeyDown when "Tab" pressed', () => {
     const onLeave = jest.fn();
     render(
       <DotMenu
@@ -94,7 +94,26 @@ describe('Menu', () => {
       />
     );
     const menuItem = getMenuListItem('Batman');
+    expect(onLeave).not.toHaveBeenCalled();
+
     userEvent.type(menuItem, '{tab}');
+    expect(onLeave).toHaveBeenCalled();
+  });
+
+  it('should trigger handleClickAway when user clicks', () => {
+    const onLeave = jest.fn();
+    render(
+      <DotMenu
+        anchorEl={null}
+        data-testid="test-menu"
+        id="foo_bar"
+        menuItems={dummyMenuItems}
+        onLeave={onLeave}
+        open={true}
+      />
+    );
+    const menuItem = getMenuListItem('Batman');
+    userEvent.click(menuItem);
     expect(onLeave).toHaveBeenCalled();
   });
 
