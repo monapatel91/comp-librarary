@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { InputProps } from './InputFormFields.propTypes';
 import { DotIcon } from '../icon/Icon';
@@ -73,6 +73,13 @@ export const DotInputText = ({
     hasDebounce && getInitialState(value)
   );
 
+  const renderIcon = (iconType: 'warning' | 'error'): ReactNode => (
+    <DotIcon
+      data-testid={dataTestId && `${dataTestId}-${iconType}-icon`}
+      iconId={`${iconType}-solid`}
+    />
+  );
+
   const rootStyles = useStylesWithRootClass(
     rootClassName,
     className,
@@ -80,18 +87,8 @@ export const DotInputText = ({
   );
   const endAdornmentIcon =
     endIcon ||
-    (error && (
-      <DotIcon
-        data-testid={dataTestId && `${dataTestId}-error-icon`}
-        iconId="error-solid"
-      />
-    )) ||
-    (warning && (
-      <DotIcon
-        data-testid={dataTestId && `${dataTestId}-warning-icon`}
-        iconId="warning-solid"
-      />
-    ));
+    (error && renderIcon('error')) ||
+    (warning && renderIcon('warning'));
 
   // Used to control text value from the consumer component
   // when debounce feature is enabled

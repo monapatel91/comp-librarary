@@ -159,6 +159,39 @@ describe('DotInputText', () => {
     expect(inputField).toBeDisabled();
   });
 
+  describe('with icons', () => {
+    const dataTestId = 'test-input';
+    const renderComponent = (iconType: 'warning' | 'error') => {
+      render(
+        <DotInputText
+          data-testid={dataTestId}
+          id="id-test"
+          name="test"
+          warning={iconType === 'warning'}
+          error={iconType === 'error'}
+        />
+      );
+    };
+
+    it('should render warning icon', () => {
+      const iconType = 'warning';
+      renderComponent(iconType);
+      const warningIcon = screen.getByTestId(`${dataTestId}-${iconType}-icon`);
+      const errorIcon = screen.queryByTestId(`${dataTestId}-error-icon`);
+      expect(warningIcon).toBeVisible();
+      expect(errorIcon).not.toBeInTheDocument();
+    });
+
+    it('should render error icon', () => {
+      const iconType = 'error';
+      renderComponent(iconType);
+      const errorIcon = screen.getByTestId(`${dataTestId}-${iconType}-icon`);
+      const warningIcon = screen.queryByTestId(`${dataTestId}-warning-icon`);
+      expect(errorIcon).toBeVisible();
+      expect(warningIcon).not.toBeInTheDocument();
+    });
+  });
+
   it('should execute callback function for each key stroke', () => {
     const dataTestId = 'test-input';
     const handleChange = jest.fn();
