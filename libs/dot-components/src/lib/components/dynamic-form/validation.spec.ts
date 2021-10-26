@@ -22,6 +22,7 @@ import {
   checkIfValidationApplies,
   getControlValidationFromConfig,
   getFieldValidation,
+  getInvalidFieldValidation,
 } from './validation';
 import { InputTextProps } from '../input-form-fields/InputText';
 
@@ -356,6 +357,17 @@ describe('validation functions', () => {
           formValues
         );
         expect(result).toBe(true);
+      });
+    });
+  });
+
+  describe('getInvalidFieldValidation', () => {
+    it('should return correct object with error message as in the argument', () => {
+      const errorMessage = 'my error';
+      const result = getInvalidFieldValidation(errorMessage);
+      expect(result).toEqual({
+        isValid: false,
+        errorMessage,
       });
     });
   });
