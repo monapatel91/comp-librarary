@@ -166,6 +166,7 @@ export const DotMenu = ({
                 <MenuList
                   autoFocusItem={open}
                   className="dot-ul"
+                  data-testid={`${dataTestId}-menu`}
                   dense={dense}
                   id={id}
                   onKeyDown={handleListKeyDown}
