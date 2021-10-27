@@ -94,7 +94,7 @@ export const StyledIcon = styled(Icon)`
           content: "\\e9d0";
         }
 
-        &.icon-progeression:before {
+        &.icon-progression:before {
           content: "\\e9cf";
         }
 
