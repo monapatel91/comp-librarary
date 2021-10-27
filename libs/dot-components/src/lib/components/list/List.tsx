@@ -357,7 +357,7 @@ export const DotListItem = ({
   );
 
   const endIcon = (
-    <ListItemIcon>
+    <ListItemIcon className="dot-list-item-end-icon">
       <DotIcon iconId={endIconId} />
     </ListItemIcon>
   );

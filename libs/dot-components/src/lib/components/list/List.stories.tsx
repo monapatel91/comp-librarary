@@ -52,6 +52,7 @@ const mockListItems: Array<ListItemProps> = [
     divider: true,
   },
   {
+    endIconId: 'block',
     startIconId: 'block',
     text: 'Packages',
     href: mockHref,
