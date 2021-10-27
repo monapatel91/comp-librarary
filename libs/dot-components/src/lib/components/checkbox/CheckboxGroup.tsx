@@ -1,24 +1,24 @@
 import { FormHelperText, FormLabel } from '@material-ui/core';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import {
   endAdornmentClassName,
   groupLabelClassName,
   placementClassName,
+  rootClassName,
   startAdornmentClassName,
   StyledFormControl,
-  rootClassName,
 } from '../form-controls/FormControl.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
-  StyledCheckboxGroup,
-  rootClassName as checkboxRootClassName,
-  wrapperClassName,
   checkboxListClassName,
   checkboxListItemClassName,
+  rootClassName as checkboxRootClassName,
+  StyledCheckboxGroup,
+  wrapperClassName,
 } from './CheckboxGroup.styles';
 import { RadioGroupBaseProps } from '../radio/RadioGroup';
 import { DotFormGroup } from '../form-group/FormGroup';
-import { DotCheckbox, CheckboxProps } from '../checkbox/Checkbox';
+import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
 
 export interface CheckboxGroupProps extends RadioGroupBaseProps {
   /** Array of CheckboxProps to set by default */
@@ -36,11 +36,16 @@ export interface CheckboxGroupProps extends RadioGroupBaseProps {
   showSelectAll?: boolean;
 }
 
+// Have this outside of component to avoid having different
+// reference for the array and thus generate infinite loop
+// in use effect hook
+const DEFAULT_VALUES: CheckboxProps[] = [];
+
 export function DotCheckboxGroup({
   ariaLabel,
   className,
   'data-testid': dataTestId,
-  defaultValues = [],
+  defaultValues = DEFAULT_VALUES,
   disableGroup,
   endIcon,
   error,
@@ -66,6 +71,14 @@ export function DotCheckboxGroup({
   );
   const [selectedOptions, setSelectedOptions] = useState(defaultValues);
   const [allChecked, setAllChecked] = useState(false);
+
+  /* This will ensure that state can be updated from the outside */
+  useEffect(() => {
+    // Change only if new value is passed in
+    if (defaultValues !== DEFAULT_VALUES) {
+      setSelectedOptions(defaultValues);
+    }
+  }, [defaultValues]);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement>,
