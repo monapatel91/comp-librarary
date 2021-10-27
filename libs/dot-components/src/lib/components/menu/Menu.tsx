@@ -11,8 +11,8 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotProgress } from '../progress/Progress';
 import { rootClassName, StyledPopper } from './Menu.styles';
 
-const MENU_ITEM_HEIGHT_NORMAL = 36;
-const MENU_ITEM_HEIGHT_DENSE = 31;
+const MENU_ITEM_HEIGHT_NORMAL = 33;
+const MENU_ITEM_HEIGHT_DENSE = 28;
 const DEFAULT_MAX_VISIBLE_ITEMS = 7;
 
 export type PopperPlacement =
@@ -40,10 +40,12 @@ export interface MenuProps extends CommonProps {
   id: string;
   /** If true, will display a loading indicator in the menu */
   loading?: boolean;
-  /* Maximum number of visible menu items */
+  /** Maximum number of visible menu items */
   maxVisibleItems?: number;
   /** Array of items to be displayed inside the menu */
   menuItems: Array<MenuItemProps>;
+  /** Used to specify height of each menu item when custom component */
+  menuItemHeight?: number;
   /** Determines the placement of the menu */
   menuPlacement?: PopperPlacement;
   /** If true, the menu is open. */
@@ -79,6 +81,7 @@ export const DotMenu = ({
   id,
   loading = false,
   maxVisibleItems = DEFAULT_MAX_VISIBLE_ITEMS,
+  menuItemHeight,
   menuItems = [],
   menuPlacement = 'bottom',
   onLeave,
@@ -111,16 +114,24 @@ export const DotMenu = ({
 
   const calculateMaxHeight = (): number => {
     let visibleItems = maxVisibleItems;
-    const menuItemHeight = dense
-      ? MENU_ITEM_HEIGHT_DENSE
-      : MENU_ITEM_HEIGHT_NORMAL;
-    if (!maxVisibleItems || maxVisibleItems <= 0) {
-      return DEFAULT_MAX_VISIBLE_ITEMS * menuItemHeight;
+    let itemHeight;
+
+    if (menuItemHeight) {
+      itemHeight = menuItemHeight;
+    } else {
+      itemHeight = dense ? MENU_ITEM_HEIGHT_DENSE : MENU_ITEM_HEIGHT_NORMAL;
     }
+
+    if (!maxVisibleItems || maxVisibleItems <= 0) {
+      return DEFAULT_MAX_VISIBLE_ITEMS * (itemHeight + 3);
+    }
+
     if (maxVisibleItems > menuItems.length) {
       visibleItems = menuItems.length;
     }
-    return visibleItems * menuItemHeight;
+
+    // + 3 is for bottom margin of menuItem
+    return visibleItems * (itemHeight + 3);
   };
 
   return (
@@ -155,6 +166,7 @@ export const DotMenu = ({
                 <MenuList
                   autoFocusItem={open}
                   className="dot-ul"
+                  data-testid={`${dataTestId}-menu`}
                   dense={dense}
                   id={id}
                   onKeyDown={handleListKeyDown}
