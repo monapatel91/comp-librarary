@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactNode, Key } from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import { TableRow } from '@material-ui/core';
 
 import { DotBodyCell } from './TableCell';
@@ -22,7 +22,7 @@ export interface RowProps extends CommonProps {
   /** Event callback */
   onClick?: (event: MouseEvent, id: string) => void;
   /** uniques key of table cell */
-  rowKey: Key;
+  rowKey: string;
   /** if the row is selected */
   selected?: boolean;
 }

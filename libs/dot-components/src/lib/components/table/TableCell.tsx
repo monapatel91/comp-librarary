@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, Key, ReactNode } from 'react';
+import React, { useEffect, useState, useRef, ReactNode } from 'react';
 import { TableCell } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -8,7 +8,7 @@ export type textAlignment = 'center' | 'inherit' | 'justify' | 'left' | 'right';
 
 export interface CellProps extends CommonProps {
   align?: textAlignment;
-  cellKey?: Key;
+  cellKey?: string;
   colspan?: number;
   id?: string;
   noWrap?: boolean;
