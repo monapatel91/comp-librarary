@@ -285,14 +285,14 @@
         "attrs": [{}],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": ["progeression"],
+        "tags": ["progression"],
         "grid": 0
       },
       "attrs": [{}],
       "properties": {
-        "order": 916,
+        "order": 933,
         "id": 12,
-        "name": "progeression",
+        "name": "progression",
         "prevSize": 32,
         "code": 59855
       },
