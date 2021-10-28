@@ -26,7 +26,8 @@ export const StyledSidebar = styled.aside`
       flex-direction: column;
       justify-content: space-between;
       letter-spacing: 0.01em;
-      padding: ${theme.spacing(2)}px;
+      padding: ${theme.palette.product === 'agility' &&
+      `${theme.spacing(2)}px`};
       -o-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
       -moz-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
       -webkit-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
@@ -38,17 +39,22 @@ export const StyledSidebar = styled.aside`
         border-bottom-color: ${theme.palette.product === 'agility'
           ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
+        box-sizing: border-box;
         display: flex;
+        height: 40px;
         flex-shrink: 0;
         overflow: hidden;
-        margin-bottom: ${theme.spacing(1)}px;
-        padding: ${theme.spacing(0, 0, 1)};
+        margin-bottom: ${theme.palette.product === 'agility' &&
+        `${theme.spacing(1)}px`};
+        padding: ${theme.palette.product === 'agililty'
+          ? theme.spacing(0, 0, 1)
+          : theme.spacing(1, 2)};
         white-space: nowrap;
 
         .dot-app-logo {
           svg,
           img {
-            max-width: 206px;
+            max-width: 100%;
           }
         }
 
@@ -80,7 +86,9 @@ export const StyledSidebar = styled.aside`
         background-color: ${theme.palette.product === 'agility'
           ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
-        margin: ${theme.spacing(2, 0)};
+        margin: ${theme.palette.product === 'agility'
+          ? theme.spacing(2, 0)
+          : theme.spacing(1, 0)};
       }
 
       .MuiTypography-subtitle2 {
@@ -131,9 +139,10 @@ export const StyledSidebar = styled.aside`
         }
 
         .dot-list-item {
-          height: 40px;
+          height: ${theme.palette.product === 'agility' ? '40px' : '44px'};
           padding: 0;
-          margin-bottom: ${theme.spacing(1)}px;
+          margin-bottom: ${theme.palette.product === 'agility' &&
+          `${theme.spacing(1)}px`};
 
           &.MuiListItem-root.Mui-selected,
           &.MuiListItem-root.Mui-selected:hover,
@@ -214,6 +223,7 @@ export const StyledSidebar = styled.aside`
         flex-shrink: 0;
         font-size: 12px;
         overflow: hidden;
+        margin: ${theme.palette.product !== 'agility' && theme.spacing(0, 1)};
         padding: ${theme.spacing(1)}px;
 
         p.desc {
@@ -232,7 +242,7 @@ export const StyledSidebar = styled.aside`
       &.collapsed {
         overflow: hidden;
         padding: ${theme.spacing(2, 0)};
-        width: 58px;
+        width: 58px !important;
         -o-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         -moz-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         -webkit-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
@@ -246,11 +256,31 @@ export const StyledSidebar = styled.aside`
             width: 40px;
           }
         }
-        .dot-list-item {
-          margin-left: 0;
 
-          .dot-icon {
-            margin-left: ${theme.spacing(1)}px;
+        ul.side-nav {
+          width: 56px;
+          li.MuiListSubheader-root .MuiTypography-root {
+            opacity: 0;
+          }
+
+          .dot-list-item {
+            margin-left: 0;
+
+            .dot-icon {
+              margin-left: ${theme.spacing(1)}px;
+            }
+          }
+
+          .toggle-nav {
+            align-self: center;
+
+            .dot-icon {
+              transform: rotate(180deg);
+              -o-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+              -moz-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+              -webkit-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+              transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+            }
           }
         }
 
@@ -258,22 +288,6 @@ export const StyledSidebar = styled.aside`
         .MuiListItem-divider .dot-list-item-link,
         .dot-drawer {
           display: none;
-        }
-
-        ul.side-nav li.MuiListSubheader-root .MuiTypography-root {
-          opacity: 0;
-        }
-
-        .toggle-nav {
-          align-self: center;
-
-          .dot-icon {
-            transform: rotate(180deg);
-            -o-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
-            -moz-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
-            -webkit-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
-            transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
-          }
         }
 
         .powered-by {

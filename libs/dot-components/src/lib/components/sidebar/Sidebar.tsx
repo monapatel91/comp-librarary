@@ -128,7 +128,6 @@ export const DotSidebar = ({
             <DotIcon
               data-testid="back-button"
               iconId={backItem.iconId ? backItem.iconId : 'back'}
-              tooltip={backItem.title || backItem.text}
             />
             <DotTypography variant="h4">{backItem.text}</DotTypography>
           </div>
@@ -145,7 +144,7 @@ export const DotSidebar = ({
           items={navItems}
           nestedDrawerLeftSpacing={width}
           nestedListType={nestedListType}
-          width={width - 32}
+          width="100%"
         />
       )}
       {children}
@@ -155,6 +154,7 @@ export const DotSidebar = ({
             ariaLabel="collapse sidebar navigation"
             data-testid="toggle-nav"
             iconId="chevron-left"
+            iconSize="small"
             onClick={collapseNav}
           />
         </div>
