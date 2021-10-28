@@ -11,6 +11,7 @@ import { DotSidebar } from '../sidebar/Sidebar';
 import { ReactComponent as LogoDigitalAiWhite } from '../../assets/logo_digital_ai_white.svg';
 import { DotAppLogo } from '../app-logo/AppLogo';
 import {
+  denseClassName,
   rootClassName,
   StyledAppToolbar,
   StyledMainMenu,
@@ -31,6 +32,8 @@ export interface AppToolbarProps extends CommonProps {
   children?: ReactNode;
   /** Allow to display custom logo */
   customLogo?: ReactNode;
+  /** If true, the spacing and height will be shorter */
+  dense?: boolean;
   /** If provided will overwrite `mainMenuItems` and display within the main menu drawer */
   mainMenu?: ReactNode;
   /** If provided will display the menu items within the main menu drawer */
@@ -52,6 +55,7 @@ export const DotAppToolbar = ({
   className,
   customLogo,
   'data-testid': dataTestId,
+  dense = true,
   navItems = [],
   mainMenu,
   mainMenuItems,
@@ -61,9 +65,14 @@ export const DotAppToolbar = ({
   const showMainMenu = mainMenu || mainMenuItems;
   const displayAppLogo = appLogo || appLogoSmall;
   const mainMenuRef = useRef(null);
-  const rootClasses = useStylesWithRootClass(rootClassName, `${className}`);
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    className,
+    dense ? denseClassName : ''
+  );
   const mainMenuClasses = useStylesWithRootClass(
     'dot-main-menu',
+    dense ? denseClassName : '',
     menuOpen ? 'open' : ''
   );
 

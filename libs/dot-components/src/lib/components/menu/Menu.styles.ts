@@ -22,6 +22,7 @@ export const StyledPopper = styled(Popper)`
       }
 
       ul {
+        box-sizing: content-box;
         min-width: 112px;
         max-height: calc(100vh - 24px);
         overflow: auto;

@@ -1,11 +1,20 @@
+const baseSidebarUrl = '/iframe.html?id=components-sidebar--default';
+
 describe('dot-components: Sidebar component', () => {
-  before(() => cy.visit('/iframe.html?id=components-sidebar--default'));
+  before(() => cy.visit(baseSidebarUrl));
 
   it('should have a dot- prefix', () => {
     cy.get('aside').should('have.class', 'dot-sidebar');
   });
 
+  it('should have correct width when specified', () => {
+    cy.visit(`${baseSidebarUrl}&args=width:300`);
+    cy.get('aside.dot-sidebar').should('have.css', 'width', '300px');
+  });
+
   describe('style decisions', () => {
+    before(() => cy.visit(baseSidebarUrl));
+
     it('aside styling', () => {
       cy.get('aside.dot-sidebar')
         .should('have.css', 'background-color', 'rgb(243, 245, 246)')

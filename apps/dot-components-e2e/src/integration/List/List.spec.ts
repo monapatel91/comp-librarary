@@ -24,6 +24,10 @@ describe('dot-components: List component', () => {
       cy.get('span.dot-list-item-link').should('have.css', 'flex-grow', '2');
     });
 
+    it('end icon should be right aligned', () => {
+      cy.get('.dot-list-item-end-icon').should('have.css', 'min-width', 'auto');
+    });
+
     it('font format', () => {
       cy.get('span.dot-list-item-link p').should(
         'have.css',

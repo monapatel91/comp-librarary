@@ -99,6 +99,7 @@ export const DotSidebar = ({
       aria-label={ariaLabel}
       className={rootClasses}
       data-testid={`primaryNav ${dataTestId ? dataTestId : ''}`}
+      style={{ width: width }}
     >
       {displayHeader && (
         <header>

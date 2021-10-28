@@ -27,7 +27,6 @@ export const StyledSidebar = styled.aside`
       justify-content: space-between;
       letter-spacing: 0.01em;
       padding: ${theme.spacing(2)}px;
-      width: 240px;
       -o-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
       -moz-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
       -webkit-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
