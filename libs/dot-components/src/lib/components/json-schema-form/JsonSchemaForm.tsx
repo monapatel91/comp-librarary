@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent, KeyboardEvent } from 'react';
 import Form, {
   ErrorListProps,
   ErrorSchema,
@@ -29,6 +29,7 @@ interface JsonSchemaFormProps<T> {
   formData?: T;
   liveValidate?: boolean;
   onBlur?: (id: string, value: BoolNumStr) => void;
+  onCancel?: (event: MouseEvent<Element> | KeyboardEvent<Element>) => void;
   onChange?: (event: IChangeEvent<T>, errorSchema?: ErrorSchema) => unknown;
   onError?: (event: unknown) => unknown;
   onFocus?: (id: string, value: BoolNumStr) => void;
@@ -43,6 +44,7 @@ function DotJsonSchemaForm<T>({
   formData = {} as T,
   liveValidate,
   onBlur,
+  onCancel,
   onChange,
   onError,
   onFocus,
@@ -94,7 +96,9 @@ function DotJsonSchemaForm<T>({
     >
       <div>
         <DotButton isSubmit>Submit</DotButton>
-        <DotButton type="text">Cancel</DotButton>
+        <DotButton type="text" onClick={onCancel}>
+          Cancel
+        </DotButton>
       </div>
     </Form>
   );

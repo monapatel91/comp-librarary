@@ -160,6 +160,7 @@ const DemoJsonSchemaForm = () => {
           },
         }}
         onBlur={(event) => console.log('*** onBlur', event)}
+        onCancel={(event) => console.log('*** onCancel', event)}
         onChange={(event) => {
           console.log('*** onChange', event);
         }}
