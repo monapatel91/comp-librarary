@@ -42,6 +42,14 @@ export const StyledIcon = styled(Icon)`
           -moz-osx-font-smoothing: grayscale;
         }
 
+        &.icon-plugins:before {
+          content: "\\e9dc";
+        }
+
+        &.icon-integrations:before {
+          content: "\\e9db";
+        }
+
         &.icon-line-graph:before {
           content: "\\e9d7";
         }
@@ -86,7 +94,7 @@ export const StyledIcon = styled(Icon)`
           content: "\\e9d0";
         }
 
-        &.icon-progeression:before {
+        &.icon-progression:before {
           content: "\\e9cf";
         }
 

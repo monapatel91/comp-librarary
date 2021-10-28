@@ -40,6 +40,7 @@ export const DotTableBody = ({
     setOpen(!open);
   };
   const menuId = CreateUUID();
+  const tableId = CreateUUID();
   const onLeave = () => {
     setOpen(false);
   };
@@ -62,6 +63,7 @@ export const DotTableBody = ({
               key={index}
               onActionMenuTrigger={handleActionMenuTrigger}
               onClick={onRowClick}
+              rowKey={`${tableId}-row-${index}`}
               selected={row.selected}
             />
           );

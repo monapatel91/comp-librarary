@@ -99,6 +99,7 @@ export const DotSidebar = ({
       aria-label={ariaLabel}
       className={rootClasses}
       data-testid={`primaryNav ${dataTestId ? dataTestId : ''}`}
+      style={{ width: width }}
     >
       {displayHeader && (
         <header>
@@ -151,6 +152,7 @@ export const DotSidebar = ({
       {collapsable && (
         <div className="toggle-nav">
           <DotIconButton
+            ariaLabel="collapse sidebar navigation"
             data-testid="toggle-nav"
             iconId="chevron-left"
             onClick={collapseNav}

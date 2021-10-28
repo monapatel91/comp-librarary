@@ -74,6 +74,13 @@ export const App = () => {
       )),
     },
     {
+      startIconId: 'puzzle',
+      text: 'Demo Dynamic Form',
+      component: forwardRef((props, ref) => (
+        <Link {...props} to="/demo-dynamic-form" ref={ref} />
+      )),
+    },
+    {
       startIconId: 'package',
       text: 'CSS Grid',
       component: React.forwardRef((props, ref) => (
