@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   DotActionToolbar,
   DotBreadcrumbs,
@@ -12,13 +12,15 @@ import {
 } from './DemoJsonSchemaForm.styles';
 import { FormValidation } from 'react-jsonschema-form';
 
+const initialFormData = {
+  firstName: 'First',
+  middleName: 'Middle',
+  lastName: 'Last',
+  superHero: 'Batman',
+};
+
 const DemoJsonSchemaForm = () => {
-  const formData = {
-    firstName: 'First',
-    middleName: 'Middle',
-    lastName: 'Last',
-    superHero: 'Batman',
-  };
+  const [formData, setFormData] = useState({ ...initialFormData });
 
   const schema: JSONSchema6 = {
     properties: {
@@ -160,7 +162,9 @@ const DemoJsonSchemaForm = () => {
           },
         }}
         onBlur={(event) => console.log('*** onBlur', event)}
-        onCancel={(event) => console.log('*** onCancel', event)}
+        onCancel={(_event) => {
+          setFormData({ ...initialFormData });
+        }}
         onChange={(event) => {
           console.log('*** onChange', event);
         }}
