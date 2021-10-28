@@ -21,6 +21,7 @@ import {
   CustomTextWidget,
 } from './custom-widgets';
 import { DotButton } from '../button/Button';
+import { StyledActionButtonsRow } from './JsonSchemaForm.styles';
 
 type BoolNumStr = boolean | number | string;
 
@@ -94,12 +95,12 @@ function DotJsonSchemaForm<T>({
       validate={validate}
       widgets={widgets}
     >
-      <div>
+      <StyledActionButtonsRow>
         <DotButton isSubmit>Submit</DotButton>
         <DotButton type="text" onClick={onCancel}>
           Cancel
         </DotButton>
-      </div>
+      </StyledActionButtonsRow>
     </Form>
   );
 }
