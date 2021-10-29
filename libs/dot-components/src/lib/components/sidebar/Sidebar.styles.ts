@@ -241,20 +241,15 @@ export const StyledSidebar = styled.aside`
 
       &.collapsed {
         overflow: hidden;
-        padding: ${theme.spacing(2, 0)};
-        width: 58px !important;
+        padding: ${theme.palette.product === 'agility' && theme.spacing(2, 0)};
+        width: 58px;
         -o-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         -moz-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         -webkit-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
-        header {
-          padding-left: ${theme.spacing(1)}px;
-
-          .dot-app-logo {
-            text-align: center;
-            width: 40px;
-          }
+        header .dot-app-logo {
+          text-align: center;
         }
 
         ul.side-nav {
@@ -273,14 +268,6 @@ export const StyledSidebar = styled.aside`
 
           .toggle-nav {
             align-self: center;
-
-            .dot-icon {
-              transform: rotate(180deg);
-              -o-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
-              -moz-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
-              -webkit-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
-              transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
-            }
           }
         }
 

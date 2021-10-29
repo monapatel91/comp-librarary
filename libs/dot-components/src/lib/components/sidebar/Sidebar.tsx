@@ -78,11 +78,16 @@ export const DotSidebar = ({
   width = 240,
 }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(open);
+  const [sidebarWidth, setSidebarWidth] = useState(width);
   const displayHeader = title || (displayAppLogo && appLogo);
 
   useEffect(() => {
     setIsOpen(open);
   }, [open]);
+
+  useEffect(() => {
+    setSidebarWidth(isOpen ? width : 58);
+  }, [isOpen]);
 
   const collapseNav = () => {
     setIsOpen(!isOpen);
@@ -99,7 +104,7 @@ export const DotSidebar = ({
       aria-label={ariaLabel}
       className={rootClasses}
       data-testid={`primaryNav ${dataTestId ? dataTestId : ''}`}
-      style={{ width: width }}
+      style={{ width: sidebarWidth }}
     >
       {displayHeader && (
         <header>
@@ -142,7 +147,7 @@ export const DotSidebar = ({
           dense={true}
           disablePadding={true}
           items={navItems}
-          nestedDrawerLeftSpacing={width}
+          nestedDrawerLeftSpacing={sidebarWidth}
           nestedListType={nestedListType}
           width="100%"
         />
@@ -153,7 +158,7 @@ export const DotSidebar = ({
           <DotIconButton
             ariaLabel="collapse sidebar navigation"
             data-testid="toggle-nav"
-            iconId="chevron-left"
+            iconId={isOpen ? 'chevron-left' : 'chevron-right'}
             iconSize="small"
             onClick={collapseNav}
           />
