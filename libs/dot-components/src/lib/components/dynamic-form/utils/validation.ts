@@ -5,8 +5,8 @@ import {
   DynamicFormValidation,
   FieldValidation,
   ValidationField,
-} from './models';
-import { DATA_CONTROLS_WITHOUT_VALIDATION } from './constants';
+} from '../models';
+import { DATA_CONTROLS_WITHOUT_VALIDATION } from '../constants';
 import { checkIfHiddenControl, getOutputFormData } from './helpers';
 
 export const checkIfValidationApplies = (
