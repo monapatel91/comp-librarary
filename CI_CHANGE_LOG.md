@@ -1,5 +1,56 @@
 # Changelog
 
+## [1.3.0](https://github.com/digital-ai/dot-components/tree/1.3.0) (10/28/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.2.1...1.3.0)
+
+**Features:**
+
+- Forms [\#594](https://github.com/digital-ai/dot-components/issues/594)
+
+**Fixed bugs:**
+
+- AppToolbar height change breaks layout for consumer [\#733](https://github.com/digital-ai/dot-components/issues/733)
+- `DotMenu` max height calculation doesn't take paddings into the consideration [\#707](https://github.com/digital-ai/dot-components/issues/707)
+
+**Merged pull requests:**
+
+- D-19011: remove default MUI min width of end icon on list item [\#754](https://github.com/digital-ai/dot-components/pull/754) ([CWSites](https://github.com/CWSites))
+- Next \[MINOR\] release [\#753](https://github.com/digital-ai/dot-components/pull/753) ([monapatel91](https://github.com/monapatel91))
+- 27 oct2021 update name of progression icon [\#751](https://github.com/digital-ai/dot-components/pull/751) ([BojanKocijan](https://github.com/BojanKocijan))
+- D-19004: update readme link to be accurate [\#750](https://github.com/digital-ai/dot-components/pull/750) ([CWSites](https://github.com/CWSites))
+- D-18990: allow consumers to pass custom menu item height [\#749](https://github.com/digital-ai/dot-components/pull/749) ([CWSites](https://github.com/CWSites))
+- Updated icons 26 oct 2021 [\#748](https://github.com/digital-ai/dot-components/pull/748) ([BojanKocijan](https://github.com/BojanKocijan))
+- D-18992: Missing disabled prop of icon button when importing it to tablecell [\#745](https://github.com/digital-ai/dot-components/pull/745) ([monapatel91](https://github.com/monapatel91))
+- Icons: integrations, plugins [\#744](https://github.com/digital-ai/dot-components/pull/744) ([BojanKocijan](https://github.com/BojanKocijan))
+- Icons update oct 25 2021 [\#743](https://github.com/digital-ai/dot-components/pull/743) ([BojanKocijan](https://github.com/BojanKocijan))
+- S-79594: Add optional debounce prop to `DotInputText` [\#742](https://github.com/digital-ai/dot-components/pull/742) ([dmiletic85](https://github.com/dmiletic85))
+- D-18997: when specified width of sidebar, it should be applied properly [\#737](https://github.com/digital-ai/dot-components/pull/737) ([CWSites](https://github.com/CWSites))
+- S-76892: create generator for new components [\#736](https://github.com/digital-ai/dot-components/pull/736) ([CWSites](https://github.com/CWSites))
+- D-18986: update app toolbar to be dense by default [\#735](https://github.com/digital-ai/dot-components/pull/735) ([CWSites](https://github.com/CWSites))
+- D-18985: update menu list to be content-box sizing [\#734](https://github.com/digital-ai/dot-components/pull/734) ([CWSites](https://github.com/CWSites))
+- S-77126: Dynamic Form [\#717](https://github.com/digital-ai/dot-components/pull/717) ([dmiletic85](https://github.com/dmiletic85))
+
+## [1.2.1](https://github.com/digital-ai/dot-components/tree/1.2.1) (10/15/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.2.0...1.2.1)
+
+**Fixed bugs:**
+
+- Alpha .25 doesn't work well within agility dark theme [\#710](https://github.com/digital-ai/dot-components/issues/710)
+
+**Closed issues:**
+
+- Add `ariaLabel` prop on `DotIconButton` instance within `Sidebar` component [\#703](https://github.com/digital-ai/dot-components/issues/703)
+
+**Merged pull requests:**
+
+- next release [\#732](https://github.com/digital-ai/dot-components/pull/732) ([CWSites](https://github.com/CWSites))
+- D-18963: add ariaLabel to sidebar collapse button [\#731](https://github.com/digital-ai/dot-components/pull/731) ([CWSites](https://github.com/CWSites))
+- S-76840: update contributing guidelines and PR template [\#730](https://github.com/digital-ai/dot-components/pull/730) ([CWSites](https://github.com/CWSites))
+- D-18979: export `Tooltip` component [\#729](https://github.com/digital-ai/dot-components/pull/729) ([CWSites](https://github.com/CWSites))
+- Merge pull request \#719 from digital-ai/develop [\#727](https://github.com/digital-ai/dot-components/pull/727) ([CWSites](https://github.com/CWSites))
+
 ## [1.2.0](https://github.com/digital-ai/dot-components/tree/1.2.0) (10/14/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.1.1...1.2.0)

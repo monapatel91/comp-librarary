@@ -1,37 +1,43 @@
 import React, { ChangeEvent } from 'react';
-import { DotInputText, InputTextProps } from '../input-form-fields/InputText';
+import {
+  DotInputText,
+  InputTextProps,
+} from '../../input-form-fields/InputText';
 import {
   DotInputSelect,
   InputSelectProps,
-} from '../input-form-fields/InputSelect';
+} from '../../input-form-fields/InputSelect';
 import {
   DynamicFormConfig,
   DynamicFormControl,
   DynamicFormControlProps,
-  DynamicFormOutputData,
   DynamicFormState,
   DynamicFormStateData,
-  HiddenControl,
-} from './models';
+} from '../models';
 import {
   AutoCompleteProps,
   AutoCompleteValue,
   DotAutoComplete,
-} from '../auto-complete/AutoComplete';
-import { ButtonProps, DotButton } from '../button/Button';
-import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
+} from '../../auto-complete/AutoComplete';
+import { ButtonProps, DotButton } from '../../button/Button';
+import { CheckboxProps, DotCheckbox } from '../../checkbox/Checkbox';
 import {
   CheckboxGroupProps,
   DotCheckboxGroup,
-} from '../checkbox/CheckboxGroup';
-import { DotRadioGroup, RadioGroupProps } from '../radio/RadioGroup';
+} from '../../checkbox/CheckboxGroup';
+import { DotRadioGroup, RadioGroupProps } from '../../radio/RadioGroup';
 import { getFieldValidation } from './validation';
 import {
   DATA_CONTROLS,
   DATA_CONTROLS_WITHOUT_VALIDATION,
   INITIAL_STATE_ITEM,
-} from './constants';
-import { DotSwitch } from '../switch/Switch';
+} from '../constants';
+import { DotSwitch } from '../../switch/Switch';
+import {
+  checkIfHiddenControl,
+  getControlValue,
+  getFormDataFromInitialValues,
+} from './helpers';
 
 type AutoCompleteChangeHandler = (
   controlName: string
@@ -65,26 +71,6 @@ export interface UncontrolledInputArgs extends InputBaseArgs {
   formState?: DynamicFormState;
   handleClick?: () => void;
 }
-
-export const getControlValue = <T extends unknown>(
-  controlName: string,
-  data: DynamicFormStateData
-): T => {
-  return controlName in data && (data[controlName].value as T);
-};
-
-export const checkIfHiddenControl = (
-  hidden: HiddenControl,
-  formValues: DynamicFormOutputData
-) => {
-  if (!hidden) return false;
-  if (typeof hidden === 'boolean') return hidden;
-  try {
-    return hidden(formValues);
-  } catch (e) {
-    return false;
-  }
-};
 
 export const getInitialFormState = (
   config: DynamicFormConfig,
@@ -142,27 +128,6 @@ export const getInitialFormState = (
     }
   );
   return initialState;
-};
-
-export const getOutputFormData = (formState: DynamicFormState) => {
-  const outputData: DynamicFormOutputData = {};
-  for (const dataKey in formState.data) {
-    outputData[dataKey] = formState.data[dataKey].value;
-  }
-  return outputData;
-};
-
-export const getFormDataFromInitialValues = (config: DynamicFormConfig) => {
-  const formValues: DynamicFormOutputData = {};
-  config.controls.forEach(
-    ({ controlName, initialValue, controlType }: DynamicFormControl) => {
-      // Skip non-data controls (ignore buttons and other non-relevant elements)
-      // or hidden elements
-      if (!DATA_CONTROLS.includes(controlType)) return;
-      formValues[controlName] = initialValue ? initialValue : undefined;
-    }
-  );
-  return formValues;
 };
 
 export const buildInputTextControl = ({
