@@ -159,19 +159,19 @@ describe(' Sidebar - Back Button', () => {
     expect(goBack).toHaveBeenCalledTimes(2);
   });
 
-  it('should use backItem.title for backItem link and icon tooltips when title is provided', () => {
+  it('should use backItem.title for backItem link when title is provided', () => {
     render(<DotSidebar backItem={backItem} goBack={true} />);
-    expect(screen.getAllByTitle(backItem.title)).toHaveLength(2);
+    expect(screen.getAllByTitle(backItem.title)).toHaveLength(1);
   });
 
-  it('should use backItem.text for backItem link and icon tooltips when title is not provided', () => {
+  it('should use backItem.text for backItem link when title is not provided', () => {
     const noTitleBackItem: BackItemProps = {
       iconId: 'back',
       onClick: goBack,
       text: 'Home',
     };
     render(<DotSidebar backItem={noTitleBackItem} goBack={true} />);
-    expect(screen.getAllByTitle(noTitleBackItem.text)).toHaveLength(2);
+    expect(screen.getAllByTitle(noTitleBackItem.text)).toHaveLength(1);
   });
 });
 
