@@ -257,7 +257,6 @@ export const StyledSidebar = styled.aside`
           li.MuiListSubheader-root .MuiTypography-root {
             opacity: 0;
           }
-
           .dot-list-item {
             margin-left: 0;
 
