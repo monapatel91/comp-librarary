@@ -1,6 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { TextField } from '@material-ui/core';
 import { DotSidebar, SidebarProps } from './Sidebar';
 import { ReactComponent as DemoLogoDark } from '../../assets/demo-logo-dark.svg';
 import { ReactComponent as DemoLogoSmall } from '../../assets/demo-logo-small.svg';
@@ -28,7 +27,7 @@ export default {
       defaultValue: 'Release orchestration powered by',
     },
     children: {
-      defaultValue: <TextField placeholder="search" variant="outlined" />,
+      defaultValue: <span style={{ padding: '8px' }}>...Child Element</span>,
     },
     collapsable: {
       defaultValue: true,
@@ -100,7 +99,7 @@ export const Default: Story<SidebarProps> = (args) => {
           text: 'Feature Progression',
         },
         {
-          child: <TextField placeholder="search" variant="outlined" />,
+          child: <span style={{ padding: '8px' }}>...Child Element</span>,
         },
       ],
       text: 'Progressions',
