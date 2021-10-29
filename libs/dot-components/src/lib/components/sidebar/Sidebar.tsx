@@ -78,11 +78,16 @@ export const DotSidebar = ({
   width = 240,
 }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(open);
+  const [sidebarWidth, setSidebarWidth] = useState(width);
   const displayHeader = title || (displayAppLogo && appLogo);
 
   useEffect(() => {
     setIsOpen(open);
   }, [open]);
+
+  useEffect(() => {
+    setSidebarWidth(isOpen ? width : 58);
+  }, [isOpen]);
 
   const collapseNav = () => {
     setIsOpen(!isOpen);
@@ -99,7 +104,7 @@ export const DotSidebar = ({
       aria-label={ariaLabel}
       className={rootClasses}
       data-testid={`primaryNav ${dataTestId ? dataTestId : ''}`}
-      style={{ width: width }}
+      style={{ width: sidebarWidth }}
     >
       {displayHeader && (
         <header>
@@ -128,7 +133,6 @@ export const DotSidebar = ({
             <DotIcon
               data-testid="back-button"
               iconId={backItem.iconId ? backItem.iconId : 'back'}
-              tooltip={backItem.title || backItem.text}
             />
             <DotTypography variant="h4">{backItem.text}</DotTypography>
           </div>
@@ -143,9 +147,9 @@ export const DotSidebar = ({
           dense={true}
           disablePadding={true}
           items={navItems}
-          nestedDrawerLeftSpacing={width}
+          nestedDrawerLeftSpacing={sidebarWidth}
           nestedListType={nestedListType}
-          width={width - 32}
+          width="100%"
         />
       )}
       {children}
@@ -154,7 +158,8 @@ export const DotSidebar = ({
           <DotIconButton
             ariaLabel="collapse sidebar navigation"
             data-testid="toggle-nav"
-            iconId="chevron-left"
+            iconId={isOpen ? 'chevron-left' : 'chevron-right'}
+            iconSize="small"
             onClick={collapseNav}
           />
         </div>
