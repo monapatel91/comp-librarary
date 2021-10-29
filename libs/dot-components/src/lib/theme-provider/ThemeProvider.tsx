@@ -18,7 +18,7 @@ const typographyOptions: TypographyOptions = {
   allVariants: {
     fontStyle: 'normal',
     fontWeight: 400,
-    fontFeatureSettings: 'liga off',
+    fontFeatureSettings: 'normal',
     fontVariantLigatures: 'none',
   },
   h1: {
@@ -58,9 +58,8 @@ const typographyOptions: TypographyOptions = {
     marginBottom: 1,
   },
   subtitle2: {
-    fontFamily: 'Lato, sans-serif',
+    fontFamily: 'LatoBold, sans-serif',
     fontSize: 14,
-    fontWeight: 700,
     lineHeight: '20px',
     letterSpacing: '0.03em',
     marginBottom: 1,
