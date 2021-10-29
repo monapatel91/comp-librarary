@@ -36,6 +36,7 @@ interface JsonSchemaFormProps<T> {
   onFocus?: (id: string, value: BoolNumStr) => void;
   onSubmit?: (event: ISubmitEvent<T>) => void;
   schema: JSONSchema6;
+  submitButtonText?: string;
   uiSchema?: UiSchema;
   validate?: (formData: T, errors: FormValidation) => FormValidation;
 }
@@ -51,6 +52,7 @@ function DotJsonSchemaForm<T>({
   onFocus,
   onSubmit,
   schema,
+  submitButtonText = 'Submit',
   uiSchema,
   validate,
 }: JsonSchemaFormProps<T>) {
@@ -96,7 +98,7 @@ function DotJsonSchemaForm<T>({
       widgets={widgets}
     >
       <StyledActionButtonsRow>
-        <DotButton isSubmit>Submit</DotButton>
+        <DotButton isSubmit>{submitButtonText}</DotButton>
         <DotButton type="text" onClick={onCancel}>
           Cancel
         </DotButton>
