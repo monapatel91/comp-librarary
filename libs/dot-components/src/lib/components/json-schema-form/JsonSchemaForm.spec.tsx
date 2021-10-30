@@ -24,6 +24,7 @@ describe('DotJsonSchemaForm', () => {
 
       const inputElement = screen.getByRole('textbox');
       // I DON'T UNDERSTAND WHY THIS IS FAILING
+      fireEvent.click(inputElement);
       fireEvent.keyPress(inputElement, 'a');
       expect(changeSpy).toHaveBeenCalledTimes(1);
     });
