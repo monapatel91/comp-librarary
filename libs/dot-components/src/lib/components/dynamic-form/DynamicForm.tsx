@@ -23,7 +23,7 @@ import {
   checkIfFormDataValid,
   getControlValidationFromConfig,
   getFieldValidation,
-} from './validation';
+} from './utils/validation';
 import {
   buildAutocompleteControl,
   buildButtonControl,
@@ -35,11 +35,10 @@ import {
   buildResetControl,
   buildSubmitControl,
   buildSwitchControl,
-  checkIfHiddenControl,
   getInitialFormState,
-  getOutputFormData,
   InputBaseArgs,
-} from './helpers';
+} from './utils/formHelpers';
+import { checkIfHiddenControl, getOutputFormData } from './utils/helpers';
 import { CheckboxProps } from '../checkbox/Checkbox';
 
 export interface DynamicFormProps extends CommonProps {

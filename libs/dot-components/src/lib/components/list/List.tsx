@@ -72,7 +72,7 @@ export interface ListProps extends CommonProps {
   /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
   nestedListType?: NestedListType;
   /** Width of list, defaults to 240px */
-  width?: number;
+  width?: number | string;
 }
 
 export interface ListItemProps extends CommonProps {

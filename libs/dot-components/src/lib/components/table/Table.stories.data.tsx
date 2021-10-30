@@ -16,8 +16,12 @@ const actionItemArray = [
         Edit
       </DotButton>
     ),
+    dataTestId: 'edit-icon-button',
+    disabled: true,
+    iconId: 'edit',
     key: 'edit',
     onclick: () => handleEditClick(),
+    tooltip: 'Edit user',
   },
   {
     children: (
@@ -25,8 +29,12 @@ const actionItemArray = [
         Delete
       </DotButton>
     ),
+    dataTestId: 'delete-icon-button',
+    disabled: false,
+    iconId: 'delete',
     key: 'delete',
     onclick: () => handleDeleteClick(),
+    tooltip: 'Delete user',
   },
 ];
 

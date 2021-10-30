@@ -95,12 +95,14 @@ export const DotBodyCell = ({
             value.map((item, index) => (
               <DotIconButton
                 className="dot-table-action-icon"
-                iconId={item.key}
+                data-testid={item.dataTestId}
+                disabled={item.disabled}
+                iconId={item.iconId}
                 iconSize="small"
                 key={`${cellKey}-icon-${index}`}
                 onClick={item.onclick}
                 size="small"
-                disabled={item.disabled}
+                tooltip={item.tooltip}
               />
             ))
           )}

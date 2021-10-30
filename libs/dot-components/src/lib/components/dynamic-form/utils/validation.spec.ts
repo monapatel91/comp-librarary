@@ -7,7 +7,7 @@ import {
   FieldValidation,
   IsRequired,
   ValidationField,
-} from './models';
+} from '../models';
 import {
   checkIfArray,
   checkIfArrayRequiredInvalid,
@@ -28,7 +28,7 @@ import {
   getMinLengthFieldValidationError,
   getRequiredFieldValidationError,
 } from './validation';
-import { InputTextProps } from '../input-form-fields/InputText';
+import { InputTextProps } from '../../input-form-fields/InputText';
 
 describe('validation functions', () => {
   const formValues = {

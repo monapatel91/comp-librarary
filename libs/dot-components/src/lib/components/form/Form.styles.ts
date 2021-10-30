@@ -10,7 +10,7 @@ import { groupClassName as radioGroupClass } from '../radio/RadioGroup.styles';
 
 export const rootClassName = 'dot-form';
 
-export const StyledForm = styled.form`
+export const StyledFormContainer = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
       margin: ${theme.spacing(3, 0)};

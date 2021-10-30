@@ -19,7 +19,6 @@ describe('dot-components: Sidebar component', () => {
       cy.get('aside.dot-sidebar')
         .should('have.css', 'background-color', 'rgb(243, 245, 246)')
         .and('have.css', 'color', 'rgb(59, 72, 92)')
-        .and('have.css', 'padding-top', '16px')
         .and('have.css', 'width', '240px');
     });
 
@@ -30,12 +29,12 @@ describe('dot-components: Sidebar component', () => {
     });
 
     it('nav item', () => {
-      cy.get('.dot-list-item').should('have.css', 'height', '40px');
+      cy.get('.dot-list-item').should('have.css', 'height', '44px');
     });
 
     it('nav divider', () => {
       cy.get('hr.MuiDivider-root')
-        .should('have.css', 'margin-top', '16px')
+        .should('have.css', 'margin-top', '8px')
         .and('have.css', 'background-color', 'rgb(227, 229, 232)');
     });
 
