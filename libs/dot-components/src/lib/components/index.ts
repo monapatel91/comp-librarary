@@ -62,6 +62,7 @@ export { CssGrid } from './css-grid/CssGrid';
 export { CssGridDebug } from './css-grid/CssGridDebug';
 export { DotDialog } from './dialog/Dialog';
 export { DotDrawer } from './drawer/Drawer';
+export { DotJsonSchemaForm } from './json-schema-form/JsonSchemaForm';
 export { DotEmptyState } from './empty-state/EmptyState';
 export { DotForm } from './form/Form';
 export { DotFormGroup } from './form-group/FormGroup';

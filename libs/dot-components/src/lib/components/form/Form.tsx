@@ -1,7 +1,7 @@
 import React, { FormEvent, ReactNode } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { rootClassName, StyledForm } from './Form.styles';
+import { rootClassName, StyledFormContainer } from './Form.styles';
 
 export interface FormProps extends CommonProps {
   /** The content for the Form. **/
@@ -20,14 +20,15 @@ export const DotForm = ({
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   return (
-    <StyledForm
+    <form
       aria-label={ariaLabel}
-      className={rootClasses}
       data-testid={dataTestId}
       noValidate
       onSubmit={onSubmit}
     >
-      {children}
-    </StyledForm>
+      <StyledFormContainer className={rootClasses}>
+        {children}
+      </StyledFormContainer>
+    </form>
   );
 };
