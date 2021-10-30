@@ -1,5 +1,5 @@
-export * from './CustomCheckboxWidget';
-export * from './CustomTextWidget';
-export * from './CustomCheckboxesWidget';
-export * from './CustomSelectWidget';
-export * from './CustomRadioWidget';
+export { CustomCheckboxWidget } from './CustomCheckboxWidget';
+export { CustomTextWidget } from './CustomTextWidget';
+export { CustomCheckboxesWidget } from './CustomCheckboxesWidget';
+export { CustomSelectWidget } from './CustomSelectWidget';
+export { CustomRadioWidget } from './CustomRadioWidget';
