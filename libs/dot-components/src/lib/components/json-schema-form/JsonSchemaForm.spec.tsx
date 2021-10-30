@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '../../testing-utils';
 
-import { DotThemeProvider } from '../../theme-provider/ThemeProvider';
 import { DotJsonSchemaForm } from './JsonSchemaForm';
 
 describe('DotJsonSchemaForm', () => {
@@ -10,19 +9,17 @@ describe('DotJsonSchemaForm', () => {
       expect.assertions(1);
       const changeSpy = jest.fn();
       render(
-        <DotThemeProvider>
-          <DotJsonSchemaForm
-            schema={{
-              properties: {
-                stringField: {
-                  type: 'string',
-                  title: 'String field',
-                },
+        <DotJsonSchemaForm
+          schema={{
+            properties: {
+              stringField: {
+                type: 'string',
+                title: 'String field',
               },
-            }}
-            onChange={changeSpy}
-          />
-        </DotThemeProvider>
+            },
+          }}
+          onChange={changeSpy}
+        />
       );
 
       const inputElement = screen.getByRole('textbox');
@@ -36,18 +33,16 @@ describe('DotJsonSchemaForm', () => {
     it('should use DotInputText components for string fields', () => {
       expect.assertions(1);
       render(
-        <DotThemeProvider>
-          <DotJsonSchemaForm
-            schema={{
-              properties: {
-                stringField: {
-                  type: 'string',
-                  title: 'String field',
-                },
+        <DotJsonSchemaForm
+          schema={{
+            properties: {
+              stringField: {
+                type: 'string',
+                title: 'String field',
               },
-            }}
-          />
-        </DotThemeProvider>
+            },
+          }}
+        />
       );
 
       const inputElement = screen.getByRole('textbox');
@@ -57,21 +52,19 @@ describe('DotJsonSchemaForm', () => {
     it('should display error in hint if there is an error', () => {
       expect.assertions(2);
       render(
-        <DotThemeProvider>
-          <DotJsonSchemaForm
-            schema={{
-              properties: {
-                stringField: {
-                  type: 'string',
-                  title: 'String field',
-                  description: 'Description of field',
-                },
+        <DotJsonSchemaForm
+          schema={{
+            properties: {
+              stringField: {
+                type: 'string',
+                title: 'String field',
+                description: 'Description of field',
               },
-              required: ['stringField'],
-            }}
-            liveValidate={true}
-          />
-        </DotThemeProvider>
+            },
+            required: ['stringField'],
+          }}
+          liveValidate={true}
+        />
       );
 
       const description = screen.queryByText('Description of field');
@@ -83,22 +76,20 @@ describe('DotJsonSchemaForm', () => {
     it('should display description in hint if there is no error', () => {
       expect.assertions(2);
       render(
-        <DotThemeProvider>
-          <DotJsonSchemaForm
-            formData={{ stringField: 'test value' }}
-            liveValidate={true}
-            schema={{
-              properties: {
-                stringField: {
-                  type: 'string',
-                  title: 'String field',
-                  description: 'Description of field',
-                },
+        <DotJsonSchemaForm
+          formData={{ stringField: 'test value' }}
+          liveValidate={true}
+          schema={{
+            properties: {
+              stringField: {
+                type: 'string',
+                title: 'String field',
+                description: 'Description of field',
               },
-              required: ['stringField'],
-            }}
-          />
-        </DotThemeProvider>
+            },
+            required: ['stringField'],
+          }}
+        />
       );
 
       const description = screen.queryByText('Description of field');
@@ -110,19 +101,17 @@ describe('DotJsonSchemaForm', () => {
     it('should render a password field if that is the format specified', () => {
       expect.assertions(1);
       render(
-        <DotThemeProvider>
-          <DotJsonSchemaForm
-            schema={{
-              properties: {
-                stringField: {
-                  type: 'string',
-                  title: 'Password',
-                  format: 'password',
-                },
+        <DotJsonSchemaForm
+          schema={{
+            properties: {
+              stringField: {
+                type: 'string',
+                title: 'Password',
+                format: 'password',
               },
-            }}
-          />
-        </DotThemeProvider>
+            },
+          }}
+        />
       );
 
       const inputElement = screen.getByLabelText('Password');
@@ -134,28 +123,26 @@ describe('DotJsonSchemaForm', () => {
     it('should use a select field when specific in the uiSchema', () => {
       expect.assertions(1);
       render(
-        <DotThemeProvider>
-          <DotJsonSchemaForm
-            schema={{
-              properties: {
-                selectField: {
+        <DotJsonSchemaForm
+          schema={{
+            properties: {
+              selectField: {
+                type: 'string',
+                title: 'Select field',
+                uniqueItems: true,
+                items: {
                   type: 'string',
-                  title: 'Select field',
-                  uniqueItems: true,
-                  items: {
-                    type: 'string',
-                    enum: ['', 'Option 1', 'Option 2', 'Option 3'],
-                  },
+                  enum: ['', 'Option 1', 'Option 2', 'Option 3'],
                 },
               },
-            }}
-            uiSchema={{
-              selectField: {
-                'ui:widget': 'select',
-              },
-            }}
-          />
-        </DotThemeProvider>
+            },
+          }}
+          uiSchema={{
+            selectField: {
+              'ui:widget': 'select',
+            },
+          }}
+        />
       );
 
       const selectElement = screen.getByLabelText('Select field');
@@ -167,32 +154,30 @@ describe('DotJsonSchemaForm', () => {
     it('should use a checkboxes field when specific in the uiSchema', () => {
       expect.assertions(1);
       render(
-        <DotThemeProvider>
-          <DotJsonSchemaForm
-            schema={{
-              properties: {
-                checkboxesField: {
-                  type: 'array',
-                  title: 'Checkboxes field',
-                  uniqueItems: true,
-                  items: {
-                    type: 'string',
-                    anyOf: [
-                      { title: 'Title 1', const: 'value1' },
-                      { title: 'Title 2', const: 'value2' },
-                      { title: 'Title 3', const: 'value3' },
-                    ],
-                  },
+        <DotJsonSchemaForm
+          schema={{
+            properties: {
+              checkboxesField: {
+                type: 'array',
+                title: 'Checkboxes field',
+                uniqueItems: true,
+                items: {
+                  type: 'string',
+                  anyOf: [
+                    { title: 'Title 1', const: 'value1' },
+                    { title: 'Title 2', const: 'value2' },
+                    { title: 'Title 3', const: 'value3' },
+                  ],
                 },
               },
-            }}
-            uiSchema={{
-              checkboxesField: {
-                'ui:widget': 'checkboxes',
-              },
-            }}
-          />
-        </DotThemeProvider>
+            },
+          }}
+          uiSchema={{
+            checkboxesField: {
+              'ui:widget': 'checkboxes',
+            },
+          }}
+        />
       );
 
       const checkboxes = screen.getAllByRole('checkbox');
@@ -204,28 +189,26 @@ describe('DotJsonSchemaForm', () => {
     it('should use a radio field when specific in the uiSchema', () => {
       expect.assertions(1);
       render(
-        <DotThemeProvider>
-          <DotJsonSchemaForm
-            schema={{
-              properties: {
-                radioField: {
+        <DotJsonSchemaForm
+          schema={{
+            properties: {
+              radioField: {
+                type: 'string',
+                title: 'Radio field',
+                uniqueItems: true,
+                items: {
                   type: 'string',
-                  title: 'Radio field',
-                  uniqueItems: true,
-                  items: {
-                    type: 'string',
-                    enum: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
-                  },
+                  enum: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
                 },
               },
-            }}
-            uiSchema={{
-              radioField: {
-                'ui:widget': 'radio',
-              },
-            }}
-          />
-        </DotThemeProvider>
+            },
+          }}
+          uiSchema={{
+            radioField: {
+              'ui:widget': 'radio',
+            },
+          }}
+        />
       );
 
       const radios = screen.getAllByRole('radio');
