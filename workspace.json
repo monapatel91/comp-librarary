@@ -79,7 +79,8 @@
           },
           "outputs": ["coverage/apps/demo"]
         }
-      }
+      },
+      "tags": []
     },
     "demo-e2e": {
       "root": "apps/demo-e2e",
@@ -105,7 +106,9 @@
             "lintFilePatterns": ["apps/demo-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["demo"]
     },
     "dot-components": {
       "root": "libs/dot-components",
@@ -192,7 +195,8 @@
           },
           "outputs": ["{options.outputPath}"]
         }
-      }
+      },
+      "tags": []
     },
     "dot-components-e2e": {
       "root": "apps/dot-components-e2e",
@@ -218,7 +222,9 @@
             "lintFilePatterns": ["apps/dot-components-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["dot-components"]
     },
     "testing-utils": {
       "root": "libs/testing-utils",
@@ -232,7 +238,8 @@
             "lintFilePatterns": ["libs/testing-utils/**/*.{ts,tsx,js,jsx}"]
           }
         }
-      }
+      },
+      "tags": []
     },
     "vsm-hub": {
       "root": "apps/vsm-hub",
@@ -305,7 +312,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "vsm-hub-e2e": {
       "root": "apps/vsm-hub-e2e",
@@ -331,11 +339,10 @@
             "lintFilePatterns": ["apps/vsm-hub-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["vsm-hub"]
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
   },
   "schematics": {
     "@nrwl/react": {
@@ -352,6 +359,5 @@
         "linter": "eslint"
       }
     }
-  },
-  "defaultProject": "demo"
+  }
 }
