@@ -28,6 +28,32 @@
       }
     }
   },
+  "projects": {
+    "demo": {
+      "tags": []
+    },
+    "demo-e2e": {
+      "tags": [],
+      "implicitDependencies": ["demo"]
+    },
+    "dot-components": {
+      "tags": []
+    },
+    "dot-components-e2e": {
+      "tags": [],
+      "implicitDependencies": ["dot-components"]
+    },
+    "testing-utils": {
+      "tags": []
+    },
+    "vsm-hub": {
+      "tags": []
+    },
+    "vsm-hub-e2e": {
+      "tags": [],
+      "implicitDependencies": ["vsm-hub"]
+    }
+  },
   "targetDependencies": {
     "build": [
       {
@@ -35,25 +61,5 @@
         "projects": "dependencies"
       }
     ]
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
-      }
-    }
-  },
-  "defaultProject": "demo"
+  }
 }
