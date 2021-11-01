@@ -22,6 +22,7 @@
     "affected:dep-graph": "nx affected:dep-graph",
     "affected": "nx affected",
     "format": "nx format:write",
+    "format:pre-commit": "yarn format --uncommitted",
     "format:check": "nx format:check",
     "update": "nx migrate latest",
     "workspace-schematic": "nx workspace-schematic",
