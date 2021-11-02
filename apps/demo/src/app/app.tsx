@@ -9,7 +9,6 @@ import {
 } from '@digital-ai/dot-components';
 import { Routes } from '../app/routes/Routes';
 
-import './app.scss';
 import { Link } from 'react-router-dom';
 
 const topNavItems: Array<IconButtonProps> = [
@@ -116,6 +115,7 @@ export const App = () => {
     <>
       <DotAppToolbar
         avatar={userAvatar}
+        dense={true}
         navItems={topNavItems}
         mainMenu={customMainMenu}
         mainMenuItems={sideNavItems}
