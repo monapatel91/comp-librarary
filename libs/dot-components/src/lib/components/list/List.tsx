@@ -311,14 +311,17 @@ export const DotListItem = ({
     const flyoutMenus = document.getElementsByClassName('dot-flyout-menu');
     Array.from(flyoutMenus as HTMLCollectionOf<HTMLElement>).forEach(
       (flyoutMenu) => {
-        if (flyoutMenu.classList.contains(`dot-flyout-menu-${index}`)) {
-          if (open && flyoutMenu.style.display === 'none') {
-            flyoutMenu.style.display = 'inherit';
-            toggle = false;
-          }
-        } else {
-          flyoutMenu.style.display = 'none';
+        const isFlyoutMenu = flyoutMenu.classList.contains(
+          `dot-flyout-menu-${index}`
+        );
+        const isHidden = flyoutMenu.style.display === 'none';
+        let displayStyle = 'none';
+
+        if (isFlyoutMenu && open && isHidden) {
+          displayStyle = 'inherit';
+          toggle = false;
         }
+        flyoutMenu.style.display = displayStyle;
       }
     );
 
@@ -345,9 +348,8 @@ export const DotListItem = ({
   const getChevronIcon = () => {
     if (nestedListType !== 'expandable') {
       return 'chevron-right';
-    } else {
-      return open ? 'chevron-up' : 'chevron-down';
     }
+    return open ? 'chevron-up' : 'chevron-down';
   };
 
   const startIcon = (
