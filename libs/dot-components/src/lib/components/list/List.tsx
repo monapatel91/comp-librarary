@@ -249,7 +249,7 @@ export const DotList = ({
         return (
           <DotListItem
             component={item.component}
-            data-testid={`${dataTestId}-item`}
+            data-testid={`${dataTestId}-item-${index}`}
             divider={item.divider}
             endIconId={item.endIconId}
             href={item.href}
@@ -352,7 +352,7 @@ export const DotListItem = ({
 
   const startIcon = (
     <ListItemIcon>
-      <DotIcon iconId={startIconId} tooltip={tooltip} />
+      <DotIcon iconId={startIconId} />
     </ListItemIcon>
   );
 
@@ -371,7 +371,11 @@ export const DotListItem = ({
   }, []);
   return (
     <>
-      <DotTooltip title={tooltip}>
+      <DotTooltip
+        data-testid={`${dataTestId}-tooltip`}
+        placement="top-start"
+        title={tooltip || title}
+      >
         <StyledListItem
           aria-label={ariaLabel}
           button
@@ -382,14 +386,18 @@ export const DotListItem = ({
           href={onClick ? null : href}
           onClick={onClick || !href ? handleClick : null}
           selected={isFlyout ? open : selected}
-          title={title}
         >
           <span className={listItemLinkClassName}>
             {startIconId && startIcon}
             <DotTypography variant={textVariant}>{text}</DotTypography>
           </span>
           {items.length > 0 ? (
-            <DotLink color="inherit" onClick={toggleOpen} underline="none">
+            <DotLink
+              color="inherit"
+              data-testid={`${dataTestId}-link`}
+              onClick={toggleOpen}
+              underline="none"
+            >
               <DotIcon className="toggle-display" iconId={getChevronIcon()} />
             </DotLink>
           ) : (

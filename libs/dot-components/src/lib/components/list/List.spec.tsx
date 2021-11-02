@@ -46,6 +46,7 @@ const mockListItems: Array<ListItemProps> = [
     startIconId: 'block',
     text: 'Packages',
     href: '/packages',
+    tooltip: 'The Dark Knight',
   },
 ];
 
@@ -184,6 +185,18 @@ describe('ListItem', () => {
     };
     const listItemProps: ListItemProps = props;
     expect(listItemProps).toEqual(props);
+  });
+
+  it('should only display one tooltip', () => {
+    const testId = 'tooltip_unit_test';
+    render(<DotList data-testid={testId} items={mockListItems} />);
+    const listItem = screen.getByTestId(`${testId}-item-3`);
+    const tooltip = screen.queryAllByTitle('The Dark Knight');
+
+    userEvent.hover(listItem);
+    waitFor(() => {
+      expect(tooltip).toHaveLength(1);
+    });
   });
 
   xit("should have 'aria-label' attribute with correct value", () => {
