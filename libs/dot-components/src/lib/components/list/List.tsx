@@ -18,6 +18,7 @@ import { DotDrawer } from '../drawer/Drawer';
 import { DotIcon } from '../icon/Icon';
 import { DotLink } from '../link/Link';
 import { DotMenu, PopperPlacement } from '../menu/Menu';
+import { flyoutMenuClassName } from '../menu/Menu.styles';
 import { DotTooltip } from '../tooltip/Tooltip';
 import {
   flyoutItemLinkClassName,
@@ -31,7 +32,7 @@ import {
   StyledListItem,
 } from './List.styles';
 import { CreateUUID } from '../createUUID';
-import { DotTypography } from '../typography/Typography';
+import { DotTypography, TypographyVariant } from '../typography/Typography';
 
 export type NestedListType = 'drawer' | 'expandable' | 'menu';
 
@@ -146,21 +147,23 @@ const NestedList = ({
 
   if (type === 'menu') {
     const menuItems = items.map((item, index) => {
-      const { href, startIconId, onClick, title, text } = item;
-      const startIcon = <DotIcon iconId={startIconId} title={title} />;
+      const { href, startIconId, onClick, title, tooltip, text } = item;
+      const startIcon = <DotIcon iconId={startIconId} />;
       return {
         children: (
-          <StyledListItem
-            className={flyoutItemClasses}
-            component={href && !onClick ? 'a' : null}
-            href={href}
-            onClick={onClick}
-          >
-            <span className={flyoutSpanClasses}>
-              {startIconId && startIcon}
-              <DotTypography variant="body1">{text}</DotTypography>
-            </span>
-          </StyledListItem>
+          <DotTooltip placement="top-start" title={tooltip || title}>
+            <StyledListItem
+              className={flyoutItemClasses}
+              component={href && !onClick ? 'a' : null}
+              href={href}
+              onClick={onClick}
+            >
+              <span className={flyoutSpanClasses}>
+                {startIconId && startIcon}
+                <DotTypography variant="body1">{text}</DotTypography>
+              </span>
+            </StyledListItem>
+          </DotTooltip>
         ),
         classes: '',
         key: String(index),
@@ -171,8 +174,9 @@ const NestedList = ({
       <DotMenu
         ariaLabel={ariaLabel}
         anchorEl={anchorEl}
-        className={`dot-flyout-menu dot-flyout-menu-${parentItemIndex}`}
+        className={flyoutMenuClassName}
         id={CreateUUID()}
+        menuItemHeight="auto"
         menuItems={menuItems}
         menuPlacement={menuPlacement}
         onLeave={onMenuLeave}
@@ -292,7 +296,7 @@ export const DotListItem = ({
   title,
   tooltip,
 }: ListItemProps) => {
-  const textVariant = divider ? 'h5' : 'body1';
+  const textVariant: TypographyVariant = divider ? 'h5' : 'body1';
   const isFlyout = nestedListType === 'menu' && items.length > 0;
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [open, setOpen] = useState(false);
@@ -311,17 +315,11 @@ export const DotListItem = ({
     const flyoutMenus = document.getElementsByClassName('dot-flyout-menu');
     Array.from(flyoutMenus as HTMLCollectionOf<HTMLElement>).forEach(
       (flyoutMenu) => {
-        const isFlyoutMenu = flyoutMenu.classList.contains(
-          `dot-flyout-menu-${index}`
-        );
-        const isHidden = flyoutMenu.style.display === 'none';
-        let displayStyle = 'none';
-
-        if (isFlyoutMenu && open && isHidden) {
-          displayStyle = 'inherit';
+        const display = flyoutMenu.style.display;
+        if (open && display === 'none') {
+          flyoutMenu.style.display = 'inherit';
           toggle = false;
         }
-        flyoutMenu.style.display = displayStyle;
       }
     );
 
@@ -335,7 +333,8 @@ export const DotListItem = ({
     if (onClick) {
       event.stopPropagation();
       onClick(event);
-    } else if (component === 'li') {
+    }
+    if (component === 'li') {
       toggleOpen(event);
     }
   };

@@ -44,8 +44,8 @@ export interface MenuProps extends CommonProps {
   maxVisibleItems?: number;
   /** Array of items to be displayed inside the menu */
   menuItems: Array<MenuItemProps>;
-  /** Used to specify height of each menu item when custom component */
-  menuItemHeight?: number;
+  /** Used to specify height of each menu item when custom component, set to "auto" if no specific height is needed or leave empty for auto calculation based on `maxVisibleItems` */
+  menuItemHeight?: number | string;
   /** Determines the placement of the menu */
   menuPlacement?: PopperPlacement;
   /** If true, the menu is open. */
@@ -112,9 +112,14 @@ export const DotMenu = ({
     }
   };
 
-  const calculateMaxHeight = (): number => {
+  const calculateMaxHeight = (): number | string => {
     let visibleItems = maxVisibleItems;
     let itemHeight;
+
+    // if menuItemHeight is "auto" don't calculate maxHeight
+    if (typeof menuItemHeight === 'string') {
+      return menuItemHeight;
+    }
 
     if (menuItemHeight) {
       itemHeight = menuItemHeight;
