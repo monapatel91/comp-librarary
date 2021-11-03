@@ -262,7 +262,9 @@ describe('DotInputText', () => {
     const inputField = screen.getByTestId(dataTestId);
     expect(inputField).toHaveValue(initialValue);
     userEvent.click(screen.getByText('Reset'));
-    expect(inputField).toHaveValue('');
+    waitFor(() => {
+      expect(inputField).toHaveValue('');
+    });
   });
 
   describe('with defaultProp', () => {

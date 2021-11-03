@@ -115,6 +115,7 @@ const DemoJsonSchemaForm = () => {
     ],
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const validate: (formData: any, errors: FormValidation) => FormValidation = (
     data,
     errors
