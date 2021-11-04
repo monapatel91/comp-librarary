@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '../../testing-utils';
+import { render, screen } from '../../testing-utils';
 import userEvent from '@testing-library/user-event';
 import { DotMenu, MenuProps, MenuItemProps, PopperPlacement } from './Menu';
 
@@ -146,6 +146,21 @@ describe('Menu', () => {
       expect(menuElement).toHaveStyle({ height: '196px' });
     });
 
+    it('when menuItemHeight is "auto"', () => {
+      const dataTestId = 'test-id';
+      render(
+        <DotMenu
+          data-testid={dataTestId}
+          id="foo_bar"
+          menuItems={dummyMenuItems}
+          open={true}
+          menuItemHeight="auto"
+        />
+      );
+      const menuElement = screen.getByTestId(`${dataTestId}-menu`);
+      expect(menuElement).toHaveStyle({ height: 'auto' });
+    });
+
     it('when maxVisibleItems is not default of 7', () => {
       const dataTestId = 'test-id';
       render(
@@ -163,26 +178,36 @@ describe('Menu', () => {
   });
 
   describe('Accessibility', () => {
-    it('should trigger handleListKeyDown when "Tab" pressed', () => {
-      const onLeave = jest.fn();
+    it('should not trigger handleListKeyDown when onLeave not passed', () => {
+      const pressB = jest.fn();
       const dataTestId = 'test-menu';
       render(
         <DotMenu
           data-testid={dataTestId}
           id="foo_bar"
           menuItems={dummyMenuItems}
-          onLeave={onLeave}
+          onLeave={pressB}
           open={true}
         />
       );
       const menuElement = screen.getByTestId(dataTestId);
       userEvent.type(menuElement, 'b');
-      expect(onLeave).not.toHaveBeenCalled();
+      expect(pressB).not.toHaveBeenCalled();
+    });
+
+    it('should trigger handleListKeyDown when "Tab" pressed', () => {
+      const pressTab = jest.fn();
+      render(
+        <DotMenu
+          id="foo_bar"
+          menuItems={dummyMenuItems}
+          onLeave={pressTab}
+          open={true}
+        />
+      );
 
       userEvent.tab();
-      waitFor(() => {
-        expect(onLeave).toHaveBeenCalled();
-      });
+      expect(pressTab).toHaveBeenCalled();
     });
 
     it("should have 'aria-label' attribute with correct value", () => {

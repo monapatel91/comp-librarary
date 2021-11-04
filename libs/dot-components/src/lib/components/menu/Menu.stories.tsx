@@ -56,7 +56,7 @@ export const Default: Story<MenuProps> = (args) => {
   const menuItems = [
     {
       children: (
-        <DotLink href="#" title="Batman">
+        <DotLink href="#" tooltip="Batman">
           Batman
         </DotLink>
       ),

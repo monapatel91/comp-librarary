@@ -315,10 +315,13 @@ export const DotListItem = ({
     const flyoutMenus = document.getElementsByClassName('dot-flyout-menu');
     Array.from(flyoutMenus as HTMLCollectionOf<HTMLElement>).forEach(
       (flyoutMenu) => {
-        const display = flyoutMenu.style.display;
-        if (open && display === 'none') {
-          flyoutMenu.style.display = 'inherit';
-          toggle = false;
+        if (flyoutMenu.classList.contains(`dot-flyout-menu-${index}`)) {
+          if (open && flyoutMenu.style.display === 'none') {
+            flyoutMenu.style.display = 'inherit';
+            toggle = false;
+          }
+        } else {
+          flyoutMenu.style.display = 'none';
         }
       }
     );
