@@ -113,19 +113,13 @@ export const DotMenu = ({
   };
 
   const calculateItemHeight = (): number | string => {
-    let itemHeight;
+    const itemHeightType = typeof menuItemHeight;
 
-    if (typeof menuItemHeight === 'string') {
+    if (itemHeightType === 'number' || itemHeightType === 'string') {
       return menuItemHeight;
-    }
-
-    if (typeof menuItemHeight === 'number') {
-      itemHeight = menuItemHeight;
     } else {
-      itemHeight = dense ? MENU_ITEM_HEIGHT_DENSE : MENU_ITEM_HEIGHT_NORMAL;
+      return dense ? MENU_ITEM_HEIGHT_DENSE : MENU_ITEM_HEIGHT_NORMAL;
     }
-
-    return itemHeight;
   };
 
   const calculateMaxHeight = (): number | string => {
