@@ -16,6 +16,11 @@ export default {
         password: '***password***',
       },
     },
+    submitButtonProps: {
+      defaultValue: {
+        disabled: false,
+      },
+    },
     onSubmit: {
       action: 'submitted',
     },

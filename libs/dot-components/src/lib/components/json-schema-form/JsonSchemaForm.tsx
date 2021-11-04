@@ -1,4 +1,4 @@
-import React, { MouseEvent, KeyboardEvent } from 'react';
+import React, { MouseEvent, KeyboardEvent, useEffect } from 'react';
 import Form, {
   ErrorListProps,
   ErrorSchema,
@@ -22,6 +22,7 @@ import {
 } from './custom-widgets';
 import { DotButton } from '../button/Button';
 import { StyledActionButtonsRow } from './JsonSchemaForm.styles';
+import { SubmitButtonProps } from '../dialog/Dialog';
 
 type BoolNumStr = boolean | number | string;
 
@@ -36,6 +37,8 @@ interface JsonSchemaFormProps<T> {
   onFocus?: (id: string, value: BoolNumStr) => void;
   onSubmit?: (event: ISubmitEvent<T>) => void;
   schema: JSONSchema6;
+  submitButtonProps?: SubmitButtonProps;
+  /** DEPRECATED, DO NOT USE */
   submitButtonText?: string;
   uiSchema?: UiSchema;
   validate?: (formData: T, errors: FormValidation) => FormValidation;
@@ -52,10 +55,21 @@ function DotJsonSchemaForm<T>({
   onFocus,
   onSubmit,
   schema,
-  submitButtonText = 'Submit',
+  submitButtonProps,
+  submitButtonText,
   uiSchema,
   validate,
 }: JsonSchemaFormProps<T>) {
+
+  useEffect(() => {
+    // deprecation warning
+    if (submitButtonText) {
+      console.warn(
+        'The use of `submitButtonText` is deprecated and will be removed in the next major release, please use `submitButtonProps.label` instead.'
+      );
+    }
+  });
+
   const ObjectFieldTemplate = ({ properties }: ObjectFieldTemplateProps) => (
     <StyledFormContainer className={rootClassName}>
       {properties.map((property) => property.content)}
@@ -98,7 +112,20 @@ function DotJsonSchemaForm<T>({
       widgets={widgets}
     >
       <StyledActionButtonsRow>
-        <DotButton isSubmit>{submitButtonText}</DotButton>
+        <DotButton
+          isSubmit
+          autoFocus={submitButtonProps?.autoFocus}
+          className={submitButtonProps?.className}
+          data-testid={submitButtonProps?.['data-testid']}
+          disabled={submitButtonProps?.disabled}
+          disableRipple={submitButtonProps?.disableRipple}
+          endIcon={submitButtonProps?.endIcon}
+          startIcon={submitButtonProps?.startIcon}
+          titleTooltip={submitButtonProps?.tooltip}
+          type={submitButtonProps?.type || 'primary'}
+        >
+          {submitButtonText || submitButtonProps?.label || 'Submit' }
+        </DotButton>
         <DotButton type="text" onClick={onCancel}>
           Cancel
         </DotButton>
