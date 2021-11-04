@@ -1,4 +1,4 @@
-import React, { MouseEvent, KeyboardEvent } from 'react';
+import React, { MouseEvent, KeyboardEvent, useEffect } from 'react';
 import Form, {
   ErrorListProps,
   ErrorSchema,
@@ -22,13 +22,9 @@ import {
 } from './custom-widgets';
 import { DotButton } from '../button/Button';
 import { StyledActionButtonsRow } from './JsonSchemaForm.styles';
-import { DialogButtonProps } from '../dialog/Dialog';
+import { SubmitButtonProps } from '../dialog/Dialog';
 
 type BoolNumStr = boolean | number | string;
-
-export interface SubmitButtonProps extends DialogButtonProps {
-  type?: 'primary' | 'destructive';
-}
 
 interface JsonSchemaFormProps<T> {
   disabled?: boolean;
@@ -42,6 +38,7 @@ interface JsonSchemaFormProps<T> {
   onSubmit?: (event: ISubmitEvent<T>) => void;
   schema: JSONSchema6;
   submitButtonProps?: SubmitButtonProps;
+  /** DEPRECATED, DO NOT USE */
   submitButtonText?: string;
   uiSchema?: UiSchema;
   validate?: (formData: T, errors: FormValidation) => FormValidation;
@@ -59,10 +56,20 @@ function DotJsonSchemaForm<T>({
   onSubmit,
   schema,
   submitButtonProps,
-  submitButtonText = 'Submit',
+  submitButtonText,
   uiSchema,
   validate,
 }: JsonSchemaFormProps<T>) {
+
+  useEffect(() => {
+    // deprecation warning
+    if (submitButtonText) {
+      console.warn(
+        'The use of `submitButtonText` is deprecated and will be removed in the next major release, please use `submitButtonProps.label` instead.'
+      );
+    }
+  });
+
   const ObjectFieldTemplate = ({ properties }: ObjectFieldTemplateProps) => (
     <StyledFormContainer className={rootClassName}>
       {properties.map((property) => property.content)}
@@ -117,7 +124,7 @@ function DotJsonSchemaForm<T>({
           titleTooltip={submitButtonProps?.tooltip}
           type={submitButtonProps?.type || 'primary'}
         >
-          {submitButtonText}
+          {submitButtonText ? submitButtonText : submitButtonProps?.label || 'Submit'}
         </DotButton>
         <DotButton type="text" onClick={onCancel}>
           Cancel
