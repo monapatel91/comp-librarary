@@ -256,6 +256,7 @@ describe('DotJsonSchemaForm', () => {
       const buttons = screen.getAllByRole('button');
       expect(buttons[0]).toHaveTextContent('Fire Away!');
     });
+
     it('should render submit button using default text if no submitButtonText is provided', () => {
       expect.assertions(1);
       render(
@@ -269,6 +270,7 @@ describe('DotJsonSchemaForm', () => {
       const buttons = screen.getAllByRole('button');
       expect(buttons[0]).toHaveTextContent('Submit');
     });
+
     it('should apply submitButtonProps to submit button', () => {
       expect.assertions(1);
       render(
@@ -284,6 +286,19 @@ describe('DotJsonSchemaForm', () => {
 
       const buttons = screen.getAllByRole('button');
       expect(buttons[0]).toBeDisabled();
+    });
+  
+    it('should have a deprecation warning if submitButtonText is provided', () => {
+      const consoleSpy = jest.spyOn(global.console, 'warn');
+      render(
+        <DotJsonSchemaForm
+          schema={{
+            properties: {},
+          }}
+          submitButtonText="Go Away"
+        />
+      );
+      expect(consoleSpy).toBeCalled();
     });
   });
 });
