@@ -22,8 +22,13 @@ import {
 } from './custom-widgets';
 import { DotButton } from '../button/Button';
 import { StyledActionButtonsRow } from './JsonSchemaForm.styles';
+import { DialogButtonProps } from '../dialog/Dialog';
 
 type BoolNumStr = boolean | number | string;
+
+export interface SubmitButtonProps extends DialogButtonProps {
+  type?: 'primary' | 'destructive';
+}
 
 interface JsonSchemaFormProps<T> {
   disabled?: boolean;
@@ -36,6 +41,7 @@ interface JsonSchemaFormProps<T> {
   onFocus?: (id: string, value: BoolNumStr) => void;
   onSubmit?: (event: ISubmitEvent<T>) => void;
   schema: JSONSchema6;
+  submitButtonProps?: SubmitButtonProps;
   submitButtonText?: string;
   uiSchema?: UiSchema;
   validate?: (formData: T, errors: FormValidation) => FormValidation;
@@ -52,6 +58,7 @@ function DotJsonSchemaForm<T>({
   onFocus,
   onSubmit,
   schema,
+  submitButtonProps,
   submitButtonText = 'Submit',
   uiSchema,
   validate,
@@ -98,7 +105,20 @@ function DotJsonSchemaForm<T>({
       widgets={widgets}
     >
       <StyledActionButtonsRow>
-        <DotButton isSubmit>{submitButtonText}</DotButton>
+        <DotButton
+          isSubmit
+          autoFocus={submitButtonProps?.autoFocus}
+          className={submitButtonProps?.className}
+          data-testid={submitButtonProps?.['data-testid']}
+          disabled={submitButtonProps?.disabled}
+          disableRipple={submitButtonProps?.disableRipple}
+          endIcon={submitButtonProps?.endIcon}
+          startIcon={submitButtonProps?.startIcon}
+          titleTooltip={submitButtonProps?.tooltip}
+          type={submitButtonProps?.type || 'primary'}
+        >
+          {submitButtonText}
+        </DotButton>
         <DotButton type="text" onClick={onCancel}>
           Cancel
         </DotButton>

@@ -216,4 +216,50 @@ describe('DotJsonSchemaForm', () => {
       expect(radios.length).toEqual(4);
     });
   });
+
+  describe('submit button', () => {
+    it('should render submit button using submitButtonText if provided', () => {
+      expect.assertions(1);
+      render(
+        <DotJsonSchemaForm
+          schema={{
+            properties: {},
+          }}
+          submitButtonText="Fire Away!"
+        />
+      );
+
+      const buttons = screen.getAllByRole('button');
+      expect(buttons[0]).toHaveTextContent('Fire Away!');
+    });
+    it('should render submit button using default text if no submitButtonText is provided', () => {
+      expect.assertions(1);
+      render(
+        <DotJsonSchemaForm
+          schema={{
+            properties: {},
+          }}
+        />
+      );
+
+      const buttons = screen.getAllByRole('button');
+      expect(buttons[0]).toHaveTextContent('Submit');
+    });
+    it('should apply submitButtonProps to submit button', () => {
+      expect.assertions(1);
+      render(
+        <DotJsonSchemaForm
+          schema={{
+            properties: {},
+          }}
+          submitButtonProps={{
+            disabled: true,
+          }}
+        />
+      );
+
+      const buttons = screen.getAllByRole('button');
+      expect(buttons[0]).toBeDisabled();
+    });
+  });
 });
