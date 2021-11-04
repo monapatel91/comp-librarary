@@ -44,8 +44,8 @@ export interface MenuProps extends CommonProps {
   maxVisibleItems?: number;
   /** Array of items to be displayed inside the menu */
   menuItems: Array<MenuItemProps>;
-  /** Used to specify height of each menu item when custom component */
-  menuItemHeight?: number;
+  /** Used to specify height of each menu item when custom component, set to "auto" if no specific height is needed or leave empty for auto calculation based on `maxVisibleItems` */
+  menuItemHeight?: number | string;
   /** Determines the placement of the menu */
   menuPlacement?: PopperPlacement;
   /** If true, the menu is open. */
@@ -112,14 +112,23 @@ export const DotMenu = ({
     }
   };
 
-  const calculateMaxHeight = (): number => {
-    let visibleItems = maxVisibleItems;
-    let itemHeight;
+  const calculateItemHeight = (): number | string => {
+    const itemHeightType = typeof menuItemHeight;
 
-    if (menuItemHeight) {
-      itemHeight = menuItemHeight;
+    if (itemHeightType === 'number' || itemHeightType === 'string') {
+      return menuItemHeight;
     } else {
-      itemHeight = dense ? MENU_ITEM_HEIGHT_DENSE : MENU_ITEM_HEIGHT_NORMAL;
+      return dense ? MENU_ITEM_HEIGHT_DENSE : MENU_ITEM_HEIGHT_NORMAL;
+    }
+  };
+
+  const calculateMaxHeight = (): number | string => {
+    let visibleItems = maxVisibleItems;
+    const itemHeight = calculateItemHeight();
+
+    // if menuItemHeight is "auto" set maxHeight as same
+    if (typeof itemHeight === 'string') {
+      return itemHeight;
     }
 
     if (!maxVisibleItems || maxVisibleItems <= 0) {
@@ -181,6 +190,7 @@ export const DotMenu = ({
                         className={`dot-li ${item.classes ? item.classes : ''}`}
                         onClick={(event) => handleSelect(event, item.key)}
                         key={index}
+                        style={{ height: calculateItemHeight() }}
                       >
                         {item.children}
                       </MenuItem>
