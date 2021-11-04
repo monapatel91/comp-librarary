@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '../../testing-utils';
+import { render, screen, waitFor } from '../../testing-utils';
 import userEvent from '@testing-library/user-event';
 import { DotMenu, MenuProps, MenuItemProps, PopperPlacement } from './Menu';
 
@@ -165,19 +165,24 @@ describe('Menu', () => {
   describe('Accessibility', () => {
     it('should trigger handleListKeyDown when "Tab" pressed', () => {
       const onLeave = jest.fn();
+      const dataTestId = 'test-menu';
       render(
         <DotMenu
+          data-testid={dataTestId}
           id="foo_bar"
           menuItems={dummyMenuItems}
           onLeave={onLeave}
           open={true}
         />
       );
-      const menuItem = getMenuListItem('Batman');
+      const menuElement = screen.getByTestId(dataTestId);
+      userEvent.type(menuElement, 'b');
       expect(onLeave).not.toHaveBeenCalled();
 
-      userEvent.type(menuItem, '{tab}');
-      expect(onLeave).toHaveBeenCalled();
+      userEvent.tab();
+      waitFor(() => {
+        expect(onLeave).toHaveBeenCalled();
+      });
     });
 
     it("should have 'aria-label' attribute with correct value", () => {
