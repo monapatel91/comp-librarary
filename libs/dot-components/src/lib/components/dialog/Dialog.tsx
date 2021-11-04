@@ -25,7 +25,7 @@ export interface DialogButtonProps extends BaseButtonProps {
 
 export interface SubmitButtonProps extends DialogButtonProps {
   /** The type of button to be used */
-  type: 'primary' | 'destructive';
+  type?: 'primary' | 'destructive';
 }
 
 export interface DialogProps extends CommonProps {
