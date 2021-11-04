@@ -247,9 +247,7 @@ describe('DotJsonSchemaForm', () => {
           schema={{
             properties: {},
           }}
-          submitButtonProps={{
-            label: 'Fire Away!',
-          }}
+          submitButtonText='Fire Away!'
         />
       );
 
@@ -272,7 +270,7 @@ describe('DotJsonSchemaForm', () => {
     });
 
     it('should apply submitButtonProps to submit button', () => {
-      expect.assertions(1);
+      expect.assertions(2);
       render(
         <DotJsonSchemaForm
           schema={{
@@ -280,12 +278,14 @@ describe('DotJsonSchemaForm', () => {
           }}
           submitButtonProps={{
             disabled: true,
+            label: 'Fire Away!',
           }}
         />
       );
 
       const buttons = screen.getAllByRole('button');
       expect(buttons[0]).toBeDisabled();
+      expect(buttons[0]).toHaveTextContent('Fire Away!');
     });
   
     it('should have a deprecation warning if submitButtonText is provided', () => {

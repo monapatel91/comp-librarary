@@ -124,7 +124,7 @@ function DotJsonSchemaForm<T>({
           titleTooltip={submitButtonProps?.tooltip}
           type={submitButtonProps?.type || 'primary'}
         >
-          {submitButtonText ? submitButtonText : submitButtonProps?.label || 'Submit'}
+          {submitButtonText || submitButtonProps?.label || 'Submit' }
         </DotButton>
         <DotButton type="text" onClick={onCancel}>
           Cancel
