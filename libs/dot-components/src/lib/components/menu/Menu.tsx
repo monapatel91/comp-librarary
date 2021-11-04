@@ -115,8 +115,6 @@ export const DotMenu = ({
   const calculateItemHeight = (): number | string => {
     let itemHeight;
 
-    console.log(`menu item height type: ${typeof menuItemHeight}`);
-
     if (typeof menuItemHeight === 'string') {
       return menuItemHeight;
     }
@@ -127,8 +125,6 @@ export const DotMenu = ({
       itemHeight = dense ? MENU_ITEM_HEIGHT_DENSE : MENU_ITEM_HEIGHT_NORMAL;
     }
 
-    console.log(`itemHeight: ${itemHeight}`);
-
     return itemHeight;
   };
 
@@ -136,11 +132,9 @@ export const DotMenu = ({
     let visibleItems = maxVisibleItems;
     const itemHeight = calculateItemHeight();
 
-    console.log(`item height passed to max height calc: ${itemHeight}`);
-
-    // if menuItemHeight is "auto" don't calculate maxHeight
+    // if menuItemHeight is "auto" set maxHeight as same
     if (typeof itemHeight === 'string') {
-      return;
+      return itemHeight;
     }
 
     if (!maxVisibleItems || maxVisibleItems <= 0) {
