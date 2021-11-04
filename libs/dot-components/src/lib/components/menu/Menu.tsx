@@ -112,19 +112,35 @@ export const DotMenu = ({
     }
   };
 
-  const calculateMaxHeight = (): number | string => {
-    let visibleItems = maxVisibleItems;
+  const calculateItemHeight = (): number | string => {
     let itemHeight;
 
-    // if menuItemHeight is "auto" don't calculate maxHeight
+    console.log(`menu item height type: ${typeof menuItemHeight}`);
+
     if (typeof menuItemHeight === 'string') {
       return menuItemHeight;
     }
 
-    if (menuItemHeight) {
+    if (typeof menuItemHeight === 'number') {
       itemHeight = menuItemHeight;
     } else {
       itemHeight = dense ? MENU_ITEM_HEIGHT_DENSE : MENU_ITEM_HEIGHT_NORMAL;
+    }
+
+    console.log(`itemHeight: ${itemHeight}`);
+
+    return itemHeight;
+  };
+
+  const calculateMaxHeight = (): number | string => {
+    let visibleItems = maxVisibleItems;
+    const itemHeight = calculateItemHeight();
+
+    console.log(`item height passed to max height calc: ${itemHeight}`);
+
+    // if menuItemHeight is "auto" don't calculate maxHeight
+    if (typeof itemHeight === 'string') {
+      return;
     }
 
     if (!maxVisibleItems || maxVisibleItems <= 0) {
@@ -186,6 +202,7 @@ export const DotMenu = ({
                         className={`dot-li ${item.classes ? item.classes : ''}`}
                         onClick={(event) => handleSelect(event, item.key)}
                         key={index}
+                        style={{ height: calculateItemHeight() }}
                       >
                         {item.children}
                       </MenuItem>

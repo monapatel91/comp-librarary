@@ -29,6 +29,8 @@ export const StyledPopper = styled(Popper)`
         overflow: auto;
 
         .dot-li {
+          min-height: auto;
+
           &:hover {
             background: ${theme.palette.product === 'agility' &&
             theme.palette.agilityInterface.fixedCol};

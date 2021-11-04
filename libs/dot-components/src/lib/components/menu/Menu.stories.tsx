@@ -25,6 +25,9 @@ export default {
   title: 'Components/Menu',
   component: DotMenu,
   argTypes: {
+    dense: {
+      defaultValue: true,
+    },
     id: {
       defaultValue: 'foobar',
     },
