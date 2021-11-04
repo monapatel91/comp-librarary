@@ -1,9 +1,31 @@
 import React from 'react';
 import { render, screen, fireEvent } from '../../testing-utils';
 
-import { DotJsonSchemaForm } from './JsonSchemaForm';
+import { DotJsonSchemaForm, JsonSchemaFormProps } from './JsonSchemaForm';
 
 describe('DotJsonSchemaForm', () => {
+  it('should have unchanged API', () => {
+    const onAnything = jest.fn();
+    const props = {
+      disabled: false,
+      formData: {},
+      liveValidate: true,
+      onBlur: onAnything,
+      onCancel: onAnything,
+      onChange: onAnything,
+      onError: onAnything,
+      onFocus: onAnything,
+      onSubmit: onAnything,
+      schema: {},
+      submitButtonProps: { label: 'Fire Away!' },
+      uiSchema: {},
+      validate: onAnything,
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const jsonSchemaFormProps: JsonSchemaFormProps<any> = props;
+    expect(jsonSchemaFormProps).toEqual(props);
+  });
+
   describe.skip('events', () => {
     it('should trigger the onChange event as changes are made to the form', () => {
       expect.assertions(1);
@@ -214,6 +236,69 @@ describe('DotJsonSchemaForm', () => {
 
       const radios = screen.getAllByRole('radio');
       expect(radios.length).toEqual(4);
+    });
+  });
+
+  describe('submit button', () => {
+    it('should render submit button using submitButtonText if provided', () => {
+      expect.assertions(1);
+      render(
+        <DotJsonSchemaForm
+          schema={{
+            properties: {},
+          }}
+          submitButtonText='Fire Away!'
+        />
+      );
+
+      const buttons = screen.getAllByRole('button');
+      expect(buttons[0]).toHaveTextContent('Fire Away!');
+    });
+
+    it('should render submit button using default text if no submitButtonText is provided', () => {
+      expect.assertions(1);
+      render(
+        <DotJsonSchemaForm
+          schema={{
+            properties: {},
+          }}
+        />
+      );
+
+      const buttons = screen.getAllByRole('button');
+      expect(buttons[0]).toHaveTextContent('Submit');
+    });
+
+    it('should apply submitButtonProps to submit button', () => {
+      expect.assertions(2);
+      render(
+        <DotJsonSchemaForm
+          schema={{
+            properties: {},
+          }}
+          submitButtonProps={{
+            disabled: true,
+            label: 'Fire Away!',
+          }}
+        />
+      );
+
+      const buttons = screen.getAllByRole('button');
+      expect(buttons[0]).toBeDisabled();
+      expect(buttons[0]).toHaveTextContent('Fire Away!');
+    });
+  
+    it('should have a deprecation warning if submitButtonText is provided', () => {
+      const consoleSpy = jest.spyOn(global.console, 'warn');
+      render(
+        <DotJsonSchemaForm
+          schema={{
+            properties: {},
+          }}
+          submitButtonText="Go Away"
+        />
+      );
+      expect(consoleSpy).toBeCalled();
     });
   });
 });
