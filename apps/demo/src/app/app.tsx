@@ -67,13 +67,6 @@ export const App = () => {
     },
     {
       startIconId: 'puzzle',
-      text: 'Demo JSON Schema Form',
-      component: forwardRef((props, ref) => (
-        <Link {...props} to="/demo-json-schema-form" ref={ref} />
-      )),
-    },
-    {
-      startIconId: 'puzzle',
       text: 'Demo Dynamic Form',
       component: forwardRef((props, ref) => (
         <Link {...props} to="/demo-dynamic-form" ref={ref} />
