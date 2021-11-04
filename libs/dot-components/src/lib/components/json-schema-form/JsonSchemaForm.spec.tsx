@@ -1,9 +1,31 @@
 import React from 'react';
 import { render, screen, fireEvent } from '../../testing-utils';
 
-import { DotJsonSchemaForm } from './JsonSchemaForm';
+import { DotJsonSchemaForm, JsonSchemaFormProps } from './JsonSchemaForm';
 
 describe('DotJsonSchemaForm', () => {
+  it('should have unchanged API', () => {
+    const onAnything = jest.fn();
+    const props = {
+      disabled: false,
+      formData: {},
+      liveValidate: true,
+      onBlur: onAnything,
+      onCancel: onAnything,
+      onChange: onAnything,
+      onError: onAnything,
+      onFocus: onAnything,
+      onSubmit: onAnything,
+      schema: {},
+      submitButtonProps: { label: 'Fire Away!' },
+      uiSchema: {},
+      validate: onAnything,
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const jsonSchemaFormProps: JsonSchemaFormProps<any> = props;
+    expect(jsonSchemaFormProps).toEqual(props);
+  });
+
   describe.skip('events', () => {
     it('should trigger the onChange event as changes are made to the form', () => {
       expect.assertions(1);
@@ -225,7 +247,9 @@ describe('DotJsonSchemaForm', () => {
           schema={{
             properties: {},
           }}
-          submitButtonText="Fire Away!"
+          submitButtonProps={{
+            label: 'Fire Away!',
+          }}
         />
       );
 
