@@ -5,7 +5,6 @@ import { DemoFormUncontrolled } from '../../demo-components/DemoFormUncontrolled
 import { DemoCssGrid } from '../../demo-components/DemoCssGrid';
 import { DemoCssGridTemplate } from '../../demo-components/DemoCssGridTemplate';
 import { UserTable } from '../../demo-components/UserTable';
-import { DemoJsonSchemaForm } from '../../demo-components/DemoJsonSchemaForm';
 import { DemoDynamicForm } from '../../demo-components/DemoDynamicForm';
 
 export const Routes = () => {
@@ -16,11 +15,6 @@ export const Routes = () => {
         path="/demo-form-uncontrolled"
         exact
         component={DemoFormUncontrolled}
-      />
-      <Route
-        path="/demo-json-schema-form"
-        exact
-        component={DemoJsonSchemaForm}
       />
       <Route path="/demo-dynamic-form" exact component={DemoDynamicForm} />
       <Route path="/css-grid" exact component={DemoCssGrid} />
