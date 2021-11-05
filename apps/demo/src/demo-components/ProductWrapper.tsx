@@ -1,24 +1,6 @@
 import React, { ReactNode } from 'react';
-import { darken } from '@material-ui/core';
-import {
-  DotButton,
-  DotIcon,
-  DotThemeProvider,
-  DotTypography,
-  lightColors,
-} from '@digital-ai/dot-components';
-import styled, { css } from 'styled-components';
-
-const StyledAgilityButton = styled(DotButton)`
-  ${({ theme }) => css`
-    background-color: ${lightColors.agilityGreen};
-
-    &:hover,
-    &:focus {
-      background-color: ${darken(lightColors.agilityGreen, 0.2)};
-    }
-  `}
-`;
+import { DotButton, DotIcon, DotTypography } from '@digital-ai/dot-components';
+import { AgilityThemeProvider } from './ProductThemeProvider';
 
 interface AgilityButtonProps {
   children: string | ReactNode;
@@ -26,13 +8,13 @@ interface AgilityButtonProps {
 
 export const AgilityButton = ({ children }: AgilityButtonProps) => {
   return (
-    <StyledAgilityButton
+    <DotButton
       disableRipple={true}
       size="small"
       startIcon={<DotIcon iconId="add-outlined" />}
     >
       {children}
-    </StyledAgilityButton>
+    </DotButton>
   );
 };
 
@@ -44,48 +26,40 @@ export const ProductButtons = () => {
         <DotButton>Hello World</DotButton>
         <pre>
           <code>{`
-          <DotButton>Hello World</DotButton>
+          <>
+            <DotTypography variant="h3">Dot Button</DotTypography>
+            <DotButton>Hello World</DotButton>
+          </>
           `}</code>
         </pre>
       </div>
       <div style={{ padding: '20px' }}>
-        <DotTypography variant="h3">Agility Button</DotTypography>
-        <DotThemeProvider>
+        <AgilityThemeProvider>
+          <DotTypography variant="h3">Agility Button</DotTypography>
           <AgilityButton>Hello World</AgilityButton>
-        </DotThemeProvider>
+        </AgilityThemeProvider>
         <pre>
           <code>{`
-          const StyledAgilityButton = styled(DotButton)\`
-            \${() => css\`
-              background-color: \${lightColors.agilityGreen};
-
-              &:hover,
-              &:focus {
-                background-color: \${darken(lightColors.agilityGreen, 0.2)};
-              }
-            \`
-          \`;
-
           interface AgilityButtonProps {
             children: string | ReactNode;
           }
 
           export const AgilityButton = ({ children }: AgilityButtonProps) => {
             return (
-              <StyledAgilityButton
+              <DotButton
                 disableRipple={true}
                 size="small"
                 startIcon={<DotIcon iconId="add-outlined" />}
               >
                 {children}
-              </StyledAgilityButton>
+              </DotButton>
             );
           };
 
-
-          <DotThemeProvider>
+          <AgilityThemeProvider>
+            <DotTypography variant="h3">Agility Button</DotTypography>
             <AgilityButton>Hello World</AgilityButton>
-          </DotThemeProvider>
+          </AgilityThemeProvider>
           `}</code>
         </pre>
       </div>
