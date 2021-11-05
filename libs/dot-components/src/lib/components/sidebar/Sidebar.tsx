@@ -99,6 +99,10 @@ export const DotSidebar = ({
     className
   );
 
+  const headerClasses = useStylesWithRootClass(
+    displayAppLogo ? 'app-logo' : ''
+  );
+
   return (
     <StyledSidebar
       aria-label={ariaLabel}
@@ -107,7 +111,7 @@ export const DotSidebar = ({
       style={{ width: sidebarWidth }}
     >
       {displayHeader && (
-        <header>
+        <header className={headerClasses}>
           {displayAppLogo && appLogo ? (
             <DotAppLogo
               appLogo={appLogo}
