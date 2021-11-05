@@ -18,6 +18,7 @@ import { DotDrawer } from '../drawer/Drawer';
 import { DotIcon } from '../icon/Icon';
 import { DotLink } from '../link/Link';
 import { DotMenu, PopperPlacement } from '../menu/Menu';
+import { flyoutMenuClassName } from '../menu/Menu.styles';
 import { DotTooltip } from '../tooltip/Tooltip';
 import {
   flyoutItemLinkClassName,
@@ -31,7 +32,7 @@ import {
   StyledListItem,
 } from './List.styles';
 import { CreateUUID } from '../createUUID';
-import { DotTypography } from '../typography/Typography';
+import { DotTypography, TypographyVariant } from '../typography/Typography';
 
 export type NestedListType = 'drawer' | 'expandable' | 'menu';
 
@@ -146,21 +147,23 @@ const NestedList = ({
 
   if (type === 'menu') {
     const menuItems = items.map((item, index) => {
-      const { href, startIconId, onClick, title, text } = item;
-      const startIcon = <DotIcon iconId={startIconId} title={title} />;
+      const { href, startIconId, onClick, title, tooltip, text } = item;
+      const startIcon = <DotIcon iconId={startIconId} />;
       return {
         children: (
-          <StyledListItem
-            className={flyoutItemClasses}
-            component={href && !onClick ? 'a' : null}
-            href={href}
-            onClick={onClick}
-          >
-            <span className={flyoutSpanClasses}>
-              {startIconId && startIcon}
-              <DotTypography variant="body1">{text}</DotTypography>
-            </span>
-          </StyledListItem>
+          <DotTooltip placement="top-start" title={tooltip || title}>
+            <StyledListItem
+              className={flyoutItemClasses}
+              component={href && !onClick ? 'a' : null}
+              href={href}
+              onClick={onClick}
+            >
+              <span className={flyoutSpanClasses}>
+                {startIconId && startIcon}
+                <DotTypography variant="body1">{text}</DotTypography>
+              </span>
+            </StyledListItem>
+          </DotTooltip>
         ),
         classes: '',
         key: String(index),
@@ -171,8 +174,9 @@ const NestedList = ({
       <DotMenu
         ariaLabel={ariaLabel}
         anchorEl={anchorEl}
-        className={`dot-flyout-menu dot-flyout-menu-${parentItemIndex}`}
+        className={flyoutMenuClassName}
         id={CreateUUID()}
+        menuItemHeight="auto"
         menuItems={menuItems}
         menuPlacement={menuPlacement}
         onLeave={onMenuLeave}
@@ -249,7 +253,7 @@ export const DotList = ({
         return (
           <DotListItem
             component={item.component}
-            data-testid={`${dataTestId}-item`}
+            data-testid={`${dataTestId}-item-${index}`}
             divider={item.divider}
             endIconId={item.endIconId}
             href={item.href}
@@ -292,7 +296,7 @@ export const DotListItem = ({
   title,
   tooltip,
 }: ListItemProps) => {
-  const textVariant = divider ? 'h5' : 'body1';
+  const textVariant: TypographyVariant = divider ? 'h5' : 'body1';
   const isFlyout = nestedListType === 'menu' && items.length > 0;
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [open, setOpen] = useState(false);
@@ -332,7 +336,8 @@ export const DotListItem = ({
     if (onClick) {
       event.stopPropagation();
       onClick(event);
-    } else if (component === 'li') {
+    }
+    if (component === 'li') {
       toggleOpen(event);
     }
   };
@@ -345,14 +350,13 @@ export const DotListItem = ({
   const getChevronIcon = () => {
     if (nestedListType !== 'expandable') {
       return 'chevron-right';
-    } else {
-      return open ? 'chevron-up' : 'chevron-down';
     }
+    return open ? 'chevron-up' : 'chevron-down';
   };
 
   const startIcon = (
     <ListItemIcon>
-      <DotIcon iconId={startIconId} tooltip={tooltip} />
+      <DotIcon iconId={startIconId} />
     </ListItemIcon>
   );
 
@@ -371,7 +375,11 @@ export const DotListItem = ({
   }, []);
   return (
     <>
-      <DotTooltip title={tooltip}>
+      <DotTooltip
+        data-testid={`${dataTestId}-tooltip`}
+        placement="top-start"
+        title={tooltip || title}
+      >
         <StyledListItem
           aria-label={ariaLabel}
           button
@@ -382,14 +390,18 @@ export const DotListItem = ({
           href={onClick ? null : href}
           onClick={onClick || !href ? handleClick : null}
           selected={isFlyout ? open : selected}
-          title={title}
         >
           <span className={listItemLinkClassName}>
             {startIconId && startIcon}
             <DotTypography variant={textVariant}>{text}</DotTypography>
           </span>
           {items.length > 0 ? (
-            <DotLink color="inherit" onClick={toggleOpen} underline="none">
+            <DotLink
+              color="inherit"
+              data-testid={`${dataTestId}-link`}
+              onClick={toggleOpen}
+              underline="none"
+            >
               <DotIcon className="toggle-display" iconId={getChevronIcon()} />
             </DotLink>
           ) : (

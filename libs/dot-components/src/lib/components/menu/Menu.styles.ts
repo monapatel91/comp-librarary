@@ -1,6 +1,7 @@
 import { Popper } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 
+export const flyoutMenuClassName = 'dot-flyout-menu';
 export const rootClassName = 'dot-menu';
 export const popperClassName = 'dot-popper';
 
@@ -28,6 +29,8 @@ export const StyledPopper = styled(Popper)`
         overflow: auto;
 
         .dot-li {
+          min-height: auto;
+
           &:hover {
             background: ${theme.palette.product === 'agility' &&
             theme.palette.agilityInterface.fixedCol};

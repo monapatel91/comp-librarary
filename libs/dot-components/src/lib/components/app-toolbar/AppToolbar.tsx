@@ -102,7 +102,7 @@ export const DotAppToolbar = ({
     // deprecation warning
     if (appName) {
       console.warn(
-        'The use of `appName` is deprecated and will be removed in the next major release, please use either `children` or `appLogo` isntead.'
+        'The use of `appName` is deprecated and will be removed in the next major release, please use either `children` or `appLogo` instead.'
       );
     }
   }, []);

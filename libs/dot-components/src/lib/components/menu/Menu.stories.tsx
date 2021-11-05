@@ -25,6 +25,9 @@ export default {
   title: 'Components/Menu',
   component: DotMenu,
   argTypes: {
+    dense: {
+      defaultValue: true,
+    },
     id: {
       defaultValue: 'foobar',
     },
@@ -56,7 +59,7 @@ export const Default: Story<MenuProps> = (args) => {
   const menuItems = [
     {
       children: (
-        <DotLink href="#" title="Batman">
+        <DotLink href="#" tooltip="Batman">
           Batman
         </DotLink>
       ),

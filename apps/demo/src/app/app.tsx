@@ -9,7 +9,6 @@ import {
 } from '@digital-ai/dot-components';
 import { Routes } from '../app/routes/Routes';
 
-import './app.scss';
 import { Link } from 'react-router-dom';
 
 const topNavItems: Array<IconButtonProps> = [
@@ -68,13 +67,6 @@ export const App = () => {
     },
     {
       startIconId: 'puzzle',
-      text: 'Demo JSON Schema Form',
-      component: forwardRef((props, ref) => (
-        <Link {...props} to="/demo-json-schema-form" ref={ref} />
-      )),
-    },
-    {
-      startIconId: 'puzzle',
       text: 'Demo Dynamic Form',
       component: forwardRef((props, ref) => (
         <Link {...props} to="/demo-dynamic-form" ref={ref} />
@@ -116,6 +108,7 @@ export const App = () => {
     <>
       <DotAppToolbar
         avatar={userAvatar}
+        dense={true}
         navItems={topNavItems}
         mainMenu={customMainMenu}
         mainMenuItems={sideNavItems}
