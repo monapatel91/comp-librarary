@@ -1,6 +1,11 @@
 import React, { ReactNode } from 'react';
 import { Button } from '@material-ui/core';
-import { DotButton, DotIcon, DotTypography } from '@digital-ai/dot-components';
+import {
+  DotButton,
+  DotIcon,
+  DotLink,
+  DotTypography,
+} from '@digital-ai/dot-components';
 import { CustomThemeProvider } from './ProductThemeProvider';
 
 interface CustomButtonProps {
@@ -51,8 +56,16 @@ export const ProductButtons = () => {
           created with its own set of props and defaults. When used with a
           product specific ThemeProvider the standard dot-component styles can
           be overridden. For more details on how to create a custom
-          ThemeProvider please see the documentation.
+          ThemeProvider please see the{' '}
+          <DotLink
+            href="https://github.com/digital-ai/dot-components/wiki/Product-Specific-Component-&-ThemeProvider"
+            target="_blank"
+          >
+            documentation
+          </DotLink>
+          .
         </DotTypography>
+
         <div style={{ padding: '10px 20px' }}>
           <pre>
             <code>{`
