@@ -9,6 +9,7 @@ export type { BreadcrumbItem } from './breadcrumbs/Breadcrumbs';
 export type { ButtonProps } from './button/Button';
 export type { CheckboxProps } from './checkbox/Checkbox';
 export type { CheckboxGroupProps } from './checkbox/CheckboxGroup';
+export type { SubmitButtonProps } from './dialog/Dialog';
 export type { DynamicFormProps } from './dynamic-form/DynamicForm';
 export type {
   DynamicFormConfig,
@@ -60,7 +61,7 @@ export { DotConfirmationDialog } from './confirmation-dialog/ConfirmationDialog'
 export { Cell, CssCell } from './css-grid/CssCell';
 export { CssGrid } from './css-grid/CssGrid';
 export { CssGridDebug } from './css-grid/CssGridDebug';
-export { DotDialog, SubmitButtonProps } from './dialog/Dialog';
+export { DotDialog } from './dialog/Dialog';
 export { DotDrawer } from './drawer/Drawer';
 export { DotEmptyState } from './empty-state/EmptyState';
 export { DotForm } from './form/Form';
