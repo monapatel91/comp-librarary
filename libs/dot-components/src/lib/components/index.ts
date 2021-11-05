@@ -60,7 +60,7 @@ export { DotConfirmationDialog } from './confirmation-dialog/ConfirmationDialog'
 export { Cell, CssCell } from './css-grid/CssCell';
 export { CssGrid } from './css-grid/CssGrid';
 export { CssGridDebug } from './css-grid/CssGridDebug';
-export { DotDialog } from './dialog/Dialog';
+export { DotDialog, SubmitButtonProps } from './dialog/Dialog';
 export { DotDrawer } from './drawer/Drawer';
 export { DotEmptyState } from './empty-state/EmptyState';
 export { DotForm } from './form/Form';
