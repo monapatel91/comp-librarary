@@ -50,6 +50,7 @@ export const productLightTheme = createTheme({
   typography: {
     ...typographyOptions,
     h3: {
+      ...typographyOptions.h3,
       color: '#589BB6',
     },
     allVariants: {
@@ -100,6 +101,7 @@ export const productDarkTheme = createTheme({
   typography: {
     ...typographyOptions,
     h3: {
+      ...typographyOptions.h3,
       color: '#9FC5D5',
     },
     allVariants: {
