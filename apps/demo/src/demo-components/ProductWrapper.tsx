@@ -42,12 +42,52 @@ export const ProductButtons = () => {
       <div style={{ padding: '20px' }}>
         <DotTypography variant="h3">Dot Button</DotTypography>
         <DotButton>Hello World</DotButton>
+        <pre>
+          <code>{`
+          <DotButton>Hello World</DotButton>
+          `}</code>
+        </pre>
       </div>
       <div style={{ padding: '20px' }}>
+        <DotTypography variant="h3">Agility Button</DotTypography>
         <DotThemeProvider>
-          <DotTypography variant="h3">Agility Button</DotTypography>
           <AgilityButton>Hello World</AgilityButton>
         </DotThemeProvider>
+        <pre>
+          <code>{`
+          const StyledAgilityButton = styled(DotButton)\`
+            \${() => css\`
+              background-color: \${lightColors.agilityGreen};
+
+              &:hover,
+              &:focus {
+                background-color: \${darken(lightColors.agilityGreen, 0.2)};
+              }
+            \`
+          \`;
+
+          interface AgilityButtonProps {
+            children: string | ReactNode;
+          }
+
+          export const AgilityButton = ({ children }: AgilityButtonProps) => {
+            return (
+              <StyledAgilityButton
+                disableRipple={true}
+                size="small"
+                startIcon={<DotIcon iconId="add-outlined" />}
+              >
+                {children}
+              </StyledAgilityButton>
+            );
+          };
+
+
+          <DotThemeProvider>
+            <AgilityButton>Hello World</AgilityButton>
+          </DotThemeProvider>
+          `}</code>
+        </pre>
       </div>
     </>
   );
