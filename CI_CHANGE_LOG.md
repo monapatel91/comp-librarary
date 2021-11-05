@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.3.2](https://github.com/digital-ai/dot-components/tree/1.3.2) (11/05/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.1...1.3.2)
+
+**Features:**
+
+- Add submitButtonProps prop to DotJsonSchemaForm component [\#774](https://github.com/digital-ai/dot-components/issues/774)
+- Export all neutral colors [\#770](https://github.com/digital-ai/dot-components/issues/770)
+
+**Merged pull requests:**
+
+- Patch release [\#780](https://github.com/digital-ai/dot-components/pull/780) ([TheKeithStewart](https://github.com/TheKeithStewart))
+- S-79985: temporarily remove react-jsonschema-form from library [\#776](https://github.com/digital-ai/dot-components/pull/776) ([TheKeithStewart](https://github.com/TheKeithStewart))
+- Add submitButtonProps prop to DotJsonSchemaForm component [\#775](https://github.com/digital-ai/dot-components/pull/775) ([selsemore](https://github.com/selsemore))
+- \#770 Add Neutral colors missing [\#771](https://github.com/digital-ai/dot-components/pull/771) ([angel-git](https://github.com/angel-git))
+- D-19042: remove duplicate tooltips [\#769](https://github.com/digital-ai/dot-components/pull/769) ([CWSites](https://github.com/CWSites))
+- S-76893: Webpack 4 - update peer dependencies [\#768](https://github.com/digital-ai/dot-components/pull/768) ([CWSites](https://github.com/CWSites))
+- S-79957: improve husky [\#765](https://github.com/digital-ai/dot-components/pull/765) ([CWSites](https://github.com/CWSites))
+- merge `master` \> `develop` [\#763](https://github.com/digital-ai/dot-components/pull/763) ([CWSites](https://github.com/CWSites))
+
 ## [1.3.1](https://github.com/digital-ai/dot-components/tree/1.3.1) (10/30/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.0...1.3.1)
@@ -446,7 +466,6 @@
 - D-17921 Remove the unused icons from the legend. [\#544](https://github.com/digital-ai/dot-components/pull/544) ([HakujouRyu](https://github.com/HakujouRyu))
 - bump material-ui to v4.11.2 [\#543](https://github.com/digital-ai/dot-components/pull/543) ([CWSites](https://github.com/CWSites))
 - Bring build changes into `develop` [\#541](https://github.com/digital-ai/dot-components/pull/541) ([CWSites](https://github.com/CWSites))
-- Issue \#539: Do not add tooltips to table cells [\#540](https://github.com/digital-ai/dot-components/pull/540) ([selsemore](https://github.com/selsemore))
 
 ## [v0.0.0-alpha.45](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.45) (05/18/2021)
 
@@ -501,6 +520,7 @@
 
 **Merged pull requests:**
 
+- Issue \#539: Do not add tooltips to table cells [\#540](https://github.com/digital-ai/dot-components/pull/540) ([selsemore](https://github.com/selsemore))
 - Issue \#535: Do not nest \<td\> in \<span\> in table skeleton data [\#538](https://github.com/digital-ai/dot-components/pull/538) ([selsemore](https://github.com/selsemore))
 - Issue \#536: \[Progression\] Application name validation is not trimming whitespaces when doing duplicate name check [\#537](https://github.com/digital-ai/dot-components/pull/537) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#523: Fix List/Sidebar to not show multiple flyout menus at once [\#525](https://github.com/digital-ai/dot-components/pull/525) ([selsemore](https://github.com/selsemore))
@@ -658,11 +678,10 @@
 **Merged pull requests:**
 
 - Add `hasActions` optional prop to `DotDialog` component [\#492](https://github.com/digital-ai/dot-components/pull/492) ([dmiletic85](https://github.com/dmiletic85))
-- Resolve disabled icon in Button Toggle Component [\#490](https://github.com/digital-ai/dot-components/pull/490) ([syedsabbas360](https://github.com/syedsabbas360))
 - Issue \#323: Fix skipped tests [\#487](https://github.com/digital-ai/dot-components/pull/487) ([selsemore](https://github.com/selsemore))
 - Issue \#474: Fix DotSidebar selection [\#486](https://github.com/digital-ai/dot-components/pull/486) ([selsemore](https://github.com/selsemore))
 - S-75429: Include Empty State Splash Screen on Progression Board [\#485](https://github.com/digital-ai/dot-components/pull/485) ([dmiletic85](https://github.com/dmiletic85))
-- Fix test type error [\#462](https://github.com/digital-ai/dot-components/pull/462) ([dmiletic85](https://github.com/dmiletic85))
+- S-75657: Ability to get a webhook url after creation [\#477](https://github.com/digital-ai/dot-components/pull/477) ([dmiletic85](https://github.com/dmiletic85))
 - Introduce Toggle Button to Component Library [\#458](https://github.com/digital-ai/dot-components/pull/458) ([syedsabbas360](https://github.com/syedsabbas360))
 
 ## [v0.0.0-alpha.25](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.25) (04/27/2021)
@@ -686,11 +705,11 @@
 
 **Merged pull requests:**
 
+- Resolve disabled icon in Button Toggle Component [\#490](https://github.com/digital-ai/dot-components/pull/490) ([syedsabbas360](https://github.com/syedsabbas360))
 - Issue \#483: Fix DotList tooltips [\#484](https://github.com/digital-ai/dot-components/pull/484) ([selsemore](https://github.com/selsemore))
 - Issue \#480: remove `items` prop from `AppToolbar` storybook config [\#482](https://github.com/digital-ai/dot-components/pull/482) ([CWSites](https://github.com/CWSites))
 - Issue \#460: allow flex items to display inline [\#481](https://github.com/digital-ai/dot-components/pull/481) ([CWSites](https://github.com/CWSites))
 - \#432: tsconfig issues [\#479](https://github.com/digital-ai/dot-components/pull/479) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- S-75657: Ability to get a webhook url after creation [\#477](https://github.com/digital-ai/dot-components/pull/477) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#475: Show split workitems as such on the progression board [\#476](https://github.com/digital-ai/dot-components/pull/476) ([cmpilato](https://github.com/cmpilato))
 - S-73861: Automate semver with GitHub Action [\#461](https://github.com/digital-ai/dot-components/pull/461) ([CWSites](https://github.com/CWSites))
 - Accordion Migration [\#452](https://github.com/digital-ai/dot-components/pull/452) ([syedsabbas360](https://github.com/syedsabbas360))
@@ -854,6 +873,7 @@
 - Issue \#468: Fix DotIcon import in Accordion to avoid circular dependency [\#471](https://github.com/digital-ai/dot-components/pull/471) ([selsemore](https://github.com/selsemore))
 - Issue \#469: Make nestedListType prop optional for DotSidebar [\#470](https://github.com/digital-ai/dot-components/pull/470) ([selsemore](https://github.com/selsemore))
 - Issue 463 Tabs UX fixes and move to Components [\#467](https://github.com/digital-ai/dot-components/pull/467) ([selsemore](https://github.com/selsemore))
+- Fix test type error [\#462](https://github.com/digital-ai/dot-components/pull/462) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#450: Tabs component [\#459](https://github.com/digital-ai/dot-components/pull/459) ([selsemore](https://github.com/selsemore))
 - S-74523: Add Phases from the Progression Board Experience [\#456](https://github.com/digital-ai/dot-components/pull/456) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#332: Nested list add menu capability [\#453](https://github.com/digital-ai/dot-components/pull/453) ([CWSites](https://github.com/CWSites))
@@ -962,6 +982,7 @@
 - Issue 211 form group [\#243](https://github.com/digital-ai/dot-components/pull/243) ([j-schoen](https://github.com/j-schoen))
 - Issue \#198: refactoring ProgressionBoard [\#239](https://github.com/digital-ai/dot-components/pull/239) ([CWSites](https://github.com/CWSites))
 - Issue \#103: Refactor Card component [\#237](https://github.com/digital-ai/dot-components/pull/237) ([selsemore](https://github.com/selsemore))
+- Issue \#219: resolve icon loading issue on progression board legend [\#236](https://github.com/digital-ai/dot-components/pull/236) ([CWSites](https://github.com/CWSites))
 
 ## [0.0.0-alpha.4](https://github.com/digital-ai/dot-components/tree/0.0.0-alpha.4) (01/28/2021)
 
