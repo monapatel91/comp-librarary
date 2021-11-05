@@ -79,7 +79,9 @@ export const DotSidebar = ({
 }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(open);
   const [sidebarWidth, setSidebarWidth] = useState(width);
-  const displayHeader = title || (displayAppLogo && appLogo);
+  const hasAppLogo = displayAppLogo && appLogo;
+  const hasBackItem = goBack && backItem;
+  const displayHeader = title || hasAppLogo;
 
   useEffect(() => {
     setIsOpen(open);
@@ -112,7 +114,7 @@ export const DotSidebar = ({
     >
       {displayHeader && (
         <header className={headerClasses}>
-          {displayAppLogo && appLogo ? (
+          {hasAppLogo ? (
             <DotAppLogo
               appLogo={appLogo}
               appLogoSmall={appLogoSmall}
@@ -126,7 +128,7 @@ export const DotSidebar = ({
           )}
         </header>
       )}
-      {goBack && backItem && (
+      {hasBackItem && (
         <DotLink
           color="textPrimary"
           onClick={backItem.onClick}
