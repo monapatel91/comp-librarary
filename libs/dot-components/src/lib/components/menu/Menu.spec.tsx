@@ -146,6 +146,21 @@ describe('Menu', () => {
       expect(menuElement).toHaveStyle({ height: '196px' });
     });
 
+    it('when menuItemHeight is "auto"', () => {
+      const dataTestId = 'test-id';
+      render(
+        <DotMenu
+          data-testid={dataTestId}
+          id="foo_bar"
+          menuItems={dummyMenuItems}
+          open={true}
+          menuItemHeight="auto"
+        />
+      );
+      const menuElement = screen.getByTestId(`${dataTestId}-menu`);
+      expect(menuElement).toHaveStyle({ height: 'auto' });
+    });
+
     it('when maxVisibleItems is not default of 7', () => {
       const dataTestId = 'test-id';
       render(
@@ -163,21 +178,36 @@ describe('Menu', () => {
   });
 
   describe('Accessibility', () => {
+    it('should not trigger handleListKeyDown when onLeave not passed', () => {
+      const pressB = jest.fn();
+      const dataTestId = 'test-menu';
+      render(
+        <DotMenu
+          data-testid={dataTestId}
+          id="foo_bar"
+          menuItems={dummyMenuItems}
+          onLeave={pressB}
+          open={true}
+        />
+      );
+      const menuElement = screen.getByTestId(dataTestId);
+      userEvent.type(menuElement, 'b');
+      expect(pressB).not.toHaveBeenCalled();
+    });
+
     it('should trigger handleListKeyDown when "Tab" pressed', () => {
-      const onLeave = jest.fn();
+      const pressTab = jest.fn();
       render(
         <DotMenu
           id="foo_bar"
           menuItems={dummyMenuItems}
-          onLeave={onLeave}
+          onLeave={pressTab}
           open={true}
         />
       );
-      const menuItem = getMenuListItem('Batman');
-      expect(onLeave).not.toHaveBeenCalled();
 
-      userEvent.type(menuItem, '{tab}');
-      expect(onLeave).toHaveBeenCalled();
+      userEvent.tab();
+      expect(pressTab).toHaveBeenCalled();
     });
 
     it("should have 'aria-label' attribute with correct value", () => {

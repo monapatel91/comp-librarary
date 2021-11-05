@@ -41,9 +41,4 @@ describe('correct height based on props', () => {
     cy.visit(`${menuBaseUrl}&args=dense:false`);
     cy.get('.dot-menu ul.dot-ul').should('have.css', 'height', '252px');
   });
-
-  it('should apply custom menu item height', () => {
-    cy.visit(`${menuBaseUrl}&args=menuItemHeight:50`);
-    cy.get('.dot-menu ul.dot-ul').should('have.css', 'height', '371px');
-  });
 });
