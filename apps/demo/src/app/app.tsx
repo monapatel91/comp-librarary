@@ -73,24 +73,31 @@ export const App = () => {
       )),
     },
     {
-      startIconId: 'package',
+      startIconId: 'table',
       text: 'CSS Grid',
       component: React.forwardRef((props, ref) => (
         <Link {...props} to="/css-grid" ref={ref} />
       )),
     },
     {
-      startIconId: 'package',
+      startIconId: 'table',
       text: 'CSS Grid Template',
       component: React.forwardRef((props, ref) => (
         <Link {...props} to="/css-grid-template" ref={ref} />
       )),
     },
     {
-      startIconId: 'package',
+      startIconId: 'users',
       text: 'User List',
       component: React.forwardRef((props, ref) => (
         <Link {...props} to="/user-table" ref={ref} />
+      )),
+    },
+    {
+      startIconId: 'pattern-bundle',
+      text: 'Product Wrapper',
+      component: React.forwardRef((props, ref) => (
+        <Link {...props} to="/product-buttons" ref={ref} />
       )),
     },
     {
