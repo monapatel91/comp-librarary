@@ -1,12 +1,13 @@
 import React, { ReactNode } from 'react';
+import { Button } from '@material-ui/core';
 import { DotButton, DotIcon, DotTypography } from '@digital-ai/dot-components';
-import { AgilityThemeProvider } from './ProductThemeProvider';
+import { CustomThemeProvider } from './ProductThemeProvider';
 
-interface AgilityButtonProps {
+interface CustomButtonProps {
   children: string | ReactNode;
 }
 
-export const AgilityButton = ({ children }: AgilityButtonProps) => {
+export const CustomButton = ({ children }: CustomButtonProps) => {
   return (
     <DotButton
       disableRipple={true}
@@ -22,29 +23,44 @@ export const ProductButtons = () => {
   return (
     <>
       <div style={{ padding: '20px' }}>
-        <DotTypography variant="h3">Dot Button</DotTypography>
-        <DotButton>Hello World</DotButton>
-        <pre>
-          <code>{`
-          <>
-            <DotTypography variant="h3">Dot Button</DotTypography>
-            <DotButton>Hello World</DotButton>
-          </>
+        <DotTypography variant="h1">Default Button(s)</DotTypography>
+        <div style={{ padding: '10px 20px' }}>
+          <DotTypography variant="h3">Material UI Button</DotTypography>
+          <Button variant="contained" color="primary">
+            Hello World
+          </Button>
+          <pre>
+            <code>{`
+            <Button>Hello World</Button>
           `}</code>
-        </pre>
+          </pre>
+
+          <DotTypography variant="h3">Dot Component Button</DotTypography>
+          <DotButton>Hello World</DotButton>
+          <pre>
+            <code>{`
+            <DotButton>Hello World</DotButton>
+          `}</code>
+          </pre>
+        </div>
       </div>
       <div style={{ padding: '20px' }}>
-        <AgilityThemeProvider>
-          <DotTypography variant="h3">Agility Button</DotTypography>
-          <AgilityButton>Hello World</AgilityButton>
-        </AgilityThemeProvider>
-        <pre>
-          <code>{`
-          interface AgilityButtonProps {
+        <DotTypography variant="h1">Product Specific Wrapper</DotTypography>
+        <DotTypography variant="body1">
+          This is an example of how a product specific wrapper component can be
+          created with its own set of props and defaults. When used with a
+          product specific ThemeProvider the standard dot-component styles can
+          be overridden. For more details on how to create a custom
+          ThemeProvider please see the documentation.
+        </DotTypography>
+        <div style={{ padding: '10px 20px' }}>
+          <pre>
+            <code>{`
+          interface CustomButtonProps {
             children: string | ReactNode;
           }
 
-          export const AgilityButton = ({ children }: AgilityButtonProps) => {
+          export const CustomButton = ({ children }: CustomButtonProps) => {
             return (
               <DotButton
                 disableRipple={true}
@@ -55,13 +71,38 @@ export const ProductButtons = () => {
               </DotButton>
             );
           };
-
-          <AgilityThemeProvider>
-            <DotTypography variant="h3">Agility Button</DotTypography>
-            <AgilityButton>Hello World</AgilityButton>
-          </AgilityThemeProvider>
           `}</code>
-        </pre>
+          </pre>
+        </div>
+
+        <div style={{ padding: '10px 20px' }}>
+          <CustomThemeProvider theme="light">
+            <DotTypography variant="h3">Custom Button - Light</DotTypography>
+            <CustomButton>Hello World</CustomButton>
+          </CustomThemeProvider>
+          <pre>
+            <code>{`
+          <CustomThemeProvider theme="light">
+            <DotTypography variant="h3">Custom Button - Light</DotTypography>
+            <CustomButton>Hello World</CustomButton>
+          </CustomThemeProvider>
+          `}</code>
+          </pre>
+        </div>
+        <div style={{ padding: '10px 20px' }}>
+          <CustomThemeProvider theme="dark">
+            <DotTypography variant="h3">Custom Button - Dark</DotTypography>
+            <CustomButton>Hello World</CustomButton>
+          </CustomThemeProvider>
+          <pre>
+            <code>{`
+          <CustomThemeProvider theme="light">
+            <DotTypography variant="h3">Custom Button - Dark</DotTypography>
+            <CustomButton>Hello World</CustomButton>
+          </CustomThemeProvider>
+          `}</code>
+          </pre>
+        </div>
       </div>
     </>
   );

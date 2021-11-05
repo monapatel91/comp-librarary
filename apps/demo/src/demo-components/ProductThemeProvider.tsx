@@ -1,10 +1,8 @@
 import React, { ReactNode } from 'react';
-import { MuiThemeProvider, StylesProvider, Theme } from '@material-ui/core';
+import { MuiThemeProvider, StylesProvider } from '@material-ui/core';
 import { createTheme } from '@material-ui/core/styles';
-import { lightColors } from '@digital-ai/dot-components';
+import { DotThemeProvider, lightColors } from '@digital-ai/dot-components';
 import { ThemeProvider } from 'styled-components';
-
-export type ThemeOptions = 'agility-light' | 'agility-dark';
 
 interface AvatarPaletteColorOption {
   color: string;
@@ -62,7 +60,7 @@ export const avatarColors: AvatarPaletteColorOptions = {
   },
 };
 
-const agilityDarkColors = {
+const productDarkColors = {
   n0: '#050A0A',
   n50: '#14262E',
   n100: '#244451',
@@ -74,7 +72,7 @@ const agilityDarkColors = {
   n700: '#FFFFFF',
 };
 
-const agilityLightColors = {
+const productLightColors = {
   n0: '#E6F0F4',
   n50: '#FFFFFF',
   n100: '#C3DBE4',
@@ -88,14 +86,14 @@ const agilityLightColors = {
   n900: '#000000',
 };
 
-export const agilityLightTheme = createTheme({
+export const productLightTheme = createTheme({
   palette: {
     type: 'light',
     avatarColors: {
       ...avatarColors,
     },
     background: {
-      default: agilityLightColors.n0,
+      default: productLightColors.n0,
     },
     primary: {
       main: lightColors.agilityGreen,
@@ -113,64 +111,67 @@ export const agilityLightTheme = createTheme({
       unknownHover: '#71828B',
     },
     layer: {
-      n0: agilityLightColors.n0,
-      n50: agilityLightColors.n50,
-      n100: agilityLightColors.n100,
-      n200: agilityLightColors.n200,
-      n300: agilityLightColors.n300,
-      n400: agilityLightColors.n400,
-      n500: agilityLightColors.n500,
-      n600: agilityLightColors.n600,
-      n700: agilityLightColors.n700,
-      n800: agilityLightColors.n800,
-      n900: agilityLightColors.n900,
+      n0: productLightColors.n0,
+      n50: productLightColors.n50,
+      n100: productLightColors.n100,
+      n200: productLightColors.n200,
+      n300: productLightColors.n300,
+      n400: productLightColors.n400,
+      n500: productLightColors.n500,
+      n600: productLightColors.n600,
+      n700: productLightColors.n700,
+      n800: productLightColors.n800,
+      n900: productLightColors.n900,
     },
     agilityInterface: {
       activeBg: 'rgba(121, 181, 34, 0.2)',
       activeCardBg: '#EDF9DD',
-      cardBg: agilityLightColors.n50,
+      cardBg: productLightColors.n50,
       disabledText: '#A1BFCB',
-      fixedCol: agilityLightColors.n0,
+      fixedCol: productLightColors.n0,
       headerBg: lightColors.n700,
       helpColor: '#FF5722',
-      menuBg: agilityLightColors.n50,
-      panelBgActive: agilityLightColors.n50,
+      menuBg: productLightColors.n50,
+      panelBgActive: productLightColors.n50,
       panelBgDefault: '#9FC6D5',
-      panelTextActive: agilityLightColors.n700,
-      panelTextDefault: agilityLightColors.n700,
+      panelTextActive: productLightColors.n700,
+      panelTextDefault: productLightColors.n700,
       projectNavBg: 'rgba(67, 128, 152, 0.2)',
-      sideNavBorder: agilityLightColors.n300,
+      sideNavBorder: productLightColors.n300,
       sideNavHoverBg: lightColors.agilityLightGreen,
       sideNavHoverBorder: lightColors.agilityGreen,
       sideNavHoverText: lightColors.g500,
-      sideNavSubHeaderText: agilityLightColors.n400,
-      textColor: agilityLightColors.n700,
+      sideNavSubHeaderText: productLightColors.n400,
+      textColor: productLightColors.n700,
       topBarIconHoverBg: '#667384',
       warnCardBg: '#FBE9E7',
     },
   },
   typography: {
     h3: {
-      color: agilityLightColors.n400,
+      color: productLightColors.n400,
       fontSize: 17,
       fontFamily: 'LatoBold, sans-serif',
       lineHeight: '24px',
       letterSpacing: '0.02em',
     },
     allVariants: {
-      color: agilityLightColors.n700,
+      color: productLightColors.n700,
     },
   },
 });
 
-export const agilityDarkTheme = createTheme({
+export const productDarkTheme = createTheme({
   palette: {
     type: 'dark',
     avatarColors: {
       ...avatarColors,
     },
     background: {
-      default: agilityDarkColors.n0,
+      default: productDarkColors.n0,
+    },
+    primary: {
+      main: productDarkColors.n300,
     },
     icon: {
       checkOutline: '#42A5F5',
@@ -185,45 +186,52 @@ export const agilityDarkTheme = createTheme({
       unknownHover: '#88979D',
     },
     layer: {
-      n0: agilityDarkColors.n0,
-      n50: agilityDarkColors.n50,
-      n100: agilityDarkColors.n100,
-      n200: agilityDarkColors.n200,
-      n300: agilityDarkColors.n300,
-      n400: agilityDarkColors.n400,
-      n500: agilityDarkColors.n500,
-      n600: agilityDarkColors.n600,
-      n700: agilityDarkColors.n700,
-      n800: agilityDarkColors.n700,
-      n900: agilityDarkColors.n700,
+      n0: productDarkColors.n0,
+      n50: productDarkColors.n50,
+      n100: productDarkColors.n100,
+      n200: productDarkColors.n200,
+      n300: productDarkColors.n300,
+      n400: productDarkColors.n400,
+      n500: productDarkColors.n500,
+      n600: productDarkColors.n600,
+      n700: productDarkColors.n700,
+      n800: productDarkColors.n700,
+      n900: productDarkColors.n700,
     },
     agilityInterface: {
       activeBg: 'rgba(121, 181, 34, 0.2)',
       activeCardBg: '#405F12',
-      cardBg: agilityDarkColors.n200,
-      disabledText: agilityDarkColors.n200,
+      cardBg: productDarkColors.n200,
+      disabledText: productDarkColors.n200,
       fixedCol: '#1C3540',
       headerBg: '#14272E',
       helpColor: '#FF5722',
-      menuBg: agilityDarkColors.n100,
-      panelBgActive: agilityDarkColors.n300,
+      menuBg: productDarkColors.n100,
+      panelBgActive: productDarkColors.n300,
       panelBgDefault: '#14272E',
       panelTextActive: '#14272E',
       panelTextDefault: '#9FC6D5',
       projectNavBg: 'rgba(67, 128, 152, 0.2)',
-      sideNavBorder: agilityDarkColors.n200,
-      sideNavHoverBg: agilityDarkColors.n100,
-      sideNavHoverBorder: agilityDarkColors.n300,
-      sideNavHoverText: agilityDarkColors.n300,
+      sideNavBorder: productDarkColors.n200,
+      sideNavHoverBg: productDarkColors.n100,
+      sideNavHoverBorder: productDarkColors.n300,
+      sideNavHoverText: productDarkColors.n300,
       sideNavSubHeaderText: '#9FC6D5',
-      textColor: agilityDarkColors.n700,
-      topBarIconHoverBg: agilityDarkColors.n100,
+      textColor: productDarkColors.n700,
+      topBarIconHoverBg: productDarkColors.n100,
       warnCardBg: '#7A4637',
     },
   },
   typography: {
+    h3: {
+      color: productDarkColors.n400,
+      fontSize: 17,
+      fontFamily: 'LatoBold, sans-serif',
+      lineHeight: '24px',
+      letterSpacing: '0.02em',
+    },
     allVariants: {
-      color: agilityDarkColors.n700,
+      color: productDarkColors.n700,
     },
   },
 });
@@ -233,14 +241,16 @@ interface ThemeProviderProps {
   theme?: string;
 }
 
-export function AgilityThemeProvider({ children, theme }: ThemeProviderProps) {
-  const userTheme = theme === 'dark' ? agilityDarkTheme : agilityLightTheme;
+export function CustomThemeProvider({ children, theme }: ThemeProviderProps) {
+  const userTheme = theme === 'dark' ? productDarkTheme : productLightTheme;
 
   return (
     <StylesProvider injectFirst>
-      <MuiThemeProvider theme={userTheme}>
-        <ThemeProvider theme={userTheme}>{children}</ThemeProvider>
-      </MuiThemeProvider>
+      <DotThemeProvider>
+        <MuiThemeProvider theme={() => ({ ...DotThemeProvider, ...userTheme })}>
+          <ThemeProvider theme={userTheme}>{children}</ThemeProvider>
+        </MuiThemeProvider>
+      </DotThemeProvider>
     </StylesProvider>
   );
 }
