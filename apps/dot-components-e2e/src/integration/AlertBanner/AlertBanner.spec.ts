@@ -18,11 +18,8 @@ describe('dot-components: Alert Banner component', () => {
         '16px 0px'
       );
     });
-    it('alert text should use subtitle2', () => {
-      cy.get('.MuiAlert-message h6').should(
-        'have.class',
-        'MuiTypography-subtitle2'
-      );
+    it('alert text should default to body1', () => {
+      cy.get('.MuiAlert-message p').should('have.class', 'MuiTypography-body1');
     });
   });
 });
