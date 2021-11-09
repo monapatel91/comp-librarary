@@ -132,7 +132,7 @@ export const DotAutoComplete = ({
   const [showPlaceholder, setShowPlaceholder] = useState(
     !value && !defaultValue
   );
-  const [isOpened, setIsOpened] = useState(false);
+  const [isOpened, setIsOpened] = useState(true);
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   const textFieldRootClasses = useStylesWithRootClass(
     textFieldRootClassName,
