@@ -3,7 +3,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledAlertBanner } from './AlertBanner.styles';
 import { DotIcon } from '../icon/Icon';
-import { DotTypography } from '../typography/Typography';
+import { DotTypography, TypographyVariant } from '../typography/Typography';
 
 export type AlertBannerSeverity = 'error' | 'info' | 'success' | 'warning';
 
@@ -12,6 +12,7 @@ export interface AlertBannerProps extends CommonProps {
   children: ReactNode | string;
   onClose?: (event: MouseEvent) => void;
   severity: AlertBannerSeverity;
+  textVariant?: TypographyVariant;
 }
 
 export const DotAlertBanner = ({
@@ -22,6 +23,7 @@ export const DotAlertBanner = ({
   'data-testid': dataTestId,
   onClose,
   severity,
+  textVariant = 'body1',
 }: AlertBannerProps) => {
   const AlertBannerIcon = (iconId: string) => {
     return <DotIcon iconId={iconId} />;
@@ -43,7 +45,7 @@ export const DotAlertBanner = ({
       onClose={(event: MouseEvent) => (onClose ? onClose(event) : null)}
       severity={severity}
     >
-      <DotTypography variant="subtitle2">{children}</DotTypography>
+      <DotTypography variant={textVariant}>{children}</DotTypography>
     </StyledAlertBanner>
   );
 };
