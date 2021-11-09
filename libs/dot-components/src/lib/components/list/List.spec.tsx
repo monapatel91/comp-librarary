@@ -10,6 +10,7 @@ import {
   NestedListType,
 } from './List';
 import { PopperPlacement } from '../menu/Menu';
+import { LinkTarget } from '../link/Link';
 
 const onClick = jest.fn();
 
@@ -46,6 +47,7 @@ const mockListItems: Array<ListItemProps> = [
     startIconId: 'block',
     text: 'Packages',
     href: '/packages',
+    target: '_blank',
     tooltip: 'The Dark Knight',
   },
 ];
@@ -134,6 +136,13 @@ describe('List', () => {
     ).toEqual('/packages');
   });
 
+  it('should have a target if one is passed', () => {
+    render(<DotList items={mockListItems} />);
+    expect(
+      screen.getByText('Packages').closest('a').getAttributeNode('target').value
+    ).toEqual('_blank');
+  });
+
   it('should not have an href if onClick is passed', () => {
     render(<DotList items={mockListItems} />);
     expect(screen.getByText('Pipelines').closest('a') === null);
@@ -180,6 +189,7 @@ describe('ListItem', () => {
       onClick: jest.fn(),
       selected: true,
       startIconId: 'home',
+      target: '_blank' as LinkTarget,
       text: 'Hello World',
       title: 'Hello App',
     };
