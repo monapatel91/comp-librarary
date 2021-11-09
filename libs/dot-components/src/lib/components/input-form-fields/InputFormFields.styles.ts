@@ -43,6 +43,9 @@ export const StyledTextField = styled(TextField)`
       }
     }
     &.${rootSelectClassName}, &.${rootClassName} {
+      .dot-adornment-icon .dot-icon i {
+        margin-top: -2px;
+      }
       .MuiFormLabel-root.Mui-focused {
         color: ${
           theme.palette.product === 'agility' && theme.palette.layer.n700
