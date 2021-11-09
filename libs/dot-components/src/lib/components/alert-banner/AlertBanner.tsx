@@ -3,15 +3,21 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledAlertBanner } from './AlertBanner.styles';
 import { DotIcon } from '../icon/Icon';
-import { DotTypography } from '../typography/Typography';
+import { DotTypography, TypographyVariant } from '../typography/Typography';
 
 export type AlertBannerSeverity = 'error' | 'info' | 'success' | 'warning';
 
 export interface AlertBannerProps extends CommonProps {
+  /** The action to display. It renders after the message, at the end of the alert */
   action?: ReactNode;
+  /** The content of the component */
   children: ReactNode | string;
+  /** callback which is triggered when alert banner is closed */
   onClose?: (event: MouseEvent) => void;
+  /** will determine color and icon being used */
   severity: AlertBannerSeverity;
+  /** when specified, will control the text that is used inside the alert banner */
+  textVariant?: TypographyVariant;
 }
 
 export const DotAlertBanner = ({
@@ -22,6 +28,7 @@ export const DotAlertBanner = ({
   'data-testid': dataTestId,
   onClose,
   severity,
+  textVariant = 'body1',
 }: AlertBannerProps) => {
   const AlertBannerIcon = (iconId: string) => {
     return <DotIcon iconId={iconId} />;
@@ -43,7 +50,7 @@ export const DotAlertBanner = ({
       onClose={(event: MouseEvent) => (onClose ? onClose(event) : null)}
       severity={severity}
     >
-      <DotTypography variant="subtitle2">{children}</DotTypography>
+      <DotTypography variant={textVariant}>{children}</DotTypography>
     </StyledAlertBanner>
   );
 };
