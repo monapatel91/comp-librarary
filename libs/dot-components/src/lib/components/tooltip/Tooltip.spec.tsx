@@ -31,16 +31,18 @@ describe('Tooltip', () => {
   });
   it('should render tooltip if title is provided', () => {
     render(
-      <DotTooltip data-testid="test-tooltip" title="Delete">
+      <DotTooltip data-testid={sampleDataTestId} title="Delete">
         {deleteIcon}
       </DotTooltip>
     );
-    const tooltipElm = screen.queryByTestId('test-tooltip');
+    const tooltipElm = screen.queryByTestId(sampleDataTestId);
     expect(tooltipElm).toBeVisible();
   });
   it('should not render tooltip if title is not provided', () => {
-    render(<DotTooltip data-testid="test-tooltip">{deleteIcon}</DotTooltip>);
-    const tooltipElm = screen.queryByTestId('test-tooltip');
+    render(
+      <DotTooltip data-testid={sampleDataTestId}>{deleteIcon}</DotTooltip>
+    );
+    const tooltipElm = screen.queryByTestId(sampleDataTestId);
     expect(tooltipElm).toBeNull();
   });
 
