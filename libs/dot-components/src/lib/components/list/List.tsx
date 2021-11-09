@@ -16,7 +16,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotDrawer } from '../drawer/Drawer';
 import { DotIcon } from '../icon/Icon';
-import { DotLink } from '../link/Link';
+import { DotLink, LinkTarget } from '../link/Link';
 import { DotMenu, PopperPlacement } from '../menu/Menu';
 import { flyoutMenuClassName } from '../menu/Menu.styles';
 import { DotTooltip } from '../tooltip/Tooltip';
@@ -103,6 +103,8 @@ export interface ListItemProps extends CommonProps {
   selected?: boolean;
   /** If provided, the icon ID which is displayed on the front of the list item */
   startIconId?: string;
+  /** where to open the link */
+  target?: LinkTarget;
   /** Text which is displayed in the list item */
   text?: string;
   /** DEPRECATED, DO NOT USE */
@@ -147,7 +149,7 @@ const NestedList = ({
 
   if (type === 'menu') {
     const menuItems = items.map((item, index) => {
-      const { href, startIconId, onClick, title, tooltip, text } = item;
+      const { href, startIconId, target, onClick, title, tooltip, text } = item;
       const startIcon = <DotIcon iconId={startIconId} />;
       return {
         children: (
@@ -156,6 +158,7 @@ const NestedList = ({
               className={flyoutItemClasses}
               component={href && !onClick ? 'a' : null}
               href={href}
+              target={target}
               onClick={onClick}
             >
               <span className={flyoutSpanClasses}>
@@ -266,6 +269,7 @@ export const DotList = ({
             nestedListType={nestedListType}
             selected={item.selected}
             startIconId={item.startIconId}
+            target={item.target}
             text={item.text}
             tooltip={item.title}
           />
@@ -292,6 +296,7 @@ export const DotListItem = ({
   nestedListType,
   selected,
   startIconId,
+  target,
   text,
   title,
   tooltip,
@@ -390,6 +395,7 @@ export const DotListItem = ({
           href={onClick ? null : href}
           onClick={onClick || !href ? handleClick : null}
           selected={isFlyout ? open : selected}
+          target={target}
         >
           <span className={listItemLinkClassName}>
             {startIconId && startIcon}
