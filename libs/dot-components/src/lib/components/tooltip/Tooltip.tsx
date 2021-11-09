@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement } from 'react';
+import React, { ReactNode, ReactElement, ChangeEvent } from 'react';
 import { CommonProps } from '../CommonProps';
 import { Tooltip } from '@material-ui/core';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -19,6 +19,9 @@ export type tooltipPlacement =
 
 export interface TooltipProps extends CommonProps {
   children: ReactElement;
+  leaveDelay?: number;
+  onClose?: (event: ChangeEvent) => void;
+  open?: boolean;
   placement?: tooltipPlacement;
   title?: ReactNode | string | number;
 }
@@ -27,6 +30,9 @@ export const DotTooltip = ({
   children,
   className,
   'data-testid': dataTestId,
+  leaveDelay,
+  onClose,
+  open,
   placement = 'bottom',
   title,
 }: TooltipProps) => {
@@ -36,6 +42,9 @@ export const DotTooltip = ({
       aria-label={ariaLabel}
       className={rootClasses}
       data-testid={dataTestId}
+      leaveDelay={leaveDelay}
+      onClose={onClose}
+      open={open}
       placement={placement}
       title={title}
     >
