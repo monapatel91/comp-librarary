@@ -121,7 +121,9 @@ export function CustomThemeProvider({ children, theme }: ThemeProviderProps) {
   return (
     <StylesProvider injectFirst>
       <DotThemeProvider>
-        <MuiThemeProvider theme={() => ({ ...DotThemeProvider, ...userTheme })}>
+        <MuiThemeProvider
+          theme={(parentTheme) => ({ ...parentTheme, ...userTheme })}
+        >
           {children}
         </MuiThemeProvider>
       </DotThemeProvider>
