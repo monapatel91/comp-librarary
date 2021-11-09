@@ -6,6 +6,7 @@ import {
   AlertBannerSeverity,
 } from './AlertBanner';
 import { DotButton } from '../button/Button';
+import { TypographyVariant } from '../typography/Typography';
 
 const onClose = jest.fn();
 
@@ -19,6 +20,7 @@ describe('AlertBanner', () => {
       'data-testid': 'dot-AlertBanner',
       onClose: onClose || null,
       severity: 'success' as AlertBannerSeverity,
+      textVariant: 'body1' as TypographyVariant,
     };
     const alertBannerProps: AlertBannerProps = props;
     expect(alertBannerProps).toEqual(props);
