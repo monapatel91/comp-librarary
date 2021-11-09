@@ -13,7 +13,7 @@ import * as lightColors from './colors/light-theme-colors';
 
 export type ThemeOptions = 'light' | 'dark' | 'agility-light' | 'agility-dark';
 
-const typographyOptions: TypographyOptions = {
+export const typographyOptions: TypographyOptions = {
   fontFamily: 'Lato, sans-serif',
   allVariants: {
     fontStyle: 'normal',

@@ -39,7 +39,6 @@ export const StyledSidebar = styled.aside`
         border-bottom-color: ${theme.palette.product === 'agility'
           ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
-        box-sizing: border-box;
         display: flex;
         height: 40px;
         flex-shrink: 0;
@@ -51,10 +50,14 @@ export const StyledSidebar = styled.aside`
           : theme.spacing(1, 2)};
         white-space: nowrap;
 
-        .dot-app-logo {
-          svg,
-          img {
-            max-width: 100%;
+        &.app-logo {
+          box-sizing: border-box;
+
+          .dot-app-logo {
+            svg,
+            img {
+              max-width: 100%;
+            }
           }
         }
 
