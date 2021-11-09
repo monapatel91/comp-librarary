@@ -7,7 +7,6 @@ import {
   lightColors,
   typographyOptions,
 } from '@digital-ai/dot-components';
-import { ThemeProvider } from 'styled-components';
 
 export const productLightTheme = createTheme({
   palette: {
@@ -123,7 +122,7 @@ export function CustomThemeProvider({ children, theme }: ThemeProviderProps) {
     <StylesProvider injectFirst>
       <DotThemeProvider>
         <MuiThemeProvider theme={() => ({ ...DotThemeProvider, ...userTheme })}>
-          <ThemeProvider theme={userTheme}>{children}</ThemeProvider>
+          {children}
         </MuiThemeProvider>
       </DotThemeProvider>
     </StylesProvider>
