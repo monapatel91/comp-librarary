@@ -30,7 +30,7 @@ jobs:
         run: yarn install
 
       - name: Verify Formatting
-        run: yarn format:check --all
+        run: yarn format:check --base=${{ github.sha }}
 
       - name: Lint Code
         run: yarn lint
