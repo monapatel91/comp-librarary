@@ -30,7 +30,15 @@ jobs:
         run: yarn install
 
       - name: Verify Formatting
-        run: yarn format:check --base=${{ github.sha }}
+        run: |
+          if [[ $GITHUB_BASE_REF ]]
+          then
+            export NX_BASE=remotes/origin/$GITHUB_BASE_REF
+          else
+            export NX_BASE=$(git rev-parse HEAD~1)
+          fi
+          echo "Base => $NX_BASE"
+          yarn format:check --base=$NX_BASE
 
       - name: Lint Code
         run: yarn lint
