@@ -31,7 +31,7 @@ export const DotProgress = ({
   'data-testid': dataTestId,
   size = 40,
   thickness = 3.6,
-  title = 'loading data',
+  title,
   tooltip = 'loading data',
   value,
   variant = 'indeterminate',
@@ -46,7 +46,7 @@ export const DotProgress = ({
     }
   }, []);
   return (
-    <DotTooltip title={tooltip}>
+    <DotTooltip title={tooltip || title}>
       <StyledCircularProgress
         aria-label={ariaLabel}
         classes={{ root: rootClasses }}
