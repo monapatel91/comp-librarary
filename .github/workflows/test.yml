@@ -31,7 +31,7 @@ jobs:
         run: yarn install
 
       - name: Verify Formatting
-        run: yarn format:check --base=${{ github.event.inputs.ref }}
+        run: yarn format:check --all
 
       - name: Lint Code
         run: yarn lint
