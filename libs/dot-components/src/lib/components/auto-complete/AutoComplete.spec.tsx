@@ -49,6 +49,7 @@ describe('AutoComplete', () => {
       'data-testid': 'testid',
       defaultValue: dummyOptions[0],
       disabled: true,
+      disablePortal: true,
       error: false,
       freesolo: false,
       group: true,

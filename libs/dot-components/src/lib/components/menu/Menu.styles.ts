@@ -1,5 +1,6 @@
 import { Popper } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { levelFirst } from '../../theme-provider/common/variables';
 
 export const flyoutMenuClassName = 'dot-flyout-menu';
 export const rootClassName = 'dot-menu';
@@ -7,6 +8,9 @@ export const popperClassName = 'dot-popper';
 
 export const StyledPopper = styled(Popper)`
   ${({ theme }) => css`
+    &.${popperClassName} {
+      z-index: ${levelFirst};
+    }
     &.${rootClassName}, &.${popperClassName} {
       &.loading .MuiPaper-root {
         align-items: center;
