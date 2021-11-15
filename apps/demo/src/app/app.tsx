@@ -101,13 +101,15 @@ export const App = () => {
       )),
     },
     {
-      text: 'Sample Header',
+      text: 'Sandbox',
       divider: true,
     },
     {
-      startIconId: 'collection',
-      onClick: () => null,
-      text: 'Sample onClick',
+      startIconId: 'composition',
+      text: 'Drawer',
+      component: React.forwardRef((props, ref) => (
+        <Link {...props} to="/sandbox" ref={ref} />
+      )),
     },
   ];
 

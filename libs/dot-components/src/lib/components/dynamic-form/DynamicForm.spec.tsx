@@ -1,6 +1,12 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, RenderResult, screen, within } from '../../testing-utils';
+import {
+  render,
+  RenderResult,
+  screen,
+  waitFor,
+  within,
+} from '../../testing-utils';
 import { DotDynamicForm, DynamicFormProps } from './DynamicForm';
 import { getSampleConfig } from './sample';
 
@@ -341,26 +347,35 @@ describe('DotDynamicForm', () => {
 
     it('should remove all values from the form inputs when clicking Reset button', () => {
       const hasMiddleNameElement = getRadioGroupElement();
+      const middleNameRadioButton =
+        within(hasMiddleNameElement).getAllByRole('radio');
       const checkboxGroupElement = getCheckboxGroupElement();
       const switchElement = getSwitchElement();
+      const resetButton = getResetButton();
+      const firstNameElement = getFirstNameTextbox();
+      const autocompleteTextboxElement = getAutocompleteTextboxElement();
+
+      // Set initial values
       selectRadioGroupOption(1, hasMiddleNameElement);
       selectCheckboxGroupOption(0, checkboxGroupElement);
       selectCheckboxGroupOption(1, checkboxGroupElement);
-
       userEvent.click(switchElement);
-      const resetButton = getResetButton();
+      userEvent.type(firstNameElement, 'John');
+      userEvent.type(autocompleteTextboxElement, 'Option 1');
+
+      // Click reset button
       userEvent.click(resetButton);
-      const firstNameElement = getFirstNameTextbox();
-      const autocompleteTextboxElement = getAutocompleteTextboxElement();
+
+      // Confirm that all values are reset
       expect(firstNameElement).toBeEmptyDOMElement();
       expect(autocompleteTextboxElement).toBeEmptyDOMElement();
-      expect(
-        within(hasMiddleNameElement).getAllByRole('radio')[0]
-      ).toBeChecked();
-      expectCheckboxGroupElementToBeChecked(0, false, checkboxGroupElement);
-      expectCheckboxGroupElementToBeChecked(1, false, checkboxGroupElement);
-      expectCheckboxGroupElementToBeChecked(2, false, checkboxGroupElement);
-      expectSwitchToBeChecked(switchElement, false);
+      waitFor(() => {
+        expect(middleNameRadioButton[0]).toBeChecked();
+        expectCheckboxGroupElementToBeChecked(0, false, checkboxGroupElement);
+        expectCheckboxGroupElementToBeChecked(1, false, checkboxGroupElement);
+        expectCheckboxGroupElementToBeChecked(2, false, checkboxGroupElement);
+        expectSwitchToBeChecked(switchElement, false);
+      });
     });
 
     it('should render disabled Submit button when live validation is on', () => {

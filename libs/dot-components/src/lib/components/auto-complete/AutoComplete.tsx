@@ -76,6 +76,8 @@ export interface AutoCompleteProps extends CommonProps {
   defaultValue?: AutoCompleteValue;
   /** If true, the input will be disabled. */
   disabled?: boolean;
+  /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
+  disablePortal?: boolean;
   /** If true, the input will be displayed in an error state. */
   error?: boolean;
   /** If true, any arbitrary value can be typed in the field */
@@ -115,6 +117,7 @@ export const DotAutoComplete = ({
   'data-testid': dataTestId,
   defaultValue,
   disabled = false,
+  disablePortal = true,
   error = false,
   freesolo = true,
   group = false,
@@ -202,7 +205,13 @@ export const DotAutoComplete = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DotPopper = (props: any) => {
     if (!actionItem || Object.keys(actionItem).length === 0)
-      return <StyledPopper {...props} className={popperClassName} />;
+      return (
+        <StyledPopper
+          {...props}
+          className={popperClassName}
+          disablePortal={disablePortal}
+        />
+      );
     const { iconId, text, onClick } = actionItem;
     const paperProps = props.children.props;
     const paperChildren = paperProps.children;
@@ -214,7 +223,11 @@ export const DotAutoComplete = ({
     };
 
     return (
-      <StyledPopper {...props} className={popperClassName}>
+      <StyledPopper
+        {...props}
+        className={popperClassName}
+        disablePortal={disablePortal}
+      >
         <Paper {...paperProps}>
           {paperChildren}
           <div
