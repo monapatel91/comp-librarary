@@ -1,5 +1,35 @@
 # Changelog
 
+## [1.3.3](https://github.com/digital-ai/dot-components/tree/1.3.3) (11/16/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.2...1.3.3)
+
+**Features:**
+
+- Add 'target' prop to ListItemProps [\#784](https://github.com/digital-ai/dot-components/issues/784)
+- Expose built-in `leaveDelay`, `onClose`, `open` props on `DotTooltip` component [\#778](https://github.com/digital-ai/dot-components/issues/778)
+
+**Fixed bugs:**
+
+- `DotProgress` Displaying deprecation warning even when `title` prop is NOT set from the consumer component [\#783](https://github.com/digital-ai/dot-components/issues/783)
+- Wrong z-index for autocomplete [\#779](https://github.com/digital-ai/dot-components/issues/779)
+- DotInputText startIcon and endIcon are not aligned with text [\#764](https://github.com/digital-ai/dot-components/issues/764)
+- Allow normal text formatting inside DotAlertBanner [\#738](https://github.com/digital-ai/dot-components/issues/738)
+
+**Merged pull requests:**
+
+- Next minor release [\#796](https://github.com/digital-ai/dot-components/pull/796) ([CWSites](https://github.com/CWSites))
+- D-19069: `AutoComplete` z-index not behaving as expected [\#793](https://github.com/digital-ai/dot-components/pull/793) ([CWSites](https://github.com/CWSites))
+- D-19067: slight vertical alignment of icon inside of input fields [\#792](https://github.com/digital-ai/dot-components/pull/792) ([CWSites](https://github.com/CWSites))
+- D-19066: `AlertBanner` add `textVariant` prop for different font formatting [\#791](https://github.com/digital-ai/dot-components/pull/791) ([CWSites](https://github.com/CWSites))
+- D-19065: `DotProgress` remove default `title` value [\#790](https://github.com/digital-ai/dot-components/pull/790) ([CWSites](https://github.com/CWSites))
+- S-80103: add `yarn format:check` to PR verification and release testing [\#789](https://github.com/digital-ai/dot-components/pull/789) ([CWSites](https://github.com/CWSites))
+- S-79880: Add 'target' prop to ListItemProps [\#788](https://github.com/digital-ai/dot-components/pull/788) ([selsemore](https://github.com/selsemore))
+- S-80109: Expose built-in `leaveDelay`, `onClose`, `open` props on `DotTooltip` component [\#786](https://github.com/digital-ai/dot-components/pull/786) ([dmiletic85](https://github.com/dmiletic85))
+- S-76907: update ButtonToggle styles, update unit tests and add e2e tests [\#785](https://github.com/digital-ai/dot-components/pull/785) ([CWSites](https://github.com/CWSites))
+- S-80048: product wrapper demo [\#782](https://github.com/digital-ai/dot-components/pull/782) ([CWSites](https://github.com/CWSites))
+- bring `master` back into `develop` [\#781](https://github.com/digital-ai/dot-components/pull/781) ([CWSites](https://github.com/CWSites))
+
 ## [1.3.2](https://github.com/digital-ai/dot-components/tree/1.3.2) (11/05/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.1...1.3.2)
@@ -678,6 +708,7 @@
 **Merged pull requests:**
 
 - Add `hasActions` optional prop to `DotDialog` component [\#492](https://github.com/digital-ai/dot-components/pull/492) ([dmiletic85](https://github.com/dmiletic85))
+- Resolve disabled icon in Button Toggle Component [\#490](https://github.com/digital-ai/dot-components/pull/490) ([syedsabbas360](https://github.com/syedsabbas360))
 - Issue \#323: Fix skipped tests [\#487](https://github.com/digital-ai/dot-components/pull/487) ([selsemore](https://github.com/selsemore))
 - Issue \#474: Fix DotSidebar selection [\#486](https://github.com/digital-ai/dot-components/pull/486) ([selsemore](https://github.com/selsemore))
 - S-75429: Include Empty State Splash Screen on Progression Board [\#485](https://github.com/digital-ai/dot-components/pull/485) ([dmiletic85](https://github.com/dmiletic85))
@@ -705,7 +736,6 @@
 
 **Merged pull requests:**
 
-- Resolve disabled icon in Button Toggle Component [\#490](https://github.com/digital-ai/dot-components/pull/490) ([syedsabbas360](https://github.com/syedsabbas360))
 - Issue \#483: Fix DotList tooltips [\#484](https://github.com/digital-ai/dot-components/pull/484) ([selsemore](https://github.com/selsemore))
 - Issue \#480: remove `items` prop from `AppToolbar` storybook config [\#482](https://github.com/digital-ai/dot-components/pull/482) ([CWSites](https://github.com/CWSites))
 - Issue \#460: allow flex items to display inline [\#481](https://github.com/digital-ai/dot-components/pull/481) ([CWSites](https://github.com/CWSites))
@@ -982,7 +1012,6 @@
 - Issue 211 form group [\#243](https://github.com/digital-ai/dot-components/pull/243) ([j-schoen](https://github.com/j-schoen))
 - Issue \#198: refactoring ProgressionBoard [\#239](https://github.com/digital-ai/dot-components/pull/239) ([CWSites](https://github.com/CWSites))
 - Issue \#103: Refactor Card component [\#237](https://github.com/digital-ai/dot-components/pull/237) ([selsemore](https://github.com/selsemore))
-- Issue \#219: resolve icon loading issue on progression board legend [\#236](https://github.com/digital-ai/dot-components/pull/236) ([CWSites](https://github.com/CWSites))
 
 ## [0.0.0-alpha.4](https://github.com/digital-ai/dot-components/tree/0.0.0-alpha.4) (01/28/2021)
 
