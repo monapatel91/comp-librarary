@@ -243,7 +243,7 @@ export const DotList = ({
 
         if (item.divider) {
           if (!item.text) {
-            return <Divider key={index} />;
+            return <Divider key={index} aria-hidden={true} />;
           } else {
             return (
               <ListSubheader disableSticky key={index}>
