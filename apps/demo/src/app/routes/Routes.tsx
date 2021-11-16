@@ -6,6 +6,8 @@ import { DemoCssGrid } from '../../demo-components/DemoCssGrid';
 import { DemoCssGridTemplate } from '../../demo-components/DemoCssGridTemplate';
 import { UserTable } from '../../demo-components/UserTable';
 import { DemoDynamicForm } from '../../demo-components/DemoDynamicForm';
+import { ProductButtons } from '../../demo-components/ProductWrapper';
+import { Sandbox } from '../../demo-components/Sandbox';
 
 export const Routes = () => {
   return (
@@ -20,6 +22,8 @@ export const Routes = () => {
       <Route path="/css-grid" exact component={DemoCssGrid} />
       <Route path="/css-grid-template" exact component={DemoCssGridTemplate} />
       <Route path="/user-table" exact component={UserTable} />
+      <Route path="/product-buttons" exact component={ProductButtons} />
+      <Route path="/sandbox" exact component={Sandbox} />
     </Switch>
   );
 };

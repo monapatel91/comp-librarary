@@ -38,7 +38,6 @@ export const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
     }
 
     .MuiButtonBase-root {
-      margin: ${theme.spacing(0, 0.5)};
       &.Mui-disabled p,
       &.Mui-disabled .dot-icon {
         color: ${theme.palette.grey[200]};

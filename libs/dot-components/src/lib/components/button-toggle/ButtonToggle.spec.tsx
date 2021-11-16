@@ -29,6 +29,7 @@ describe('DotButtonToggle', () => {
       'data-testid': dataTestId,
       disableFocusRipple: false,
       disableRipple: false,
+      exclusive: false,
       onChange,
       orientation: 'horizontal' as ButtonToggleOrientation,
       size: 'medium' as ButtonToggleSize,
@@ -60,6 +61,9 @@ describe('DotButtonToggle', () => {
       />
     );
     const buttonToggleElement = screen.getByTestId(dataTestId);
+    const button = screen.getByRole('button');
+
     expect(buttonToggleElement).toHaveAttribute('aria-label', ariaLabel);
+    expect(button).toHaveAttribute('aria-label', 'button option');
   });
 });

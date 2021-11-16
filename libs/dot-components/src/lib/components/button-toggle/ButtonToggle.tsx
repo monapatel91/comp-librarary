@@ -23,13 +23,16 @@ export interface ButtonToggleProps extends CommonProps {
   disableFocusRipple?: boolean;
   /** If true, the ripple effect will be disabled. */
   disableRipple?: boolean;
+  /** If true, only allow one of the values to be selected. */
+  exclusive?: boolean;
+  /** callback function that is executed when the value changes */
   onChange: (event: MouseEvent, value: ButtonToggleValue) => void;
   /** The group orientation (layout flow direction)*/
   orientation?: ButtonToggleOrientation;
   /** The size of the buttons.*/
   size?: ButtonToggleSize;
   /** The value to associate with the button when selected in a ToggleButtonGroup */
-  value: ButtonToggleValue;
+  value?: ButtonToggleValue;
 }
 export const DotButtonToggle = ({
   ariaLabel,
@@ -38,6 +41,7 @@ export const DotButtonToggle = ({
   'data-testid': dataTestId = 'dot-toggle',
   disableFocusRipple = false,
   disableRipple = false,
+  exclusive = false,
   onChange,
   orientation = 'horizontal',
   size = 'medium',
@@ -50,7 +54,7 @@ export const DotButtonToggle = ({
       aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
-      exclusive
+      exclusive={exclusive}
       onChange={onChange}
       orientation={orientation}
       size={size}

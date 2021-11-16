@@ -42,7 +42,6 @@ export const DotInputSelect = ({
   warning = false,
 }: InputSelectProps) => {
   const rootStyles = useStylesWithRootClass(rootSelectClassName, className);
-
   const hasWarning = !error && warning && warningClassName;
 
   return (
