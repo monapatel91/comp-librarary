@@ -59,6 +59,7 @@ export const DotTableBody = ({
           return (
             <DotTableRow
               columns={columns}
+              className={row.className}
               data={row}
               key={index}
               onActionMenuTrigger={handleActionMenuTrigger}
