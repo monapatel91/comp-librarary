@@ -52,12 +52,14 @@ export const defaultColumns = [
 export const defaultData = [
   {
     id: 'ironman',
+    className: 'tr-custom-class',
     selected: false,
     rowData: {
       title: 'Ironman batman Captain Marvel',
       hometown: 'Malibu',
       fans: 1,
       delete: actionItemArray,
+      className: 'td-custom-class',
     },
   },
   {
