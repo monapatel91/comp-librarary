@@ -1,4 +1,4 @@
-import { ReactNode, MouseEvent, KeyboardEvent } from 'react';
+import { MouseEvent, KeyboardEvent } from 'react';
 import { CommonProps } from './CommonProps';
 
 export type ButtonType = 'destructive' | 'primary' | 'outlined' | 'text';
@@ -22,7 +22,7 @@ export interface BaseButtonProps extends CommonProps {
   /** The use of `titleTooltip` is deprecated and will be removed in the next major release. */
   titleTooltip?: string;
   /** Help text to be displayed on hover  */
-  tooltip?: ReactNode | string | number;
+  tooltip?: string;
   /** The type of button */
   type?: ButtonType;
 }
