@@ -58,7 +58,7 @@ export const DotTableRow = ({
           <DotBodyCell
             align={column.align}
             cellKey={rowKey}
-            className={`${rowData.className}-${column.id}`}
+            className={rowData.className && `${rowData.className}-${column.id}`}
             key={index}
             noWrap={column.truncate}
             onActionMenuTrigger={(menuRef, menuItem) =>
