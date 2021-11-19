@@ -153,4 +153,16 @@ describe('DotAvatar', () => {
     const avatarElement = screen.getByTestId(dataTestId);
     expect(avatarElement).toHaveAttribute('color', color);
   });
+  it('should render as a button when onClick is applied', () => {
+    const handleClick = jest.fn();
+    render(<DotAvatar alt="test" type="text" onClick={handleClick} />);
+    const avatarElement = screen.getByRole('button');
+    expect(avatarElement).toBeInTheDocument();
+  });
+  it('should render as a DIV when onClick is not applied', () => {
+    const dataTestId = 'test-avatar';
+    render(<DotAvatar alt="test" type="text" data-testid={dataTestId} />);
+    const divTag = screen.getByTestId('test-avatar').tagName;
+    expect(divTag).toBe('DIV');
+  });
 });

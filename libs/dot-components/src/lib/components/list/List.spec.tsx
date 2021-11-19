@@ -173,8 +173,8 @@ describe('List', () => {
   });
   it('should hide divider from screen reader to count correct number of list items', () => {
     render(<DotList items={mockListItems} />);
-    const linkEle = screen.getByTestId('divider');
-    expect(linkEle).toHaveAttribute('aria-hidden', 'true');
+    const divider = screen.getByTestId('divider-3');
+    expect(divider).toHaveAttribute('aria-hidden', 'true');
   });
 });
 

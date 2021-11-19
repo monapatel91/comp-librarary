@@ -127,14 +127,9 @@ export const StyledAppToolbar = styled.header`
         align-items: center;
         justify-content: center;
         width: 40px;
-        .dot-button.Mui-focusVisible {
-          .MuiButton-label {
-            box-shadow: 0px 0px 0px 5px ${theme.palette.layer.n0};
-            border-radius: 100%;
-          }
-          .dot-avatar {
-            box-shadow: 0px 0px 0px 3px ${theme.palette.layer.n900};
-          }
+        button.dot-avatar:focus-visible {
+          box-shadow: 0px 0px 0px 3px ${theme.palette.layer.n900},
+            0px 0px 0px 5px ${theme.palette.layer.n0};
         }
       }
     }

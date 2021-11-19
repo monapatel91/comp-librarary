@@ -26,6 +26,8 @@ export interface AvatarProps extends CommonProps {
   alt: string;
   /** Color for avatar (ignored if type is 'image') */
   color?: AvatarColor;
+  /** To render avatar as button or other element type */
+  component?: string;
   /** The ID of the icon to display on the avatar */
   iconId?: string;
   /** Source for the image used for the avatar */
@@ -50,6 +52,7 @@ export const DotAvatar = ({
   alt,
   ariaLabel,
   className,
+  component = 'div',
   color,
   'data-testid': dataTestId,
   iconId,
@@ -96,6 +99,7 @@ export const DotAvatar = ({
         aria-label={ariaLabel}
         className={size}
         color={getAvatarColor()}
+        component={onClick ? 'button' : component}
         classes={{ root: rootClasses, img: 'dot-img' }}
         data-testid={dataTestId}
         onClick={(event: MouseEvent) => (onClick ? onClick(event) : null)}

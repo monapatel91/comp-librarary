@@ -69,3 +69,15 @@ describe('Agility theme style decisions', () => {
     );
   });
 });
+
+describe('dot-component: Avatar as button component', () => {
+  before(() => cy.visit('/iframe.html?id=components-avatar--avatar-button'));
+  it('should have two box shadow on focus state', () => {
+    cy.get('button.dot-avatar').focus();
+    cy.get('button.dot-avatar:focus-visible').should(
+      'have.css',
+      'box-shadow',
+      'rgb(255, 255, 255) 0px 0px 0px 3px, rgb(35, 46, 64) 0px 0px 0px 5px'
+    );
+  });
+});

@@ -61,22 +61,5 @@ describe('dot-components: AppToolbar component', () => {
     it('hamburger menu has correct width', () => {
       cy.get('div.MuiPaper-root').should('have.css', 'width', '240px');
     });
-    it('Avatar button has two different color box shadow on focus state', () => {
-      cy.get('.avatar-wrapper').within(() => {
-        cy.get('.dot-button').focus();
-        cy.get('.dot-button.Mui-focusVisible').within(() => {
-          cy.get('.MuiButton-label').should(
-            'have.css',
-            'box-shadow',
-            'rgb(255, 255, 255) 0px 0px 0px 5px'
-          );
-          cy.get('.dot-avatar').should(
-            'have.css',
-            'box-shadow',
-            'rgb(35, 46, 64) 0px 0px 0px 3px'
-          );
-        });
-      });
-    });
   });
 });

@@ -244,7 +244,11 @@ export const DotList = ({
         if (item.divider) {
           if (!item.text) {
             return (
-              <Divider key={index} aria-hidden={true} data-testid="divider" />
+              <Divider
+                key={index}
+                aria-hidden={true}
+                data-testid={`divider-${index}`}
+              />
             );
           } else {
             return (
