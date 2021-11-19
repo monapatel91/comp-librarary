@@ -69,11 +69,7 @@ export const ProductButtons = () => {
         <div style={{ padding: '10px 20px' }}>
           <pre>
             <code>{`
-          interface CustomButtonProps {
-            children: string | ReactNode;
-          }
-
-          export const CustomButton = ({ children }: CustomButtonProps) => {
+          export const CustomButton = ({ children }) => {
             return (
               <DotButton
                 disableRipple={true}
@@ -109,7 +105,7 @@ export const ProductButtons = () => {
           </CustomThemeProvider>
           <pre>
             <code>{`
-          <CustomThemeProvider theme="light">
+          <CustomThemeProvider theme="dark">
             <DotTypography variant="h3">Custom Button - Dark</DotTypography>
             <CustomButton>Hello World</CustomButton>
           </CustomThemeProvider>
