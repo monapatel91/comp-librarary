@@ -44,6 +44,9 @@ const mockListItems: Array<ListItemProps> = [
     divider: true,
   },
   {
+    divider: true,
+  },
+  {
     startIconId: 'block',
     text: 'Packages',
     href: '/packages',
@@ -168,6 +171,11 @@ describe('List', () => {
     const linkElement = screen.getByTestId(dataTestId);
     expect(linkElement).toHaveAttribute('aria-label', ariaLabel);
   });
+  it('should hide divider from screen reader to count correct number of list items', () => {
+    render(<DotList items={mockListItems} />);
+    const linkEle = screen.getByTestId('divider');
+    expect(linkEle).toHaveAttribute('aria-hidden', 'true');
+  });
 });
 
 describe('ListItem', () => {
@@ -200,7 +208,7 @@ describe('ListItem', () => {
   it('should only display one tooltip', () => {
     const testId = 'tooltip_unit_test';
     render(<DotList data-testid={testId} items={mockListItems} />);
-    const listItem = screen.getByTestId(`${testId}-item-3`);
+    const listItem = screen.getByTestId(`${testId}-item-4`);
     const tooltip = screen.queryAllByTitle('The Dark Knight');
 
     userEvent.hover(listItem);

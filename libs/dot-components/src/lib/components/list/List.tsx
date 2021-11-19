@@ -243,7 +243,9 @@ export const DotList = ({
 
         if (item.divider) {
           if (!item.text) {
-            return <Divider key={index} aria-hidden={true} />;
+            return (
+              <Divider key={index} aria-hidden={true} data-testid="divider" />
+            );
           } else {
             return (
               <ListSubheader disableSticky key={index}>

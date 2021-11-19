@@ -23,13 +23,15 @@ export default {
     },
     avatar: {
       defaultValue: (
-        <DotAvatar
-          alt="Batman"
-          text="Bruce Wayne"
-          size="small"
-          type="text"
-          tooltip="Bruce Wayne"
-        />
+        <DotButton type="text">
+          <DotAvatar
+            alt="Batman"
+            text="Bruce Wayne"
+            size="small"
+            type="text"
+            tooltip="Bruce Wayne"
+          />
+        </DotButton>
       ),
     },
     borderColor: {
