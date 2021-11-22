@@ -26,7 +26,7 @@ export interface AvatarProps extends CommonProps {
   alt: string;
   /** Color for avatar (ignored if type is 'image') */
   color?: AvatarColor;
-  /** To render avatar as button or other element type */
+  /** Used for the root node; button is used when onClick is passed. */
   component?: string;
   /** The ID of the icon to display on the avatar */
   iconId?: string;

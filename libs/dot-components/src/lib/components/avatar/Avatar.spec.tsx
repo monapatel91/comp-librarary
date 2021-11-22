@@ -159,7 +159,7 @@ describe('DotAvatar', () => {
     const avatarElement = screen.getByRole('button');
     expect(avatarElement).toBeInTheDocument();
   });
-  it('should render as a DIV when onClick is not applied', () => {
+  it('should render as a div when onClick is not applied', () => {
     const dataTestId = 'test-avatar';
     render(<DotAvatar alt="test" type="text" data-testid={dataTestId} />);
     const divTag = screen.getByTestId('test-avatar').tagName;
