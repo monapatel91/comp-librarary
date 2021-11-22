@@ -7,7 +7,7 @@ export const rootClassName = 'dot-drawer';
 
 export const StyledDrawer = styled(Drawer)<DrawerProps>`
   ${({ theme }) => css`
-    &.dot-drawer .MuiBackdrop-root {
+    &.${rootClassName} .MuiBackdrop-root {
       background-color: ${alpha(theme.palette.grey[900], 0.7)};
     }
 
