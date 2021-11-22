@@ -4,7 +4,7 @@ import {
   DynamicFormOutputData,
   DynamicFormState,
   DynamicFormStateData,
-  HiddenControl,
+  ControlCondition,
 } from '../models';
 import { DATA_CONTROLS } from '../constants';
 
@@ -24,13 +24,26 @@ export const getOutputFormData = (formState: DynamicFormState) => {
 };
 
 export const checkIfHiddenControl = (
-  hidden: HiddenControl,
+  hidden: ControlCondition,
   formValues: DynamicFormOutputData
 ) => {
   if (!hidden) return false;
   if (typeof hidden === 'boolean') return hidden;
   try {
     return hidden(formValues);
+  } catch (e) {
+    return false;
+  }
+};
+
+export const checkIfDisabledControl = (
+  disabled: ControlCondition,
+  formValues: DynamicFormOutputData
+) => {
+  if (!disabled) return false;
+  if (typeof disabled === 'boolean') return disabled;
+  try {
+    return disabled(formValues);
   } catch (e) {
     return false;
   }

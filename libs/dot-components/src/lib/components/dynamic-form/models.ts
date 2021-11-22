@@ -37,16 +37,17 @@ export interface DynamicFormOutputData {
 
 export type ConditionFunction = (formValues: DynamicFormOutputData) => boolean;
 
-export type HiddenControl = boolean | ConditionFunction;
+export type ControlCondition = boolean | ConditionFunction;
 
 export interface DynamicFormControl {
   controlName?: string;
   controlType: DynamicFormControlType;
   controlProps?: DynamicFormControlProps;
+  disabled?: ControlCondition;
   initialValue?: unknown;
   validation?: DynamicFormValidation;
   customElement?: ReactNode;
-  hidden?: HiddenControl;
+  hidden?: ControlCondition;
 }
 
 export interface FieldValidation {
@@ -83,7 +84,7 @@ export interface DynamicFormStateItem {
   isValid: boolean;
   isTouched: boolean;
   errorMessage: string;
-  hidden?: HiddenControl;
+  hidden?: ControlCondition;
 }
 
 export interface DynamicFormState {

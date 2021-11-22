@@ -38,7 +38,11 @@ import {
   getInitialFormState,
   InputBaseArgs,
 } from './utils/formHelpers';
-import { checkIfHiddenControl, getOutputFormData } from './utils/helpers';
+import {
+  checkIfDisabledControl,
+  checkIfHiddenControl,
+  getOutputFormData,
+} from './utils/helpers';
 import { CheckboxProps } from '../checkbox/Checkbox';
 
 export interface DynamicFormProps extends CommonProps {
@@ -54,7 +58,7 @@ export const DotDynamicForm = ({
   className,
   'data-testid': dataTestId,
   config,
-  disabled,
+  disabled: isFormDisabled,
   liveValidation = true,
   onChange,
   onSubmit,
@@ -208,6 +212,7 @@ export const DotDynamicForm = ({
           controlType,
           controlProps = {},
           customElement,
+          disabled,
           hidden,
           initialValue,
         }: DynamicFormControl,
@@ -218,9 +223,16 @@ export const DotDynamicForm = ({
 
         if (checkIfHiddenControl(hidden, formValues)) return '';
 
+        // Control can be disabled when: 1) whole form is disabled, 2.) control is disabled via config prop
+        // 3.) control is disabled via its own `disable` control prop
+        const isDisabled =
+          isFormDisabled ||
+          checkIfDisabledControl(disabled, formValues) ||
+          ('disabled' in controlProps && controlProps.disabled);
+
         const control: InputBaseArgs = {
           controlProps,
-          disabled,
+          disabled: isDisabled,
           index,
           liveValidation,
         };
