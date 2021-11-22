@@ -191,6 +191,10 @@ export const StyledSidebar = styled.aside`
             height: 40px;
             width: 40px;
           }
+          &.Mui-focusVisible {
+            box-shadow: inset 0 0 0 2px ${theme.palette.layer.n0};
+            border: 2px solid ${theme.palette.layer.n900};
+          }
         }
 
         li.dot-list-item .dot-typography {

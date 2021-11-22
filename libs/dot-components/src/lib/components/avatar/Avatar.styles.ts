@@ -20,6 +20,12 @@ export const StyledAvatar = styled(Avatar)<AvatarProps>`
           ? theme.palette.avatarColors[color].backgroundColor
           : theme.palette.avatarColors['default'].backgroundColor;
       }};
+      border: 0px;
+      &:focus-visible {
+        box-shadow: 0px 0px 0px 3px ${theme.palette.layer.n0},
+          0px 0px 0px 5px ${theme.palette.layer.n900};
+        outline: 0;
+      }
 
       .dot-i,
       .dot-typography {

@@ -127,6 +127,10 @@ export const StyledAppToolbar = styled.header`
         align-items: center;
         justify-content: center;
         width: 40px;
+        button.dot-avatar:focus-visible {
+          box-shadow: 0px 0px 0px 3px ${theme.palette.layer.n900},
+            0px 0px 0px 5px ${theme.palette.layer.n0};
+        }
       }
     }
   `}
