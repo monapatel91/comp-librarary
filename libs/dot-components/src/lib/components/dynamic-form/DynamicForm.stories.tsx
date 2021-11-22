@@ -208,6 +208,31 @@ const config: DynamicFormConfig = {
       },
     },
     {
+      controlName: 'hasVehicle',
+      controlProps: {
+        id: 'hasVehicle',
+        name: 'hasVehicle',
+        groupLabel: 'Do you own a vehicle?',
+        defaultValue: 'no',
+        options: [
+          { label: 'No', value: 'no' },
+          { label: 'Yes', value: 'yes' },
+        ],
+      } as RadioGroupProps,
+      controlType: 'dot-radio-group',
+      initialValue: 'no',
+    },
+    {
+      controlName: 'vehicleModel',
+      controlProps: {
+        label: 'Vehicle Model',
+        required: true,
+      } as InputTextProps,
+      controlType: 'dot-input-text',
+      disabled: (formValues: DynamicFormOutputData) =>
+        formValues['hasVehicle'] === 'no',
+    },
+    {
       controlName: 'receive',
       controlProps: {
         groupLabel: 'I would like to receive',
