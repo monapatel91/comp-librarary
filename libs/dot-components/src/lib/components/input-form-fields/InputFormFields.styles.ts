@@ -24,6 +24,9 @@ export const StyledTextField = styled(TextField)`
           theme.palette.product === 'agility' && theme.palette.layer.n0
         }
       }
+      .MuiInputBase-input {
+        box-sizing: content-box;
+      }
       .MuiOutlinedInput-notchedOutline {
         border-color: ${
           theme.palette.product === 'agility' && theme.palette.layer.n100
