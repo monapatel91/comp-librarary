@@ -141,6 +141,7 @@ export const getSampleConfig = (): DynamicFormConfig => ({
     {
       controlName: 'hasVehicle',
       controlProps: {
+        'data-testid': 'hasVehicle',
         id: 'hasVehicle',
         name: 'hasVehicle',
         groupLabel: 'Do you own a vehicle?',
@@ -156,6 +157,7 @@ export const getSampleConfig = (): DynamicFormConfig => ({
     {
       controlName: 'vehicleModel',
       controlProps: {
+        'data-testid': 'vehicleModel',
         label: 'Vehicle Model',
         required: true,
       } as InputTextProps,

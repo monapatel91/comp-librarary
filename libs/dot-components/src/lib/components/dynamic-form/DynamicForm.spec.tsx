@@ -80,6 +80,24 @@ describe('DotDynamicForm', () => {
     userEvent.click(closeElement);
   };
 
+  const getHasVehicleControlElement = (): HTMLElement =>
+    screen.getByTestId('hasVehicle');
+
+  const getVehicleModelControlElement = (): HTMLElement =>
+    screen.getByTestId('vehicleModel');
+
+  const expectRadioGroupElementToBeChecked = (
+    position: number,
+    shouldBeChecked = true,
+    radioGroupElement: HTMLElement
+  ): void => {
+    const radioElement =
+      within(radioGroupElement).getAllByRole('radio')[position];
+    shouldBeChecked
+      ? expect(radioElement).toBeChecked()
+      : expect(radioElement).not.toBeChecked();
+  };
+
   const expectSwitchToBeChecked = (
     switchElement: HTMLElement,
     shouldBeChecked = true
@@ -393,6 +411,21 @@ describe('DotDynamicForm', () => {
       expect(submitButton).toBeEnabled();
       userEvent.click(submitButton);
       expect(handleSubmit).toHaveBeenCalledTimes(1);
+    });
+
+    it("should have disabled 'vehicleModel' control if 'hasVehicle' control's value is set to 'no'", () => {
+      const hasVehicleElement = getHasVehicleControlElement();
+      const vehicleModelElement = getVehicleModelControlElement();
+      expectRadioGroupElementToBeChecked(0, true, hasVehicleElement);
+      expect(vehicleModelElement).toBeDisabled();
+    });
+
+    it("should have enabled 'vehicleModel' control if 'hasVehicle' control's value is set to 'yes'", () => {
+      const hasVehicleElement = getHasVehicleControlElement();
+      const vehicleModelElement = getVehicleModelControlElement();
+      selectRadioGroupOption(1, hasVehicleElement);
+      expectRadioGroupElementToBeChecked(1, true, hasVehicleElement);
+      expect(vehicleModelElement).toBeEnabled();
     });
   });
 
