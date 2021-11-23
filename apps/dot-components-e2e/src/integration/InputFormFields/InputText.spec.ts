@@ -24,6 +24,14 @@ describe('dot-components: Input Text Field component', () => {
         .and('have.css', 'font-size', '14px')
         .and('have.css', 'margin-bottom', '4px');
     });
+
+    it("should have 'box-sizing' explicitly set to 'content-box'", () => {
+      cy.get('input.MuiInputBase-input').should(
+        'have.css',
+        'box-sizing',
+        'content-box'
+      );
+    });
   });
 });
 
