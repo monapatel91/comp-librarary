@@ -71,6 +71,7 @@ describe('helper functions', () => {
         firstName: 'my first name',
         gender: null,
         hasMiddleName: 'no',
+        hasVehicle: 'no',
         isMandatory: null,
         middleName: null,
         randomOption: [
@@ -80,6 +81,7 @@ describe('helper functions', () => {
         ],
         receive: null,
         receiveNewsletters: null,
+        vehicleModel: null,
       });
     });
   });
@@ -88,7 +90,9 @@ describe('helper functions', () => {
       const initialValues = getFormDataFromInitialValues(getSampleConfig());
       expect(initialValues).toEqual({
         firstName: 'my first name',
+        gender: undefined,
         hasMiddleName: 'no',
+        hasVehicle: 'no',
         isMandatory: undefined,
         middleName: undefined,
         randomOption: [{ title: 'Option 1' }],

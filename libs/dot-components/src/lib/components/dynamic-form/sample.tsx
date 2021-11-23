@@ -139,6 +139,31 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       } as CheckboxGroupProps,
     },
     {
+      controlName: 'hasVehicle',
+      controlProps: {
+        id: 'hasVehicle',
+        name: 'hasVehicle',
+        groupLabel: 'Do you own a vehicle?',
+        defaultValue: 'no',
+        options: [
+          { label: 'No', value: 'no' },
+          { label: 'Yes', value: 'yes' },
+        ],
+      } as RadioGroupProps,
+      controlType: 'dot-radio-group',
+      initialValue: 'no',
+    },
+    {
+      controlName: 'vehicleModel',
+      controlProps: {
+        label: 'Vehicle Model',
+        required: true,
+      } as InputTextProps,
+      controlType: 'dot-input-text',
+      disabled: (formValues: DynamicFormOutputData) =>
+        formValues['hasVehicle'] === 'no',
+    },
+    {
       controlType: 'custom-element',
       customElement: <p data-testid="customElement">test</p>,
     },
@@ -224,6 +249,18 @@ export const getSampleFormState = (): DynamicFormState => ({
       value: null,
     },
     receiveNewsletters: {
+      errorMessage: null,
+      isTouched: false,
+      isValid: true,
+      value: null,
+    },
+    hasVehicle: {
+      errorMessage: null,
+      isTouched: true,
+      isValid: true,
+      value: 'no',
+    },
+    vehicleModel: {
       errorMessage: null,
       isTouched: false,
       isValid: true,

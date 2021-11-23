@@ -83,6 +83,18 @@ describe('dynamic form helper functions', () => {
             isValid: true,
             value: null,
           },
+          hasVehicle: {
+            errorMessage: null,
+            isTouched: false,
+            isValid: true,
+            value: 'no',
+          },
+          vehicleModel: {
+            errorMessage: null,
+            isTouched: false,
+            isValid: true,
+            value: null,
+          },
           isMandatory: {
             errorMessage: null,
             isTouched: false,
