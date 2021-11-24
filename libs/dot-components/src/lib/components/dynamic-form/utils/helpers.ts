@@ -49,15 +49,35 @@ export const checkIfDisabledControl = (
   }
 };
 
+const getInitialValueFromControl = ({
+  controlType,
+  initialValue,
+}: DynamicFormControl) => {
+  // Skip non-data controls (ignore buttons and other non-relevant elements)
+  // or hidden elements
+  if (!DATA_CONTROLS.includes(controlType)) return;
+  return initialValue ? initialValue : undefined;
+};
+
 export const getFormDataFromInitialValues = (config: DynamicFormConfig) => {
   const formValues: DynamicFormOutputData = {};
-  config.controls.forEach(
-    ({ controlName, initialValue, controlType }: DynamicFormControl) => {
-      // Skip non-data controls (ignore buttons and other non-relevant elements)
-      // or hidden elements
-      if (!DATA_CONTROLS.includes(controlType)) return;
-      formValues[controlName] = initialValue ? initialValue : undefined;
+  config.controls.forEach((control: DynamicFormControl) => {
+    const { controlName, controlsWrapper } = control;
+    // Check if there are wrapped controls and grab initial values from those
+    if (controlsWrapper && controlsWrapper.controlsToWrap) {
+      controlsWrapper.controlsToWrap.forEach(
+        (wrappedControl: DynamicFormControl) => {
+          const { controlName: wrappedControlName } = wrappedControl;
+          const wrappedInitialValue =
+            getInitialValueFromControl(wrappedControl);
+          formValues[wrappedControlName] = wrappedInitialValue
+            ? wrappedInitialValue
+            : undefined;
+        }
+      );
     }
-  );
+    const initialValue = getInitialValueFromControl(control);
+    formValues[controlName] = initialValue ? initialValue : undefined;
+  });
   return formValues;
 };

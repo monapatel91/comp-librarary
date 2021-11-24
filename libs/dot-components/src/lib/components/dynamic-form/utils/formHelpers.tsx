@@ -11,8 +11,10 @@ import {
   DynamicFormConfig,
   DynamicFormControl,
   DynamicFormControlProps,
+  DynamicFormOutputData,
   DynamicFormState,
   DynamicFormStateData,
+  DynamicFormStateItem,
 } from '../models';
 import {
   AutoCompleteProps,
@@ -76,6 +78,53 @@ export interface UncontrolledInputArgs extends InputBaseArgs {
   handleClick?: () => void;
 }
 
+const getInitialStateFromControl = (
+  {
+    hidden,
+    initialValue,
+    controlType,
+    validation,
+    controlsWrapper,
+  }: DynamicFormControl,
+  liveValidation: boolean,
+  formValues: DynamicFormOutputData
+): DynamicFormStateItem => {
+  // Skip non-data controls (ignore buttons and other non-relevant elements)
+  // or hidden elements
+  if (!DATA_CONTROLS.includes(controlType)) return;
+
+  const formStateItem: DynamicFormStateItem = { ...INITIAL_STATE_ITEM };
+
+  if (hidden) formStateItem.hidden = hidden;
+  if (initialValue) {
+    formStateItem.value = initialValue;
+
+    if (liveValidation) {
+      const isHidden = checkIfHiddenControl(hidden, formValues);
+      formStateItem.isTouched = true;
+      // Since it is hidden field we will mark valid field to true so that is doesn't
+      // prevent form submission
+      if (isHidden) {
+        formStateItem.isValid = true;
+      } else {
+        const fieldValidation = getFieldValidation(
+          initialValue,
+          validation,
+          formValues
+        );
+        formStateItem.isValid = fieldValidation.isValid;
+        formStateItem.errorMessage = fieldValidation.errorMessage;
+      }
+    }
+  }
+  // If no validation always set valid to true
+  if (!validation || DATA_CONTROLS_WITHOUT_VALIDATION.includes(controlType)) {
+    // Set always to valid for now
+    formStateItem.isValid = true;
+  }
+  return formStateItem;
+};
+
 export const getInitialFormState = (
   config: DynamicFormConfig,
   liveValidation: boolean
@@ -85,52 +134,32 @@ export const getInitialFormState = (
     data: {},
     isValid: false,
   };
-  config.controls.forEach(
-    ({
-      controlName,
-      hidden,
-      initialValue,
-      controlType,
-      validation,
-    }: DynamicFormControl) => {
-      // Skip non-data controls (ignore buttons and other non-relevant elements)
-      // or hidden elements
-      if (!DATA_CONTROLS.includes(controlType)) return;
-
-      initialState.data[controlName] = { ...INITIAL_STATE_ITEM };
-      if (hidden) initialState.data[controlName].hidden = hidden;
-      if (initialValue) {
-        initialState.data[controlName].value = initialValue;
-
-        if (liveValidation) {
-          const isHidden = checkIfHiddenControl(hidden, formValues);
-          initialState.data[controlName].isTouched = true;
-          // Since it is hidden field we will mark valid field to true so that is doesn't
-          // prevent form submission
-          if (isHidden) {
-            initialState.data[controlName].isValid = true;
-          } else {
-            const fieldValidation = getFieldValidation(
-              initialValue,
-              validation,
-              formValues
-            );
-            initialState.data[controlName].isValid = fieldValidation.isValid;
-            initialState.data[controlName].errorMessage =
-              fieldValidation.errorMessage;
-          }
+  config.controls.forEach((control: DynamicFormControl) => {
+    const { controlsWrapper } = control;
+    // Check if there are wrapped controls and grab initial state from those
+    if (controlsWrapper && controlsWrapper.controlsToWrap) {
+      controlsWrapper.controlsToWrap.forEach(
+        (wrappedControl: DynamicFormControl) => {
+          const { controlName: wrappedControlName } = wrappedControl;
+          const wrappedFormStateItem = getInitialStateFromControl(
+            wrappedControl,
+            liveValidation,
+            formValues
+          );
+          if (!wrappedFormStateItem) return;
+          initialState.data[wrappedControlName] = wrappedFormStateItem;
         }
-      }
-      // If no validation always set valid to true
-      if (
-        !validation ||
-        DATA_CONTROLS_WITHOUT_VALIDATION.includes(controlType)
-      ) {
-        // Set always to valid for now
-        initialState.data[controlName].isValid = true;
-      }
+      );
     }
-  );
+    const { controlName } = control;
+    const formStateItem = getInitialStateFromControl(
+      control,
+      liveValidation,
+      formValues
+    );
+    if (!formStateItem) return;
+    initialState.data[controlName] = formStateItem;
+  });
   return initialState;
 };
 
