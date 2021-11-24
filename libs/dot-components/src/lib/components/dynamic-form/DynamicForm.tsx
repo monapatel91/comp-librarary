@@ -204,8 +204,12 @@ export const DotDynamicForm = ({
 
   const handleReset = () => setFormState(initialFormState);
 
-  const buildFormControls = () => {
-    return config.controls.map(
+  const buildFormControls = (
+    controls: DynamicFormControl[],
+    startIndex = 0
+  ) => {
+    if (!controls || !controls.length) return;
+    return controls.map(
       (
         {
           controlName,
@@ -215,10 +219,12 @@ export const DotDynamicForm = ({
           disabled,
           hidden,
           initialValue,
+          controlsWrapper,
         }: DynamicFormControl,
         index: number
       ) => {
-        const inputControlName = controlName || `control-${index}`;
+        const elementIndex = startIndex + index;
+        const inputControlName = controlName || `control-${elementIndex}`;
         const formValues = getOutputFormData(formState);
 
         if (checkIfHiddenControl(hidden, formValues)) return '';
@@ -233,7 +239,7 @@ export const DotDynamicForm = ({
         const control: InputBaseArgs = {
           controlProps,
           disabled: isDisabled,
-          index,
+          index: elementIndex,
           liveValidation,
         };
 
@@ -299,7 +305,16 @@ export const DotDynamicForm = ({
             return buildSubmitControl({ ...control, formState });
           }
           case 'custom-element': {
-            return <Fragment key={index}>{customElement}</Fragment>;
+            return <Fragment key={elementIndex}>{customElement}</Fragment>;
+          }
+          case 'controls-wrapper': {
+            const { WrapperComponent, controlsToWrap } = controlsWrapper;
+            const wrapperStartIndex = elementIndex + 1;
+            return (
+              <WrapperComponent key={elementIndex}>
+                {buildFormControls(controlsToWrap, wrapperStartIndex)}
+              </WrapperComponent>
+            );
           }
           default: {
             return '';
@@ -312,7 +327,7 @@ export const DotDynamicForm = ({
   return (
     <StyledDynamicForm className={rootClasses} data-testid={dataTestId}>
       <DotForm ariaLabel={ariaLabel} onSubmit={handleFormSubmit}>
-        {buildFormControls()}
+        {buildFormControls(config.controls)}
       </DotForm>
     </StyledDynamicForm>
   );

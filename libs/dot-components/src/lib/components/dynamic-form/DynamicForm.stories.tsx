@@ -282,13 +282,32 @@ const config: DynamicFormConfig = {
       customElement: <br />,
     },
     {
-      controlName: 'terms',
-      controlType: 'dot-checkbox',
-      controlProps: {
-        'data-testid': 'terms',
-        label: 'I agree to terms and conditions',
-      } as CheckboxProps,
-      initialValue: false,
+      controlType: 'controls-wrapper',
+      controlsWrapper: {
+        WrapperComponent: ({ children }) => {
+          return <div className="terms">{children}</div>;
+        },
+        controlsToWrap: [
+          {
+            controlName: 'terms',
+            controlType: 'dot-checkbox',
+            controlProps: {
+              'data-testid': 'terms',
+              label: 'I agree to terms and conditions',
+            } as CheckboxProps,
+            initialValue: false,
+          },
+          {
+            controlType: 'custom-element',
+            customElement: (
+              <DotIcon
+                iconId="info-solid"
+                tooltip="Please read terms and conditions carefully"
+              />
+            ),
+          },
+        ],
+      },
     },
     {
       controlType: 'custom-element',
@@ -297,34 +316,44 @@ const config: DynamicFormConfig = {
       ),
     },
     {
-      controlName: 'btnHelp',
-      controlProps: {
-        children: 'Help',
-        fullWidth: false,
-        startIcon: <DotIcon fontSize="small" iconId="help" />,
-        type: 'outlined',
-        onClick: () => alert('help!'),
-      } as ButtonProps,
-      controlType: 'dot-reset',
-    },
-    {
-      controlName: 'btnCancel',
-      controlProps: {
-        children: 'Cancel',
-        fullWidth: false,
-        isSubmit: false,
-        type: 'destructive',
-      } as ButtonProps,
-      controlType: 'dot-reset',
-    },
-    {
-      controlName: 'btnSubmit',
-      controlProps: {
-        children: 'Submit form',
-        fullWidth: false,
-        type: 'primary',
-      } as ButtonProps,
-      controlType: 'dot-submit',
+      controlType: 'controls-wrapper',
+      controlsWrapper: {
+        WrapperComponent: ({ children }) => {
+          return <div className="wrapper-component">{children}</div>;
+        },
+        controlsToWrap: [
+          {
+            controlName: 'btnHelp',
+            controlProps: {
+              children: 'Help',
+              fullWidth: false,
+              startIcon: <DotIcon fontSize="small" iconId="help" />,
+              type: 'outlined',
+              onClick: () => alert('help!'),
+            } as ButtonProps,
+            controlType: 'dot-reset',
+          },
+          {
+            controlName: 'btnCancel',
+            controlProps: {
+              children: 'Cancel',
+              fullWidth: false,
+              isSubmit: false,
+              type: 'destructive',
+            } as ButtonProps,
+            controlType: 'dot-reset',
+          },
+          {
+            controlName: 'btnSubmit',
+            controlProps: {
+              children: 'Submit form',
+              fullWidth: false,
+              type: 'primary',
+            } as ButtonProps,
+            controlType: 'dot-submit',
+          },
+        ],
+      },
     },
   ],
 };

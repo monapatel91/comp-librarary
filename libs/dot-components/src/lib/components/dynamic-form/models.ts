@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ComponentType, ReactNode } from 'react';
 import { AutoCompleteProps } from '../auto-complete/AutoComplete';
 import { ButtonProps } from '../button/Button';
 import { CheckboxProps } from '../checkbox/Checkbox';
@@ -19,7 +19,8 @@ export type DynamicFormControlType =
   | 'dot-reset'
   | 'dot-submit'
   | 'dot-switch'
-  | 'custom-element';
+  | 'custom-element'
+  | 'controls-wrapper';
 
 export type DynamicFormControlProps =
   | AutoCompleteProps
@@ -39,6 +40,11 @@ export type ConditionFunction = (formValues: DynamicFormOutputData) => boolean;
 
 export type ControlCondition = boolean | ConditionFunction;
 
+export interface ControlsWrapper {
+  WrapperComponent: ComponentType;
+  controlsToWrap: DynamicFormControl[];
+}
+
 export interface DynamicFormControl {
   controlName?: string;
   controlType: DynamicFormControlType;
@@ -48,6 +54,7 @@ export interface DynamicFormControl {
   validation?: DynamicFormValidation;
   customElement?: ReactNode;
   hidden?: ControlCondition;
+  controlsWrapper?: ControlsWrapper;
 }
 
 export interface FieldValidation {
