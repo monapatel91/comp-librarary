@@ -6,7 +6,7 @@ export const rootClassName = 'dot-table';
 
 export const StyledPaper = styled(Paper)`
   ${({ theme }) => css`
-    &.dot-table {
+    &.${rootClassName} {
       background: ${theme.palette.product === 'agility' &&
       theme.palette.layer.n50};
       border: 1px solid

@@ -55,25 +55,31 @@ export const ProductButtons = () => {
           This is an example of how a product specific wrapper component can be
           created with its own set of props and defaults. When used with a
           product specific ThemeProvider the standard dot-component styles can
-          be overridden. For more details on how to create a custom
-          ThemeProvider please see the{' '}
+          be overridden.
+        </DotTypography>
+        <DotTypography variant="body1">
+          &bull;&nbsp;
           <DotLink
             href="https://github.com/digital-ai/dot-components/wiki/Product-Specific-Component-&-ThemeProvider"
             target="_blank"
           >
-            documentation
+            Custom ThemeProvider Documentation
           </DotLink>
-          .
+        </DotTypography>
+        <DotTypography variant="body1">
+          &bull;&nbsp;
+          <DotLink
+            href="https://codesandbox.io/s/mystifying-ardinghelli-l1o3r"
+            target="_blank"
+          >
+            Sandbox - Agility App Toolbar
+          </DotLink>
         </DotTypography>
 
         <div style={{ padding: '10px 20px' }}>
           <pre>
             <code>{`
-          interface CustomButtonProps {
-            children: string | ReactNode;
-          }
-
-          export const CustomButton = ({ children }: CustomButtonProps) => {
+          export const CustomButton = ({ children }) => {
             return (
               <DotButton
                 disableRipple={true}
@@ -109,7 +115,7 @@ export const ProductButtons = () => {
           </CustomThemeProvider>
           <pre>
             <code>{`
-          <CustomThemeProvider theme="light">
+          <CustomThemeProvider theme="dark">
             <DotTypography variant="h3">Custom Button - Dark</DotTypography>
             <CustomButton>Hello World</CustomButton>
           </CustomThemeProvider>

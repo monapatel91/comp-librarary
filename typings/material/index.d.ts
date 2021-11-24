@@ -1,3 +1,8 @@
+interface AvatarPaletteColorOption {
+  backgroundColor: string;
+  color: string;
+}
+
 export interface AvatarPaletteColorOptions {
   default: AvatarPaletteColorOption;
   green: AvatarPaletteColorOption;
@@ -17,11 +22,6 @@ declare module '@material-ui/core/styles/createPalette' {
     icon: IconPaletteColorOptions;
     layer: LayerPaletteColorOptions;
     product?: 'agility';
-  }
-
-  interface AvatarPaletteColorOption {
-    backgroundColor: string;
-    color: string;
   }
 
   interface AgilityInterfaceOptions {

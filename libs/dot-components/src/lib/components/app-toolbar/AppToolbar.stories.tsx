@@ -8,6 +8,7 @@ import { ReactComponent as DemoLogo } from '../../assets/demo-logo.svg';
 import { ReactComponent as DemoLogoSmall } from '../../assets/demo-logo-small.svg';
 import { ReactComponent as TestLogo } from '../../assets/test_logo.svg';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { action } from '@storybook/addon-actions';
 
 const logoOptions = ['Default', 'Custom'];
 
@@ -25,6 +26,7 @@ export default {
       defaultValue: (
         <DotAvatar
           alt="Batman"
+          onClick={action('Clicked')}
           text="Bruce Wayne"
           size="small"
           type="text"
