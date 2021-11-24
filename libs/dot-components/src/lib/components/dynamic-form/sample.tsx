@@ -4,6 +4,7 @@ import { ButtonProps } from '../button/Button';
 import { CheckboxProps } from '../checkbox/Checkbox';
 import { InputTextProps } from '../input-form-fields/InputText';
 import { InputSelectProps } from '../input-form-fields/InputSelect';
+import { DotIcon } from '../icon/Icon';
 import { CheckboxGroupProps } from '../checkbox/CheckboxGroup';
 import { RadioGroupProps } from '../radio/RadioGroup';
 import {
@@ -11,7 +12,6 @@ import {
   DynamicFormOutputData,
   DynamicFormState,
 } from './models';
-import { DotIcon } from '@digital-ai/dot-components';
 
 export const sampleMiddleNameHiddenFn = (formValues: DynamicFormOutputData) =>
   formValues['hasMiddleName'] === 'no';
