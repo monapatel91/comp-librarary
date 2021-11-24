@@ -11,6 +11,7 @@ import {
   DynamicFormOutputData,
   DynamicFormState,
 } from './models';
+import { DotIcon } from '@digital-ai/dot-components';
 
 export const sampleMiddleNameHiddenFn = (formValues: DynamicFormOutputData) =>
   formValues['hasMiddleName'] === 'no';
@@ -185,14 +186,38 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       },
     },
     {
-      controlName: 'receiveNewsletters',
-      controlType: 'dot-checkbox',
-      controlProps: {
-        'data-testid': 'receiveNewsletters',
-        label: 'Receive Newsletters?',
-      } as CheckboxProps,
-      initialValue: false,
+      controlType: 'controls-wrapper',
+      controlsWrapper: {
+        WrapperComponent: ({ children }) => {
+          return (
+            <div className="newsletters" data-testid="newsletters">
+              {children}
+            </div>
+          );
+        },
+        controlsToWrap: [
+          {
+            controlName: 'receiveNewsletters',
+            controlType: 'dot-checkbox',
+            controlProps: {
+              'data-testid': 'receiveNewsletters',
+              label: 'Receive Newsletters?',
+            } as CheckboxProps,
+            initialValue: false,
+          },
+          {
+            controlType: 'custom-element',
+            customElement: (
+              <DotIcon
+                iconId="info-solid"
+                tooltip="You can opt out at any time"
+              />
+            ),
+          },
+        ],
+      },
     },
+
     {
       controlName: 'btnTest',
       controlType: 'dot-button',

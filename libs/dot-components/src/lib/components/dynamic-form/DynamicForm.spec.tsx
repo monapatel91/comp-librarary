@@ -61,7 +61,7 @@ describe('DotDynamicForm', () => {
     screen.getByTestId('firstName');
 
   const getCheckboxElement = (): HTMLElement =>
-    screen.getByTestId('receiveNewsletters');
+    within(screen.getByTestId('newsletters')).getByTestId('receiveNewsletters');
 
   const getSelectElement = (): HTMLElement => screen.getByTestId('gender');
 
@@ -372,6 +372,8 @@ describe('DotDynamicForm', () => {
       const resetButton = getResetButton();
       const firstNameElement = getFirstNameTextbox();
       const autocompleteTextboxElement = getAutocompleteTextboxElement();
+      const hasVehicleElement = getHasVehicleControlElement();
+      const vehicleModelElement = getVehicleModelControlElement();
 
       // Set initial values
       selectRadioGroupOption(1, hasMiddleNameElement);
@@ -380,12 +382,15 @@ describe('DotDynamicForm', () => {
       userEvent.click(switchElement);
       userEvent.type(firstNameElement, 'John');
       userEvent.type(autocompleteTextboxElement, 'Option 1');
+      selectRadioGroupOption(1, hasVehicleElement);
+      userEvent.type(vehicleModelElement, 'My vehicle');
 
       // Click reset button
       userEvent.click(resetButton);
 
       // Confirm that all values are reset
       expect(firstNameElement).toBeEmptyDOMElement();
+      expect(vehicleModelElement).toBeEmptyDOMElement();
       expect(autocompleteTextboxElement).toBeEmptyDOMElement();
       waitFor(() => {
         expect(middleNameRadioButton[0]).toBeChecked();
@@ -393,6 +398,7 @@ describe('DotDynamicForm', () => {
         expectCheckboxGroupElementToBeChecked(1, false, checkboxGroupElement);
         expectCheckboxGroupElementToBeChecked(2, false, checkboxGroupElement);
         expectSwitchToBeChecked(switchElement, false);
+        expectRadioGroupElementToBeChecked(0, true, hasVehicleElement);
       });
     });
 
