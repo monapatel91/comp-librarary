@@ -161,13 +161,16 @@ export const DotSidebar = ({
       {children}
       {collapsable && (
         <div className="toggle-nav">
-          <DotIconButton
-            ariaLabel="collapse sidebar navigation"
-            data-testid="toggle-nav"
-            iconId={isOpen ? 'chevron-left' : 'chevron-right'}
-            iconSize="small"
-            onClick={collapseNav}
-          />
+          <DotTooltip title={isOpen ? 'Collapse' : 'Expand'}>
+            <DotIconButton
+              ariaLabel="collapse sidebar navigation"
+              data-testid="toggle-nav"
+              iconId={isOpen ? 'chevron-left' : 'chevron-right'}
+              iconSize="small"
+              onClick={collapseNav}
+              size="small"
+            />
+          </DotTooltip>
         </div>
       )}
       {displayBrand && (
