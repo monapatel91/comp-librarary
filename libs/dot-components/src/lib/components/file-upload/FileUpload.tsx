@@ -29,6 +29,7 @@ export const DotFileUpload = ({
   'data-testid': dataTestId,
   disabled,
   maxFiles,
+  maxSize,
   onDrop,
 }: FileUploadProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
