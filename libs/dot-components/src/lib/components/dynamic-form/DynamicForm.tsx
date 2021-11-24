@@ -31,6 +31,7 @@ import {
   buildCheckboxGroupControl,
   buildInputSelectControl,
   buildInputTextControl,
+  buildProgressSubmitControl,
   buildRadioGroupControl,
   buildResetControl,
   buildSubmitControl,
@@ -303,6 +304,9 @@ export const DotDynamicForm = ({
           }
           case 'dot-submit': {
             return buildSubmitControl({ ...control, formState });
+          }
+          case 'dot-progress-submit': {
+            return buildProgressSubmitControl({ ...control, formState });
           }
           case 'custom-element': {
             return <Fragment key={elementIndex}>{customElement}</Fragment>;

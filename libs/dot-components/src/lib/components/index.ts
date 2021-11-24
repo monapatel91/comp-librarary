@@ -89,6 +89,10 @@ export {
   useDotSnackbarContext,
 } from './snackbar/SnackbarProvider';
 export { DotSplitButton } from './split-button/SplitButton';
+export {
+  DotProgressButton,
+  ProgressButtonProps,
+} from './progress-button/ProgressButton';
 export { DotSwitch } from './switch/Switch';
 export { DotTable } from './table/Table';
 export { DotTooltip } from './tooltip/Tooltip';

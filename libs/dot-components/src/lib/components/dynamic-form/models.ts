@@ -7,6 +7,7 @@ import { InputSelectProps } from '../input-form-fields/InputSelect';
 import { CheckboxGroupProps } from '../checkbox/CheckboxGroup';
 import { RadioGroupProps } from '../radio/RadioGroup';
 import { SwitchProps } from '../switch/Switch';
+import { ProgressButtonProps } from '../progress-button/ProgressButton';
 
 export type DynamicFormControlType =
   | 'dot-input-text'
@@ -18,6 +19,7 @@ export type DynamicFormControlType =
   | 'dot-radio-group'
   | 'dot-reset'
   | 'dot-submit'
+  | 'dot-progress-submit'
   | 'dot-switch'
   | 'custom-element'
   | 'controls-wrapper';
@@ -29,6 +31,7 @@ export type DynamicFormControlProps =
   | CheckboxProps
   | CheckboxGroupProps
   | ButtonProps
+  | ProgressButtonProps
   | RadioGroupProps
   | SwitchProps;
 

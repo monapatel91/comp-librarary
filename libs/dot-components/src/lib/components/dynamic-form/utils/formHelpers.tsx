@@ -20,6 +20,10 @@ import {
   DotAutoComplete,
 } from '../../auto-complete/AutoComplete';
 import { ButtonProps, DotButton } from '../../button/Button';
+import {
+  DotProgressButton,
+  ProgressButtonProps,
+} from '../../progress-button/ProgressButton';
 import { CheckboxProps, DotCheckbox } from '../../checkbox/Checkbox';
 import {
   CheckboxGroupProps,
@@ -348,5 +352,24 @@ export const buildSubmitControl = ({
     <DotButton key={index} {...props} disabled={isDisabled} isSubmit={true}>
       {props.children}
     </DotButton>
+  );
+};
+
+export const buildProgressSubmitControl = ({
+  controlProps,
+  disabled,
+  formState,
+  index,
+  liveValidation,
+}: UncontrolledInputArgs) => {
+  const props = controlProps as ProgressButtonProps;
+  const isDisabled = disabled || (liveValidation && !formState.isValid);
+  return (
+    <DotProgressButton
+      key={index}
+      {...props}
+      disabled={isDisabled}
+      isSubmit={true}
+    />
   );
 };
