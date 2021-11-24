@@ -34,6 +34,7 @@ export type { TableDataWithPagination } from './table/TableDataWithPagination';
 export type { RowsPerPageOption } from './table/TablePagination';
 export type { TabProps } from './tabs/Tabs';
 export type { TypographyVariant } from './typography/Typography';
+export type { ProgressButtonProps } from './progress-button/ProgressButton';
 
 export { DotAccordion } from './accordion/Accordion';
 export { DotActionToolbar } from './action-toolbar/ActionToolbar';
@@ -89,10 +90,7 @@ export {
   useDotSnackbarContext,
 } from './snackbar/SnackbarProvider';
 export { DotSplitButton } from './split-button/SplitButton';
-export {
-  DotProgressButton,
-  ProgressButtonProps,
-} from './progress-button/ProgressButton';
+export { DotProgressButton } from './progress-button/ProgressButton';
 export { DotSwitch } from './switch/Switch';
 export { DotTable } from './table/Table';
 export { DotTooltip } from './tooltip/Tooltip';
