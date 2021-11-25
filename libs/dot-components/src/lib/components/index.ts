@@ -13,6 +13,7 @@ export type { SubmitButtonProps } from './dialog/Dialog';
 export type { DynamicFormProps } from './dynamic-form/DynamicForm';
 export type {
   DynamicFormConfig,
+  DynamicFormControl,
   DynamicFormOutputData,
   DynamicFormState,
   FieldValidation,
