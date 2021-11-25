@@ -51,6 +51,8 @@ export type ControlCondition = boolean | ConditionFunction;
 
 export type DisabledControlCondition = boolean | DisabledConditionFunction;
 
+export type ControlClickHandler = (formValues: DynamicFormOutputData) => void;
+
 export interface ControlsWrapper {
   WrapperComponent: ComponentType;
   controlsToWrap: DynamicFormControl[];

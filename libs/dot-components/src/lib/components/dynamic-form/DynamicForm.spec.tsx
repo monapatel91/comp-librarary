@@ -13,7 +13,8 @@ import { getSampleConfig } from './sample';
 describe('DotDynamicForm', () => {
   const handleChange = jest.fn();
   const handleSubmit = jest.fn();
-  const config = getSampleConfig();
+  const handleProgressControlClick = jest.fn();
+  const config = getSampleConfig(handleProgressControlClick);
   const ariaLabel = 'my aria label';
 
   const componentProps: DynamicFormProps = {
@@ -145,8 +146,11 @@ describe('DotDynamicForm', () => {
       : expect(errorMessage).not.toBeInTheDocument();
   };
 
-  const typeFirstName = (text: string): void =>
-    userEvent.type(getFirstNameTextbox(), text);
+  const typeFirstName = (text: string): void => {
+    const element = getFirstNameTextbox();
+    userEvent.clear(element);
+    userEvent.type(element, text);
+  };
 
   const toggleSwitch = (): void => {
     userEvent.click(getSwitchElement());
@@ -432,10 +436,31 @@ describe('DotDynamicForm', () => {
       expect(handleSubmit).toHaveBeenCalledTimes(1);
     });
 
-    it('should enable Progress button when form is valid', () => {
+    it("should execute correct event handler when 'Progress' button is clicked", () => {
       fillFormWithData();
       const progressButton = getProgressButton();
       expect(progressButton).toBeEnabled();
+      userEvent.click(progressButton);
+      expect(handleProgressControlClick).toHaveBeenCalledTimes(1);
+      expect(handleProgressControlClick).toHaveBeenCalledWith({
+        firstName: 'first name',
+        gender: 'Male',
+        hasMiddleName: 'no',
+        hasVehicle: 'no',
+        isMandatory: true,
+        middleName: null,
+        randomOption: [
+          {
+            title: 'Option 1',
+          },
+          {
+            title: 'Option 2',
+          },
+        ],
+        receive: null,
+        receiveNewsletters: null,
+        vehicleModel: null,
+      });
     });
 
     it("should have disabled 'vehicleModel' control if 'hasVehicle' control's value is set to 'no'", () => {

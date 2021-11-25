@@ -7,17 +7,20 @@ import { InputSelectProps } from '../input-form-fields/InputSelect';
 import { DotIcon } from '../icon/Icon';
 import { CheckboxGroupProps } from '../checkbox/CheckboxGroup';
 import { RadioGroupProps } from '../radio/RadioGroup';
+import { ProgressButtonProps } from '../progress-button/ProgressButton';
 import {
+  ControlClickHandler,
   DynamicFormConfig,
   DynamicFormOutputData,
   DynamicFormState,
 } from './models';
-import { ProgressButtonProps } from '@digital-ai/dot-components';
 
 export const sampleMiddleNameHiddenFn = (formValues: DynamicFormOutputData) =>
   formValues['hasMiddleName'] === 'no';
 
-export const getSampleConfig = (): DynamicFormConfig => ({
+export const getSampleConfig = (
+  handleProgressControlClick: ControlClickHandler
+): DynamicFormConfig => ({
   controls: [
     {
       controlName: 'firstName',
@@ -236,6 +239,7 @@ export const getSampleConfig = (): DynamicFormConfig => ({
       } as ProgressButtonProps,
       disabled: (_formValues: DynamicFormOutputData, isValid: boolean) =>
         !isValid,
+      onControlClick: handleProgressControlClick,
     },
     {
       controlName: 'btnReset',

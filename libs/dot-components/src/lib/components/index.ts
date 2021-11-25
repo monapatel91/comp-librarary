@@ -12,6 +12,7 @@ export type { CheckboxGroupProps } from './checkbox/CheckboxGroup';
 export type { SubmitButtonProps } from './dialog/Dialog';
 export type { DynamicFormProps } from './dynamic-form/DynamicForm';
 export type {
+  ControlClickHandler,
   DynamicFormConfig,
   DynamicFormControl,
   DynamicFormOutputData,
