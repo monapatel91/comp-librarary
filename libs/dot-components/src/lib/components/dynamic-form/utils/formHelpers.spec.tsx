@@ -7,6 +7,7 @@ import {
   buildInputSelectControl,
   buildInputTextControl,
   buildProgressButtonControl,
+  buildProgressSubmitControl,
   buildRadioGroupControl,
   buildResetControl,
   buildSubmitControl,
@@ -941,6 +942,81 @@ describe('dynamic form helper functions', () => {
         } as never,
       };
       const result = buildSubmitControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
+      });
+    });
+  });
+
+  describe('buildProgressSubmitControl', () => {
+    const handleClick = jest.fn();
+    const controlProps: ProgressButtonProps = {
+      isLoading: false,
+      title: 'Save',
+      type: 'primary',
+    };
+    const formState = {
+      isValid: true,
+    } as never;
+    const props: UncontrolledInputArgs = {
+      controlProps: controlProps,
+      disabled: false,
+      formState,
+      handleClick,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotProgressButton
+        disabled={false}
+        isLoading={false}
+        isSubmit={true}
+        key={props.index}
+        size={controlProps.size}
+        title={controlProps.title}
+        type={controlProps.type}
+      />
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildProgressSubmitControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+        disabled: true,
+      };
+      const result = buildProgressSubmitControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
+      });
+    });
+
+    it('should return component instance with disabled prop when live validation is on and form validity is false', () => {
+      const customProps = {
+        ...props,
+        controlProps: {
+          ...controlProps,
+        },
+        formState: {
+          isValid: false,
+        } as never,
+      };
+      const result = buildProgressSubmitControl(customProps);
       expect(result).toEqual({
         ...expectedResult,
         props: {
