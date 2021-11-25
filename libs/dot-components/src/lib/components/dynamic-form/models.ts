@@ -58,14 +58,15 @@ export interface ControlsWrapper {
 
 export interface DynamicFormControl {
   controlName?: string;
-  controlType: DynamicFormControlType;
   controlProps?: DynamicFormControlProps;
-  disabled?: DisabledControlCondition;
-  initialValue?: unknown;
-  validation?: DynamicFormValidation;
-  customElement?: ReactNode;
-  hidden?: ControlCondition;
+  controlType: DynamicFormControlType;
   controlsWrapper?: ControlsWrapper;
+  customElement?: ReactNode;
+  disabled?: DisabledControlCondition;
+  hidden?: ControlCondition;
+  initialValue?: unknown;
+  onControlClick?: (formValues: DynamicFormOutputData) => void;
+  validation?: DynamicFormValidation;
 }
 
 export interface FieldValidation {

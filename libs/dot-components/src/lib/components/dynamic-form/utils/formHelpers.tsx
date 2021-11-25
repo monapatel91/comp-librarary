@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, MouseEvent } from 'react';
 import {
   DotInputText,
   InputTextProps,
@@ -75,7 +75,7 @@ export interface ControlledInputArgs extends InputBaseArgs {
 
 export interface UncontrolledInputArgs extends InputBaseArgs {
   formState?: DynamicFormState;
-  handleClick?: () => void;
+  handleClick?: (formValues?: DynamicFormOutputData) => void;
 }
 
 const getInitialStateFromControl = (
@@ -337,10 +337,24 @@ export const buildButtonControl = ({
   controlProps,
   disabled,
   index,
+  handleClick,
 }: UncontrolledInputArgs) => {
   const props = controlProps as ButtonProps;
+  const { onClick } = props;
+  const handleButtonClick =
+    onClick || handleClick
+      ? (e: MouseEvent) => {
+          props.onClick?.(e);
+          handleClick?.();
+        }
+      : undefined;
   return (
-    <DotButton key={index} {...props} disabled={disabled}>
+    <DotButton
+      key={index}
+      {...props}
+      disabled={disabled}
+      onClick={handleButtonClick}
+    >
       {props.children}
     </DotButton>
   );
@@ -350,9 +364,25 @@ export const buildProgressButtonControl = ({
   controlProps,
   disabled,
   index,
+  handleClick,
 }: UncontrolledInputArgs) => {
   const props = controlProps as ProgressButtonProps;
-  return <DotProgressButton key={index} {...props} disabled={disabled} />;
+  const { onClick } = props;
+  const handleButtonClick =
+    onClick || handleClick
+      ? (e: MouseEvent) => {
+          props.onClick?.(e);
+          handleClick?.();
+        }
+      : undefined;
+  return (
+    <DotProgressButton
+      key={index}
+      {...props}
+      disabled={disabled}
+      onClick={handleButtonClick}
+    />
+  );
 };
 
 export const buildResetControl = ({

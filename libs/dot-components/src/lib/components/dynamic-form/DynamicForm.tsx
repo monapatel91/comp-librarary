@@ -222,6 +222,7 @@ export const DotDynamicForm = ({
           hidden,
           initialValue,
           controlsWrapper,
+          onControlClick,
         }: DynamicFormControl,
         index: number
       ) => {
@@ -295,10 +296,16 @@ export const DotDynamicForm = ({
             });
           }
           case 'dot-button': {
-            return buildButtonControl({ ...control });
+            const handleClick = onControlClick
+              ? () => onControlClick(formValues)
+              : undefined;
+            return buildButtonControl({ ...control, handleClick });
           }
           case 'dot-progress-button': {
-            return buildProgressButtonControl({ ...control });
+            const handleClick = onControlClick
+              ? () => onControlClick(formValues)
+              : undefined;
+            return buildProgressButtonControl({ ...control, handleClick });
           }
           case 'dot-reset': {
             return buildResetControl({

@@ -6,6 +6,7 @@ import {
   buildCheckboxGroupControl,
   buildInputSelectControl,
   buildInputTextControl,
+  buildProgressButtonControl,
   buildRadioGroupControl,
   buildResetControl,
   buildSubmitControl,
@@ -39,6 +40,10 @@ import {
   CheckboxGroupProps,
   DotCheckboxGroup,
 } from '../../checkbox/CheckboxGroup';
+import {
+  DotProgressButton,
+  ProgressButtonProps,
+} from '../../progress-button/ProgressButton';
 
 describe('dynamic form helper functions', () => {
   describe('getInitialFormState', () => {
@@ -699,7 +704,6 @@ describe('dynamic form helper functions', () => {
     const props: UncontrolledInputArgs = {
       controlProps: controlProps,
       disabled: false,
-      handleClick,
       index: 0,
       liveValidation: true,
     };
@@ -734,6 +738,84 @@ describe('dynamic form helper functions', () => {
         props: {
           ...expectedResult.props,
           disabled: true,
+        },
+      });
+    });
+
+    it('should return component instance with onClick prop', () => {
+      const customProps: UncontrolledInputArgs = {
+        ...props,
+        handleClick,
+      };
+      const result = buildButtonControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          onClick: expect.any(Function),
+        },
+      });
+    });
+  });
+
+  describe('buildProgressButtonControl', () => {
+    const handleClick = jest.fn();
+    const controlProps: ProgressButtonProps = {
+      isLoading: false,
+      title: 'My title',
+      type: 'outlined',
+    };
+    const props: UncontrolledInputArgs = {
+      controlProps: controlProps,
+      disabled: false,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotProgressButton
+        disabled={false}
+        isLoading={controlProps.isLoading}
+        key={props.index}
+        title={controlProps.title}
+        type={controlProps.type}
+      />
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildProgressButtonControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+        disabled: true,
+      };
+      const result = buildProgressButtonControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
+      });
+    });
+
+    it('should return component instance with onClick prop', () => {
+      const customProps: UncontrolledInputArgs = {
+        ...props,
+        handleClick,
+      };
+      const result = buildProgressButtonControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          onClick: expect.any(Function),
         },
       });
     });
