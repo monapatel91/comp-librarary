@@ -41,7 +41,14 @@ export interface DynamicFormOutputData {
 
 export type ConditionFunction = (formValues: DynamicFormOutputData) => boolean;
 
+export type DisabledConditionFunction = (
+  formValues: DynamicFormOutputData,
+  isFormValid: boolean
+) => boolean;
+
 export type ControlCondition = boolean | ConditionFunction;
+
+export type DisabledControlCondition = boolean | DisabledConditionFunction;
 
 export interface ControlsWrapper {
   WrapperComponent: ComponentType;
@@ -52,7 +59,7 @@ export interface DynamicFormControl {
   controlName?: string;
   controlType: DynamicFormControlType;
   controlProps?: DynamicFormControlProps;
-  disabled?: ControlCondition;
+  disabled?: DisabledControlCondition;
   initialValue?: unknown;
   validation?: DynamicFormValidation;
   customElement?: ReactNode;

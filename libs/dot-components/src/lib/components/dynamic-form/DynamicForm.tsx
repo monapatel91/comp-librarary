@@ -234,7 +234,7 @@ export const DotDynamicForm = ({
         // 3.) control is disabled via its own `disable` control prop
         const isDisabled =
           isFormDisabled ||
-          checkIfDisabledControl(disabled, formValues) ||
+          checkIfDisabledControl(disabled, formValues, formState.isValid) ||
           ('disabled' in controlProps && controlProps.disabled);
 
         const control: InputBaseArgs = {
