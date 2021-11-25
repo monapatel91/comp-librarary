@@ -57,6 +57,9 @@ describe('DotDynamicForm', () => {
   const getTestButton = (): HTMLElement =>
     screen.getByRole('button', { name: 'Test' });
 
+  const getProgressButton = (): HTMLElement =>
+    screen.getByRole('button', { name: 'Progress' });
+
   const getFirstNameTextbox = (): HTMLElement =>
     screen.getByTestId('firstName');
 
@@ -164,6 +167,13 @@ describe('DotDynamicForm', () => {
     userEvent.click(within(autocompleteElement).getByRole('textbox'));
     const popperElement = screen.getByRole('presentation');
     userEvent.click(within(popperElement).getByText(option));
+  };
+
+  const fillFormWithData = () => {
+    typeFirstName('first name');
+    addAutocompleteOption('Option 2');
+    selectGender('Male');
+    toggleSwitch();
   };
 
   const submitForm = (): void => {
@@ -351,10 +361,16 @@ describe('DotDynamicForm', () => {
       expect(checkboxElement).not.toBeChecked();
     });
 
-    it('should render enabled custom button', () => {
+    it("should render enabled 'Test' button", () => {
       const testButton = getTestButton();
       expect(testButton).toBeVisible();
       expect(testButton).toBeEnabled();
+    });
+
+    it("should render disabled 'Progress' button", () => {
+      const testButton = getProgressButton();
+      expect(testButton).toBeVisible();
+      expect(testButton).toBeDisabled();
     });
 
     it('should render enabled reset button', () => {
@@ -409,14 +425,17 @@ describe('DotDynamicForm', () => {
     });
 
     it('should execute correct event handler when form is submitted', () => {
-      typeFirstName('first name');
-      addAutocompleteOption('Option 2');
-      selectGender('Male');
-      toggleSwitch();
+      fillFormWithData();
       const submitButton = getSubmitButton();
       expect(submitButton).toBeEnabled();
       userEvent.click(submitButton);
       expect(handleSubmit).toHaveBeenCalledTimes(1);
+    });
+
+    it('should enable Progress button when form is valid', () => {
+      fillFormWithData();
+      const progressButton = getProgressButton();
+      expect(progressButton).toBeEnabled();
     });
 
     it("should have disabled 'vehicleModel' control if 'hasVehicle' control's value is set to 'no'", () => {

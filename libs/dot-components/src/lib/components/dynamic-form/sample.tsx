@@ -12,6 +12,7 @@ import {
   DynamicFormOutputData,
   DynamicFormState,
 } from './models';
+import { ProgressButtonProps } from '@digital-ai/dot-components';
 
 export const sampleMiddleNameHiddenFn = (formValues: DynamicFormOutputData) =>
   formValues['hasMiddleName'] === 'no';
@@ -217,7 +218,6 @@ export const getSampleConfig = (): DynamicFormConfig => ({
         ],
       },
     },
-
     {
       controlName: 'btnTest',
       controlType: 'dot-button',
@@ -226,6 +226,16 @@ export const getSampleConfig = (): DynamicFormConfig => ({
         children: 'Test',
         fullWidth: false,
       } as ButtonProps,
+    },
+    {
+      controlName: 'btnProgress',
+      controlType: 'dot-progress-button',
+      controlProps: {
+        title: 'Progress',
+        type: 'outlined',
+      } as ProgressButtonProps,
+      disabled: (_formValues: DynamicFormOutputData, isValid: boolean) =>
+        !isValid,
     },
     {
       controlName: 'btnReset',
