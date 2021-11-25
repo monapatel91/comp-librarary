@@ -16,6 +16,7 @@ export type DynamicFormControlType =
   | 'dot-checkbox-group'
   | 'dot-autocomplete'
   | 'dot-button'
+  | 'dot-progress-button'
   | 'dot-radio-group'
   | 'dot-reset'
   | 'dot-submit'

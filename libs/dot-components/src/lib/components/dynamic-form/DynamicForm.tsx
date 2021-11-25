@@ -31,6 +31,7 @@ import {
   buildCheckboxGroupControl,
   buildInputSelectControl,
   buildInputTextControl,
+  buildProgressButtonControl,
   buildProgressSubmitControl,
   buildRadioGroupControl,
   buildResetControl,
@@ -295,6 +296,9 @@ export const DotDynamicForm = ({
           }
           case 'dot-button': {
             return buildButtonControl({ ...control });
+          }
+          case 'dot-progress-button': {
+            return buildProgressButtonControl({ ...control });
           }
           case 'dot-reset': {
             return buildResetControl({

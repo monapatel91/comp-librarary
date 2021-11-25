@@ -346,6 +346,15 @@ export const buildButtonControl = ({
   );
 };
 
+export const buildProgressButtonControl = ({
+  controlProps,
+  disabled,
+  index,
+}: UncontrolledInputArgs) => {
+  const props = controlProps as ProgressButtonProps;
+  return <DotProgressButton key={index} {...props} disabled={disabled} />;
+};
+
 export const buildResetControl = ({
   controlProps,
   disabled,
