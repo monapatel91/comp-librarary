@@ -15,6 +15,7 @@ import { CheckboxGroupProps } from '../checkbox/CheckboxGroup';
 import { InputSelectProps } from '../input-form-fields/InputSelect';
 import { CheckboxProps } from '../checkbox/Checkbox';
 import { ButtonProps } from '../button/Button';
+import { ProgressButtonProps } from '../progress-button/ProgressButton';
 
 const config: DynamicFormConfig = {
   controls: [
@@ -323,15 +324,20 @@ const config: DynamicFormConfig = {
         },
         controlsToWrap: [
           {
-            controlName: 'btnHelp',
+            controlName: 'btnTest',
             controlProps: {
-              children: 'Help',
+              title: 'Test',
               fullWidth: false,
-              startIcon: <DotIcon fontSize="small" iconId="help" />,
+              startIcon: <DotIcon fontSize="small" iconId="play" />,
               type: 'outlined',
-              onClick: () => alert('help!'),
-            } as ButtonProps,
-            controlType: 'dot-reset',
+            } as ProgressButtonProps,
+            controlType: 'dot-progress-button',
+            disabled: (_formValues: DynamicFormOutputData, isValid: boolean) =>
+              !isValid,
+            onControlClick: (formValues: DynamicFormOutputData) => {
+              alert('testing in progress....');
+              console.log(formValues);
+            },
           },
           {
             controlName: 'btnCancel',
