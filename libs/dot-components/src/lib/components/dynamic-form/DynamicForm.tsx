@@ -3,6 +3,7 @@ import React, {
   FormEvent,
   Fragment,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import { CommonProps } from '../CommonProps';
@@ -68,7 +69,12 @@ export const DotDynamicForm = ({
 }: DynamicFormProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-  const initialFormState = getInitialFormState(config, liveValidation);
+  // Memoize this operation so that is doesn't get executed each time this
+  // component re-renders
+  const initialFormState = useMemo(
+    () => getInitialFormState(config, liveValidation),
+    [config, liveValidation, getInitialFormState]
+  );
 
   const [formState, setFormState] =
     useState<DynamicFormState>(initialFormState);
