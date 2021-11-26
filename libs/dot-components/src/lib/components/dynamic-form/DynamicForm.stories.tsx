@@ -26,6 +26,7 @@ const config: DynamicFormConfig = {
         autoFocus: true,
         helperText:
           'Your first name goes here (at least 2 characters required)',
+        hasDebounce: true,
         label: 'First Name',
         required: true,
       } as InputTextProps,
