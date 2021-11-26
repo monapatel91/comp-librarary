@@ -329,9 +329,13 @@ export const DotDynamicForm = ({
             const { WrapperComponent, controlsToWrap } = controlsWrapper;
             const wrapperStartIndex = elementIndex + 1;
             return (
-              <WrapperComponent key={elementIndex}>
-                {buildFormControls(controlsToWrap, wrapperStartIndex)}
-              </WrapperComponent>
+              <WrapperComponent
+                key={elementIndex}
+                wrappedControls={buildFormControls(
+                  controlsToWrap,
+                  wrapperStartIndex
+                )}
+              />
             );
           }
           default: {

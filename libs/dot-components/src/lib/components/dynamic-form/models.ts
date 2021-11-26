@@ -53,8 +53,12 @@ export type DisabledControlCondition = boolean | DisabledConditionFunction;
 
 export type ControlClickHandler = (formValues: DynamicFormOutputData) => void;
 
+export interface WrapperComponentProps {
+  wrappedControls: ReactNode[];
+}
+
 export interface ControlsWrapper {
-  WrapperComponent: ComponentType;
+  WrapperComponent: ComponentType<WrapperComponentProps>;
   controlsToWrap: DynamicFormControl[];
 }
 

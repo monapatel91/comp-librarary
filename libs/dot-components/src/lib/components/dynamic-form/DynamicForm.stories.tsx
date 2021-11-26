@@ -6,6 +6,7 @@ import {
   DynamicFormConfig,
   DynamicFormOutputData,
   FieldValidation,
+  WrapperComponentProps,
 } from './models';
 import { InputTextProps } from '../input-form-fields/InputText';
 import { RadioGroupProps } from '../radio/RadioGroup';
@@ -285,8 +286,8 @@ const config: DynamicFormConfig = {
     {
       controlType: 'controls-wrapper',
       controlsWrapper: {
-        WrapperComponent: ({ children }) => {
-          return <div className="terms">{children}</div>;
+        WrapperComponent: ({ wrappedControls }: WrapperComponentProps) => {
+          return <div className="terms">{wrappedControls}</div>;
         },
         controlsToWrap: [
           {
@@ -319,8 +320,8 @@ const config: DynamicFormConfig = {
     {
       controlType: 'controls-wrapper',
       controlsWrapper: {
-        WrapperComponent: ({ children }) => {
-          return <div className="wrapper-component">{children}</div>;
+        WrapperComponent: ({ wrappedControls }: WrapperComponentProps) => {
+          return <div className="wrapper-component">{wrappedControls}</div>;
         },
         controlsToWrap: [
           {

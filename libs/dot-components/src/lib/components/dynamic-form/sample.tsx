@@ -13,6 +13,7 @@ import {
   DynamicFormConfig,
   DynamicFormOutputData,
   DynamicFormState,
+  WrapperComponentProps,
 } from './models';
 
 export const sampleMiddleNameHiddenFn = (formValues: DynamicFormOutputData) =>
@@ -192,10 +193,10 @@ export const getSampleConfig = (
     {
       controlType: 'controls-wrapper',
       controlsWrapper: {
-        WrapperComponent: ({ children }) => {
+        WrapperComponent: ({ wrappedControls }: WrapperComponentProps) => {
           return (
             <div className="newsletters" data-testid="newsletters">
-              {children}
+              {wrappedControls}
             </div>
           );
         },
