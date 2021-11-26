@@ -67,7 +67,7 @@ export interface DynamicFormControl {
   disabled?: DisabledControlCondition;
   hidden?: ControlCondition;
   initialValue?: unknown;
-  onControlClick?: (formValues: DynamicFormOutputData) => void;
+  onControlClick?: ControlClickHandler;
   validation?: DynamicFormValidation;
 }
 

@@ -8,6 +8,7 @@ import {
   InputSelectProps,
 } from '../../input-form-fields/InputSelect';
 import {
+  ControlClickHandler,
   DynamicFormConfig,
   DynamicFormControl,
   DynamicFormControlProps,
@@ -161,6 +162,13 @@ export const getInitialFormState = (
     initialState.data[controlName] = formStateItem;
   });
   return initialState;
+};
+
+export const getControlClickHandler = (
+  formValues: DynamicFormOutputData,
+  onControlClick?: ControlClickHandler
+) => {
+  return onControlClick ? () => onControlClick(formValues) : undefined;
 };
 
 export const buildInputTextControl = ({

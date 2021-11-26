@@ -19,7 +19,7 @@ export const sampleMiddleNameHiddenFn = (formValues: DynamicFormOutputData) =>
   formValues['hasMiddleName'] === 'no';
 
 export const getSampleConfig = (
-  handleProgressControlClick: ControlClickHandler
+  handleProgressControlClick?: ControlClickHandler
 ): DynamicFormConfig => ({
   controls: [
     {

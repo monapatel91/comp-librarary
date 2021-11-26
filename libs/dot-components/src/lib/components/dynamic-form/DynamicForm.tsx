@@ -37,6 +37,7 @@ import {
   buildResetControl,
   buildSubmitControl,
   buildSwitchControl,
+  getControlClickHandler,
   getInitialFormState,
   InputBaseArgs,
 } from './utils/formHelpers';
@@ -296,15 +297,17 @@ export const DotDynamicForm = ({
             });
           }
           case 'dot-button': {
-            const handleClick = onControlClick
-              ? () => onControlClick(formValues)
-              : undefined;
+            const handleClick = getControlClickHandler(
+              formValues,
+              onControlClick
+            );
             return buildButtonControl({ ...control, handleClick });
           }
           case 'dot-progress-button': {
-            const handleClick = onControlClick
-              ? () => onControlClick(formValues)
-              : undefined;
+            const handleClick = getControlClickHandler(
+              formValues,
+              onControlClick
+            );
             return buildProgressButtonControl({ ...control, handleClick });
           }
           case 'dot-reset': {
