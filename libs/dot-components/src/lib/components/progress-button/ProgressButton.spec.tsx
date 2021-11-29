@@ -131,5 +131,15 @@ describe('DotProgressButton', () => {
       expect(button).toBeDisabled();
       expect(progressCircle).not.toBeInTheDocument();
     });
+
+    it("should NOT display loading spinner when 'loading' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        isLoading: undefined,
+      };
+      renderComponent(customProps);
+      const progressCircle = getProgressCircle();
+      expect(progressCircle).not.toBeInTheDocument();
+    });
   });
 });
