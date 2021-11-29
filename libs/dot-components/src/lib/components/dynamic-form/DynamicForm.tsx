@@ -9,7 +9,6 @@ import React, {
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDynamicForm } from './DynamicForm.styles';
-import { DotForm } from '../form/Form';
 import { AutoCompleteValue } from '../auto-complete/AutoComplete';
 import {
   DynamicFormConfig,
@@ -353,10 +352,13 @@ export const DotDynamicForm = ({
   };
 
   return (
-    <StyledDynamicForm className={rootClasses} data-testid={dataTestId}>
-      <DotForm ariaLabel={ariaLabel} onSubmit={handleFormSubmit}>
-        {buildFormControls(config.controls)}
-      </DotForm>
+    <StyledDynamicForm
+      ariaLabel={ariaLabel}
+      className={rootClasses}
+      data-testid={dataTestId}
+      onSubmit={handleFormSubmit}
+    >
+      {buildFormControls(config.controls)}
     </StyledDynamicForm>
   );
 };
