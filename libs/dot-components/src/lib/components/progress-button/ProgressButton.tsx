@@ -5,8 +5,8 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { ButtonSize, ButtonType } from '../BaseButtonProps';
 import { DotProgress } from '../progress/Progress';
 
-const SPINNER_DEFAULT_SIZE = 20;
-const SPINNER_LARGE_SIZE = 24;
+export const SPINNER_DEFAULT_SIZE = 20;
+export const SPINNER_LARGE_SIZE = 24;
 
 export interface ProgressButtonProps extends CommonProps {
   /** Defines a string value that labels the current element **/
@@ -76,11 +76,7 @@ export const DotProgressButton = ({
     >
       <span className={titleClasses}>{title}</span>
       {isLoading && (
-        <DotProgress
-          className="progress-circle"
-          data-testid="progress-circle"
-          size={progressCircleSize}
-        />
+        <DotProgress className="progress-circle" size={progressCircleSize} />
       )}
     </StyledProgressButton>
   );

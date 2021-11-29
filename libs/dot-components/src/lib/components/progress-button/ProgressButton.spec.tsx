@@ -1,7 +1,12 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { render, RenderResult, screen, waitFor } from '../../testing-utils';
-import { DotProgressButton, ProgressButtonProps } from './ProgressButton';
+import {
+  DotProgressButton,
+  ProgressButtonProps,
+  SPINNER_DEFAULT_SIZE,
+  SPINNER_LARGE_SIZE,
+} from './ProgressButton';
 
 describe('DotProgressButton', () => {
   const ariaLabel = 'progress-button component';
@@ -30,7 +35,7 @@ describe('DotProgressButton', () => {
   const getButton = (): HTMLElement => screen.getByTestId(dataTestId);
 
   const getProgressCircle = (): HTMLElement | null =>
-    screen.queryByTestId('progress-circle');
+    screen.queryByRole('progressbar');
 
   const renderComponent = (props?: ProgressButtonProps): RenderResult => {
     const renderProps = props ? props : componentProps;
@@ -194,6 +199,30 @@ describe('DotProgressButton', () => {
       renderComponent(customProps);
       const button = getButton();
       expect(button).toHaveClass('MuiButton-containedPrimary');
+    });
+
+    it('should display default sized spinner when button is NOT large sized', () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        size: 'small',
+        isLoading: true,
+      };
+      renderComponent(customProps);
+      const progressCircle = getProgressCircle();
+      expect(progressCircle).toHaveStyle(`width: ${SPINNER_DEFAULT_SIZE}px`);
+      expect(progressCircle).toHaveStyle(`height: ${SPINNER_DEFAULT_SIZE}px`);
+    });
+
+    it('should display large sized spinner when button is large sized', () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        size: 'large',
+        isLoading: true,
+      };
+      renderComponent(customProps);
+      const progressCircle = getProgressCircle();
+      expect(progressCircle).toHaveStyle(`width: ${SPINNER_LARGE_SIZE}px`);
+      expect(progressCircle).toHaveStyle(`height: ${SPINNER_LARGE_SIZE}px`);
     });
   });
 });
