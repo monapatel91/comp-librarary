@@ -142,6 +142,26 @@ describe('DotProgressButton', () => {
       expect(button).not.toHaveClass('MuiButton-fullWidth');
     });
 
+    it("should NOT display submit-type button when 'isSubmit' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        isSubmit: undefined,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      expect(button).not.toHaveAttribute('type', 'submit');
+    });
+
+    it("should display submit-type button when 'isSubmit' is set to true", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        isSubmit: true,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      expect(button).toHaveAttribute('type', 'submit');
+    });
+
     it("should NOT display loading spinner when 'loading' prop wasn't explicitly set", () => {
       const customProps: ProgressButtonProps = {
         ...componentProps,
