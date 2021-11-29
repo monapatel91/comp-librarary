@@ -9,8 +9,6 @@ export const SPINNER_DEFAULT_SIZE = 20;
 export const SPINNER_LARGE_SIZE = 24;
 
 export interface ProgressButtonProps extends CommonProps {
-  /** Defines a string value that labels the current element **/
-  ariaLabel?: string;
   /** If true, the ripple effect will be disabled. */
   disableRipple?: boolean;
   /** If true, the button will be disabled. */
