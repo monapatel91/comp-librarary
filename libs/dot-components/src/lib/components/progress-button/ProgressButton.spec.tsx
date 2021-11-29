@@ -152,6 +152,20 @@ describe('DotProgressButton', () => {
       expect(progressCircle).not.toBeInTheDocument();
     });
 
+    it("should display medium size button when 'size' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        size: undefined,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      // Medium sized button doesn't have its own "medium" class
+      expect(button).not.toHaveClass(
+        'MuiButton-sizeSmall',
+        'MuiButton-sizeLarge'
+      );
+    });
+
     it("should display primary button when 'type' prop wasn't explicitly set", () => {
       const customProps: ProgressButtonProps = {
         ...componentProps,
