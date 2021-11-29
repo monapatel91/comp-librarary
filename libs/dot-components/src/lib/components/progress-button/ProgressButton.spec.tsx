@@ -96,11 +96,11 @@ describe('DotProgressButton', () => {
 
   describe('with custom props', () => {
     it('should display disabled button with progress circle', () => {
-      const props: ProgressButtonProps = {
+      const customProps: ProgressButtonProps = {
         ...componentProps,
         isLoading: true,
       };
-      renderComponent(props);
+      renderComponent(customProps);
       const button = getButton();
       const progressCircle = getProgressCircle();
       expect(button).toBeVisible();
@@ -108,12 +108,23 @@ describe('DotProgressButton', () => {
       expect(progressCircle).toBeVisible();
     });
 
+    it("should render enabled button when 'disabled' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        disabled: undefined,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      expect(button).toBeVisible();
+      expect(button).toBeEnabled();
+    });
+
     it('should display disabled button without progress circle when disabled from props', () => {
-      const props: ProgressButtonProps = {
+      const customProps: ProgressButtonProps = {
         ...componentProps,
         disabled: true,
       };
-      renderComponent(props);
+      renderComponent(customProps);
       const button = getButton();
       const progressCircle = getProgressCircle();
       expect(button).toBeVisible();
