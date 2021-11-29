@@ -245,7 +245,7 @@ describe('DotProgressButton', () => {
       };
       renderComponent(customProps);
       const rippleElement = getRippleElement();
-      expect(rippleElement).not.toBeInTheDocument();
+      expect(rippleElement).toBeUndefined();
     });
   });
 });
