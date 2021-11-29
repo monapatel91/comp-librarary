@@ -141,5 +141,15 @@ describe('DotProgressButton', () => {
       const progressCircle = getProgressCircle();
       expect(progressCircle).not.toBeInTheDocument();
     });
+
+    it("should display primary button when 'type' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        type: undefined,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      expect(button).toHaveClass('MuiButton-containedPrimary');
+    });
   });
 });
