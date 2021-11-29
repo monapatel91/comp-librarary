@@ -132,6 +132,16 @@ describe('DotProgressButton', () => {
       expect(progressCircle).not.toBeInTheDocument();
     });
 
+    it("should NOT render full-width button when 'fullWidth' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        fullWidth: undefined,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      expect(button).not.toHaveClass('MuiButton-fullWidth');
+    });
+
     it("should NOT display loading spinner when 'loading' prop wasn't explicitly set", () => {
       const customProps: ProgressButtonProps = {
         ...componentProps,
