@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { CommonProps } from '../CommonProps';
 import {
@@ -10,8 +10,11 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotTypography } from '../typography/Typography';
 import { DotButton } from '../button/Button';
 import { DotIcon } from '../icon/Icon';
+import { DotList, ListItemProps } from '../list/List';
 
 export interface FileUploadProps extends CommonProps {
+  /** If true, will only display the button */
+  buttonOnly?: boolean;
   /** If true, the upload zone will be disabled */
   disabled?: boolean;
   /** Defines the maximum number of files that can be uploaded at once */
@@ -25,6 +28,7 @@ export interface FileUploadProps extends CommonProps {
 // https://react-dropzone.js.org/
 export const DotFileUpload = ({
   ariaLabel,
+  buttonOnly = false,
   className,
   'data-testid': dataTestId,
   disabled,
@@ -56,55 +60,83 @@ export const DotFileUpload = ({
   //   }
   // }, []);
 
-  const acceptedFileItems = acceptedFiles.map((file) => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
-    </li>
-  ));
+  const acceptedFileItems = () => {
+    const acceptedItems: ListItemProps[] = [];
+    acceptedFiles.forEach((file) => {
+      acceptedItems.push({ text: `${file.path} - ${file.size} bytes` });
+    });
+    return acceptedItems;
+  };
 
-  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
-    return (
-      <li key={file.path}>
-        {file.path} - {file.size} bytes
-        <ul>
-          {errors.map((e) => (
-            <li key={e.code}>{e.message}</li>
-          ))}
-        </ul>
-      </li>
-    );
-  });
+  const fileRejectionItems = () => {
+    const failedItems: ListItemProps[] = [];
+    fileRejections.forEach(({ file, errors }) => {
+      const errorItems: ListItemProps[] = [];
+      errors.forEach((e) => {
+        errorItems.push({ text: `${e.code} - ${e.message}` });
+      });
+
+      failedItems.push({
+        text: `${file.path} - ${file.size} bytes`,
+        items: errorItems,
+      });
+    });
+    return failedItems;
+  };
+
+  const dropzoneContent = isDragActive ? (
+    <DotTypography variant="h3">Drop the files here ...</DotTypography>
+  ) : (
+    <>
+      <DotTypography variant="h3">Drag and drop your files here</DotTypography>
+      <DotTypography variant="h3">or</DotTypography>
+      <DotButton onClick={open}>Select a file</DotButton>
+      {maxSize && (
+        <DotTypography variant="subtitle2">
+          File size should not exceed {maxSize}MB.
+        </DotTypography>
+      )}
+    </>
+  );
+
+  const maxFilesMessage = (
+    <DotTypography variant="subtitle2">
+      ({maxFiles} files are the maximum number of files you can drop here)
+    </DotTypography>
+  );
+
+  const maxSizeMessage = (
+    <DotTypography variant="subtitle2">
+      File size should not exceed {maxSize}MB.
+    </DotTypography>
+  );
 
   return (
     <div className={containerClassName}>
-      <StyledFileUpload
-        {...getRootProps()}
-        aria-label={ariaLabel}
-        className={rootClasses}
-        data-testid={dataTestId}
-      >
-        <input {...getInputProps()} />
-        {/* TO-DO: need `upload-cloud` icon */}
-        <DotIcon iconId="upload-file" />
-        {isDragActive ? (
-          <DotTypography variant="h3">Drop the files here ...</DotTypography>
-        ) : (
-          <>
-            <DotTypography variant="h3">
-              Drag and drop your files here
-            </DotTypography>
-            <DotTypography variant="h3">or</DotTypography>
-            <DotButton onClick={open}>Select a file</DotButton>
-          </>
-        )}
-      </StyledFileUpload>
-      <DotTypography variant="subtitle2">
-        ({maxFiles} files are the maximum number of files you can drop here)
-      </DotTypography>
+      {buttonOnly ? (
+        <>
+          <DotButton onClick={open}>Select a file</DotButton>
+          {maxSize && maxSizeMessage}
+        </>
+      ) : (
+        <StyledFileUpload
+          {...getRootProps()}
+          aria-label={ariaLabel}
+          className={rootClasses}
+          data-testid={dataTestId}
+        >
+          <input {...getInputProps()} />
+          {/* TO-DO: need `upload-cloud` icon */}
+          <DotIcon iconId="upload-file" />
+          {dropzoneContent}
+        </StyledFileUpload>
+      )}
+      {maxFiles && maxFilesMessage}
+      {maxSize && maxSizeMessage}
       <DotTypography variant="h4">Accepted files</DotTypography>
-      <ul>{acceptedFileItems}</ul>
+      <DotList items={acceptedFileItems()} />
       <DotTypography variant="h4">Rejected files</DotTypography>
-      <ul>{fileRejectionItems}</ul>
+      <DotList items={fileRejectionItems()} />
     </div>
   );
 };
