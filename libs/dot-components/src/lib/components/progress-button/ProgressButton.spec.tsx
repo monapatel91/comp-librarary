@@ -34,6 +34,9 @@ describe('DotProgressButton', () => {
 
   const getButton = (): HTMLElement => screen.getByTestId(dataTestId);
 
+  const getRippleElement = (): Element | undefined =>
+    getButton().getElementsByClassName('MuiTouchRipple-root')?.[0];
+
   const getProgressCircle = (): HTMLElement | null =>
     screen.queryByRole('progressbar');
 
@@ -223,6 +226,26 @@ describe('DotProgressButton', () => {
       const progressCircle = getProgressCircle();
       expect(progressCircle).toHaveStyle(`width: ${SPINNER_LARGE_SIZE}px`);
       expect(progressCircle).toHaveStyle(`height: ${SPINNER_LARGE_SIZE}px`);
+    });
+
+    it("should render ripple element when 'disableRipple' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        disableRipple: undefined,
+      };
+      renderComponent(customProps);
+      const rippleElement = getRippleElement();
+      expect(rippleElement).toBeInTheDocument();
+    });
+
+    it("should NOT render ripple element when 'disableRipple' is set to true", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        disableRipple: true,
+      };
+      renderComponent(customProps);
+      const rippleElement = getRippleElement();
+      expect(rippleElement).not.toBeInTheDocument();
     });
   });
 });
