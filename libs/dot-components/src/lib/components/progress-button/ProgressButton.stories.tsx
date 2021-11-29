@@ -27,7 +27,7 @@ export const Default: Story<ProgressButtonProps> = (args) => {
     // Simulate async action
     setTimeout(() => {
       setIsLoading(false);
-    }, 111500);
+    }, 1500);
   };
 
   return (
