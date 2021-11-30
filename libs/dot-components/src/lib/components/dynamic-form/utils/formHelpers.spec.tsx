@@ -60,6 +60,7 @@ describe('dynamic form helper functions', () => {
       } as InputTextProps,
       controlType: 'dot-input-text',
       hidden: true,
+      initialValue: 'Mike',
     };
     const formValues: DynamicFormStateData = {
       firstName: {
@@ -74,9 +75,9 @@ describe('dynamic form helper functions', () => {
       const result = getInitialStateFromControl(control, true, formValues);
       expect(result).toEqual({
         errorMessage: null,
-        isTouched: false,
+        isTouched: true,
         isValid: true,
-        value: null,
+        value: 'Mike',
         hidden: true,
       });
     });
