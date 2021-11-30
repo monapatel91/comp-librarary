@@ -99,6 +99,16 @@ describe('helper functions', () => {
       );
       expect(isDisabled).toBe(true);
     });
+    it("should return false when 'disabled' function throws an error", () => {
+      const isDisabled = checkIfDisabledControl(
+        (_formValues: DynamicFormOutputData, _isFormValid: boolean) => {
+          throw new Error();
+        },
+        formValues,
+        true
+      );
+      expect(isDisabled).toBe(false);
+    });
   });
 
   describe('getControlValue', () => {
