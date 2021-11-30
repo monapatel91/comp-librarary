@@ -45,8 +45,8 @@ describe('dot-components: Sidebar component', () => {
         .and('have.css', 'padding-bottom', '8px');
 
       cy.get('div.toggle-nav button.dot-icon-btn')
-        .should('have.css', 'padding-top', '10px')
-        .and('have.css', 'padding-left', '10px');
+        .should('have.css', 'padding-top', '3px')
+        .and('have.css', 'padding-left', '3px');
     });
 
     it('powered by', () => {
