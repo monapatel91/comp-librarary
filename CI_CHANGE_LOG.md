@@ -1,5 +1,38 @@
 # Changelog
 
+## [1.3.4](https://github.com/digital-ai/dot-components/tree/1.3.4) (11/30/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.3...1.3.4)
+
+**Features:**
+
+- Add to `DotList` right arrow in some cases [\#720](https://github.com/digital-ai/dot-components/issues/720)
+- `DotTable` Provide a way to apply custom classes to table rows and cells [\#643](https://github.com/digital-ai/dot-components/issues/643)
+
+**Fixed bugs:**
+
+- Input elements not displaying correctly when `border-box` is used in consumer components [\#811](https://github.com/digital-ai/dot-components/issues/811)
+- Breadcrumbs are not vertically aligned [\#809](https://github.com/digital-ai/dot-components/issues/809)
+- Batman wasn't here :\( [\#807](https://github.com/digital-ai/dot-components/issues/807)
+- TEST - GitHub + Agility Integration [\#800](https://github.com/digital-ai/dot-components/issues/800)
+- Batman wasn't here [\#798](https://github.com/digital-ai/dot-components/issues/798)
+- Alert component style issues [\#795](https://github.com/digital-ai/dot-components/issues/795)
+
+**Merged pull requests:**
+
+- Next patch release [\#823](https://github.com/digital-ai/dot-components/pull/823) ([CWSites](https://github.com/CWSites))
+- S-80369: Create `ProgressButton` component [\#822](https://github.com/digital-ai/dot-components/pull/822) ([dmiletic85](https://github.com/dmiletic85))
+- S-79696: change size of collapse icon button, add tooltip [\#819](https://github.com/digital-ai/dot-components/pull/819) ([CWSites](https://github.com/CWSites))
+- \#795 Address AlertBanner style issues [\#815](https://github.com/digital-ai/dot-components/pull/815) ([angel-git](https://github.com/angel-git))
+- \#809 Remove margin-bottom from breadcrumbs [\#813](https://github.com/digital-ai/dot-components/pull/813) ([angel-git](https://github.com/angel-git))
+- D-19148: Input elements not displaying correctly when `border-box` is used in consumer components [\#812](https://github.com/digital-ai/dot-components/pull/812) ([dmiletic85](https://github.com/dmiletic85))
+- S-80264: Agility wrapper sandbox documentation [\#810](https://github.com/digital-ai/dot-components/pull/810) ([CWSites](https://github.com/CWSites))
+- S-79569: Do not set custom class for table cell if none was provided [\#808](https://github.com/digital-ai/dot-components/pull/808) ([selsemore](https://github.com/selsemore))
+- \[D-18631\]\[D-18632\]\[D-18802\]:Focus state of avatar button and sidebar list item and inaccurate count of nav item [\#804](https://github.com/digital-ai/dot-components/pull/804) ([monapatel91](https://github.com/monapatel91))
+- 17 nov2021 update icon [\#803](https://github.com/digital-ai/dot-components/pull/803) ([BojanKocijan](https://github.com/BojanKocijan))
+- S-79569: `DotTable` - ability to add classes to rows & cells [\#799](https://github.com/digital-ai/dot-components/pull/799) ([monapatel91](https://github.com/monapatel91))
+- Bringing `master` back into `develop` [\#797](https://github.com/digital-ai/dot-components/pull/797) ([CWSites](https://github.com/CWSites))
+
 ## [1.3.3](https://github.com/digital-ai/dot-components/tree/1.3.3) (11/16/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.2...1.3.3)
@@ -1051,7 +1084,6 @@
 - manual deployment of Storybook site [\#168](https://github.com/digital-ai/dot-components/pull/168) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - issue \#163: move ActionToolbar props and styles to separate files [\#164](https://github.com/digital-ai/dot-components/pull/164) ([selsemore](https://github.com/selsemore))
 - Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
-- 26 feb icon moon color remove [\#156](https://github.com/digital-ai/dot-components/pull/156) ([BojanKocijan](https://github.com/BojanKocijan))
 - issue \#138: update empty state based on UX feedback [\#150](https://github.com/digital-ai/dot-components/pull/150) ([CWSites](https://github.com/CWSites))
 - issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
 
