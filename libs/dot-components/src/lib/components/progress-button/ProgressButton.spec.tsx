@@ -10,14 +10,15 @@ import {
 
 describe('DotProgressButton', () => {
   const ariaLabel = 'progress-button component';
+  const children = 'Progress Button';
   const className = 'progress-button';
   const dataTestId = 'progress-button-testid';
   const handleClick = jest.fn();
-  const title = 'Progress Button';
   const tooltip = 'My Tooltip';
 
   const componentProps: ProgressButtonProps = {
     ariaLabel,
+    children,
     className,
     'data-testid': dataTestId,
     disabled: false,
@@ -27,7 +28,6 @@ describe('DotProgressButton', () => {
     isSubmit: false,
     onClick: handleClick,
     size: 'medium',
-    title,
     tooltip,
     type: 'primary',
   };
@@ -48,6 +48,7 @@ describe('DotProgressButton', () => {
   it('should have unchanged API', () => {
     const props = {
       ariaLabel,
+      children,
       className,
       'data-testid': dataTestId,
       disabled: false,
@@ -57,7 +58,6 @@ describe('DotProgressButton', () => {
       isSubmit: false,
       onClick: handleClick,
       size: 'medium',
-      title,
       tooltip,
       type: 'primary',
     };
@@ -80,8 +80,8 @@ describe('DotProgressButton', () => {
       expect(progressCircle).not.toBeInTheDocument();
     });
 
-    it('should display correct title', () => {
-      expect(screen.getByText(title)).toBeVisible();
+    it('should display correct children', () => {
+      expect(screen.getByText(children)).toBeVisible();
     });
 
     it('should display button tooltip', async () => {

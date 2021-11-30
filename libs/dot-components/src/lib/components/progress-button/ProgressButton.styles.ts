@@ -7,7 +7,8 @@ export const StyledProgressButton = styled(DotButton)`
   ${({ theme }) => css`
     &.${rootClassName} {
       .hidden {
-        /* preserve space of the title but hide the text */
+        // hide children but preserve its space so that
+        // button's dimensions don't change
         visibility: hidden;
       }
       .progress-circle {

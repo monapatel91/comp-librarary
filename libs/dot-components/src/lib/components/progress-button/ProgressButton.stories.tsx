@@ -14,7 +14,6 @@ export default {
     fullWidth: { defaultValue: false },
     isSubmit: { defaultValue: false },
     size: { defaultValue: 'medium' },
-    title: { defaultValue: 'Progress Button' },
     type: { defaultValue: 'primary' },
   },
 } as Meta;
@@ -31,6 +30,8 @@ export const Default: Story<ProgressButtonProps> = (args) => {
   };
 
   return (
-    <DotProgressButton {...args} isLoading={isLoading} onClick={handleClick} />
+    <DotProgressButton {...args} isLoading={isLoading} onClick={handleClick}>
+      Progress Button
+    </DotProgressButton>
   );
 };
