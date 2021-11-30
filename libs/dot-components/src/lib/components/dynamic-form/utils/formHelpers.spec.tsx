@@ -17,11 +17,7 @@ import {
   getInitialFormState,
   UncontrolledInputArgs,
 } from './formHelpers';
-import {
-  getSampleConfig,
-  getSampleFormState,
-  sampleMiddleNameHiddenFn,
-} from '../sample';
+import { getSampleFormState } from '../sample';
 import {
   DotInputText,
   InputTextProps,
@@ -47,87 +43,44 @@ import {
   ProgressButtonProps,
 } from '../../progress-button/ProgressButton';
 import { DynamicFormOutputData } from '@digital-ai/dot-components';
+import { getDynamicFormConfig } from '../DynamicForm.stories.data';
 
 describe('dynamic form helper functions', () => {
   describe('getInitialFormState', () => {
     it('should return correct initial state based on a given form config with live validation', () => {
-      const sampleConfig = getSampleConfig();
+      const sampleConfig = getDynamicFormConfig();
       const expectedFormState = getSampleFormState();
       const initialFormState = getInitialFormState(sampleConfig, true);
       expect(initialFormState).toEqual(expectedFormState);
     });
     it('should return correct initial state based on a given form config without live validation', () => {
-      const sampleConfig = getSampleConfig();
+      const sampleConfig = getDynamicFormConfig();
+      const expectedFormState = getSampleFormState();
       const initialFormState = getInitialFormState(sampleConfig, false);
       expect(initialFormState).toEqual({
+        ...expectedFormState,
         data: {
-          firstName: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: false,
-            value: 'my first name',
-          },
+          ...expectedFormState.data,
           gender: {
-            errorMessage: null,
+            ...expectedFormState.data['gender'],
             isTouched: false,
             isValid: false,
-            value: null,
-          },
-          hasMiddleName: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: true,
-            value: 'no',
-          },
-          receive: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: true,
-            value: null,
-          },
-          receiveNewsletters: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: true,
-            value: null,
           },
           hasVehicle: {
+            ...expectedFormState.data['hasVehicle'],
+            isTouched: false,
+          },
+          interests: {
+            ...expectedFormState.data['interests'],
             errorMessage: null,
             isTouched: false,
-            isValid: true,
-            value: 'no',
           },
-          vehicleModel: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: true,
-            value: null,
-          },
-          isMandatory: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: true,
-            value: null,
-          },
-          middleName: {
-            errorMessage: null,
-            hidden: sampleMiddleNameHiddenFn,
+          userType: {
+            ...expectedFormState.data['userType'],
             isTouched: false,
             isValid: false,
-            value: null,
-          },
-          randomOption: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: false,
-            value: [
-              {
-                title: 'Option 1',
-              },
-            ],
           },
         },
-        isValid: false,
       });
     });
   });

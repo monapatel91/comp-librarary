@@ -5,7 +5,8 @@ import {
   getOutputFormData,
 } from './helpers';
 import { DynamicFormOutputData } from '../models';
-import { getSampleConfig, getSampleFormState } from '../sample';
+import { getSampleFormState } from '../sample';
+import { getDynamicFormConfig } from '../DynamicForm.stories.data';
 
 describe('helper functions', () => {
   const data = {
@@ -68,34 +69,46 @@ describe('helper functions', () => {
     it('should return correct output data', () => {
       const formData = getOutputFormData(getSampleFormState());
       expect(formData).toEqual({
-        firstName: 'my first name',
-        gender: null,
-        hasMiddleName: 'no',
+        customUserType: null,
+        firstName: null,
+        gender: 'male',
         hasVehicle: 'no',
-        isMandatory: null,
-        middleName: null,
-        randomOption: [
+        interests: [
           {
-            title: 'Option 1',
+            title: 'Breathing',
           },
         ],
+        isAccountActive: null,
+        lastName: null,
+        password: null,
         receive: null,
-        receiveNewsletters: null,
+        terms: null,
+        username: null,
+        userType: 'Basic user',
         vehicleModel: null,
       });
     });
   });
   describe('getFormDataFromInitialValues', () => {
     it('should return object with correct initial values', () => {
-      const initialValues = getFormDataFromInitialValues(getSampleConfig());
+      const initialValues = getFormDataFromInitialValues(
+        getDynamicFormConfig()
+      );
       expect(initialValues).toEqual({
-        firstName: 'my first name',
-        gender: undefined,
-        hasMiddleName: 'no',
+        firstName: undefined,
+        lastName: undefined,
+        gender: 'male',
+        username: undefined,
+        password: undefined,
+        userType: 'Basic user',
+        customUserType: undefined,
+        interests: [{ title: 'Breathing' }],
         hasVehicle: 'no',
-        isMandatory: undefined,
-        middleName: undefined,
-        randomOption: [{ title: 'Option 1' }],
+        vehicleModel: undefined,
+        receive: undefined,
+        isAccountActive: undefined,
+        undefined: undefined,
+        terms: undefined,
       });
     });
   });

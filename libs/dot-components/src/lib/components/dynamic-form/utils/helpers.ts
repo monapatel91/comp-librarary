@@ -69,7 +69,9 @@ export const getFormDataFromInitialValues = (config: DynamicFormConfig) => {
     if (controlsWrapper && controlsWrapper.controlsToWrap) {
       controlsWrapper.controlsToWrap.forEach(
         (wrappedControl: DynamicFormControl) => {
-          const { controlName: wrappedControlName } = wrappedControl;
+          const { controlName: wrappedControlName, controlType } =
+            wrappedControl;
+          if (!DATA_CONTROLS.includes(controlType)) return;
           const wrappedInitialValue =
             getInitialValueFromControl(wrappedControl);
           formValues[wrappedControlName] = wrappedInitialValue

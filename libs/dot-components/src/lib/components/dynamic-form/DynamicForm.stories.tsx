@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { DotDynamicForm, DynamicFormProps } from './DynamicForm';
-import { dynamicFormConfig } from './DynamicForm.stories.data';
+import { getDynamicFormConfig } from './DynamicForm.stories.data';
 import { StyledDynamicFormStory } from './DynamicForm.stories.styles';
 
 export default {
@@ -16,7 +16,7 @@ export default {
   ],
   argTypes: {
     config: {
-      defaultValue: dynamicFormConfig,
+      defaultValue: getDynamicFormConfig(),
     },
     disabled: {
       defaultValue: false,
