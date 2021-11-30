@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   checkIfDisabledControl,
   checkIfHiddenControl,
@@ -5,9 +6,16 @@ import {
   getFormDataFromInitialValues,
   getOutputFormData,
 } from './helpers';
-import { DynamicFormOutputData } from '../models';
+import {
+  DynamicFormConfig,
+  DynamicFormControl,
+  DynamicFormOutputData,
+  WrapperComponentProps,
+} from '../models';
 import { getSampleFormState } from '../sample';
 import { getDynamicFormConfig } from '../DynamicForm.stories.data';
+import { ButtonProps } from '../../button/Button';
+import { InputTextProps } from '../../input-form-fields/InputText';
 
 describe('helper functions', () => {
   const data = {
@@ -161,6 +169,64 @@ describe('helper functions', () => {
         isAccountActive: undefined,
         undefined: undefined,
         terms: undefined,
+      });
+    });
+
+    describe('with wrapper control', () => {
+      const firstNameControl: DynamicFormControl = {
+        controlName: 'firstName',
+        controlProps: {
+          label: 'First name',
+        } as InputTextProps,
+        controlType: 'dot-input-text',
+      };
+
+      const buttonControl: DynamicFormControl = {
+        controlName: 'btnTest',
+        controlProps: {
+          children: 'My button',
+        } as ButtonProps,
+        controlType: 'dot-button',
+      };
+      const getFormConfig = (
+        controlsToWrap: DynamicFormControl[]
+      ): DynamicFormConfig => ({
+        controls: [
+          {
+            controlType: 'controls-wrapper',
+            controlsWrapper: {
+              WrapperComponent: ({
+                wrappedControls,
+              }: WrapperComponentProps) => {
+                return <div>{wrappedControls}</div>;
+              },
+              controlsToWrap,
+            },
+          },
+        ],
+      });
+
+      it('should return object with undefined value for data control without initial value', () => {
+        const config = getFormConfig([firstNameControl]);
+        const initialValues = getFormDataFromInitialValues(config);
+        expect(initialValues).toEqual({ firstName: undefined });
+      });
+
+      it('should return object with correct initial value for data control with defined initial value', () => {
+        const initialValue = 'John';
+        const customControl: DynamicFormControl = {
+          ...firstNameControl,
+          initialValue,
+        };
+        const config = getFormConfig([customControl]);
+        const initialValues = getFormDataFromInitialValues(config);
+        expect(initialValues).toEqual({ firstName: initialValue });
+      });
+
+      it('should return object without non-data controls', () => {
+        const config = getFormConfig([buttonControl]);
+        const initialValues = getFormDataFromInitialValues(config);
+        expect(initialValues).toEqual({});
       });
     });
   });

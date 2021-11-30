@@ -64,14 +64,16 @@ const getInitialValueFromControl = ({
 export const getFormDataFromInitialValues = (config: DynamicFormConfig) => {
   const formValues: DynamicFormOutputData = {};
   config.controls.forEach((control: DynamicFormControl) => {
-    const { controlName, controlsWrapper } = control;
+    const { controlName, controlsWrapper, controlType } = control;
     // Check if there are wrapped controls and grab initial values from those
     if (controlsWrapper && controlsWrapper.controlsToWrap) {
       controlsWrapper.controlsToWrap.forEach(
         (wrappedControl: DynamicFormControl) => {
-          const { controlName: wrappedControlName, controlType } =
-            wrappedControl;
-          if (!DATA_CONTROLS.includes(controlType)) return;
+          const {
+            controlName: wrappedControlName,
+            controlType: wrapperControlType,
+          } = wrappedControl;
+          if (!DATA_CONTROLS.includes(wrapperControlType)) return;
           const wrappedInitialValue =
             getInitialValueFromControl(wrappedControl);
           formValues[wrappedControlName] = wrappedInitialValue
@@ -80,6 +82,7 @@ export const getFormDataFromInitialValues = (config: DynamicFormConfig) => {
         }
       );
     }
+    if (!DATA_CONTROLS.includes(controlType)) return;
     const initialValue = getInitialValueFromControl(control);
     formValues[controlName] = initialValue ? initialValue : undefined;
   });
