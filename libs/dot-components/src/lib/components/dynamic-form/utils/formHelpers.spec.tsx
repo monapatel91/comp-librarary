@@ -15,6 +15,7 @@ import {
   ControlledInputArgs,
   getControlClickHandler,
   getInitialFormState,
+  getInitialStateFromControl,
   UncontrolledInputArgs,
 } from './formHelpers';
 import { getSampleFormState } from '../sample';
@@ -42,10 +43,45 @@ import {
   DotProgressButton,
   ProgressButtonProps,
 } from '../../progress-button/ProgressButton';
-import { DynamicFormOutputData } from '@digital-ai/dot-components';
+
+import {
+  DynamicFormControl,
+  DynamicFormOutputData,
+  DynamicFormStateData,
+} from '../models';
 import { getDynamicFormConfig } from '../DynamicForm.stories.data';
 
 describe('dynamic form helper functions', () => {
+  describe('getInitialStateFromControl', () => {
+    const control: DynamicFormControl = {
+      controlName: 'firstName',
+      controlProps: {
+        label: 'First name',
+      } as InputTextProps,
+      controlType: 'dot-input-text',
+      hidden: true,
+    };
+    const formValues: DynamicFormStateData = {
+      firstName: {
+        value: 'firstName',
+        isValid: false,
+        isTouched: true,
+        errorMessage: null,
+      },
+    };
+
+    it("should set 'isValid' property to true when control is hidden", () => {
+      const result = getInitialStateFromControl(control, true, formValues);
+      expect(result).toEqual({
+        errorMessage: null,
+        isTouched: false,
+        isValid: true,
+        value: null,
+        hidden: true,
+      });
+    });
+  });
+
   describe('getInitialFormState', () => {
     it('should return correct initial state based on a given form config with live validation', () => {
       const sampleConfig = getDynamicFormConfig();

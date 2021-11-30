@@ -79,7 +79,7 @@ export interface UncontrolledInputArgs extends InputBaseArgs {
   handleClick?: (formValues?: DynamicFormOutputData) => void;
 }
 
-const getInitialStateFromControl = (
+export const getInitialStateFromControl = (
   {
     hidden,
     initialValue,
