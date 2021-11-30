@@ -22,7 +22,7 @@ describe('dot-components: Breadcrumbs component', () => {
     it('breadcrumb size & spacing is accurate', () => {
       cy.get('nav.dot-breadcrumbs')
         .should('have.css', 'font-size', '14px')
-        .and('have.css', 'margin-bottom', '4px')
+        .and('have.css', 'margin-bottom', '0px')
         .and('have.css', 'line-height', '20px');
     });
 

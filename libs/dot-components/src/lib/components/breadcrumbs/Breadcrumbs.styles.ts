@@ -6,6 +6,8 @@ export const rootClassName = 'dot-breadcrumbs';
 export const StyledBreadcrumbs = styled(Breadcrumbs)`
   ${({ theme }) => css`
     &.${rootClassName} {
+      margin-bottom: 0;
+
       .MuiBreadcrumbs-ol {
         flex-wrap: nowrap;
       }

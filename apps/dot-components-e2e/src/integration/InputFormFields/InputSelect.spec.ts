@@ -33,6 +33,14 @@ describe('dot-components: Input Select Field component', () => {
         .and('have.css', 'font-size', '14px')
         .and('have.css', 'padding-right', '32px');
     });
+
+    it("should have 'box-sizing' explicitly set to 'content-box'", () => {
+      cy.get('select.MuiInputBase-input').should(
+        'have.css',
+        'box-sizing',
+        'content-box'
+      );
+    });
   });
 });
 

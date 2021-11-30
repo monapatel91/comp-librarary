@@ -7,9 +7,16 @@ export const rootClassName = 'dot-alert-banner';
 export const StyledAlertBanner = styled(Alert)<AlertBannerProps>`
   ${({ theme }) => css`
     &.${rootClassName} {
-      padding: ${theme.spacing(0, 2)};
+      border-radius: 0;
+      padding: ${theme.spacing(2, 2)};
+      display: flex;
+      align-items: center;
+      .MuiAlert-icon,
       .MuiAlert-message {
-        padding: ${theme.spacing(2, 0)};
+        padding: 0;
+        .dot-typography {
+          margin-bottom: 0;
+        }
       }
       &.MuiAlert-standardSuccess {
         .MuiAlert-icon,
@@ -37,9 +44,6 @@ export const StyledAlertBanner = styled(Alert)<AlertBannerProps>`
         .dot-typography {
           color: ${theme.palette.error[700]};
         }
-      }
-      .MuiAlert-icon {
-        padding: ${theme.spacing(1.75, 0)};
       }
     }
   `}

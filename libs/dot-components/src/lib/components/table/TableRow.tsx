@@ -5,6 +5,7 @@ import { DotBodyCell } from './TableCell';
 import { CreateUUID } from '../createUUID';
 import { DotColumnHeader } from './TableHeader';
 import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { TableRowProps } from './Table';
 
 export interface EmptyRowProps {
@@ -33,6 +34,7 @@ export interface RowProps extends CommonProps {
  */
 export const DotTableRow = ({
   columns,
+  className,
   data,
   onActionMenuTrigger,
   onClick,
@@ -44,9 +46,10 @@ export const DotTableRow = ({
   const handleOnClick = (event: MouseEvent) => {
     onClick && onClick(event, id.toString());
   };
+  const rootClasses = useStylesWithRootClass('dot-tr', className);
   return (
     <TableRow
-      classes={{ root: 'dot-tr' }}
+      classes={{ root: rootClasses }}
       onClick={handleOnClick}
       selected={selected}
     >
@@ -55,6 +58,7 @@ export const DotTableRow = ({
           <DotBodyCell
             align={column.align}
             cellKey={rowKey}
+            className={rowData.className && `${rowData.className}-${column.id}`}
             key={index}
             noWrap={column.truncate}
             onActionMenuTrigger={(menuRef, menuItem) =>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotAvatar, AvatarProps } from './Avatar';
 import { avatarColors } from '../../theme-provider/ThemeProvider';
+import { action } from '@storybook/addon-actions';
 
 const colorOptions = [null].concat(Object.keys(avatarColors));
 
@@ -17,9 +18,7 @@ export default {
       defaultValue:
         'https://cdn1-www.superherohype.com/assets/uploads/2013/11/batmane3-1.jpg',
     },
-    onClick: {
-      action: 'clicked',
-    },
+
     size: {
       defaultValue: 'medium',
     },
@@ -36,3 +35,6 @@ export default {
 } as Meta;
 
 export const Default: Story<AvatarProps> = (args) => <DotAvatar {...args} />;
+export const AvatarButton: Story<AvatarProps> = (args) => (
+  <DotAvatar {...args} onClick={action('Clicked')} />
+);

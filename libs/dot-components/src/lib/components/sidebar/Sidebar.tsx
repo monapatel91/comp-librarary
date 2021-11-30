@@ -24,6 +24,12 @@ export interface BackItemProps extends CommonProps {
   title?: string;
 }
 
+interface HeaderProps {
+  displayAppLogo?: boolean;
+  hasAppLogo?: boolean;
+  isOpen?: boolean;
+}
+
 export interface SidebarProps extends CommonProps {
   /** If provided will display application logo */
   appLogo?: ReactNode;
@@ -57,6 +63,54 @@ export interface SidebarProps extends CommonProps {
   width?: number;
 }
 
+const Brand = ({ brandDesc }: SidebarProps) => {
+  return (
+    <div className="powered-by">
+      <DotTypography className="desc" variant="body2">
+        {brandDesc}
+      </DotTypography>
+      {/* TO-DO: need logo for dark theme */}
+      <DotTooltip title="digital.ai">
+        <LogoDigitalAi className="company-name" />
+      </DotTooltip>
+      <DotTooltip title="digital.ai">
+        <LogoD className="d-icon" />
+      </DotTooltip>
+    </div>
+  );
+};
+
+const Header = ({
+  appLogo,
+  appLogoSmall,
+  displayAppLogo,
+  hasAppLogo,
+  isOpen,
+  title,
+  titleAvatarProps,
+}: HeaderProps & SidebarProps) => {
+  const headerClasses = useStylesWithRootClass(
+    displayAppLogo ? 'app-logo' : ''
+  );
+
+  return (
+    <header className={headerClasses}>
+      {hasAppLogo ? (
+        <DotAppLogo
+          appLogo={appLogo}
+          appLogoSmall={appLogoSmall}
+          smallOnly={!isOpen}
+        />
+      ) : (
+        <>
+          <DotAvatar {...titleAvatarProps} />
+          {isOpen && <DotTypography variant="h4">{title}</DotTypography>}
+        </>
+      )}
+    </header>
+  );
+};
+
 export const DotSidebar = ({
   appLogo,
   appLogoSmall,
@@ -79,7 +133,7 @@ export const DotSidebar = ({
 }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(open);
   const [sidebarWidth, setSidebarWidth] = useState(width);
-  const hasAppLogo = displayAppLogo && appLogo;
+  const hasAppLogo = appLogo !== null && displayAppLogo;
   const hasBackItem = goBack && backItem;
   const displayHeader = title || hasAppLogo;
 
@@ -95,14 +149,15 @@ export const DotSidebar = ({
     setIsOpen(!isOpen);
   };
 
-  const rootClasses = useStylesWithRootClass(
-    rootClassName,
-    !isOpen && 'collapsed',
-    className
+  const sidebarClasses = useStylesWithRootClass(
+    'side-nav',
+    isOpen ? 'open' : ''
   );
 
-  const headerClasses = useStylesWithRootClass(
-    displayAppLogo ? 'app-logo' : ''
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    !isOpen ? 'collapsed' : '',
+    className
   );
 
   return (
@@ -113,20 +168,15 @@ export const DotSidebar = ({
       style={{ width: sidebarWidth }}
     >
       {displayHeader && (
-        <header className={headerClasses}>
-          {hasAppLogo ? (
-            <DotAppLogo
-              appLogo={appLogo}
-              appLogoSmall={appLogoSmall}
-              smallOnly={!isOpen}
-            />
-          ) : (
-            <>
-              <DotAvatar {...titleAvatarProps} />
-              {isOpen && <DotTypography variant="h4">{title}</DotTypography>}
-            </>
-          )}
-        </header>
+        <Header
+          appLogo={appLogo}
+          appLogoSmall={appLogoSmall}
+          displayAppLogo={displayAppLogo}
+          hasAppLogo={hasAppLogo}
+          isOpen={isOpen}
+          title={title}
+          titleAvatarProps={titleAvatarProps}
+        />
       )}
       {hasBackItem && (
         <DotLink
@@ -148,7 +198,7 @@ export const DotSidebar = ({
         // TO-DO: defect with secondary open while sidebar collapsed
         <DotList
           ariaLabel="left navigation"
-          className={`side-nav ${isOpen}`}
+          className={sidebarClasses}
           data-testid="sideNav"
           dense={true}
           disablePadding={true}
@@ -161,29 +211,19 @@ export const DotSidebar = ({
       {children}
       {collapsable && (
         <div className="toggle-nav">
-          <DotIconButton
-            ariaLabel="collapse sidebar navigation"
-            data-testid="toggle-nav"
-            iconId={isOpen ? 'chevron-left' : 'chevron-right'}
-            iconSize="small"
-            onClick={collapseNav}
-          />
-        </div>
-      )}
-      {displayBrand && (
-        <div className="powered-by">
-          <DotTypography className="desc" variant="body2">
-            {brandDesc}
-          </DotTypography>
-          {/* TO-DO: need logo for dark theme */}
-          <DotTooltip title="digital.ai">
-            <LogoDigitalAi className="company-name" />
-          </DotTooltip>
-          <DotTooltip title="digital.ai">
-            <LogoD className="d-icon" title="digital.ai" />
+          <DotTooltip title={isOpen ? 'Collapse' : 'Expand'}>
+            <DotIconButton
+              ariaLabel="collapse sidebar navigation"
+              data-testid="toggle-nav"
+              iconId={isOpen ? 'chevron-left' : 'chevron-right'}
+              iconSize="small"
+              onClick={collapseNav}
+              size="small"
+            />
           </DotTooltip>
         </div>
       )}
+      {displayBrand && <Brand brandDesc={brandDesc} />}
     </StyledSidebar>
   );
 };
