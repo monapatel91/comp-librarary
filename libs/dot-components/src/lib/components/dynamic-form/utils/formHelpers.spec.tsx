@@ -769,6 +769,31 @@ describe('dynamic form helper functions', () => {
         },
       });
     });
+
+    it('should return component instance with onClick prop', () => {
+      const onClickMock = jest.fn();
+      const eventMock = { name: 'test' };
+      const handleClickMock = jest.fn();
+      const customControlProps: ButtonProps = {
+        ...controlProps,
+        onClick: onClickMock,
+      };
+      const customProps: UncontrolledInputArgs = {
+        ...props,
+        controlProps: {
+          ...customControlProps,
+        },
+        handleClick: handleClickMock,
+      };
+      const result = buildButtonControl(customProps);
+      const {
+        props: { onClick },
+      } = result;
+      onClick(eventMock);
+      expect(onClickMock).toHaveBeenCalledTimes(1);
+      expect(onClickMock).toHaveBeenCalledWith(eventMock);
+      expect(handleClickMock).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('buildProgressButtonControl', () => {
