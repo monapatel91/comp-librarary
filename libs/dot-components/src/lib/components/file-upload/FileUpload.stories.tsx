@@ -6,9 +6,14 @@ export default {
   title: 'Experimental/FileUpload',
   component: DotFileUpload,
   argTypes: {
+    accept: {
+      defaultValue: ['image/*'],
+    },
     dataTestId: {
       defaultValue: 'file-upload-test-id',
     },
+    maxFiles: { defaultValue: 5 },
+    maxSize: { defaultValue: 25 },
   },
 } as Meta;
 

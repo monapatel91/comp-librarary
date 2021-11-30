@@ -1,10 +1,11 @@
 import React from 'react';
-import { useDropzone } from 'react-dropzone';
+import { FileWithPath, useDropzone } from 'react-dropzone';
 import { CommonProps } from '../CommonProps';
 import {
   containerClassName,
   rootClassName,
   StyledFileUpload,
+  StyledFileUploadContainer,
 } from './FileUpload.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotTypography } from '../typography/Typography';
@@ -12,21 +13,33 @@ import { DotButton } from '../button/Button';
 import { DotIcon } from '../icon/Icon';
 import { DotList, ListItemProps } from '../list/List';
 
+interface FileUploadError {
+  code: string;
+  message: string;
+}
+
+interface FileRejection {
+  file: FileWithPath;
+  errors: Array<FileUploadError>;
+}
+
 export interface FileUploadProps extends CommonProps {
+  accept?: Array<string>;
   /** If true, will only display the button */
   buttonOnly?: boolean;
   /** If true, the upload zone will be disabled */
   disabled?: boolean;
   /** Defines the maximum number of files that can be uploaded at once */
   maxFiles?: number;
-  /** Defines the maximum file size (in bytes) */
+  /** Defines the maximum file size (in MB) */
   maxSize?: number;
   /** callback triggered when files are added */
-  onDrop?: (files: File[]) => void;
+  onUpload?: (files: Array<File>) => void;
 }
 
 // https://react-dropzone.js.org/
 export const DotFileUpload = ({
+  accept,
   ariaLabel,
   buttonOnly = false,
   className,
@@ -34,7 +47,7 @@ export const DotFileUpload = ({
   disabled,
   maxFiles,
   maxSize,
-  onDrop,
+  onUpload,
 }: FileUploadProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   const {
@@ -45,54 +58,83 @@ export const DotFileUpload = ({
     isDragActive,
     open,
   } = useDropzone({
+    accept,
     disabled,
     maxFiles,
-    maxSize,
+    maxSize: maxSize * 1000000,
     noClick: true,
     noKeyboard: true,
-    onDrop,
+    onDrop: (files) => handleDrop(files),
   });
-  // const handleDrop = useCallback((acceptedFiles) => {
-  //   console.log('acceptedFiles', acceptedFiles);
-  //   // Do something with the files
-  //   if (onDrop) {
-  //     onDrop(acceptedFiles);
-  //   }
-  // }, []);
+
+  const handleDrop = (files: Array<File>) => {
+    console.log('acceptedFiles', files);
+    onUpload ? onUpload(files) : console.log('onUpload callback not defined');
+  };
+
+  const getFileList = () => {
+    const acceptedItems: ListItemProps[] = acceptedFileItems() || [];
+    const rejectedItems: ListItemProps[] = fileRejectionItems() || [];
+    return acceptedItems.concat(rejectedItems);
+  };
 
   const acceptedFileItems = () => {
     const acceptedItems: ListItemProps[] = [];
-    acceptedFiles.forEach((file) => {
-      acceptedItems.push({ text: `${file.path} - ${file.size} bytes` });
+    acceptedFiles.forEach((file: FileWithPath) => {
+      acceptedItems.push({
+        className: 'file-success',
+        endIconId: 'check-solid',
+        startIconId: 'attachment',
+        text: file.path,
+      });
     });
     return acceptedItems;
   };
 
   const fileRejectionItems = () => {
     const failedItems: ListItemProps[] = [];
-    fileRejections.forEach(({ file, errors }) => {
-      const errorItems: ListItemProps[] = [];
+    fileRejections.forEach(({ file, errors }: FileRejection) => {
+      let errorText;
       errors.forEach((e) => {
-        errorItems.push({ text: `${e.code} - ${e.message}` });
+        switch (e.code) {
+          case 'file-too-large':
+            errorText = `File exceeds ${maxSize}MB`;
+            break;
+          case 'file-invalid-type':
+            errorText = e.message;
+            break;
+          case 'too-many-files':
+            errorText = e.message;
+            break;
+          default:
+            errorText = e.message;
+            console.log('Unknown error', e);
+            break;
+        }
       });
 
       failedItems.push({
-        text: `${file.path} - ${file.size} bytes`,
-        items: errorItems,
+        className: 'file-error',
+        endIconId: 'error-solid',
+        primaryText: file.path,
+        startIconId: 'attachment',
+        secondaryText: errorText,
       });
     });
     return failedItems;
   };
 
   const dropzoneContent = isDragActive ? (
-    <DotTypography variant="h3">Drop the files here ...</DotTypography>
+    <DotTypography variant="h3">Drop the file(s) here ...</DotTypography>
   ) : (
     <>
-      <DotTypography variant="h3">Drag and drop your files here</DotTypography>
+      <DotTypography variant="h3">
+        Drag and drop your file(s) here
+      </DotTypography>
       <DotTypography variant="h3">or</DotTypography>
-      <DotButton onClick={open}>Select a file</DotButton>
+      <DotButton onClick={open}>Select file(s)</DotButton>
       {maxSize && (
-        <DotTypography variant="subtitle2">
+        <DotTypography variant="body2">
           File size should not exceed {maxSize}MB.
         </DotTypography>
       )}
@@ -100,19 +142,19 @@ export const DotFileUpload = ({
   );
 
   const maxFilesMessage = (
-    <DotTypography variant="subtitle2">
+    <DotTypography variant="body2">
       ({maxFiles} files are the maximum number of files you can drop here)
     </DotTypography>
   );
 
   const maxSizeMessage = (
-    <DotTypography variant="subtitle2">
+    <DotTypography variant="body2">
       File size should not exceed {maxSize}MB.
     </DotTypography>
   );
 
   return (
-    <div className={containerClassName}>
+    <StyledFileUploadContainer className={containerClassName}>
       {buttonOnly ? (
         <>
           <DotButton onClick={open}>Select a file</DotButton>
@@ -133,10 +175,7 @@ export const DotFileUpload = ({
       )}
       {maxFiles && maxFilesMessage}
       {maxSize && maxSizeMessage}
-      <DotTypography variant="h4">Accepted files</DotTypography>
-      <DotList items={acceptedFileItems()} />
-      <DotTypography variant="h4">Rejected files</DotTypography>
-      <DotList items={fileRejectionItems()} />
-    </div>
+      <DotList items={getFileList()} width="100%" />
+    </StyledFileUploadContainer>
   );
 };

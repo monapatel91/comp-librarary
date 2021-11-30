@@ -10,6 +10,7 @@ import {
   Collapse,
   Divider,
   ListItemIcon,
+  ListItemText,
   ListSubheader,
 } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
@@ -99,6 +100,10 @@ export interface ListItemProps extends CommonProps {
   nestedListType?: NestedListType;
   /** Event callback */
   onClick?: (event: MouseEvent) => void;
+  /** The main content element */
+  primaryText?: string;
+  /** The secondary content element */
+  secondaryText?: string;
   /** Selected list item */
   selected?: boolean;
   /** If provided, the icon ID which is displayed on the front of the list item */
@@ -225,6 +230,7 @@ export const DotList = ({
   width = 240,
 }: ListProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const listWidth = typeof width === 'number' ? `${width}px` : width;
 
   return (
     <StyledList
@@ -234,7 +240,7 @@ export const DotList = ({
       data-testid={dataTestId}
       dense={dense}
       disablePadding={disablePadding}
-      style={{ width: `${width}px` }}
+      style={{ width: listWidth }}
     >
       {items.map((item, index) => {
         if (item.child) {
@@ -261,6 +267,7 @@ export const DotList = ({
 
         return (
           <DotListItem
+            className={item.className}
             component={item.component}
             data-testid={`${dataTestId}-item-${index}`}
             divider={item.divider}
@@ -273,6 +280,8 @@ export const DotList = ({
             menuPlacement={menuPlacement}
             nestedDrawerLeftSpacing={nestedDrawerLeftSpacing}
             nestedListType={nestedListType}
+            primaryText={item.primaryText}
+            secondaryText={item.secondaryText}
             selected={item.selected}
             startIconId={item.startIconId}
             target={item.target}
@@ -300,6 +309,8 @@ export const DotListItem = ({
   menuPlacement,
   nestedDrawerLeftSpacing,
   nestedListType,
+  primaryText,
+  secondaryText,
   selected,
   startIconId,
   target,
@@ -405,7 +416,11 @@ export const DotListItem = ({
         >
           <span className={listItemLinkClassName}>
             {startIconId && startIcon}
-            <DotTypography variant={textVariant}>{text}</DotTypography>
+            {primaryText && secondaryText ? (
+              <ListItemText primary={primaryText} secondary={secondaryText} />
+            ) : (
+              <DotTypography variant={textVariant}>{text}</DotTypography>
+            )}
           </span>
           {items.length > 0 ? (
             <DotLink
