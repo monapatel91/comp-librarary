@@ -98,3 +98,4 @@ export { DotTablePagination } from './table/TablePagination';
 export { DotTabs } from './tabs/Tabs';
 export { DotTypography } from './typography/Typography';
 export { DotProgressButton } from './progress-button/ProgressButton';
+export { DotFileUpload } from './file-upload/FileUpload';
