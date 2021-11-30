@@ -1,4 +1,5 @@
 import {
+  checkIfDisabledControl,
   checkIfHiddenControl,
   getControlValue,
   getFormDataFromInitialValues,
@@ -59,6 +60,47 @@ describe('helper functions', () => {
       expect(isHidden).toBe(true);
     });
   });
+
+  describe('checkIfDisabledControl', () => {
+    const formValues = {
+      gender: 'male',
+      username: 'jwayne',
+    };
+
+    it("should return false when 'disabled' argument is false", () => {
+      const isDisabled = checkIfDisabledControl(false, formValues, true);
+      expect(isDisabled).toBe(false);
+    });
+    it("should return false when 'disabled' argument is undefined", () => {
+      const isDisabled = checkIfDisabledControl(undefined, formValues, true);
+      expect(isDisabled).toBe(false);
+    });
+    it("should return false when 'disabled' condition does not match", () => {
+      const isDisabled = checkIfDisabledControl(
+        (formValues: DynamicFormOutputData) =>
+          formValues['gender'] === 'female',
+        formValues,
+        true
+      );
+      expect(isDisabled).toBe(false);
+    });
+    it("should return true when 'disabled' argument is false", () => {
+      const isDisabled = checkIfDisabledControl(true, formValues, true);
+      expect(isDisabled).toBe(true);
+    });
+    it("should return true when 'disabled' condition does satisfy all cases", () => {
+      const isDisabled = checkIfDisabledControl(
+        (formValues: DynamicFormOutputData, isFormValid: boolean) =>
+          formValues['gender'] === 'male' &&
+          formValues['username'] === 'jwayne' &&
+          isFormValid,
+        formValues,
+        true
+      );
+      expect(isDisabled).toBe(true);
+    });
+  });
+
   describe('getControlValue', () => {
     it('should get correct value from data object', () => {
       const value = getControlValue<string>('firstName', data as never);
