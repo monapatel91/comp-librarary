@@ -25,8 +25,8 @@ export interface BackItemProps extends CommonProps {
 }
 
 interface HeaderProps {
-  hasAppLogo?: boolean;
   displayAppLogo?: boolean;
+  hasAppLogo?: boolean;
   isOpen?: boolean;
 }
 
@@ -74,7 +74,7 @@ const Brand = ({ brandDesc }: SidebarProps) => {
         <LogoDigitalAi className="company-name" />
       </DotTooltip>
       <DotTooltip title="digital.ai">
-        <LogoD className="d-icon" title="digital.ai" />
+        <LogoD className="d-icon" />
       </DotTooltip>
     </div>
   );
@@ -169,11 +169,11 @@ export const DotSidebar = ({
     >
       {displayHeader && (
         <Header
+          appLogo={appLogo}
           appLogoSmall={appLogoSmall}
           displayAppLogo={displayAppLogo}
           hasAppLogo={hasAppLogo}
           isOpen={isOpen}
-          appLogo={appLogo}
           title={title}
           titleAvatarProps={titleAvatarProps}
         />
