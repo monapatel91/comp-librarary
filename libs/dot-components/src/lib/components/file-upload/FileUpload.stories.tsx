@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotFileUpload, FileUploadProps } from './FileUpload';
 
 export default {
-  title: 'Experimental/FileUpload',
+  title: 'Experimental/File Upload',
   component: DotFileUpload,
   argTypes: {
     accept: {

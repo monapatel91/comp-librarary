@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-file-upload';
-export const containerClassName = `${rootClassName}-upload-container`;
+export const containerClassName = `${rootClassName}-container`;
 
 export const StyledFileUploadContainer = styled.div`
   ${({ theme }) => css`
