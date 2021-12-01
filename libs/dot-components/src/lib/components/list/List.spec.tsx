@@ -53,6 +53,11 @@ const mockListItems: Array<ListItemProps> = [
     target: '_blank',
     tooltip: 'The Dark Knight',
   },
+  {
+    primaryText: 'Primary Text',
+    secondaryText: 'Secondary Text',
+    endIconId: 'block',
+  },
 ];
 
 describe('List', () => {
@@ -195,6 +200,8 @@ describe('ListItem', () => {
       nestedDrawerSpacing: 240,
       nestedListType: 'expandable' as NestedListType,
       onClick: jest.fn(),
+      primaryText: 'Primary Text',
+      secondaryText: 'Secondary Text',
       selected: true,
       startIconId: 'home',
       target: '_blank' as LinkTarget,
@@ -215,6 +222,22 @@ describe('ListItem', () => {
     waitFor(() => {
       expect(tooltip).toHaveLength(1);
     });
+  });
+
+  it('should display primary and secondary text if provided', () => {
+    render(<DotList items={mockListItems} />);
+    const primaryText = screen.getByText('Primary Text');
+    const secondaryText = screen.getByText('Secondary Text');
+
+    expect(primaryText).toBeVisible();
+    expect(secondaryText).toBeVisible();
+  });
+
+  xit('should display the end icon if passed and no children', () => {
+    render(<DotList items={mockListItems} />);
+    const listItem = screen.getByText('Primary Text');
+
+    expect(listItem).toBeVisible();
   });
 
   xit("should have 'aria-label' attribute with correct value", () => {

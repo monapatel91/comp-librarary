@@ -50,8 +50,6 @@ export interface NestedListProps extends CommonProps {
   onMenuLeave?: (event: KeyboardEvent | MouseEvent) => void;
   /** if true the nested list is visible */
   open: boolean;
-  /** Index of the parent list item */
-  parentItemIndex?: number;
   /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
   type?: NestedListType;
 }
@@ -131,7 +129,6 @@ const NestedList = ({
   nestedDrawerLeftSpacing,
   onMenuLeave,
   open,
-  parentItemIndex,
   type,
 }: NestedListProps) => {
   const flyoutItemClasses = useStylesWithRootClass(
@@ -446,7 +443,6 @@ export const DotListItem = ({
           menuPlacement={menuPlacement}
           onMenuLeave={handleMenuLeave}
           open={open}
-          parentItemIndex={index}
           type={nestedListType}
         />
       )}
