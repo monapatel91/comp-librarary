@@ -1,15 +1,18 @@
 import { Badge } from '@material-ui/core';
 import styled, { css } from 'styled-components';
-import { BadgeProps } from './Badge';
 
 export const rootClassName = 'dot-badge';
 
-export const StyledBadge = styled(Badge)<BadgeProps>`
+interface StyledBadgeProps {
+  $badgeColor?: string;
+}
+
+export const StyledBadge = styled(Badge)<StyledBadgeProps>`
   ${() => css`
     &.${rootClassName} {
       .MuiBadge-badge {
-        background-color: ${({ badgeColor }: BadgeProps) => {
-          return badgeColor;
+        background-color: ${({ $badgeColor }: StyledBadgeProps) => {
+          return $badgeColor;
         }};
       }
     }
