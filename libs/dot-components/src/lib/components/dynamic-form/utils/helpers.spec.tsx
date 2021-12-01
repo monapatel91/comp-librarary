@@ -193,7 +193,7 @@ describe('helper functions', () => {
       ): DynamicFormConfig => ({
         controls: [
           {
-            controlType: 'controls-wrapper',
+            controlType: 'dot-form-section',
             controlsWrapper: {
               WrapperComponent: ({
                 wrappedControls,

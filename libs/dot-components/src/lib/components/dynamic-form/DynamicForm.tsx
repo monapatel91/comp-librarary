@@ -330,7 +330,7 @@ export const DotDynamicForm = ({
           case 'custom-element': {
             return <Fragment key={elementIndex}>{customElement}</Fragment>;
           }
-          case 'controls-wrapper': {
+          case 'dot-form-section': {
             const { WrapperComponent, controlsToWrap } = controlsWrapper;
             const wrapperStartIndex = elementIndex + 1;
             return (

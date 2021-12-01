@@ -311,7 +311,7 @@ export const getDynamicFormConfig = (
         customElement: <br data-testid="customElement" />,
       },
       {
-        controlType: 'controls-wrapper',
+        controlType: 'dot-form-section',
         controlsWrapper: {
           WrapperComponent: ({ wrappedControls }: WrapperComponentProps) => {
             return (
@@ -349,7 +349,7 @@ export const getDynamicFormConfig = (
         ),
       },
       {
-        controlType: 'controls-wrapper',
+        controlType: 'dot-form-section',
         controlsWrapper: {
           WrapperComponent: ({ wrappedControls }: WrapperComponentProps) => {
             return <div className="wrapper-component">{wrappedControls}</div>;

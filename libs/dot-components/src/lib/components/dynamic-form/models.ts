@@ -22,8 +22,8 @@ export type DynamicFormControlType =
   | 'dot-submit'
   | 'dot-progress-submit'
   | 'dot-switch'
-  | 'custom-element'
-  | 'controls-wrapper';
+  | 'dot-form-section'
+  | 'custom-element';
 
 export type DynamicFormControlProps =
   | AutoCompleteProps
