@@ -227,7 +227,7 @@ export const DotDynamicForm = ({
           disabled,
           hidden,
           initialValue,
-          controlsWrapper,
+          formSection,
           onControlClick,
         }: DynamicFormControl,
         index: number
@@ -331,14 +331,14 @@ export const DotDynamicForm = ({
             return <Fragment key={elementIndex}>{customElement}</Fragment>;
           }
           case 'dot-form-section': {
-            const { WrapperComponent, controlsToWrap } = controlsWrapper;
-            const wrapperStartIndex = elementIndex + 1;
+            const { FormSectionComponent, sectionControls } = formSection;
+            const sectionStartIndex = elementIndex + 1;
             return (
-              <WrapperComponent
+              <FormSectionComponent
                 key={elementIndex}
-                wrappedControls={buildFormControls(
-                  controlsToWrap,
-                  wrapperStartIndex
+                sectionControls={buildFormControls(
+                  sectionControls,
+                  sectionStartIndex
                 )}
               />
             );

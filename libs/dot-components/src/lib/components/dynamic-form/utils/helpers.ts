@@ -64,20 +64,20 @@ const getInitialValueFromControl = ({
 export const getFormDataFromInitialValues = (config: DynamicFormConfig) => {
   const formValues: DynamicFormOutputData = {};
   config.controls.forEach((control: DynamicFormControl) => {
-    const { controlName, controlsWrapper, controlType } = control;
-    // Check if there are wrapped controls and grab initial values from those
-    if (controlsWrapper && controlsWrapper.controlsToWrap) {
-      controlsWrapper.controlsToWrap.forEach(
-        (wrappedControl: DynamicFormControl) => {
+    const { controlName, formSection, controlType } = control;
+    // Check if there are section controls and grab initial values from those
+    if (formSection && formSection.sectionControls) {
+      formSection.sectionControls.forEach(
+        (formSectionControl: DynamicFormControl) => {
           const {
-            controlName: wrappedControlName,
-            controlType: wrapperControlType,
-          } = wrappedControl;
-          if (!DATA_CONTROLS.includes(wrapperControlType)) return;
-          const wrappedInitialValue =
-            getInitialValueFromControl(wrappedControl);
-          formValues[wrappedControlName] = wrappedInitialValue
-            ? wrappedInitialValue
+            controlName: sectionControlName,
+            controlType: sectionControlType,
+          } = formSectionControl;
+          if (!DATA_CONTROLS.includes(sectionControlType)) return;
+          const sectionControlInitialValue =
+            getInitialValueFromControl(formSectionControl);
+          formValues[sectionControlName] = sectionControlInitialValue
+            ? sectionControlInitialValue
             : undefined;
         }
       );

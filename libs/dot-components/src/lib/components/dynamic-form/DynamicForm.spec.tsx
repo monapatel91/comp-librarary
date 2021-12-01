@@ -72,7 +72,7 @@ describe('DotDynamicForm', () => {
   const getPasswordTextbox = (): HTMLElement => screen.getByTestId('password');
 
   const getTermsCheckboxElement = (): HTMLElement =>
-    within(screen.getByTestId('wrapper-terms')).getByTestId('terms');
+    within(screen.getByTestId('form-section-terms')).getByTestId('terms');
 
   const getTermsCheckboxInputElement = (): HTMLElement =>
     within(getTermsCheckboxElement()).getByRole('checkbox');

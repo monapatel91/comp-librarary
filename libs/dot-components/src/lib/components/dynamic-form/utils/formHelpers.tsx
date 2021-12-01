@@ -85,7 +85,7 @@ export const getInitialStateFromControl = (
     initialValue,
     controlType,
     validation,
-    controlsWrapper,
+    formSection,
   }: DynamicFormControl,
   liveValidation: boolean,
   formValues: DynamicFormOutputData
@@ -136,19 +136,19 @@ export const getInitialFormState = (
     isValid: false,
   };
   config.controls.forEach((control: DynamicFormControl) => {
-    const { controlsWrapper } = control;
-    // Check if there are wrapped controls and grab initial state from those
-    if (controlsWrapper && controlsWrapper.controlsToWrap) {
-      controlsWrapper.controlsToWrap.forEach(
-        (wrappedControl: DynamicFormControl) => {
-          const { controlName: wrappedControlName } = wrappedControl;
-          const wrappedFormStateItem = getInitialStateFromControl(
-            wrappedControl,
+    const { formSection } = control;
+    // Check if there are form section controls and grab initial state from those
+    if (formSection && formSection.sectionControls) {
+      formSection.sectionControls.forEach(
+        (formSectionControl: DynamicFormControl) => {
+          const { controlName: formSectionControlName } = formSectionControl;
+          const sectionFormStateItem = getInitialStateFromControl(
+            formSectionControl,
             liveValidation,
             formValues
           );
-          if (!wrappedFormStateItem) return;
-          initialState.data[wrappedControlName] = wrappedFormStateItem;
+          if (!sectionFormStateItem) return;
+          initialState.data[formSectionControlName] = sectionFormStateItem;
         }
       );
     }

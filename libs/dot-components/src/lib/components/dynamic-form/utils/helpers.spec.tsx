@@ -10,7 +10,7 @@ import {
   DynamicFormConfig,
   DynamicFormControl,
   DynamicFormOutputData,
-  WrapperComponentProps,
+  DynamicFormSectionProps,
 } from '../models';
 import { getSampleFormState } from '../sample';
 import { getDynamicFormConfig } from '../DynamicForm.stories.data';
@@ -172,7 +172,7 @@ describe('helper functions', () => {
       });
     });
 
-    describe('with wrapper control', () => {
+    describe('with form section control', () => {
       const firstNameControl: DynamicFormControl = {
         controlName: 'firstName',
         controlProps: {
@@ -189,18 +189,18 @@ describe('helper functions', () => {
         controlType: 'dot-button',
       };
       const getFormConfig = (
-        controlsToWrap: DynamicFormControl[]
+        formSectionControls: DynamicFormControl[]
       ): DynamicFormConfig => ({
         controls: [
           {
             controlType: 'dot-form-section',
-            controlsWrapper: {
-              WrapperComponent: ({
-                wrappedControls,
-              }: WrapperComponentProps) => {
-                return <div>{wrappedControls}</div>;
+            formSection: {
+              FormSectionComponent: ({
+                sectionControls,
+              }: DynamicFormSectionProps) => {
+                return <div>{sectionControls}</div>;
               },
-              controlsToWrap,
+              sectionControls: formSectionControls,
             },
           },
         ],

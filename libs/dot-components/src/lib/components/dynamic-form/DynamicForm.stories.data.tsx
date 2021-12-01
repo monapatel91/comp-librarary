@@ -5,7 +5,7 @@ import {
   DynamicFormConfig,
   DynamicFormOutputData,
   FieldValidation,
-  WrapperComponentProps,
+  DynamicFormSectionProps,
 } from './models';
 import { InputTextProps } from '../input-form-fields/InputText';
 import { RadioGroupProps } from '../radio/RadioGroup';
@@ -312,15 +312,17 @@ export const getDynamicFormConfig = (
       },
       {
         controlType: 'dot-form-section',
-        controlsWrapper: {
-          WrapperComponent: ({ wrappedControls }: WrapperComponentProps) => {
+        formSection: {
+          FormSectionComponent: ({
+            sectionControls,
+          }: DynamicFormSectionProps) => {
             return (
-              <div className="terms" data-testid="wrapper-terms">
-                {wrappedControls}
+              <div className="terms" data-testid="form-section-terms">
+                {sectionControls}
               </div>
             );
           },
-          controlsToWrap: [
+          sectionControls: [
             {
               controlName: 'terms',
               controlType: 'dot-checkbox',
@@ -350,11 +352,15 @@ export const getDynamicFormConfig = (
       },
       {
         controlType: 'dot-form-section',
-        controlsWrapper: {
-          WrapperComponent: ({ wrappedControls }: WrapperComponentProps) => {
-            return <div className="wrapper-component">{wrappedControls}</div>;
+        formSection: {
+          FormSectionComponent: ({
+            sectionControls,
+          }: DynamicFormSectionProps) => {
+            return (
+              <div className="form-section-component">{sectionControls}</div>
+            );
           },
-          controlsToWrap: [
+          sectionControls: [
             {
               controlName: 'btnTest',
               controlProps: {

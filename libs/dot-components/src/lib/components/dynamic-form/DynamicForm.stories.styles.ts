@@ -4,7 +4,7 @@ export const StyledDynamicFormStory = styled.div`
   ${({ theme }) => css`
     margin: ${theme.spacing(2)}px;
 
-    .wrapper-component {
+    .form-section-component {
       display: flex;
       gap: ${theme.spacing(0.5)}px;
     }

@@ -18,7 +18,7 @@ export type {
   DynamicFormOutputData,
   DynamicFormState,
   FieldValidation,
-  WrapperComponentProps,
+  DynamicFormSectionProps,
 } from './dynamic-form/models';
 export type { IconButtonProps } from './button/IconButton';
 export type { InputTextProps } from './input-form-fields/InputText';
