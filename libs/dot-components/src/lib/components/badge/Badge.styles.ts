@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 export const rootClassName = 'dot-badge';
 
 interface StyledBadgeProps {
+  /* Transient prop (NOT being passed to the underlying DOM element) */
   $badgeColor?: string;
 }
 
