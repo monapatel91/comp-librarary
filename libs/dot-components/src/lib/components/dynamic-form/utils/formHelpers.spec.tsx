@@ -799,8 +799,8 @@ describe('dynamic form helper functions', () => {
   describe('buildProgressButtonControl', () => {
     const handleClick = jest.fn();
     const controlProps: ProgressButtonProps = {
+      children: 'My title',
       isLoading: false,
-      title: 'My title',
       type: 'outlined',
     };
     const props: UncontrolledInputArgs = {
@@ -814,7 +814,7 @@ describe('dynamic form helper functions', () => {
         disabled={false}
         isLoading={controlProps.isLoading}
         key={props.index}
-        title={controlProps.title}
+        children={controlProps.children}
         type={controlProps.type}
       />
     );
@@ -992,8 +992,8 @@ describe('dynamic form helper functions', () => {
   describe('buildProgressSubmitControl', () => {
     const handleClick = jest.fn();
     const controlProps: ProgressButtonProps = {
+      children: 'Save',
       isLoading: false,
-      title: 'Save',
       type: 'primary',
     };
     const formState = {
@@ -1014,7 +1014,7 @@ describe('dynamic form helper functions', () => {
         isSubmit={true}
         key={props.index}
         size={controlProps.size}
-        title={controlProps.title}
+        children={controlProps.children}
         type={controlProps.type}
       />
     );

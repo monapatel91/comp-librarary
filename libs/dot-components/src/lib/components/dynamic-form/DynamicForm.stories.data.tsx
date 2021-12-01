@@ -358,7 +358,7 @@ export const getDynamicFormConfig = (
             {
               controlName: 'btnTest',
               controlProps: {
-                title: 'Test',
+                children: 'Test',
                 fullWidth: false,
                 startIcon: <DotIcon fontSize="small" iconId="play" />,
                 type: 'outlined',
