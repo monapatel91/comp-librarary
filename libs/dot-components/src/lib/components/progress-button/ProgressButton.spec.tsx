@@ -1,0 +1,251 @@
+import userEvent from '@testing-library/user-event';
+import React from 'react';
+import { render, RenderResult, screen, waitFor } from '../../testing-utils';
+import {
+  DotProgressButton,
+  ProgressButtonProps,
+  SPINNER_DEFAULT_SIZE,
+  SPINNER_LARGE_SIZE,
+} from './ProgressButton';
+
+describe('DotProgressButton', () => {
+  const ariaLabel = 'progress-button component';
+  const children = 'Progress Button';
+  const className = 'progress-button';
+  const dataTestId = 'progress-button-testid';
+  const handleClick = jest.fn();
+  const tooltip = 'My Tooltip';
+
+  const componentProps: ProgressButtonProps = {
+    ariaLabel,
+    children,
+    className,
+    'data-testid': dataTestId,
+    disabled: false,
+    disableRipple: false,
+    fullWidth: false,
+    isLoading: false,
+    isSubmit: false,
+    onClick: handleClick,
+    size: 'medium',
+    tooltip,
+    type: 'primary',
+  };
+
+  const getButton = (): HTMLElement => screen.getByTestId(dataTestId);
+
+  const getRippleElement = (): Element | undefined =>
+    getButton().getElementsByClassName('MuiTouchRipple-root')?.[0];
+
+  const getProgressCircle = (): HTMLElement | null =>
+    screen.queryByRole('progressbar');
+
+  const renderComponent = (props?: ProgressButtonProps): RenderResult => {
+    const renderProps = props ? props : componentProps;
+    return render(<DotProgressButton {...renderProps} />);
+  };
+
+  it('should have unchanged API', () => {
+    const props = {
+      ariaLabel,
+      children,
+      className,
+      'data-testid': dataTestId,
+      disabled: false,
+      disableRipple: false,
+      fullWidth: false,
+      isLoading: false,
+      isSubmit: false,
+      onClick: handleClick,
+      size: 'medium',
+      tooltip,
+      type: 'primary',
+    };
+    expect(componentProps).toEqual(props);
+  });
+
+  it('should render successfully', () => {
+    const { baseElement } = renderComponent();
+    expect(baseElement).toBeTruthy();
+  });
+
+  describe('default render', () => {
+    beforeEach(() => renderComponent());
+
+    it('should display enabled button without progress circle', () => {
+      const button = getButton();
+      const progressCircle = getProgressCircle();
+      expect(button).toBeVisible();
+      expect(button).toBeEnabled();
+      expect(progressCircle).not.toBeInTheDocument();
+    });
+
+    it('should display correct children', () => {
+      expect(screen.getByText(children)).toBeVisible();
+    });
+
+    it('should display button tooltip', async () => {
+      const button = getButton();
+      userEvent.hover(button);
+      await waitFor(() => expect(screen.getByText(tooltip)).toBeVisible());
+    });
+
+    it('should execute callback on click event', () => {
+      const button = getButton();
+      userEvent.click(button);
+      expect(handleClick).toBeCalledTimes(1);
+    });
+
+    it("should have 'aria-label' attribute with correct value", () => {
+      const button = getButton();
+      expect(button).toHaveAttribute('aria-label', ariaLabel);
+    });
+  });
+
+  describe('with custom props', () => {
+    it('should display disabled button with progress circle', () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        isLoading: true,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      const progressCircle = getProgressCircle();
+      expect(button).toBeVisible();
+      expect(button).toBeDisabled();
+      expect(progressCircle).toBeVisible();
+    });
+
+    it("should render enabled button when 'disabled' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        disabled: undefined,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      expect(button).toBeVisible();
+      expect(button).toBeEnabled();
+    });
+
+    it('should display disabled button without progress circle when disabled from props', () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        disabled: true,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      const progressCircle = getProgressCircle();
+      expect(button).toBeVisible();
+      expect(button).toBeDisabled();
+      expect(progressCircle).not.toBeInTheDocument();
+    });
+
+    it("should NOT render full-width button when 'fullWidth' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        fullWidth: undefined,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      expect(button).not.toHaveClass('MuiButton-fullWidth');
+    });
+
+    it("should NOT display submit-type button when 'isSubmit' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        isSubmit: undefined,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      expect(button).not.toHaveAttribute('type', 'submit');
+    });
+
+    it("should display submit-type button when 'isSubmit' is set to true", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        isSubmit: true,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      expect(button).toHaveAttribute('type', 'submit');
+    });
+
+    it("should NOT display loading spinner when 'loading' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        isLoading: undefined,
+      };
+      renderComponent(customProps);
+      const progressCircle = getProgressCircle();
+      expect(progressCircle).not.toBeInTheDocument();
+    });
+
+    it("should display medium size button when 'size' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        size: undefined,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      // Medium sized button doesn't have its own "medium" class
+      expect(button).not.toHaveClass(
+        'MuiButton-sizeSmall',
+        'MuiButton-sizeLarge'
+      );
+    });
+
+    it("should display primary button when 'type' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        type: undefined,
+      };
+      renderComponent(customProps);
+      const button = getButton();
+      expect(button).toHaveClass('MuiButton-containedPrimary');
+    });
+
+    it('should display default sized spinner when button is NOT large sized', () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        size: 'small',
+        isLoading: true,
+      };
+      renderComponent(customProps);
+      const progressCircle = getProgressCircle();
+      expect(progressCircle).toHaveStyle(`width: ${SPINNER_DEFAULT_SIZE}px`);
+      expect(progressCircle).toHaveStyle(`height: ${SPINNER_DEFAULT_SIZE}px`);
+    });
+
+    it('should display large sized spinner when button is large sized', () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        size: 'large',
+        isLoading: true,
+      };
+      renderComponent(customProps);
+      const progressCircle = getProgressCircle();
+      expect(progressCircle).toHaveStyle(`width: ${SPINNER_LARGE_SIZE}px`);
+      expect(progressCircle).toHaveStyle(`height: ${SPINNER_LARGE_SIZE}px`);
+    });
+
+    it("should render ripple element when 'disableRipple' prop wasn't explicitly set", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        disableRipple: undefined,
+      };
+      renderComponent(customProps);
+      const rippleElement = getRippleElement();
+      expect(rippleElement).toBeInTheDocument();
+    });
+
+    it("should NOT render ripple element when 'disableRipple' is set to true", () => {
+      const customProps: ProgressButtonProps = {
+        ...componentProps,
+        disableRipple: true,
+      };
+      renderComponent(customProps);
+      const rippleElement = getRippleElement();
+      expect(rippleElement).toBeUndefined();
+    });
+  });
+});
