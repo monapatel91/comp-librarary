@@ -3,7 +3,7 @@ import { CommonProps } from '../CommonProps';
 import { rootClassName, StyledBadge } from './Badge.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
-export type BadgeOverlap = 'circle' | 'rectangle' | 'circular' | 'rectangular';
+export type BadgeOverlap = 'circular' | 'rectangular';
 
 export interface BadgeProps extends CommonProps {
   /** custom color code for the badge */
@@ -29,9 +29,9 @@ export const DotBadge = ({
 
   return (
     <StyledBadge
+      $badgeColor={badgeColor}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       aria-label={ariaLabel}
-      badgeColor={badgeColor}
       classes={{ root: rootClasses }}
       color="primary"
       data-testid={dataTestId}
