@@ -232,6 +232,12 @@ export const DotList = ({
 
   const [listItemIndex, setListItemIndex] = useState<number>();
 
+  const updateSelectedListItem = (currentIndex: number): void => {
+    currentIndex === listItemIndex
+      ? setListItemIndex(null)
+      : setListItemIndex(currentIndex);
+  };
+
   return (
     <StyledList
       aria-label={ariaLabel}
@@ -243,12 +249,8 @@ export const DotList = ({
       style={{ width: `${width}px` }}
     >
       {items.map((item, index) => {
-        const handleListItemClick = (e: MouseEvent) => {
-          if (index === listItemIndex) {
-            setListItemIndex(null);
-          } else {
-            setListItemIndex(index);
-          }
+        const handleListItemClick = (e: MouseEvent): void => {
+          updateSelectedListItem(index);
           item.onClick?.(e);
         };
 
