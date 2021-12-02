@@ -33,7 +33,9 @@ export const DotInputSelect = ({
   inputRef,
   label,
   name,
+  onBlur,
   onChange,
+  onFocus,
   options = [],
   required,
   size = 'small',
@@ -82,7 +84,9 @@ export const DotInputSelect = ({
       label={label}
       multiline={false}
       name={name}
+      onBlur={onBlur}
       onChange={onChange}
+      onFocus={onFocus}
       required={required}
       select={true}
       SelectProps={{

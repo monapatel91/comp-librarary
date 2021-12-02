@@ -54,7 +54,9 @@ export const DotInputText = ({
   label,
   multiline = false,
   name,
+  onBlur,
   onChange,
+  onFocus,
   placeholder,
   readOnly = false,
   required = false,
@@ -171,7 +173,9 @@ export const DotInputText = ({
       label={label}
       multiline={multiline}
       name={name}
+      onBlur={onBlur}
       onChange={hasDebounce ? handleChange : onChange}
+      onFocus={onFocus}
       placeholder={placeholder}
       required={required}
       rows={multiline ? rows : null}
