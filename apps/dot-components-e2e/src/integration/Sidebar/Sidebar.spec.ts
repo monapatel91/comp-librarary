@@ -63,4 +63,23 @@ describe('dot-components: Sidebar component', () => {
       );
     });
   });
+
+  describe('style decisions for sidebar with go-back button', () => {
+    before(() => {
+      cy.visit(`${baseSidebarUrl}&args=goBack:true`);
+    });
+
+    it('go-back icon', () => {
+      cy.get('.go-back .dot-icon')
+        .should('have.css', 'margin-right', '16px')
+        .and('have.css', 'width', '40px')
+        .and('have.css', 'height', '40px');
+    });
+
+    it('go-back icon with collapsed sidebar', () => {
+      // Click to collapse element
+      cy.get('[data-testid=toggle-nav]').click();
+      cy.get('.go-back .dot-icon').should('have.css', 'margin', '0px 8px');
+    });
+  });
 });
