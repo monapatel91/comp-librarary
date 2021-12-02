@@ -230,7 +230,7 @@ export const DotList = ({
 }: ListProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-  const [listItemIndex, setListItemIndex] = useState<number>();
+  const [listItemIndex, setListItemIndex] = useState<number>(null);
 
   const updateSelectedListItem = (currentIndex: number): void => {
     currentIndex === listItemIndex
