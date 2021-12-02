@@ -29,8 +29,16 @@ export interface InputProps extends CommonProps {
   label?: string;
   /** The name of input element */
   name: string;
+  /** A function that should be executed when the input loses focus */
+  onBlur?: (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   /** A function that should be executed when the value of the input changes */
   onChange?: (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  /** A function that should be executed when the input gains focus */
+  onFocus?: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   /** If true, the label is displayed as required and the input element` will be required. */
