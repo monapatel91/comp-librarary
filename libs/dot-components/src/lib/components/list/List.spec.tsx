@@ -239,9 +239,7 @@ describe('ListItem', () => {
       { text: 'Hello World', title: 'well hello there' },
     ];
     render(<DotList items={deprecatedItems} />);
-    waitFor(() => {
-      expect(consoleSpy).toHaveBeenCalled();
-    });
+    expect(consoleSpy).toHaveBeenCalled();
   });
 
   xit('should display the end icon if passed and no children', () => {

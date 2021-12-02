@@ -299,7 +299,8 @@ export const DotList = ({
             startIconId={item.startIconId}
             target={item.target}
             text={item.text}
-            tooltip={item.title}
+            title={item.title}
+            tooltip={item.tooltip}
           />
         );
       })}
@@ -340,6 +341,15 @@ export const DotListItem = ({
     className,
     open ? 'open' : ''
   );
+
+  useEffect(() => {
+    // deprecation warning
+    if (title) {
+      console.warn(
+        'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` instead.'
+      );
+    }
+  }, []);
 
   const toggleOpen = (event: MouseEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -400,14 +410,7 @@ export const DotListItem = ({
       <DotIcon iconId={endIconId} />
     </ListItemIcon>
   );
-  useEffect(() => {
-    // deprecation warning
-    if (title) {
-      console.warn(
-        'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` instead.'
-      );
-    }
-  }, []);
+
   return (
     <>
       <DotTooltip
