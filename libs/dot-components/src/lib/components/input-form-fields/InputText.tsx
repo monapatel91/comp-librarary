@@ -117,15 +117,14 @@ export const DotInputText = ({
   }, [inputTextState]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const event = { ...e };
     // We need to have control over change event and input value separately
     // so that we can set initial state via 'value' prop (if needed)
     hasDebounce
       ? setInputTextState({
-          changeEvent: event,
-          inputValue: event.target.value,
+          changeEvent: e,
+          inputValue: e.target.value,
         })
-      : onChange?.(event);
+      : onChange?.(e);
   };
 
   const inputTextValue = hasDebounce ? inputTextState.inputValue : value;
