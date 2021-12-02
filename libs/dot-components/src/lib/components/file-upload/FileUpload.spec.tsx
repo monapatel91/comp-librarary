@@ -25,8 +25,11 @@ describe('DotFileUpload', () => {
   });
 
   it('should render button only when specified', () => {
-    render(<DotFileUpload buttonOnly={true} />);
+    render(<DotFileUpload buttonOnly={true} maxSize={10} />);
+    const maxSizeMessage = screen.getAllByText(/File size should not exceed/i);
+    expect(maxSizeMessage[0]).toBeInTheDocument();
     expect(screen.getByRole('button')).toBeTruthy();
+
     expect(screen.queryByRole('input')).not.toBeInTheDocument();
   });
 
@@ -42,6 +45,12 @@ describe('DotFileUpload', () => {
       /files are the maximum number of files you can drop here/i
     );
     expect(maxSizeMessage[0]).toBeInTheDocument();
+  });
+
+  xit('should update dropzone content when isDragActive', () => {
+    render(<DotFileUpload />);
+    const dragMessage = screen.getAllByText(/Drop the file(s) here/i);
+    expect(dragMessage[0]).toBeInTheDocument();
   });
 
   xit('should use onUpload if provided', () => {

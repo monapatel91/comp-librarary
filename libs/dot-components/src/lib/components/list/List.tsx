@@ -50,6 +50,8 @@ export interface NestedListProps extends CommonProps {
   onMenuLeave?: (event: KeyboardEvent | MouseEvent) => void;
   /** if true the nested list is visible */
   open: boolean;
+  /** Index of the parent list item */
+  parentItemIndex?: number;
   /** If 'menu' the nested list will be displayed as a flyout nav, else it will be an expand/collapse toggle list */
   type?: NestedListType;
 }
@@ -129,6 +131,7 @@ const NestedList = ({
   nestedDrawerLeftSpacing,
   onMenuLeave,
   open,
+  parentItemIndex,
   type,
 }: NestedListProps) => {
   const flyoutItemClasses = useStylesWithRootClass(
@@ -149,6 +152,7 @@ const NestedList = ({
           component="div"
           disablePadding={true}
           items={items}
+          key={parentItemIndex}
         />
       </Collapse>
     );
@@ -160,11 +164,16 @@ const NestedList = ({
       const startIcon = <DotIcon iconId={startIconId} />;
       return {
         children: (
-          <DotTooltip placement="top-start" title={tooltip || title}>
+          <DotTooltip
+            key={`${parentItemIndex}-${index}-tooltip`}
+            placement="top-start"
+            title={tooltip || title}
+          >
             <StyledListItem
               className={flyoutItemClasses}
               component={href && !onClick ? 'a' : null}
               href={href}
+              key={`${parentItemIndex}-${index}`}
               target={target}
               onClick={onClick}
             >
@@ -191,6 +200,7 @@ const NestedList = ({
         menuPlacement={menuPlacement}
         onLeave={onMenuLeave}
         open={open}
+        key={parentItemIndex}
       />
     );
   }
@@ -211,6 +221,7 @@ const NestedList = ({
           component="div"
           disablePadding={true}
           items={items}
+          key={parentItemIndex}
         />
       </DotDrawer>
     );
@@ -220,14 +231,12 @@ const NestedList = ({
 const DotListDivider = ({ item, index }: DividerProps) => {
   if (item.text) {
     return (
-      <ListSubheader disableSticky key={index}>
+      <ListSubheader disableSticky>
         <DotTypography variant="subtitle2">{item.text}</DotTypography>
       </ListSubheader>
     );
   }
-  return (
-    <Divider key={index} aria-hidden={true} data-testid={`divider-${index}`} />
-  );
+  return <Divider aria-hidden={true} data-testid={`divider-${index}`} />;
 };
 
 export const DotList = ({
@@ -262,7 +271,13 @@ export const DotList = ({
           return item.child;
         }
         if (item.divider) {
-          return <DotListDivider item={item} index={index} />;
+          return (
+            <DotListDivider
+              item={item}
+              index={index}
+              key={`divider-${index}`}
+            />
+          );
         }
         return (
           <DotListItem

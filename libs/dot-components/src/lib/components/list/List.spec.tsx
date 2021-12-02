@@ -221,6 +221,7 @@ describe('ListItem', () => {
     userEvent.hover(listItem);
     waitFor(() => {
       expect(tooltip).toHaveLength(1);
+      expect(consoleSpy).not.toHaveBeenCalled();
     });
   });
 
