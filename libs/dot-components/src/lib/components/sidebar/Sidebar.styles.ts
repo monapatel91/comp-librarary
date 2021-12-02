@@ -277,6 +277,10 @@ export const StyledSidebar = styled.aside`
           }
         }
 
+        .go-back .dot-icon {
+          margin: ${theme.spacing(0, 1)};
+        }
+
         .go-back .MuiTypography-root,
         .MuiListItem-divider .dot-list-item-link,
         .dot-drawer {
