@@ -8,12 +8,13 @@ import {
   within,
 } from '../../testing-utils';
 import { DotDynamicForm, DynamicFormProps } from './DynamicForm';
-import { getSampleConfig } from './sample';
+import { getDynamicFormConfig } from './DynamicForm.stories.data';
 
 describe('DotDynamicForm', () => {
   const handleChange = jest.fn();
   const handleSubmit = jest.fn();
-  const config = getSampleConfig();
+  const handleProgressControlClick = jest.fn();
+  const config = getDynamicFormConfig(handleProgressControlClick);
   const ariaLabel = 'my aria label';
 
   const componentProps: DynamicFormProps = {
@@ -32,24 +33,28 @@ describe('DotDynamicForm', () => {
     return render(<DotDynamicForm {...renderProps} />);
   };
 
-  const getAutocompleteElement = (): HTMLElement =>
-    screen.getByTestId('randomOption');
+  const getInterestsAutocompleteElement = (): HTMLElement =>
+    screen.getByTestId('interests');
 
-  const getAutocompleteTextboxElement = (): HTMLElement =>
-    within(getAutocompleteElement()).getByRole('textbox');
+  const getInterestsAutocompleteTextboxElement = (): HTMLElement =>
+    within(getInterestsAutocompleteElement()).getByRole('textbox');
 
   const getFormElement = (): HTMLElement => screen.getByRole('form');
 
-  const getRadioGroupElement = (): HTMLElement =>
-    screen.getByTestId('hasMiddleName');
+  const getGenderRadioGroupElement = (): HTMLElement =>
+    screen.getByTestId('gender');
 
-  const getSwitchElement = (): HTMLElement => screen.getByTestId('isMandatory');
+  const getHasVehicleRadioGroupElement = (): HTMLElement =>
+    screen.getByTestId('hasVehicle');
 
-  const getSwitchInputElement = (): HTMLElement =>
-    within(getSwitchElement()).getByRole('checkbox');
+  const getIsActiveSwitchElement = (): HTMLElement =>
+    screen.getByTestId('isActive');
 
-  const getResetButton = (): HTMLElement =>
-    screen.getByRole('button', { name: 'Reset' });
+  const getIsActiveSwitchInputElement = (): HTMLElement =>
+    within(getIsActiveSwitchElement()).getByRole('checkbox');
+
+  const getCancelButton = (): HTMLElement =>
+    screen.getByRole('button', { name: 'Cancel' });
 
   const getSubmitButton = (): HTMLElement =>
     screen.getByRole('button', { name: 'Submit form' });
@@ -60,24 +65,52 @@ describe('DotDynamicForm', () => {
   const getFirstNameTextbox = (): HTMLElement =>
     screen.getByTestId('firstName');
 
-  const getCheckboxElement = (): HTMLElement =>
-    screen.getByTestId('receiveNewsletters');
+  const getLastNameTextbox = (): HTMLElement => screen.getByTestId('lastName');
 
-  const getSelectElement = (): HTMLElement => screen.getByTestId('gender');
+  const getUsernameTextbox = (): HTMLElement => screen.getByTestId('username');
 
-  const getCheckboxGroupElement = (): HTMLElement =>
+  const getPasswordTextbox = (): HTMLElement => screen.getByTestId('password');
+
+  const getTermsCheckboxElement = (): HTMLElement =>
+    within(screen.getByTestId('form-section-terms')).getByTestId('terms');
+
+  const getTermsCheckboxInputElement = (): HTMLElement =>
+    within(getTermsCheckboxElement()).getByRole('checkbox');
+
+  const getUserTypeSelectElement = (): HTMLElement =>
+    screen.getByTestId('userType');
+
+  const getReceiveNewsCheckboxGroupElement = (): HTMLElement =>
     screen.getByTestId('receive');
 
-  const getCheckboxGroupInputElements = (): HTMLElement[] =>
-    within(getCheckboxGroupElement()).getAllByRole('checkbox');
+  const getReceiveNewsCheckboxGroupInputElements = (): HTMLElement[] =>
+    within(getReceiveNewsCheckboxGroupElement()).getAllByRole('checkbox');
 
-  const queryMiddleNameTextboxElement = (): HTMLElement | undefined =>
-    screen.queryByTestId('middleName');
+  const queryCustomUserTypeTextboxElement = (): HTMLElement | undefined =>
+    screen.queryByTestId('customUserType');
 
   const removeAutocompleteOption = (autocompleteElement: HTMLElement): void => {
     const closeElement =
       autocompleteElement.getElementsByClassName('MuiChip-deleteIcon')[0];
     userEvent.click(closeElement);
+  };
+
+  const getHasVehicleControlElement = (): HTMLElement =>
+    screen.getByTestId('hasVehicle');
+
+  const getVehicleModelControlElement = (): HTMLElement =>
+    screen.getByTestId('vehicleModel');
+
+  const expectRadioGroupElementToBeChecked = (
+    position: number,
+    shouldBeChecked = true,
+    radioGroupElement: HTMLElement
+  ): void => {
+    const radioElement =
+      within(radioGroupElement).getAllByRole('radio')[position];
+    shouldBeChecked
+      ? expect(radioElement).toBeChecked()
+      : expect(radioElement).not.toBeChecked();
   };
 
   const expectSwitchToBeChecked = (
@@ -96,7 +129,7 @@ describe('DotDynamicForm', () => {
     checkboxGroupElement?: HTMLElement
   ): void => {
     if (!checkboxGroupElement) {
-      checkboxGroupElement = getCheckboxGroupElement();
+      checkboxGroupElement = getReceiveNewsCheckboxGroupElement();
     }
     const checkboxElement =
       within(checkboxGroupElement).getAllByRole('checkbox')[position];
@@ -106,7 +139,7 @@ describe('DotDynamicForm', () => {
   };
 
   const expectCheckboxGroupToBeEnabled = (shouldBeEnabled = true): void => {
-    const checkboxElements = getCheckboxGroupInputElements();
+    const checkboxElements = getReceiveNewsCheckboxGroupInputElements();
     checkboxElements.forEach((cb) => {
       shouldBeEnabled ? expect(cb).toBeEnabled() : expect(cb).toBeDisabled();
     });
@@ -124,16 +157,26 @@ describe('DotDynamicForm', () => {
       : expect(errorMessage).not.toBeInTheDocument();
   };
 
-  const typeFirstName = (text: string): void =>
-    userEvent.type(getFirstNameTextbox(), text);
-
-  const toggleSwitch = (): void => {
-    userEvent.click(getSwitchElement());
+  const typeFirstName = (text: string): void => {
+    const element = getFirstNameTextbox();
+    userEvent.clear(element);
+    userEvent.type(element, text);
+    expect(element).toHaveValue(text);
   };
 
-  const selectGender = (gender: string): void => {
-    const selectElement = getSelectElement();
-    userEvent.selectOptions(selectElement, gender);
+  const typeLastName = (text: string): void => {
+    const element = getLastNameTextbox();
+    userEvent.clear(element);
+    userEvent.type(element, text);
+  };
+
+  const toggleIsActiveSwitch = (): void => {
+    userEvent.click(getIsActiveSwitchElement());
+  };
+
+  const selectUserType = (userType: string): void => {
+    const selectElement = getUserTypeSelectElement();
+    userEvent.selectOptions(selectElement, userType);
   };
 
   const addAutocompleteOption = (
@@ -141,11 +184,29 @@ describe('DotDynamicForm', () => {
     autocompleteElement?: HTMLElement
   ): void => {
     if (!autocompleteElement) {
-      autocompleteElement = getAutocompleteElement();
+      autocompleteElement = getInterestsAutocompleteElement();
     }
     userEvent.click(within(autocompleteElement).getByRole('textbox'));
     const popperElement = screen.getByRole('presentation');
     userEvent.click(within(popperElement).getByText(option));
+  };
+
+  const fillFormWithData = () => {
+    const receiveNewsCheckboxGroupElement =
+      getReceiveNewsCheckboxGroupElement();
+    // Set initial values
+    typeFirstName('John');
+    typeLastName('Wayne');
+    selectRadioGroupOption(1, getGenderRadioGroupElement());
+    userEvent.type(getUsernameTextbox(), 'jwayne');
+    userEvent.type(getPasswordTextbox(), 'pass123');
+    selectUserType('Administrator');
+    addAutocompleteOption('Hiking', getInterestsAutocompleteElement());
+    selectRadioGroupOption(1, getHasVehicleControlElement());
+    selectCheckboxGroupOption(0, receiveNewsCheckboxGroupElement);
+    selectCheckboxGroupOption(1, receiveNewsCheckboxGroupElement);
+    toggleIsActiveSwitch();
+    userEvent.click(getTermsCheckboxInputElement());
   };
 
   const submitForm = (): void => {
@@ -154,7 +215,7 @@ describe('DotDynamicForm', () => {
   };
 
   const resetForm = (): void => {
-    const resetButton = getResetButton();
+    const resetButton = getCancelButton();
     userEvent.click(resetButton);
   };
 
@@ -169,7 +230,7 @@ describe('DotDynamicForm', () => {
     checkboxGroupElement?: HTMLElement
   ): void => {
     if (!checkboxGroupElement) {
-      checkboxGroupElement = getCheckboxGroupElement();
+      checkboxGroupElement = getReceiveNewsCheckboxGroupElement();
     }
     userEvent.click(
       within(checkboxGroupElement).getAllByRole('checkbox')[position]
@@ -206,10 +267,10 @@ describe('DotDynamicForm', () => {
     });
 
     it('should render input text with appropriate initial value', () => {
-      const inputElement = getFirstNameTextbox();
+      const inputElement = getUserTypeSelectElement();
       expect(inputElement).toBeVisible();
-      expect(inputElement).toHaveClass('dot-input');
-      expect(inputElement).toHaveValue('my first name');
+      expect(inputElement).toHaveClass('dot-select');
+      expect(inputElement).toHaveValue('Basic user');
       expect(inputElement).toBeEnabled();
     });
 
@@ -219,45 +280,47 @@ describe('DotDynamicForm', () => {
     });
 
     it('should render input text with appropriate helper text', () => {
-      const inputElement = screen.getByText('Your first name goes here');
+      const inputElement = screen.getByText(
+        'Your first name goes here (at least 2 characters required)'
+      );
       expect(inputElement).toBeVisible();
     });
 
     it('should render autocomplete control with appropriate initial value', () => {
-      const autocompleteElement = getAutocompleteElement();
+      const autocompleteElement = getInterestsAutocompleteElement();
       expect(autocompleteElement).toBeVisible();
       expect(autocompleteElement).toHaveClass('dot-autocomplete');
-      const inputElement = getAutocompleteTextboxElement();
+      const inputElement = getInterestsAutocompleteTextboxElement();
       expect(inputElement).toBeEnabled();
       const selectedOptionElement =
-        within(autocompleteElement).getByText('Option 1');
+        within(autocompleteElement).getByText('Breathing');
       expect(selectedOptionElement).toBeVisible();
     });
 
     it('should display correct error message when option is removed from the autocomplete field', () => {
-      const autocompleteElement = getAutocompleteElement();
+      const autocompleteElement = getInterestsAutocompleteElement();
       removeAutocompleteOption(autocompleteElement);
       within(autocompleteElement).getByText('Required field');
     });
 
     it('should display correct error message when minLength condition is not satisfied', () => {
-      const autocompleteElement = getAutocompleteElement();
+      const autocompleteElement = getInterestsAutocompleteElement();
       removeAutocompleteOption(autocompleteElement);
-      addAutocompleteOption('Option 1', autocompleteElement);
+      addAutocompleteOption('Programming', autocompleteElement);
       expectAutocompleteMinLengthErrorMessage(autocompleteElement);
     });
 
     it('should display correct error message when maxLength condition is not satisfied', () => {
-      const autocompleteElement = getAutocompleteElement();
-      addAutocompleteOption('Option 2', autocompleteElement);
-      addAutocompleteOption('Option 3', autocompleteElement);
-      addAutocompleteOption('Option 4', autocompleteElement);
-      addAutocompleteOption('Option 5', autocompleteElement);
+      const autocompleteElement = getInterestsAutocompleteElement();
+      addAutocompleteOption('Hiking', autocompleteElement);
+      addAutocompleteOption('Breathing', autocompleteElement);
+      addAutocompleteOption('Swimming', autocompleteElement);
+      addAutocompleteOption('Dancing', autocompleteElement);
       within(autocompleteElement).getByText('Maximum of 4 options allowed');
     });
 
     it('should render radio group control with correct radio buttons and initial value', () => {
-      const radioGroupElement = getRadioGroupElement();
+      const radioGroupElement = getHasVehicleRadioGroupElement();
       expect(radioGroupElement).toBeVisible();
       expect(radioGroupElement).toHaveClass('dot-radio-group');
       const radioButtons = within(radioGroupElement).getAllByRole('radio');
@@ -272,39 +335,38 @@ describe('DotDynamicForm', () => {
     });
 
     it('should render radio group control with correct label', () => {
-      const labelElement = screen.getByText('Do you have middle name?');
+      const labelElement = screen.getByText('Do you own a vehicle?');
       expect(labelElement).toBeVisible();
     });
 
-    it('should NOT render middle name textbox by default', () => {
-      const textboxElement = queryMiddleNameTextboxElement();
+    it('should NOT render custom user type textbox by default', () => {
+      const textboxElement = queryCustomUserTypeTextboxElement();
       expect(textboxElement).not.toBeInTheDocument();
     });
 
-    it("should render middle name textbox when middle name radio group option is set to 'Yes'", () => {
-      const radioGroupElement = getRadioGroupElement();
-      selectRadioGroupOption(1, radioGroupElement);
-      const textboxElement = queryMiddleNameTextboxElement();
+    it("should render custom user type textbox when user type is set to 'Other'", () => {
+      selectUserType('Other');
+      const textboxElement = queryCustomUserTypeTextboxElement();
       expect(textboxElement).toBeVisible();
       expect(textboxElement).toBeEnabled();
       expect(textboxElement).toBeEmptyDOMElement();
     });
 
     it('should render select element', () => {
-      const selectElement = getSelectElement();
+      const selectElement = getUserTypeSelectElement();
       expect(selectElement).toBeVisible();
       expect(selectElement).toBeEnabled();
-      expect(selectElement).toHaveValue('');
       const options = within(selectElement).getAllByRole('option');
       expect(options[0]).toHaveValue('');
-      expect(options[1]).toHaveValue('Male');
-      expect(options[2]).toHaveValue('Female');
+      expect(options[1]).toHaveValue('Basic user');
+      expect(options[2]).toHaveValue('Administrator');
+      expect(options[3]).toHaveValue('Other');
     });
 
     it('should render checkbox group element', () => {
-      const checkboxGroupElement = getCheckboxGroupElement();
+      const checkboxGroupElement = getReceiveNewsCheckboxGroupElement();
       expect(checkboxGroupElement).toBeVisible();
-      const checkboxElements = getCheckboxGroupInputElements();
+      const checkboxElements = getReceiveNewsCheckboxGroupInputElements();
       checkboxElements.forEach((cb) => {
         expect(cb).toBeEnabled();
         expect(cb).not.toBeChecked();
@@ -317,8 +379,8 @@ describe('DotDynamicForm', () => {
       expect(customElement).toBeVisible();
     });
 
-    it('should render isMandatory switch element with correct initial value', () => {
-      const switchElement = getSwitchElement();
+    it('should render isActive switch element with correct initial value', () => {
+      const switchElement = getIsActiveSwitchElement();
       expect(switchElement).toBeVisible();
       expect(switchElement).toHaveClass('MuiSwitch-switchBase');
       // Confirm that it is not checked (as per initial value)
@@ -328,53 +390,78 @@ describe('DotDynamicForm', () => {
     });
 
     it('should render unchecked checkbox element', () => {
-      const checkboxElement = getCheckboxElement();
+      const checkboxElement = getTermsCheckboxElement();
       expect(checkboxElement).toBeVisible();
       expect(checkboxElement).not.toBeChecked();
     });
 
-    it('should render enabled custom button', () => {
+    it("should render disabled 'Test' button", () => {
       const testButton = getTestButton();
       expect(testButton).toBeVisible();
-      expect(testButton).toBeEnabled();
+      expect(testButton).toBeDisabled();
+      expect(testButton).toHaveClass('dot-progress-button');
     });
 
     it('should render enabled reset button', () => {
-      const resetButton = getResetButton();
+      const resetButton = getCancelButton();
       expect(resetButton).toBeVisible();
       expect(resetButton).toBeEnabled();
     });
 
     it('should remove all values from the form inputs when clicking Reset button', () => {
-      const hasMiddleNameElement = getRadioGroupElement();
-      const middleNameRadioButton =
-        within(hasMiddleNameElement).getAllByRole('radio');
-      const checkboxGroupElement = getCheckboxGroupElement();
-      const switchElement = getSwitchElement();
-      const resetButton = getResetButton();
       const firstNameElement = getFirstNameTextbox();
-      const autocompleteTextboxElement = getAutocompleteTextboxElement();
+      const lastNameElement = getLastNameTextbox();
+      const genderRadioGroupElement = getGenderRadioGroupElement();
+      const genderRadioButton = within(genderRadioGroupElement).getAllByRole(
+        'radio'
+      );
+      const usernameElement = getUsernameTextbox();
+      const passwordElement = getPasswordTextbox();
+      const userTypeSelectElement = getUserTypeSelectElement();
+      const interestsAutocompleteTextboxElement =
+        getInterestsAutocompleteTextboxElement();
+      const hasVehicleElement = getHasVehicleControlElement();
+      const vehicleModelElement = getVehicleModelControlElement();
+      const receiveNewsCheckboxGroupElement =
+        getReceiveNewsCheckboxGroupElement();
+      const isActiveSwitchElement = getIsActiveSwitchElement();
+      const termsCheckboxElement = getTermsCheckboxElement();
+      const cancelButton = getCancelButton();
 
-      // Set initial values
-      selectRadioGroupOption(1, hasMiddleNameElement);
-      selectCheckboxGroupOption(0, checkboxGroupElement);
-      selectCheckboxGroupOption(1, checkboxGroupElement);
-      userEvent.click(switchElement);
-      userEvent.type(firstNameElement, 'John');
-      userEvent.type(autocompleteTextboxElement, 'Option 1');
+      fillFormWithData();
 
       // Click reset button
-      userEvent.click(resetButton);
+      userEvent.click(cancelButton);
 
       // Confirm that all values are reset
       expect(firstNameElement).toBeEmptyDOMElement();
-      expect(autocompleteTextboxElement).toBeEmptyDOMElement();
+      expect(lastNameElement).toBeEmptyDOMElement();
+      expect(usernameElement).toBeEmptyDOMElement();
+      expect(passwordElement).toBeEmptyDOMElement();
+      expect(userTypeSelectElement).toHaveValue('Basic user');
+      expect(interestsAutocompleteTextboxElement).toBeEmptyDOMElement();
+      expect(vehicleModelElement).toBeEmptyDOMElement();
       waitFor(() => {
-        expect(middleNameRadioButton[0]).toBeChecked();
-        expectCheckboxGroupElementToBeChecked(0, false, checkboxGroupElement);
-        expectCheckboxGroupElementToBeChecked(1, false, checkboxGroupElement);
-        expectCheckboxGroupElementToBeChecked(2, false, checkboxGroupElement);
-        expectSwitchToBeChecked(switchElement, false);
+        expect(genderRadioButton[0]).toBeChecked();
+        expectRadioGroupElementToBeChecked(0, true, genderRadioGroupElement);
+        expectRadioGroupElementToBeChecked(0, false, hasVehicleElement);
+        expectCheckboxGroupElementToBeChecked(
+          0,
+          false,
+          receiveNewsCheckboxGroupElement
+        );
+        expectCheckboxGroupElementToBeChecked(
+          1,
+          false,
+          receiveNewsCheckboxGroupElement
+        );
+        expectCheckboxGroupElementToBeChecked(
+          2,
+          false,
+          receiveNewsCheckboxGroupElement
+        );
+        expectSwitchToBeChecked(isActiveSwitchElement, false);
+        expect(termsCheckboxElement).not.toBeChecked();
       });
     });
 
@@ -385,14 +472,65 @@ describe('DotDynamicForm', () => {
     });
 
     it('should execute correct event handler when form is submitted', () => {
-      typeFirstName('first name');
-      addAutocompleteOption('Option 2');
-      selectGender('Male');
-      toggleSwitch();
+      fillFormWithData();
       const submitButton = getSubmitButton();
       expect(submitButton).toBeEnabled();
       userEvent.click(submitButton);
       expect(handleSubmit).toHaveBeenCalledTimes(1);
+    });
+
+    it("should execute correct event handler when 'Test' button is clicked", () => {
+      fillFormWithData();
+      const testButton = getTestButton();
+      expect(testButton).toBeEnabled();
+      userEvent.click(testButton);
+      expect(handleProgressControlClick).toHaveBeenCalledTimes(1);
+      expect(handleProgressControlClick).toHaveBeenCalledWith({
+        customUserType: null,
+        firstName: 'John',
+        isAccountActive: true,
+        lastName: 'Wayne',
+        gender: 'female',
+        hasVehicle: 'yes',
+        interests: [
+          {
+            title: 'Breathing',
+          },
+          {
+            title: 'Hiking',
+          },
+        ],
+        password: 'pass123',
+        receive: [
+          {
+            label: 'New products notifications',
+            value: 'products',
+          },
+          {
+            label: 'Personal info change notifications',
+            value: 'personal',
+          },
+        ],
+        terms: true,
+        userType: 'Administrator',
+        username: 'jwayne',
+        vehicleModel: null,
+      });
+    });
+
+    it("should have disabled 'vehicleModel' control if 'hasVehicle' control's value is set to 'no'", () => {
+      const hasVehicleElement = getHasVehicleControlElement();
+      const vehicleModelElement = getVehicleModelControlElement();
+      expectRadioGroupElementToBeChecked(0, true, hasVehicleElement);
+      expect(vehicleModelElement).toBeDisabled();
+    });
+
+    it("should have enabled 'vehicleModel' control if 'hasVehicle' control's value is set to 'yes'", () => {
+      const hasVehicleElement = getHasVehicleControlElement();
+      const vehicleModelElement = getVehicleModelControlElement();
+      selectRadioGroupOption(1, hasVehicleElement);
+      expectRadioGroupElementToBeChecked(1, true, hasVehicleElement);
+      expect(vehicleModelElement).toBeEnabled();
     });
   });
 
@@ -412,10 +550,9 @@ describe('DotDynamicForm', () => {
       });
 
       it('should display error message when submitting a form while middle name is displayed and empty', () => {
-        const radioGroupElement = getRadioGroupElement();
-        selectRadioGroupOption(1, radioGroupElement);
+        selectUserType('Other');
         submitForm();
-        const middleNameTextboxElement = queryMiddleNameTextboxElement();
+        const middleNameTextboxElement = queryCustomUserTypeTextboxElement();
         expect(
           within(middleNameTextboxElement.closest('.dot-text-field')).getByText(
             'Required field'
@@ -424,14 +561,14 @@ describe('DotDynamicForm', () => {
       });
 
       it('should NOT render error message when field is edited and validation is not satisfied', () => {
-        const autocompleteElement = getAutocompleteElement();
+        const autocompleteElement = getInterestsAutocompleteElement();
         removeAutocompleteOption(autocompleteElement);
-        addAutocompleteOption('Option 1', autocompleteElement);
+        addAutocompleteOption('Hiking', autocompleteElement);
         expectAutocompleteMinLengthErrorMessage(autocompleteElement, false);
       });
 
       it('should render error message on submit button click', () => {
-        const autocompleteElement = getAutocompleteElement();
+        const autocompleteElement = getInterestsAutocompleteElement();
         submitForm();
         expectAutocompleteMinLengthErrorMessage(autocompleteElement, true);
       });
@@ -440,7 +577,7 @@ describe('DotDynamicForm', () => {
         // Trigger error message display
         submitForm();
         resetForm();
-        const autocompleteElement = getAutocompleteElement();
+        const autocompleteElement = getInterestsAutocompleteElement();
         expectAutocompleteMinLengthErrorMessage(autocompleteElement, false);
       });
     });
@@ -455,11 +592,12 @@ describe('DotDynamicForm', () => {
 
       it('should display disabled elements', () => {
         const firstNameTextboxElement = getFirstNameTextbox();
-        const autocompleteTextboxElement = getAutocompleteTextboxElement();
-        const selectElement = getSelectElement();
-        const switchInputElement = getSwitchInputElement();
+        const autocompleteTextboxElement =
+          getInterestsAutocompleteTextboxElement();
+        const selectElement = getUserTypeSelectElement();
+        const switchInputElement = getIsActiveSwitchInputElement();
         const testButtonElement = getTestButton();
-        const resetButton = getResetButton();
+        const resetButton = getCancelButton();
         const submitButton = getSubmitButton();
 
         expect(firstNameTextboxElement).toBeDisabled();
