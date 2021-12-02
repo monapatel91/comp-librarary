@@ -68,8 +68,7 @@ export const DotFileUpload = ({
   });
 
   const handleDrop = (files: Array<File>) => {
-    console.log('acceptedFiles', files);
-    onUpload ? onUpload(files) : console.log('onUpload callback not defined');
+    onUpload ? onUpload(files) : console.warn('onUpload callback not defined');
   };
 
   const getFileList = () => {
@@ -124,23 +123,6 @@ export const DotFileUpload = ({
     return failedItems;
   };
 
-  const dropzoneContent = isDragActive ? (
-    <DotTypography variant="h3">Drop the file(s) here ...</DotTypography>
-  ) : (
-    <>
-      <DotTypography variant="h3">
-        Drag and drop your file(s) here
-      </DotTypography>
-      <DotTypography variant="h3">or</DotTypography>
-      <DotButton onClick={open}>Select file(s)</DotButton>
-      {maxSize && (
-        <DotTypography variant="body2">
-          File size should not exceed {maxSize}MB.
-        </DotTypography>
-      )}
-    </>
-  );
-
   const maxFilesMessage = (
     <DotTypography variant="body2">
       ({maxFiles} files are the maximum number of files you can drop here)
@@ -151,6 +133,19 @@ export const DotFileUpload = ({
     <DotTypography variant="body2">
       File size should not exceed {maxSize}MB.
     </DotTypography>
+  );
+
+  const dropzoneContent = isDragActive ? (
+    <DotTypography variant="h3">Drop the file(s) here ...</DotTypography>
+  ) : (
+    <>
+      <DotTypography variant="h3">
+        Drag and drop your file(s) here
+      </DotTypography>
+      <DotTypography variant="h3">or</DotTypography>
+      <DotButton onClick={open}>Select file(s)</DotButton>
+      {maxSize && maxSizeMessage}
+    </>
   );
 
   return (
