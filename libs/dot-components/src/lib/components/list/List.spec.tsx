@@ -13,7 +13,7 @@ import { PopperPlacement } from '../menu/Menu';
 import { LinkTarget } from '../link/Link';
 
 const onClick = jest.fn();
-
+const consoleSpy = jest.spyOn(global.console, 'warn');
 const mockListItems: Array<ListItemProps> = [
   {
     text: 'Pipelines',
@@ -231,6 +231,16 @@ describe('ListItem', () => {
 
     expect(primaryText).toBeVisible();
     expect(secondaryText).toBeVisible();
+  });
+
+  it('should have a deprecation warning if title is provided', () => {
+    const deprecatedItems: Array<ListItemProps> = [
+      { text: 'Hello World', title: 'well hello there' },
+    ];
+    render(<DotList items={deprecatedItems} />);
+    waitFor(() => {
+      expect(consoleSpy).toHaveBeenCalled();
+    });
   });
 
   xit('should display the end icon if passed and no children', () => {

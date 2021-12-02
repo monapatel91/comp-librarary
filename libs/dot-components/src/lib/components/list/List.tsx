@@ -389,7 +389,7 @@ export const DotListItem = ({
     // deprecation warning
     if (title) {
       console.warn(
-        'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` isntead.'
+        'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` instead.'
       );
     }
   }, []);
