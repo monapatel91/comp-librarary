@@ -55,6 +55,24 @@ const mockListItems: Array<ListItemProps> = [
   },
 ];
 
+const clickListItem = (itemPosition: number): void => {
+  const item = screen.getAllByRole('button');
+  userEvent.click(item[itemPosition]);
+};
+
+const expectNestedItemToBeVisible = async (
+  nestedItemText: string,
+  shouldBeVisible = true
+): Promise<void> => {
+  const nestedItemElement = screen.getByText(nestedItemText);
+
+  await waitFor(() => {
+    shouldBeVisible
+      ? expect(nestedItemElement).toBeVisible()
+      : expect(nestedItemElement).not.toBeVisible();
+  });
+};
+
 describe('List', () => {
   it('should have unchanged API', () => {
     const props = {
@@ -119,17 +137,21 @@ describe('List', () => {
     expect(screen.getByText(nestedItemText)).toBeVisible();
   });
 
-  it('should display nested drawer when clicked', () => {
+  it('should display nested drawer when clicked', async () => {
     render(<DotList items={mockListItems} nestedListType="drawer" />);
-    const item = screen.getAllByRole('button');
     const nestedItemText = 'Package Progression';
+    await expectNestedItemToBeVisible(nestedItemText, false);
+    clickListItem(1);
+    await expectNestedItemToBeVisible(nestedItemText);
+  });
 
-    waitFor(() => {
-      expect(screen.getByText(nestedItemText)).not.toBeVisible();
-    });
-
-    userEvent.click(item[1]);
-    expect(screen.getByText(nestedItemText)).toBeVisible();
+  it('should show and hide nested drawer when same item is clicked twice', async () => {
+    render(<DotList items={mockListItems} nestedListType="drawer" />);
+    const nestedItemText = 'Package Progression';
+    clickListItem(1);
+    await expectNestedItemToBeVisible(nestedItemText);
+    clickListItem(1);
+    await expectNestedItemToBeVisible(nestedItemText, false);
   });
 
   it('should have an href if one is passed', () => {
