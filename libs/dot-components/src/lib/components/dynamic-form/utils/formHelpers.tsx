@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, MouseEvent } from 'react';
 import {
   DotInputText,
   InputTextProps,
@@ -8,11 +8,14 @@ import {
   InputSelectProps,
 } from '../../input-form-fields/InputSelect';
 import {
+  ControlClickHandler,
   DynamicFormConfig,
   DynamicFormControl,
   DynamicFormControlProps,
+  DynamicFormOutputData,
   DynamicFormState,
   DynamicFormStateData,
+  DynamicFormStateItem,
 } from '../models';
 import {
   AutoCompleteProps,
@@ -20,6 +23,10 @@ import {
   DotAutoComplete,
 } from '../../auto-complete/AutoComplete';
 import { ButtonProps, DotButton } from '../../button/Button';
+import {
+  DotProgressButton,
+  ProgressButtonProps,
+} from '../../progress-button/ProgressButton';
 import { CheckboxProps, DotCheckbox } from '../../checkbox/Checkbox';
 import {
   CheckboxGroupProps,
@@ -69,8 +76,55 @@ export interface ControlledInputArgs extends InputBaseArgs {
 
 export interface UncontrolledInputArgs extends InputBaseArgs {
   formState?: DynamicFormState;
-  handleClick?: () => void;
+  handleClick?: (formValues?: DynamicFormOutputData) => void;
 }
+
+export const getInitialStateFromControl = (
+  {
+    hidden,
+    initialValue,
+    controlType,
+    validation,
+    formSection,
+  }: DynamicFormControl,
+  liveValidation: boolean,
+  formValues: DynamicFormOutputData
+): DynamicFormStateItem => {
+  // Skip non-data controls (ignore buttons and other non-relevant elements)
+  // or hidden elements
+  if (!DATA_CONTROLS.includes(controlType)) return;
+
+  const formStateItem: DynamicFormStateItem = { ...INITIAL_STATE_ITEM };
+
+  if (hidden) formStateItem.hidden = hidden;
+  if (initialValue) {
+    formStateItem.value = initialValue;
+
+    if (liveValidation) {
+      const isHidden = checkIfHiddenControl(hidden, formValues);
+      formStateItem.isTouched = true;
+      // Since it is hidden field we will mark valid field to true so that is doesn't
+      // prevent form submission
+      if (isHidden) {
+        formStateItem.isValid = true;
+      } else {
+        const fieldValidation = getFieldValidation(
+          initialValue,
+          validation,
+          formValues
+        );
+        formStateItem.isValid = fieldValidation.isValid;
+        formStateItem.errorMessage = fieldValidation.errorMessage;
+      }
+    }
+  }
+  // If no validation always set valid to true
+  if (!validation || DATA_CONTROLS_WITHOUT_VALIDATION.includes(controlType)) {
+    // Set always to valid for now
+    formStateItem.isValid = true;
+  }
+  return formStateItem;
+};
 
 export const getInitialFormState = (
   config: DynamicFormConfig,
@@ -81,53 +135,40 @@ export const getInitialFormState = (
     data: {},
     isValid: false,
   };
-  config.controls.forEach(
-    ({
-      controlName,
-      hidden,
-      initialValue,
-      controlType,
-      validation,
-    }: DynamicFormControl) => {
-      // Skip non-data controls (ignore buttons and other non-relevant elements)
-      // or hidden elements
-      if (!DATA_CONTROLS.includes(controlType)) return;
-
-      initialState.data[controlName] = { ...INITIAL_STATE_ITEM };
-      if (hidden) initialState.data[controlName].hidden = hidden;
-      if (initialValue) {
-        initialState.data[controlName].value = initialValue;
-
-        if (liveValidation) {
-          const isHidden = checkIfHiddenControl(hidden, formValues);
-          initialState.data[controlName].isTouched = true;
-          // Since it is hidden field we will mark valid field to true so that is doesn't
-          // prevent form submission
-          if (isHidden) {
-            initialState.data[controlName].isValid = true;
-          } else {
-            const fieldValidation = getFieldValidation(
-              initialValue,
-              validation,
-              formValues
-            );
-            initialState.data[controlName].isValid = fieldValidation.isValid;
-            initialState.data[controlName].errorMessage =
-              fieldValidation.errorMessage;
-          }
+  config.controls.forEach((control: DynamicFormControl) => {
+    const { formSection } = control;
+    // Check if there are form section controls and grab initial state from those
+    if (formSection && formSection.sectionControls) {
+      formSection.sectionControls.forEach(
+        (formSectionControl: DynamicFormControl) => {
+          const { controlName: formSectionControlName } = formSectionControl;
+          const sectionFormStateItem = getInitialStateFromControl(
+            formSectionControl,
+            liveValidation,
+            formValues
+          );
+          if (!sectionFormStateItem) return;
+          initialState.data[formSectionControlName] = sectionFormStateItem;
         }
-      }
-      // If no validation always set valid to true
-      if (
-        !validation ||
-        DATA_CONTROLS_WITHOUT_VALIDATION.includes(controlType)
-      ) {
-        // Set always to valid for now
-        initialState.data[controlName].isValid = true;
-      }
+      );
     }
-  );
+    const { controlName } = control;
+    const formStateItem = getInitialStateFromControl(
+      control,
+      liveValidation,
+      formValues
+    );
+    if (!formStateItem) return;
+    initialState.data[controlName] = formStateItem;
+  });
   return initialState;
+};
+
+export const getControlClickHandler = (
+  formValues: DynamicFormOutputData,
+  onControlClick?: ControlClickHandler
+) => {
+  return onControlClick ? () => onControlClick(formValues) : undefined;
 };
 
 export const buildInputTextControl = ({
@@ -304,12 +345,51 @@ export const buildButtonControl = ({
   controlProps,
   disabled,
   index,
+  handleClick,
 }: UncontrolledInputArgs) => {
   const props = controlProps as ButtonProps;
+  const { onClick } = props;
+  const handleButtonClick =
+    onClick || handleClick
+      ? (e: MouseEvent) => {
+          props.onClick?.(e);
+          handleClick?.();
+        }
+      : undefined;
   return (
-    <DotButton key={index} {...props} disabled={disabled}>
+    <DotButton
+      key={index}
+      {...props}
+      disabled={disabled}
+      onClick={handleButtonClick}
+    >
       {props.children}
     </DotButton>
+  );
+};
+
+export const buildProgressButtonControl = ({
+  controlProps,
+  disabled,
+  index,
+  handleClick,
+}: UncontrolledInputArgs) => {
+  const props = controlProps as ProgressButtonProps;
+  const { onClick } = props;
+  const handleButtonClick =
+    onClick || handleClick
+      ? (e: MouseEvent) => {
+          props.onClick?.(e);
+          handleClick?.();
+        }
+      : undefined;
+  return (
+    <DotProgressButton
+      key={index}
+      {...props}
+      disabled={disabled}
+      onClick={handleButtonClick}
+    />
   );
 };
 
@@ -348,5 +428,24 @@ export const buildSubmitControl = ({
     <DotButton key={index} {...props} disabled={isDisabled} isSubmit={true}>
       {props.children}
     </DotButton>
+  );
+};
+
+export const buildProgressSubmitControl = ({
+  controlProps,
+  disabled,
+  formState,
+  index,
+  liveValidation,
+}: UncontrolledInputArgs) => {
+  const props = controlProps as ProgressButtonProps;
+  const isDisabled = disabled || (liveValidation && !formState.isValid);
+  return (
+    <DotProgressButton
+      key={index}
+      {...props}
+      disabled={isDisabled}
+      isSubmit={true}
+    />
   );
 };

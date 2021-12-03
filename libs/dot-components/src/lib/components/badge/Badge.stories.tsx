@@ -8,7 +8,7 @@ export default {
   component: DotBadge,
   argTypes: {
     overlap: {
-      defaultValue: 'rectangle',
+      defaultValue: 'rectangular',
     },
   },
 } as Meta;
