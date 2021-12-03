@@ -1,6 +1,18 @@
 import React, { ReactNode } from 'react';
-import { act, fireEvent, render, screen, waitFor } from '../../testing-utils';
-import { FileUploadProps, DotFileUpload } from './FileUpload';
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '../../testing-utils';
+import {
+  acceptedFileItems,
+  fileRejectionItems,
+  FileUploadProps,
+  DotFileUpload,
+} from './FileUpload';
 
 describe('DotFileUpload', () => {
   it('should have unchanged API', () => {
@@ -20,7 +32,7 @@ describe('DotFileUpload', () => {
   });
 
   it('should render successfully', () => {
-    const { baseElement } = render(<DotFileUpload />);
+    const { baseElement } = render(<DotFileUpload maxSize={10} />);
     expect(baseElement).toBeTruthy();
   });
 
@@ -40,65 +52,134 @@ describe('DotFileUpload', () => {
   });
 
   it('should render maxFiles message', () => {
-    render(<DotFileUpload maxFiles={10} />);
+    render(<DotFileUpload maxFiles={10} maxSize={10} />);
     const maxSizeMessage = screen.getAllByText(
       /files are the maximum number of files you can drop here/i
     );
     expect(maxSizeMessage[0]).toBeInTheDocument();
   });
 
-  xdescribe('Validate upload files', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const flushPromises = async (rerender: any, ui: ReactNode) => {
-      act(() => waitFor(() => rerender(ui)));
-    };
+  xdescribe('Validate uploaded file list', () => {
+    const buffer = new ArrayBuffer(1);
+    const blob = new Blob([buffer], { type: 'image/jpeg' });
+    const fileArray = [
+      {
+        path: 'test.jpg',
+        lastModified: 1637607949297,
+        lastModifiedDate: 'Mon Nov 22 2021 14:05:49 GMT-0500 (EST)',
+        name: 'test.jpg',
+        size: 20000000,
+        type: 'image/jpeg',
+        // arrayBuffer: () => Promise<ArrayBuffer>,
+        slice: blob.slice(),
+        stream: blob.stream(),
+        text: 'text',
+      },
+    ];
+    // it('should display list of uploaded files', async () => {
+    //   acceptedFileItems(fileArray);
+    // });
 
-    const dispatchEvt = (
-      node: Element | Node | Document | Window,
-      type: string,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      data: any
-    ) => {
-      const event = new Event(type, { bubbles: true });
-      Object.assign(event, data);
-      fireEvent(node, event);
-    };
+    // it('should display list of rejected files', async () => {
+    //   fileRejectionItems(fileArray, 10);
+    // });
+  });
 
-    const mockData = (files: Array<File>) => {
+  xdescribe('useDropzone() hook', () => {
+    type FileNode = Element | Node | Document | Window;
+
+    let files: any, images;
+    function createFile(name: string, size: number, type: string) {
+      const file = new File([], name, { type });
+      Object.defineProperty(file, 'size', {
+        get() {
+          return size;
+        },
+      });
+      return file;
+    }
+
+    async function flushPromises(
+      rerender: (ui: ReactNode) => void,
+      ui: ReactNode
+    ) {
+      waitFor(() => rerender(ui));
+    }
+
+    function drainTimers() {
+      waitFor(() => {
+        act(() => jest.runAllTimers());
+      });
+    }
+
+    function createDtWithFiles(files: any = []) {
       return {
         dataTransfer: {
           files,
           items: files.map((file: File) => ({
             kind: 'file',
+            size: file.size,
             type: file.type,
             getAsFile: () => file,
           })),
           types: ['Files'],
         },
       };
-    };
+    }
 
-    xit('invoke onDragEnter when dragenter event occurs', async () => {
-      const file = new File([JSON.stringify({ ping: true })], 'ping.json', {
-        type: 'application/json',
-      });
-      const data = mockData([file]);
-      const onDragEnter = jest.fn();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function fireDragEnter(node: FileNode, data: any) {
+      dispatchEvt(node, 'dragenter', data);
+    }
 
-      const { baseElement } = render(
-        <DotFileUpload
-          data-testid="test-file-upload"
-          maxSize={10}
-          onDragEnter={onDragEnter}
-        />
-      );
-      const { rerender } = render(baseElement);
-      const dropzone = screen.getByTestId('test-file-upload');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function fireDragOver(node: FileNode, data: any) {
+      dispatchEvt(node, 'dragover', data);
+    }
 
-      dispatchEvt(dropzone, 'dragenter', data);
-      await flushPromises(rerender, baseElement);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function fireDragLeave(node: FileNode, data: any) {
+      dispatchEvt(node, 'dragleave', data);
+    }
 
-      expect(onDragEnter).toHaveBeenCalled();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function fireDrop(node: FileNode, data: any) {
+      dispatchEvt(node, 'drop', data);
+    }
+
+    // Using fireEvent.* doesn't work for our use case,
+    // we cannot set the event props
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function dispatchEvt(node: FileNode, type: string, data: any) {
+      const event = new Event(type, { bubbles: true });
+      if (data) {
+        Object.assign(event, data);
+      }
+      fireEvent(node, event);
+    }
+
+    beforeEach(() => {
+      files = [createFile('file1.pdf', 1111, 'application/pdf')];
+      images = [
+        createFile('cats.gif', 1234, 'image/gif'),
+        createFile('dogs.gif', 2345, 'image/jpeg'),
+      ];
+    });
+
+    afterEach(cleanup);
+
+    it('sets {isDragActive} and {isDragAccept} if some files are accepted on dragenter', async () => {
+      const ui = <DotFileUpload maxSize={10} />;
+      const { container, rerender } = render(ui);
+      const dropzone = container.querySelector('div');
+
+      const data = createDtWithFiles(files);
+      fireDragEnter(dropzone, data);
+      await flushPromises(rerender, ui);
+
+      expect(dropzone).toHaveTextContent('dragActive');
+      expect(dropzone).toHaveTextContent('dragAccept');
+      expect(dropzone).not.toHaveTextContent('dragReject');
     });
 
     xit('should update dropzone content when isDragActive', () => {

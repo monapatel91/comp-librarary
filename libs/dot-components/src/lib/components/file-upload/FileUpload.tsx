@@ -39,6 +39,56 @@ export interface FileUploadProps extends CommonProps {
   onUpload?: (files: Array<File>) => void;
 }
 
+export const acceptedFileItems = (acceptedFiles: Array<FileWithPath>) => {
+  console.log(acceptedFiles);
+  const acceptedItems: ListItemProps[] = [];
+  acceptedFiles.forEach((file: FileWithPath) => {
+    acceptedItems.push({
+      className: 'file-success',
+      endIconId: 'check-solid',
+      startIconId: 'attachment',
+      text: file.path,
+    });
+  });
+  return acceptedItems;
+};
+
+export const fileRejectionItems = (
+  fileRejections: Array<FileRejection>,
+  maxSize: number
+) => {
+  const failedItems: ListItemProps[] = [];
+  fileRejections.forEach(({ file, errors }: FileRejection) => {
+    let errorText;
+    errors.forEach((e) => {
+      switch (e.code) {
+        case 'file-too-large':
+          errorText = `File exceeds ${maxSize}MB`;
+          break;
+        case 'file-invalid-type':
+          errorText = e.message;
+          break;
+        case 'too-many-files':
+          errorText = e.message;
+          break;
+        default:
+          errorText = e.message;
+          console.log('Unknown error', e);
+          break;
+      }
+    });
+
+    failedItems.push({
+      className: 'file-error',
+      endIconId: 'error-solid',
+      primaryText: file.path,
+      startIconId: 'attachment',
+      secondaryText: errorText,
+    });
+  });
+  return failedItems;
+};
+
 // https://react-dropzone.js.org/
 export const DotFileUpload = ({
   accept,
@@ -76,55 +126,11 @@ export const DotFileUpload = ({
   };
 
   const getFileList = () => {
-    const acceptedItems: ListItemProps[] = acceptedFileItems() || [];
-    const rejectedItems: ListItemProps[] = fileRejectionItems() || [];
+    const acceptedItems: ListItemProps[] =
+      acceptedFileItems(acceptedFiles) || [];
+    const rejectedItems: ListItemProps[] =
+      fileRejectionItems(fileRejections, maxSize) || [];
     return acceptedItems.concat(rejectedItems);
-  };
-
-  const acceptedFileItems = () => {
-    const acceptedItems: ListItemProps[] = [];
-    acceptedFiles.forEach((file: FileWithPath) => {
-      acceptedItems.push({
-        className: 'file-success',
-        endIconId: 'check-solid',
-        startIconId: 'attachment',
-        text: file.path,
-      });
-    });
-    return acceptedItems;
-  };
-
-  const fileRejectionItems = () => {
-    const failedItems: ListItemProps[] = [];
-    fileRejections.forEach(({ file, errors }: FileRejection) => {
-      let errorText;
-      errors.forEach((e) => {
-        switch (e.code) {
-          case 'file-too-large':
-            errorText = `File exceeds ${maxSize}MB`;
-            break;
-          case 'file-invalid-type':
-            errorText = e.message;
-            break;
-          case 'too-many-files':
-            errorText = e.message;
-            break;
-          default:
-            errorText = e.message;
-            console.log('Unknown error', e);
-            break;
-        }
-      });
-
-      failedItems.push({
-        className: 'file-error',
-        endIconId: 'error-solid',
-        primaryText: file.path,
-        startIconId: 'attachment',
-        secondaryText: errorText,
-      });
-    });
-    return failedItems;
   };
 
   const maxFilesMessage = (

@@ -34,14 +34,18 @@
     },
     "demo-e2e": {
       "tags": [],
-      "implicitDependencies": ["demo"]
+      "implicitDependencies": [
+        "demo"
+      ]
     },
     "dot-components": {
       "tags": []
     },
     "dot-components-e2e": {
       "tags": [],
-      "implicitDependencies": ["dot-components"]
+      "implicitDependencies": [
+        "dot-components"
+      ]
     },
     "testing-utils": {
       "tags": []
@@ -51,7 +55,9 @@
     },
     "vsm-hub-e2e": {
       "tags": [],
-      "implicitDependencies": ["vsm-hub"]
+      "implicitDependencies": [
+        "vsm-hub"
+      ]
     }
   },
   "targetDependencies": {

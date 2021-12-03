@@ -24,7 +24,9 @@
                 "output": "/fonts/"
               }
             ],
-            "styles": ["apps/demo/src/styles.scss"],
+            "styles": [
+              "apps/demo/src/styles.scss"
+            ],
             "scripts": [],
             "webpackConfig": "apps/demo/webpack.config.js"
           },
@@ -52,7 +54,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@nrwl/web:dev-server",
@@ -68,7 +72,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/demo/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/demo/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -77,7 +83,9 @@
             "jestConfig": "apps/demo/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/demo"]
+          "outputs": [
+            "coverage/apps/demo"
+          ]
         }
       }
     },
@@ -102,7 +110,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/demo-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/demo-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -116,7 +126,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/dot-components/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/dot-components/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "build": {
@@ -150,7 +162,9 @@
               }
             ]
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -158,14 +172,18 @@
             "jestConfig": "libs/dot-components/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/dot-components"]
+          "outputs": [
+            "coverage/libs/dot-components"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
           "options": {
             "uiFramework": "@storybook/react",
             "port": 4400,
-            "staticDir": ["libs/dot-components/src/lib"],
+            "staticDir": [
+              "libs/dot-components/src/lib"
+            ],
             "config": {
               "configFolder": "libs/dot-components/.storybook"
             }
@@ -190,7 +208,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -215,7 +235,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/dot-components-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/dot-components-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -229,7 +251,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/testing-utils/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/testing-utils/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         }
       }
@@ -252,7 +276,9 @@
               "apps/vsm-hub/src/favicon.ico",
               "apps/vsm-hub/src/assets"
             ],
-            "styles": ["apps/vsm-hub/src/styles.scss"],
+            "styles": [
+              "apps/vsm-hub/src/styles.scss"
+            ],
             "scripts": [],
             "webpackConfig": "apps/demo/webpack.config.js"
           },
@@ -295,7 +321,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/vsm-hub/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/vsm-hub/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -328,7 +356,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/vsm-hub-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/vsm-hub-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
