@@ -75,7 +75,7 @@ export const StyledSidebar = styled.aside`
         display: flex;
 
         .dot-icon {
-          margin-right: ${theme.spacing(1)}px;
+          margin-right: ${theme.spacing(2)}px;
           width: 40px;
           height: 40px;
         }
@@ -275,6 +275,10 @@ export const StyledSidebar = styled.aside`
           .toggle-nav {
             align-self: center;
           }
+        }
+
+        .go-back .dot-icon {
+          margin: ${theme.spacing(0, 1)};
         }
 
         .go-back .MuiTypography-root,

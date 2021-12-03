@@ -12,10 +12,13 @@ export type { CheckboxGroupProps } from './checkbox/CheckboxGroup';
 export type { SubmitButtonProps } from './dialog/Dialog';
 export type { DynamicFormProps } from './dynamic-form/DynamicForm';
 export type {
+  ControlClickHandler,
   DynamicFormConfig,
+  DynamicFormControl,
   DynamicFormOutputData,
   DynamicFormState,
   FieldValidation,
+  DynamicFormSectionProps,
 } from './dynamic-form/models';
 export type { IconButtonProps } from './button/IconButton';
 export type { InputTextProps } from './input-form-fields/InputText';
@@ -90,6 +93,7 @@ export {
   useDotSnackbarContext,
 } from './snackbar/SnackbarProvider';
 export { DotSplitButton } from './split-button/SplitButton';
+export { DotProgressButton } from './progress-button/ProgressButton';
 export { DotSwitch } from './switch/Switch';
 export { DotTable } from './table/Table';
 export { DotTooltip } from './tooltip/Tooltip';
@@ -97,4 +101,3 @@ export { DotHeaderRow } from './table/TableHeader';
 export { DotTablePagination } from './table/TablePagination';
 export { DotTabs } from './tabs/Tabs';
 export { DotTypography } from './typography/Typography';
-export { DotProgressButton } from './progress-button/ProgressButton';

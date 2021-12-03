@@ -6,19 +6,19 @@ import {
   buildCheckboxGroupControl,
   buildInputSelectControl,
   buildInputTextControl,
+  buildProgressButtonControl,
+  buildProgressSubmitControl,
   buildRadioGroupControl,
   buildResetControl,
   buildSubmitControl,
   buildSwitchControl,
   ControlledInputArgs,
+  getControlClickHandler,
   getInitialFormState,
+  getInitialStateFromControl,
   UncontrolledInputArgs,
 } from './formHelpers';
-import {
-  getSampleConfig,
-  getSampleFormState,
-  sampleMiddleNameHiddenFn,
-} from '../sample';
+import { getSampleFormState } from '../sample';
 import {
   DotInputText,
   InputTextProps,
@@ -39,78 +39,108 @@ import {
   CheckboxGroupProps,
   DotCheckboxGroup,
 } from '../../checkbox/CheckboxGroup';
+import {
+  DotProgressButton,
+  ProgressButtonProps,
+} from '../../progress-button/ProgressButton';
+
+import {
+  DynamicFormControl,
+  DynamicFormOutputData,
+  DynamicFormStateData,
+} from '../models';
+import { getDynamicFormConfig } from '../DynamicForm.stories.data';
 
 describe('dynamic form helper functions', () => {
+  describe('getInitialStateFromControl', () => {
+    const control: DynamicFormControl = {
+      controlName: 'firstName',
+      controlProps: {
+        label: 'First name',
+      } as InputTextProps,
+      controlType: 'dot-input-text',
+      hidden: true,
+      initialValue: 'Mike',
+    };
+    const formValues: DynamicFormStateData = {
+      firstName: {
+        value: 'firstName',
+        isValid: false,
+        isTouched: true,
+        errorMessage: null,
+      },
+    };
+
+    it("should set 'isValid' property to true when control is hidden", () => {
+      const result = getInitialStateFromControl(control, true, formValues);
+      expect(result).toEqual({
+        errorMessage: null,
+        isTouched: true,
+        isValid: true,
+        value: 'Mike',
+        hidden: true,
+      });
+    });
+  });
+
   describe('getInitialFormState', () => {
     it('should return correct initial state based on a given form config with live validation', () => {
-      const sampleConfig = getSampleConfig();
+      const sampleConfig = getDynamicFormConfig();
       const expectedFormState = getSampleFormState();
       const initialFormState = getInitialFormState(sampleConfig, true);
       expect(initialFormState).toEqual(expectedFormState);
     });
     it('should return correct initial state based on a given form config without live validation', () => {
-      const sampleConfig = getSampleConfig();
+      const sampleConfig = getDynamicFormConfig();
+      const expectedFormState = getSampleFormState();
       const initialFormState = getInitialFormState(sampleConfig, false);
       expect(initialFormState).toEqual({
+        ...expectedFormState,
         data: {
-          firstName: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: false,
-            value: 'my first name',
-          },
+          ...expectedFormState.data,
           gender: {
-            errorMessage: null,
+            ...expectedFormState.data['gender'],
             isTouched: false,
             isValid: false,
-            value: null,
           },
-          hasMiddleName: {
+          hasVehicle: {
+            ...expectedFormState.data['hasVehicle'],
+            isTouched: false,
+          },
+          interests: {
+            ...expectedFormState.data['interests'],
             errorMessage: null,
             isTouched: false,
-            isValid: true,
-            value: 'no',
           },
-          receive: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: true,
-            value: null,
-          },
-          receiveNewsletters: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: true,
-            value: null,
-          },
-          isMandatory: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: true,
-            value: null,
-          },
-          middleName: {
-            errorMessage: null,
-            hidden: sampleMiddleNameHiddenFn,
+          userType: {
+            ...expectedFormState.data['userType'],
             isTouched: false,
             isValid: false,
-            value: null,
-          },
-          randomOption: {
-            errorMessage: null,
-            isTouched: false,
-            isValid: false,
-            value: [
-              {
-                title: 'Option 1',
-              },
-            ],
           },
         },
-        isValid: false,
       });
     });
   });
+
+  describe('getControlClickHandler', () => {
+    const formValues: DynamicFormOutputData = {
+      title: { value: 'my title' },
+    };
+    it('should return undefined when no event handler was passed in', () => {
+      const result = getControlClickHandler(formValues, undefined);
+      expect(result).toBeUndefined();
+    });
+    it("should return correct event handler when 'onControlClick' was passed in", () => {
+      const onControlClick = jest.fn();
+      const handlerFunction = getControlClickHandler(
+        formValues,
+        onControlClick
+      );
+      handlerFunction();
+      expect(onControlClick).toHaveBeenCalledWith(formValues);
+    });
+  });
+
   describe('buildInputTextControl', () => {
     const value = 'my first name';
     const handleChange = jest.fn();
@@ -687,7 +717,6 @@ describe('dynamic form helper functions', () => {
     const props: UncontrolledInputArgs = {
       controlProps: controlProps,
       disabled: false,
-      handleClick,
       index: 0,
       liveValidation: true,
     };
@@ -722,6 +751,109 @@ describe('dynamic form helper functions', () => {
         props: {
           ...expectedResult.props,
           disabled: true,
+        },
+      });
+    });
+
+    it('should return component instance with onClick prop', () => {
+      const customProps: UncontrolledInputArgs = {
+        ...props,
+        handleClick,
+      };
+      const result = buildButtonControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          onClick: expect.any(Function),
+        },
+      });
+    });
+
+    it('should return component instance with onClick prop', () => {
+      const onClickMock = jest.fn();
+      const eventMock = { name: 'test' };
+      const handleClickMock = jest.fn();
+      const customControlProps: ButtonProps = {
+        ...controlProps,
+        onClick: onClickMock,
+      };
+      const customProps: UncontrolledInputArgs = {
+        ...props,
+        controlProps: {
+          ...customControlProps,
+        },
+        handleClick: handleClickMock,
+      };
+      const result = buildButtonControl(customProps);
+      const {
+        props: { onClick },
+      } = result;
+      onClick(eventMock);
+      expect(onClickMock).toHaveBeenCalledTimes(1);
+      expect(onClickMock).toHaveBeenCalledWith(eventMock);
+      expect(handleClickMock).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('buildProgressButtonControl', () => {
+    const handleClick = jest.fn();
+    const controlProps: ProgressButtonProps = {
+      children: 'My title',
+      isLoading: false,
+      type: 'outlined',
+    };
+    const props: UncontrolledInputArgs = {
+      controlProps: controlProps,
+      disabled: false,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotProgressButton
+        disabled={false}
+        isLoading={controlProps.isLoading}
+        key={props.index}
+        children={controlProps.children}
+        type={controlProps.type}
+      />
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildProgressButtonControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+        disabled: true,
+      };
+      const result = buildProgressButtonControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
+      });
+    });
+
+    it('should return component instance with onClick prop', () => {
+      const customProps: UncontrolledInputArgs = {
+        ...props,
+        handleClick,
+      };
+      const result = buildProgressButtonControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          onClick: expect.any(Function),
         },
       });
     });
@@ -847,6 +979,81 @@ describe('dynamic form helper functions', () => {
         } as never,
       };
       const result = buildSubmitControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
+      });
+    });
+  });
+
+  describe('buildProgressSubmitControl', () => {
+    const handleClick = jest.fn();
+    const controlProps: ProgressButtonProps = {
+      children: 'Save',
+      isLoading: false,
+      type: 'primary',
+    };
+    const formState = {
+      isValid: true,
+    } as never;
+    const props: UncontrolledInputArgs = {
+      controlProps: controlProps,
+      disabled: false,
+      formState,
+      handleClick,
+      index: 0,
+      liveValidation: true,
+    };
+    const expectedResult = (
+      <DotProgressButton
+        disabled={false}
+        isLoading={false}
+        isSubmit={true}
+        key={props.index}
+        size={controlProps.size}
+        children={controlProps.children}
+        type={controlProps.type}
+      />
+    );
+
+    it('should return correct component instance', () => {
+      const result = buildProgressSubmitControl(props);
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return component instance with disabled prop', () => {
+      const customProps = {
+        ...props,
+        controlProps: {
+          ...controlProps,
+          disabled: false,
+        },
+        disabled: true,
+      };
+      const result = buildProgressSubmitControl(customProps);
+      expect(result).toEqual({
+        ...expectedResult,
+        props: {
+          ...expectedResult.props,
+          disabled: true,
+        },
+      });
+    });
+
+    it('should return component instance with disabled prop when live validation is on and form validity is false', () => {
+      const customProps = {
+        ...props,
+        controlProps: {
+          ...controlProps,
+        },
+        formState: {
+          isValid: false,
+        } as never,
+      };
+      const result = buildProgressSubmitControl(customProps);
       expect(result).toEqual({
         ...expectedResult,
         props: {

@@ -17,6 +17,7 @@ import {
   InputSelectProps,
   InputTextProps,
   RadioGroupProps,
+  SwitchProps,
 } from '@digital-ai/dot-components';
 import { rootClassName, StyledDemoDynamicForm } from './DemoDynamicForm.styles';
 
@@ -189,6 +190,23 @@ export const DemoDynamicForm = () => {
             value: 2,
           },
         },
+      },
+      {
+        controlName: 'hasVehicle',
+        controlProps: {
+          label: 'Do you own a vehicle?',
+        } as SwitchProps,
+        controlType: 'dot-switch',
+      },
+      {
+        controlName: 'vehicleModel',
+        controlProps: {
+          label: 'Vehicle Model',
+          required: true,
+        } as InputTextProps,
+        controlType: 'dot-input-text',
+        disabled: (formValues: DynamicFormOutputData) =>
+          !formValues['hasVehicle'],
       },
       {
         controlName: 'superheroes',
