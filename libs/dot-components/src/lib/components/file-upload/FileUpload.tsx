@@ -33,6 +33,8 @@ export interface FileUploadProps extends CommonProps {
   maxFiles?: number;
   /** Defines the maximum file size (in MB) */
   maxSize?: number;
+  /** callback triggered when dragenter event occurs */
+  onDragEnter?: (event: React.DragEvent<HTMLDivElement>) => void;
   /** callback triggered when files are added */
   onUpload?: (files: Array<File>) => void;
 }
@@ -47,6 +49,7 @@ export const DotFileUpload = ({
   disabled,
   maxFiles,
   maxSize,
+  onDragEnter,
   onUpload,
 }: FileUploadProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
@@ -64,6 +67,7 @@ export const DotFileUpload = ({
     maxSize: maxSize * 1000000,
     noClick: true,
     noKeyboard: true,
+    onDragEnter,
     onDrop: (files) => handleDrop(files),
   });
 

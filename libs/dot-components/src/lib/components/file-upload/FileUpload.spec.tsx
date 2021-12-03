@@ -1,5 +1,5 @@
-import React from 'react';
-import { render, screen } from '../../testing-utils';
+import React, { ReactNode } from 'react';
+import { act, fireEvent, render, screen, waitFor } from '../../testing-utils';
 import { FileUploadProps, DotFileUpload } from './FileUpload';
 
 describe('DotFileUpload', () => {
@@ -47,40 +47,88 @@ describe('DotFileUpload', () => {
     expect(maxSizeMessage[0]).toBeInTheDocument();
   });
 
-  xit('should update dropzone content when isDragActive', () => {
-    render(<DotFileUpload />);
-    const dragMessage = screen.getAllByText(/Drop the file(s) here/i);
-    expect(dragMessage[0]).toBeInTheDocument();
-  });
+  xdescribe('Validate upload files', () => {
+    const flushPromises = async (rerender: any, ui: ReactNode) => {
+      act(() => waitFor(() => rerender(ui)));
+    };
 
-  xit('should use onUpload if provided', () => {
-    const onUpload = jest.fn();
-    render(<DotFileUpload onUpload={onUpload} />);
-    expect(onUpload).toHaveBeenCalledTimes(0);
+    const dispatchEvt = (node: any, type: any, data: any) => {
+      const event = new Event(type, { bubbles: true });
+      Object.assign(event, data);
+      fireEvent(node, event);
+    };
 
-    // upload a file
-    expect(onUpload).toHaveBeenCalled();
-  });
+    const mockData = (files: Array<File>) => {
+      return {
+        dataTransfer: {
+          files,
+          items: files.map((file: File) => ({
+            kind: 'file',
+            type: file.type,
+            getAsFile: () => file,
+          })),
+          types: ['Files'],
+        },
+      };
+    };
 
-  xit('should display a console warning when onUpload is not provided', () => {
-    const consoleSpy = jest.spyOn(global.console, 'warn');
-    render(<DotFileUpload />);
+    xit('invoke onDragEnter when dragenter event occurs', async () => {
+      const file = new File([JSON.stringify({ ping: true })], 'ping.json', {
+        type: 'application/json',
+      });
+      const data = mockData([file]);
+      const onDragEnter = jest.fn();
 
-    // upload a file
-    expect(consoleSpy).toBeCalled();
-  });
+      const { baseElement } = render(
+        <DotFileUpload
+          data-testid="test-file-upload"
+          onDragEnter={onDragEnter}
+        />
+      );
+      const { rerender } = render(baseElement);
+      const dropzone = screen.getByTestId('test-file-upload');
 
-  xit('should display accepted files', () => {
-    render(<DotFileUpload />);
-    // upload a file
-    // get accepted files list
-    // verify specific details, icon, text, etc
-  });
+      dispatchEvt(dropzone, 'dragenter', data);
+      await flushPromises(rerender, baseElement);
 
-  xit('should display errors with rejected files', () => {
-    render(<DotFileUpload />);
-    // upload a file
-    // get rejected files list
-    // verify specific details, icon, text, etc
+      expect(onDragEnter).toHaveBeenCalled();
+    });
+
+    xit('should update dropzone content when isDragActive', () => {
+      render(<DotFileUpload />);
+      const dragMessage = screen.getAllByText(/Drop the file(s) here/i);
+      expect(dragMessage[0]).toBeInTheDocument();
+    });
+
+    xit('should use onUpload if provided', () => {
+      const onUpload = jest.fn();
+      render(<DotFileUpload onUpload={onUpload} />);
+      expect(onUpload).toHaveBeenCalledTimes(0);
+
+      // upload a file
+      expect(onUpload).toHaveBeenCalled();
+    });
+
+    xit('should display a console warning when onUpload is not provided', () => {
+      const consoleSpy = jest.spyOn(global.console, 'warn');
+      render(<DotFileUpload />);
+
+      // upload a file
+      expect(consoleSpy).toBeCalled();
+    });
+
+    xit('should display accepted files', () => {
+      render(<DotFileUpload />);
+      // upload a file
+      // get accepted files list
+      // verify specific details, icon, text, etc
+    });
+
+    xit('should display errors with rejected files', () => {
+      render(<DotFileUpload />);
+      // upload a file
+      // get rejected files list
+      // verify specific details, icon, text, etc
+    });
   });
 });
