@@ -155,6 +155,16 @@ describe('List', () => {
     await expectNestedMenuItemToBeVisible(nestedItemText, false);
   });
 
+  it('should hide nested menu when user clicks outside of the nested menu', async () => {
+    render(<DotList items={mockListItems} nestedListType="menu" />);
+    const nestedItemText = 'Package Progression';
+    await expectNestedMenuItemToBeVisible(nestedItemText, false);
+    clickListItem(1);
+    await expectNestedMenuItemToBeVisible(nestedItemText);
+    userEvent.click(document.body);
+    await expectNestedMenuItemToBeVisible(nestedItemText, false);
+  });
+
   it('should display nested drawer when clicked', async () => {
     render(<DotList items={mockListItems} nestedListType="drawer" />);
     const nestedItemText = 'Package Progression';
