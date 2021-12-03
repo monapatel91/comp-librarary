@@ -342,21 +342,6 @@ export const DotListItem = ({
   const toggleOpen = (event: MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     event.preventDefault();
-
-    // TODO: Find way to refactor flyout menus so that this is no longer necessary.
-    const flyoutMenus = document.getElementsByClassName('dot-flyout-menu');
-    Array.from(flyoutMenus as HTMLCollectionOf<HTMLElement>).forEach(
-      (flyoutMenu) => {
-        if (flyoutMenu.classList.contains(`dot-flyout-menu-${index}`)) {
-          if (isOpened && flyoutMenu.style.display === 'none') {
-            flyoutMenu.style.display = 'inherit';
-          }
-        } else {
-          flyoutMenu.style.display = 'none';
-        }
-      }
-    );
-
     setAnchorEl(event.currentTarget);
   };
 
