@@ -48,11 +48,17 @@ describe('DotFileUpload', () => {
   });
 
   xdescribe('Validate upload files', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const flushPromises = async (rerender: any, ui: ReactNode) => {
       act(() => waitFor(() => rerender(ui)));
     };
 
-    const dispatchEvt = (node: any, type: any, data: any) => {
+    const dispatchEvt = (
+      node: Element | Node | Document | Window,
+      type: string,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      data: any
+    ) => {
       const event = new Event(type, { bubbles: true });
       Object.assign(event, data);
       fireEvent(node, event);
@@ -82,6 +88,7 @@ describe('DotFileUpload', () => {
       const { baseElement } = render(
         <DotFileUpload
           data-testid="test-file-upload"
+          maxSize={10}
           onDragEnter={onDragEnter}
         />
       );
@@ -95,14 +102,14 @@ describe('DotFileUpload', () => {
     });
 
     xit('should update dropzone content when isDragActive', () => {
-      render(<DotFileUpload />);
+      render(<DotFileUpload maxSize={10} />);
       const dragMessage = screen.getAllByText(/Drop the file(s) here/i);
       expect(dragMessage[0]).toBeInTheDocument();
     });
 
     xit('should use onUpload if provided', () => {
       const onUpload = jest.fn();
-      render(<DotFileUpload onUpload={onUpload} />);
+      render(<DotFileUpload maxSize={10} onUpload={onUpload} />);
       expect(onUpload).toHaveBeenCalledTimes(0);
 
       // upload a file
@@ -111,21 +118,21 @@ describe('DotFileUpload', () => {
 
     xit('should display a console warning when onUpload is not provided', () => {
       const consoleSpy = jest.spyOn(global.console, 'warn');
-      render(<DotFileUpload />);
+      render(<DotFileUpload maxSize={10} />);
 
       // upload a file
       expect(consoleSpy).toBeCalled();
     });
 
     xit('should display accepted files', () => {
-      render(<DotFileUpload />);
+      render(<DotFileUpload maxSize={10} />);
       // upload a file
       // get accepted files list
       // verify specific details, icon, text, etc
     });
 
     xit('should display errors with rejected files', () => {
-      render(<DotFileUpload />);
+      render(<DotFileUpload maxSize={10} />);
       // upload a file
       // get rejected files list
       // verify specific details, icon, text, etc

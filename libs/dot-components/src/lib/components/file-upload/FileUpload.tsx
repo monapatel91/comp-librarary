@@ -32,7 +32,7 @@ export interface FileUploadProps extends CommonProps {
   /** Defines the maximum number of files that can be uploaded at once */
   maxFiles?: number;
   /** Defines the maximum file size (in MB) */
-  maxSize?: number;
+  maxSize: number;
   /** callback triggered when dragenter event occurs */
   onDragEnter?: (event: React.DragEvent<HTMLDivElement>) => void;
   /** callback triggered when files are added */
