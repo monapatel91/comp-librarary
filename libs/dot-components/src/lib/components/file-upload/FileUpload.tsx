@@ -68,7 +68,7 @@ export const DotFileUpload = ({
     noClick: true,
     noKeyboard: true,
     onDragEnter,
-    onDrop: (files) => handleDrop(files),
+    onDrop: (files: Array<File>) => handleDrop(files),
   });
 
   const handleDrop = (files: Array<File>) => {
@@ -155,10 +155,7 @@ export const DotFileUpload = ({
   return (
     <StyledFileUploadContainer className={containerClassName}>
       {buttonOnly ? (
-        <>
-          <DotButton onClick={open}>Select a file</DotButton>
-          {maxSize && maxSizeMessage}
-        </>
+        <DotButton onClick={open}>Select a file</DotButton>
       ) : (
         <StyledFileUpload
           {...getRootProps()}
