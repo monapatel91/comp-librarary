@@ -1,3 +1,4 @@
+import { FileWithPath } from 'file-selector';
 import React, { ReactNode } from 'react';
 import {
   act,
@@ -7,6 +8,7 @@ import {
   screen,
   waitFor,
 } from '../../testing-utils';
+import { ListItemProps } from '../list/List';
 import {
   acceptedFileItems,
   fileRejectionItems,
@@ -59,30 +61,35 @@ describe('DotFileUpload', () => {
     expect(maxSizeMessage[0]).toBeInTheDocument();
   });
 
-  xdescribe('Validate uploaded file list', () => {
-    const buffer = new ArrayBuffer(1);
-    const blob = new Blob([buffer], { type: 'image/jpeg' });
-    const fileArray = [
-      {
-        path: 'test.jpg',
-        lastModified: 1637607949297,
-        lastModifiedDate: 'Mon Nov 22 2021 14:05:49 GMT-0500 (EST)',
-        name: 'test.jpg',
-        size: 20000000,
-        type: 'image/jpeg',
-        // arrayBuffer: () => Promise<ArrayBuffer>,
-        slice: blob.slice(),
-        stream: blob.stream(),
-        text: 'text',
-      },
-    ];
+  describe('Validate uploaded file list', () => {
     // it('should display list of uploaded files', async () => {
     //   acceptedFileItems(fileArray);
     // });
 
-    // it('should display list of rejected files', async () => {
-    //   fileRejectionItems(fileArray, 10);
-    // });
+    it('should display list of rejected files with error messages', async () => {
+      const path = '/path';
+      const maxSize = 10;
+      const errors = [
+        { code: 'file-too-large', message: `File exceeds ${maxSize}MB` },
+        // { code: 'file-invalid-type', message: 'file-invalid-type' },
+        // {code: 'too-many-files', message: 'too-many-files'},
+      ];
+      const expected: ListItemProps[] = [
+        {
+          className: 'file-error',
+          endIconId: 'error-solid',
+          primaryText: path,
+          startIconId: 'attachment',
+          secondaryText: errors[0].message,
+        },
+      ];
+
+      const result = fileRejectionItems(
+        [{ errors, file: { path } as any }],
+        maxSize
+      );
+      expect(result).toEqual(expected);
+    });
   });
 
   xdescribe('useDropzone() hook', () => {
