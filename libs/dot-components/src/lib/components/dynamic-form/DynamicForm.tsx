@@ -3,12 +3,12 @@ import React, {
   FormEvent,
   Fragment,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledDynamicForm } from './DynamicForm.styles';
-import { DotForm } from '../form/Form';
 import { AutoCompleteValue } from '../auto-complete/AutoComplete';
 import {
   DynamicFormConfig,
@@ -31,14 +31,21 @@ import {
   buildCheckboxGroupControl,
   buildInputSelectControl,
   buildInputTextControl,
+  buildProgressButtonControl,
+  buildProgressSubmitControl,
   buildRadioGroupControl,
   buildResetControl,
   buildSubmitControl,
   buildSwitchControl,
+  getControlClickHandler,
   getInitialFormState,
   InputBaseArgs,
 } from './utils/formHelpers';
-import { checkIfHiddenControl, getOutputFormData } from './utils/helpers';
+import {
+  checkIfDisabledControl,
+  checkIfHiddenControl,
+  getOutputFormData,
+} from './utils/helpers';
 import { CheckboxProps } from '../checkbox/Checkbox';
 
 export interface DynamicFormProps extends CommonProps {
@@ -54,14 +61,19 @@ export const DotDynamicForm = ({
   className,
   'data-testid': dataTestId,
   config,
-  disabled,
+  disabled: isFormDisabled,
   liveValidation = true,
   onChange,
   onSubmit,
 }: DynamicFormProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-  const initialFormState = getInitialFormState(config, liveValidation);
+  // Memoize this operation so that is doesn't get executed each time this
+  // component re-renders
+  const initialFormState = useMemo(
+    () => getInitialFormState(config, liveValidation),
+    [config, liveValidation, getInitialFormState]
+  );
 
   const [formState, setFormState] =
     useState<DynamicFormState>(initialFormState);
@@ -200,28 +212,43 @@ export const DotDynamicForm = ({
 
   const handleReset = () => setFormState(initialFormState);
 
-  const buildFormControls = () => {
-    return config.controls.map(
+  const buildFormControls = (
+    controls: DynamicFormControl[],
+    startIndex = 0
+  ) => {
+    if (!controls || !controls.length) return;
+    return controls.map(
       (
         {
           controlName,
           controlType,
           controlProps = {},
           customElement,
+          disabled,
           hidden,
           initialValue,
+          formSection,
+          onControlClick,
         }: DynamicFormControl,
         index: number
       ) => {
-        const inputControlName = controlName || `control-${index}`;
+        const elementIndex = startIndex + index;
+        const inputControlName = controlName || `control-${elementIndex}`;
         const formValues = getOutputFormData(formState);
 
         if (checkIfHiddenControl(hidden, formValues)) return '';
 
+        // Control can be disabled when: 1) whole form is disabled, 2.) control is disabled via config prop
+        // 3.) control is disabled via its own `disable` control prop
+        const isDisabled =
+          isFormDisabled ||
+          checkIfDisabledControl(disabled, formValues, formState.isValid) ||
+          ('disabled' in controlProps && controlProps.disabled);
+
         const control: InputBaseArgs = {
           controlProps,
-          disabled,
-          index,
+          disabled: isDisabled,
+          index: elementIndex,
           liveValidation,
         };
 
@@ -275,7 +302,18 @@ export const DotDynamicForm = ({
             });
           }
           case 'dot-button': {
-            return buildButtonControl({ ...control });
+            const handleClick = getControlClickHandler(
+              formValues,
+              onControlClick
+            );
+            return buildButtonControl({ ...control, handleClick });
+          }
+          case 'dot-progress-button': {
+            const handleClick = getControlClickHandler(
+              formValues,
+              onControlClick
+            );
+            return buildProgressButtonControl({ ...control, handleClick });
           }
           case 'dot-reset': {
             return buildResetControl({
@@ -286,8 +324,24 @@ export const DotDynamicForm = ({
           case 'dot-submit': {
             return buildSubmitControl({ ...control, formState });
           }
+          case 'dot-progress-submit': {
+            return buildProgressSubmitControl({ ...control, formState });
+          }
           case 'custom-element': {
-            return <Fragment key={index}>{customElement}</Fragment>;
+            return <Fragment key={elementIndex}>{customElement}</Fragment>;
+          }
+          case 'dot-form-section': {
+            const { FormSectionComponent, sectionControls } = formSection;
+            const sectionStartIndex = elementIndex + 1;
+            return (
+              <FormSectionComponent
+                key={elementIndex}
+                sectionControls={buildFormControls(
+                  sectionControls,
+                  sectionStartIndex
+                )}
+              />
+            );
           }
           default: {
             return '';
@@ -298,10 +352,13 @@ export const DotDynamicForm = ({
   };
 
   return (
-    <StyledDynamicForm className={rootClasses} data-testid={dataTestId}>
-      <DotForm ariaLabel={ariaLabel} onSubmit={handleFormSubmit}>
-        {buildFormControls()}
-      </DotForm>
+    <StyledDynamicForm
+      ariaLabel={ariaLabel}
+      className={rootClasses}
+      data-testid={dataTestId}
+      onSubmit={handleFormSubmit}
+    >
+      {buildFormControls(config.controls)}
     </StyledDynamicForm>
   );
 };

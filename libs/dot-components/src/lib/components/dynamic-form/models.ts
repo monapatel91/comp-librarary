@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ComponentType, ReactNode } from 'react';
 import { AutoCompleteProps } from '../auto-complete/AutoComplete';
 import { ButtonProps } from '../button/Button';
 import { CheckboxProps } from '../checkbox/Checkbox';
@@ -7,6 +7,7 @@ import { InputSelectProps } from '../input-form-fields/InputSelect';
 import { CheckboxGroupProps } from '../checkbox/CheckboxGroup';
 import { RadioGroupProps } from '../radio/RadioGroup';
 import { SwitchProps } from '../switch/Switch';
+import { ProgressButtonProps } from '../progress-button/ProgressButton';
 
 export type DynamicFormControlType =
   | 'dot-input-text'
@@ -15,10 +16,13 @@ export type DynamicFormControlType =
   | 'dot-checkbox-group'
   | 'dot-autocomplete'
   | 'dot-button'
+  | 'dot-progress-button'
   | 'dot-radio-group'
   | 'dot-reset'
   | 'dot-submit'
+  | 'dot-progress-submit'
   | 'dot-switch'
+  | 'dot-form-section'
   | 'custom-element';
 
 export type DynamicFormControlProps =
@@ -28,6 +32,7 @@ export type DynamicFormControlProps =
   | CheckboxProps
   | CheckboxGroupProps
   | ButtonProps
+  | ProgressButtonProps
   | RadioGroupProps
   | SwitchProps;
 
@@ -37,16 +42,37 @@ export interface DynamicFormOutputData {
 
 export type ConditionFunction = (formValues: DynamicFormOutputData) => boolean;
 
-export type HiddenControl = boolean | ConditionFunction;
+export type DisabledConditionFunction = (
+  formValues: DynamicFormOutputData,
+  isFormValid: boolean
+) => boolean;
+
+export type ControlCondition = boolean | ConditionFunction;
+
+export type DisabledControlCondition = boolean | DisabledConditionFunction;
+
+export type ControlClickHandler = (formValues: DynamicFormOutputData) => void;
+
+export interface DynamicFormSectionProps {
+  sectionControls: ReactNode[];
+}
+
+export interface DynamicFormSection {
+  FormSectionComponent: ComponentType<DynamicFormSectionProps>;
+  sectionControls: DynamicFormControl[];
+}
 
 export interface DynamicFormControl {
   controlName?: string;
-  controlType: DynamicFormControlType;
   controlProps?: DynamicFormControlProps;
-  initialValue?: unknown;
-  validation?: DynamicFormValidation;
+  controlType: DynamicFormControlType;
+  formSection?: DynamicFormSection;
   customElement?: ReactNode;
-  hidden?: HiddenControl;
+  disabled?: DisabledControlCondition;
+  hidden?: ControlCondition;
+  initialValue?: unknown;
+  onControlClick?: ControlClickHandler;
+  validation?: DynamicFormValidation;
 }
 
 export interface FieldValidation {
@@ -83,7 +109,7 @@ export interface DynamicFormStateItem {
   isValid: boolean;
   isTouched: boolean;
   errorMessage: string;
-  hidden?: HiddenControl;
+  hidden?: ControlCondition;
 }
 
 export interface DynamicFormState {
