@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.3.5](https://github.com/digital-ai/dot-components/tree/1.3.5) (12/03/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.4...1.3.5)
+
+**Features:**
+
+- Expose onFocus and onBlur callbacks in DotInputText and other input components [\#829](https://github.com/digital-ai/dot-components/issues/829)
+- Pass 'disabled' prop to DotDynamicForm controls [\#806](https://github.com/digital-ai/dot-components/issues/806)
+
+**Fixed bugs:**
+
+- Go back item in `Sidebar` is not aligned with rest of items [\#824](https://github.com/digital-ai/dot-components/issues/824)
+- DotBadge generates console warnings [\#816](https://github.com/digital-ai/dot-components/issues/816)
+- Sidebar scrollbar should be positioned on the very right of the sidebar [\#746](https://github.com/digital-ai/dot-components/issues/746)
+
+**Merged pull requests:**
+
+- Next patch release [\#833](https://github.com/digital-ai/dot-components/pull/833) ([CWSites](https://github.com/CWSites))
+- S-80473: Expose onFocus and onBlur callbacks for DotInputText and DotInputSelect components [\#832](https://github.com/digital-ai/dot-components/pull/832) ([selsemore](https://github.com/selsemore))
+- D-19151: `DotBadge` generates console warnings [\#827](https://github.com/digital-ai/dot-components/pull/827) ([dmiletic85](https://github.com/dmiletic85))
+- D-19177: `Go back` item in `DotSidebar` is not aligned with rest of items [\#826](https://github.com/digital-ai/dot-components/pull/826) ([dmiletic85](https://github.com/dmiletic85))
+- merge `master` \> `develop` [\#825](https://github.com/digital-ai/dot-components/pull/825) ([CWSites](https://github.com/CWSites))
+- S-80268: `DotDynamicForm` improvements [\#821](https://github.com/digital-ai/dot-components/pull/821) ([dmiletic85](https://github.com/dmiletic85))
+
 ## [1.3.4](https://github.com/digital-ai/dot-components/tree/1.3.4) (11/30/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.3...1.3.4)
@@ -100,7 +124,6 @@
 - D-19023: Circular Dependency in `DynamicForm` component [\#759](https://github.com/digital-ai/dot-components/pull/759) ([dmiletic85](https://github.com/dmiletic85))
 - Bring `master` back into `develop` [\#756](https://github.com/digital-ai/dot-components/pull/756) ([CWSites](https://github.com/CWSites))
 - S-79458: `Sidebar` apply agility specific updates to theme only [\#755](https://github.com/digital-ai/dot-components/pull/755) ([CWSites](https://github.com/CWSites))
-- S-77126: react jsonschema form wrapper [\#728](https://github.com/digital-ai/dot-components/pull/728) ([TheKeithStewart](https://github.com/TheKeithStewart))
 
 ## [1.3.0](https://github.com/digital-ai/dot-components/tree/1.3.0) (10/28/2021)
 
@@ -131,6 +154,7 @@
 - S-76892: create generator for new components [\#736](https://github.com/digital-ai/dot-components/pull/736) ([CWSites](https://github.com/CWSites))
 - D-18986: update app toolbar to be dense by default [\#735](https://github.com/digital-ai/dot-components/pull/735) ([CWSites](https://github.com/CWSites))
 - D-18985: update menu list to be content-box sizing [\#734](https://github.com/digital-ai/dot-components/pull/734) ([CWSites](https://github.com/CWSites))
+- S-77126: react jsonschema form wrapper [\#728](https://github.com/digital-ai/dot-components/pull/728) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - S-77126: Dynamic Form [\#717](https://github.com/digital-ai/dot-components/pull/717) ([dmiletic85](https://github.com/dmiletic85))
 
 ## [1.2.1](https://github.com/digital-ai/dot-components/tree/1.2.1) (10/15/2021)
@@ -1084,6 +1108,7 @@
 - manual deployment of Storybook site [\#168](https://github.com/digital-ai/dot-components/pull/168) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - issue \#163: move ActionToolbar props and styles to separate files [\#164](https://github.com/digital-ai/dot-components/pull/164) ([selsemore](https://github.com/selsemore))
 - Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
+- 26 feb icon moon color remove [\#156](https://github.com/digital-ai/dot-components/pull/156) ([BojanKocijan](https://github.com/BojanKocijan))
 - issue \#138: update empty state based on UX feedback [\#150](https://github.com/digital-ai/dot-components/pull/150) ([CWSites](https://github.com/CWSites))
 - issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
 
