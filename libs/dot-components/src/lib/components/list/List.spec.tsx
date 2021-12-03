@@ -60,7 +60,7 @@ const clickListItem = (itemPosition: number): void => {
   userEvent.click(item[itemPosition]);
 };
 
-const expectNestedItemToBeVisible = async (
+const expectNestedDrawerItemToBeVisible = async (
   nestedItemText: string,
   shouldBeVisible = true
 ): Promise<void> => {
@@ -70,6 +70,19 @@ const expectNestedItemToBeVisible = async (
     shouldBeVisible
       ? expect(nestedItemElement).toBeVisible()
       : expect(nestedItemElement).not.toBeVisible();
+  });
+};
+
+const expectNestedMenuItemToBeVisible = async (
+  nestedItemText: string,
+  shouldBeVisible = true
+): Promise<void> => {
+  const nestedItemElement = screen.queryByText(nestedItemText);
+
+  await waitFor(() => {
+    shouldBeVisible
+      ? expect(nestedItemElement).toBeVisible()
+      : expect(nestedItemElement).not.toBeInTheDocument();
   });
 };
 
@@ -124,34 +137,39 @@ describe('List', () => {
     expect(screen.getByText(nestedItemText)).toBeVisible();
   });
 
-  it('should display nested menu when clicked', () => {
+  it('should display nested menu when clicked', async () => {
     render(<DotList items={mockListItems} nestedListType="menu" />);
-    const item = screen.getAllByRole('button');
     const nestedItemText = 'Package Progression';
 
-    waitFor(() => {
-      expect(screen.getByText(nestedItemText)).not.toBeVisible();
-    });
+    await expectNestedMenuItemToBeVisible(nestedItemText, false);
+    clickListItem(1);
+    await expectNestedMenuItemToBeVisible(nestedItemText);
+  });
 
-    userEvent.click(item[1]);
-    expect(screen.getByText(nestedItemText)).toBeVisible();
+  it('should show and hide nested menu when same item is clicked twice', async () => {
+    render(<DotList items={mockListItems} nestedListType="menu" />);
+    const nestedItemText = 'Package Progression';
+    clickListItem(1);
+    await expectNestedMenuItemToBeVisible(nestedItemText);
+    clickListItem(1);
+    await expectNestedMenuItemToBeVisible(nestedItemText, false);
   });
 
   it('should display nested drawer when clicked', async () => {
     render(<DotList items={mockListItems} nestedListType="drawer" />);
     const nestedItemText = 'Package Progression';
-    await expectNestedItemToBeVisible(nestedItemText, false);
+    await expectNestedDrawerItemToBeVisible(nestedItemText, false);
     clickListItem(1);
-    await expectNestedItemToBeVisible(nestedItemText);
+    await expectNestedDrawerItemToBeVisible(nestedItemText);
   });
 
   it('should show and hide nested drawer when same item is clicked twice', async () => {
     render(<DotList items={mockListItems} nestedListType="drawer" />);
     const nestedItemText = 'Package Progression';
     clickListItem(1);
-    await expectNestedItemToBeVisible(nestedItemText);
+    await expectNestedDrawerItemToBeVisible(nestedItemText);
     clickListItem(1);
-    await expectNestedItemToBeVisible(nestedItemText, false);
+    await expectNestedDrawerItemToBeVisible(nestedItemText, false);
   });
 
   it('should have an href if one is passed', () => {
