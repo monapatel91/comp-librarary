@@ -198,6 +198,12 @@ describe('List', () => {
     const divider = screen.getByTestId('divider-3');
     expect(divider).toHaveAttribute('aria-hidden', 'true');
   });
+
+  it('should display empty list element when no items are provided', () => {
+    render(<DotList />);
+    const listElement = screen.getByRole('list');
+    expect(listElement).toBeEmptyDOMElement();
+  });
 });
 
 describe('ListItem', () => {
