@@ -62,9 +62,20 @@ describe('DotFileUpload', () => {
   });
 
   describe('Validate uploaded file list', () => {
-    // it('should display list of uploaded files', async () => {
-    //   acceptedFileItems(fileArray);
-    // });
+    it('should display list of uploaded files', async () => {
+      const fileArray = [{ path: '/blah' }] as Array<FileWithPath>;
+      const expected: Array<ListItemProps> = [
+        {
+          className: 'file-success',
+          endIconId: 'check-solid',
+          startIconId: 'attachment',
+          text: fileArray[0].path,
+        },
+      ];
+
+      const result = acceptedFileItems(fileArray);
+      expect(result).toEqual(expected);
+    });
 
     it('should display list of rejected files with error messages', async () => {
       const path = '/path';
