@@ -33,10 +33,7 @@ describe('DotFileUpload', () => {
 
   it('should render button only when specified', () => {
     render(<DotFileUpload buttonOnly={true} maxSize={10} />);
-    const maxSizeMessage = screen.getAllByText(/File size should not exceed/i);
-    expect(maxSizeMessage[0]).toBeInTheDocument();
     expect(screen.getByRole('button')).toBeTruthy();
-
     expect(screen.queryByRole('input')).not.toBeInTheDocument();
   });
 
