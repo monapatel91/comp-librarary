@@ -10,31 +10,16 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": [
-      "node_modules/@types",
-      "typings"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types", "typings"],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@digital-ai/dot-components": [
-        "libs/dot-components/src/index.ts"
-      ],
-      "@digital-ai/testing-utils": [
-        "libs/testing-utils/src/index.ts"
-      ]
+      "@digital-ai/dot-components": ["libs/dot-components/src/index.ts"],
+      "@digital-ai/testing-utils": ["libs/testing-utils/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ],
-  "include": [
-    "typings/**/*.d.ts"
-  ]
+  "exclude": ["node_modules", "tmp"],
+  "include": ["typings/**/*.d.ts"]
 }
