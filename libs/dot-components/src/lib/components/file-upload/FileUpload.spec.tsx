@@ -77,13 +77,14 @@ describe('DotFileUpload', () => {
       expect(result).toEqual(expected);
     });
 
-    it('should display list of rejected files with error messages', async () => {
+    it('should display list of rejected files with error messages separated by commas', async () => {
       const path = '/path';
       const maxSize = 10;
       const errors = [
         { code: 'file-too-large', message: `File exceeds ${maxSize}MB` },
-        // { code: 'file-invalid-type', message: 'file-invalid-type' },
-        // {code: 'too-many-files', message: 'too-many-files'},
+        { code: 'file-invalid-type', message: 'file-invalid-type' },
+        { code: 'too-many-files', message: 'too-many-files' },
+        { code: 'unknown-error-message', message: 'unknown-error-message' },
       ];
       const expected: ListItemProps[] = [
         {
@@ -91,11 +92,12 @@ describe('DotFileUpload', () => {
           endIconId: 'error-solid',
           primaryText: path,
           startIconId: 'attachment',
-          secondaryText: errors[0].message,
+          secondaryText: `${errors[0].message}, ${errors[1].message}, ${errors[2].message}, ${errors[3].message}`,
         },
       ];
 
       const result = fileRejectionItems(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [{ errors, file: { path } as any }],
         maxSize
       );
@@ -106,6 +108,7 @@ describe('DotFileUpload', () => {
   xdescribe('useDropzone() hook', () => {
     type FileNode = Element | Node | Document | Window;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let files: any, images;
     function createFile(name: string, size: number, type: string) {
       const file = new File([], name, { type });
@@ -130,6 +133,7 @@ describe('DotFileUpload', () => {
       });
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function createDtWithFiles(files: any = []) {
       return {
         dataTransfer: {

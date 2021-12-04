@@ -59,24 +59,21 @@ export const fileRejectionItems = (
 ) => {
   const failedItems: ListItemProps[] = [];
   fileRejections.forEach(({ file, errors }: FileRejection) => {
-    let errorText;
-    errors.forEach((e) => {
-      switch (e.code) {
-        case 'file-too-large':
-          errorText = `File exceeds ${maxSize}MB`;
-          break;
-        case 'file-invalid-type':
-          errorText = e.message;
-          break;
-        case 'too-many-files':
-          errorText = e.message;
-          break;
-        default:
-          errorText = e.message;
-          console.log('Unknown error', e);
-          break;
-      }
-    });
+    const errorText = errors
+      .map((e) => {
+        switch (e.code) {
+          case 'file-too-large':
+            return `File exceeds ${maxSize}MB`;
+          case 'file-invalid-type':
+            return e.message;
+          case 'too-many-files':
+            return e.message;
+          default:
+            console.log('Unknown error', e);
+            return e.message;
+        }
+      })
+      .join(', ');
 
     failedItems.push({
       className: 'file-error',
