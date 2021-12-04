@@ -40,7 +40,6 @@ export interface FileUploadProps extends CommonProps {
 }
 
 export const acceptedFileItems = (acceptedFiles: Array<FileWithPath>) => {
-  console.log(acceptedFiles);
   const acceptedItems: ListItemProps[] = [];
   acceptedFiles.forEach((file: FileWithPath) => {
     acceptedItems.push({
@@ -86,7 +85,6 @@ export const fileRejectionItems = (
   return failedItems;
 };
 
-// https://react-dropzone.js.org/
 export const DotFileUpload = ({
   accept,
   ariaLabel,
