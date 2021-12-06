@@ -10,6 +10,7 @@ import {
   Collapse,
   Divider,
   ListItemIcon,
+  ListItemText,
   ListSubheader,
 } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
@@ -32,7 +33,7 @@ import {
   StyledListItem,
 } from './List.styles';
 import { CreateUUID } from '../createUUID';
-import { DotTypography, TypographyVariant } from '../typography/Typography';
+import { DotTypography } from '../typography/Typography';
 
 export type NestedListType = 'drawer' | 'expandable' | 'menu';
 
@@ -87,8 +88,6 @@ export interface ListItemProps extends CommonProps {
   endIconId?: string;
   /** If provided, the list item will be rendered as a link */
   href?: string;
-  /** List item index */
-  index?: number;
   /** If provided, the menu item will display a nested list */
   items?: Array<ListItemProps>;
   /* If true, it will be marked as item which has nested list opened  */
@@ -103,6 +102,10 @@ export interface ListItemProps extends CommonProps {
   onClick?: (event: MouseEvent) => void;
   /** Menu leave event callback */
   onMenuLeave?: () => void;
+  /** The main content element */
+  primaryText?: string;
+  /** The secondary content element */
+  secondaryText?: string;
   /** Selected list item */
   selected?: boolean;
   /** If provided, the icon ID which is displayed on the front of the list item */
@@ -115,6 +118,11 @@ export interface ListItemProps extends CommonProps {
   title?: string;
   /** Tooltip text displayed on hover */
   tooltip?: string;
+}
+
+interface DividerProps {
+  item: ListItemProps;
+  index: number;
 }
 
 const NestedList = ({
@@ -146,6 +154,7 @@ const NestedList = ({
           component="div"
           disablePadding={true}
           items={items}
+          key={parentItemIndex}
         />
       </Collapse>
     );
@@ -157,11 +166,16 @@ const NestedList = ({
       const startIcon = <DotIcon iconId={startIconId} />;
       return {
         children: (
-          <DotTooltip placement="top-start" title={tooltip || title}>
+          <DotTooltip
+            key={`${parentItemIndex}-${index}-tooltip`}
+            placement="top-start"
+            title={tooltip || title}
+          >
             <StyledListItem
               className={flyoutItemClasses}
               component={href && !onClick ? 'a' : null}
               href={href}
+              key={`${parentItemIndex}-${index}`}
               target={target}
               onClick={onClick}
             >
@@ -188,6 +202,7 @@ const NestedList = ({
         menuPlacement={menuPlacement}
         onLeave={onMenuLeave}
         open={open}
+        key={parentItemIndex}
       />
     );
   }
@@ -208,10 +223,22 @@ const NestedList = ({
           component="div"
           disablePadding={true}
           items={items}
+          key={parentItemIndex}
         />
       </DotDrawer>
     );
   }
+};
+
+const DotListDivider = ({ item, index }: DividerProps) => {
+  if (item.text) {
+    return (
+      <ListSubheader disableSticky>
+        <DotTypography variant="subtitle2">{item.text}</DotTypography>
+      </ListSubheader>
+    );
+  }
+  return <Divider aria-hidden={true} data-testid={`divider-${index}`} />;
 };
 
 export const DotList = ({
@@ -229,6 +256,7 @@ export const DotList = ({
   width = 240,
 }: ListProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const listWidth = typeof width === 'number' ? `${width}px` : width;
 
   const [listItemIndex, setListItemIndex] = useState<number>(null);
 
@@ -246,7 +274,7 @@ export const DotList = ({
       data-testid={dataTestId}
       dense={dense}
       disablePadding={disablePadding}
-      style={{ width: `${width}px` }}
+      style={{ width: listWidth }}
     >
       {items.map((item, index) => {
         const handleListItemClick = (e: MouseEvent): void => {
@@ -259,33 +287,22 @@ export const DotList = ({
         if (item.child) {
           return item.child;
         }
-
         if (item.divider) {
-          if (!item.text) {
-            return (
-              <Divider
-                key={index}
-                aria-hidden={true}
-                data-testid={`divider-${index}`}
-              />
-            );
-          } else {
-            return (
-              <ListSubheader disableSticky key={index}>
-                <DotTypography variant="subtitle2">{item.text}</DotTypography>
-              </ListSubheader>
-            );
-          }
+          return (
+            <DotListDivider
+              item={item}
+              index={index}
+              key={`divider-${index}`}
+            />
+          );
         }
-
         return (
           <DotListItem
+            className={item.className}
             component={item.component}
             data-testid={`${dataTestId}-item-${index}`}
-            divider={item.divider}
             endIconId={item.endIconId}
             href={item.href}
-            index={index}
             isOpened={listItemIndex === index}
             items={item.items}
             onClick={item.href && !item.onClick ? null : handleListItemClick}
@@ -294,11 +311,14 @@ export const DotList = ({
             menuPlacement={menuPlacement}
             nestedDrawerLeftSpacing={nestedDrawerLeftSpacing}
             nestedListType={nestedListType}
+            primaryText={item.primaryText}
+            secondaryText={item.secondaryText}
             selected={item.selected}
             startIconId={item.startIconId}
             target={item.target}
             text={item.text}
-            tooltip={item.title}
+            title={item.title}
+            tooltip={item.tooltip}
           />
         );
       })}
@@ -315,7 +335,6 @@ export const DotListItem = ({
   divider = false,
   endIconId,
   href,
-  index,
   isOpened,
   onClick,
   onMenuLeave,
@@ -323,6 +342,8 @@ export const DotListItem = ({
   menuPlacement,
   nestedDrawerLeftSpacing,
   nestedListType,
+  primaryText,
+  secondaryText,
   selected,
   startIconId,
   target,
@@ -330,14 +351,23 @@ export const DotListItem = ({
   title,
   tooltip,
 }: ListItemProps) => {
-  const textVariant: TypographyVariant = divider ? 'h5' : 'body1';
-  const isFlyout = nestedListType === 'menu' && items.length > 0;
+  const hasChildren = items.length > 0;
+  const isFlyout = nestedListType === 'menu' && hasChildren;
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const rootClasses = useStylesWithRootClass(
     listItemRootClass,
     className,
-    isOpened && 'open'
+    isOpened ? 'open' : ''
   );
+
+  useEffect(() => {
+    // deprecation warning
+    if (title) {
+      console.warn(
+        'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` instead.'
+      );
+    }
+  }, []);
 
   const toggleOpen = (event: MouseEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -364,7 +394,10 @@ export const DotListItem = ({
     if (nestedListType !== 'expandable') {
       return 'chevron-right';
     }
-    return isOpened ? 'chevron-up' : 'chevron-down';
+    if (isOpened) {
+      return 'chevron-up';
+    }
+    return 'chevron-down';
   };
 
   const startIcon = (
@@ -378,14 +411,7 @@ export const DotListItem = ({
       <DotIcon iconId={endIconId} />
     </ListItemIcon>
   );
-  useEffect(() => {
-    // deprecation warning
-    if (title) {
-      console.warn(
-        'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` isntead.'
-      );
-    }
-  }, []);
+
   return (
     <>
       <DotTooltip
@@ -407,9 +433,13 @@ export const DotListItem = ({
         >
           <span className={listItemLinkClassName}>
             {startIconId && startIcon}
-            <DotTypography variant={textVariant}>{text}</DotTypography>
+            {primaryText && secondaryText ? (
+              <ListItemText primary={primaryText} secondary={secondaryText} />
+            ) : (
+              <DotTypography variant="body1">{text}</DotTypography>
+            )}
           </span>
-          {items.length > 0 ? (
+          {hasChildren ? (
             <DotLink
               color="inherit"
               data-testid={`${dataTestId}-link`}
@@ -423,7 +453,7 @@ export const DotListItem = ({
           )}
         </StyledListItem>
       </DotTooltip>
-      {items.length > 0 && (
+      {hasChildren && (
         <NestedList
           ariaLabel="nested list"
           anchorEl={anchorEl}
@@ -432,7 +462,6 @@ export const DotListItem = ({
           menuPlacement={menuPlacement}
           onMenuLeave={handleMenuLeave}
           open={isOpened}
-          parentItemIndex={index}
           type={nestedListType}
         />
       )}

@@ -13,7 +13,7 @@ import { PopperPlacement } from '../menu/Menu';
 import { LinkTarget } from '../link/Link';
 
 const onClick = jest.fn();
-
+const consoleSpy = jest.spyOn(global.console, 'warn');
 const mockListItems: Array<ListItemProps> = [
   {
     text: 'Pipelines',
@@ -52,6 +52,11 @@ const mockListItems: Array<ListItemProps> = [
     href: '/packages',
     target: '_blank',
     tooltip: 'The Dark Knight',
+  },
+  {
+    primaryText: 'Primary Text',
+    secondaryText: 'Secondary Text',
+    endIconId: 'block',
   },
 ];
 
@@ -245,7 +250,6 @@ describe('ListItem', () => {
       divider: true,
       endIconId: 'home',
       href: 'http://www.digital.ai',
-      index: 0,
       isOpened: false,
       items: mockListItems,
       menuPlacement: 'right' as PopperPlacement,
@@ -253,6 +257,8 @@ describe('ListItem', () => {
       nestedListType: 'expandable' as NestedListType,
       onClick: jest.fn(),
       onMenuLeave: jest.fn(),
+      primaryText: 'Primary Text',
+      secondaryText: 'Secondary Text',
       selected: true,
       startIconId: 'home',
       target: '_blank' as LinkTarget,
@@ -272,7 +278,32 @@ describe('ListItem', () => {
     userEvent.hover(listItem);
     waitFor(() => {
       expect(tooltip).toHaveLength(1);
+      expect(consoleSpy).not.toHaveBeenCalled();
     });
+  });
+
+  it('should display primary and secondary text if provided', () => {
+    render(<DotList items={mockListItems} />);
+    const primaryText = screen.getByText('Primary Text');
+    const secondaryText = screen.getByText('Secondary Text');
+
+    expect(primaryText).toBeVisible();
+    expect(secondaryText).toBeVisible();
+  });
+
+  it('should have a deprecation warning if title is provided', () => {
+    const deprecatedItems: Array<ListItemProps> = [
+      { text: 'Hello World', title: 'well hello there' },
+    ];
+    render(<DotList items={deprecatedItems} />);
+    expect(consoleSpy).toHaveBeenCalled();
+  });
+
+  xit('should display the end icon if passed and no children', () => {
+    render(<DotList items={mockListItems} />);
+    const listItem = screen.getByText('Primary Text');
+
+    expect(listItem).toBeVisible();
   });
 
   xit("should have 'aria-label' attribute with correct value", () => {
