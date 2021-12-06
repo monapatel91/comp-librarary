@@ -88,6 +88,8 @@ export interface ListItemProps extends CommonProps {
   endIconId?: string;
   /** If provided, the list item will be rendered as a link */
   href?: string;
+  /** DEPRECATED, DO NOT USE */
+  index?: number;
   /** If provided, the menu item will display a nested list */
   items?: Array<ListItemProps>;
   /* If true, it will be marked as item which has nested list opened  */
@@ -338,6 +340,7 @@ export const DotListItem = ({
   isOpened,
   onClick,
   onMenuLeave,
+  index,
   items = [],
   menuPlacement,
   nestedDrawerLeftSpacing,
@@ -361,10 +364,15 @@ export const DotListItem = ({
   );
 
   useEffect(() => {
-    // deprecation warning
+    // deprecation warnings
     if (title) {
       console.warn(
         'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` instead.'
+      );
+    }
+    if (index) {
+      console.warn(
+        'The use of `index` is deprecated and will be removed in the next major release.'
       );
     }
   }, []);

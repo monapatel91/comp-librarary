@@ -250,6 +250,7 @@ describe('ListItem', () => {
       divider: true,
       endIconId: 'home',
       href: 'http://www.digital.ai',
+      index: 1,
       isOpened: false,
       items: mockListItems,
       menuPlacement: 'right' as PopperPlacement,
@@ -291,9 +292,17 @@ describe('ListItem', () => {
     expect(secondaryText).toBeVisible();
   });
 
-  it('should have a deprecation warning if title is provided', () => {
+  it('should have a deprecation warnings if title is provided', () => {
     const deprecatedItems: Array<ListItemProps> = [
       { text: 'Hello World', title: 'well hello there' },
+    ];
+    render(<DotList items={deprecatedItems} />);
+    expect(consoleSpy).toHaveBeenCalled();
+  });
+
+  it('should have a deprecation warnings if index is provided', () => {
+    const deprecatedItems: Array<ListItemProps> = [
+      { text: 'Hello World', index: 1 },
     ];
     render(<DotList items={deprecatedItems} />);
     expect(consoleSpy).toHaveBeenCalled();
