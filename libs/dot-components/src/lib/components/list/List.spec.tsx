@@ -250,7 +250,7 @@ describe('ListItem', () => {
       divider: true,
       endIconId: 'home',
       href: 'http://www.digital.ai',
-      index: 1,
+      index: 0,
       isOpened: false,
       items: mockListItems,
       menuPlacement: 'right' as PopperPlacement,
@@ -300,7 +300,7 @@ describe('ListItem', () => {
     expect(consoleSpy).toHaveBeenCalled();
   });
 
-  it('should have a deprecation warnings if index is provided', () => {
+  it('should have a deprecation warning if index is provided', () => {
     const deprecatedItems: Array<ListItemProps> = [
       { text: 'Hello World', index: 1 },
     ];
