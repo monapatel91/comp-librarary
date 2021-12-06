@@ -34,7 +34,7 @@ export const StyledFileUpload = styled.div`
       color: ${theme.palette.layer.n500};
       display: flex;
       flex-direction: column;
-      flex-wrap: wrap
+      flex-wrap: wrap;
       justify-content: center;
       padding: ${theme.spacing(3, 0)};
       margin-bottom: ${theme.spacing(1)}px;

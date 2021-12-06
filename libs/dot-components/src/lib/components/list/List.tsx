@@ -88,10 +88,12 @@ export interface ListItemProps extends CommonProps {
   endIconId?: string;
   /** If provided, the list item will be rendered as a link */
   href?: string;
-  /** List item index */
+  /** DEPRECATED, DO NOT USE */
   index?: number;
   /** If provided, the menu item will display a nested list */
   items?: Array<ListItemProps>;
+  /* If true, it will be marked as item which has nested list opened  */
+  isOpened?: boolean;
   /** If nested list type is 'menu', determines the placement of the menu */
   menuPlacement?: PopperPlacement;
   /** If nested type is 'drawer', determines the width of the left spacing */
@@ -100,6 +102,8 @@ export interface ListItemProps extends CommonProps {
   nestedListType?: NestedListType;
   /** Event callback */
   onClick?: (event: MouseEvent) => void;
+  /** Menu leave event callback */
+  onMenuLeave?: () => void;
   /** The main content element */
   primaryText?: string;
   /** The secondary content element */
@@ -256,6 +260,14 @@ export const DotList = ({
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   const listWidth = typeof width === 'number' ? `${width}px` : width;
 
+  const [listItemIndex, setListItemIndex] = useState<number>(null);
+
+  const updateSelectedListItem = (currentIndex: number): void => {
+    currentIndex === listItemIndex
+      ? setListItemIndex(null)
+      : setListItemIndex(currentIndex);
+  };
+
   return (
     <StyledList
       aria-label={ariaLabel}
@@ -267,6 +279,13 @@ export const DotList = ({
       style={{ width: listWidth }}
     >
       {items.map((item, index) => {
+        const handleListItemClick = (e: MouseEvent): void => {
+          updateSelectedListItem(index);
+          item.onClick?.(e);
+        };
+
+        const handleMenuLeave = () => setListItemIndex(null);
+
         if (item.child) {
           return item.child;
         }
@@ -286,9 +305,10 @@ export const DotList = ({
             data-testid={`${dataTestId}-item-${index}`}
             endIconId={item.endIconId}
             href={item.href}
-            index={index}
+            isOpened={listItemIndex === index}
             items={item.items}
-            onClick={item.onClick}
+            onClick={item.href && !item.onClick ? null : handleListItemClick}
+            onMenuLeave={handleMenuLeave}
             key={index}
             menuPlacement={menuPlacement}
             nestedDrawerLeftSpacing={nestedDrawerLeftSpacing}
@@ -317,8 +337,10 @@ export const DotListItem = ({
   divider = false,
   endIconId,
   href,
-  index,
+  isOpened,
   onClick,
+  onMenuLeave,
+  index,
   items = [],
   menuPlacement,
   nestedDrawerLeftSpacing,
@@ -335,18 +357,22 @@ export const DotListItem = ({
   const hasChildren = items.length > 0;
   const isFlyout = nestedListType === 'menu' && hasChildren;
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
-  const [open, setOpen] = useState(false);
   const rootClasses = useStylesWithRootClass(
     listItemRootClass,
     className,
-    open ? 'open' : ''
+    isOpened ? 'open' : ''
   );
 
   useEffect(() => {
-    // deprecation warning
+    // deprecation warnings
     if (title) {
       console.warn(
         'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` instead.'
+      );
+    }
+    if (index) {
+      console.warn(
+        'The use of `index` is deprecated and will be removed in the next major release.'
       );
     }
   }, []);
@@ -354,24 +380,7 @@ export const DotListItem = ({
   const toggleOpen = (event: MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     event.preventDefault();
-
-    // TODO: Find way to refactor flyout menus so that this is no longer necessary.
-    let toggle = true;
-    const flyoutMenus = document.getElementsByClassName('dot-flyout-menu');
-    Array.from(flyoutMenus as HTMLCollectionOf<HTMLElement>).forEach((menu) => {
-      const isFlyoutMenu = menu.classList.contains(`dot-flyout-menu-${index}`);
-      if (isFlyoutMenu && open && menu.style.display === 'none') {
-        menu.style.display = 'inherit';
-        toggle = false;
-      } else {
-        menu.style.display = 'none';
-      }
-    });
-
     setAnchorEl(event.currentTarget);
-    if (toggle) {
-      setOpen(!open);
-    }
   };
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
@@ -386,14 +395,14 @@ export const DotListItem = ({
 
   const handleMenuLeave = () => {
     setAnchorEl(null);
-    setOpen(false);
+    onMenuLeave();
   };
 
   const getChevronIcon = () => {
     if (nestedListType !== 'expandable') {
       return 'chevron-right';
     }
-    if (open) {
+    if (isOpened) {
       return 'chevron-up';
     }
     return 'chevron-down';
@@ -427,7 +436,7 @@ export const DotListItem = ({
           divider={divider}
           href={onClick ? null : href}
           onClick={onClick || !href ? handleClick : null}
-          selected={isFlyout ? open : selected}
+          selected={isFlyout ? isOpened : selected}
           target={target}
         >
           <span className={listItemLinkClassName}>
@@ -460,7 +469,7 @@ export const DotListItem = ({
           nestedDrawerLeftSpacing={nestedDrawerLeftSpacing}
           menuPlacement={menuPlacement}
           onMenuLeave={handleMenuLeave}
-          open={open}
+          open={isOpened}
           type={nestedListType}
         />
       )}
