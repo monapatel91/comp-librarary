@@ -46,9 +46,14 @@ export const StyledFileUpload = styled.div`
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
+      height: 240px;
       justify-content: center;
       padding: ${theme.spacing(3, 0)};
       margin-bottom: ${theme.spacing(1)}px;
+
+      &.disabled .dot-typography {
+        color: ${theme.palette.layer.n300};
+      }
 
       .dot-icon {
         color: ${theme.palette.layer.n100};

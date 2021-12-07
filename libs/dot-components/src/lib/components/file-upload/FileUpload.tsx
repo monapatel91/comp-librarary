@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { FileWithPath, useDropzone } from 'react-dropzone';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -19,6 +19,7 @@ interface FileItem {
   acceptedFiles: Array<FileWithPath>;
   file: FileWithPath;
   key: string;
+  updateFileList: Dispatch<SetStateAction<Array<FileWithPath>>>;
 }
 
 interface FileUploadError {
@@ -32,6 +33,7 @@ interface FileRejection {
 }
 
 export interface FileUploadProps extends CommonProps {
+  /** Unique file type specifiers <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers" target="_blank">More Info</a> */
   accept?: Array<string>;
   /** If true, will only display the button */
   buttonOnly?: boolean;
@@ -47,12 +49,16 @@ export interface FileUploadProps extends CommonProps {
   onUpload?: (files: Array<File>) => void;
 }
 
-export const FileListItem = ({ acceptedFiles, file, key }: FileItem) => {
+export const FileListItem = ({
+  acceptedFiles,
+  file,
+  key,
+  updateFileList,
+}: FileItem) => {
   const [endIcon, setEndIcon] = useState('check-solid');
   const removeFile = (fileToRemove: FileWithPath) => {
     acceptedFiles.splice(acceptedFiles.indexOf(fileToRemove), 1);
-    // TO-DO: this needs to be nested inside of `DotFileUpload`
-    // setUploadedFiles(acceptedFiles);
+    updateFileList(acceptedFiles);
   };
 
   return (
@@ -62,7 +68,7 @@ export const FileListItem = ({ acceptedFiles, file, key }: FileItem) => {
       onMouseEnter={() => setEndIcon('delete')}
       onMouseLeave={() => setEndIcon('check-solid')}
     >
-      <DotIcon iconId="attachment" />
+      <DotIcon iconId="file" />
       <DotTypography variant="body1">{file.path}</DotTypography>
       <DotIconButton
         className={`${listItemRootClass}-end-icon`}
@@ -73,7 +79,10 @@ export const FileListItem = ({ acceptedFiles, file, key }: FileItem) => {
   );
 };
 
-export const acceptedFileItems = (acceptedFiles: Array<FileWithPath>) => {
+export const acceptedFileItems = (
+  acceptedFiles: Array<FileWithPath>,
+  setUploadedFiles: Dispatch<SetStateAction<Array<FileWithPath>>>
+) => {
   const acceptedItems: ListItemProps[] = [];
 
   acceptedFiles.forEach((file: FileWithPath) => {
@@ -83,6 +92,7 @@ export const acceptedFileItems = (acceptedFiles: Array<FileWithPath>) => {
           acceptedFiles={acceptedFiles}
           file={file}
           key={file.path}
+          updateFileList={setUploadedFiles}
         />
       ),
     });
@@ -116,7 +126,7 @@ export const fileRejectionItems = (
       className: 'file-error',
       endIconId: 'error-solid',
       primaryText: file.path,
-      startIconId: 'attachment',
+      startIconId: 'file',
       secondaryText: errorText,
     });
   });
@@ -135,7 +145,11 @@ export const DotFileUpload = ({
   onDragEnter,
   onUpload,
 }: FileUploadProps) => {
-  const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    className,
+    disabled ? 'disabled' : ''
+  );
   const {
     acceptedFiles,
     fileRejections,
@@ -153,7 +167,6 @@ export const DotFileUpload = ({
     onDragEnter,
     onDrop: (files: Array<File>) => handleDrop(files),
   });
-  // TO-DO: need to make `uploadedFiles` accessible to consumer
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   const handleDrop = (files: Array<File>) => {
@@ -162,7 +175,7 @@ export const DotFileUpload = ({
 
   const getFileList = () => {
     const acceptedItems: ListItemProps[] =
-      acceptedFileItems(acceptedFiles) || [];
+      acceptedFileItems(acceptedFiles, setUploadedFiles) || [];
     const rejectedItems: ListItemProps[] =
       fileRejectionItems(fileRejections, maxSize) || [];
     setUploadedFiles(acceptedItems.concat(rejectedItems));
@@ -174,7 +187,7 @@ export const DotFileUpload = ({
 
   const maxFilesMessage = (
     <DotTypography variant="body2">
-      ({maxFiles} files are the maximum number of files you can drop here)
+      {maxFiles} files are the maximum number of files you can upload at once.
     </DotTypography>
   );
 
@@ -182,6 +195,12 @@ export const DotFileUpload = ({
     <DotTypography variant="body2">
       File size should not exceed {maxSize}MB.
     </DotTypography>
+  );
+
+  const selectFileButton = (
+    <DotButton disabled={disabled} onClick={open}>
+      Select file(s)
+    </DotButton>
   );
 
   const dropzoneContent = isDragActive ? (
@@ -192,15 +211,14 @@ export const DotFileUpload = ({
         Drag and drop your file(s) here
       </DotTypography>
       <DotTypography variant="h3">or</DotTypography>
-      <DotButton onClick={open}>Select file(s)</DotButton>
-      {maxSize && maxSizeMessage}
+      {selectFileButton}
     </>
   );
 
   return (
     <StyledFileUploadContainer className={containerClassName}>
       {buttonOnly ? (
-        <DotButton onClick={open}>Select a file</DotButton>
+        selectFileButton
       ) : (
         <StyledFileUpload
           {...getRootProps()}
@@ -209,13 +227,12 @@ export const DotFileUpload = ({
           data-testid={dataTestId}
         >
           <input {...getInputProps()} />
-          {/* TO-DO: need `upload-cloud` icon */}
           <DotIcon iconId="upload-file" />
           {dropzoneContent}
         </StyledFileUpload>
       )}
-      {maxFiles && maxFilesMessage}
       {maxSize && maxSizeMessage}
+      {maxFiles && maxFilesMessage}
       <DotList items={uploadedFiles} width="100%" />
     </StyledFileUploadContainer>
   );
