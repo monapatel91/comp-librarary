@@ -64,9 +64,9 @@ export const getSampleFormState = (): DynamicFormState => ({
     },
     terms: {
       errorMessage: null,
-      isTouched: false,
+      isTouched:true,
       isValid: true,
-      value: null,
+      value: false,
     },
     userType: {
       errorMessage: null,
