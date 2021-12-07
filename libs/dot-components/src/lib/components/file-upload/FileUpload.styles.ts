@@ -7,6 +7,7 @@ export const StyledFileUploadContainer = styled.div`
   ${({ theme }) => css`
     &.${containerClassName} {
       .dot-list-item {
+        border-bottom: 1px solid ${theme.palette.layer.n100};
         &:hover {
           cursor: pointer;
           background: ${theme.palette.layer.n50};
