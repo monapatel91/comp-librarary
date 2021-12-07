@@ -77,6 +77,7 @@ export const DotFileUpload = ({
       : console.warn('onChange callback not defined');
   }, [uploadedFiles]);
 
+  // TO-DO: refactor this so that it's deleting the correct file
   const deleteFile = (fileToRemove: FileWithPath) => {
     uploadedFiles.splice(uploadedFiles.indexOf(fileToRemove), 1);
     setUploadedFiles(uploadedFiles);
