@@ -97,7 +97,7 @@ export const getInitialStateFromControl = (
   const formStateItem: DynamicFormStateItem = { ...INITIAL_STATE_ITEM };
 
   if (hidden) formStateItem.hidden = hidden;
-  if (initialValue !== null) {
+  if (initialValue !== null && initialValue !== undefined) {
     formStateItem.value = initialValue;
 
     if (liveValidation) {
