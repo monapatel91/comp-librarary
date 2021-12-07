@@ -14,6 +14,7 @@ export default {
     },
     maxFiles: { defaultValue: 5 },
     maxSize: { defaultValue: 25 },
+    onChange: { action: 'onChange' },
   },
 } as Meta;
 

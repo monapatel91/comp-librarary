@@ -2,13 +2,9 @@ import React from 'react';
 import { FileWithPath } from 'react-dropzone';
 import { render, screen } from '../../testing-utils';
 import { ListItemProps } from '../list/List';
-import {
-  acceptedFileItems,
-  FileListItem,
-  fileRejectionItems,
-  FileUploadProps,
-  DotFileUpload,
-} from './FileUpload';
+import { DotFileUpload, FileUploadProps } from './FileUpload';
+import { FileListItem } from './FileListItem';
+import { parseAcceptedFiles, parseRejectedFiles } from './uploadHelpers';
 
 describe('DotFileUpload', () => {
   it('should have unchanged API', () => {
@@ -61,13 +57,13 @@ describe('DotFileUpload', () => {
             <FileListItem
               acceptedFiles={fileArray}
               file={fileArray[0]}
-              key={fileArray[0].path}
+              updateFileList={jest.fn()}
             />
           ),
         },
       ];
 
-      const result = acceptedFileItems(fileArray);
+      const result = parseAcceptedFiles(fileArray);
       expect(result).toEqual(expected);
     });
 
@@ -90,7 +86,7 @@ describe('DotFileUpload', () => {
         },
       ];
 
-      const result = fileRejectionItems(
+      const result = parseRejectedFiles(
         [{ errors, file: { path } as FileWithPath }],
         maxSize
       );

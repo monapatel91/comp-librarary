@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FileWithPath, useDropzone } from 'react-dropzone';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -8,29 +8,15 @@ import {
   StyledFileUpload,
   StyledFileUploadContainer,
 } from './FileUpload.styles';
+import {
+  FileRejection,
+  parseAcceptedFiles,
+  parseRejectedFiles,
+} from './uploadHelpers';
 import { DotTypography } from '../typography/Typography';
 import { DotButton } from '../button/Button';
-import { DotIconButton } from '../button/IconButton';
 import { DotIcon } from '../icon/Icon';
 import { DotList, ListItemProps } from '../list/List';
-import { listItemRootClass, StyledListItem } from '../list/List.styles';
-
-interface FileItem {
-  acceptedFiles: Array<FileWithPath>;
-  file: FileWithPath;
-  key: string;
-  updateFileList: Dispatch<SetStateAction<Array<FileWithPath>>>;
-}
-
-interface FileUploadError {
-  code: string;
-  message: string;
-}
-
-interface FileRejection {
-  errors: Array<FileUploadError>;
-  file: FileWithPath;
-}
 
 export interface FileUploadProps extends CommonProps {
   /** Unique file type specifiers <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers" target="_blank">More Info</a> */
@@ -43,95 +29,11 @@ export interface FileUploadProps extends CommonProps {
   maxFiles?: number;
   /** Defines the maximum file size (in MB) */
   maxSize: number;
+  /** callback triggered when files are added or removed */
+  onChange?: (files: Array<FileWithPath>) => void;
   /** callback triggered when dragenter event occurs */
   onDragEnter?: (event: React.DragEvent<HTMLDivElement>) => void;
-  /** callback triggered when files are added */
-  onUpload?: (files: Array<File>) => void;
 }
-
-export const FileListItem = ({
-  acceptedFiles,
-  file,
-  key,
-  updateFileList,
-}: FileItem) => {
-  const [endIcon, setEndIcon] = useState('check-solid');
-  const removeFile = (fileToRemove: FileWithPath) => {
-    acceptedFiles.splice(acceptedFiles.indexOf(fileToRemove), 1);
-    updateFileList(acceptedFiles);
-  };
-
-  return (
-    <StyledListItem
-      className={`${listItemRootClass} file-success`}
-      key={key}
-      onMouseEnter={() => setEndIcon('delete')}
-      onMouseLeave={() => setEndIcon('check-solid')}
-    >
-      <DotIcon iconId="file" />
-      <DotTypography variant="body1">{file.path}</DotTypography>
-      <DotIconButton
-        className={`${listItemRootClass}-end-icon`}
-        iconId={endIcon}
-        onClick={() => removeFile(file)}
-      />
-    </StyledListItem>
-  );
-};
-
-export const acceptedFileItems = (
-  acceptedFiles: Array<FileWithPath>,
-  setUploadedFiles: Dispatch<SetStateAction<Array<FileWithPath>>>
-) => {
-  const acceptedItems: ListItemProps[] = [];
-
-  acceptedFiles.forEach((file: FileWithPath) => {
-    acceptedItems.push({
-      child: (
-        <FileListItem
-          acceptedFiles={acceptedFiles}
-          file={file}
-          key={file.path}
-          updateFileList={setUploadedFiles}
-        />
-      ),
-    });
-  });
-  return acceptedItems;
-};
-
-export const fileRejectionItems = (
-  fileRejections: Array<FileRejection>,
-  maxSize: number
-) => {
-  const failedItems: ListItemProps[] = [];
-  fileRejections.forEach(({ file, errors }: FileRejection) => {
-    const errorText = errors
-      .map((e) => {
-        switch (e.code) {
-          case 'file-too-large':
-            return `File exceeds ${maxSize}MB`;
-          case 'file-invalid-type':
-            return e.message;
-          case 'too-many-files':
-            return e.message;
-          default:
-            console.log('Unknown error', e);
-            return e.message;
-        }
-      })
-      .join(', ');
-
-    failedItems.push({
-      className: 'file-error',
-      endIconId: 'error-solid',
-      primaryText: file.path,
-      startIconId: 'file',
-      secondaryText: errorText,
-    });
-  });
-  return failedItems;
-};
 
 export const DotFileUpload = ({
   accept,
@@ -142,8 +44,8 @@ export const DotFileUpload = ({
   disabled,
   maxFiles,
   maxSize,
+  onChange,
   onDragEnter,
-  onUpload,
 }: FileUploadProps) => {
   const rootClasses = useStylesWithRootClass(
     rootClassName,
@@ -162,27 +64,40 @@ export const DotFileUpload = ({
     disabled,
     maxFiles,
     maxSize: maxSize * 1000000,
-    noClick: true,
-    noKeyboard: true,
     onDragEnter,
-    onDrop: (files: Array<File>) => handleDrop(files),
   });
-  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState<FileWithPath[]>([]);
+  const [rejectedFiles, setRejectedFiles] = useState<FileRejection[]>([]);
+  const [listAcceptedItems, setListItems] = useState<ListItemProps[]>([]);
+  const [listRejectedItems, setRejectedItems] = useState<ListItemProps[]>([]);
 
-  const handleDrop = (files: Array<File>) => {
-    onUpload ? onUpload(files) : console.warn('onUpload callback not defined');
+  useEffect(() => {
+    onChange
+      ? onChange(uploadedFiles)
+      : console.warn('onChange callback not defined');
+  }, [uploadedFiles]);
+
+  const deleteFile = (fileToRemove: FileWithPath) => {
+    uploadedFiles.splice(uploadedFiles.indexOf(fileToRemove), 1);
+    setUploadedFiles(uploadedFiles);
   };
 
-  const getFileList = () => {
-    const acceptedItems: ListItemProps[] =
-      acceptedFileItems(acceptedFiles, setUploadedFiles) || [];
-    const rejectedItems: ListItemProps[] =
-      fileRejectionItems(fileRejections, maxSize) || [];
-    setUploadedFiles(acceptedItems.concat(rejectedItems));
+  const parseFiles = () => {
+    if (acceptedFiles.length > 0) {
+      const accepted = uploadedFiles.concat(acceptedFiles);
+      setUploadedFiles(accepted);
+      setListItems(parseAcceptedFiles(accepted, deleteFile));
+    }
+
+    if (fileRejections.length > 0) {
+      const rejected = rejectedFiles.concat(fileRejections);
+      setRejectedFiles(rejected);
+      setRejectedItems(parseRejectedFiles(rejected, maxSize));
+    }
   };
 
   useEffect(() => {
-    getFileList();
+    parseFiles();
   }, [acceptedFiles, fileRejections]);
 
   const maxFilesMessage = (
@@ -233,7 +148,8 @@ export const DotFileUpload = ({
       )}
       {maxSize && maxSizeMessage}
       {maxFiles && maxFilesMessage}
-      <DotList items={uploadedFiles} width="100%" />
+      <DotList items={listAcceptedItems} width="100%" />
+      <DotList items={listRejectedItems} width="100%" />
     </StyledFileUploadContainer>
   );
 };
