@@ -6,6 +6,7 @@ import { DotLink, LinkUnderline } from '../link/Link';
 import { DotMenu } from '../menu/Menu';
 import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
 import { compareWidth } from '../compareSize';
+import { getItemsAfterCollapse, getMaxItems } from './utils/helpers';
 
 export type BreadcrumbItem = {
   /** Defines a string value that labels the current element **/
@@ -37,16 +38,21 @@ export const DotBreadcrumbs = ({
   'data-testid': dataTestId,
   expansionMenu = false,
   items,
-  maxItems = 3,
+  maxItems,
   minWidth,
 }: BreadcrumbProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   const breadcrumbRef = useRef();
   const wrapperRef = useRef();
+  const initialVisibleItemsNumber =
+    (items && Array.isArray(items) && items.length) || 0;
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [adjustMaxItems, setAdjustMaxItems] = useState(false);
+  const [visibleItemsNumber, setVisibleItemsNumber] = useState(
+    initialVisibleItemsNumber
+  );
 
   const clickListener = (event: MouseEvent) => {
     event.stopPropagation();
@@ -119,8 +125,8 @@ export const DotBreadcrumbs = ({
           li: 'dot-li',
         }}
         data-testid={dataTestId}
-        itemsAfterCollapse={adjustMaxItems ? 1 : 2}
-        maxItems={adjustMaxItems ? 2 : maxItems}
+        itemsAfterCollapse={getItemsAfterCollapse(adjustMaxItems, maxItems)}
+        maxItems={getMaxItems(adjustMaxItems, visibleItemsNumber, maxItems)}
         ref={breadcrumbRef}
         separator={<DotIcon iconId="chevron-right" className="separator" />}
         style={{ width: minWidth }}
