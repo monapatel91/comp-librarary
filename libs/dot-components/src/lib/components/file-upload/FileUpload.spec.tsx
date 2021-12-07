@@ -4,6 +4,7 @@ import { render, screen } from '../../testing-utils';
 import { ListItemProps } from '../list/List';
 import {
   acceptedFileItems,
+  FileListItem,
   fileRejectionItems,
   FileUploadProps,
   DotFileUpload,
@@ -56,10 +57,13 @@ describe('DotFileUpload', () => {
       const fileArray = [{ path: '/blah' }] as Array<FileWithPath>;
       const expected: Array<ListItemProps> = [
         {
-          className: 'file-success',
-          endIconId: 'check-solid',
-          startIconId: 'attachment',
-          text: fileArray[0].path,
+          child: (
+            <FileListItem
+              acceptedFiles={fileArray}
+              file={fileArray[0]}
+              key={fileArray[0].path}
+            />
+          ),
         },
       ];
 

@@ -18,6 +18,7 @@ import { listItemRootClass, StyledListItem } from '../list/List.styles';
 interface FileItem {
   acceptedFiles: Array<FileWithPath>;
   file: FileWithPath;
+  key: string;
 }
 
 interface FileUploadError {
@@ -46,7 +47,7 @@ export interface FileUploadProps extends CommonProps {
   onUpload?: (files: Array<File>) => void;
 }
 
-const FileListItem = ({ acceptedFiles, file }: FileItem) => {
+export const FileListItem = ({ acceptedFiles, file, key }: FileItem) => {
   const [endIcon, setEndIcon] = useState('check-solid');
   const removeFile = (fileToRemove: FileWithPath) => {
     acceptedFiles.splice(acceptedFiles.indexOf(fileToRemove), 1);
@@ -57,7 +58,7 @@ const FileListItem = ({ acceptedFiles, file }: FileItem) => {
   return (
     <StyledListItem
       className={`${listItemRootClass} file-success`}
-      key={file.path}
+      key={key}
       onMouseEnter={() => setEndIcon('delete')}
       onMouseLeave={() => setEndIcon('check-solid')}
     >
@@ -152,6 +153,7 @@ export const DotFileUpload = ({
     onDragEnter,
     onDrop: (files: Array<File>) => handleDrop(files),
   });
+  // TO-DO: need to make `uploadedFiles` accessible to consumer
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   const handleDrop = (files: Array<File>) => {
