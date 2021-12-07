@@ -142,7 +142,7 @@ describe('helper functions', () => {
         lastName: null,
         password: null,
         receive: null,
-        terms: null,
+        terms: false,
         username: null,
         userType: 'Basic user',
         vehicleModel: null,
