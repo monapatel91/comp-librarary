@@ -7,7 +7,12 @@ export const StyledFileUploadContainer = styled.div`
   ${({ theme }) => css`
     &.${containerClassName} {
       .dot-list-item {
-        &.file-success {
+        &:hover {
+          cursor: pointer;
+          background: ${theme.palette.layer.n50};
+        }
+
+        &.file-success:not(:hover) {
           .dot-list-item-end-icon .dot-icon i:before {
             color: ${theme.palette.secondary.main};
           }
@@ -18,6 +23,11 @@ export const StyledFileUploadContainer = styled.div`
           .dot-list-item-end-icon .dot-icon i:before {
             color: ${theme.palette.error.main};
           }
+        }
+
+        .dot-typography {
+          flex-grow: 2;
+          padding-left: ${theme.spacing(1)}px;
         }
       }
     }

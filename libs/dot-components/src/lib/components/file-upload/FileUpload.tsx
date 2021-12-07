@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FileWithPath, useDropzone } from 'react-dropzone';
 import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   containerClassName,
   rootClassName,
   StyledFileUpload,
   StyledFileUploadContainer,
 } from './FileUpload.styles';
-import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotTypography } from '../typography/Typography';
 import { DotButton } from '../button/Button';
+import { DotIconButton } from '../button/IconButton';
 import { DotIcon } from '../icon/Icon';
 import { DotList, ListItemProps } from '../list/List';
+import { listItemRootClass, StyledListItem } from '../list/List.styles';
+
+interface FileItem {
+  acceptedFiles: Array<FileWithPath>;
+  file: FileWithPath;
+}
 
 interface FileUploadError {
   code: string;
@@ -19,8 +26,8 @@ interface FileUploadError {
 }
 
 interface FileRejection {
-  file: FileWithPath;
   errors: Array<FileUploadError>;
+  file: FileWithPath;
 }
 
 export interface FileUploadProps extends CommonProps {
@@ -39,14 +46,44 @@ export interface FileUploadProps extends CommonProps {
   onUpload?: (files: Array<File>) => void;
 }
 
+const FileListItem = ({ acceptedFiles, file }: FileItem) => {
+  const [endIcon, setEndIcon] = useState('check-solid');
+  const removeFile = (fileToRemove: FileWithPath) => {
+    acceptedFiles.splice(acceptedFiles.indexOf(fileToRemove), 1);
+    // TO-DO: this needs to be nested inside of `DotFileUpload`
+    // setUploadedFiles(acceptedFiles);
+  };
+
+  return (
+    <StyledListItem
+      className={`${listItemRootClass} file-success`}
+      key={file.path}
+      onMouseEnter={() => setEndIcon('delete')}
+      onMouseLeave={() => setEndIcon('check-solid')}
+    >
+      <DotIcon iconId="attachment" />
+      <DotTypography variant="body1">{file.path}</DotTypography>
+      <DotIconButton
+        className={`${listItemRootClass}-end-icon`}
+        iconId={endIcon}
+        onClick={() => removeFile(file)}
+      />
+    </StyledListItem>
+  );
+};
+
 export const acceptedFileItems = (acceptedFiles: Array<FileWithPath>) => {
   const acceptedItems: ListItemProps[] = [];
+
   acceptedFiles.forEach((file: FileWithPath) => {
     acceptedItems.push({
-      className: 'file-success',
-      endIconId: 'check-solid',
-      startIconId: 'attachment',
-      text: file.path,
+      child: (
+        <FileListItem
+          acceptedFiles={acceptedFiles}
+          file={file}
+          key={file.path}
+        />
+      ),
     });
   });
   return acceptedItems;
@@ -115,6 +152,7 @@ export const DotFileUpload = ({
     onDragEnter,
     onDrop: (files: Array<File>) => handleDrop(files),
   });
+  const [uploadedFiles, setUploadedFiles] = useState([]);
 
   const handleDrop = (files: Array<File>) => {
     onUpload ? onUpload(files) : console.warn('onUpload callback not defined');
@@ -125,8 +163,12 @@ export const DotFileUpload = ({
       acceptedFileItems(acceptedFiles) || [];
     const rejectedItems: ListItemProps[] =
       fileRejectionItems(fileRejections, maxSize) || [];
-    return acceptedItems.concat(rejectedItems);
+    setUploadedFiles(acceptedItems.concat(rejectedItems));
   };
+
+  useEffect(() => {
+    getFileList();
+  }, [acceptedFiles, fileRejections]);
 
   const maxFilesMessage = (
     <DotTypography variant="body2">
@@ -172,7 +214,7 @@ export const DotFileUpload = ({
       )}
       {maxFiles && maxFilesMessage}
       {maxSize && maxSizeMessage}
-      <DotList items={getFileList()} width="100%" />
+      <DotList items={uploadedFiles} width="100%" />
     </StyledFileUploadContainer>
   );
 };
