@@ -1,11 +1,13 @@
 import React from 'react';
 import { FileWithPath } from 'react-dropzone';
-import { render, screen } from '../../testing-utils';
+import { render, screen, waitFor } from '../../testing-utils';
 import { ListItemProps } from '../list/List';
 import { DotFileUpload, FileUploadProps } from './FileUpload';
 import { DotFileListItem, FileItemProps } from './FileListItem';
 import { parseAcceptedFiles, parseRejectedFiles } from './uploadHelpers';
+import userEvent from '@testing-library/user-event';
 
+// TO-DO: possible that we can test file upload https://testing-library.com/docs/ecosystem-user-event/#uploadelement-file--clickinit-changeinit--options
 const dummyFile = { path: 'image.jpg' } as FileWithPath;
 
 describe('DotFileUpload', () => {
@@ -114,7 +116,15 @@ describe('DotFileUpload', () => {
       expect(baseElement).toBeTruthy();
     });
 
-    xit('should change icon on mouseover', () => {
+    it('should trigger deleteFile when button clicked', () => {
+      const deleteFile = jest.fn();
+      render(<DotFileListItem file={dummyFile} deleteFile={deleteFile} />);
+      const button = screen.getByRole('button');
+      userEvent.click(button);
+      expect(deleteFile).toHaveBeenCalled();
+    });
+
+    it('should change icon on mouseover', async () => {
       const deleteFile = jest.fn();
       render(
         <DotFileListItem
@@ -123,12 +133,16 @@ describe('DotFileUpload', () => {
           deleteFile={deleteFile}
         />
       );
-      // const fileItem = screen.getByTestId('file-item');
+      const successIcon = document.querySelector('.icon-check-solid');
       const buttonIcon = screen.getByTestId('button-icon');
-      screen.debug(buttonIcon);
-      expect(buttonIcon).toContainHTML(
-        '<i className="icon-check-solid dot-i" />'
-      );
+      expect(screen.getByTestId('file-item')).toContainElement(buttonIcon);
+      expect(successIcon).toBeInTheDocument();
+
+      userEvent.hover(buttonIcon);
+      await waitFor(() => {
+        const trashIcon = document.querySelector('.icon-delete');
+        expect(trashIcon).toBeInTheDocument();
+      });
     });
   });
 });
