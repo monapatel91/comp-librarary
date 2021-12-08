@@ -71,8 +71,6 @@ export const useBreadcrumbsObserver = (
         ? availableSpace - lastRemovedItemWidth > MIN_AVAILABLE_SPACE
         : false;
 
-    console.log(availableSpace, hasHiddenItems, isLastRemovedItemSuitable);
-
     if (availableSpace < MIN_AVAILABLE_SPACE && maxVisibleItems > 2) {
       setBreadcrumbsSettings((prevValue) => ({
         maxVisibleItems: prevValue.maxVisibleItems - 1,
