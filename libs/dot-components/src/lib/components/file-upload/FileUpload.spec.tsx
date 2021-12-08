@@ -3,8 +3,10 @@ import { FileWithPath } from 'react-dropzone';
 import { render, screen } from '../../testing-utils';
 import { ListItemProps } from '../list/List';
 import { DotFileUpload, FileUploadProps } from './FileUpload';
-import { FileListItem } from './FileListItem';
+import { DotFileListItem, FileItemProps } from './FileListItem';
 import { parseAcceptedFiles, parseRejectedFiles } from './uploadHelpers';
+
+const dummyFile = { path: 'image.jpg' } as FileWithPath;
 
 describe('DotFileUpload', () => {
   it('should have unchanged API', () => {
@@ -54,7 +56,9 @@ describe('DotFileUpload', () => {
       const fileArray = [{ path: '/blah' }] as Array<FileWithPath>;
       const expected: Array<ListItemProps> = [
         {
-          child: <FileListItem file={fileArray[0]} deleteFile={deleteFile} />,
+          child: (
+            <DotFileListItem file={fileArray[0]} deleteFile={deleteFile} />
+          ),
         },
       ];
 
@@ -86,6 +90,45 @@ describe('DotFileUpload', () => {
         maxSize
       );
       expect(result).toEqual(expected);
+    });
+  });
+
+  describe('DotFileListItem', () => {
+    it('should have unchanged API', () => {
+      const props = {
+        ariaLabel: 'file item component',
+        className: 'dot-file-upload-item',
+        'data-testid': 'dot-file-upload-item-testid',
+        deleteFile: jest.fn(),
+        file: dummyFile,
+      };
+      const componentProps: FileItemProps = props;
+      expect(componentProps).toEqual(props);
+    });
+
+    it('should render successfully', () => {
+      const deleteFile = jest.fn();
+      const { baseElement } = render(
+        <DotFileListItem file={dummyFile} deleteFile={deleteFile} />
+      );
+      expect(baseElement).toBeTruthy();
+    });
+
+    xit('should change icon on mouseover', () => {
+      const deleteFile = jest.fn();
+      render(
+        <DotFileListItem
+          file={dummyFile}
+          data-testid="file-item"
+          deleteFile={deleteFile}
+        />
+      );
+      // const fileItem = screen.getByTestId('file-item');
+      const buttonIcon = screen.getByTestId('button-icon');
+      screen.debug(buttonIcon);
+      expect(buttonIcon).toContainHTML(
+        '<i className="icon-check-solid dot-i" />'
+      );
     });
   });
 });

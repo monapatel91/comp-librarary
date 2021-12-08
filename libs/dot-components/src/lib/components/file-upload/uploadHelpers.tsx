@@ -1,6 +1,6 @@
 import React from 'react';
 import { FileWithPath } from 'react-dropzone';
-import { FileListItem } from './FileListItem';
+import { DotFileListItem } from './FileListItem';
 import { ListItemProps } from '../list/List';
 
 export interface FileRejection {
@@ -22,7 +22,7 @@ export const parseAcceptedFiles = (
 
   acceptedFiles.forEach((file: FileWithPath) => {
     acceptedItems.push({
-      child: <FileListItem deleteFile={deleteFile} file={file} />,
+      child: <DotFileListItem deleteFile={deleteFile} file={file} />,
     });
   });
   return acceptedItems;
