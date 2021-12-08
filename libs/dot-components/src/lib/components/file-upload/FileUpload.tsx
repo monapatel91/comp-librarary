@@ -72,18 +72,27 @@ export const DotFileUpload = ({
   const [listRejectedItems, setRejectedItems] = useState<ListItemProps[]>([]);
 
   useEffect(() => {
+    console.log('onChange', uploadedFiles);
     onChange
       ? onChange(uploadedFiles)
       : console.warn('onChange callback not defined');
   }, [uploadedFiles]);
 
-  // TO-DO: refactor this so that it's deleting the correct file
   const deleteFile = (fileToRemove: FileWithPath) => {
+    console.log(uploadedFiles);
     uploadedFiles.splice(uploadedFiles.indexOf(fileToRemove), 1);
     setUploadedFiles(uploadedFiles);
+
+    parseFiles(true);
   };
 
-  const parseFiles = () => {
+  const parseFiles = (deleted: boolean) => {
+    console.log('acceptedFiles', acceptedFiles);
+    if (deleted) {
+      setListItems(parseAcceptedFiles(uploadedFiles, deleteFile));
+      return;
+    }
+
     if (acceptedFiles.length > 0) {
       const accepted = uploadedFiles.concat(acceptedFiles);
       setUploadedFiles(accepted);
@@ -98,7 +107,7 @@ export const DotFileUpload = ({
   };
 
   useEffect(() => {
-    parseFiles();
+    parseFiles(false);
   }, [acceptedFiles, fileRejections]);
 
   const maxFilesMessage = (
