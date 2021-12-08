@@ -115,7 +115,7 @@ export const DotBreadcrumbs = ({
         compareWidth(wrapperRef.current, breadcrumbRef.current)
       );
     }
-  }, [breadcrumbRef?.current, wrapperRef?.current]);
+  }, [maxItems, breadcrumbRef?.current, wrapperRef?.current]);
 
   const itemsAfterCollapse = getItemsAfterCollapse(
     adjustMaxItems,
