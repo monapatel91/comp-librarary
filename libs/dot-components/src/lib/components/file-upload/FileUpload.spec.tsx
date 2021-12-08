@@ -17,7 +17,7 @@ describe('DotFileUpload', () => {
       disabled: false,
       maxFiles: 5,
       maxSize: 10,
-      onUpload: jest.fn(),
+      onChange: jest.fn(),
     };
     const componentProps: FileUploadProps = props;
     expect(componentProps).toEqual(props);
@@ -43,27 +43,22 @@ describe('DotFileUpload', () => {
   it('should render maxFiles message', () => {
     render(<DotFileUpload maxFiles={10} maxSize={10} />);
     const maxSizeMessage = screen.getAllByText(
-      /files are the maximum number of files you can drop here/i
+      /files are the maximum number of files you can upload at once./i
     );
     expect(maxSizeMessage[0]).toBeInTheDocument();
   });
 
   describe('Validate uploaded file list', () => {
     it('should display list of uploaded files', async () => {
+      const deleteFile = jest.fn();
       const fileArray = [{ path: '/blah' }] as Array<FileWithPath>;
       const expected: Array<ListItemProps> = [
         {
-          child: (
-            <FileListItem
-              acceptedFiles={fileArray}
-              file={fileArray[0]}
-              updateFileList={jest.fn()}
-            />
-          ),
+          child: <FileListItem file={fileArray[0]} deleteFile={deleteFile} />,
         },
       ];
 
-      const result = parseAcceptedFiles(fileArray);
+      const result = parseAcceptedFiles(fileArray, deleteFile);
       expect(result).toEqual(expected);
     });
 
@@ -81,7 +76,7 @@ describe('DotFileUpload', () => {
           className: 'file-error',
           endIconId: 'error-solid',
           primaryText: path,
-          startIconId: 'attachment',
+          startIconId: 'file',
           secondaryText: `${errors[0].message}, ${errors[1].message}, ${errors[2].message}, ${errors[3].message}`,
         },
       ];
