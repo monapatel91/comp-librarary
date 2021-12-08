@@ -55,7 +55,7 @@ describe('DotFileUpload', () => {
   describe('Validate uploaded file list', () => {
     it('should display list of uploaded files', async () => {
       const deleteFile = jest.fn();
-      const fileArray = [{ path: '/blah' }] as Array<FileWithPath>;
+      const fileArray = [dummyFile] as Array<FileWithPath>;
       const expected: Array<ListItemProps> = [
         {
           child: (
@@ -133,8 +133,9 @@ describe('DotFileUpload', () => {
           deleteFile={deleteFile}
         />
       );
-      const successIcon = document.querySelector('.icon-check-solid');
       const buttonIcon = screen.getByTestId('button-icon');
+      const successIcon = document.querySelector('.icon-check-solid');
+
       expect(screen.getByTestId('file-item')).toContainElement(buttonIcon);
       expect(successIcon).toBeInTheDocument();
 
@@ -142,6 +143,11 @@ describe('DotFileUpload', () => {
       await waitFor(() => {
         const trashIcon = document.querySelector('.icon-delete');
         expect(trashIcon).toBeInTheDocument();
+      });
+
+      userEvent.unhover(buttonIcon);
+      await waitFor(() => {
+        expect(successIcon).toBeInTheDocument();
       });
     });
   });
