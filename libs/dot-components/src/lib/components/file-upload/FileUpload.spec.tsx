@@ -9,6 +9,7 @@ import userEvent from '@testing-library/user-event';
 
 // TO-DO: possible that we can test file upload https://testing-library.com/docs/ecosystem-user-event/#uploadelement-file--clickinit-changeinit--options
 const dummyFile = { path: 'image.jpg' } as FileWithPath;
+const testId = 'file-upload-testid';
 
 describe('DotFileUpload', () => {
   it('should have unchanged API', () => {
@@ -17,7 +18,7 @@ describe('DotFileUpload', () => {
       ariaLabel: 'file-upload component',
       buttonOnly: false,
       className: 'file-upload',
-      'data-testid': 'file-upload-testid',
+      'data-testid': testId,
       disabled: false,
       maxFiles: 5,
       maxSize: 10,
@@ -28,8 +29,17 @@ describe('DotFileUpload', () => {
   });
 
   it('should render successfully', () => {
-    const { baseElement } = render(<DotFileUpload maxSize={10} />);
+    const { baseElement } = render(
+      <DotFileUpload data-testid={testId} maxSize={10} />
+    );
     expect(baseElement).toBeTruthy();
+    expect(screen.getByTestId(testId)).not.toHaveClass('disabled');
+  });
+
+  it('should be disabled when specified', () => {
+    render(<DotFileUpload data-testid={testId} disabled={true} maxSize={10} />);
+    expect(screen.getByRole('button')).toBeDisabled();
+    expect(screen.getByTestId(testId)).toHaveClass('disabled');
   });
 
   it('should render button only when specified', () => {
@@ -56,15 +66,11 @@ describe('DotFileUpload', () => {
     it('should display list of uploaded files', async () => {
       const deleteFile = jest.fn();
       const fileArray = [dummyFile] as Array<FileWithPath>;
-      const expected: Array<ListItemProps> = [
-        {
-          child: (
-            <DotFileListItem file={fileArray[0]} deleteFile={deleteFile} />
-          ),
-        },
-      ];
+      const expected: ListItemProps = {
+        child: <DotFileListItem file={fileArray[0]} deleteFile={deleteFile} />,
+      };
 
-      const result = parseAcceptedFiles(fileArray, deleteFile);
+      const result = parseAcceptedFiles(dummyFile, deleteFile);
       expect(result).toEqual(expected);
     });
 
@@ -100,7 +106,7 @@ describe('DotFileUpload', () => {
       const props = {
         ariaLabel: 'file item component',
         className: 'dot-file-upload-item',
-        'data-testid': 'dot-file-upload-item-testid',
+        'data-testid': `${testId}-item`,
         deleteFile: jest.fn(),
         file: dummyFile,
       };
@@ -129,14 +135,14 @@ describe('DotFileUpload', () => {
       render(
         <DotFileListItem
           file={dummyFile}
-          data-testid="file-item"
+          data-testid={`${testId}-item`}
           deleteFile={deleteFile}
         />
       );
       const buttonIcon = screen.getByTestId('button-icon');
       const successIcon = document.querySelector('.icon-check-solid');
 
-      expect(screen.getByTestId('file-item')).toContainElement(buttonIcon);
+      expect(screen.getByTestId(`${testId}-item`)).toContainElement(buttonIcon);
       expect(successIcon).toBeInTheDocument();
 
       userEvent.hover(buttonIcon);
