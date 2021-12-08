@@ -10,6 +10,10 @@ import userEvent from '@testing-library/user-event';
 // TO-DO: possible that we can test file upload https://testing-library.com/docs/ecosystem-user-event/#uploadelement-file--clickinit-changeinit--options
 const dummyFile = { path: 'image.jpg' } as FileWithPath;
 const testId = 'file-upload-testid';
+const onChange = jest.fn();
+const defaultUpload = (
+  <DotFileUpload data-testid={testId} maxSize={10} onChange={onChange} />
+);
 
 describe('DotFileUpload', () => {
   it('should have unchanged API', () => {
@@ -22,40 +26,48 @@ describe('DotFileUpload', () => {
       disabled: false,
       maxFiles: 5,
       maxSize: 10,
-      onChange: jest.fn(),
+      onChange: onChange,
+      onDragEnter: jest.fn(),
     };
     const componentProps: FileUploadProps = props;
     expect(componentProps).toEqual(props);
   });
 
   it('should render successfully', () => {
-    const { baseElement } = render(
-      <DotFileUpload data-testid={testId} maxSize={10} />
-    );
+    const { baseElement } = render(defaultUpload);
     expect(baseElement).toBeTruthy();
     expect(screen.getByTestId(testId)).not.toHaveClass('disabled');
   });
 
   it('should be disabled when specified', () => {
-    render(<DotFileUpload data-testid={testId} disabled={true} maxSize={10} />);
+    render(
+      <DotFileUpload
+        data-testid={testId}
+        disabled={true}
+        maxSize={10}
+        onChange={onChange}
+      />
+    );
     expect(screen.getByRole('button')).toBeDisabled();
     expect(screen.getByTestId(testId)).toHaveClass('disabled');
   });
 
   it('should render button only when specified', () => {
-    render(<DotFileUpload buttonOnly={true} maxSize={10} />);
+    render(
+      <DotFileUpload buttonOnly={true} maxSize={10} onChange={onChange} />
+    );
     expect(screen.getByRole('button')).toBeTruthy();
     expect(screen.queryByRole('input')).not.toBeInTheDocument();
   });
 
   it('should render maxSize message', () => {
-    render(<DotFileUpload maxSize={10} />);
+    render(defaultUpload);
     const maxSizeMessage = screen.getAllByText(/File size should not exceed/i);
     expect(maxSizeMessage[0]).toBeInTheDocument();
   });
 
   it('should render maxFiles message', () => {
-    render(<DotFileUpload maxFiles={10} maxSize={10} />);
+    render(<DotFileUpload maxFiles={10} maxSize={10} onChange={onChange} />);
     const maxSizeMessage = screen.getAllByText(
       /files are the maximum number of files you can upload at once./i
     );

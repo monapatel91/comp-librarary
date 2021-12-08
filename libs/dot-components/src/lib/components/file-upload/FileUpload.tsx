@@ -31,7 +31,7 @@ export interface FileUploadProps extends CommonProps {
   /** Defines the maximum file size (in MB) */
   maxSize: number;
   /** callback triggered when files are added or removed */
-  onChange?: (files: Array<FileWithPath>) => void;
+  onChange: (files: Array<FileWithPath>) => void;
   /** callback triggered when dragenter event occurs */
   onDragEnter?: (event: React.DragEvent<HTMLDivElement>) => void;
 }
@@ -73,9 +73,7 @@ export const DotFileUpload = ({
   const [rejectedFiles, setRejectedFiles] = useState<FileRejection[]>([]);
 
   useEffect(() => {
-    onChange
-      ? onChange(uploadedFiles)
-      : console.warn('onChange callback not defined');
+    onChange(uploadedFiles);
   }, [uploadedFiles]);
 
   const deleteFile = (fileToRemove: FileWithPath) => {
