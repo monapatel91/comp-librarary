@@ -11,8 +11,8 @@ import {
 } from './FileUpload.styles';
 import {
   FileRejection,
-  parseAcceptedFiles,
-  parseRejectedFiles,
+  parseAcceptedFile,
+  parseRejectedFile,
 } from './uploadHelpers';
 import { DotTypography } from '../typography/Typography';
 import { DotButton } from '../button/Button';
@@ -151,13 +151,15 @@ export const DotFileUpload = ({
       {maxSize && maxSizeMessage}
       {maxFiles && maxFilesMessage}
       <DotList
-        items={uploadedFiles.map((file: FileWithPath) =>
-          parseAcceptedFiles(file, deleteFile)
-        )}
-        width="100%"
-      />
-      <DotList
-        items={parseRejectedFiles(rejectedFiles, maxSize)}
+        items={rejectedFiles
+          .map((file: FileRejection) =>
+            parseRejectedFile(deleteFile, file, maxSize)
+          )
+          .concat(
+            uploadedFiles.map((file: FileWithPath) =>
+              parseAcceptedFile(deleteFile, file)
+            )
+          )}
         width="100%"
       />
     </StyledFileUploadContainer>

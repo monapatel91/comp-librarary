@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { listItemRootClass } from '../list/List.styles';
 
 export const rootClassName = 'dot-file-upload';
 export const containerClassName = `${rootClassName}-container`;
@@ -8,7 +9,7 @@ export const dropZoneClassName = `${rootClassName}-drop-zone`;
 export const StyledFileUploadContainer = styled.div`
   ${({ theme }) => css`
     &.${containerClassName} {
-      .dot-list-item {
+      .${listItemRootClass} {
         border-bottom: 1px solid ${theme.palette.layer.n100};
         &:hover {
           cursor: pointer;
@@ -16,21 +17,31 @@ export const StyledFileUploadContainer = styled.div`
         }
 
         &.file-success:not(:hover) {
-          .dot-list-item-end-icon .dot-icon i:before {
+          .${listItemRootClass}-end-icon .dot-icon i:before {
             color: ${theme.palette.secondary.main};
           }
         }
 
         &.file-error {
           .MuiListItemText-secondary,
-          .dot-list-item-end-icon .dot-icon i:before {
+          .${listItemRootClass}-end-icon .dot-icon i:before {
             color: ${theme.palette.error.main};
           }
         }
 
-        .dot-typography {
+        .dot-typography,
+        .file-item-text {
           flex-grow: 2;
           padding-left: ${theme.spacing(1)}px;
+        }
+
+        .file-item-text {
+          display: flex;
+          flex-direction: column;
+
+          .MuiTypography-body2 {
+            color: ${theme.palette.error.main};
+          }
         }
       }
     }
