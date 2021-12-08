@@ -6,7 +6,12 @@ import { DotLink, LinkUnderline } from '../link/Link';
 import { DotMenu } from '../menu/Menu';
 import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
 import { compareWidth } from '../compareSize';
-import { getItemsAfterCollapse, getMaxItems } from './utils/helpers';
+import {
+  checkIfFirstItemAfterCollapse,
+  getItemsAfterCollapse,
+  getMaxItems,
+} from './utils/helpers';
+import { useBreadcrumbsObserver } from './utils/useBreadcrumbsObserver';
 
 export type BreadcrumbItem = {
   /** Defines a string value that labels the current element **/
@@ -42,17 +47,14 @@ export const DotBreadcrumbs = ({
   minWidth,
 }: BreadcrumbProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-  const breadcrumbRef = useRef();
   const wrapperRef = useRef();
-  const initialVisibleItemsNumber =
-    (items && Array.isArray(items) && items.length) || 0;
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [adjustMaxItems, setAdjustMaxItems] = useState(false);
-  const [visibleItemsNumber, setVisibleItemsNumber] = useState(
-    initialVisibleItemsNumber
-  );
+
+  const [{ breadcrumbRef, firstItemRef, lastItemRef }, maxVisibleItems] =
+    useBreadcrumbsObserver(items, maxItems);
 
   const clickListener = (event: MouseEvent) => {
     event.stopPropagation();
@@ -88,7 +90,7 @@ export const DotBreadcrumbs = ({
     });
   };
 
-  const menuItems = items.length > maxItems ? getMenuItems() : null;
+  const menuItems = items.length > maxVisibleItems ? getMenuItems() : null;
 
   const onMenuLeave = (_event: KeyboardEvent | React.MouseEvent) => {
     setMenuOpen(false);
@@ -108,12 +110,18 @@ export const DotBreadcrumbs = ({
   }, []);
 
   useEffect(() => {
-    if (breadcrumbRef?.current && wrapperRef?.current) {
+    if (maxItems && breadcrumbRef?.current && wrapperRef?.current) {
       setAdjustMaxItems(
         compareWidth(wrapperRef.current, breadcrumbRef.current)
       );
     }
   }, [breadcrumbRef?.current, wrapperRef?.current]);
+
+  const itemsAfterCollapse = getItemsAfterCollapse(
+    adjustMaxItems,
+    maxVisibleItems,
+    maxItems
+  );
 
   return (
     <div ref={wrapperRef} style={{ overflow: 'hidden' }}>
@@ -125,8 +133,8 @@ export const DotBreadcrumbs = ({
           li: 'dot-li',
         }}
         data-testid={dataTestId}
-        itemsAfterCollapse={getItemsAfterCollapse(adjustMaxItems, maxItems)}
-        maxItems={getMaxItems(adjustMaxItems, visibleItemsNumber, maxItems)}
+        itemsAfterCollapse={itemsAfterCollapse}
+        maxItems={getMaxItems(adjustMaxItems, maxVisibleItems, maxItems)}
         ref={breadcrumbRef}
         separator={<DotIcon iconId="chevron-right" className="separator" />}
         style={{ width: minWidth }}
@@ -139,24 +147,34 @@ export const DotBreadcrumbs = ({
                 aria-label={ariaLabel}
                 className="breadcrumb current-page"
                 key={index}
+                ref={lastItemRef}
               >
                 {text}
               </span>
             );
           } else {
+            const isFirstItemAfterCollapse = checkIfFirstItemAfterCollapse(
+              items,
+              itemsAfterCollapse,
+              index
+            );
             return (
-              <DotLink
-                ariaLabel={ariaLabel}
-                className="breadcrumb"
-                color="inherit"
-                href={href}
+              <div
                 key={index}
-                onClick={onClick}
-                tabIndex={0}
-                underline={underline}
+                ref={isFirstItemAfterCollapse ? firstItemRef : undefined}
               >
-                {text}
-              </DotLink>
+                <DotLink
+                  ariaLabel={ariaLabel}
+                  className="breadcrumb"
+                  color="inherit"
+                  href={href}
+                  onClick={onClick}
+                  tabIndex={0}
+                  underline={underline}
+                >
+                  {text}
+                </DotLink>
+              </div>
             );
           }
         })}
