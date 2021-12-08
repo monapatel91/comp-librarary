@@ -4,6 +4,7 @@ import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   containerClassName,
+  dropZoneClassName,
   rootClassName,
   StyledFileUpload,
   StyledFileUploadContainer,
@@ -50,6 +51,7 @@ export const DotFileUpload = ({
   const rootClasses = useStylesWithRootClass(
     rootClassName,
     className,
+    !buttonOnly ? dropZoneClassName : '',
     disabled ? 'disabled' : ''
   );
   const {
@@ -109,19 +111,33 @@ export const DotFileUpload = ({
     </DotTypography>
   );
 
-  const dropzoneContent = isDragActive ? (
-    <DotTypography variant="h3">Drop the file(s) here ...</DotTypography>
-  ) : (
-    <>
-      <DotTypography variant="h3">
-        Drag and drop your file(s) here
-      </DotTypography>
-      <DotTypography variant="h3">or</DotTypography>
-      <DotButton disabled={disabled} onClick={open}>
-        Select file(s)
-      </DotButton>
-    </>
-  );
+  const dropzoneContent = () => {
+    if (buttonOnly) {
+      return (
+        <DotButton disabled={disabled} onClick={open}>
+          Select file(s)
+        </DotButton>
+      );
+    } else {
+      return isDragActive ? (
+        <>
+          <DotIcon iconId="upload-file" />
+          <DotTypography variant="h3">Drop the file(s) here ...</DotTypography>
+        </>
+      ) : (
+        <>
+          <DotIcon iconId="upload-file" />
+          <DotTypography variant="h3">
+            Drag and drop your file(s) here
+          </DotTypography>
+          <DotTypography variant="h3">or</DotTypography>
+          <DotButton disabled={disabled} onClick={open}>
+            Select file(s)
+          </DotButton>
+        </>
+      );
+    }
+  };
 
   return (
     <StyledFileUploadContainer className={containerClassName}>
@@ -132,8 +148,7 @@ export const DotFileUpload = ({
         data-testid={dataTestId}
       >
         <input {...getInputProps()} />
-        <DotIcon iconId="upload-file" />
-        {dropzoneContent}
+        {dropzoneContent()}
       </StyledFileUpload>
       {maxSize && maxSizeMessage}
       {maxFiles && maxFilesMessage}

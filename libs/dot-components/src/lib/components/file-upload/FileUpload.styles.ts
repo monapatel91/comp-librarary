@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 export const rootClassName = 'dot-file-upload';
 export const containerClassName = `${rootClassName}-container`;
 export const fileClassName = `${rootClassName}-item`;
+export const dropZoneClassName = `${rootClassName}-drop-zone`;
 
 export const StyledFileUploadContainer = styled.div`
   ${({ theme }) => css`
@@ -38,7 +39,7 @@ export const StyledFileUploadContainer = styled.div`
 
 export const StyledFileUpload = styled.div`
   ${({ theme }) => css`
-    &.${rootClassName} {
+    &.${rootClassName}.${dropZoneClassName} {
       align-items: center;
       background: ${theme.palette.layer.n50};
       border: 2px dashed ${theme.palette.layer.n300};
