@@ -25,7 +25,8 @@ export const useBreadcrumbsObserver = (
   const lastItemRef = useRef<HTMLSpanElement>();
 
   const initialMaxVisibleItems: MaxVisibleItems = {
-    maxVisibleItems: (items && Array.isArray(items) && items.length) || 0,
+    maxVisibleItems:
+      maxItems || (items && Array.isArray(items) && items.length) || 0,
     lastRemovedItemWidth: undefined,
   };
 

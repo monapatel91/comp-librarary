@@ -50,6 +50,25 @@ describe('Breadcrumbs', () => {
     expect(breadcrumbItempProps).toEqual(iProps);
   });
 
+  beforeAll(() => {
+    class ResizeObserverMock {
+      observe() {
+        // do nothing
+      }
+      unobserve() {
+        // do nothing
+      }
+      disconnect: () => {
+        // do nothing
+      };
+    }
+    window.ResizeObserver = ResizeObserverMock;
+  });
+
+  afterAll(() => {
+    jest.clearAllMocks();
+  });
+
   it('should render successfully', () => {
     const { baseElement } = render(<DotBreadcrumbs items={dummyItems} />);
     expect(baseElement).toBeTruthy();
@@ -104,7 +123,7 @@ describe('Breadcrumbs', () => {
   });
 
   it("should have 'aria-label' attribute, with correct value, for each breadcrumb link if more than 3 items", () => {
-    render(<DotBreadcrumbs items={dummyItemsNoOnClick} />);
+    render(<DotBreadcrumbs items={dummyItemsNoOnClick} maxItems={3} />);
     userEvent.click(screen.getByRole('button'));
     expect(getMenuItem('link-2')).toHaveAttribute('aria-label', 'link-2');
   });
