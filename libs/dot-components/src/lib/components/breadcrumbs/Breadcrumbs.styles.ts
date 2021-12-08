@@ -29,6 +29,11 @@ export const StyledBreadcrumbs = styled(Breadcrumbs)`
       .MuiLink-underlineHover {
         cursor: pointer;
       }
+
+      .MuiBreadcrumbs-li:last-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
     .breadcrumb {
       padding: ${theme.spacing(0.5, 2)};
