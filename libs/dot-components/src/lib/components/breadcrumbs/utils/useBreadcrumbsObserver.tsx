@@ -37,7 +37,7 @@ export const useBreadcrumbsObserver = (
   /* Observe breadcrumbs width change and store it in state */
   useEffect(() => {
     // Automatic resizing is performed only when 'maxItem' is NOT set
-    if (maxItems) return;
+    if (maxItems !== undefined) return;
     const breadcrumbsObserver = new ResizeObserver((entries) => {
       setBreadcrumbsWidth(entries[0].target.clientWidth);
     });
@@ -52,7 +52,8 @@ export const useBreadcrumbsObserver = (
   /* Adjust number of visible items after collapse */
   useEffect(() => {
     // Automatic resizing is performed only when 'maxItem' is NOT set
-    if (maxItems || !lastItemRef?.current || !breadcrumbsWidth) return;
+    if (maxItems !== undefined || !lastItemRef?.current || !breadcrumbsWidth)
+      return;
 
     // Get width of breadcrumb's last item
     const lastItemWidth = getWidthFromRef(lastItemRef);
