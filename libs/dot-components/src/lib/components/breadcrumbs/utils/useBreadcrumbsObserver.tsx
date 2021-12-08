@@ -65,11 +65,13 @@ export const useBreadcrumbsObserver = (
     const { lastRemovedItemWidth, maxVisibleItems } = breadcrumbsSettings;
 
     const availableSpace = breadcrumbsWidth - lastItemLeftCoord;
-    const hasHiddenItems = maxVisibleItems < items.length - 1;
+    const hasHiddenItems = maxVisibleItems < items.length;
     const isLastRemovedItemSuitable =
       lastRemovedItemWidth !== undefined
         ? availableSpace - lastRemovedItemWidth > MIN_AVAILABLE_SPACE
         : false;
+
+    console.log(availableSpace, hasHiddenItems, isLastRemovedItemSuitable);
 
     if (availableSpace < MIN_AVAILABLE_SPACE && maxVisibleItems > 2) {
       setBreadcrumbsSettings((prevValue) => ({
