@@ -14,18 +14,10 @@ export interface FileUploadError {
 }
 
 export const parseAcceptedFiles = (
-  acceptedFiles: Array<FileWithPath>,
+  file: FileWithPath,
   deleteFile: (file: FileWithPath) => void
 ) => {
-  const acceptedItems: ListItemProps[] = [];
-  console.log('parseAcceptedFiles', acceptedFiles);
-
-  acceptedFiles.forEach((file: FileWithPath) => {
-    acceptedItems.push({
-      child: <DotFileListItem deleteFile={deleteFile} file={file} />,
-    });
-  });
-  return acceptedItems;
+  return { child: <DotFileListItem deleteFile={deleteFile} file={file} /> };
 };
 
 export const parseRejectedFiles = (

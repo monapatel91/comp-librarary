@@ -9,6 +9,9 @@ export default {
     accept: {
       defaultValue: ['image/*'],
     },
+    buttonOnly: {
+      defaultValue: false,
+    },
     dataTestId: {
       defaultValue: 'file-upload-test-id',
     },

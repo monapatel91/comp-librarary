@@ -16,7 +16,7 @@ import {
 import { DotTypography } from '../typography/Typography';
 import { DotButton } from '../button/Button';
 import { DotIcon } from '../icon/Icon';
-import { DotList, ListItemProps } from '../list/List';
+import { DotList } from '../list/List';
 
 export interface FileUploadProps extends CommonProps {
   /** Unique file type specifiers <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers" target="_blank">More Info</a> */
@@ -64,50 +64,37 @@ export const DotFileUpload = ({
     disabled,
     maxFiles,
     maxSize: maxSize * 1000000,
+    noClick: true,
     onDragEnter,
   });
   const [uploadedFiles, setUploadedFiles] = useState<FileWithPath[]>([]);
   const [rejectedFiles, setRejectedFiles] = useState<FileRejection[]>([]);
-  const [listAcceptedItems, setListItems] = useState<ListItemProps[]>([]);
-  const [listRejectedItems, setRejectedItems] = useState<ListItemProps[]>([]);
 
   useEffect(() => {
-    console.log('onChange', uploadedFiles);
     onChange
       ? onChange(uploadedFiles)
       : console.warn('onChange callback not defined');
   }, [uploadedFiles]);
 
   const deleteFile = (fileToRemove: FileWithPath) => {
-    console.log(uploadedFiles);
     uploadedFiles.splice(uploadedFiles.indexOf(fileToRemove), 1);
-    setUploadedFiles(uploadedFiles);
-
-    parseFiles(true);
+    setUploadedFiles([...uploadedFiles]);
   };
 
-  const parseFiles = (deleted: boolean) => {
-    console.log('acceptedFiles', acceptedFiles);
-    if (deleted) {
-      setListItems(parseAcceptedFiles(uploadedFiles, deleteFile));
-      return;
-    }
-
+  const parseFiles = () => {
     if (acceptedFiles.length > 0) {
       const accepted = uploadedFiles.concat(acceptedFiles);
       setUploadedFiles(accepted);
-      setListItems(parseAcceptedFiles(accepted, deleteFile));
     }
 
     if (fileRejections.length > 0) {
       const rejected = rejectedFiles.concat(fileRejections);
       setRejectedFiles(rejected);
-      setRejectedItems(parseRejectedFiles(rejected, maxSize));
     }
   };
 
   useEffect(() => {
-    parseFiles(false);
+    parseFiles();
   }, [acceptedFiles, fileRejections]);
 
   const maxFilesMessage = (
@@ -122,12 +109,6 @@ export const DotFileUpload = ({
     </DotTypography>
   );
 
-  const selectFileButton = (
-    <DotButton disabled={disabled} onClick={open}>
-      Select file(s)
-    </DotButton>
-  );
-
   const dropzoneContent = isDragActive ? (
     <DotTypography variant="h3">Drop the file(s) here ...</DotTypography>
   ) : (
@@ -136,30 +117,36 @@ export const DotFileUpload = ({
         Drag and drop your file(s) here
       </DotTypography>
       <DotTypography variant="h3">or</DotTypography>
-      {selectFileButton}
+      <DotButton disabled={disabled} onClick={open}>
+        Select file(s)
+      </DotButton>
     </>
   );
 
   return (
     <StyledFileUploadContainer className={containerClassName}>
-      {buttonOnly ? (
-        selectFileButton
-      ) : (
-        <StyledFileUpload
-          {...getRootProps()}
-          aria-label={ariaLabel}
-          className={rootClasses}
-          data-testid={dataTestId}
-        >
-          <input {...getInputProps()} />
-          <DotIcon iconId="upload-file" />
-          {dropzoneContent}
-        </StyledFileUpload>
-      )}
+      <StyledFileUpload
+        {...getRootProps()}
+        aria-label={ariaLabel}
+        className={rootClasses}
+        data-testid={dataTestId}
+      >
+        <input {...getInputProps()} />
+        <DotIcon iconId="upload-file" />
+        {dropzoneContent}
+      </StyledFileUpload>
       {maxSize && maxSizeMessage}
       {maxFiles && maxFilesMessage}
-      <DotList items={listAcceptedItems} width="100%" />
-      <DotList items={listRejectedItems} width="100%" />
+      <DotList
+        items={uploadedFiles.map((file: FileWithPath) =>
+          parseAcceptedFiles(file, deleteFile)
+        )}
+        width="100%"
+      />
+      <DotList
+        items={parseRejectedFiles(rejectedFiles, maxSize)}
+        width="100%"
+      />
     </StyledFileUploadContainer>
   );
 };
