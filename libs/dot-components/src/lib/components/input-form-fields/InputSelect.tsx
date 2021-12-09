@@ -36,6 +36,7 @@ export const DotInputSelect = ({
   onBlur,
   onChange,
   onFocus,
+  onKeyDown,
   options = [],
   required,
   size = 'small',
@@ -87,6 +88,7 @@ export const DotInputSelect = ({
       onBlur={onBlur}
       onChange={onChange}
       onFocus={onFocus}
+      onKeyDown={onKeyDown}
       required={required}
       select={true}
       SelectProps={{

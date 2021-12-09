@@ -28,6 +28,7 @@ describe('DotInputSelect', () => {
       onBlur: mockFunc,
       onChange: mockFunc,
       onFocus: mockFunc,
+      onkeydown: mockFunc,
       options: ['Batman', 'Superman'],
       required: true,
       size: 'small' as inputSizeOptions,

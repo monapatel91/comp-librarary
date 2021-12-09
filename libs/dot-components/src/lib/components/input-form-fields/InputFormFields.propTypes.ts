@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, Ref } from 'react';
+import { ChangeEvent, ReactNode, Ref, KeyboardEvent } from 'react';
 import { CommonProps } from '../CommonProps';
 
 export type inputSizeOptions = 'small' | 'medium';
@@ -30,9 +30,7 @@ export interface InputProps extends CommonProps {
   /** The name of input element */
   name: string;
   /** A function that should be executed when the input loses focus */
-  onBlur?: (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  onBlur?: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   /** A function that should be executed when the value of the input changes */
   onChange?: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -41,6 +39,8 @@ export interface InputProps extends CommonProps {
   onFocus?: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  /** A function that should be executed when key is pressed */
+  onKeyDown?: (event: KeyboardEvent) => void;
   /** If true, the label is displayed as required and the input element` will be required. */
   required?: boolean;
   /** Size of the input */
