@@ -7,19 +7,17 @@
 - [Commits & Pull Requests](#commits--pull-requests)
   - [Commit Messages](#commit-messages)
   - [Submitting Pull Requests](#submitting-pull-requests)
-    - [General Author Checklist](#general-author-checklist)
 - [Component vs. Demo](#component-vs-demo)
 - [Building a Component](#building-a-component)
-  - [Types of components](#types-of-components)
-  - [Generate a component](#generate-a-component)
+  - [Types of Components](#types-of-components)
+  - [Generating a Component](#generating-a-component)
   - [Using Storybook](#using-storybook)
-  - [Component Author Checklist](#component-author-checklist)
 - [Contributing to Demo App](#contributing-to-demo-app)
   - [Page Component](#page-component)
   - [Updating Navigation](#updating-navigation)
     - [Routing](#routing)
     - [Sidebar](#sidebar)
-- [Updating `dot` font icon](#updating-dot-font-icon)
+- [Updating `dot.woff` Font Icon](##updating-dotwoff-font-icon)
 - [Running Tests & Formatters](#running-tests-and-formatters)
   - [`git` hooks with `husky`](#git-hooks-with-husky)
   - [Running unit tests](#running-unit-tests)
@@ -29,13 +27,13 @@
 - [Definition of Done](#definition-of-done)
   - [Understand your workspace](#understand-your-workspace)
   - [Security](#security)
-- [CI/CD Automation `version.yml`](#ci-cd-automation-version.yml)
-  - [Lint, Test & Build `test.yml`](#lint-test-and-build-test.yml)
-  - [Bump Version & Create Tag](#bump-version-and-create-tag)
-  - [Change log Updated](#change-log-updated)
+- [CI/CD Automation `version.yml`](#cicd-automation)
+  - [Lint, Test & Build `test.yml`](#lint-test--build)
+  - [Bump Version & Create Tag](#bump-version--create-tag)
+  - [Change Log Gpdated](#change-log-generated)
   - [Create Release](#create-release)
-  - [Deploy to NPM `release.yml`](#deploy-to-npm-release.yml)
-  - [Deploy to GitHub Pages `pages.yml`](#deploy-to-github-pages-pages.yml)
+  - [Deploy to NPM `release.yml`](#deploy-to-npm)
+  - [Deploy to GitHub Pages `pages.yml`](#deploy-to-github-pages)
 
 # Getting Started
 
@@ -69,7 +67,14 @@ When working on something that is part of a Digital.ai Agility issue we request 
 
 ## Submitting Pull Requests
 
-When submitting a pull request there will be a template that is used. Please follow all directions outlined in the template and be sure to use the **Author Checklist**.
+When submitting a pull request there will be a template that is used.
+
+- Please follow all directions outlined in the template and be sure to use the **Author Checklist**.
+- Please provide enough information so that others can review your pull request.
+- If adding additional functionality or resolving a defect, please extend `e2e` and `unit` tests accordingly.
+- Update your PR with the issue # that your PR resolves if applicable. [More info](https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword.)
+- PR should be marked as `draft` if still a work in progress
+- PR should be marked as `ready` when your code changes are complete and ready for review.
 
 ## Versioning
 
