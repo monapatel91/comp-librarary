@@ -1,5 +1,6 @@
 import {
   checkIfFirstItemAfterCollapse,
+  getExpandElement,
   getItemsAfterCollapse,
   getMaxItems,
   getWidthFromRef,
@@ -98,6 +99,27 @@ describe('breadcrumbs helper functions', () => {
 
     it('should return true if item is first item after collapse', () => {
       checkIfFirstItemAfterCollapse(breadcrumbItems, 2, 2);
+    });
+  });
+
+  describe('getExpandElement', () => {
+    it('should return null when breadcrumbs element cannot be found', () => {
+      const breadcrumbsElementMock = document.createElement('ol');
+      const result = getExpandElement(breadcrumbsElementMock);
+      expect(result).toBeNull();
+    });
+
+    it('should return null when multiple breadcrumbs elements are found', () => {
+      const createBreadcrumbElementMock = (): Node => {
+        const breadcrumbsElementMock = document.createElement('ol');
+        breadcrumbsElementMock.classList.add('MuiBreadcrumbs-ol');
+        return breadcrumbsElementMock;
+      };
+      const divElement = document.createElement('div');
+      divElement.appendChild(createBreadcrumbElementMock());
+      divElement.appendChild(createBreadcrumbElementMock());
+      const result = getExpandElement(divElement);
+      expect(result).toBeNull();
     });
   });
 });

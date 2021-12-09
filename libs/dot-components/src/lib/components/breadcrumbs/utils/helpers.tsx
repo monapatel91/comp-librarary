@@ -49,9 +49,8 @@ export const checkIfFirstItemAfterCollapse = (
 export const getExpandElement = (breadcrumbElement: HTMLElement) => {
   const elements =
     breadcrumbElement.getElementsByClassName('MuiBreadcrumbs-ol');
-  return elements.length === 1
-    ? elements[0].getElementsByClassName('MuiButtonBase-root')[0]
-    : null;
+  if (!elements || elements.length !== 1) return null;
+  return elements[0].getElementsByClassName('MuiButtonBase-root')[0];
 };
 
 export const getMenuItems = (items: BreadcrumbItem[]) => {
