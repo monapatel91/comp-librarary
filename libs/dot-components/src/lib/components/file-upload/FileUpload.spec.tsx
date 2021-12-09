@@ -3,7 +3,7 @@ import { FileRejection, FileWithPath } from 'react-dropzone';
 import { render, screen, waitFor } from '../../testing-utils';
 import { DotFileUpload, FileUploadProps } from './FileUpload';
 import { DotFileListItem, FileItemProps } from './FileListItem';
-import { parseAcceptedFile, parseRejectedFile } from './uploadHelpers';
+import { parseListItem } from './uploadHelpers';
 import userEvent from '@testing-library/user-event';
 
 // TO-DO: possible that we can test file upload https://testing-library.com/docs/ecosystem-user-event/#uploadelement-file--clickinit-changeinit--options
@@ -84,12 +84,12 @@ describe('DotFileUpload', () => {
 
   describe('Validate uploaded file list', () => {
     it('should display list of uploaded files', async () => {
-      const result = parseAcceptedFile(jest.fn(), dummyFile);
+      const result = parseListItem(jest.fn(), dummyFile, 10);
       expect(result).toBeTruthy();
     });
 
     it('should display list of rejected files with error messages separated by commas', async () => {
-      const result = parseRejectedFile(jest.fn(), dummyErrorFile, 10);
+      const result = parseListItem(jest.fn(), dummyErrorFile, 10);
       expect(result).toBeTruthy();
     });
   });

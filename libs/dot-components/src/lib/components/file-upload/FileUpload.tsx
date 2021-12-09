@@ -9,11 +9,7 @@ import {
   StyledFileUpload,
   StyledFileUploadContainer,
 } from './FileUpload.styles';
-import {
-  FileRejection,
-  parseAcceptedFile,
-  parseRejectedFile,
-} from './uploadHelpers';
+import { FileRejection, parseListItem } from './uploadHelpers';
 import { DotTypography } from '../typography/Typography';
 import { DotButton } from '../button/Button';
 import { DotIcon } from '../icon/Icon';
@@ -70,26 +66,22 @@ export const DotFileUpload = ({
     onDragEnter,
   });
   const [uploadedFiles, setUploadedFiles] = useState<FileWithPath[]>([]);
-  const [rejectedFiles, setRejectedFiles] = useState<FileRejection[]>([]);
 
   useEffect(() => {
     onChange(uploadedFiles);
   }, [uploadedFiles]);
 
-  const deleteFile = (fileToRemove: FileWithPath) => {
+  const deleteFile = (fileToRemove: FileWithPath | FileRejection) => {
+    console.log('deleteFile', fileToRemove);
+    // correct fileToRemove, not removing though
     uploadedFiles.splice(uploadedFiles.indexOf(fileToRemove), 1);
     setUploadedFiles([...uploadedFiles]);
   };
 
   const parseFiles = () => {
-    if (acceptedFiles.length > 0) {
-      const accepted = uploadedFiles.concat(acceptedFiles);
-      setUploadedFiles(accepted);
-    }
-
-    if (fileRejections.length > 0) {
-      const rejected = rejectedFiles.concat(fileRejections);
-      setRejectedFiles(rejected);
+    if (acceptedFiles.length > 0 || fileRejections.length > 0) {
+      const files = uploadedFiles.concat(acceptedFiles).concat(fileRejections);
+      setUploadedFiles(files);
     }
   };
 
@@ -151,15 +143,9 @@ export const DotFileUpload = ({
       {maxSize && maxSizeMessage}
       {maxFiles && maxFilesMessage}
       <DotList
-        items={rejectedFiles
-          .map((file: FileRejection) =>
-            parseRejectedFile(deleteFile, file, maxSize)
-          )
-          .concat(
-            uploadedFiles.map((file: FileWithPath) =>
-              parseAcceptedFile(deleteFile, file)
-            )
-          )}
+        items={uploadedFiles.map((file: FileWithPath | FileRejection) =>
+          parseListItem(deleteFile, file, maxSize)
+        )}
         width="100%"
       />
     </StyledFileUploadContainer>

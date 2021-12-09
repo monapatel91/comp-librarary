@@ -30,7 +30,8 @@ export const DotFileListItem = ({
     className,
     error ? 'file-error' : 'file-success'
   );
-  const [endIcon, setEndIcon] = useState('check-solid');
+  const defaultIcon = error ? 'error-solid' : 'check-solid';
+  const [endIcon, setEndIcon] = useState(defaultIcon);
 
   return (
     <StyledListItem
@@ -38,30 +39,18 @@ export const DotFileListItem = ({
       className={rootClasses}
       data-testid={dataTestId}
       onMouseEnter={() => setEndIcon('delete')}
-      onMouseLeave={() => setEndIcon('check-solid')}
+      onMouseLeave={() => setEndIcon(defaultIcon)}
     >
       <DotIcon iconId="file" />
-      {error ? (
-        <>
-          <div className="file-item-text">
-            <DotTypography variant="body1">{file.path}</DotTypography>
-            <DotTypography variant="body2">{errorText}</DotTypography>
-          </div>
-          <DotIconButton
-            className={`${listItemRootClass}-end-icon`}
-            iconId="error-solid"
-          />
-        </>
-      ) : (
-        <>
-          <DotTypography variant="body1">{file.path}</DotTypography>
-          <DotIconButton
-            className={`${listItemRootClass}-end-icon`}
-            iconId={endIcon}
-            onClick={() => deleteFile(file)}
-          />
-        </>
-      )}
+      <div className="file-item-text">
+        <DotTypography variant="body1">{file?.path}</DotTypography>
+        {error && <DotTypography variant="body2">{errorText}</DotTypography>}
+      </div>
+      <DotIconButton
+        className={`${listItemRootClass}-end-icon`}
+        iconId={endIcon}
+        onClick={() => deleteFile(file)}
+      />
     </StyledListItem>
   );
 };

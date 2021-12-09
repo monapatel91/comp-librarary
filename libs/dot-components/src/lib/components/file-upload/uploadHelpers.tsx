@@ -12,48 +12,37 @@ export interface FileUploadError {
   message: string;
 }
 
-export const parseAcceptedFile = (
-  deleteFile: (file: FileWithPath) => void,
-  file: FileWithPath
-) => {
-  return {
-    child: (
-      <DotFileListItem
-        deleteFile={deleteFile}
-        file={file}
-        key={`${file.path}-${file.lastModified}`}
-      />
-    ),
-  };
-};
-
-export const parseRejectedFile = (
-  deleteFile: (file: FileWithPath) => void,
-  fileRejections: FileRejection,
+export const parseListItem = (
+  deleteFile: (file: FileWithPath | FileRejection) => void,
+  fileToParse: FileWithPath | FileRejection,
   maxSize: number
 ) => {
-  const { errors, file } = fileRejections;
-  const errorText = errors
-    .map((e) => {
-      switch (e.code) {
-        case 'file-too-large':
-          return `File exceeds ${maxSize}MB`;
-        case 'file-invalid-type':
-          return e.message;
-        case 'too-many-files':
-          return e.message;
-        default:
-          console.log('Unknown error', e);
-          return e.message;
-      }
-    })
-    .join(', ');
+  const hasErrors = fileToParse.errors;
+  const file = hasErrors ? fileToParse.file : fileToParse;
+  let errorText;
+  if (hasErrors) {
+    errorText = hasErrors
+      .map((e) => {
+        switch (e.code) {
+          case 'file-too-large':
+            return `File exceeds ${maxSize}MB`;
+          case 'file-invalid-type':
+            return e.message;
+          case 'too-many-files':
+            return e.message;
+          default:
+            console.log('Unknown error', e);
+            return e.message;
+        }
+      })
+      .join(', ');
+  }
 
   return {
     child: (
       <DotFileListItem
         deleteFile={deleteFile}
-        error={true}
+        error={hasErrors}
         errorText={errorText}
         file={file}
         key={`${file.path}-${file.lastModified}`}

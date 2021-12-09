@@ -22,7 +22,7 @@ export const StyledFileUploadContainer = styled.div`
           }
         }
 
-        &.file-error {
+        &.file-error:not(:hover) {
           .MuiListItemText-secondary,
           .${listItemRootClass}-end-icon .dot-icon i:before {
             color: ${theme.palette.error.main};
