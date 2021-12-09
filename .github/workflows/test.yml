@@ -28,7 +28,7 @@ jobs:
         uses: c-hive/gha-yarn-cache@v1
 
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache --check-cache --ignore-scripts --prod
+        run: yarn install --immutable --immutable-cache --check-cache --prod
 
       - name: Verify Formatting
         run: yarn format:check --base=${{ github.sha }}
@@ -61,7 +61,7 @@ jobs:
         uses: c-hive/gha-yarn-cache@v1
 
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache --check-cache --ignore-scripts --prod
+        run: yarn install --immutable --immutable-cache --check-cache --prod
 
       - name: Run unit tests
         run: yarn test:ci
@@ -86,7 +86,7 @@ jobs:
         uses: c-hive/gha-yarn-cache@v1
 
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache --check-cache --ignore-scripts --prod
+        run: yarn install --immutable --immutable-cache --check-cache --prod
 
       - name: Increase watchers
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
@@ -116,7 +116,7 @@ jobs:
         uses: c-hive/gha-yarn-cache@v1
 
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache --check-cache --ignore-scripts --prod
+        run: yarn install --immutable --immutable-cache --check-cache --prod
 
       - name: Gather Test Coverage
         run: yarn test-coverage
