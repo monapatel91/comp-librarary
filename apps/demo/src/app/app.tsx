@@ -111,6 +111,13 @@ export const App = () => {
         <Link {...props} to="/sandbox" ref={ref} />
       )),
     },
+    {
+      startIconId: 'release',
+      text: 'Breadcrumbs',
+      component: React.forwardRef((props, ref) => (
+        <Link {...props} to="/breadcrumbs" ref={ref} />
+      )),
+    },
   ];
 
   return (
