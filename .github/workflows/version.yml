@@ -185,6 +185,6 @@ jobs:
       - name: merge `master` to `develop`
         uses: devmasx/merge-branch@master
         with:
-          label_name: 'merged in develop'
-          target_branch: 'develop'
+          type: now
+          target_branch: develop
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
