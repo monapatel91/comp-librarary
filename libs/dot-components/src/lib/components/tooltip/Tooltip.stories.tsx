@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotTooltip, TooltipProps } from './Tooltip';
 import { DotIconButton } from '../button/IconButton';

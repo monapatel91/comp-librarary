@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useEffect } from 'react';
+import React, { ReactElement, ReactNode, useState, useEffect } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography } from '../typography/Typography';
@@ -8,7 +8,6 @@ import {
   AccordionDetails,
   AccordionSummary,
   Divider,
-  Tooltip,
 } from '@material-ui/core';
 import {
   detailClassName,
@@ -36,7 +35,7 @@ export interface AccordionProps extends CommonProps {
   /** Icon placed before the children. */
   startIcon?: ReactNode;
   /** The text within the expanded Accordion */
-  summary: ReactNode;
+  summary: ReactElement;
 }
 
 export const DotAccordion = ({
@@ -77,9 +76,7 @@ export const DotAccordion = ({
       >
         {startIcon}
         <DotTypography variant="body1" noWrap={noWrap}>
-          <DotTooltip title={noWrap ? summary : ''}>
-            <span>{summary}</span>
-          </DotTooltip>
+          <DotTooltip title={noWrap ? summary : ''}>{summary}</DotTooltip>
         </DotTypography>
       </AccordionSummary>
       <AccordionDetails
