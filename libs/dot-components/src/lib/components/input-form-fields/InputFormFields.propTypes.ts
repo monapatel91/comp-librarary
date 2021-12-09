@@ -40,7 +40,7 @@ export interface InputProps extends CommonProps {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   /** A function that should be executed when key is pressed */
-  onKeyDown?: (event: KeyboardEvent | MouseEvent) => void;
+  onKeyDown?: (event: KeyboardEvent) => void;
   /** If true, the label is displayed as required and the input element` will be required. */
   required?: boolean;
   /** Size of the input */

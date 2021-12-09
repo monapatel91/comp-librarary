@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  ReactNode,
-  useEffect,
-  useState,
-  KeyboardEvent,
-} from 'react';
+import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { InputProps } from './InputFormFields.propTypes';
 import { DotIcon } from '../icon/Icon';
