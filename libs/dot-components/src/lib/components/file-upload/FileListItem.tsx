@@ -12,7 +12,7 @@ export interface FileItemProps extends CommonProps {
   deleteFile: (file: FileWithPath) => void;
   error?: boolean;
   errorText?: string;
-  file: FileWithPath | FileRejection;
+  file: FileWithPath;
 }
 
 export const DotFileListItem = ({
