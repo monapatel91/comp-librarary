@@ -124,7 +124,6 @@ export const StyledSidebar = styled.aside`
             padding-top: ${theme.palette.product === 'agility' && '10px'};
           }
 
-          /* TO-DO: Add class for agility in cases like this? */
           .MuiTypography-root.MuiTypography-subtitle2 {
             border: ${theme.palette.product === 'agility' && 'none'};
             color: ${theme.palette.product === 'agility' &&
