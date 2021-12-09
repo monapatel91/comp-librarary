@@ -13,13 +13,12 @@ export interface FileUploadError {
 }
 
 export const parseListItem = (
-  deleteFile: (file: FileWithPath | FileRejection) => void,
-  fileToBeParsed: FileWithPath | FileRejection,
+  deleteFile: (file: FileRejection) => void,
+  fileToBeParsed: FileRejection,
   maxSize: number
 ) => {
   const errors = fileToBeParsed.errors;
   const hasErrors = errors.length > 0;
-  const parsedFile = fileToBeParsed.file;
   let errorText;
   if (hasErrors) {
     errorText = errors
@@ -45,8 +44,8 @@ export const parseListItem = (
         deleteFile={deleteFile}
         error={hasErrors}
         errorText={errorText}
-        file={parsedFile}
-        key={`${parsedFile.path}-${parsedFile.lastModified}`}
+        file={fileToBeParsed}
+        key={`${fileToBeParsed.file.path}-${fileToBeParsed.file.lastModified}`}
       />
     ),
   };

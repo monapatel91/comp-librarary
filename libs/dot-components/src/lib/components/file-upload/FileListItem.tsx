@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FileWithPath } from 'react-dropzone';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { CommonProps } from '../CommonProps';
 import { DotIcon } from '../icon/Icon';
@@ -7,12 +6,13 @@ import { DotIconButton } from '../button/IconButton';
 import { listItemRootClass, StyledListItem } from '../list/List.styles';
 import { DotTypography } from '../typography/Typography';
 import { fileClassName } from './FileUpload.styles';
+import { FileRejection } from './uploadHelpers';
 
 export interface FileItemProps extends CommonProps {
-  deleteFile: (file: FileWithPath) => void;
+  deleteFile: (file: FileRejection) => void;
   error?: boolean;
   errorText?: string;
-  file: FileWithPath;
+  file: FileRejection;
 }
 
 export const DotFileListItem = ({
@@ -43,7 +43,7 @@ export const DotFileListItem = ({
     >
       <DotIcon iconId="file" />
       <div className="file-item-text">
-        <DotTypography variant="body1">{file?.path}</DotTypography>
+        <DotTypography variant="body1">{file.file.path}</DotTypography>
         {error && <DotTypography variant="body2">{errorText}</DotTypography>}
       </div>
       <DotIconButton
