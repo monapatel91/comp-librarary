@@ -57,6 +57,7 @@ export const DotInputText = ({
   onBlur,
   onChange,
   onFocus,
+  onKeyDown,
   placeholder,
   readOnly = false,
   required = false,
@@ -128,7 +129,6 @@ export const DotInputText = ({
         })
       : onChange?.(e);
   };
-
   const inputTextValue = hasDebounce ? inputTextState.inputValue : value;
   // Don't use default value when debounce feature is enabled because
   // in that case component is controlled
@@ -176,6 +176,7 @@ export const DotInputText = ({
       onBlur={onBlur}
       onChange={hasDebounce ? handleChange : onChange}
       onFocus={onFocus}
+      onKeyDown={onKeyDown}
       placeholder={placeholder}
       required={required}
       rows={multiline ? rows : null}

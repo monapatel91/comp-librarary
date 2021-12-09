@@ -30,6 +30,7 @@ describe('DotInputText', () => {
       onBlur: mockFunc,
       onChange: mockFunc,
       onFocus: mockFunc,
+      onKeyDown: mockFunc,
       placeholder: 'Enter something',
       readOnly: true,
       required: true,
