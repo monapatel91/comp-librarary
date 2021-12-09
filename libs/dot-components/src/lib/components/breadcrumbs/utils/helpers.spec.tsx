@@ -1,4 +1,4 @@
-import { getItemsAfterCollapse } from './helpers';
+import { getItemsAfterCollapse, getMaxItems } from './helpers';
 
 describe('breadcrumbs helper functions', () => {
   describe('getItemsAfterCollapse', () => {
@@ -22,6 +22,26 @@ describe('breadcrumbs helper functions', () => {
     it("should return 1 when 'maxItems' argument is defined and 'adjustMaxItems' is set to true", () => {
       const result = getItemsAfterCollapse(true, 99, 4);
       expect(result).toBe(1);
+    });
+  });
+  describe('getMaxItems', () => {
+    it("should return undefined when 'maxItems' argument is not set and 'visibleItemsNumber' is less than 1", () => {
+      const result = getMaxItems(true, 0);
+      expect(result).toBeUndefined();
+    });
+    it("should return correct value when 'maxItems' argument is not set and 'visibleItemsNumber' is greater than 0", () => {
+      const visibleItemsNumber = 5;
+      const result = getMaxItems(true, visibleItemsNumber);
+      expect(result).toBe(visibleItemsNumber);
+    });
+    it("should return correct value when 'maxItems' argument is set and 'adjustMaxItems' is set to false", () => {
+      const maxItems = 6;
+      const result = getMaxItems(false, 99, maxItems);
+      expect(result).toBe(maxItems);
+    });
+    it("should return 2 when 'maxItems' argument is set and 'adjustMaxItems' is set to true", () => {
+      const result = getMaxItems(true, 99, 4);
+      expect(result).toBe(2);
     });
   });
 });
