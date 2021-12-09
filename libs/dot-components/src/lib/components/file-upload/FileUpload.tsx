@@ -1,29 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FileWithPath, useDropzone } from 'react-dropzone';
 import { CommonProps } from '../CommonProps';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   containerClassName,
+  dropZoneClassName,
   rootClassName,
   StyledFileUpload,
   StyledFileUploadContainer,
 } from './FileUpload.styles';
-import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { MappedFile, parseListItem } from './uploadHelpers';
 import { DotTypography } from '../typography/Typography';
 import { DotButton } from '../button/Button';
 import { DotIcon } from '../icon/Icon';
-import { DotList, ListItemProps } from '../list/List';
-
-interface FileUploadError {
-  code: string;
-  message: string;
-}
-
-interface FileRejection {
-  file: FileWithPath;
-  errors: Array<FileUploadError>;
-}
+import { DotList } from '../list/List';
 
 export interface FileUploadProps extends CommonProps {
+  /** Unique file type specifiers <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers" target="_blank">More Info</a> */
   accept?: Array<string>;
   /** If true, will only display the button */
   buttonOnly?: boolean;
@@ -33,57 +26,11 @@ export interface FileUploadProps extends CommonProps {
   maxFiles?: number;
   /** Defines the maximum file size (in MB) */
   maxSize: number;
+  /** callback triggered when files are added or removed */
+  onChange: (files: Array<MappedFile>) => void;
   /** callback triggered when dragenter event occurs */
   onDragEnter?: (event: React.DragEvent<HTMLDivElement>) => void;
-  /** callback triggered when files are added */
-  onUpload?: (files: Array<File>) => void;
 }
-
-export const acceptedFileItems = (acceptedFiles: Array<FileWithPath>) => {
-  const acceptedItems: ListItemProps[] = [];
-  acceptedFiles.forEach((file: FileWithPath) => {
-    acceptedItems.push({
-      className: 'file-success',
-      endIconId: 'check-solid',
-      startIconId: 'attachment',
-      text: file.path,
-    });
-  });
-  return acceptedItems;
-};
-
-export const fileRejectionItems = (
-  fileRejections: Array<FileRejection>,
-  maxSize: number
-) => {
-  const failedItems: ListItemProps[] = [];
-  fileRejections.forEach(({ file, errors }: FileRejection) => {
-    const errorText = errors
-      .map((e) => {
-        switch (e.code) {
-          case 'file-too-large':
-            return `File exceeds ${maxSize}MB`;
-          case 'file-invalid-type':
-            return e.message;
-          case 'too-many-files':
-            return e.message;
-          default:
-            console.log('Unknown error', e);
-            return e.message;
-        }
-      })
-      .join(', ');
-
-    failedItems.push({
-      className: 'file-error',
-      endIconId: 'error-solid',
-      primaryText: file.path,
-      startIconId: 'attachment',
-      secondaryText: errorText,
-    });
-  });
-  return failedItems;
-};
 
 export const DotFileUpload = ({
   accept,
@@ -94,10 +41,15 @@ export const DotFileUpload = ({
   disabled,
   maxFiles,
   maxSize,
+  onChange,
   onDragEnter,
-  onUpload,
 }: FileUploadProps) => {
-  const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const rootClasses = useStylesWithRootClass(
+    rootClassName,
+    className,
+    !buttonOnly ? dropZoneClassName : '',
+    disabled ? 'disabled' : ''
+  );
   const {
     acceptedFiles,
     fileRejections,
@@ -111,26 +63,45 @@ export const DotFileUpload = ({
     maxFiles,
     maxSize: maxSize * 1000000,
     noClick: true,
-    noKeyboard: true,
     onDragEnter,
-    onDrop: (files: Array<File>) => handleDrop(files),
   });
+  const [uploadedFiles, setUploadedFiles] = useState<MappedFile[]>([]);
 
-  const handleDrop = (files: Array<File>) => {
-    onUpload ? onUpload(files) : console.warn('onUpload callback not defined');
+  useEffect(() => {
+    onChange(uploadedFiles);
+  }, [uploadedFiles]);
+
+  const deleteFile = (fileToBeRemoved: FileWithPath) => {
+    const parsedFiles: FileWithPath[] = [];
+
+    // `File` is nested inside uploadedFiles, making it difficult to find the index
+    // map through uploadedFiles and extract `File` object into new array
+    uploadedFiles.forEach((item) => {
+      parsedFiles.push(item.file);
+    });
+
+    const fileToBeRemovedIndex = parsedFiles.indexOf(fileToBeRemoved);
+    uploadedFiles.splice(fileToBeRemovedIndex, 1);
+    setUploadedFiles([...uploadedFiles]);
   };
 
-  const getFileList = () => {
-    const acceptedItems: ListItemProps[] =
-      acceptedFileItems(acceptedFiles) || [];
-    const rejectedItems: ListItemProps[] =
-      fileRejectionItems(fileRejections, maxSize) || [];
-    return acceptedItems.concat(rejectedItems);
+  const parseFiles = () => {
+    // map through accepted files and make them same shape as rejected files
+    const mappedFiles = acceptedFiles.map((value) => ({
+      file: value,
+      errors: [],
+    }));
+
+    setUploadedFiles(uploadedFiles.concat(mappedFiles).concat(fileRejections));
   };
+
+  useEffect(() => {
+    parseFiles();
+  }, [acceptedFiles, fileRejections]);
 
   const maxFilesMessage = (
     <DotTypography variant="body2">
-      ({maxFiles} files are the maximum number of files you can drop here)
+      {maxFiles} files are the maximum number of files you can upload at once.
     </DotTypography>
   );
 
@@ -140,39 +111,53 @@ export const DotFileUpload = ({
     </DotTypography>
   );
 
-  const dropzoneContent = isDragActive ? (
-    <DotTypography variant="h3">Drop the file(s) here ...</DotTypography>
-  ) : (
-    <>
-      <DotTypography variant="h3">
-        Drag and drop your file(s) here
-      </DotTypography>
-      <DotTypography variant="h3">or</DotTypography>
-      <DotButton onClick={open}>Select file(s)</DotButton>
-      {maxSize && maxSizeMessage}
-    </>
-  );
+  const dropzoneContent = () => {
+    if (buttonOnly) {
+      return (
+        <DotButton disabled={disabled} onClick={open}>
+          Select file(s)
+        </DotButton>
+      );
+    } else {
+      return isDragActive ? (
+        <>
+          <DotIcon iconId="upload-file" />
+          <DotTypography variant="h3">Drop the file(s) here ...</DotTypography>
+        </>
+      ) : (
+        <>
+          <DotIcon iconId="upload-file" />
+          <DotTypography variant="h3">
+            Drag and drop your file(s) here
+          </DotTypography>
+          <DotTypography variant="h3">or</DotTypography>
+          <DotButton disabled={disabled} onClick={open}>
+            Select file(s)
+          </DotButton>
+        </>
+      );
+    }
+  };
 
   return (
     <StyledFileUploadContainer className={containerClassName}>
-      {buttonOnly ? (
-        <DotButton onClick={open}>Select a file</DotButton>
-      ) : (
-        <StyledFileUpload
-          {...getRootProps()}
-          aria-label={ariaLabel}
-          className={rootClasses}
-          data-testid={dataTestId}
-        >
-          <input {...getInputProps()} />
-          {/* TO-DO: need `upload-cloud` icon */}
-          <DotIcon iconId="upload-file" />
-          {dropzoneContent}
-        </StyledFileUpload>
-      )}
-      {maxFiles && maxFilesMessage}
+      <StyledFileUpload
+        {...getRootProps()}
+        aria-label={ariaLabel}
+        className={rootClasses}
+        data-testid={dataTestId}
+      >
+        <input {...getInputProps()} />
+        {dropzoneContent()}
+      </StyledFileUpload>
       {maxSize && maxSizeMessage}
-      <DotList items={getFileList()} width="100%" />
+      {maxFiles && maxFilesMessage}
+      <DotList
+        items={uploadedFiles.map((file) =>
+          parseListItem(deleteFile, file, maxSize)
+        )}
+        width="100%"
+      />
     </StyledFileUploadContainer>
   );
 };

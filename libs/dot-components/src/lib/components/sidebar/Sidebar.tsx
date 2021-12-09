@@ -195,7 +195,6 @@ export const DotSidebar = ({
         </DotLink>
       )}
       {navItems.length > 0 && (
-        // TO-DO: defect with secondary open while sidebar collapsed
         <DotList
           ariaLabel="left navigation"
           className={sidebarClasses}
