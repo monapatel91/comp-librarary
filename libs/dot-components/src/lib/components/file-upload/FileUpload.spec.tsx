@@ -1,9 +1,9 @@
 import React from 'react';
-import { FileRejection, FileWithPath } from 'react-dropzone';
+import { FileWithPath } from 'react-dropzone';
 import { render, screen, waitFor } from '../../testing-utils';
 import { DotFileUpload, FileUploadProps } from './FileUpload';
 import { DotFileListItem, FileItemProps } from './FileListItem';
-import { parseListItem } from './uploadHelpers';
+import { MappedFile, parseListItem } from './uploadHelpers';
 import userEvent from '@testing-library/user-event';
 
 // TO-DO: possible that we can test file upload
@@ -17,7 +17,7 @@ const dummyErrorFile = {
     { code: 'unknown-error-message', message: 'unknown-error-message' },
   ],
   file: dummyFile,
-} as FileRejection;
+} as MappedFile;
 const testId = 'file-upload-testid';
 const onChange = jest.fn();
 const defaultUpload = (

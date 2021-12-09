@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { FileWithPath, useDropzone } from 'react-dropzone';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
@@ -9,7 +9,7 @@ import {
   StyledFileUpload,
   StyledFileUploadContainer,
 } from './FileUpload.styles';
-import { FileRejection, parseListItem } from './uploadHelpers';
+import { MappedFile, parseListItem } from './uploadHelpers';
 import { DotTypography } from '../typography/Typography';
 import { DotButton } from '../button/Button';
 import { DotIcon } from '../icon/Icon';
@@ -27,7 +27,7 @@ export interface FileUploadProps extends CommonProps {
   /** Defines the maximum file size (in MB) */
   maxSize: number;
   /** callback triggered when files are added or removed */
-  onChange: (files: Array<FileRejection>) => void;
+  onChange: (files: Array<MappedFile>) => void;
   /** callback triggered when dragenter event occurs */
   onDragEnter?: (event: React.DragEvent<HTMLDivElement>) => void;
 }
@@ -65,19 +65,19 @@ export const DotFileUpload = ({
     noClick: true,
     onDragEnter,
   });
-  const [uploadedFiles, setUploadedFiles] = useState<FileRejection[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<MappedFile[]>([]);
 
   useEffect(() => {
     onChange(uploadedFiles);
   }, [uploadedFiles]);
 
-  const deleteFile = (fileToBeRemoved: FileRejection) => {
-    const parsedFiles: FileRejection[] = [];
+  const deleteFile = (fileToBeRemoved: FileWithPath) => {
+    const parsedFiles: FileWithPath[] = [];
 
     // `File` is nested inside uploadedFiles, making it difficult to find the index
     // map through uploadedFiles and extract `File` object into new array
-    uploadedFiles.forEach((file) => {
-      parsedFiles.push(file);
+    uploadedFiles.forEach((item) => {
+      parsedFiles.push(item.file);
     });
 
     const fileToBeRemovedIndex = parsedFiles.indexOf(fileToBeRemoved);

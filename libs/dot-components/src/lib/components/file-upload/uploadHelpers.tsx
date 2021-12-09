@@ -1,8 +1,9 @@
 import React from 'react';
 import { FileWithPath } from 'react-dropzone';
 import { DotFileListItem } from './FileListItem';
+import { CreateUUID } from '../createUUID';
 
-export interface FileRejection {
+export interface MappedFile {
   errors: Array<FileUploadError>;
   file: FileWithPath;
 }
@@ -13,15 +14,16 @@ export interface FileUploadError {
 }
 
 export const parseListItem = (
-  deleteFile: (file: FileRejection) => void,
-  fileToBeParsed: FileRejection,
+  deleteFile: (file: FileWithPath) => void,
+  fileToBeParsed: MappedFile,
   maxSize: number
 ) => {
-  const errors = fileToBeParsed.errors;
-  const hasErrors = errors.length > 0;
+  const fileErrors = fileToBeParsed.errors;
+  const parsedFile = fileToBeParsed.file;
+  const hasErrors = fileErrors.length > 0;
   let errorText;
   if (hasErrors) {
-    errorText = errors
+    errorText = fileErrors
       .map((e) => {
         switch (e.code) {
           case 'file-too-large':
@@ -44,8 +46,8 @@ export const parseListItem = (
         deleteFile={deleteFile}
         error={hasErrors}
         errorText={errorText}
-        file={fileToBeParsed}
-        key={`${fileToBeParsed.file.path}-${fileToBeParsed.file.lastModified}`}
+        file={parsedFile}
+        key={CreateUUID()}
       />
     ),
   };
