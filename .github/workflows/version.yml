@@ -171,3 +171,17 @@ jobs:
           inputs: '{"ref": "${{ github.ref }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to GitHub Pages
+
+  merge-branch:
+    name: Merge `master` back into `develop`
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: merge `master` to `develop`
+        uses: devmasx/merge-branch@master
+        with:
+          label_name: 'merged in develop'
+          target_branch: 'develop'
+          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
