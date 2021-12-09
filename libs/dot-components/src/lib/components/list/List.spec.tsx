@@ -13,7 +13,7 @@ import { PopperPlacement } from '../menu/Menu';
 import { LinkTarget } from '../link/Link';
 
 const onClick = jest.fn();
-
+const consoleSpy = jest.spyOn(global.console, 'warn');
 const mockListItems: Array<ListItemProps> = [
   {
     text: 'Pipelines',
@@ -53,7 +53,43 @@ const mockListItems: Array<ListItemProps> = [
     target: '_blank',
     tooltip: 'The Dark Knight',
   },
+  {
+    primaryText: 'Primary Text',
+    secondaryText: 'Secondary Text',
+    endIconId: 'block',
+  },
 ];
+
+const clickListItem = (itemPosition: number): void => {
+  const item = screen.getAllByRole('button');
+  userEvent.click(item[itemPosition]);
+};
+
+const expectNestedDrawerItemToBeVisible = async (
+  nestedItemText: string,
+  shouldBeVisible = true
+): Promise<void> => {
+  const nestedItemElement = screen.getByText(nestedItemText);
+
+  await waitFor(() => {
+    shouldBeVisible
+      ? expect(nestedItemElement).toBeVisible()
+      : expect(nestedItemElement).not.toBeVisible();
+  });
+};
+
+const expectNestedMenuItemToBeVisible = async (
+  nestedItemText: string,
+  shouldBeVisible = true
+): Promise<void> => {
+  const nestedItemElement = screen.queryByText(nestedItemText);
+
+  await waitFor(() => {
+    shouldBeVisible
+      ? expect(nestedItemElement).toBeVisible()
+      : expect(nestedItemElement).not.toBeInTheDocument();
+  });
+};
 
 describe('List', () => {
   it('should have unchanged API', () => {
@@ -106,30 +142,49 @@ describe('List', () => {
     expect(screen.getByText(nestedItemText)).toBeVisible();
   });
 
-  it('should display nested menu when clicked', () => {
+  it('should display nested menu when clicked', async () => {
     render(<DotList items={mockListItems} nestedListType="menu" />);
-    const item = screen.getAllByRole('button');
     const nestedItemText = 'Package Progression';
 
-    waitFor(() => {
-      expect(screen.getByText(nestedItemText)).not.toBeVisible();
-    });
-
-    userEvent.click(item[1]);
-    expect(screen.getByText(nestedItemText)).toBeVisible();
+    await expectNestedMenuItemToBeVisible(nestedItemText, false);
+    clickListItem(1);
+    await expectNestedMenuItemToBeVisible(nestedItemText);
   });
 
-  it('should display nested drawer when clicked', () => {
-    render(<DotList items={mockListItems} nestedListType="drawer" />);
-    const item = screen.getAllByRole('button');
+  it('should show and hide nested menu when same item is clicked twice', async () => {
+    render(<DotList items={mockListItems} nestedListType="menu" />);
     const nestedItemText = 'Package Progression';
+    clickListItem(1);
+    await expectNestedMenuItemToBeVisible(nestedItemText);
+    clickListItem(1);
+    await expectNestedMenuItemToBeVisible(nestedItemText, false);
+  });
 
-    waitFor(() => {
-      expect(screen.getByText(nestedItemText)).not.toBeVisible();
-    });
+  it('should hide nested menu when user clicks outside of the nested menu', async () => {
+    render(<DotList items={mockListItems} nestedListType="menu" />);
+    const nestedItemText = 'Package Progression';
+    await expectNestedMenuItemToBeVisible(nestedItemText, false);
+    clickListItem(1);
+    await expectNestedMenuItemToBeVisible(nestedItemText);
+    userEvent.click(document.body);
+    await expectNestedMenuItemToBeVisible(nestedItemText, false);
+  });
 
-    userEvent.click(item[1]);
-    expect(screen.getByText(nestedItemText)).toBeVisible();
+  it('should display nested drawer when clicked', async () => {
+    render(<DotList items={mockListItems} nestedListType="drawer" />);
+    const nestedItemText = 'Package Progression';
+    await expectNestedDrawerItemToBeVisible(nestedItemText, false);
+    clickListItem(1);
+    await expectNestedDrawerItemToBeVisible(nestedItemText);
+  });
+
+  it('should show and hide nested drawer when same item is clicked twice', async () => {
+    render(<DotList items={mockListItems} nestedListType="drawer" />);
+    const nestedItemText = 'Package Progression';
+    clickListItem(1);
+    await expectNestedDrawerItemToBeVisible(nestedItemText);
+    clickListItem(1);
+    await expectNestedDrawerItemToBeVisible(nestedItemText, false);
   });
 
   it('should have an href if one is passed', () => {
@@ -176,6 +231,12 @@ describe('List', () => {
     const divider = screen.getByTestId('divider-3');
     expect(divider).toHaveAttribute('aria-hidden', 'true');
   });
+
+  it('should display empty list element when no items are provided', () => {
+    render(<DotList />);
+    const listElement = screen.getByRole('list');
+    expect(listElement).toBeEmptyDOMElement();
+  });
 });
 
 describe('ListItem', () => {
@@ -190,11 +251,15 @@ describe('ListItem', () => {
       endIconId: 'home',
       href: 'http://www.digital.ai',
       index: 0,
+      isOpened: false,
       items: mockListItems,
       menuPlacement: 'right' as PopperPlacement,
       nestedDrawerSpacing: 240,
       nestedListType: 'expandable' as NestedListType,
       onClick: jest.fn(),
+      onMenuLeave: jest.fn(),
+      primaryText: 'Primary Text',
+      secondaryText: 'Secondary Text',
       selected: true,
       startIconId: 'home',
       target: '_blank' as LinkTarget,
@@ -214,7 +279,40 @@ describe('ListItem', () => {
     userEvent.hover(listItem);
     waitFor(() => {
       expect(tooltip).toHaveLength(1);
+      expect(consoleSpy).not.toHaveBeenCalled();
     });
+  });
+
+  it('should display primary and secondary text if provided', () => {
+    render(<DotList items={mockListItems} />);
+    const primaryText = screen.getByText('Primary Text');
+    const secondaryText = screen.getByText('Secondary Text');
+
+    expect(primaryText).toBeVisible();
+    expect(secondaryText).toBeVisible();
+  });
+
+  it('should have a deprecation warnings if title is provided', () => {
+    const deprecatedItems: Array<ListItemProps> = [
+      { text: 'Hello World', title: 'well hello there' },
+    ];
+    render(<DotList items={deprecatedItems} />);
+    expect(consoleSpy).toHaveBeenCalled();
+  });
+
+  it('should have a deprecation warning if index is provided', () => {
+    const deprecatedItems: Array<ListItemProps> = [
+      { text: 'Hello World', index: 1 },
+    ];
+    render(<DotList items={deprecatedItems} />);
+    expect(consoleSpy).toHaveBeenCalled();
+  });
+
+  xit('should display the end icon if passed and no children', () => {
+    render(<DotList items={mockListItems} />);
+    const listItem = screen.getByText('Primary Text');
+
+    expect(listItem).toBeVisible();
   });
 
   xit("should have 'aria-label' attribute with correct value", () => {

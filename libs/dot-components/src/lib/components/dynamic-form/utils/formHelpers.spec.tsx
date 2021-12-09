@@ -117,6 +117,10 @@ describe('dynamic form helper functions', () => {
             isTouched: false,
             isValid: false,
           },
+          terms: {
+            ...expectedFormState.data['terms'],
+            isTouched: false,
+          },
         },
       });
     });

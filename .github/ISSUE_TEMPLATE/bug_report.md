@@ -7,9 +7,11 @@ assignees:
 ---
 
 **Describe the bug**
+
 A clear and concise description of what the bug is.
 
 **To Reproduce**
+
 Steps to reproduce the behavior:
 
 1. Go to '...'
@@ -30,10 +32,6 @@ Steps to reproduce the behavior:
 
 - If applicable please provide any console or network errors that occurred.
 
-**Additional context**
-
-- Add any other context about the problem here.
-
 **Desktop (please complete the following information):**
 
 - OS: [e.g. macOS Big Sur]
@@ -44,7 +42,3 @@ Steps to reproduce the behavior:
 
 - Release Version [e.g. 1.0.0]
 - Did this work in previous versions? If so, which one(s)
-
-**Acceptance Criteria**
-
-- [ ] Please provide a list of acceptance criteria, if you are unsure then add a list of your desired outcomes
