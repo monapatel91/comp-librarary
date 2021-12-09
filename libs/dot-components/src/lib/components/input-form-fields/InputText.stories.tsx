@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { DotInputText, InputTextProps } from './InputText';
 import { DotIcon } from '../icon/Icon';
@@ -33,5 +34,12 @@ export const Default: Story<InputTextProps> = (args: any) => {
   } = args;
   const endIcon = endIconId && <DotIcon iconId={endIconId} />;
   const startIcon = startIconId && <DotIcon iconId={startIconId} />;
-  return <DotInputText {...args} endIcon={endIcon} startIcon={startIcon} />;
+  return (
+    <DotInputText
+      {...args}
+      endIcon={endIcon}
+      startIcon={startIcon}
+      onKeyDown={action('Input on keydown!!')}
+    />
+  );
 };
