@@ -172,6 +172,7 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to GitHub Pages
 
+  # https://github.com/marketplace/actions/merge-branch
   merge-branch:
     name: Merge `master` back into `develop`
     runs-on: ubuntu-latest
