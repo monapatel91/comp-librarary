@@ -6,8 +6,9 @@ import { DotFileListItem, FileItemProps } from './FileListItem';
 import { parseListItem } from './uploadHelpers';
 import userEvent from '@testing-library/user-event';
 
-// TO-DO: possible that we can test file upload https://testing-library.com/docs/ecosystem-user-event/#uploadelement-file--clickinit-changeinit--options
-const dummyFile = { path: 'image.jpg' } as FileWithPath;
+// TO-DO: possible that we can test file upload
+// https://testing-library.com/docs/ecosystem-user-event/#uploadelement-file--clickinit-changeinit--options
+const dummyFile = { file: { path: 'image.jpg' }, errors: [] } as FileWithPath;
 const dummyErrorFile = {
   errors: [
     { code: 'file-too-large', message: `File exceeds 10MB` },

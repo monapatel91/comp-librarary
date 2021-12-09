@@ -71,17 +71,31 @@ export const DotFileUpload = ({
     onChange(uploadedFiles);
   }, [uploadedFiles]);
 
-  const deleteFile = (fileToRemove: FileWithPath | FileRejection) => {
-    console.log('deleteFile', fileToRemove);
-    // correct fileToRemove, not removing though
-    uploadedFiles.splice(uploadedFiles.indexOf(fileToRemove), 1);
+  const deleteFile = (fileToBeRemoved: FileWithPath | FileRejection) => {
+    const parsedFiles = [];
+
+    // `File` is nested inside uploadedFiles, making it difficult to find the index
+    // map through uploadedFiles and extract `File` object into new array
+    uploadedFiles.forEach((f) => {
+      parsedFiles.push(f.file);
+    });
+
+    const fileToBeRemovedIndex = parsedFiles.indexOf(fileToBeRemoved);
+    uploadedFiles.splice(fileToBeRemovedIndex, 1);
     setUploadedFiles([...uploadedFiles]);
   };
 
   const parseFiles = () => {
     if (acceptedFiles.length > 0 || fileRejections.length > 0) {
-      const files = uploadedFiles.concat(acceptedFiles).concat(fileRejections);
-      setUploadedFiles(files);
+      // map through accepted files and make them same shape as rejected files
+      const mappedFiles = acceptedFiles.map((value) => ({
+        file: value,
+        errors: [],
+      }));
+
+      setUploadedFiles(
+        uploadedFiles.concat(mappedFiles).concat(fileRejections)
+      );
     }
   };
 

@@ -14,14 +14,15 @@ export interface FileUploadError {
 
 export const parseListItem = (
   deleteFile: (file: FileWithPath | FileRejection) => void,
-  fileToParse: FileWithPath | FileRejection,
+  fileToBeParsed: FileWithPath | FileRejection,
   maxSize: number
 ) => {
-  const hasErrors = fileToParse.errors;
-  const file = hasErrors ? fileToParse.file : fileToParse;
+  const errors = fileToBeParsed.errors;
+  const hasErrors = errors.length > 0;
+  const parsedFile = fileToBeParsed.file;
   let errorText;
   if (hasErrors) {
-    errorText = hasErrors
+    errorText = errors
       .map((e) => {
         switch (e.code) {
           case 'file-too-large':
@@ -44,8 +45,8 @@ export const parseListItem = (
         deleteFile={deleteFile}
         error={hasErrors}
         errorText={errorText}
-        file={file}
-        key={`${file.path}-${file.lastModified}`}
+        file={parsedFile}
+        key={`${parsedFile.path}-${parsedFile.lastModified}`}
       />
     ),
   };
