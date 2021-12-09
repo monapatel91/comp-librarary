@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileRejection, FileWithPath } from 'react-dropzone';
+import { FileWithPath } from 'react-dropzone';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { CommonProps } from '../CommonProps';
 import { DotIcon } from '../icon/Icon';

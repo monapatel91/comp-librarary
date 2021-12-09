@@ -1,7 +1,6 @@
 import React from 'react';
 import { FileRejection, FileWithPath } from 'react-dropzone';
 import { render, screen, waitFor } from '../../testing-utils';
-import { ListItemProps } from '../list/List';
 import { DotFileUpload, FileUploadProps } from './FileUpload';
 import { DotFileListItem, FileItemProps } from './FileListItem';
 import { parseAcceptedFile, parseRejectedFile } from './uploadHelpers';
@@ -85,46 +84,12 @@ describe('DotFileUpload', () => {
 
   describe('Validate uploaded file list', () => {
     it('should display list of uploaded files', async () => {
-      const deleteFile = jest.fn();
-      // const expected: ListItemProps = {
-      //   child: (
-      //     <DotFileListItem
-      //       deleteFile={deleteFile}
-      //       file={dummyFile}
-      //       key="random key"
-      //     />
-      //   ),
-      // };
-
-      const result = parseAcceptedFile(deleteFile, dummyFile);
-      // expect(result).toEqual(expected);
+      const result = parseAcceptedFile(jest.fn(), dummyFile);
       expect(result).toBeTruthy();
     });
 
     it('should display list of rejected files with error messages separated by commas', async () => {
-      const maxSize = 10;
-      const errors = [
-        { code: 'file-too-large', message: `File exceeds ${maxSize}MB` },
-        { code: 'file-invalid-type', message: 'file-invalid-type' },
-        { code: 'too-many-files', message: 'too-many-files' },
-        { code: 'unknown-error-message', message: 'unknown-error-message' },
-      ];
-      // const errorText = `${errors[0].message}, ${errors[1].message}, ${errors[2].message}, ${errors[3].message}`;
-      const deleteFile = jest.fn();
-
-      // const expected: ListItemProps = {
-      //   child: (
-      //     <DotFileListItem
-      //       deleteFile={deleteFile}
-      //       error={true}
-      //       errorText={errorText}
-      //       file={dummyFile}
-      //     />
-      //   ),
-      // };
-
-      const result = parseRejectedFile(deleteFile, dummyErrorFile, maxSize);
-      // expect(result).toEqual(expected);
+      const result = parseRejectedFile(jest.fn(), dummyErrorFile, 10);
       expect(result).toBeTruthy();
     });
   });
