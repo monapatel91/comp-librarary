@@ -86,17 +86,13 @@ export const DotFileUpload = ({
   };
 
   const parseFiles = () => {
-    if (acceptedFiles.length > 0 || fileRejections.length > 0) {
-      // map through accepted files and make them same shape as rejected files
-      const mappedFiles = acceptedFiles.map((value) => ({
-        file: value,
-        errors: [],
-      }));
+    // map through accepted files and make them same shape as rejected files
+    const mappedFiles = acceptedFiles.map((value) => ({
+      file: value,
+      errors: [],
+    }));
 
-      setUploadedFiles(
-        uploadedFiles.concat(mappedFiles).concat(fileRejections)
-      );
-    }
+    setUploadedFiles(uploadedFiles.concat(mappedFiles).concat(fileRejections));
   };
 
   useEffect(() => {
