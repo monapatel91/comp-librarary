@@ -117,7 +117,7 @@ jobs:
       # https://github.com/marketplace/actions/add-commit
       # TO-DO: use modified SHA to resolve any build issues: https://github.com/EndBug/add-and-commit/issues/200
       - name: Commit and Push Changelog
-        uses: EndBug/add-and-commit@master
+        uses: EndBug/add-and-commit@7.4.0
         with:
           add: CI_CHANGE_LOG.md
           default_author: github_actions
