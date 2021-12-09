@@ -72,7 +72,7 @@ export const DotFileUpload = ({
   }, [uploadedFiles]);
 
   const deleteFile = (fileToBeRemoved: FileWithPath | FileRejection) => {
-    const parsedFiles = [];
+    const parsedFiles: FileWithPath[] = [];
 
     // `File` is nested inside uploadedFiles, making it difficult to find the index
     // map through uploadedFiles and extract `File` object into new array
