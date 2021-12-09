@@ -1,4 +1,4 @@
-import { getItemsAfterCollapse, getMaxItems } from './helpers';
+import { getItemsAfterCollapse, getMaxItems, getWidthFromRef } from './helpers';
 
 describe('breadcrumbs helper functions', () => {
   describe('getItemsAfterCollapse', () => {
@@ -42,6 +42,31 @@ describe('breadcrumbs helper functions', () => {
     it("should return 2 when 'maxItems' argument is set and 'adjustMaxItems' is set to true", () => {
       const result = getMaxItems(true, 99, 4);
       expect(result).toBe(2);
+    });
+  });
+
+  describe('getWidthFromRef', () => {
+    it('should return undefined if ref is undefined', () => {
+      const refMock = undefined as never;
+      const result = getWidthFromRef(refMock);
+      expect(result).toBeUndefined();
+    });
+    it("should return undefined if 'current' prop is not defined", () => {
+      const refMock = {} as never;
+      const result = getWidthFromRef(refMock);
+      expect(result).toBeUndefined();
+    });
+    it('should return correct value if width is defined', () => {
+      const width = 22;
+      const refMock = {
+        current: {
+          getBoundingClientRect: () => {
+            return { width };
+          },
+        },
+      } as never;
+      const result = getWidthFromRef(refMock);
+      expect(result).toBe(width);
     });
   });
 });
