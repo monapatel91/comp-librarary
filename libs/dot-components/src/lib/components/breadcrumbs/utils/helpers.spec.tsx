@@ -1,4 +1,10 @@
-import { getItemsAfterCollapse, getMaxItems, getWidthFromRef } from './helpers';
+import {
+  checkIfFirstItemAfterCollapse,
+  getItemsAfterCollapse,
+  getMaxItems,
+  getWidthFromRef,
+} from './helpers';
+import { BreadcrumbItem } from '@digital-ai/dot-components';
 
 describe('breadcrumbs helper functions', () => {
   describe('getItemsAfterCollapse', () => {
@@ -67,6 +73,31 @@ describe('breadcrumbs helper functions', () => {
       } as never;
       const result = getWidthFromRef(refMock);
       expect(result).toBe(width);
+    });
+  });
+
+  describe('checkIfFirstItemAfterCollapse', () => {
+    const breadcrumbItems: BreadcrumbItem[] = [
+      {
+        text: 'First',
+      },
+      {
+        text: 'Second',
+      },
+      {
+        text: 'Third',
+      },
+      {
+        text: 'Fourth',
+      },
+    ];
+
+    it('should return false if item is not first item after collapse', () => {
+      checkIfFirstItemAfterCollapse(breadcrumbItems, 2, 3);
+    });
+
+    it('should return true if item is first item after collapse', () => {
+      checkIfFirstItemAfterCollapse(breadcrumbItems, 2, 2);
     });
   });
 });
