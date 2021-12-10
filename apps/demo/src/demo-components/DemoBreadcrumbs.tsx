@@ -99,7 +99,7 @@ const StyledDemoBreadcrumbsStyled = styled.div`
   &.action-toolbar-wrapper {
     margin: 20px 0;
     display: grid;
-    grid-template-columns: auto auto 1fr;
+    grid-template-columns: minmax(200px, auto) auto 1fr;
     align-items: center;
 
     .breadcrumbs-labels {
