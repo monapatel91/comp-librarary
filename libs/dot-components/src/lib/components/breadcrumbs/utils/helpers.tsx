@@ -53,24 +53,29 @@ export const getExpandElement = (breadcrumbElement: HTMLElement) => {
   return elements[0].getElementsByClassName('MuiButtonBase-root')[0];
 };
 
-export const getMenuItems = (items: BreadcrumbItem[]) => {
-  return items.slice(1, items.length - 2).map((item, index) => {
-    const itemChildren = (
-      <DotLink
-        ariaLabel={item.ariaLabel}
-        className="breadcrumb"
-        color="inherit"
-        href={item.href}
-        key={index}
-        onClick={item.onClick}
-        tabIndex={0}
-        underline={item.underline}
-      >
-        {item.text}
-      </DotLink>
-    );
-    return { children: itemChildren, key: index.toString() };
-  });
+export const getMenuItems = (
+  items: BreadcrumbItem[],
+  itemsAfterCollapse: number
+) => {
+  return items
+    .slice(1, items.length - itemsAfterCollapse)
+    .map((item, index) => {
+      const itemChildren = (
+        <DotLink
+          ariaLabel={item.ariaLabel}
+          className="breadcrumb"
+          color="inherit"
+          href={item.href}
+          key={index}
+          onClick={item.onClick}
+          tabIndex={0}
+          underline={item.underline}
+        >
+          {item.text}
+        </DotLink>
+      );
+      return { children: itemChildren, key: index.toString() };
+    });
 };
 
 export const addListenersToMenu = (

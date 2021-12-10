@@ -61,13 +61,16 @@ export const DotBreadcrumbs = ({
   const [{ breadcrumbRef, firstItemRef, lastItemRef }, maxVisibleItems] =
     useBreadcrumbsObserver(items, maxItems);
 
-  const menuItems = items.length > maxVisibleItems ? getMenuItems(items) : null;
-
   const itemsAfterCollapse = getItemsAfterCollapse(
     adjustMaxItems,
     maxVisibleItems,
     maxItems
   );
+
+  const menuItems =
+    items.length > maxVisibleItems
+      ? getMenuItems(items, itemsAfterCollapse)
+      : null;
 
   const breadcrumbItemRefs: BreadcrumbItemRefs = {
     firstItemRef,
