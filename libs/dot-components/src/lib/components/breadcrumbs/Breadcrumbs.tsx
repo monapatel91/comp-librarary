@@ -4,7 +4,11 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
 import { LinkUnderline } from '../link/Link';
 import { DotMenu } from '../menu/Menu';
-import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
+import {
+  rootBreadcrumbsClassName,
+  rootClassName,
+  StyledBreadcrumbs,
+} from './Breadcrumbs.styles';
 import { compareWidth } from '../compareSize';
 import {
   addListenersToMenu,
@@ -17,6 +21,7 @@ import {
   removeListenersFromMenu,
 } from './utils/helpers';
 import { useBreadcrumbsObserver } from './utils/useBreadcrumbsObserver';
+import { Breadcrumbs } from '@material-ui/core';
 
 export type BreadcrumbItem = {
   /** Defines a string value that labels the current element **/
@@ -109,11 +114,16 @@ export const DotBreadcrumbs = ({
   }, [maxItems, breadcrumbRef?.current, wrapperRef?.current]);
 
   return (
-    <div ref={wrapperRef} style={{ overflow: 'hidden' }}>
-      <StyledBreadcrumbs
+    <StyledBreadcrumbs
+      ref={wrapperRef}
+      style={{ overflow: 'hidden' }}
+      className={rootClasses}
+      data-testid={`${dataTestId}-wrapper`}
+    >
+      <Breadcrumbs
         aria-label="breadcrumb"
         classes={{
-          root: rootClasses,
+          root: rootBreadcrumbsClassName,
           ol: 'dot-ol',
           li: 'dot-li',
         }}
@@ -125,15 +135,17 @@ export const DotBreadcrumbs = ({
         style={{ width: minWidth }}
       >
         {mapBreadcrumbItems(items, breadcrumbItemRefs, itemsAfterCollapse)}
-      </StyledBreadcrumbs>
+      </Breadcrumbs>
       <DotMenu
         anchorEl={anchorEl}
+        className="dot-breadcrumbs-menu"
+        disablePortal={true}
         id="expand-menu"
         menuItems={menuItems}
         menuPlacement="bottom-start"
         onLeave={onMenuLeave}
         open={menuOpen}
       />
-    </div>
+    </StyledBreadcrumbs>
   );
 };

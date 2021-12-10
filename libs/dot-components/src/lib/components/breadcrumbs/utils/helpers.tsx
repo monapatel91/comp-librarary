@@ -69,7 +69,7 @@ export const getMenuItems = (
           key={index}
           onClick={item.onClick}
           tabIndex={0}
-          underline={item.underline}
+          underline="none"
         >
           {item.text}
         </DotLink>
