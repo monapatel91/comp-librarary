@@ -390,7 +390,7 @@ There should be no outstanding security vulnerabilities with `moderate` or highe
 
 ## Change Log Generated
 
-- `CI_CHANGE_LOG.md` will be generated and commited.
+- `CHANGE_LOG.md` will be generated and commited.
 - **Note:** we will retain `CHANGE_LOG.md` until we have worked out all the CI change log formatting issues.
 
 ## Create Release
