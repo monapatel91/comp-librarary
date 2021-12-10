@@ -118,7 +118,6 @@ export const DotBreadcrumbs = ({
       className={rootClasses}
       data-testid={dataTestId && `${dataTestId}-wrapper`}
       ref={wrapperRef}
-      style={{ overflow: 'hidden' }}
     >
       <Breadcrumbs
         aria-label="breadcrumb"
