@@ -390,13 +390,13 @@ There should be no outstanding security vulnerabilities with `moderate` or highe
 
 ## Change Log Generated
 
-- `CI_CHANGE_LOG.md` will be generated and commited.
-- **Note:** we will retain `CHANGE_LOG.md` until we have worked out all the CI change log formatting issues.
+- `CHANGE_LOG.md` will be generated and commited.
+- **Note:** we will retain `HISTORY.md` which is the manual change log created at the beginning of this project.
 
 ## Create Release
 
 - A new release will be created in GitHub
-- The release will be tagged as a `pre-release` with a `draft` status
+<!-- - The release will be tagged as a `pre-release` with a `draft` status -->
 
 ## Deploy to NPM
 
@@ -409,3 +409,7 @@ There should be no outstanding security vulnerabilities with `moderate` or highe
 - `yarn storybook:build` will run to compile the `docs` directory
 - The code will be pushed to the `ghpages` branch
 - https://digital-ai.github.io/dot-components will be automatically updated
+
+## `master` merged back to `develop`
+
+- As a final step, all code changes done during CI/CD process will be merged back into `develop`
