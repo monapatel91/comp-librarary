@@ -57,25 +57,33 @@ export const getMenuItems = (
   items: BreadcrumbItem[],
   itemsAfterCollapse: number
 ) => {
-  return items
-    .slice(1, items.length - itemsAfterCollapse)
-    .map((item, index) => {
-      const itemChildren = (
-        <DotLink
-          ariaLabel={item.ariaLabel}
-          className="breadcrumb"
-          color="inherit"
-          href={item.href}
-          key={index}
-          onClick={item.onClick}
-          tabIndex={0}
-          underline="none"
-        >
-          {item.text}
-        </DotLink>
-      );
-      return { children: itemChildren, key: index.toString() };
-    });
+  if (
+    !items ||
+    !items.length ||
+    !isFinite(itemsAfterCollapse) ||
+    itemsAfterCollapse >= items.length - 1
+  )
+    return [];
+  const sliceEnd = items.length - itemsAfterCollapse;
+  const menuItems = items.slice(1, sliceEnd);
+  if (!menuItems.length) return [];
+  return menuItems.map((item, index) => {
+    const itemChildren = (
+      <DotLink
+        ariaLabel={item.ariaLabel}
+        className="breadcrumb"
+        color="inherit"
+        href={item.href}
+        key={index}
+        onClick={item.onClick}
+        tabIndex={0}
+        underline="none"
+      >
+        {item.text}
+      </DotLink>
+    );
+    return { children: itemChildren, key: index.toString() };
+  });
 };
 
 export const addListenersToMenu = (
