@@ -3,11 +3,27 @@ import {
   getExpandElement,
   getItemsAfterCollapse,
   getMaxItems,
+  getMenuItems,
   getWidthFromRef,
 } from './helpers';
 import { BreadcrumbItem } from '@digital-ai/dot-components';
 
 describe('breadcrumbs helper functions', () => {
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      text: 'First',
+    },
+    {
+      text: 'Second',
+    },
+    {
+      text: 'Third',
+    },
+    {
+      text: 'Fourth',
+    },
+  ];
+
   describe('getItemsAfterCollapse', () => {
     it("should return undefined when 'maxItems' argument is not defined and 'visibleItemsNumber' is less than 1", () => {
       const result = getItemsAfterCollapse(true, 0);
@@ -78,21 +94,6 @@ describe('breadcrumbs helper functions', () => {
   });
 
   describe('checkIfFirstItemAfterCollapse', () => {
-    const breadcrumbItems: BreadcrumbItem[] = [
-      {
-        text: 'First',
-      },
-      {
-        text: 'Second',
-      },
-      {
-        text: 'Third',
-      },
-      {
-        text: 'Fourth',
-      },
-    ];
-
     it('should return false if item is not first item after collapse', () => {
       checkIfFirstItemAfterCollapse(breadcrumbItems, 2, 3);
     });
@@ -120,6 +121,29 @@ describe('breadcrumbs helper functions', () => {
       divElement.appendChild(createBreadcrumbElementMock());
       const result = getExpandElement(divElement);
       expect(result).toBeNull();
+    });
+  });
+
+  describe('getMenuItems', () => {
+    it("should return empty array when 'items' is undefined", () => {
+      const result = getMenuItems(undefined as never, 3);
+      expect(result).toEqual([]);
+    });
+    it("should return empty array when 'items' is empty array", () => {
+      const result = getMenuItems([], 2);
+      expect(result).toEqual([]);
+    });
+    it("should return empty array when 'itemsAfterCollapse' is equal length of the array", () => {
+      const result = getMenuItems([{ text: 'First' }, { text: 'Second' }], 2);
+      expect(result).toEqual([]);
+    });
+    it("should return empty array when 'itemsAfterCollapse' is not a number", () => {
+      const result = getMenuItems(breadcrumbItems, 'xxx' as never);
+      expect(result).toEqual([]);
+    });
+    it('should return correct number of items when valid arguments are passed in', () => {
+      const menuItems = getMenuItems(breadcrumbItems, 1);
+      expect(menuItems.length).toEqual(2);
     });
   });
 });
