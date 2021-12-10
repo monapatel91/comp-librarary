@@ -7,7 +7,7 @@
 ### Required
 
 - [ ] PR title follows correct format, `S-12345: Story Title Here`
-- [ ] Correct label is applied `enhancement`, `BREAKING-CHANGE`
+- [ ] Correct label is applied `enhancement`, `defect`, `tech-chore`, `BREAKING-CHANGE`
 - [ ] Checklist of **changes made** added to PR description
 - [ ] Related issue(s) linked to PR
 
@@ -33,3 +33,4 @@
 
 Resolves #XXXX
 Story-######
+Defect-######

@@ -7,6 +7,7 @@
 - [Commits & Pull Requests](#commits--pull-requests)
   - [Commit Messages](#commit-messages)
   - [Submitting Pull Requests](#submitting-pull-requests)
+  - [Create a Release](#create-a-release)
 - [Component vs. Demo](#component-vs-demo)
 - [Building a Component](#building-a-component)
   - [Types of Components](#types-of-components)
@@ -89,6 +90,10 @@ If your PR requires a `MAJOR` change, please apply the `breaking change` label a
 ### Example
 
 `SampleComponent` now uses `tooltip` prop instead of `title` prop.
+
+## Create A Release
+
+When ready to create a release please use the [PR release template](https://github.com/digital-ai/dot-components/compare/master...develop?expand=1&template=release.md). There will be a checklist of everything that needs to be completed prior to merging.
 
 # Component vs. Demo
 

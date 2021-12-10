@@ -1,6 +1,6 @@
 ## Release Checklist
 
-ALL steps below must be completed prior to merging.
+All steps below must be completed prior to merging.
 
 - [ ] All checks have run successfully
 - [ ] Correct label is applied `release`
