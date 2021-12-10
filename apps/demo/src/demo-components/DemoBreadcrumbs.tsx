@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   DotBreadcrumbs,
@@ -47,20 +47,23 @@ export const DemoBreadcrumbs = () => {
     },
   ];
 
+  const [breadcrumbs, setBreadcrumbs] = useState(itemsOne);
+
+  const updateBreadcrumbs = () => {
+    setBreadcrumbs([]);
+    setTimeout(() => setBreadcrumbs(itemsTwo), 2000);
+  };
+
   return (
     <>
-      <h2>First issue</h2>
-      <p>
-        Resize screen until collapse appears, clicking on collapsed button shows
-        nothing and few warnings on console
-      </p>
       <StyledDemoBreadcrumbsStyled className="action-toolbar-wrapper">
-        <DotBreadcrumbs items={itemsOne} expansionMenu={true} />
+        <DotBreadcrumbs items={breadcrumbs} expansionMenu={true} />
         <DotChip>TEMPLATE</DotChip>
         <div className="action-toolbar">
           <div className="action-toolbar-actions">
-            <DotButton>fake button</DotButton>
-            <DotButton>another button</DotButton>
+            <DotButton onClick={updateBreadcrumbs}>
+              update breadcrumbs
+            </DotButton>
           </div>
           <DotIconButton
             color="inherit"
