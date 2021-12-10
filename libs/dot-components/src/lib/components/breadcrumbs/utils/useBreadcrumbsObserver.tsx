@@ -2,7 +2,7 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { getWidthFromRef } from './helpers';
 import { BreadcrumbItem } from '../Breadcrumbs';
 
-export const MIN_AVAILABLE_SPACE = 30;
+export const MIN_AVAILABLE_SPACE = 60;
 export const ITEMS_SEPARATOR_SPACE = 20;
 
 interface MaxVisibleItems {
@@ -30,7 +30,8 @@ export const useBreadcrumbsObserver = (
     lastRemovedItemWidth: undefined,
   };
 
-  const [breadcrumbsWidth, setBreadcrumbsWidth] = useState<number>(null);
+  const [breadcrumbsRightCoord, setBreadcrumbsRightCoord] =
+    useState<number>(null);
   const [breadcrumbsSettings, setBreadcrumbsSettings] =
     useState<MaxVisibleItems>(initialMaxVisibleItems);
 
@@ -39,7 +40,7 @@ export const useBreadcrumbsObserver = (
     // Automatic resizing is performed only when 'maxItem' is NOT set
     if (maxItems !== undefined) return;
     const breadcrumbsObserver = new ResizeObserver((entries) => {
-      setBreadcrumbsWidth(entries[0].target.clientWidth);
+      setBreadcrumbsRightCoord(entries[0].target.getBoundingClientRect().right);
     });
     breadcrumbsObserver.observe(breadcrumbRef.current);
 
@@ -47,12 +48,16 @@ export const useBreadcrumbsObserver = (
       breadcrumbRef.current &&
         breadcrumbsObserver.unobserve(breadcrumbRef.current);
     };
-  }, [maxItems, breadcrumbRef, setBreadcrumbsWidth]);
+  }, [maxItems, breadcrumbRef, setBreadcrumbsRightCoord]);
 
   /* Adjust number of visible items after collapse */
   useEffect(() => {
     // Automatic resizing is performed only when 'maxItem' is NOT set
-    if (maxItems !== undefined || !lastItemRef?.current || !breadcrumbsWidth)
+    if (
+      maxItems !== undefined ||
+      !lastItemRef?.current ||
+      !breadcrumbsRightCoord
+    )
       return;
 
     // Get width of breadcrumb's last item
@@ -65,7 +70,7 @@ export const useBreadcrumbsObserver = (
 
     const { lastRemovedItemWidth, maxVisibleItems } = breadcrumbsSettings;
 
-    const availableSpace = breadcrumbsWidth - lastItemLeftCoord;
+    const availableSpace = breadcrumbsRightCoord - lastItemLeftCoord;
     const hasHiddenItems = maxVisibleItems < items.length;
     const isLastRemovedItemSuitable =
       lastRemovedItemWidth !== undefined
@@ -88,7 +93,7 @@ export const useBreadcrumbsObserver = (
     }
   }, [
     maxItems,
-    breadcrumbsWidth,
+    breadcrumbsRightCoord,
     lastItemRef?.current,
     firstItemRef?.current,
     breadcrumbsSettings,
