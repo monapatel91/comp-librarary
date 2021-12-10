@@ -1,5 +1,54 @@
 # Changelog
 
+## [1.3.6](https://github.com/digital-ai/dot-components/tree/1.3.6) (12/10/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.5...1.3.6)
+
+**Features:**
+
+- Expose onKeyDown for input [\#714](https://github.com/digital-ai/dot-components/issues/714)
+
+**Fixed bugs:**
+
+- DotDynamicForm does not properly initialize form state for boolean attribute with initialValue false [\#841](https://github.com/digital-ai/dot-components/issues/841)
+- Extended sidenav drawer should collapse when another drawer option is clicked [\#739](https://github.com/digital-ai/dot-components/issues/739)
+
+**Merged pull requests:**
+
+- S-76843: only merge master back to develop AFTER the release is done [\#848](https://github.com/digital-ai/dot-components/pull/848) ([CWSites](https://github.com/CWSites))
+- S-76843: testing out yarn install commands for CI [\#847](https://github.com/digital-ai/dot-components/pull/847) ([CWSites](https://github.com/CWSites))
+- S-79571: DotInput - expose onKeyDown [\#846](https://github.com/digital-ai/dot-components/pull/846) ([monapatel91](https://github.com/monapatel91))
+- Next patch release [\#845](https://github.com/digital-ai/dot-components/pull/845) ([CWSites](https://github.com/CWSites))
+- S-79357: evaluate codebase and remove old references to core Tooltip [\#844](https://github.com/digital-ai/dot-components/pull/844) ([CWSites](https://github.com/CWSites))
+- \#841 Fix DotDynamicForm initial form state for controls with initialValue false [\#842](https://github.com/digital-ai/dot-components/pull/842) ([selsemore](https://github.com/selsemore))
+- S-80621: file upload  [\#840](https://github.com/digital-ai/dot-components/pull/840) ([CWSites](https://github.com/CWSites))
+- D-19189: Extended sidenav drawer should collapse when another drawer option is clicked [\#830](https://github.com/digital-ai/dot-components/pull/830) ([dmiletic85](https://github.com/dmiletic85))
+- S-76922: file upload [\#820](https://github.com/digital-ai/dot-components/pull/820) ([CWSites](https://github.com/CWSites))
+
+## [1.3.5](https://github.com/digital-ai/dot-components/tree/1.3.5) (12/03/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.4...1.3.5)
+
+**Features:**
+
+- Expose onFocus and onBlur callbacks in DotInputText and other input components [\#829](https://github.com/digital-ai/dot-components/issues/829)
+- Pass 'disabled' prop to DotDynamicForm controls [\#806](https://github.com/digital-ai/dot-components/issues/806)
+
+**Fixed bugs:**
+
+- Go back item in `Sidebar` is not aligned with rest of items [\#824](https://github.com/digital-ai/dot-components/issues/824)
+- DotBadge generates console warnings [\#816](https://github.com/digital-ai/dot-components/issues/816)
+- Sidebar scrollbar should be positioned on the very right of the sidebar [\#746](https://github.com/digital-ai/dot-components/issues/746)
+
+**Merged pull requests:**
+
+- Next patch release [\#833](https://github.com/digital-ai/dot-components/pull/833) ([CWSites](https://github.com/CWSites))
+- S-80473: Expose onFocus and onBlur callbacks for DotInputText and DotInputSelect components [\#832](https://github.com/digital-ai/dot-components/pull/832) ([selsemore](https://github.com/selsemore))
+- D-19151: `DotBadge` generates console warnings [\#827](https://github.com/digital-ai/dot-components/pull/827) ([dmiletic85](https://github.com/dmiletic85))
+- D-19177: `Go back` item in `DotSidebar` is not aligned with rest of items [\#826](https://github.com/digital-ai/dot-components/pull/826) ([dmiletic85](https://github.com/dmiletic85))
+- merge `master` \> `develop` [\#825](https://github.com/digital-ai/dot-components/pull/825) ([CWSites](https://github.com/CWSites))
+- S-80268: `DotDynamicForm` improvements [\#821](https://github.com/digital-ai/dot-components/pull/821) ([dmiletic85](https://github.com/dmiletic85))
+
 ## [1.3.4](https://github.com/digital-ai/dot-components/tree/1.3.4) (11/30/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.3...1.3.4)
@@ -1084,6 +1133,7 @@
 - manual deployment of Storybook site [\#168](https://github.com/digital-ai/dot-components/pull/168) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - issue \#163: move ActionToolbar props and styles to separate files [\#164](https://github.com/digital-ai/dot-components/pull/164) ([selsemore](https://github.com/selsemore))
 - Defect \#139: `dot-icon` more specific [\#162](https://github.com/digital-ai/dot-components/pull/162) ([CWSites](https://github.com/CWSites))
+- 26 feb icon moon color remove [\#156](https://github.com/digital-ai/dot-components/pull/156) ([BojanKocijan](https://github.com/BojanKocijan))
 - issue \#138: update empty state based on UX feedback [\#150](https://github.com/digital-ai/dot-components/pull/150) ([CWSites](https://github.com/CWSites))
 - issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
 

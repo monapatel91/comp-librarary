@@ -117,7 +117,7 @@ jobs:
       # https://github.com/marketplace/actions/add-commit
       # TO-DO: use modified SHA to resolve any build issues: https://github.com/EndBug/add-and-commit/issues/200
       - name: Commit and Push Changelog
-        uses: EndBug/add-and-commit@master
+        uses: EndBug/add-and-commit@v7.4.0
         with:
           add: CI_CHANGE_LOG.md
           default_author: github_actions
@@ -176,6 +176,8 @@ jobs:
   merge-branch:
     name: Merge `master` back into `develop`
     runs-on: ubuntu-latest
+    needs: [create-release]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -183,6 +185,6 @@ jobs:
       - name: merge `master` to `develop`
         uses: devmasx/merge-branch@master
         with:
-          label_name: 'merged in develop'
-          target_branch: 'develop'
+          type: now
+          target_branch: develop
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
