@@ -141,6 +141,14 @@ describe('breadcrumbs helper functions', () => {
       const result = getMenuItems(breadcrumbItems, 'xxx' as never);
       expect(result).toEqual([]);
     });
+    it("should return empty array when 'itemsAfterCollapse' is less than 1", () => {
+      const result = getMenuItems(breadcrumbItems, 0);
+      expect(result).toEqual([]);
+    });
+    it('should return empty array when no menu items', () => {
+      const result = getMenuItems([{ text: 'First' }, { text: 'Second' }], 1);
+      expect(result).toEqual([]);
+    });
     it('should return correct number of items when valid arguments are passed in', () => {
       const menuItems = getMenuItems(breadcrumbItems, 1);
       expect(menuItems.length).toEqual(2);

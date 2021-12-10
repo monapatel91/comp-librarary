@@ -61,6 +61,7 @@ export const getMenuItems = (
     !items ||
     !items.length ||
     !isFinite(itemsAfterCollapse) ||
+    itemsAfterCollapse < 1 ||
     itemsAfterCollapse >= items.length - 1
   )
     return [];
