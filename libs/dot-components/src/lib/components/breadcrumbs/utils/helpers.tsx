@@ -53,6 +53,11 @@ export const getExpandElement = (breadcrumbElement: HTMLElement) => {
   return elements[0].getElementsByClassName('MuiButtonBase-root')[0];
 };
 
+export const getInitialMaxVisibleItems = (
+  items: BreadcrumbItem[],
+  maxItems?: number
+): number => maxItems || (items && Array.isArray(items) && items.length) || 0;
+
 export const getMenuItems = (
   items: BreadcrumbItem[],
   itemsAfterCollapse: number

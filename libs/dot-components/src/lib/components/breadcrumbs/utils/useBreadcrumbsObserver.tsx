@@ -1,5 +1,5 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
-import { getWidthFromRef } from './helpers';
+import { getInitialMaxVisibleItems, getWidthFromRef } from './helpers';
 import { BreadcrumbItem } from '../Breadcrumbs';
 
 export const MIN_AVAILABLE_SPACE = 60;
@@ -25,8 +25,7 @@ export const useBreadcrumbsObserver = (
   const lastItemRef = useRef<HTMLSpanElement>();
 
   const initialMaxVisibleItems: MaxVisibleItems = {
-    maxVisibleItems:
-      maxItems || (items && Array.isArray(items) && items.length) || 0,
+    maxVisibleItems: getInitialMaxVisibleItems(items, maxItems),
     lastRemovedItemWidth: undefined,
   };
 

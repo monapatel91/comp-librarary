@@ -1,6 +1,7 @@
 import {
   checkIfFirstItemAfterCollapse,
   getExpandElement,
+  getInitialMaxVisibleItems,
   getItemsAfterCollapse,
   getMaxItems,
   getMenuItems,
@@ -121,6 +122,27 @@ describe('breadcrumbs helper functions', () => {
       divElement.appendChild(createBreadcrumbElementMock());
       const result = getExpandElement(divElement);
       expect(result).toBeNull();
+    });
+  });
+
+  describe('getInitialMaxVisibleItems', () => {
+    it('should return maxItems when it is number greater than zero', () => {
+      const maxItems = 2;
+      const result = getInitialMaxVisibleItems(breadcrumbItems, maxItems);
+      expect(result).toBe(maxItems);
+    });
+    it('should return array length when valid array is provided and maxItems is not provided', () => {
+      const result = getInitialMaxVisibleItems(breadcrumbItems);
+      expect(result).toBe(breadcrumbItems.length);
+    });
+
+    it("should return zero when 'items' is empty array and 'maxItems' is not provided", () => {
+      const result = getInitialMaxVisibleItems([]);
+      expect(result).toBe(0);
+    });
+    it("should return zero when 'items' is undefined and 'maxItems' is not provided", () => {
+      const result = getInitialMaxVisibleItems(undefined);
+      expect(result).toBe(0);
     });
   });
 
