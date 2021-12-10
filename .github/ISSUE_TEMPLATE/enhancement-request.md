@@ -22,10 +22,6 @@ A clear and concise description of what you want to happen.
 
 A clear and concise description of any alternative solutions or features you've considered.
 
-### Additional context
-
-Add any other context or screenshots about the feature request here.
-
 ### Acceptance Criteria
 
 - [ ] Please provide a list of acceptance criteria, if you are unsure then add a list of your desired outcomes
@@ -35,4 +31,4 @@ Add any other context or screenshots about the feature request here.
 - [ ] Clear requirements for developer
 - [ ] Screenshots
 - [ ] Links to mockups (Figma, zeroHeight)
-- [ ] Links to specifications (Agility)
+- [ ] Links to related specifications (Agility)
