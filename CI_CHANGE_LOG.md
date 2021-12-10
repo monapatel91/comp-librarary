@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.3.6](https://github.com/digital-ai/dot-components/tree/1.3.6) (12/10/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.5...1.3.6)
+
+**Features:**
+
+- Expose onKeyDown for input [\#714](https://github.com/digital-ai/dot-components/issues/714)
+
+**Fixed bugs:**
+
+- DotDynamicForm does not properly initialize form state for boolean attribute with initialValue false [\#841](https://github.com/digital-ai/dot-components/issues/841)
+- Extended sidenav drawer should collapse when another drawer option is clicked [\#739](https://github.com/digital-ai/dot-components/issues/739)
+
+**Merged pull requests:**
+
+- S-76843: only merge master back to develop AFTER the release is done [\#848](https://github.com/digital-ai/dot-components/pull/848) ([CWSites](https://github.com/CWSites))
+- S-76843: testing out yarn install commands for CI [\#847](https://github.com/digital-ai/dot-components/pull/847) ([CWSites](https://github.com/CWSites))
+- S-79571: DotInput - expose onKeyDown [\#846](https://github.com/digital-ai/dot-components/pull/846) ([monapatel91](https://github.com/monapatel91))
+- Next patch release [\#845](https://github.com/digital-ai/dot-components/pull/845) ([CWSites](https://github.com/CWSites))
+- S-79357: evaluate codebase and remove old references to core Tooltip [\#844](https://github.com/digital-ai/dot-components/pull/844) ([CWSites](https://github.com/CWSites))
+- \#841 Fix DotDynamicForm initial form state for controls with initialValue false [\#842](https://github.com/digital-ai/dot-components/pull/842) ([selsemore](https://github.com/selsemore))
+- S-80621: file upload  [\#840](https://github.com/digital-ai/dot-components/pull/840) ([CWSites](https://github.com/CWSites))
+- D-19189: Extended sidenav drawer should collapse when another drawer option is clicked [\#830](https://github.com/digital-ai/dot-components/pull/830) ([dmiletic85](https://github.com/dmiletic85))
+- S-76922: file upload [\#820](https://github.com/digital-ai/dot-components/pull/820) ([CWSites](https://github.com/CWSites))
+
 ## [1.3.5](https://github.com/digital-ai/dot-components/tree/1.3.5) (12/03/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.4...1.3.5)
@@ -124,6 +149,7 @@
 - D-19023: Circular Dependency in `DynamicForm` component [\#759](https://github.com/digital-ai/dot-components/pull/759) ([dmiletic85](https://github.com/dmiletic85))
 - Bring `master` back into `develop` [\#756](https://github.com/digital-ai/dot-components/pull/756) ([CWSites](https://github.com/CWSites))
 - S-79458: `Sidebar` apply agility specific updates to theme only [\#755](https://github.com/digital-ai/dot-components/pull/755) ([CWSites](https://github.com/CWSites))
+- S-77126: react jsonschema form wrapper [\#728](https://github.com/digital-ai/dot-components/pull/728) ([TheKeithStewart](https://github.com/TheKeithStewart))
 
 ## [1.3.0](https://github.com/digital-ai/dot-components/tree/1.3.0) (10/28/2021)
 
@@ -154,7 +180,6 @@
 - S-76892: create generator for new components [\#736](https://github.com/digital-ai/dot-components/pull/736) ([CWSites](https://github.com/CWSites))
 - D-18986: update app toolbar to be dense by default [\#735](https://github.com/digital-ai/dot-components/pull/735) ([CWSites](https://github.com/CWSites))
 - D-18985: update menu list to be content-box sizing [\#734](https://github.com/digital-ai/dot-components/pull/734) ([CWSites](https://github.com/CWSites))
-- S-77126: react jsonschema form wrapper [\#728](https://github.com/digital-ai/dot-components/pull/728) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - S-77126: Dynamic Form [\#717](https://github.com/digital-ai/dot-components/pull/717) ([dmiletic85](https://github.com/dmiletic85))
 
 ## [1.2.1](https://github.com/digital-ai/dot-components/tree/1.2.1) (10/15/2021)
