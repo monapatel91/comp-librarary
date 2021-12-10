@@ -18,6 +18,8 @@ describe('Breadcrumbs', () => {
     { ariaLabel: 'link-4', href: '/', text: 'Link 4' },
   ];
 
+  const getBreadcrumbLinks = (): HTMLElement[] => screen.getAllByRole('link');
+
   const getBreadcrumbItem = (text: string): HTMLElement =>
     screen.getByText(text);
 
@@ -46,8 +48,8 @@ describe('Breadcrumbs', () => {
       text: 'hello world',
       underline: 'always' as LinkUnderline,
     };
-    const breadcrumbItempProps: BreadcrumbItem = iProps;
-    expect(breadcrumbItempProps).toEqual(iProps);
+    const breadcrumbItemProps: BreadcrumbItem = iProps;
+    expect(breadcrumbItemProps).toEqual(iProps);
   });
 
   beforeAll(() => {
@@ -76,8 +78,7 @@ describe('Breadcrumbs', () => {
 
   it('should hide additional breadcrumbs when more than maxItems', () => {
     render(<DotBreadcrumbs items={dummyItemsNoOnClick} maxItems={2} />);
-    const links = screen.getAllByRole('link');
-
+    const links = getBreadcrumbLinks();
     expect(links.length).toEqual(2);
   });
 
@@ -126,5 +127,16 @@ describe('Breadcrumbs', () => {
     render(<DotBreadcrumbs items={dummyItemsNoOnClick} maxItems={3} />);
     userEvent.click(screen.getByRole('button'));
     expect(getMenuItem('link-2')).toHaveAttribute('aria-label', 'link-2');
+  });
+
+  describe("automatic mode (no 'maxItems' prop set)", () => {
+    it('should render all items', () => {
+      render(<DotBreadcrumbs items={dummyItemsNoOnClick} />);
+      const links = getBreadcrumbLinks();
+      expect(links.length).toEqual(3);
+      const lastItem = getBreadcrumbItem('Link 4');
+      expect(lastItem).toBeVisible();
+      expect(lastItem).toHaveClass('breadcrumb', 'current-page');
+    });
   });
 });
