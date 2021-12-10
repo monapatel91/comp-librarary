@@ -94,7 +94,10 @@ export const DotBreadcrumbs = ({
     setMenuOpen(false);
   };
 
-  /* Build and connect expansion menu if 'expansionMenu' is set to true */
+  /* Build and connect expansion menu if 'expansionMenu' is set to true.
+    In order for this to be functioning properly we need to set 'items' in
+    the dependencies list as it will re-trigger hook if items array change.
+   */
   useEffect(() => {
     if (!expansionMenu || !breadcrumbRef || !breadcrumbRef.current) return;
     const expandElement = getExpandElement(breadcrumbRef.current);
@@ -103,7 +106,7 @@ export const DotBreadcrumbs = ({
       addListenersToMenu(expandElement, clickListener);
       return () => removeListenersFromMenu(expandElement, clickListener);
     }
-  }, [expansionMenu, maxVisibleItems, adjustMaxItems]);
+  }, [expansionMenu, maxVisibleItems, adjustMaxItems, items]);
 
   useEffect(() => {
     if (maxItems && breadcrumbRef?.current && wrapperRef?.current) {
