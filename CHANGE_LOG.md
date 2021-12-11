@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.3.7](https://github.com/digital-ai/dot-components/tree/1.3.7) (12/11/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.6...1.3.7)
+
+**Merged pull requests:**
+
+- S-76843: setup PR release template [\#853](https://github.com/digital-ai/dot-components/pull/853) ([CWSites](https://github.com/CWSites))
+- S-76843 automation improvements III [\#852](https://github.com/digital-ai/dot-components/pull/852) ([CWSites](https://github.com/CWSites))
+- Merge `master` back to `develop` [\#849](https://github.com/digital-ai/dot-components/pull/849) ([CWSites](https://github.com/CWSites))
+
 ## [1.3.6](https://github.com/digital-ai/dot-components/tree/1.3.6) (12/10/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.5...1.3.6)
@@ -7,23 +17,22 @@
 **Features:**
 
 - Expose onKeyDown for input [\#714](https://github.com/digital-ai/dot-components/issues/714)
+- S-79571: DotInput - expose onKeyDown [\#846](https://github.com/digital-ai/dot-components/pull/846) ([monapatel91](https://github.com/monapatel91))
+- S-79357: evaluate codebase and remove old references to core Tooltip [\#844](https://github.com/digital-ai/dot-components/pull/844) ([CWSites](https://github.com/CWSites))
+- S-80621: file upload  [\#840](https://github.com/digital-ai/dot-components/pull/840) ([CWSites](https://github.com/CWSites))
+- S-76922: file upload [\#820](https://github.com/digital-ai/dot-components/pull/820) ([CWSites](https://github.com/CWSites))
 
 **Fixed bugs:**
 
 - DotDynamicForm does not properly initialize form state for boolean attribute with initialValue false [\#841](https://github.com/digital-ai/dot-components/issues/841)
 - Extended sidenav drawer should collapse when another drawer option is clicked [\#739](https://github.com/digital-ai/dot-components/issues/739)
+- \#841 Fix DotDynamicForm initial form state for controls with initialValue false [\#842](https://github.com/digital-ai/dot-components/pull/842) ([selsemore](https://github.com/selsemore))
+- D-19189: Extended sidenav drawer should collapse when another drawer option is clicked [\#830](https://github.com/digital-ai/dot-components/pull/830) ([dmiletic85](https://github.com/dmiletic85))
 
 **Merged pull requests:**
 
 - S-76843: only merge master back to develop AFTER the release is done [\#848](https://github.com/digital-ai/dot-components/pull/848) ([CWSites](https://github.com/CWSites))
 - S-76843: testing out yarn install commands for CI [\#847](https://github.com/digital-ai/dot-components/pull/847) ([CWSites](https://github.com/CWSites))
-- S-79571: DotInput - expose onKeyDown [\#846](https://github.com/digital-ai/dot-components/pull/846) ([monapatel91](https://github.com/monapatel91))
-- Next patch release [\#845](https://github.com/digital-ai/dot-components/pull/845) ([CWSites](https://github.com/CWSites))
-- S-79357: evaluate codebase and remove old references to core Tooltip [\#844](https://github.com/digital-ai/dot-components/pull/844) ([CWSites](https://github.com/CWSites))
-- \#841 Fix DotDynamicForm initial form state for controls with initialValue false [\#842](https://github.com/digital-ai/dot-components/pull/842) ([selsemore](https://github.com/selsemore))
-- S-80621: file upload  [\#840](https://github.com/digital-ai/dot-components/pull/840) ([CWSites](https://github.com/CWSites))
-- D-19189: Extended sidenav drawer should collapse when another drawer option is clicked [\#830](https://github.com/digital-ai/dot-components/pull/830) ([dmiletic85](https://github.com/dmiletic85))
-- S-76922: file upload [\#820](https://github.com/digital-ai/dot-components/pull/820) ([CWSites](https://github.com/CWSites))
 
 ## [1.3.5](https://github.com/digital-ai/dot-components/tree/1.3.5) (12/03/2021)
 
@@ -33,21 +42,20 @@
 
 - Expose onFocus and onBlur callbacks in DotInputText and other input components [\#829](https://github.com/digital-ai/dot-components/issues/829)
 - Pass 'disabled' prop to DotDynamicForm controls [\#806](https://github.com/digital-ai/dot-components/issues/806)
+- S-80473: Expose onFocus and onBlur callbacks for DotInputText and DotInputSelect components [\#832](https://github.com/digital-ai/dot-components/pull/832) ([selsemore](https://github.com/selsemore))
+- S-80268: `DotDynamicForm` improvements [\#821](https://github.com/digital-ai/dot-components/pull/821) ([dmiletic85](https://github.com/dmiletic85))
 
 **Fixed bugs:**
 
 - Go back item in `Sidebar` is not aligned with rest of items [\#824](https://github.com/digital-ai/dot-components/issues/824)
 - DotBadge generates console warnings [\#816](https://github.com/digital-ai/dot-components/issues/816)
 - Sidebar scrollbar should be positioned on the very right of the sidebar [\#746](https://github.com/digital-ai/dot-components/issues/746)
+- D-19151: `DotBadge` generates console warnings [\#827](https://github.com/digital-ai/dot-components/pull/827) ([dmiletic85](https://github.com/dmiletic85))
+- D-19177: `Go back` item in `DotSidebar` is not aligned with rest of items [\#826](https://github.com/digital-ai/dot-components/pull/826) ([dmiletic85](https://github.com/dmiletic85))
 
 **Merged pull requests:**
 
-- Next patch release [\#833](https://github.com/digital-ai/dot-components/pull/833) ([CWSites](https://github.com/CWSites))
-- S-80473: Expose onFocus and onBlur callbacks for DotInputText and DotInputSelect components [\#832](https://github.com/digital-ai/dot-components/pull/832) ([selsemore](https://github.com/selsemore))
-- D-19151: `DotBadge` generates console warnings [\#827](https://github.com/digital-ai/dot-components/pull/827) ([dmiletic85](https://github.com/dmiletic85))
-- D-19177: `Go back` item in `DotSidebar` is not aligned with rest of items [\#826](https://github.com/digital-ai/dot-components/pull/826) ([dmiletic85](https://github.com/dmiletic85))
 - merge `master` \> `develop` [\#825](https://github.com/digital-ai/dot-components/pull/825) ([CWSites](https://github.com/CWSites))
-- S-80268: `DotDynamicForm` improvements [\#821](https://github.com/digital-ai/dot-components/pull/821) ([dmiletic85](https://github.com/dmiletic85))
 
 ## [1.3.4](https://github.com/digital-ai/dot-components/tree/1.3.4) (11/30/2021)
 
@@ -57,6 +65,9 @@
 
 - Add to `DotList` right arrow in some cases [\#720](https://github.com/digital-ai/dot-components/issues/720)
 - `DotTable` Provide a way to apply custom classes to table rows and cells [\#643](https://github.com/digital-ai/dot-components/issues/643)
+- S-80369: Create `ProgressButton` component [\#822](https://github.com/digital-ai/dot-components/pull/822) ([dmiletic85](https://github.com/dmiletic85))
+- S-79696: change size of collapse icon button, add tooltip [\#819](https://github.com/digital-ai/dot-components/pull/819) ([CWSites](https://github.com/CWSites))
+- S-80264: Agility wrapper sandbox documentation [\#810](https://github.com/digital-ai/dot-components/pull/810) ([CWSites](https://github.com/CWSites))
 
 **Fixed bugs:**
 
@@ -66,16 +77,12 @@
 - TEST - GitHub + Agility Integration [\#800](https://github.com/digital-ai/dot-components/issues/800)
 - Batman wasn't here [\#798](https://github.com/digital-ai/dot-components/issues/798)
 - Alert component style issues [\#795](https://github.com/digital-ai/dot-components/issues/795)
+- \#795 Address AlertBanner style issues [\#815](https://github.com/digital-ai/dot-components/pull/815) ([angel-git](https://github.com/angel-git))
+- D-19138: Remove margin-bottom from breadcrumbs [\#813](https://github.com/digital-ai/dot-components/pull/813) ([angel-git](https://github.com/angel-git))
+- D-19148: Input elements not displaying correctly when `border-box` is used in consumer components [\#812](https://github.com/digital-ai/dot-components/pull/812) ([dmiletic85](https://github.com/dmiletic85))
 
 **Merged pull requests:**
 
-- Next patch release [\#823](https://github.com/digital-ai/dot-components/pull/823) ([CWSites](https://github.com/CWSites))
-- S-80369: Create `ProgressButton` component [\#822](https://github.com/digital-ai/dot-components/pull/822) ([dmiletic85](https://github.com/dmiletic85))
-- S-79696: change size of collapse icon button, add tooltip [\#819](https://github.com/digital-ai/dot-components/pull/819) ([CWSites](https://github.com/CWSites))
-- \#795 Address AlertBanner style issues [\#815](https://github.com/digital-ai/dot-components/pull/815) ([angel-git](https://github.com/angel-git))
-- \#809 Remove margin-bottom from breadcrumbs [\#813](https://github.com/digital-ai/dot-components/pull/813) ([angel-git](https://github.com/angel-git))
-- D-19148: Input elements not displaying correctly when `border-box` is used in consumer components [\#812](https://github.com/digital-ai/dot-components/pull/812) ([dmiletic85](https://github.com/dmiletic85))
-- S-80264: Agility wrapper sandbox documentation [\#810](https://github.com/digital-ai/dot-components/pull/810) ([CWSites](https://github.com/CWSites))
 - S-79569: Do not set custom class for table cell if none was provided [\#808](https://github.com/digital-ai/dot-components/pull/808) ([selsemore](https://github.com/selsemore))
 - \[D-18631\]\[D-18632\]\[D-18802\]:Focus state of avatar button and sidebar list item and inaccurate count of nav item [\#804](https://github.com/digital-ai/dot-components/pull/804) ([monapatel91](https://github.com/monapatel91))
 - 17 nov2021 update icon [\#803](https://github.com/digital-ai/dot-components/pull/803) ([BojanKocijan](https://github.com/BojanKocijan))
@@ -125,7 +132,6 @@
 
 - Patch release [\#780](https://github.com/digital-ai/dot-components/pull/780) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - S-79985: temporarily remove react-jsonschema-form from library [\#776](https://github.com/digital-ai/dot-components/pull/776) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- Add submitButtonProps prop to DotJsonSchemaForm component [\#775](https://github.com/digital-ai/dot-components/pull/775) ([selsemore](https://github.com/selsemore))
 - \#770 Add Neutral colors missing [\#771](https://github.com/digital-ai/dot-components/pull/771) ([angel-git](https://github.com/angel-git))
 - D-19042: remove duplicate tooltips [\#769](https://github.com/digital-ai/dot-components/pull/769) ([CWSites](https://github.com/CWSites))
 - S-76893: Webpack 4 - update peer dependencies [\#768](https://github.com/digital-ai/dot-components/pull/768) ([CWSites](https://github.com/CWSites))
@@ -143,6 +149,7 @@
 
 **Merged pull requests:**
 
+- Add submitButtonProps prop to DotJsonSchemaForm component [\#775](https://github.com/digital-ai/dot-components/pull/775) ([selsemore](https://github.com/selsemore))
 - Next \[PATCH\] Release [\#762](https://github.com/digital-ai/dot-components/pull/762) ([CWSites](https://github.com/CWSites))
 - D-19026: Missing required prop for icon button when importing it to table cell [\#761](https://github.com/digital-ai/dot-components/pull/761) ([monapatel91](https://github.com/monapatel91))
 - D-18543: proper export of type and interface [\#760](https://github.com/digital-ai/dot-components/pull/760) ([CWSites](https://github.com/CWSites))
@@ -508,23 +515,18 @@
 **Closed issues:**
 
 - Export Helpers [\#587](https://github.com/digital-ai/dot-components/issues/587)
-- Update PR Checklist [\#586](https://github.com/digital-ai/dot-components/issues/586)
 - Automation Improvements [\#585](https://github.com/digital-ai/dot-components/issues/585)
 - Component: `InlineEdit` [\#583](https://github.com/digital-ai/dot-components/issues/583)
 - Component: `SplitButton` [\#579](https://github.com/digital-ai/dot-components/issues/579)
 - ButtonToggle [\#563](https://github.com/digital-ai/dot-components/issues/563)
 - Outstanding build warnings [\#555](https://github.com/digital-ai/dot-components/issues/555)
-- Make our Readme Pretty :\) [\#530](https://github.com/digital-ai/dot-components/issues/530)
 - Cross browser testing [\#441](https://github.com/digital-ai/dot-components/issues/441)
-- Document how to use `npm pack` to get changes in library into consuming applications during development [\#399](https://github.com/digital-ai/dot-components/issues/399)
 - Review `vsm-hub` Codebase [\#391](https://github.com/digital-ai/dot-components/issues/391)
 - SPIKE: snapshot testing [\#264](https://github.com/digital-ai/dot-components/issues/264)
 - Custom schematic for generating code for the library [\#259](https://github.com/digital-ai/dot-components/issues/259)
 - Upgrade Material-UI to v5 [\#220](https://github.com/digital-ai/dot-components/issues/220)
 - Setup Experitest [\#216](https://github.com/digital-ai/dot-components/issues/216)
 - Better storybook controls [\#197](https://github.com/digital-ai/dot-components/issues/197)
-- Write security policy [\#181](https://github.com/digital-ai/dot-components/issues/181)
-- Create a theme page in Storybook that corresponds with the theme frames in Figma [\#146](https://github.com/digital-ai/dot-components/issues/146)
 - S-74178: Publish demo site to a hosted environment [\#97](https://github.com/digital-ai/dot-components/issues/97)
 - S-73859: Configure Sonar Cloud [\#95](https://github.com/digital-ai/dot-components/issues/95)
 - Future roadmap  [\#90](https://github.com/digital-ai/dot-components/issues/90)
@@ -712,14 +714,9 @@
 - Navigation rail + labels [\#464](https://github.com/digital-ai/dot-components/issues/464)
 - Issue \#464: Navigation rail + labels [\#505](https://github.com/digital-ai/dot-components/pull/505) ([dmiletic85](https://github.com/dmiletic85))
 
-**Closed issues:**
-
-- Storybook \> GitHub Pages \(automated\) [\#454](https://github.com/digital-ai/dot-components/issues/454)
-
 **Merged pull requests:**
 
 - Fix some lint issues [\#511](https://github.com/digital-ai/dot-components/pull/511) ([CWSites](https://github.com/CWSites))
-- S-75774: \[ProgressionBoard\] Show different messages on empty applications [\#509](https://github.com/digital-ai/dot-components/pull/509) ([dmiletic85](https://github.com/dmiletic85))
 - Issue 493: Pill colors [\#506](https://github.com/digital-ai/dot-components/pull/506) ([selsemore](https://github.com/selsemore))
 
 ## [v0.0.0-alpha.29](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.29) (05/05/2021)
@@ -745,6 +742,7 @@
 
 **Merged pull requests:**
 
+- S-75774: \[ProgressionBoard\] Show different messages on empty applications [\#509](https://github.com/digital-ai/dot-components/pull/509) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#502: Fix broken List/Sidebar links when custom component used [\#503](https://github.com/digital-ai/dot-components/pull/503) ([selsemore](https://github.com/selsemore))
 - Issue \#496: Fix List onClick and href handling [\#501](https://github.com/digital-ai/dot-components/pull/501) ([selsemore](https://github.com/selsemore))
 - D-17864: Fix Payload URL's documentation link [\#500](https://github.com/digital-ai/dot-components/pull/500) ([dmiletic85](https://github.com/dmiletic85))
@@ -823,6 +821,7 @@
 - Issue \#460: allow flex items to display inline [\#481](https://github.com/digital-ai/dot-components/pull/481) ([CWSites](https://github.com/CWSites))
 - \#432: tsconfig issues [\#479](https://github.com/digital-ai/dot-components/pull/479) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - Issue \#475: Show split workitems as such on the progression board [\#476](https://github.com/digital-ai/dot-components/pull/476) ([cmpilato](https://github.com/cmpilato))
+- Fix test type error [\#462](https://github.com/digital-ai/dot-components/pull/462) ([dmiletic85](https://github.com/dmiletic85))
 - S-73861: Automate semver with GitHub Action [\#461](https://github.com/digital-ai/dot-components/pull/461) ([CWSites](https://github.com/CWSites))
 - Accordion Migration [\#452](https://github.com/digital-ai/dot-components/pull/452) ([syedsabbas360](https://github.com/syedsabbas360))
 
@@ -921,10 +920,8 @@
 - Icons missing from `ProgressionBoardLegend` [\#219](https://github.com/digital-ai/dot-components/issues/219)
 - Release Demo Issues [\#218](https://github.com/digital-ai/dot-components/issues/218)
 - Left padding is incorrect when using endAdornment [\#214](https://github.com/digital-ai/dot-components/issues/214)
-- Storybook Hamburger Menu [\#151](https://github.com/digital-ai/dot-components/issues/151)
 - Width the text button and other are not the same [\#142](https://github.com/digital-ai/dot-components/issues/142)
 - renderWithTheme helper needs to be shared demo-app [\#102](https://github.com/digital-ai/dot-components/issues/102)
-- DotSidebar and DotHeader requires BrowserRouter [\#57](https://github.com/digital-ai/dot-components/issues/57)
 - Update Contributing link and Change log link \#310 [\#313](https://github.com/digital-ai/dot-components/pull/313) ([syedsabbas360](https://github.com/syedsabbas360))
 - Issue \#286: add prop default value of width for DotDrawer component [\#289](https://github.com/digital-ai/dot-components/pull/289) ([syedsabbas360](https://github.com/syedsabbas360))
 
@@ -940,18 +937,15 @@
 - Simplify local pagination implementation for DotTable component [\#363](https://github.com/digital-ai/dot-components/issues/363)
 - Component: DotTypography [\#360](https://github.com/digital-ai/dot-components/issues/360)
 - Add "dot-components" class to the native input element for input elements [\#351](https://github.com/digital-ai/dot-components/issues/351)
-- No implicit any [\#345](https://github.com/digital-ai/dot-components/issues/345)
 - Investigate if there is a way to remove the browser required field popup [\#339](https://github.com/digital-ai/dot-components/issues/339)
 - Add menu to Sidebar component [\#332](https://github.com/digital-ai/dot-components/issues/332)
 - Add a precommit hook to run the code formatter [\#319](https://github.com/digital-ai/dot-components/issues/319)
-- Exercise all components in the "sandbox" app [\#278](https://github.com/digital-ai/dot-components/issues/278)
 - Remove default exports [\#260](https://github.com/digital-ai/dot-components/issues/260)
 - Remove default assignees from the "Component Review" issue template [\#258](https://github.com/digital-ai/dot-components/issues/258)
 - Remove unnecessary default null values from component props [\#257](https://github.com/digital-ai/dot-components/issues/257)
 - Improve performance of e2e tests [\#248](https://github.com/digital-ai/dot-components/issues/248)
 - Draft PRs shouldn't deploy test enivronments [\#247](https://github.com/digital-ai/dot-components/issues/247)
 - Unit tests to verify the existing API for components [\#245](https://github.com/digital-ai/dot-components/issues/245)
-- Add reviewer checklist item for verifying that new components are exported from the library [\#238](https://github.com/digital-ai/dot-components/issues/238)
 - Integrate with Experitest [\#231](https://github.com/digital-ai/dot-components/issues/231)
 - Component Review: Inputs + Multiline Text [\#212](https://github.com/digital-ai/dot-components/issues/212)
 - Move all components to Styled Component [\#210](https://github.com/digital-ai/dot-components/issues/210)
@@ -963,13 +957,10 @@
 - Component Review: Paginated Table [\#200](https://github.com/digital-ai/dot-components/issues/200)
 - Component Review: ProgressionBoardLegend [\#199](https://github.com/digital-ai/dot-components/issues/199)
 - Component Review: Progression Board [\#198](https://github.com/digital-ai/dot-components/issues/198)
-- Updates to issue & PR templates [\#194](https://github.com/digital-ai/dot-components/issues/194)
 - Icon size is wrong [\#191](https://github.com/digital-ai/dot-components/issues/191)
 - Alpha 5 release [\#187](https://github.com/digital-ai/dot-components/issues/187)
 - Separate DOM segments into separate styled components [\#182](https://github.com/digital-ai/dot-components/issues/182)
 - Investigate `\<Image\>` use in `\<DotEmptyState\>` component [\#161](https://github.com/digital-ai/dot-components/issues/161)
-- Create Issue and PR templates [\#144](https://github.com/digital-ai/dot-components/issues/144)
-- Contributing guidelines [\#134](https://github.com/digital-ai/dot-components/issues/134)
 - Migrate ProgressionBoard data to a separate file [\#119](https://github.com/digital-ai/dot-components/issues/119)
 - Component Review - Switch [\#110](https://github.com/digital-ai/dot-components/issues/110)
 - Component Review - Input Text [\#108](https://github.com/digital-ai/dot-components/issues/108)
@@ -978,14 +969,12 @@
 - Component Review - Auto Complete [\#104](https://github.com/digital-ai/dot-components/issues/104)
 - Component Review - Card [\#103](https://github.com/digital-ai/dot-components/issues/103)
 - Expand end-to-end tests [\#43](https://github.com/digital-ai/dot-components/issues/43)
-- Sandbox Updates [\#42](https://github.com/digital-ai/dot-components/issues/42)
 
 **Merged pull requests:**
 
 - Issue \#468: Fix DotIcon import in Accordion to avoid circular dependency [\#471](https://github.com/digital-ai/dot-components/pull/471) ([selsemore](https://github.com/selsemore))
 - Issue \#469: Make nestedListType prop optional for DotSidebar [\#470](https://github.com/digital-ai/dot-components/pull/470) ([selsemore](https://github.com/selsemore))
 - Issue 463 Tabs UX fixes and move to Components [\#467](https://github.com/digital-ai/dot-components/pull/467) ([selsemore](https://github.com/selsemore))
-- Fix test type error [\#462](https://github.com/digital-ai/dot-components/pull/462) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#450: Tabs component [\#459](https://github.com/digital-ai/dot-components/pull/459) ([selsemore](https://github.com/selsemore))
 - S-74523: Add Phases from the Progression Board Experience [\#456](https://github.com/digital-ai/dot-components/pull/456) ([dmiletic85](https://github.com/dmiletic85))
 - Issue \#332: Nested list add menu capability [\#453](https://github.com/digital-ai/dot-components/pull/453) ([CWSites](https://github.com/CWSites))
@@ -1111,7 +1100,6 @@
 - Alpha 4 release [\#184](https://github.com/digital-ai/dot-components/issues/184)
 - Make the deployment of the public Storybook site a manual action [\#167](https://github.com/digital-ai/dot-components/issues/167)
 - Move "styles" for styled components to separate file [\#163](https://github.com/digital-ai/dot-components/issues/163)
-- Links in change log and other markdown files should point to ZeroHeight rather than local files [\#157](https://github.com/digital-ai/dot-components/issues/157)
 - Empty state component [\#138](https://github.com/digital-ai/dot-components/issues/138)
 - Component Review - AppToolbar [\#111](https://github.com/digital-ai/dot-components/issues/111)
 
@@ -1137,108 +1125,556 @@
 - issue \#138: update empty state based on UX feedback [\#150](https://github.com/digital-ai/dot-components/pull/150) ([CWSites](https://github.com/CWSites))
 - issue \#111: updating AppToolbar [\#149](https://github.com/digital-ai/dot-components/pull/149) ([CWSites](https://github.com/CWSites))
 
-## [0.0.0-alpha.3](https://github.com/digital-ai/dot-components/tree/0.0.0-alpha.3) (01/25/2021)
+# Change Log
 
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/1ad3b78124dd8a0acb3a78dd2f2af9149e91ca70...0.0.0-alpha.3)
+## Current
 
-**Features:**
+### Experimental
 
-- Button height is not correct [\#128](https://github.com/digital-ai/dot-components/issues/128)
-- Nav item font size is not correct  [\#127](https://github.com/digital-ai/dot-components/issues/127)
-- Fix the size of Subheader in side menu and margins [\#89](https://github.com/digital-ai/dot-components/issues/89)
-- Convert Button and Avatar to styled components [\#87](https://github.com/digital-ai/dot-components/issues/87)
-- Avatar needs an `onClick` prop [\#85](https://github.com/digital-ai/dot-components/issues/85)
-- DotHeader hamburger menu [\#54](https://github.com/digital-ai/dot-components/issues/54)
-- DotHeader brand and component name [\#53](https://github.com/digital-ai/dot-components/issues/53)
-- Menu component [\#44](https://github.com/digital-ai/dot-components/issues/44)
-- Nav Top Bar [\#40](https://github.com/digital-ai/dot-components/issues/40)
-- Hamburger Menu [\#39](https://github.com/digital-ai/dot-components/issues/39)
+- **SplitButton** - added styling and `disablePortal` prop so that `SplitButton` menu can always be shown on top
+- **SplitButton** - fixed to work with non-numeric option keys
 
-**Fixed bugs:**
+### Components
 
-- Sidebar getting cutoff and background colors not correct [\#140](https://github.com/digital-ai/dot-components/issues/140)
-- Progression Board Error [\#122](https://github.com/digital-ai/dot-components/issues/122)
-- Resolve font issue with Storybook [\#94](https://github.com/digital-ai/dot-components/issues/94)
-- DotInputText [\#77](https://github.com/digital-ai/dot-components/issues/77)
-- Menu does not have a selection handler [\#66](https://github.com/digital-ai/dot-components/issues/66)
-- Chips needs updating [\#65](https://github.com/digital-ai/dot-components/issues/65)
-- Dialog title and close icon alignment is off. [\#63](https://github.com/digital-ai/dot-components/issues/63)
-- Destructive button hover turns green  [\#60](https://github.com/digital-ai/dot-components/issues/60)
-- Actions items in Dotheader [\#56](https://github.com/digital-ai/dot-components/issues/56)
-- Company name displaying in the content area. [\#52](https://github.com/digital-ai/dot-components/issues/52)
-- DotSidebar animation [\#47](https://github.com/digital-ai/dot-components/issues/47)
-- DotSidebar needs to vertical scroll [\#46](https://github.com/digital-ai/dot-components/issues/46)
-- Missing Icons [\#33](https://github.com/digital-ai/dot-components/issues/33)
-- update design tokkens colors [\#27](https://github.com/digital-ai/dot-components/issues/27)
+> **BREAKING CHANGE: Pill** - fixed console warning message about `backgroundColor` prop and `labelColor` prop by changing both to all lowercase `backgroundcolor` and `labelcolor`
 
-**Closed issues:**
+- **AppToolbar** - added styling so that `Sidebar` component is not truncated when used as hamburger menu
+- **Avatar** - added `color` prop
+- **Checkbox** - added `ariaLabel`, `ariaLabelledby` and `disableRipple` props
+- **EmptyState** - fixed behavior when no `imageSrc` prop is passed
+- **List** - fix to only show one flyout menu at a time
+- **List** - added `index` prop
+- **Pill** - added `backgroundColor` and `labelColor` props
+- **Sidebar** - fix to show icons for nested items when `nestedListType` is `menu`.
+- **Sidebar** - fix to only show one flyout menu at a time
+- **Table** - fixed `loading` state so that `<td>` is not nested within `<span>`
+- **Table** - fix to not add tooltips to table cells
 
-- Text and Outlined buttons are using primary color [\#136](https://github.com/digital-ai/dot-components/issues/136)
-- Update change log to reflect recent changes [\#135](https://github.com/digital-ai/dot-components/issues/135)
-- Update library dependencies [\#129](https://github.com/digital-ai/dot-components/issues/129)
-- Button - allow for the label to be added to a button as a child [\#118](https://github.com/digital-ai/dot-components/issues/118)
-- Component Review - Icon Button [\#117](https://github.com/digital-ai/dot-components/issues/117)
-- Component Review - Icon [\#116](https://github.com/digital-ai/dot-components/issues/116)
-- Component Review - Navigation [\#115](https://github.com/digital-ai/dot-components/issues/115)
-- Component Review - Sidebar [\#114](https://github.com/digital-ai/dot-components/issues/114)
-- Component Review - Breadcrumbs [\#113](https://github.com/digital-ai/dot-components/issues/113)
-- Component Review - Drawer [\#112](https://github.com/digital-ai/dot-components/issues/112)
-- Alpha Priorities [\#99](https://github.com/digital-ai/dot-components/issues/99)
-- Publish on NPM as an open source package [\#86](https://github.com/digital-ai/dot-components/issues/86)
-- JSS or not? [\#78](https://github.com/digital-ai/dot-components/issues/78)
-- Migrate the ChangeLog into a markdown file and import it into the MDX page [\#74](https://github.com/digital-ai/dot-components/issues/74)
-- Move all components in Experimental that haven't gone through a full review and API updates [\#71](https://github.com/digital-ai/dot-components/issues/71)
-- Dialog needs to be dismissible in storybook [\#62](https://github.com/digital-ai/dot-components/issues/62)
-- DotSidebar Digital.ai logo scaling issue [\#49](https://github.com/digital-ai/dot-components/issues/49)
-- Storybook Updates [\#41](https://github.com/digital-ai/dot-components/issues/41)
+### Experimental
 
-**Merged pull requests:**
+> **BREAKING CHANGE: ProgressionBoard** - removed all progression board components
 
-- Alpha 3 Release [\#145](https://github.com/digital-ai/dot-components/pull/145) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- Change log updates [\#143](https://github.com/digital-ai/dot-components/pull/143) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- Issue 112 drawer review [\#141](https://github.com/digital-ai/dot-components/pull/141) ([j-schoen](https://github.com/j-schoen))
-- issue: 136 fixed color for text and outlined buttons [\#137](https://github.com/digital-ai/dot-components/pull/137) ([j-schoen](https://github.com/j-schoen))
-- S-74297 New ProgressionBoardLegend component [\#133](https://github.com/digital-ai/dot-components/pull/133) ([cmpilato](https://github.com/cmpilato))
-- Issue 118 button children [\#131](https://github.com/digital-ai/dot-components/pull/131) ([j-schoen](https://github.com/j-schoen))
-- Update dependencies and peerDependencies [\#130](https://github.com/digital-ai/dot-components/pull/130) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- issue: \#113 added sytled components and update styles [\#126](https://github.com/digital-ai/dot-components/pull/126) ([j-schoen](https://github.com/j-schoen))
-- Issue \#114: convert sidebar to styled component [\#125](https://github.com/digital-ai/dot-components/pull/125) ([CWSites](https://github.com/CWSites))
-- Issue \#115: Component Review Navigation & NavItem [\#124](https://github.com/digital-ai/dot-components/pull/124) ([CWSites](https://github.com/CWSites))
-- D-17600 Expect strings, not numbers, for Phase URL properties [\#123](https://github.com/digital-ai/dot-components/pull/123) ([cmpilato](https://github.com/cmpilato))
-- Issue \#116: Component Review Icon [\#121](https://github.com/digital-ai/dot-components/pull/121) ([CWSites](https://github.com/CWSites))
-- Issue \#117: Component Review - IconButton [\#120](https://github.com/digital-ai/dot-components/pull/120) ([CWSites](https://github.com/CWSites))
-- Issue \#94: added staticDir to workspace.json updated styles.css path … [\#101](https://github.com/digital-ai/dot-components/pull/101) ([j-schoen](https://github.com/j-schoen))
-- Issue \#65: update avatar and icon alignment [\#100](https://github.com/digital-ai/dot-components/pull/100) ([CWSites](https://github.com/CWSites))
-- D-17600 Fix ProgressionBoard component swimlane header gaps [\#98](https://github.com/digital-ai/dot-components/pull/98) ([cmpilato](https://github.com/cmpilato))
-- Issue \#89: update sidebar sub header size, cleanup props on sidebar [\#93](https://github.com/digital-ai/dot-components/pull/93) ([CWSites](https://github.com/CWSites))
-- Issue \#85: add onClick prop to avatar [\#92](https://github.com/digital-ai/dot-components/pull/92) ([CWSites](https://github.com/CWSites))
-- Issue \#86: Move package to be published publicly on NPM [\#91](https://github.com/digital-ai/dot-components/pull/91) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- Issue \#87: Convert Button and Avatar components to styled components [\#88](https://github.com/digital-ai/dot-components/pull/88) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- Issue \#66: add onClick prop for menuItem [\#83](https://github.com/digital-ai/dot-components/pull/83) ([CWSites](https://github.com/CWSites))
-- issue \#60: resolve hover color on destructive button [\#82](https://github.com/digital-ai/dot-components/pull/82) ([CWSites](https://github.com/CWSites))
-- issue \#63: fix alignment of dialog title with close button [\#81](https://github.com/digital-ai/dot-components/pull/81) ([CWSites](https://github.com/CWSites))
-- Issue \#56: action items DotAppToolbar [\#80](https://github.com/digital-ai/dot-components/pull/80) ([CWSites](https://github.com/CWSites))
-- added type prop [\#79](https://github.com/digital-ai/dot-components/pull/79) ([j-schoen](https://github.com/j-schoen))
-- added action-toolbar [\#76](https://github.com/digital-ai/dot-components/pull/76) ([j-schoen](https://github.com/j-schoen))
-- issue \#71: move components not yet approved to experimental [\#75](https://github.com/digital-ai/dot-components/pull/75) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- adding children prop to sidebar and app toolbar [\#73](https://github.com/digital-ai/dot-components/pull/73) ([CWSites](https://github.com/CWSites))
-- Add support for environments [\#72](https://github.com/digital-ai/dot-components/pull/72) ([markphip](https://github.com/markphip))
-- Issue \#40 & \#53: Top Bar Changes [\#70](https://github.com/digital-ai/dot-components/pull/70) ([CWSites](https://github.com/CWSites))
-- issue \#39: link logo to homepage [\#68](https://github.com/digital-ai/dot-components/pull/68) ([CWSites](https://github.com/CWSites))
-- issue \#39: link logo to homepage [\#64](https://github.com/digital-ai/dot-components/pull/64) ([CWSites](https://github.com/CWSites))
-- Issue \#54: Hamburger menu [\#61](https://github.com/digital-ai/dot-components/pull/61) ([CWSites](https://github.com/CWSites))
-- Issue 41: Update sidebar in storybook [\#59](https://github.com/digital-ai/dot-components/pull/59) ([CWSites](https://github.com/CWSites))
-- Issue \#52: updated company collapsed margin [\#58](https://github.com/digital-ai/dot-components/pull/58) ([j-schoen](https://github.com/j-schoen))
-- Issue \#44: Menu wrapper component [\#51](https://github.com/digital-ai/dot-components/pull/51) ([CWSites](https://github.com/CWSites))
-- Issue \#47: Sidebar animation [\#50](https://github.com/digital-ai/dot-components/pull/50) ([CWSites](https://github.com/CWSites))
-- Issue \#46: Side nav scrolling [\#48](https://github.com/digital-ai/dot-components/pull/48) ([CWSites](https://github.com/CWSites))
-- added .md import [\#45](https://github.com/digital-ai/dot-components/pull/45) ([j-schoen](https://github.com/j-schoen))
-- S-73862: adjustments based on UX feedback [\#38](https://github.com/digital-ai/dot-components/pull/38) ([CWSites](https://github.com/CWSites))
-- Updated icons on 18.12.2020. [\#37](https://github.com/digital-ai/dot-components/pull/37) ([BojanKocijan](https://github.com/BojanKocijan))
-- S-74144: theme configuration [\#36](https://github.com/digital-ai/dot-components/pull/36) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- S 73983 avatar component [\#35](https://github.com/digital-ai/dot-components/pull/35) ([TheKeithStewart](https://github.com/TheKeithStewart))
-- S-73862: side navigation cleanup [\#34](https://github.com/digital-ai/dot-components/pull/34) ([CWSites](https://github.com/CWSites))
+> **BREAKING CHANGE: NavigationRail** - removed `onClick` mandatory prop from `RailItem` interface
 
+> **BREAKING CHANGE: StepCard** - was removed
+
+> **BREAKING CHANGE: StageCard** - was removed
+
+> **BREAKING CHANGE: Row** - was removed
+
+> **BREAKING CHANGE: PhaseHeader** - was removed
+
+> **BREAKING CHANGE: List** - modified `iconId` to be `startIconId`
+
+> **BREAKING CHANGE: Sidebar** - modified `iconId` to be `startIconId`
+
+> **BREAKING CHANGE: ProgressionBoardAppFormDrawer** - renamed component to `PBAppFormDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+
+> **BREAKING CHANGE: ProgressionBoardAppInfoDrawer** - renamed component to `PBAppInfoDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+
+> **BREAKING CHANGE: ProgressionBoardWorkItemDrawer** - renamed component to `PBWorkItemDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+
+- **List** - fix to show icons for nested items when `nestedListType` is `menu`.
+- **CssGrid** - added new component
+- **CssCell** - added new component
+- **CssGridDebug** - added new component
+- **NavigationRail** - added new component
+- **NavigationRail** - added optional `onChange` prop for handling item selection events
+- **ProgressionBoard** - added `pbApplications` optional prop for rendering appropriate waiting messages for given application
+- **ProgressionBoardApplicationDrawer** - added `applicationNames` property to `ApplicationAPI` interface
+- **ProgressionBoardDrawer** - added new component which should be used as a parent component when using any drawer content component
+
+## 0.0.0-alpha.29
+
+### Components
+
+- **List** - fixed `onClick` and `href` handling to work when click is to left of list item icon
+- **Sidebar** - fixed `onClick` and `href` handling to work when click is to left of list item icon
+
+### Experimental
+
+- **SplitButton** - added `SplitButton` component
+
+## 0.0.0-alpha.28
+
+> **BROKEN BUILD, DO NOT USE**
+
+## 0.0.0-alpha.27
+
+> **BROKEN BUILD, DO NOT USE**
+
+## 0.0.0-alpha.26
+
+### Components
+
+- **Breadcrumbs** - added `expansionMenu` prop which, if true, shows collapsed breadcrumbs in a dropdown menu
+- **Dialog** - added `hasActions` optional prop which toggles existence of actions buttons, and is, by default, set to true
+
+### Experimental
+
+- **ProgressionBoard** - changed type of `packageVersions` to `Array<PackageType | EmptyPackageType>` to support application's empty state
+
+## 0.0.0-alpha.25
+
+### Experimental
+
+- **ProgressionBoard** - determine of a workitem is split internally rather than expecting the provided data to provide that
+- **DotProgressionBoardApplicationDrawer** - removed this component and replaced it with **DotProgressionBoardAppFormDrawer**
+- **DotProgressionBoardAppInfoDrawer** - created new component used for viewing existing application data inside of a drawer
+
+## 0.0.0-alpha.21
+
+### Components
+
+- **Sidebar** - `nestedListType` prop made optional
+
+## 0.0.0-alpha.20
+
+### Components
+
+- **Tabs** - replaced `indicatorColor` and `textColor` props with `color` prop that controls both
+- **Tabs** - created new component
+
+### Experimental
+
+- **ProgressionBoardPhaseEditor** - created new component used for adding new phases to progression
+
+## 0.0.0-alpha.19
+
+### Components
+
+> **BREAKING CHANGE: EmptyState** - renamed `image` to `imageSrc` and set it to accept a string representing the path to the image source
+
+- **Accordion** - is now a stable component
+- **Accordion** - added `hasElevation` prop
+
+- **AppToolbar** - added `mainMenuWidth` prop
+- **Sidebar** - added `nestedListType` prop which controls how a nested list is displayed
+- **Toggle** - added new component to stable components
+
+### Experimental
+
+- **List** - added `nestedListType` prop which controls how a nested list is displayed
+- **List** - now accepts `menuPlacement` prop for use when `nestedListType` is `menu`
+- **ProgressionBoardApplicationDrawer** - added `payloadUrl` property to `ApplicationAPI` interface
+
+## 0.0.0-alpha.18
+
+### Components
+
+- **AppToolbar** - ensure that `avatar` is always on the right side of the AppToolbar component
+
+### Experimental
+
+- **ProgressionBoard** - changed `WorkItem` to use `DotIcon` instead of `ul`
+
+## 0.0.0-alpha.17
+
+### Components
+
+> **BREAKING CHANGE: ConfirmationDialog** - renamed `cancelBtnProps` to `cancelButtonProps`
+
+> **BREAKING CHANGE: ConfirmationDialog** - renamed `submitBtnProps` to `submitButtonProps`
+
+> **BREAKING CHANGE: ConfirmationDialog** - renamed `onConfirm` to `onSubmit`
+
+> **BREAKING CHANGE: ConfirmationDialog** - renamed `showDialog` to `open`
+
+> **BREAKING CHANGE: Dialog** - updated `SubmitButtonProps` to only allow `type: 'primary' | 'destructive'`
+
+- **AutoComplete** - added `inputRef` prop
+- **Checkbox** - added `inputRef` prop
+- **ConfirmationDialog** - is now a stable component
+- **Dialog** - is now a stable component
+- **Dialog** - hard-coded cancel button to `type="text"`
+- **Dialog** - added `closeIconVisible`, `closeOnClickAway` prop
+- **InputSelect** - added `inputRef` prop
+- **InputText** - added `inputRef` prop
+- **RadioButton** - added `inputRef` prop
+- **Switch** - added `inputRef` prop
+- **Switch** - added `id` prop
+
+### Experimental
+
+- **ProgressionBoardWorkItemDrawer** - `owner` property type (of `WorkItemDetailsType` interface) changed from `string` to `Array<string>` to support multiple owners
+
+## 0.0.0-alpha.16
+
+### Components
+
+- **Form** - created new component
+- **InputSelect** - made `value` prop optional
+- **Sidebar** - added `open` prop
+
+## 0.0.0-alpha.15
+
+### Components
+
+> **BREAKING CHANGE: Avatar** - update `variant` prop to accept `circular` instead of `circle` as per it being deprecated in v5.
+
+> **BREAKING CHANGE: Skeleton** - changed `variant` prop to take `circular` and `rectangular` rather than `circle` and `rect`
+
+- **AutoComplete** - added `disabled` prop
+- **AutoComplete** - added `autoFocus` prop
+- **InputSelect** - added `disabled` prop
+- **InputText** - added `disabled` prop
+- **InputText** - added `readOnly` prop
+- **InputText** - hard coded `autoComplete` to `off`
+- **Table** - fixed `stickyHeader` to work without requiring `maxHeight`
+- **Table** - fixed `NaN` in pagination total rows count
+- **TableHeader** - export `DotColumnHeader` interface
+- **ListItem** - added `selected` prop
+
+### Experimental
+
+- **InlineEdit** - added `readOnly` prop
+- **InlineEdit** - hard coded `autoComplete` to `off`
+
+## 0.0.0-alpha.14
+
+### Components
+
+> **BREAKING CHANGE: Accordion** - removed unused `id` prop from component
+
+> **BREAKING CHANGE: InputSelect** - removed initial value for `defaultValue`
+
+> **BREAKING CHANGE: All Components** - removed `default` exports from all components
+
+> **BREAKING CHANGE: Sidebar** - changed `backItem` prop to be a single `ListItemProps` instead of an array
+
+> **`dot-` classes applied to native elements** - applied `dot-` classes to native elements to enable usage of `:not` to avoid style conflicts
+
+- **AutoComplete** - `string` data type acceptable for defaultValue
+- **AvatarGroup** - added new component
+- **Menu** - added `disablePortal` prop
+- **Pill**: added `Pill` to the list of exported component from the library
+- **Sidebar** - back button is now a custom component with icon button instead of a list item.
+- **Sidebar** - back button now uses `backItemProps` with `text` and `onClick` required
+- **Table** - removed `page` prop
+- **Table** - removed `handleRequestSort` callback
+- **Table** - removed `setRowsPerPage` callback
+- **Table** - removed `setPage` callback
+- **Table** - added `toolbar` prop
+- **Table** - added `onUpdateData` callback
+- **Table** - added `onRowClick` callback
+- **Table** - locally paginated table (no `onUpdateData` provided) handles sorting and paging internally.
+- **Table** - moved to Components
+- **TablePagination** - added new component
+- **Typography** - added new component
+
+### Experimental
+
+- **ProgressionBoardDrawer** - is no longer exported component
+- **ProgressionBoardApplicationDrawer** - new component which can be used in combination with `ProgressionBoard` for adding new application
+- **ProgressionBoardWorkItemDrawer** - new component which can be used in combination with `ProgressionBoard` for displaying workitem's data
+
+## 0.0.0-alpha.13
+
+### Components
+
+> **BREAKING CHANGE: Menu** - removed MenuItem `onClick` prop
+
+> **BREAKING CHANGE: Navigation** - removed in favor of `List` component
+
+> **BREAKING CHANGE: NavItem** - removed in favor of `ListItem` component
+
+> **BREAKING CHANGE: ProgressionBoardThemeProvider** removed in favor of setting the theme at the global level
+
+> **BREAKING CHANGE: Sidebar** - replaced use of `Navigation` with `List`
+
+> **BREAKING CHANGE: InputSelect** - removed `onChange` from InputSelectProps
+
+> **BREAKING CHANGE: InputText** - removed `onChange` from InputTextProps
+
+> **BREAKING CHANGE: react-router-dom** - removed peer dependency on `react-router-dom`
+
+- **DotDrawer** - added `ModalProps` optional prop, which serves as an object containing props applied to the Modal element
+- **DotDrawer** - added `PaperProps` optional prop, which serves as an object containing props applied to the Paper element
+- **DotInputSelect**: added the value prop to DotSelect so that whichever option is selected is passed to the value prop
+- **Menu** - added `onSelect` prop
+- **Pill** - introduced a new Pill Component to the Component Library
+- **List** - added new component
+- **ListItem** - added new component
+- **ThemeProvider** - add `layer` object to global theme provider to match with UX mockups.
+- **ThemeProvider** - moved themes to global theme provider, `light`, `dark`, `agilityLight` and `agilityDark`
+- **ThemeProvider** updated `breakpoints` in `theme` object to `xs: 0`, `sm: 720`, `md: 1024`, `lg: 1280`, `xl: 1920`,
+
+### Experimental
+
+- **ProgressionBoard** - added `displayDrawer` prop which controls display of workitem details drawer
+- **ProgressionBoard** - added `drawerWidth` prop which controls drawer width (if enabled)
+- **ProgressionBoard** - added `workItemSelection` optional prop which represents an object containing data for custom workitem selection implementation
+- **ProgressionBoard** - removed `displayDrawer` optional prop
+- **ProgressionBoard** - removed `drawerWidth` optional prop
+- **ProgressionBoardDrawer** - moved outside of `ProgressionBoard` component, can be used separately in custom wrapper component
+- **ProgressionBoardDrawer** - added `drawerPaperProps` optional prop, which serves as an object containing props applied to the drawer's Paper element
+- **ProgressionBoardDrawer** - added `workItemDetails` optional prop, object which contains detail data about workitem (fetched asynchronously)
+
+## 0.0.0-alpha.12
+
+### Components
+
+- **AutoComplete** - onChange signature changed to match material-ui
+- **AutoComplete** - AutoCompleteOption.category changed to AutoCompletionOption.group and made optional
+- **AutoComplete** - defaultValue prop type changed to accept an AutoCompleteOption or an AutoCompleteOption array
+- **AutoComplete** - value prop type changed to accept an AutoCompleteOption or an AutoCompleteOption array
+- **AutoComplete** - added helperText prop
+- **AutoComplete** - added inputId prop
+- **AutoComplete** - added error prop and styling
+- **AutoComplete** - use outlined version of chips
+- **Chip** - fixed colors for border, close icon and hover
+- **DotDrawer**: added default value of 256px to `width` prop
+- **InputText** - added placeholder prop
+- **Menu** - removed `buttonContent` prop (and button)
+- **Menu** - added `anchorEl` prop
+- **Menu** - added `open` prop
+- **Menu** - added `onLeave` callback prop
+- **Menu** - added `key` to MenuItemProps
+- **Menu** - added `menuId` and `menuItemKey` params to MenuItemProps `onClick` callback signature
+- **Menu** - styled for min-width (112px), max-width (280px) and scrollability
+- **Menu** - moved to Components
+- **Skeleton** - hard-coded `animation` to `wave` and removed `animation` prop
+- **Skeleton** - changed background color to #e3e5e8
+- **Skeleton** - removed default export
+- **Skeleton** - moved to Components
+- **Switch** - added `onChange` callback prop
+- **ThemeProvider** - remove `CssBaseline` to prevent style hoisting, attempted `ScopedCssBaseline` but appears that MUI has let this go stale.
+
+## 0.0.0-alpha.11
+
+### Components
+
+- **Chip**: removed `iconId` prop
+- **Chip**: added `startIcon` prop
+- **Chip**: changed data type of `avatar` prop to accept `DotAvatar` component
+- **Chip**: changed `clickable` to `isClickable`
+- **Chip**: changed `deletable` to `isDeletable`
+- **Chip**: removed `label` prop
+- **Chip**: added `children` prop
+- **Chip**: added `error` prop
+- **Chip**: removed `variant` prop
+- **Chip**: removed `color` prop
+- **CheckboxGroup**: fixed hardcoded coded select all state to be dynamic
+- **Progress**: moved to Components
+
+### Experimental
+
+- **WorkItem**: Reafactored to return with new WorkItemTooltip.
+- **WorkItemTooltip**: Created the new tooltip component.
+
+## 0.0.0-alpha.10
+
+### Components
+
+- **ActionToolbar**: added to index exports
+- **InputText**: added missing `value` prop
+
+## 0.0.0-alpha.9
+
+### Components
+
+> **BREAKING CHANGE: RadioButton** removed unneeded `ariaLabel` prop
+
+> **BREAKING CHANGE: RadioGroup** `radioButtons` prop to `options` to use base props for `RadioGroup` and `CheckboxGroup`
+
+- **Card**: refactored to be a lightweight wrapper component.
+- **CardContent**: Create the card content component.
+- **CardFooter**: Create the card footer component.
+- **CardHeader**: Create the card header component.
+- **Checkbox**: added NEW `Checkbox` component
+- **CheckboxGroup**: added NEW `CheckboxGroup` component
+- **FormGroup**: added NEW `FormGroup` component
+- **InputFormFields**: changed `required` from being a required prop to optional
+- **InputText**: added comments to interface
+- **RadioButton**: added NEW `RadioButton` component
+- **RadioButton**: added `id` prop
+- **RadioButton**: added `required` prop
+- **RadioGroup**: added `required` prop
+- **RadioGroup**: added NEW `RadioGroup` component
+- **RadioGroup**: added `row` prop to be consistent with material-ui and checkboxes and allow for group layout change from row to column.
+- **RadioButton**: moved to Components
+- **RadioGroup**: moved to Components
+
+### Experimental
+
+- **PackageVersion** - convert to functional component
+- **Phase** - convert to functional component
+- **ProgressionBoard** - convert to functional component
+- **ProgressionBoardLegend** - cleaned up DOM structure, converted workitems to icons
+- **RevisionRangeLabel** - convert to functional component
+- **StageCard**: added `avatar` prop
+- **SwimLane** - convert to functional component
+- **WorkItem** - convert to functional component
+
+## 0.0.0-alpha.8
+
+### Components
+
+- **AppToolbar**: fixed postion styles so the AppTollbar is always flush to top, left, and right
+- **InputSelect**: added `InputSelect` to the list of exported component from the library
+- **ProgressionBoardLegend**: utilize `DotIcon` component
+
+## 0.0.0-alpha.7
+
+### Components
+
+- **AutoComplete**: removed `inputVariant` prop
+- **Avatar**: if `large` then icon `fontSize` will be set to `default`
+- **Global**: integrated `Lato` font family as global style so consumer no longer needs to import `.css` file
+- **Global**: removed `.css` files to improve consumption and performance
+- **Icon**: removed `large` from `fontSize` options
+- **Icon**: integrated `dot` font family as part of styled component so consumer no longer needs to import `.css` file
+- **InlineEdit**: removed `inputVariant` prop
+- **InlineEdit**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size and needed to remove the complexity of having both options.
+- **InlineEdit**: removed `margin` prop in favor of the simpler `size` prop.
+- **InputProps**: renamed `InputTextProps` to `InputProps` and moved `InputTextProps` to be used with `InputText` to support `multiline` props
+- **InputSelect**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size and needed to remove the complexity of having both options.
+- **InputSelect**: removed `margin` prop in favor of the simpler `size` prop.
+- **InputText**: added `multiline` prop
+- **InputText**: added `size` prop - note `size` will be used in place of `margin`. `margin` controls the vertical spacing and the component size and needed to remove the complexity of having both options.
+- **InputText**: removed `margin` prop in favor of the simpler `size` prop.
+- **InputText**: added `rows` prop, only applies to `multiline`
+- **InputText**: added `rowMax` prop, only applies to `multiline`
+- **InputText**: added unit tests for `multiline`
+- **Link**: Create the link component.
+- **Switch**: added prop for `labelPlacement`
+- **Switch**: fixed inconsistent styles per UX review
+
+## 0.0.0-alpha.6
+
+### Components
+
+- **Sidebar**: `DotNavigation` no longer renders if `navItems` are not passed in.
+
+## 0.0.0-alpha.5
+
+### Experimental
+
+- **AutoComplete**: removed `inputVariant` prop
+- **Card**: updated `classes` prop to `className`
+- **Dialog**: updated `classes` prop to `className`
+- **InlineEdit**: removed `inputVariant` prop
+- **InputSelect**: added props for `startIcon`, `endIcon`, `warning`, `id`, `helperText`
+- **InputSelect**: added custom styles for `warning` state
+- **InputSelect**: fixed inconnsistent styles per UX review
+- **InputSelect**: added better demo controls in storybook for `startIcon`, `endIcon`
+- **InputSelect**: moved styled component definitions to `InputFormFields.styles.ts`
+- **InputSelect**: moved interface and type definitions to `InputFormFields.propTypes.ts`
+- **InputSelect**: removed `variant` prop
+- **InputText**: added props for `startIcon`, `endIcon`, `warning`, `id`, `helperText`
+- **InputText**: added custom styles for `warning` state
+- **InputText**: fixed inconnsistent styles per UX review
+- **InputText**: added better demo controls in storybook for `startIcon`, `endIcon`
+- **InputText**: moved styled component definitions to `InputFormFields.styles.ts`
+- **InputText**: moved interface and type definitions to `InputFormFields.propTypes.ts`
+- **InputText**: removed `variant` prop
+- **Menu**: updated `classes` prop to `className`
+- **PhaseHeader**: updated `classes` prop to `className`
+
+## 0.0.0-alpha.4
+
+### Components
+
+- **AppToolbar**: changed `brand` to `appName`
+- **AppToolbar**: changed `items` to `navItems`
+- **Button**: changed `iconId` prop to `startIcon` prop which accepts a component
+- **Button**: added props for `disableRipple`, `fullWidth` and `endIcon`
+- **EmptyState**: added `className` prop, updated title from `h4` to `h2`
+- **EmptyState**: changed `Image` prop to `image`
+- **Navigation**: added button as component to trigger subnav
+- **Navigation**: added support for keyboard navigation
+
+## 0.0.0-alpha.3
+
+### Components
+
+- **Action Toolbar**: created the `DotActionToolbar` component
+- **AppToolbar**: converted `DotHeader` to `DotAppToolbar`
+- **AppToolbar**: added `DotAvatar` to `DotAppToolbar`
+- **AppToolbar**: added `DotMenu` to `DotAppToolbar` for hamburger menu
+- **Breadcrumbs**: added the `className` prop to include a class to the root dom element
+- **Breadcrumbs**: updated style to more closely match the design system
+- **Breadcrumbs**: added `tabIndex` on links
+- **Breadcrumbs**: added `cursor: pointer` on link hover
+- **Breadcrumbs**: updated Link styles
+- **Button**: changed `label` prop to `children` which accepts string only
+- **Button**: changed `text` and `outlined` colors to `default`
+- **Button**: updated theme to use default `line-height`
+- **Drawer**: added `width` props, defaults to `256px` for anchor positions `left` and `right`
+- **Drawer**: updated overlay styles
+- **Drawer**: added default padding `16px` to be in spec with material
+- **Icon**: updated style to more closely match the design system
+- **Icon**: renamed the `icon` prop to `iconId`
+- **Icon**: removed the `iconBgColor`, `iconClasses`, and `iconType` props
+- **Icon**: added the `className` prop to include a class to the root dom element
+- **Icon Button**: updated style to more closely match the design system
+- **Icon Button**: replace `iconButtonSize` and `iconSize` props with the `size` prop
+- **Icon Button**: rename `classes` prop to `className`
+- **Menu**: changed from `text` to `children` to allow for more flexibility around menu item
+- **Menu**: added `onClick` handler for menu items
+- **Navigation**: added support for button & icon button
+- **Navigation**: added support for divider, section header
+- **Navigation**: ability to display a second level navigation onClick
+- **Sidebar**: swapped out logo, component now controls the ability to collapse/expand
+- **Sidebar**: adjustments to animation used, style adjustments based on UX feedback
+
+### Experimental
+
+- **Progression Board Legend**: created the `DotProgressionBoardLegend` component
+
+## 0.0.0-alpha.2
+
+### Experimental
+
+- **Progression Board**: created the `DotProgressionBoard` component
+
+## 0.0.0-alpha.1
+
+### Components
+
+- **Avatar**: added the following props: `iconId`, `imageSrc`, `text`, `type`, and `variant`
+- **Avatar**: made the `alt` prop required
+- **Avatar**: changed the `classes` prop to `className`
+- **Avatar**: set avatar sizes to `small`, `medium`, or `large`
+- **Button**: changed the `classes` prop to `className`
+- **Button**: set button types to `destructive`, `primary`, `outlined`, or `text`
+- **Button**: change `displayText` prop to `label`
+- **Button**: add the following props: `isSubmit` and `size`
+- **ThemeProvider**: created the theme provider and included a light theme configuration with a color palette and typography configuration that matches the Dot Design System
+
+### Experimental
+
+- **Menu**: created `DotMenu` wrapper component with included button for ease of consumption
+
+## 0.1.2
+
+### Experimental
+
+- **Auto Complete**: Create the auto complete component. [Design docs](https://zeroheight.com/4a9ac476a/p/94a413-auto-complete/b/861f76).
+- **Avatar**: Create the avatar component. [Design docs](https://zeroheight.com/4a9ac476a/p/357f84-avatar/b/207629).
+- **Breadcrumbs**: Create the breadcrumbs component. [Design docs](https://zeroheight.com/4a9ac476a/p/67de7b-breadcrumbs/b/200388).
+- **Button**: Create the button component. [Design docs](https://zeroheight.com/4a9ac476a/p/14028d-button/b/09d7b1).
+- **Card**: Create the card component. [Design docs](https://zeroheight.com/4a9ac476a/p/7440a8-card/b/774ebb).
+- **Chip**: Create the chip component. [Design docs](https://zeroheight.com/4a9ac476a/p/315218-chips/b/6323a7).
+- **Confirmation Dialog**: Create the confirmation dialog component. [Design docs](https://zeroheight.com/4a9ac476a/p/516dfa-dialog/b/05631f).
+- **Dialog**: Create the dialog component. [Design docs](https://zeroheight.com/4a9ac476a/p/516dfa-dialog/b/05631f).
+- **Drawer**: Create the drawer component. [Design docs](https://zeroheight.com/4a9ac476a/p/84a534-drawer/b/200388).
+- **Empty State**: Create the empty state component. [Design docs](https://zeroheight.com/4a9ac476a/p/413789-empty-state/b/483e63).
+- **Header**: Create the header component. [Design docs](https://zeroheight.com/4a9ac476a/p/74161a-single-level-nav-flow/b/94d1c7).
+- **Icon**: Create the icon component. [Design docs](https://zeroheight.com/4a9ac476a/p/56c3a8-icon).
+- **Icon Button**: Create the icon button component. [Design docs](https://zeroheight.com/4a9ac476a/p/14028d-button/b/09d7b1).
+- **Infinite Scroll**: Create the infinite scroll component. [Design docs](https://zeroheight.com/4a9ac476a/p/796995-infinite-scroll/b/533430).
+- **Inline Edit**: Create the inline edit component. [Design docs](https://zeroheight.com/4a9ac476a/p/199edb-inline-edit/b/758e10).
+- **Input Select**: Create the input select component. [Design docs](https://zeroheight.com/4a9ac476a/p/3194b2-input-text/b/7993c9).
+- **Input Text**: Create the input text component. [Design docs](https://zeroheight.com/4a9ac476a/p/3194b2-input-text/b/7993c9).
+- **Navigation**: Create the navigation component.
+- **Paginated Table**: Create the infinite scroll component. [Design docs](https://zeroheight.com/4a9ac476a/p/662bde-table/b/25b7dc).
+- **Progress**: Create the progress component. [Design docs](https://zeroheight.com/4a9ac476a/p/6102aa-progress-indicators/b/41fdf6).
+- **Row**: Create the row component.
+- **Skeleton**: Create the skeleton component. [Design docs](https://zeroheight.com/4a9ac476a/p/739a93-skeleton-loader/b/060be8).
+- **Switch**: Create the switch component. [Design docs](https://zeroheight.com/4a9ac476a/p/906d11-switches/b/71f6ed).
+- **Stage Card**: Create the stage card component. [Design docs](https://zeroheight.com/4a9ac476a/p/52a412-stage-card/b/57fcb0).
+- **Step Card**: Create the stage card component. [Design docs](https://zeroheight.com/4a9ac476a/p/495871-step-card/b/426fc4).
 
 
 \* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
