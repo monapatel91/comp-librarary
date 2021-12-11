@@ -113,7 +113,7 @@ jobs:
         uses: fabernovel/github-changelog-generator-action@master
         with:
           # https://github.com/github-changelog-generator/github-changelog-generator/wiki/Advanced-change-log-generation-examples#additional-options
-          options: --token ${{ secrets.GITHUB_TOKEN }} --date-format %m/%d/%Y --output CHANGE_LOG.md --enhancement-label **Features:** --enhancement-labels enhancement --bug-labels defect --exclude-labels documentation,question,release --breaking-labels BREAKING-CHANGE
+          options: --token ${{ secrets.GITHUB_TOKEN }} --date-format %m/%d/%Y --output CHANGE_LOG.md --enhancement-label **Features:** --enhancement-labels enhancement --bug-labels defect --exclude-labels documentation,question,release --breaking-labels BREAKING-CHANGE --since-tag 0.0.0-alpha.3
           # --future-release ${{ needs.bump-version.outputs.new-version }}
 
       # https://github.com/marketplace/actions/add-commit
