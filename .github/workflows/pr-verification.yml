@@ -131,10 +131,7 @@ jobs:
         id: get_branch_protection
         uses: octokit/request-action@v2.x
         with:
-          route: GET /repos/{owner}/{repo}/branches/{branch}/protection
-          branch: develop
-          owner: digital-ai
-          repo: dot-components
+          route: GET /repos/digital-ai/dot-components/branches/develop/protection
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
 
