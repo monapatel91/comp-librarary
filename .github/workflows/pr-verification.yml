@@ -131,8 +131,7 @@ jobs:
         uses: octokit/request-action@v2.0.24
         with:
           route: PUT /repos/digital-ai/dot-components/branches/develop/protection
-          mediaType: |
-            null
+          mediaType: '{"Accept": application/vnd.github.v3+json}'
           required_status_checks: |
             null
           enforce_admins: |
@@ -148,8 +147,7 @@ jobs:
         uses: octokit/request-action@v2.0.24
         with:
           route: PUT /repos/digital-ai/dot-components/branches/develop/protection
-          mediaType: |
-            null
+          mediaType: '{"Accept": application/vnd.github.v3+json}'
           required_status_checks: |
             strict: true
             checks: |
@@ -170,6 +168,7 @@ jobs:
       #   uses: octokit/request-action@v2.0.24
       #   with:
       #     route: GET /repos/digital-ai/dot-components/branches/develop/protection
+      #     mediaType: '{"Accept": application/vnd.github.v3+json}'
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
 
