@@ -1,61 +1,157 @@
-# Change Log
+## [v0.0.1-alpha.0](https://github.com/digital-ai/dot-components/tree/v0.0.1-alpha.0) (05/19/2021)
 
-## Current
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.45...v0.0.1-alpha.0)
 
-### Experimental
+**Fixed bugs:**
 
-- **SplitButton** - added styling and `disablePortal` prop so that `SplitButton` menu can always be shown on top
-- **SplitButton** - fixed to work with non-numeric option keys
+- ZeroHeight CORS issue [\#549](https://github.com/digital-ai/dot-components/issues/549)
 
-### Components
+**Merged pull requests:**
 
-> **BREAKING CHANGE: Pill** - fixed console warning message about `backgroundColor` prop and `labelColor` prop by changing both to all lowercase `backgroundcolor` and `labelcolor`
+- Updating master to `0.0.1-alpha` [\#552](https://github.com/digital-ai/dot-components/pull/552) ([CWSites](https://github.com/CWSites))
+- Updating to `0.0.1` [\#551](https://github.com/digital-ai/dot-components/pull/551) ([CWSites](https://github.com/CWSites))
+- 5/10/21 update icon [\#545](https://github.com/digital-ai/dot-components/pull/545) ([BojanKocijan](https://github.com/BojanKocijan))
+- D-17921 Remove the unused icons from the legend. [\#544](https://github.com/digital-ai/dot-components/pull/544) ([HakujouRyu](https://github.com/HakujouRyu))
+- bump material-ui to v4.11.2 [\#543](https://github.com/digital-ai/dot-components/pull/543) ([CWSites](https://github.com/CWSites))
+- Bring build changes into `develop` [\#541](https://github.com/digital-ai/dot-components/pull/541) ([CWSites](https://github.com/CWSites))
 
-- **AppToolbar** - added styling so that `Sidebar` component is not truncated when used as hamburger menu
-- **Avatar** - added `color` prop
-- **Checkbox** - added `ariaLabel`, `ariaLabelledby` and `disableRipple` props
-- **EmptyState** - fixed behavior when no `imageSrc` prop is passed
-- **List** - fix to only show one flyout menu at a time
-- **List** - added `index` prop
-- **Pill** - added `backgroundColor` and `labelColor` props
-- **Sidebar** - fix to show icons for nested items when `nestedListType` is `menu`.
-- **Sidebar** - fix to only show one flyout menu at a time
-- **Table** - fixed `loading` state so that `<td>` is not nested within `<span>`
-- **Table** - fix to not add tooltips to table cells
+## [v0.0.0-alpha.45](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.45) (05/18/2021)
 
-### Experimental
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.44...v0.0.0-alpha.45)
 
-> **BREAKING CHANGE: ProgressionBoard** - removed all progression board components
+## [v0.0.0-alpha.44](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.44) (05/18/2021)
 
-> **BREAKING CHANGE: NavigationRail** - removed `onClick` mandatory prop from `RailItem` interface
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.43...v0.0.0-alpha.44)
 
-> **BREAKING CHANGE: StepCard** - was removed
+## [v0.0.0-alpha.43](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.43) (05/18/2021)
 
-> **BREAKING CHANGE: StageCard** - was removed
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.42...v0.0.0-alpha.43)
 
-> **BREAKING CHANGE: Row** - was removed
+## [v0.0.0-alpha.42](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.42) (05/17/2021)
 
-> **BREAKING CHANGE: PhaseHeader** - was removed
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.40...v0.0.0-alpha.42)
 
-> **BREAKING CHANGE: List** - modified `iconId` to be `startIconId`
+## [v0.0.0-alpha.40](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.40) (05/17/2021)
 
-> **BREAKING CHANGE: Sidebar** - modified `iconId` to be `startIconId`
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.39...v0.0.0-alpha.40)
 
-> **BREAKING CHANGE: ProgressionBoardAppFormDrawer** - renamed component to `PBAppFormDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+## [v0.0.0-alpha.39](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.39) (05/17/2021)
 
-> **BREAKING CHANGE: ProgressionBoardAppInfoDrawer** - renamed component to `PBAppInfoDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.38...v0.0.0-alpha.39)
 
-> **BREAKING CHANGE: ProgressionBoardWorkItemDrawer** - renamed component to `PBWorkItemDrawerContent` (should be used as a child of `ProgressionBoardDrawer` component)
+## [v0.0.0-alpha.38](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.38) (05/17/2021)
 
-- **List** - fix to show icons for nested items when `nestedListType` is `menu`.
-- **CssGrid** - added new component
-- **CssCell** - added new component
-- **CssGridDebug** - added new component
-- **NavigationRail** - added new component
-- **NavigationRail** - added optional `onChange` prop for handling item selection events
-- **ProgressionBoard** - added `pbApplications` optional prop for rendering appropriate waiting messages for given application
-- **ProgressionBoardApplicationDrawer** - added `applicationNames` property to `ApplicationAPI` interface
-- **ProgressionBoardDrawer** - added new component which should be used as a parent component when using any drawer content component
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.37...v0.0.0-alpha.38)
+
+## [v0.0.0-alpha.37](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.37) (05/17/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.36...v0.0.0-alpha.37)
+
+## [v0.0.0-alpha.36](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.36) (05/17/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.35...v0.0.0-alpha.36)
+
+**Fixed bugs:**
+
+- running `npm install` on fresh install fails [\#542](https://github.com/digital-ai/dot-components/issues/542)
+
+## [v0.0.0-alpha.35](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.35) (05/14/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.34...v0.0.0-alpha.35)
+
+**Fixed bugs:**
+
+- Table cells have useless tooltips [\#539](https://github.com/digital-ai/dot-components/issues/539)
+- \[Progression\] Application name validation is not trimming whitespaces when doing duplicate name check [\#536](https://github.com/digital-ai/dot-components/issues/536)
+- Error when displaying the Skeleton loader while a table is loading [\#535](https://github.com/digital-ai/dot-components/issues/535)
+- List and Sidebar show multiple flyout menus at the same time [\#523](https://github.com/digital-ai/dot-components/issues/523)
+
+**Merged pull requests:**
+
+- Issue \#539: Do not add tooltips to table cells [\#540](https://github.com/digital-ai/dot-components/pull/540) ([selsemore](https://github.com/selsemore))
+- Issue \#535: Do not nest \<td\> in \<span\> in table skeleton data [\#538](https://github.com/digital-ai/dot-components/pull/538) ([selsemore](https://github.com/selsemore))
+- Issue \#536: \[Progression\] Application name validation is not trimming whitespaces when doing duplicate name check [\#537](https://github.com/digital-ai/dot-components/pull/537) ([dmiletic85](https://github.com/dmiletic85))
+- Issue \#523: Fix List/Sidebar to not show multiple flyout menus at once [\#525](https://github.com/digital-ai/dot-components/pull/525) ([selsemore](https://github.com/selsemore))
+
+## [v0.0.0-alpha.34](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.34) (05/13/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.33...v0.0.0-alpha.34)
+
+**Fixed bugs:**
+
+- TypeScript Error:`applicationName` missing when required [\#528](https://github.com/digital-ai/dot-components/issues/528)
+- build errors running demo [\#457](https://github.com/digital-ai/dot-components/issues/457)
+
+**Closed issues:**
+
+- deprecation warning with `@storybook/addon-postcss` [\#455](https://github.com/digital-ai/dot-components/issues/455)
+
+**Merged pull requests:**
+
+- Issue \#528: TypeScript Error:applicationName missing when required \(case issue\) [\#533](https://github.com/digital-ai/dot-components/pull/533) ([dmiletic85](https://github.com/dmiletic85))
+- Issue \#528: TypeScript Error:applicationName missing when required [\#532](https://github.com/digital-ai/dot-components/pull/532) ([dmiletic85](https://github.com/dmiletic85))
+- D-17908: Hover on progression board causes rerender of board [\#524](https://github.com/digital-ai/dot-components/pull/524) ([dmiletic85](https://github.com/dmiletic85))
+- Automation improvements [\#521](https://github.com/digital-ai/dot-components/pull/521) ([CWSites](https://github.com/CWSites))
+- Layout poc [\#510](https://github.com/digital-ai/dot-components/pull/510) ([j-schoen](https://github.com/j-schoen))
+
+## [v0.0.0-alpha.33](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.33) (05/11/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.32...v0.0.0-alpha.33)
+
+**Features:**
+
+- Add `backgroundColor` prop for `DotAvatar` when `type` is `text` or `icon` [\#494](https://github.com/digital-ai/dot-components/issues/494)
+
+**Fixed bugs:**
+
+- Icons not shown for nested List/Sidebar items in menu mode [\#518](https://github.com/digital-ai/dot-components/issues/518)
+
+**Merged pull requests:**
+
+- Issue \#518 fix nested item icons [\#519](https://github.com/digital-ai/dot-components/pull/519) ([selsemore](https://github.com/selsemore))
+- Issue \#494: add 'backgroundColor' and 'color' props to DotAvatar [\#516](https://github.com/digital-ai/dot-components/pull/516) ([selsemore](https://github.com/selsemore))
+
+## [v0.0.0-alpha.32](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.32) (05/11/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.31...v0.0.0-alpha.32)
+
+**Features:**
+
+- Checkbox enhancement [\#271](https://github.com/digital-ai/dot-components/issues/271)
+
+**Closed issues:**
+
+- S-73861: Automate process for versioning and releasing [\#84](https://github.com/digital-ai/dot-components/issues/84)
+
+**Merged pull requests:**
+
+- Issue \#271: Add ariaLabel, ariaLabelledby and disableRipple props [\#522](https://github.com/digital-ai/dot-components/pull/522) ([selsemore](https://github.com/selsemore))
+- S-75925: Sticky action buttons on application drawer when content becomes scrollable [\#520](https://github.com/digital-ai/dot-components/pull/520) ([dmiletic85](https://github.com/dmiletic85))
+- S-73861: CI/CD Automation [\#515](https://github.com/digital-ai/dot-components/pull/515) ([CWSites](https://github.com/CWSites))
+- S-75915: Client side validation for application name [\#513](https://github.com/digital-ai/dot-components/pull/513) ([dmiletic85](https://github.com/dmiletic85))
+
+## [v0.0.0-alpha.31](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.31) (05/10/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.30...v0.0.0-alpha.31)
+
+**Merged pull requests:**
+
+- 10/5/2021-Update icons [\#517](https://github.com/digital-ai/dot-components/pull/517) ([BojanKocijan](https://github.com/BojanKocijan))
+
+## [v0.0.0-alpha.30](https://github.com/digital-ai/dot-components/tree/v0.0.0-alpha.30) (05/07/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/v0.0.0-alpha.29...v0.0.0-alpha.30)
+
+**Features:**
+
+- Add `color` prop to pill component [\#493](https://github.com/digital-ai/dot-components/issues/493)
+- Navigation rail + labels [\#464](https://github.com/digital-ai/dot-components/issues/464)
+- Issue \#464: Navigation rail + labels [\#505](https://github.com/digital-ai/dot-components/pull/505) ([dmiletic85](https://github.com/dmiletic85))
+
+**Merged pull requests:**
+
+- Fix some lint issues [\#511](https://github.com/digital-ai/dot-components/pull/511) ([CWSites](https://github.com/CWSites))
+- Issue 493: Pill colors [\#506](https://github.com/digital-ai/dot-components/pull/506) ([selsemore](https://github.com/selsemore))
 
 ## 0.0.0-alpha.29
 
