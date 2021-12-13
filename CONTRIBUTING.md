@@ -7,6 +7,7 @@
 - [Commits & Pull Requests](#commits--pull-requests)
   - [Commit Messages](#commit-messages)
   - [Submitting Pull Requests](#submitting-pull-requests)
+  - [Create a Release](#create-a-release)
 - [Component vs. Demo](#component-vs-demo)
 - [Building a Component](#building-a-component)
   - [Types of Components](#types-of-components)
@@ -89,6 +90,10 @@ If your PR requires a `MAJOR` change, please apply the `breaking change` label a
 ### Example
 
 `SampleComponent` now uses `tooltip` prop instead of `title` prop.
+
+## Create A Release
+
+When ready to create a release please use the [PR release template](https://github.com/digital-ai/dot-components/compare/master...develop?expand=1&template=release.md). There will be a checklist of everything that needs to be completed prior to merging.
 
 # Component vs. Demo
 
@@ -390,13 +395,13 @@ There should be no outstanding security vulnerabilities with `moderate` or highe
 
 ## Change Log Generated
 
-- `CI_CHANGE_LOG.md` will be generated and commited.
-- **Note:** we will retain `CHANGE_LOG.md` until we have worked out all the CI change log formatting issues.
+- `CHANGE_LOG.md` will be generated and commited.
+- **Note:** we will retain `HISTORY.md` which is the manual change log created at the beginning of this project.
 
 ## Create Release
 
 - A new release will be created in GitHub
-- The release will be tagged as a `pre-release` with a `draft` status
+<!-- - The release will be tagged as a `pre-release` with a `draft` status -->
 
 ## Deploy to NPM
 
@@ -409,3 +414,7 @@ There should be no outstanding security vulnerabilities with `moderate` or highe
 - `yarn storybook:build` will run to compile the `docs` directory
 - The code will be pushed to the `ghpages` branch
 - https://digital-ai.github.io/dot-components will be automatically updated
+
+## `master` merged back to `develop`
+
+- As a final step, all code changes done during CI/CD process will be merged back into `develop`
