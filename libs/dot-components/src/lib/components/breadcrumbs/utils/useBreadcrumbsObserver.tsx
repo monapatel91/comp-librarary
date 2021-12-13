@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { BreadcrumbItem } from '../Breadcrumbs';
 import { useBreadcrumbsResizer } from './useBreadcrumbsResizer';
 
@@ -19,10 +19,12 @@ export const useBreadcrumbsObserver = (
   const firstItemRef = useRef<HTMLDivElement>();
   const lastItemRef = useRef<HTMLSpanElement>();
 
-  const [breadcrumbsSettings, setBreadcrumbsRightCoord] = useBreadcrumbsResizer(
-    items,
-    { firstItemRef, lastItemRef },
-    maxItems
+  const [breadcrumbsRightCoord, setBreadcrumbsRightCoord] =
+    useState<number>(null);
+  const [breadcrumbsSettings] = useBreadcrumbsResizer(
+    breadcrumbsRightCoord,
+    { items, maxItems },
+    { firstItemRef, lastItemRef }
   );
 
   /* Observe breadcrumbs width change and store it in state */

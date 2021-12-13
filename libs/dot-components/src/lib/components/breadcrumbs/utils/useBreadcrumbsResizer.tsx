@@ -1,18 +1,12 @@
-import {
-  Dispatch,
-  MutableRefObject,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { MutableRefObject, useEffect, useState } from 'react';
 import { getInitialMaxVisibleItems, getWidthFromRef } from './helpers';
 import {
   ITEMS_SEPARATOR_SPACE,
   MIN_AVAILABLE_SPACE,
 } from './useBreadcrumbsObserver';
-import { BreadcrumbItem } from '@digital-ai/dot-components';
+import { BreadcrumbItem } from '../Breadcrumbs';
 
-interface MaxVisibleItems {
+export interface MaxVisibleItems {
   maxVisibleItems: number;
   lastRemovedItemWidth?: number;
 }
@@ -22,20 +16,24 @@ interface BreadcrumbsResizerRefs {
   lastItemRef: MutableRefObject<HTMLSpanElement>;
 }
 
+interface BreadcrumbItemsProps {
+  items: Array<BreadcrumbItem>;
+  maxItems?: number;
+}
+
 export const useBreadcrumbsResizer = (
-  items: Array<BreadcrumbItem>,
-  refs: BreadcrumbsResizerRefs,
-  maxItems?: number
-): [MaxVisibleItems, Dispatch<SetStateAction<number>>] => {
+  breadcrumbsRightCoord: number,
+  breadcrumbItemsProps: BreadcrumbItemsProps,
+  refs: BreadcrumbsResizerRefs
+): [MaxVisibleItems] => {
   const { firstItemRef, lastItemRef } = refs;
+  const { items, maxItems } = breadcrumbItemsProps;
 
   const initialMaxVisibleItems: MaxVisibleItems = {
     maxVisibleItems: getInitialMaxVisibleItems(items, maxItems),
     lastRemovedItemWidth: undefined,
   };
 
-  const [breadcrumbsRightCoord, setBreadcrumbsRightCoord] =
-    useState<number>(null);
   const [breadcrumbsSettings, setBreadcrumbsSettings] =
     useState<MaxVisibleItems>(initialMaxVisibleItems);
 
@@ -88,5 +86,5 @@ export const useBreadcrumbsResizer = (
     breadcrumbsSettings,
   ]);
 
-  return [breadcrumbsSettings, setBreadcrumbsRightCoord];
+  return [breadcrumbsSettings];
 };
