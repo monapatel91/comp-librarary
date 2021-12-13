@@ -11,6 +11,7 @@ export default {
   component: DotAccordion,
   argTypes: {
     children: { defaultValue: 'Accordion Value' },
+    expanded: { defaultValue: false },
     startIcon: { control: { type: 'select', options: iconOptions } },
     summary: {
       defaultValue:

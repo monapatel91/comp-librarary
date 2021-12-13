@@ -2,8 +2,16 @@ import React from 'react';
 import { render, screen, waitFor } from '../../testing-utils';
 import { DotAccordion, AccordionProps } from './Accordion';
 import { DotIcon } from '../icon/Icon';
+import { DotTypography } from '../typography/Typography';
+
+const onChange = jest.fn();
+const consoleSpy = jest.spyOn(global.console, 'warn');
 
 describe('Accordion', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should render successfully', () => {
     const { baseElement } = render(
       <DotAccordion summary="Testing Render">Testing Render</DotAccordion>
@@ -20,8 +28,10 @@ describe('Accordion', () => {
       'data-testid': 'dot-accordion',
       defaultExpanded: false,
       disabled: false,
+      expanded: false,
       hasElevation: false,
       noWrap: false,
+      onChange: onChange,
       square: true,
       startIcon: <DotIcon iconId="notification-bell" />,
       summary: 'Sample Summary Text',
@@ -74,17 +84,49 @@ describe('Accordion', () => {
 
   it("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
-    const dataTestId = 'test-dot-accordion';
+    render(
+      <DotAccordion ariaLabel={ariaLabel} summary="Test summary">
+        Testing
+      </DotAccordion>
+    );
+    const accordionElement = screen.getByTestId('dot-accordion');
+    expect(accordionElement).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  it('should have a deprecation warning if `defaultExpanded` is provided', () => {
     render(
       <DotAccordion
-        ariaLabel={ariaLabel}
-        data-testid={dataTestId}
-        summary="Test summary"
+        defaultExpanded={true}
+        summary={<DotTypography>Test summary</DotTypography>}
       >
         Testing
       </DotAccordion>
     );
-    const accordionElement = screen.getByTestId(dataTestId);
-    expect(accordionElement).toHaveAttribute('aria-label', ariaLabel);
+    expect(consoleSpy).toBeCalled();
+  });
+
+  it('should have a deprecation warning if `onChange` is provided but not `expanded`', () => {
+    render(
+      <DotAccordion
+        onChange={onChange}
+        summary={<DotTypography>Test summary</DotTypography>}
+      >
+        Testing
+      </DotAccordion>
+    );
+    expect(consoleSpy).toBeCalled();
+  });
+
+  it('should NOT have a deprecation warning if `onChange` and `expanded` are provided', () => {
+    render(
+      <DotAccordion
+        expanded={true}
+        onChange={onChange}
+        summary={<DotTypography>Test summary</DotTypography>}
+      >
+        Testing
+      </DotAccordion>
+    );
+    expect(consoleSpy).not.toBeCalled();
   });
 });
