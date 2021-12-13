@@ -216,7 +216,7 @@ jobs:
       #         - luke-cage
       #     required_status_checks: |
       #       strict: true
-      #       checks: [{}]
+      #       checks: [{ name: Lint & Build }, { name:Run Unit Tests }, { name:Run E2E Tests }]
       #     enforce_admins: |
       #       false
       #     required_pull_request_reviews: |
