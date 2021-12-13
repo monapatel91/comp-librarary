@@ -121,3 +121,18 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST_URL }}
+
+  protection:
+    name: Branch Protection
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get existing branch protection
+        id: get_branch_protection
+        uses: octokit/request-action@v2.x
+        with:
+          route: GET /repos/:repository/branches/develop/protection
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+
+      - run: 'echo branch protection: ${{ steps.get_branch_protection.outputs.data }}'
