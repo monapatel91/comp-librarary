@@ -128,7 +128,7 @@ jobs:
 
     steps:
       - name: Branch protection OFF
-        uses: octokit/request-action@v2.x
+        uses: octokit/request-action@v2.0.24
         with:
           route: PUT /repos/digital-ai/dot-components/branches/develop/protection
           mediaType: |
@@ -145,7 +145,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Branch protection ON
-        uses: octokit/request-action@v2.x
+        uses: octokit/request-action@v2.0.24
         with:
           route: PUT /repos/digital-ai/dot-components/branches/develop/protection
           mediaType: |
@@ -167,7 +167,7 @@ jobs:
 
       # - name: Get existing branch protection
       #   id: get_branch_protection
-      #   uses: octokit/request-action@v2.x
+      #   uses: octokit/request-action@v2.0.24
       #   with:
       #     route: GET /repos/digital-ai/dot-components/branches/develop/protection
       #   env:
