@@ -180,21 +180,20 @@ jobs:
     needs: [create-release]
 
     steps:
-      #   - name: Branch protection OFF
-      #     uses: octokit/request-action@v2.x
-      #     with:
-      #       route: PUT /repos/:repository/branches/develop/protection
-      #       repository: develop
-      #       required_status_checks: |
-      #         null
-      #       enforce_admins: |
-      #         null
-      #       required_pull_request_reviews: |
-      #         null
-      #       restrictions: |
-      #         null
-      #     env:
-      #       GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+      - name: Branch protection OFF
+        uses: octokit/request-action@v2.x
+        with:
+          route: PUT /repos/digital-ai/dot-components/branches/develop/protection
+          required_status_checks: |
+            null
+          enforce_admins: |
+            null
+          required_conversation_resolution: |
+            null
+          required_pull_request_reviews: |
+            null
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -206,24 +205,18 @@ jobs:
           target_branch: develop
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
-      # - name: Branch protection ON
-      #   uses: octokit/request-action@v2.x
-      #   with:
-      #     route: PUT /repos/:repository/branches/develop/protection
-      #     repository: develop
-      #     mediaType: |
-      #       previews:
-      #         - luke-cage
-      #     required_status_checks: |
-      #       strict: true
-      #       checks: [{ name: Lint & Build }, { name:Run Unit Tests }, { name:Run E2E Tests }]
-      #     enforce_admins: |
-      #       false
-      #     required_pull_request_reviews: |
-      #       required_approving_review_count: 1
-      #     restrictions: |
-      #       null
-      #     required_conversation_resolution: |
-      #       true
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+      - name: Branch protection ON
+        uses: octokit/request-action@v2.x
+        with:
+          route: PUT /repos/digital-ai/dot-components/branches/develop/protection
+          required_status_checks: |
+            strict: true
+            checks: [{ name: Lint & Build }, { name:Run Unit Tests }, { name:Run E2E Tests }]
+          enforce_admins: |
+            false
+          required_pull_request_reviews: |
+            required_approving_review_count: 1
+          required_conversation_resolution: |
+            true
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
