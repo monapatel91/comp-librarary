@@ -188,4 +188,4 @@ jobs:
         with:
           type: now
           target_branch: develop
-          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          github_token: ${{ secrets.DIGITALAI_BOT_TOKEN }}
