@@ -19,7 +19,7 @@ describe('dot-components: Accordion component', () => {
     });
 
     it('icon has right margin', () => {
-      cy.get('.dot-accordion-summary .dot-icon').should(
+      cy.get('.dot-accordion-summary .MuiIconButton-root').should(
         'have.css',
         'margin-right',
         '4px'
