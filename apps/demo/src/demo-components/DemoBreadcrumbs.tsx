@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {
   DotBreadcrumbs,
   DotButton,
-  DotChip,
   DotIconButton,
 } from '@digital-ai/dot-components';
 import { LinkUnderline } from '../../../../libs/dot-components/src/lib/components/link/Link';
@@ -42,7 +41,7 @@ export const DemoBreadcrumbs = () => {
       underline: 'none' as LinkUnderline,
     },
     {
-      text: 'Releases 5555555555555555555',
+      text: 'Releases 5',
       underline: 'none' as LinkUnderline,
     },
   ];
@@ -58,7 +57,6 @@ export const DemoBreadcrumbs = () => {
     <>
       <StyledDemoBreadcrumbsStyled className="action-toolbar-wrapper">
         <DotBreadcrumbs items={breadcrumbs} expansionMenu={true} />
-        <DotChip>TEMPLATE</DotChip>
         <div className="action-toolbar">
           <div className="action-toolbar-actions">
             <DotButton onClick={updateBreadcrumbs}>
@@ -78,7 +76,6 @@ export const DemoBreadcrumbs = () => {
       <Divider />
       <StyledDemoBreadcrumbsStyled className="action-toolbar-wrapper">
         <DotBreadcrumbs items={itemsTwo} expansionMenu={true} />
-        <DotChip>TEMPLATE</DotChip>
         <div className="action-toolbar">
           <div className="action-toolbar-actions">
             <DotButton>fake button</DotButton>
@@ -102,7 +99,7 @@ const StyledDemoBreadcrumbsStyled = styled.div`
   &.action-toolbar-wrapper {
     margin: 20px 0;
     display: grid;
-    grid-template-columns: minmax(200px, auto) auto 1fr;
+    grid-template-columns: minmax(200px, 1fr) auto;
     align-items: center;
 
     .breadcrumbs-labels {
