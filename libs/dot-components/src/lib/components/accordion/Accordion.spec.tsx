@@ -19,7 +19,6 @@ describe('Accordion', () => {
       children: 'My Accordion',
       className: 'dot-accordion',
       'data-testid': 'dot-accordion',
-      defaultExpanded: false,
       disabled: false,
       expanded: false,
       hasElevation: false,
