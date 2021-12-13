@@ -23,9 +23,6 @@ export const StyledAccordion = styled(Accordion)`
         .MuiTypography-root {
           margin-bottom: 0;
         }
-        .MuiIconButton-root {
-          margin-right: ${theme.spacing(0.5)}px;
-        }
         .MuiTypography-body1 {
           padding: 2px 0;
         }
