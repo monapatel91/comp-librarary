@@ -22,7 +22,6 @@ import {
   StyledAccordion,
 } from './Accordion.styles';
 import { CommonProps } from '../CommonProps';
-import { SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG } from 'constants';
 
 export interface AccordionProps extends CommonProps {
   /** actionable components (ex: checkbox, button) that can be nested within the expanded Accordion component */
