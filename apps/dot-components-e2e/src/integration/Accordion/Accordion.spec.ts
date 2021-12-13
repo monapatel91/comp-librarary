@@ -17,14 +17,6 @@ describe('dot-components: Accordion component', () => {
         '2px 0px'
       );
     });
-
-    it('icon has right margin', () => {
-      cy.get('.dot-accordion-summary .dot-icon').should(
-        'have.css',
-        'margin-right',
-        '4px'
-      );
-    });
   });
 });
 
