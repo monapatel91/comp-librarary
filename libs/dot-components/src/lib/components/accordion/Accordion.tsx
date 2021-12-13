@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useState, useEffect } from 'react';
+import React, { ChangeEvent, ReactElement, ReactNode, useState, useEffect } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography } from '../typography/Typography';
@@ -26,10 +26,14 @@ export interface AccordionProps extends CommonProps {
   defaultExpanded?: boolean;
   /** If true, the accordion will be displayed in a disabled state. */
   disabled?: boolean;
+  /** If true, the accordion is expanded. */
+  expanded?: boolean;
   /** If true, the Accordion will have elevation. */
   hasElevation?: boolean;
   /** If true, the text will wrap and not be truncated */
   noWrap?: boolean;
+  /** Callback fired when the expand/collapse state is changed. */
+  onChange?: (event: ChangeEvent, expanded: boolean) => void;
   /** If true, rounded corners are disabled. */
   square?: boolean;
   /** Icon placed before the children. */
@@ -46,7 +50,9 @@ export const DotAccordion = ({
   'data-testid': dataTestId = 'dot-accordion',
   defaultExpanded = false,
   disabled = false,
+  expanded = false,
   hasElevation = false,
+  onChange,
   square = false,
   startIcon,
   summary,
@@ -66,7 +72,9 @@ export const DotAccordion = ({
       data-testid={dataTestId}
       defaultExpanded={defaultExpanded}
       disabled={disabled}
+      expanded={expanded}
       elevation={elevation}
+      onChange={onChange}
       square={square}
     >
       <AccordionSummary

@@ -12,6 +12,7 @@ describe('Accordion', () => {
   });
 
   it('should have unchanged API', () => {
+    const onChange = jest.fn();
     const props = {
       actions: 'accordion-test',
       ariaLabel: 'my avatar group',
@@ -20,8 +21,10 @@ describe('Accordion', () => {
       'data-testid': 'dot-accordion',
       defaultExpanded: false,
       disabled: false,
+      expanded: false,
       hasElevation: false,
       noWrap: false,
+      onChange: onChange,
       square: true,
       startIcon: <DotIcon iconId="notification-bell" />,
       summary: 'Sample Summary Text',
