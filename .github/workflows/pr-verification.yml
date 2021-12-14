@@ -127,8 +127,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # https://support.github.com/tickets/personal/0
-      # https://github.com/octokit/request-action/issues/133
       # https://github.community/t/branch-protection-api-returning-404/217405
       # https://docs.github.com/en/rest/reference/branches#update-branch-protection
       - name: Get existing branch protection
@@ -141,7 +139,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
-      - run: echo ${{steps.get_branch_protection.outputs.data}}
+      # - run: echo ${{steps.get_branch_protection.outputs.data}}
 
       - name: Branch protection OFF
         uses: octokit/request-action@v2.0.24
