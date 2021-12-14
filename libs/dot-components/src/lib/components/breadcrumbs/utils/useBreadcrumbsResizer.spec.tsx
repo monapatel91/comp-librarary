@@ -43,7 +43,7 @@ describe('useBreadcrumbsResizer', () => {
     firstItemRefMock: never,
     lastItemRefMock: never
   ) => {
-    const { rerender, result } = renderHook(
+    const { result } = renderHook(
       ({ breadcrumbsRightCoord, firstItemRef, lastItemRef }: never) =>
         useBreadcrumbsResizer(
           breadcrumbsRightCoord,
@@ -58,7 +58,7 @@ describe('useBreadcrumbsResizer', () => {
         },
       }
     );
-    return [rerender, result];
+    return result;
   };
 
   it('should return correct object for initial breadcrumbs settings state', () => {
@@ -69,11 +69,7 @@ describe('useBreadcrumbsResizer', () => {
       current: undefined as never,
     } as never;
 
-    const [, result] = renderResizerHook(
-      1500,
-      firstItemRefMock,
-      lastItemRefMock
-    );
+    const result = renderResizerHook(1500, firstItemRefMock, lastItemRefMock);
 
     const { current } = result as RenderResult<[MaxVisibleItems]>;
     expect(current[0]).toEqual({
@@ -89,11 +85,7 @@ describe('useBreadcrumbsResizer', () => {
       dummyItemWidth,
       381
     );
-    const [, result] = renderResizerHook(
-      600,
-      firstItemRefMock,
-      lastItemRefMock
-    );
+    const result = renderResizerHook(600, firstItemRefMock, lastItemRefMock);
 
     expectResultToEqualObject(
       {
@@ -111,11 +103,7 @@ describe('useBreadcrumbsResizer', () => {
       dummyItemWidth,
       381
     );
-    const [, result] = renderResizerHook(
-      400,
-      firstItemRefMock,
-      lastItemRefMock
-    );
+    const result = renderResizerHook(400, firstItemRefMock, lastItemRefMock);
 
     expectResultToEqualObject(
       {

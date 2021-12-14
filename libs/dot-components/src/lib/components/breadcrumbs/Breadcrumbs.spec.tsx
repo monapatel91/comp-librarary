@@ -1,9 +1,13 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor } from '../../testing-utils';
+import {
+  render,
+  screen,
+  waitFor,
+  mockResizeObserver,
+} from '../../testing-utils';
 import { BreadcrumbProps, BreadcrumbItem, DotBreadcrumbs } from './Breadcrumbs';
 import { LinkUnderline } from '../link/Link';
-import { mockResizeObserver } from '../../../../../testing-utils/src/lib/resize-observer-mock';
 
 describe('Breadcrumbs', () => {
   const onClick = jest.fn();
