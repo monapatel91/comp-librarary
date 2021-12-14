@@ -22,8 +22,8 @@ describe('Form', () => {
     const { baseElement } = render(
       <DotForm onSubmit={onSubmit}>
         <>
-          <DotInputText id="firstName" name="firstName" label="First Name" />
-          <DotInputText id="lastName" name="lastName" label="Last Name" />
+          <DotInputText id="firstName" label="First Name" name="firstName" />
+          <DotInputText id="lastName" label="Last Name" name="lastName" />
         </>
       </DotForm>
     );
@@ -34,7 +34,7 @@ describe('Form', () => {
     const ariaLabel = 'my label';
     render(
       <DotForm ariaLabel={ariaLabel} onSubmit={onSubmit}>
-        <DotInputText id="firstName" name="firstName" label="First Name" />
+        <DotInputText id="firstName" label="First Name" name="firstName" />
       </DotForm>
     );
     const formElement = screen.getByRole('form');

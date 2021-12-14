@@ -77,7 +77,7 @@ describe(' Sidebar', () => {
 
   it('should render successfully', () => {
     const { baseElement } = render(
-      <DotSidebar navItems={navItems} goBack={false} />
+      <DotSidebar goBack={false} navItems={navItems} />
     );
     expect(baseElement).toBeTruthy();
   });
@@ -191,11 +191,11 @@ describe(' Sidebar - Application Logo', () => {
   it('should display small application logo if collapsed', () => {
     render(
       <DotSidebar
-        open={false}
         appLogo={appLogo}
         appLogoSmall={appLogoSmall}
         displayAppLogo={true}
         navItems={navItems}
+        open={false}
       />
     );
     expect(screen.getByTitle('app logo small')).toBeVisible();

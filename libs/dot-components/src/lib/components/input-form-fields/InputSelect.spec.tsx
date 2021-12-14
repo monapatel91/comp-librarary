@@ -47,8 +47,8 @@ describe('DotInputSelect', () => {
         id="test-id"
         label="Foo Bar"
         name="bar"
-        required={false}
         options={sampleOptions}
+        required={false}
         value="Batman"
       />
     );
@@ -61,8 +61,8 @@ describe('DotInputSelect', () => {
         id="test-id"
         label="Foo Bar"
         name="foo"
-        required={false}
         options={sampleOptions}
+        required={false}
         value="Batman"
       />
     );
@@ -78,9 +78,9 @@ describe('DotInputSelect', () => {
         id="test-id"
         label="Foo Bar"
         name="foo"
-        required={false}
-        options={sampleOptions}
         onChange={onChange}
+        options={sampleOptions}
+        required={false}
         value="Batman"
       />
     );
@@ -96,8 +96,8 @@ describe('DotInputSelect', () => {
         id="test-id"
         label="Foo Bar"
         name="foo"
-        required={false}
         options={sampleOptions}
+        required={false}
         value="Batman"
       />
     );
@@ -112,8 +112,8 @@ describe('DotInputSelect', () => {
         id="test-id"
         label="Foo Bar"
         name="foo"
-        required={false}
         options={sampleOptions}
+        required={false}
         value="Batman"
       />
     );

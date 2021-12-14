@@ -16,13 +16,13 @@ export const Default: Story<FormGroupProps> = (args) => {
   return (
     <DotFormGroup {...args}>
       <DotInputText
-        fullWidth={false}
-        name="input-text"
-        id="input-text"
         defaultValue="Superman"
+        fullWidth={false}
+        id="input-text"
+        name="input-text"
       />
-      <DotCheckbox name="item-1" label="item 1" value="item-1" />
-      <DotCheckbox name="item-2" label="item 2" value="item-2" />
+      <DotCheckbox label="item 1" name="item-1" value="item-1" />
+      <DotCheckbox label="item 2" name="item-2" value="item-2" />
     </DotFormGroup>
   );
 };

@@ -49,40 +49,40 @@ export const CssGridCell: Story<CssGridProps> = (args) => (
     <CssGridDebug showInfo />
     <StyledGrid {...args} rows="minmax(100px, auto) 400px 100px">
       <CssCell
-        xs={{ start: 1, span: 2 }}
-        sm={{ start: 1, span: 4 }}
         md={{ start: 1, span: 4 }}
+        sm={{ start: 1, span: 4 }}
+        xs={{ start: 1, span: 2 }}
       >
         <div>Content 1</div>
       </CssCell>
       <CssCell
-        xs={{ start: 3, span: 2 }}
-        sm={{ start: 5, span: 8 }}
         md={{ start: 5, span: 8 }}
+        sm={{ start: 5, span: 8 }}
+        xs={{ start: 3, span: 2 }}
       >
         <div>Content 2</div>
       </CssCell>
       <CssCell
-        middle
-        xs={{ start: 1, span: 4 }}
-        sm={{ start: 1, span: 12 }}
         md={{ start: 1, span: 12 }}
+        middle
+        sm={{ start: 1, span: 12 }}
+        xs={{ start: 1, span: 4 }}
       >
         <div>Content 3</div>
       </CssCell>
       <CssCell
-        xs={{ start: 1, span: 4 }}
-        sm={{ start: 1, span: 4 }}
         md={{ start: 1, span: 6 }}
+        sm={{ start: 1, span: 4 }}
+        xs={{ start: 1, span: 4 }}
       >
         <div>Content 4</div>
       </CssCell>
       <CssCell
-        justifyContent="flex-end"
         alignItems="flex-start"
-        xs={{ start: 1, span: 4 }}
-        sm={{ start: 5, span: 7 }}
+        justifyContent="flex-end"
         md={{ start: 7, span: 6 }}
+        sm={{ start: 5, span: 7 }}
+        xs={{ start: 1, span: 4 }}
       >
         <div>Content 5</div>
       </CssCell>

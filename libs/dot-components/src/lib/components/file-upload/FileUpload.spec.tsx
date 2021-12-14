@@ -111,14 +111,14 @@ describe('DotFileUpload', () => {
     it('should render successfully', () => {
       const deleteFile = jest.fn();
       const { baseElement } = render(
-        <DotFileListItem file={dummyFile} deleteFile={deleteFile} />
+        <DotFileListItem deleteFile={deleteFile} file={dummyFile} />
       );
       expect(baseElement).toBeTruthy();
     });
 
     it('should trigger deleteFile when button clicked', () => {
       const deleteFile = jest.fn();
-      render(<DotFileListItem file={dummyFile} deleteFile={deleteFile} />);
+      render(<DotFileListItem deleteFile={deleteFile} file={dummyFile} />);
       const button = screen.getByRole('button');
       userEvent.click(button);
       expect(deleteFile).toHaveBeenCalled();
@@ -128,9 +128,9 @@ describe('DotFileUpload', () => {
       const deleteFile = jest.fn();
       render(
         <DotFileListItem
-          file={dummyFile}
           data-testid={`${testId}-item`}
           deleteFile={deleteFile}
+          file={dummyFile}
         />
       );
       const buttonIcon = screen.getByTestId('button-icon');

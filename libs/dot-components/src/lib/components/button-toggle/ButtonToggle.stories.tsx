@@ -30,8 +30,8 @@ export const Default: Story<ButtonToggleProps> = (args) => {
   return (
     <DotButtonToggle
       {...args}
-      value={toggleValue}
       onChange={handleToggleOption}
+      value={toggleValue}
     />
   );
 };

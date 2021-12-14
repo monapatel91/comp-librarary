@@ -11,10 +11,10 @@ export type IconButtonSize = 'small' | 'medium';
 export interface IconButtonProps extends CommonProps {
   /** 'default', 'inherit', 'primary', 'secondary' */
   color?: IconButtonColor;
-  /** If true, the button will be disabled. */
-  disabled?: boolean;
   /** If true, the ripple effect is disabled. */
   disableRipple?: boolean;
+  /** If true, the button will be disabled. */
+  disabled?: boolean;
   /** The icon to display on the button */
   iconId: string;
   /** Determines the size of the icon itself and spacing around it */
@@ -59,8 +59,8 @@ export const DotIconButton = ({
         classes={{ root: rootClasses }}
         color={color}
         data-testid={dataTestId}
-        disabled={disabled}
         disableRipple={disableRipple}
+        disabled={disabled}
         onClick={(event) => onClick && onClick(event)}
         size={size}
       >

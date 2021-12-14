@@ -148,7 +148,7 @@ export const ButtonMenu: Story<MenuProps> = (args) => {
   ];
   return (
     <>
-      <DotButton type="text" onClick={handleToggle}>
+      <DotButton onClick={handleToggle} type="text">
         Menu Button
       </DotButton>
       <DotMenu

@@ -136,7 +136,7 @@ export const DotBreadcrumbs = ({
         itemsAfterCollapse={itemsAfterCollapse}
         maxItems={getMaxItems(adjustMaxItems, maxVisibleItems, maxItems)}
         ref={breadcrumbRef}
-        separator={<DotIcon iconId="chevron-right" className="separator" />}
+        separator={<DotIcon className="separator" iconId="chevron-right" />}
         style={{ width: minWidth }}
       >
         {mapBreadcrumbItems(items, breadcrumbItemRefs, itemsAfterCollapse)}

@@ -99,8 +99,8 @@ export const DotAccordion = ({
       data-testid={dataTestId}
       defaultExpanded={dftExpanded}
       disabled={disabled}
-      expanded={onChange ? expanded : undefined}
       elevation={elevation}
+      expanded={onChange ? expanded : undefined}
       onChange={onChange}
       square={square}
     >
@@ -110,7 +110,7 @@ export const DotAccordion = ({
         expandIcon={<DotIcon iconId="chevron-down" />}
       >
         {startIcon}
-        <DotTypography variant="body1" noWrap={noWrap}>
+        <DotTypography noWrap={noWrap} variant="body1">
           <DotTooltip title={noWrap ? summary : ''}>{summary}</DotTooltip>
         </DotTypography>
       </AccordionSummary>

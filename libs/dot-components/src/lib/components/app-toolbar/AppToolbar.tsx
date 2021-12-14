@@ -132,8 +132,8 @@ export const DotAppToolbar = ({
             data-testid="main-menu"
             onClose={() => updateMenuOpen(false)}
             open={menuOpen}
-            width={mainMenuWidth + 'px'}
             variant="persistent"
+            width={mainMenuWidth + 'px'}
           >
             <div ref={mainMenuRef}>
               {mainMenuItems ? (
@@ -186,8 +186,8 @@ export const DotAppToolbar = ({
                 className={item.className}
                 iconId={item.iconId}
                 iconSize="default"
-                onClick={(event) => item.onClick && item.onClick(event)}
                 key={index}
+                onClick={(event) => item.onClick && item.onClick(event)}
                 size="medium"
                 tooltip={item.tooltip}
               />

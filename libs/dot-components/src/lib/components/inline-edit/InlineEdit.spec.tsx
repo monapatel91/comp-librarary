@@ -42,7 +42,7 @@ describe('DotInlineEdit', () => {
   });
 
   it('unable to edit while disabled', () => {
-    render(<DotInlineEdit name="test" required={false} disabled={true} />);
+    render(<DotInlineEdit disabled={true} name="test" required={false} />);
     const editDiv = screen.getByTestId(inlineEditName);
 
     userEvent.hover(editDiv);
@@ -58,10 +58,10 @@ describe('DotInlineEdit', () => {
 
     render(
       <DotInlineEdit
-        name={originalValue}
-        value={originalValue}
-        required={false}
         data-testid="test_field"
+        name={originalValue}
+        required={false}
+        value={originalValue}
       />
     );
 
@@ -85,10 +85,10 @@ describe('DotInlineEdit', () => {
 
     render(
       <DotInlineEdit
-        name="test"
-        value={originalValue}
-        required={false}
         data-testid="test_field"
+        name="test"
+        required={false}
+        value={originalValue}
       />
     );
 
@@ -115,11 +115,11 @@ describe('DotInlineEdit', () => {
 
     render(
       <DotInlineEdit
-        name={originalValue}
-        value={originalValue}
-        required={false}
         data-testid="test_field"
+        name={originalValue}
         onEditStateChange={onEditStageChange}
+        required={false}
+        value={originalValue}
       />
     );
 
@@ -138,12 +138,12 @@ describe('DotInlineEdit', () => {
 
     render(
       <DotInlineEdit
-        name={originalValue}
-        value={originalValue}
-        required={false}
-        onLabelChange={onLabelChange}
-        onEditStateChange={onEditStateChange}
         data-testid="test_field"
+        name={originalValue}
+        onEditStateChange={onEditStateChange}
+        onLabelChange={onLabelChange}
+        required={false}
+        value={originalValue}
       />
     );
 

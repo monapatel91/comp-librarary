@@ -18,7 +18,7 @@ const headerAndContent = 'Header and content';
 const headerContentAndFooter = 'Header, content and footer';
 const childrenOptions = [headerOnly, headerAndContent, headerContentAndFooter];
 
-const avatar = <DotAvatar text="SE" alt="Chef" />;
+const avatar = <DotAvatar alt="Chef" text="SE" />;
 
 const StyledDotCard = styled(DotCard)`
   &.dot-card {
@@ -46,14 +46,14 @@ const MenuAction = () => {
         className="expand-button"
         data-testid="card-header-action-button"
         iconId="options"
-        size="medium"
         onClick={handleMenuClick}
+        size="medium"
       />
       <Menu
         anchorEl={anchorEl}
         keepMounted
-        open={open}
         onClose={handleMenuClose}
+        open={open}
       >
         <MenuItem key="opt1" onClick={handleMenuClose}>
           Some option
@@ -68,20 +68,20 @@ const MenuAction = () => {
 
 const defaultHeader = (
   <DotCardHeader
-    title="Hello World"
-    subheader="Well hello there"
     action={<MenuAction />}
+    subheader="Well hello there"
+    title="Hello World"
   />
 );
 
 const complexHeader = (
   <DotCardHeader
-    avatar={avatar}
     action={<MenuAction />}
-    title="Timeline"
-    titleSize="large"
+    avatar={avatar}
     subheader="Pick a card, any card!"
     subheaderSize="large"
+    title="Timeline"
+    titleSize="large"
   />
 );
 

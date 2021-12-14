@@ -136,21 +136,6 @@ export const DotInputText = ({
 
   return (
     <StyledTextField
-      id={id}
-      aria-label={name}
-      autoComplete="off"
-      autoFocus={autoFocus}
-      classes={{ root: rootStyles }}
-      defaultValue={defaultInputValue}
-      disabled={disabled}
-      error={error}
-      fullWidth={fullWidth}
-      helperText={helperText}
-      inputProps={{
-        'data-testid': dataTestId,
-        className: 'dot-input',
-        readOnly: readOnly,
-      }}
       InputProps={{
         startAdornment: startIcon && (
           <StyledAdornment
@@ -169,6 +154,21 @@ export const DotInputText = ({
           </StyledAdornment>
         ),
       }}
+      aria-label={name}
+      autoComplete="off"
+      autoFocus={autoFocus}
+      classes={{ root: rootStyles }}
+      defaultValue={defaultInputValue}
+      disabled={disabled}
+      error={error}
+      fullWidth={fullWidth}
+      helperText={helperText}
+      id={id}
+      inputProps={{
+        'data-testid': dataTestId,
+        className: 'dot-input',
+        readOnly: readOnly,
+      }}
       inputRef={inputRef}
       label={label}
       multiline={multiline}
@@ -183,8 +183,8 @@ export const DotInputText = ({
       rowsMax={multiline ? rowsMax : null}
       size={size}
       type={type}
-      variant="outlined"
       value={inputTextValue}
+      variant="outlined"
     />
   );
 };

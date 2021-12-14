@@ -40,10 +40,10 @@ export interface AvatarProps extends CommonProps {
   style?: CSSProperties;
   /** The text to be displayed. Only the first 2 letters will be displayed. */
   text?: string;
-  /** The type of the avatar */
-  type?: AvatarType;
   /** Tooltip for avatar */
   tooltip?: string;
+  /** The type of the avatar */
+  type?: AvatarType;
   /** The shape of the avatar */
   variant?: AvatarVariant;
 }
@@ -98,20 +98,20 @@ export const DotAvatar = ({
         alt={alt}
         aria-label={ariaLabel}
         className={size}
+        classes={{ root: rootClasses, img: 'dot-img' }}
         color={getAvatarColor()}
         component={onClick ? 'button' : component}
-        classes={{ root: rootClasses, img: 'dot-img' }}
         data-testid={dataTestId}
         onClick={(event: MouseEvent) => (onClick ? onClick(event) : null)}
         src={type === 'image' ? imageSrc : null}
-        variant={variant}
         style={style}
+        variant={variant}
       >
         {type === 'icon' || (type === 'image' && !imageSrc) ? (
           <DotIcon
             data-testid={`${dataTestId}-icon`}
-            iconId={iconId ? iconId : 'user'}
             fontSize={getIconFontSizeFromAvatarSize()}
+            iconId={iconId ? iconId : 'user'}
           />
         ) : type === 'text' ? (
           <DotTypography

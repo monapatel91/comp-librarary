@@ -12,9 +12,9 @@ export interface CellProps extends CommonProps {
   colspan?: number;
   id?: string;
   noWrap?: boolean;
+  onActionMenuTrigger?: (el: HTMLElement, menuItem: Array<ReactNode>) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value?: any;
-  onActionMenuTrigger?: (el: HTMLElement, menuItem: Array<ReactNode>) => void;
 }
 
 /**
@@ -82,7 +82,7 @@ export const DotBodyCell = ({
   const getTableCellValue = () => {
     if (Array.isArray(value)) {
       return (
-        <div ref={wrapperRef} className="action-cell-wrapper">
+        <div className="action-cell-wrapper" ref={wrapperRef}>
           {showMenu ? (
             <DotIconButton
               className="dot-table-action-icon"
@@ -113,8 +113,8 @@ export const DotBodyCell = ({
   };
   return (
     <TableCell
-      aria-label={ariaLabel}
       align={align}
+      aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       colSpan={colspan}
       data-testid={dataTestId}

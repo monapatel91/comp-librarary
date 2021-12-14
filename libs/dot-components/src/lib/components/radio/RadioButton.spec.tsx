@@ -33,7 +33,7 @@ describe('DotRadioButton', () => {
 
   describe('Props', () => {
     it('should render the medium size', () => {
-      render(<DotRadioButton value="test-value" data-testid="test-radio" />);
+      render(<DotRadioButton data-testid="test-radio" value="test-value" />);
 
       expect(
         screen.getByTestId('test-radio').querySelector('svg')

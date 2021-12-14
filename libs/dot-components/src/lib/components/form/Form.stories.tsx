@@ -10,8 +10,8 @@ export default {
     children: {
       defaultValue: (
         <>
-          <DotInputText id="firstName" name="firstName" label="First Name" />
-          <DotInputText id="lastName" name="lastName" label="Last Name" />
+          <DotInputText id="firstName" label="First Name" name="firstName" />
+          <DotInputText id="lastName" label="Last Name" name="lastName" />
         </>
       ),
     },

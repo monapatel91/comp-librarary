@@ -13,7 +13,7 @@ import { DotAvatar } from '../avatar/Avatar';
 
 describe('DotCard', () => {
   const avatar = (
-    <DotAvatar alt="Batman" size="small" data-testid="test-avatar" />
+    <DotAvatar alt="Batman" data-testid="test-avatar" size="small" />
   );
   const action = <span>Do Something</span>;
 
@@ -62,22 +62,22 @@ describe('DotCard', () => {
       <DotCard className="custom-test-class" data-testid="test-card">
         <Fragment>
           <DotCardHeader
-            data-testid="test-card-header"
-            className="custom-test-class"
             action={action}
             avatar={avatar}
-            title="Cool Card"
+            className="custom-test-class"
+            data-testid="test-card-header"
             subheader="Ever so refreshing!"
+            title="Cool Card"
           />
           <DotCardContent
-            data-testid="test-card-content"
             className="custom-test-class"
+            data-testid="test-card-content"
           >
             This is some content
           </DotCardContent>
           <DotCardFooter
-            data-testid="test-card-footer"
             className="custom-test-class"
+            data-testid="test-card-footer"
           >
             This is a footer
           </DotCardFooter>

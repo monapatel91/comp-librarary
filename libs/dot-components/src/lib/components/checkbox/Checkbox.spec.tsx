@@ -17,7 +17,7 @@ describe('DotCheckbox', () => {
   });
 
   it('should render the medium size', () => {
-    render(<DotCheckbox value="test-value" data-testid="test-checkbox" />);
+    render(<DotCheckbox data-testid="test-checkbox" value="test-value" />);
 
     expect(
       screen.getByTestId('test-checkbox').querySelector('svg')

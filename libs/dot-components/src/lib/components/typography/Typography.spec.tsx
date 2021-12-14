@@ -32,8 +32,8 @@ describe('DotTypography', () => {
     render(
       <DotTypography
         ariaLabel={ariaLabel}
-        data-testid={dataTestId}
         children="Testing"
+        data-testid={dataTestId}
       />
     );
     const typographyElement = screen.getByTestId(dataTestId);
