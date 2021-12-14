@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import {
+  DotActionToolbar,
   DotBreadcrumbs,
   DotButton,
   DotIconButton,
   LinkUnderline,
 } from '@digital-ai/dot-components';
-import { Divider } from '@material-ui/core';
+import {
+  rootClassName,
+  StyledDemoBreadcrumbs,
+} from './StyledDemoBreadcrumbs.styles';
 
 export const DemoBreadcrumbs = () => {
   const itemsOne = [
@@ -54,15 +57,15 @@ export const DemoBreadcrumbs = () => {
   };
 
   return (
-    <>
-      <StyledDemoBreadcrumbsStyled className="action-toolbar-wrapper">
-        <DotBreadcrumbs items={breadcrumbs} expansionMenu={true} />
-        <div className="action-toolbar">
-          <div className="action-toolbar-actions">
-            <DotButton onClick={updateBreadcrumbs}>
-              update breadcrumbs
-            </DotButton>
-          </div>
+    <StyledDemoBreadcrumbs className={rootClassName}>
+      <DotActionToolbar className="action-toolbar">
+        <DotBreadcrumbs
+          className="breadcrumbs"
+          items={breadcrumbs}
+          expansionMenu={true}
+        />
+        <div className="actions">
+          <DotButton onClick={updateBreadcrumbs}>Update Breadcrumbs</DotButton>
           <DotIconButton
             color="inherit"
             data-testid="help-icon-button"
@@ -72,45 +75,18 @@ export const DemoBreadcrumbs = () => {
             tooltip="Open documentation page related to this page in a new browser tab"
           />
         </div>
-      </StyledDemoBreadcrumbsStyled>
-      <Divider />
-      <StyledDemoBreadcrumbsStyled className="action-toolbar-wrapper">
-        <DotBreadcrumbs items={itemsTwo} expansionMenu={true} />
-        <div className="action-toolbar">
-          <div className="action-toolbar-actions">
-            <DotButton>fake button</DotButton>
-            <DotButton>another button</DotButton>
-          </div>
-          <DotIconButton
-            color="inherit"
-            data-testid="help-icon-button"
-            iconId="help"
-            iconSize="small"
-            size="medium"
-            tooltip="Open documentation page related to this page in a new browser tab"
-          />
+      </DotActionToolbar>
+      <DotActionToolbar className="action-toolbar">
+        <DotBreadcrumbs
+          className="breadcrumbs"
+          items={itemsTwo}
+          expansionMenu={true}
+        />
+        <div className="actions">
+          <DotButton>Fake button</DotButton>
+          <DotButton>Another button</DotButton>
         </div>
-      </StyledDemoBreadcrumbsStyled>
-    </>
+      </DotActionToolbar>
+    </StyledDemoBreadcrumbs>
   );
 };
-
-const StyledDemoBreadcrumbsStyled = styled.div`
-  &.action-toolbar-wrapper {
-    margin: 20px 0;
-    display: grid;
-    grid-template-columns: minmax(200px, 1fr) auto;
-    align-items: center;
-
-    .breadcrumbs-labels {
-      display: flex;
-      align-items: center;
-    }
-
-    .action-toolbar {
-      min-width: 450px;
-      display: flex;
-      justify-content: flex-end;
-    }
-  }
-`;
