@@ -141,7 +141,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
-      # - run: echo ${{steps.get_branch_protection.outputs.data}}
+      - run: echo ${{steps.get_branch_protection.outputs.data}}
 
       - name: Branch protection OFF
         uses: octokit/request-action@v2.0.24
@@ -156,6 +156,8 @@ jobs:
           required_conversation_resolution: |
             null
           required_pull_request_reviews: |
+            null
+          restrictions: |
             null
         env:
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
