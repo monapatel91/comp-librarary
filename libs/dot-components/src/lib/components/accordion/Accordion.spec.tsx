@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '../../testing-utils';
+import { fireEvent, render, screen, waitFor } from '../../testing-utils';
 import { DotAccordion, AccordionProps } from './Accordion';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography } from '../typography/Typography';
@@ -128,5 +128,34 @@ describe('Accordion', () => {
       </DotAccordion>
     );
     expect(consoleSpy).not.toBeCalled();
+  });
+
+  it('should call `onChange` when controlled component is clicked', () => {
+    render(
+      <DotAccordion
+        data-testid="test"
+        expanded={true}
+        onChange={onChange}
+        summary={<DotTypography>Test summary</DotTypography>}
+      >
+        Testing
+      </DotAccordion>
+    );
+    fireEvent.click(screen.getByTestId('test-summary'));
+    expect(onChange).toBeCalled();
+  });
+
+  it('should expand when uncontrolled component is clicked', () => {
+    render(
+      <DotAccordion
+        data-testid="test"
+        summary={<DotTypography>Test summary</DotTypography>}
+      >
+        Testing
+      </DotAccordion>
+    );
+    expect(screen.queryByTestId('test-details')).not.toBeVisible();
+    fireEvent.click(screen.getByTestId('test-summary'));
+    expect(screen.queryByTestId('test-details')).toBeVisible();
   });
 });
