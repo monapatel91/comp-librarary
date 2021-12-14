@@ -1,7 +1,27 @@
-import { Breadcrumbs } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { Breadcrumbs } from '@material-ui/core';
 
 export const rootClassName = 'dot-breadcrumbs';
+export const breadcrumbsWrapperClass = 'dot-breadcrumbs-wrapper';
+
+export const StyledBreadcrumbsWrapper = styled.div`
+  ${({ theme }) => css`
+    &.${rootClassName} {
+      overflow: hidden;
+
+      .dot-breadcrumbs-menu {
+        .MuiMenuItem-root {
+          padding: 0;
+        }
+
+        a.breadcrumb {
+          width: 100%;
+          padding: ${theme.spacing(0.5, 2)};
+        }
+      }
+    }
+  `}
+`;
 
 export const StyledBreadcrumbs = styled(Breadcrumbs)`
   ${({ theme }) => css`
@@ -29,13 +49,20 @@ export const StyledBreadcrumbs = styled(Breadcrumbs)`
       .MuiLink-underlineHover {
         cursor: pointer;
       }
-    }
-    .breadcrumb {
-      padding: ${theme.spacing(0.5, 2)};
-    }
-    .current-page {
-      color: ${theme.palette.grey[700]};
-      cursor: default;
+
+      .MuiBreadcrumbs-li:last-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .breadcrumb {
+        padding: ${theme.spacing(0.5, 2)};
+      }
+
+      .current-page {
+        color: ${theme.palette.grey[700]};
+        cursor: default;
+      }
     }
   `}
 `;

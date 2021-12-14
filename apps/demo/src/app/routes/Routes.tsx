@@ -8,6 +8,7 @@ import { UserTable } from '../../demo-components/UserTable';
 import { DemoDynamicForm } from '../../demo-components/DemoDynamicForm';
 import { ProductButtons } from '../../demo-components/ProductWrapper';
 import { Sandbox } from '../../demo-components/Sandbox';
+import { DemoBreadcrumbs } from '../../demo-components/DemoBreadcrumbs';
 
 export const Routes = () => {
   return (
@@ -24,6 +25,7 @@ export const Routes = () => {
       <Route path="/user-table" exact component={UserTable} />
       <Route path="/product-buttons" exact component={ProductButtons} />
       <Route path="/sandbox" exact component={Sandbox} />
+      <Route path="/breadcrumbs" exact component={DemoBreadcrumbs} />
     </Switch>
   );
 };

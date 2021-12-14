@@ -1,11 +1,27 @@
-import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
-import { DotLink, LinkUnderline } from '../link/Link';
+import { LinkUnderline } from '../link/Link';
 import { DotMenu } from '../menu/Menu';
-import { rootClassName, StyledBreadcrumbs } from './Breadcrumbs.styles';
+import {
+  breadcrumbsWrapperClass,
+  rootClassName,
+  StyledBreadcrumbs,
+  StyledBreadcrumbsWrapper,
+} from './Breadcrumbs.styles';
 import { compareWidth } from '../compareSize';
+import {
+  addListenersToMenu,
+  BreadcrumbItemRefs,
+  getExpandElement,
+  getItemsAfterCollapse,
+  getMaxItems,
+  getMenuItems,
+  mapBreadcrumbItems,
+  removeListenersFromMenu,
+} from './utils/helpers';
+import { useBreadcrumbsObserver } from './utils/useBreadcrumbsObserver';
 
 export type BreadcrumbItem = {
   /** Defines a string value that labels the current element **/
@@ -37,132 +53,104 @@ export const DotBreadcrumbs = ({
   'data-testid': dataTestId,
   expansionMenu = false,
   items,
-  maxItems = 3,
+  maxItems,
   minWidth,
 }: BreadcrumbProps) => {
-  const rootClasses = useStylesWithRootClass(rootClassName, className);
-  const breadcrumbRef = useRef();
+  const wrapperRootClasses = useStylesWithRootClass(
+    breadcrumbsWrapperClass,
+    className
+  );
   const wrapperRef = useRef();
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [adjustMaxItems, setAdjustMaxItems] = useState(false);
 
-  const clickListener = (event: MouseEvent) => {
+  const [{ breadcrumbRef, firstItemRef, lastItemRef }, maxVisibleItems] =
+    useBreadcrumbsObserver(items, maxItems);
+
+  const itemsAfterCollapse = getItemsAfterCollapse(
+    adjustMaxItems,
+    maxVisibleItems,
+    maxItems
+  );
+
+  const menuItems =
+    items.length > maxVisibleItems
+      ? getMenuItems(items, itemsAfterCollapse)
+      : [];
+
+  const breadcrumbItemRefs: BreadcrumbItemRefs = {
+    firstItemRef,
+    lastItemRef,
+  };
+
+  const clickListener = (event: MouseEvent | KeyboardEvent) => {
+    if (event instanceof KeyboardEvent && event.key !== 'Enter') return;
     event.stopPropagation();
     setMenuOpen((currentMenuOpen) => {
       return !currentMenuOpen;
     });
   };
 
-  const getExpandElement = () => {
-    const elements = document.getElementsByClassName('MuiBreadcrumbs-ol');
-    return elements.length === 1
-      ? elements[0].getElementsByClassName('MuiButtonBase-root')[0]
-      : null;
-  };
-
-  const getMenuItems = () => {
-    return items.slice(1, items.length - 2).map((item, index) => {
-      const itemChildren = (
-        <DotLink
-          ariaLabel={item.ariaLabel}
-          className="breadcrumb"
-          color="inherit"
-          href={item.href}
-          key={index}
-          onClick={item.onClick}
-          tabIndex={0}
-          underline={item.underline}
-        >
-          {item.text}
-        </DotLink>
-      );
-      return { children: itemChildren, key: index.toString() };
-    });
-  };
-
-  const menuItems = items.length > maxItems ? getMenuItems() : null;
-
-  const onMenuLeave = (_event: KeyboardEvent | React.MouseEvent) => {
+  const onMenuLeave = (_event: React.KeyboardEvent | React.MouseEvent) => {
     setMenuOpen(false);
   };
 
+  /* Build and connect expansion menu if 'expansionMenu' is set to true.
+    In order for this to be functioning properly we need to set 'items' in
+    the dependencies list as it will re-trigger hook if items array change.
+   */
   useEffect(() => {
-    if (expansionMenu) {
-      const expandElement = getExpandElement();
-      if (expandElement) {
-        setAnchorEl(expandElement);
-        expandElement.addEventListener('click', clickListener);
-        return () => {
-          expandElement.removeEventListener('click', clickListener);
-        };
-      }
+    if (!expansionMenu || !breadcrumbRef || !breadcrumbRef.current) return;
+    const expandElement = getExpandElement(breadcrumbRef.current);
+    if (expandElement) {
+      setAnchorEl(expandElement);
+      addListenersToMenu(expandElement, clickListener);
+      return () => removeListenersFromMenu(expandElement, clickListener);
     }
-  }, []);
+  }, [expansionMenu, maxVisibleItems, adjustMaxItems, items]);
 
   useEffect(() => {
-    if (breadcrumbRef?.current && wrapperRef?.current) {
+    if (maxItems && breadcrumbRef?.current && wrapperRef?.current) {
       setAdjustMaxItems(
         compareWidth(wrapperRef.current, breadcrumbRef.current)
       );
     }
-  }, [breadcrumbRef?.current, wrapperRef?.current]);
+  }, [maxItems, breadcrumbRef?.current, wrapperRef?.current]);
 
   return (
-    <div ref={wrapperRef} style={{ overflow: 'hidden' }}>
+    <StyledBreadcrumbsWrapper
+      className={wrapperRootClasses}
+      data-testid={dataTestId && `${dataTestId}-wrapper`}
+      ref={wrapperRef}
+    >
       <StyledBreadcrumbs
         aria-label="breadcrumb"
         classes={{
-          root: rootClasses,
+          root: rootClassName,
           ol: 'dot-ol',
           li: 'dot-li',
         }}
         data-testid={dataTestId}
-        itemsAfterCollapse={adjustMaxItems ? 1 : 2}
-        maxItems={adjustMaxItems ? 2 : maxItems}
+        itemsAfterCollapse={itemsAfterCollapse}
+        maxItems={getMaxItems(adjustMaxItems, maxVisibleItems, maxItems)}
         ref={breadcrumbRef}
         separator={<DotIcon iconId="chevron-right" className="separator" />}
         style={{ width: minWidth }}
       >
-        {items.map((item: BreadcrumbItem, index: number) => {
-          const { ariaLabel, href, onClick, text, underline } = item;
-          if (index === items.length - 1) {
-            return (
-              <span
-                aria-label={ariaLabel}
-                className="breadcrumb current-page"
-                key={index}
-              >
-                {text}
-              </span>
-            );
-          } else {
-            return (
-              <DotLink
-                ariaLabel={ariaLabel}
-                className="breadcrumb"
-                color="inherit"
-                href={href}
-                key={index}
-                onClick={onClick}
-                tabIndex={0}
-                underline={underline}
-              >
-                {text}
-              </DotLink>
-            );
-          }
-        })}
+        {mapBreadcrumbItems(items, breadcrumbItemRefs, itemsAfterCollapse)}
       </StyledBreadcrumbs>
       <DotMenu
         anchorEl={anchorEl}
+        className="dot-breadcrumbs-menu"
+        disablePortal={true}
         id="expand-menu"
         menuItems={menuItems}
         menuPlacement="bottom-start"
         onLeave={onMenuLeave}
         open={menuOpen}
       />
-    </div>
+    </StyledBreadcrumbsWrapper>
   );
 };

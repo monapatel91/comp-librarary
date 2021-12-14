@@ -23,6 +23,7 @@ export type {
 export type { IconButtonProps } from './button/IconButton';
 export type { InputTextProps } from './input-form-fields/InputText';
 export type { InputSelectProps } from './input-form-fields/InputSelect';
+export type { LinkUnderline } from './link/Link';
 export type { ListItemProps } from './list/List';
 export type { MenuItemProps } from './menu/Menu';
 export type { RailItem } from './navigation-rail/NavigationRail';
