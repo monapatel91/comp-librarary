@@ -41,9 +41,9 @@ export const getWidthFromRef = <T extends HTMLElement>(
 };
 
 export const checkIfFirstItemAfterCollapse = (
+  currentIndex: number,
   items: BreadcrumbItem[],
-  itemsAfterCollapse: number,
-  currentIndex: number
+  itemsAfterCollapse: number
 ): boolean => currentIndex === items.length - itemsAfterCollapse;
 
 export const getExpandElement = (breadcrumbElement: HTMLElement) => {
@@ -129,9 +129,9 @@ export const mapBreadcrumbItems = (
       );
     } else {
       const isFirstItemAfterCollapse = checkIfFirstItemAfterCollapse(
+        index,
         items,
-        itemsAfterCollapse,
-        index
+        itemsAfterCollapse
       );
       return (
         <div

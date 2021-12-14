@@ -96,11 +96,11 @@ describe('breadcrumbs helper functions', () => {
 
   describe('checkIfFirstItemAfterCollapse', () => {
     it('should return false if item is not first item after collapse', () => {
-      checkIfFirstItemAfterCollapse(breadcrumbItems, 2, 3);
+      checkIfFirstItemAfterCollapse(3, breadcrumbItems, 2);
     });
 
     it('should return true if item is first item after collapse', () => {
-      checkIfFirstItemAfterCollapse(breadcrumbItems, 2, 2);
+      checkIfFirstItemAfterCollapse(2, breadcrumbItems, 2);
     });
   });
 
