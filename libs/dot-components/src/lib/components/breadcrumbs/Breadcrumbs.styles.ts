@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
+import { Breadcrumbs } from '@material-ui/core';
 
-export const rootClassName = 'dot-breadcrumbs-wrapper';
-export const rootBreadcrumbsClassName = 'dot-breadcrumbs';
+export const rootClassName = 'dot-breadcrumbs';
+export const breadcrumbsWrapperClass = 'dot-breadcrumbs-wrapper';
 
-export const StyledBreadcrumbs = styled.div`
+export const StyledBreadcrumbsWrapper = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
       overflow: hidden;
@@ -18,45 +19,49 @@ export const StyledBreadcrumbs = styled.div`
           padding: ${theme.spacing(0.5, 2)};
         }
       }
+    }
+  `}
+`;
 
-      .${rootBreadcrumbsClassName} {
-        margin-bottom: 0;
+export const StyledBreadcrumbs = styled(Breadcrumbs)`
+  ${({ theme }) => css`
+    &.${rootClassName} {
+      margin-bottom: 0;
 
-        .MuiBreadcrumbs-ol {
-          flex-wrap: nowrap;
-        }
-        .MuiBreadcrumbs-li,
-        .separator {
-          color: ${theme.palette.grey[300]};
-          margin: 0;
-          white-space: nowrap;
-        }
-        .separator {
-          font-size: 12px;
-          width: 20px;
-          height: 20px;
-          padding: 0;
-        }
-        .MuiBreadcrumbs-separator {
-          margin: 0;
-        }
-        .MuiLink-underlineHover {
-          cursor: pointer;
-        }
+      .MuiBreadcrumbs-ol {
+        flex-wrap: nowrap;
+      }
+      .MuiBreadcrumbs-li,
+      .separator {
+        color: ${theme.palette.grey[300]};
+        margin: 0;
+        white-space: nowrap;
+      }
+      .separator {
+        font-size: 12px;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+      }
+      .MuiBreadcrumbs-separator {
+        margin: 0;
+      }
+      .MuiLink-underlineHover {
+        cursor: pointer;
+      }
 
-        .MuiBreadcrumbs-li:last-child {
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+      .MuiBreadcrumbs-li:last-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
-        .breadcrumb {
-          padding: ${theme.spacing(0.5, 2)};
-        }
+      .breadcrumb {
+        padding: ${theme.spacing(0.5, 2)};
+      }
 
-        .current-page {
-          color: ${theme.palette.grey[700]};
-          cursor: default;
-        }
+      .current-page {
+        color: ${theme.palette.grey[700]};
+        cursor: default;
       }
     }
   `}

@@ -5,9 +5,10 @@ import { DotIcon } from '../icon/Icon';
 import { LinkUnderline } from '../link/Link';
 import { DotMenu } from '../menu/Menu';
 import {
-  rootBreadcrumbsClassName,
+  breadcrumbsWrapperClass,
   rootClassName,
   StyledBreadcrumbs,
+  StyledBreadcrumbsWrapper,
 } from './Breadcrumbs.styles';
 import { compareWidth } from '../compareSize';
 import {
@@ -21,7 +22,6 @@ import {
   removeListenersFromMenu,
 } from './utils/helpers';
 import { useBreadcrumbsObserver } from './utils/useBreadcrumbsObserver';
-import { Breadcrumbs } from '@material-ui/core';
 
 export type BreadcrumbItem = {
   /** Defines a string value that labels the current element **/
@@ -56,7 +56,10 @@ export const DotBreadcrumbs = ({
   maxItems,
   minWidth,
 }: BreadcrumbProps) => {
-  const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const wrapperRootClasses = useStylesWithRootClass(
+    breadcrumbsWrapperClass,
+    className
+  );
   const wrapperRef = useRef();
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
@@ -117,15 +120,15 @@ export const DotBreadcrumbs = ({
   }, [maxItems, breadcrumbRef?.current, wrapperRef?.current]);
 
   return (
-    <StyledBreadcrumbs
-      className={rootClasses}
+    <StyledBreadcrumbsWrapper
+      className={wrapperRootClasses}
       data-testid={dataTestId && `${dataTestId}-wrapper`}
       ref={wrapperRef}
     >
-      <Breadcrumbs
+      <StyledBreadcrumbs
         aria-label="breadcrumb"
         classes={{
-          root: rootBreadcrumbsClassName,
+          root: rootClassName,
           ol: 'dot-ol',
           li: 'dot-li',
         }}
@@ -137,7 +140,7 @@ export const DotBreadcrumbs = ({
         style={{ width: minWidth }}
       >
         {mapBreadcrumbItems(items, breadcrumbItemRefs, itemsAfterCollapse)}
-      </Breadcrumbs>
+      </StyledBreadcrumbs>
       <DotMenu
         anchorEl={anchorEl}
         className="dot-breadcrumbs-menu"
@@ -148,6 +151,6 @@ export const DotBreadcrumbs = ({
         onLeave={onMenuLeave}
         open={menuOpen}
       />
-    </StyledBreadcrumbs>
+    </StyledBreadcrumbsWrapper>
   );
 };
