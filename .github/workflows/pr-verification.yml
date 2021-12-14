@@ -130,7 +130,7 @@ jobs:
       # https://support.github.com/tickets/personal/0
       # https://github.com/octokit/request-action/issues/133
       # https://github.community/t/branch-protection-api-returning-404/217405
-      # https://docs.github.com/en/rest/reference/repos#get-branch-protection
+      # https://docs.github.com/en/rest/reference/branches#update-branch-protection
       - name: Get existing branch protection
         id: get_branch_protection
         uses: octokit/request-action@v2.0.24
@@ -151,11 +151,11 @@ jobs:
             format: application/json
           required_status_checks: |
             null
-          enforce_admins: |
-            null
-          required_conversation_resolution: |
-            null
           required_pull_request_reviews: |
+            null
+          # enforce_admins: |
+          #   null
+          required_conversation_resolution: |
             null
           restrictions: |
             null
