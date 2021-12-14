@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { BreadcrumbItem } from '../Breadcrumbs';
 import { useBreadcrumbsResizer } from './useBreadcrumbsResizer';
 

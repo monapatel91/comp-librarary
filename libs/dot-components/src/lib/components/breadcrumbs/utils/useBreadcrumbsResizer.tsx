@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useState } from 'react';
+import React, { MutableRefObject, useEffect, useState } from 'react';
 import { getInitialMaxVisibleItems, getWidthFromRef } from './helpers';
 import {
   ITEMS_SEPARATOR_SPACE,
