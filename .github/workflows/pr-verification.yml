@@ -127,12 +127,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # https://github.com/octokit/request-action/issues/133
+      # https://github.community/t/branch-protection-api-returning-404/217405
+      # https://docs.github.com/en/rest/reference/repos#get-branch-protection
+      - name: Get existing branch protection
+        id: get_branch_protection
+        uses: octokit/request-action@v2.0.24
+        with:
+          route: GET /repos/digital-ai/dot-components/branches/develop/protection
+          mediaType: |
+            - Accept: application/vnd.github.v3+json
+        env:
+          GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
+
+      - run: echo steps.get_branch_protection.outputs.data
+
       - name: Branch protection OFF
         uses: octokit/request-action@v2.0.24
         with:
           route: PUT /repos/digital-ai/dot-components/branches/develop/protection
-          mediaType: |
-            - Accept: application/vnd.github.v3+json
+          # mediaType: |
+          #   - Accept: application/vnd.github.v3+json
           required_status_checks: |
             null
           enforce_admins: |
@@ -164,18 +179,3 @@ jobs:
             true
         env:
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
-
-      # https://github.com/octokit/request-action/issues/133
-      # https://github.community/t/branch-protection-api-returning-404/217405
-      # https://docs.github.com/en/rest/reference/repos#get-branch-protection
-      # - name: Get existing branch protection
-      #   id: get_branch_protection
-      #   uses: octokit/request-action@v2.0.24
-      #   with:
-      #     route: GET /repos/digital-ai/dot-components/branches/develop/protection
-      #     mediaType: |
-      #       - Accept: application/vnd.github.v3+json
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
-
-      # - run: echo steps.get_branch_protection.outputs.data
