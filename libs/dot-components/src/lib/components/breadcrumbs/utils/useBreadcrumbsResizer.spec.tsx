@@ -83,10 +83,10 @@ describe('useBreadcrumbsResizer', () => {
   });
 
   it('should NOT resize when there is available space', () => {
-    const itemWidth = 71;
+    const dummyItemWidth = 71;
     const [firstItemRefMock, lastItemRefMock] = getRefMocks(
-      itemWidth,
-      itemWidth,
+      dummyItemWidth,
+      dummyItemWidth,
       381
     );
     const [, result] = renderResizerHook(
@@ -105,10 +105,10 @@ describe('useBreadcrumbsResizer', () => {
   });
 
   it('should resize until it reaches 2 visible items', () => {
-    const itemWidth = 71;
+    const dummyItemWidth = 71;
     const [firstItemRefMock, lastItemRefMock] = getRefMocks(
-      itemWidth,
-      itemWidth,
+      dummyItemWidth,
+      dummyItemWidth,
       381
     );
     const [, result] = renderResizerHook(
@@ -119,7 +119,7 @@ describe('useBreadcrumbsResizer', () => {
 
     expectResultToEqualObject(
       {
-        lastRemovedItemWidth: itemWidth + ITEMS_SEPARATOR_SPACE,
+        lastRemovedItemWidth: dummyItemWidth + ITEMS_SEPARATOR_SPACE,
         maxVisibleItems: 2,
       },
       result as RenderResult<[MaxVisibleItems]>
