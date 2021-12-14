@@ -151,8 +151,8 @@ jobs:
             null
           required_pull_request_reviews: |
             null
-          # enforce_admins: |
-          #   null
+          enforce_admins: |
+            null
           required_conversation_resolution: |
             null
           restrictions: |
@@ -172,11 +172,13 @@ jobs:
               - context: "Lint & Build"
               - context: "Run Unit Tests"
               - context: "Run E2E Tests"
-          # enforce_admins: |
-          #   false
+          enforce_admins: |
+            false
           required_pull_request_reviews: |
             required_approving_review_count: 1
           required_conversation_resolution: |
             true
+          restrictions: |
+            null
         env:
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
