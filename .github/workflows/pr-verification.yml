@@ -135,7 +135,8 @@ jobs:
         uses: octokit/request-action@v2.0.24
         with:
           route: GET /repos/digital-ai/dot-components/branches/develop/protection
-          mediaType: '{"Accept": application/vnd.github.v3+json}'
+          mediaType: |
+            format: raw
         env:
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
