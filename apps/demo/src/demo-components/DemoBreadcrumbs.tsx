@@ -4,8 +4,8 @@ import {
   DotBreadcrumbs,
   DotButton,
   DotIconButton,
+  LinkUnderline,
 } from '@digital-ai/dot-components';
-import { LinkUnderline } from '../../../../libs/dot-components/src/lib/components/link/Link';
 import { Divider } from '@material-ui/core';
 
 export const DemoBreadcrumbs = () => {
