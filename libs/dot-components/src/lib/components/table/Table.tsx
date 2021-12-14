@@ -18,7 +18,7 @@ export interface TableRowProps extends CommonProps {
   /** row identifier that will be passed to onRowClick callback */
   id?: string;
   /** row data where keys map to column ids and values to cell values */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rowData: any;
   /** if the row is selected */
   selected?: boolean;
