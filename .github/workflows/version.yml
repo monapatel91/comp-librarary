@@ -181,19 +181,23 @@ jobs:
 
     steps:
       - name: Branch protection OFF
-        uses: octokit/request-action@v2.x
+        uses: octokit/request-action@v2.0.24
         with:
           route: PUT /repos/digital-ai/dot-components/branches/develop/protection
+          mediaType: |
+            format: application/json
           required_status_checks: |
+            null
+          required_pull_request_reviews: |
             null
           enforce_admins: |
             null
           required_conversation_resolution: |
             null
-          required_pull_request_reviews: |
+          restrictions: |
             null
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -206,17 +210,24 @@ jobs:
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Branch protection ON
-        uses: octokit/request-action@v2.x
+        uses: octokit/request-action@v2.0.24
         with:
           route: PUT /repos/digital-ai/dot-components/branches/develop/protection
+          mediaType: |
+            format: application/json
           required_status_checks: |
-            strict: true
-            checks: [{ name: Lint & Build }, { name:Run Unit Tests }, { name:Run E2E Tests }]
+            strict: false
+            checks:
+              - context: "Lint & Build"
+              - context: "Run Unit Tests"
+              - context: "Run E2E Tests"
           enforce_admins: |
             false
           required_pull_request_reviews: |
             required_approving_review_count: 1
           required_conversation_resolution: |
             true
+          restrictions: |
+            null
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
