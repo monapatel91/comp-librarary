@@ -12,7 +12,7 @@ const handleDeleteClick = () => {
 const actionItemArray = [
   {
     children: (
-      <DotButton type="text" onClick={() => handleEditClick()}>
+      <DotButton onClick={() => handleEditClick()} type="text">
         Edit
       </DotButton>
     ),
@@ -25,7 +25,7 @@ const actionItemArray = [
   },
   {
     children: (
-      <DotButton type="text" onClick={() => handleDeleteClick()}>
+      <DotButton onClick={() => handleDeleteClick()} type="text">
         Delete
       </DotButton>
     ),

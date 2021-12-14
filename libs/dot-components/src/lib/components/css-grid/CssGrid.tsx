@@ -9,12 +9,12 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 export interface CssGridProps extends CommonProps {
   /** Cells for Grid */
   children?: React.ReactNode | Array<React.ReactNode>;
-  /** Breakpoints for columns */
-  columnsBreakpoints?: BreakpointValues;
-  /** Columns, overrides columnsBreakpoints */
-  columns?: number | string;
   /** Columns gap */
   columnGap?: BreakpointValues;
+  /** Columns, overrides columnsBreakpoints */
+  columns?: number | string;
+  /** Breakpoints for columns */
+  columnsBreakpoints?: BreakpointValues;
   /** Overall gap column and row */
   gap?: string;
   /** Template to create layout */

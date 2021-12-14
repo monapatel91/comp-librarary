@@ -16,13 +16,13 @@ describe('DotConfirmationDialog', () => {
   });
 
   it('should render the cancel button successfully', () => {
-    render(<DotConfirmationDialog title="Dialog Title" open={true} />);
+    render(<DotConfirmationDialog open={true} title="Dialog Title" />);
 
     expect(screen.getByRole('button', { name: /cancel/i })).toBeVisible();
   });
 
   it('should render the ok button successfully', () => {
-    render(<DotConfirmationDialog title="Dialog Title" open={true} />);
+    render(<DotConfirmationDialog open={true} title="Dialog Title" />);
 
     expect(screen.getByRole('button', { name: /ok/i })).toBeVisible();
   });
@@ -31,10 +31,10 @@ describe('DotConfirmationDialog', () => {
     const cancelMock = jest.fn();
     render(
       <DotConfirmationDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelMock}
         onSubmit={confirmFunc}
+        open={true}
+        title="Dialog Title"
       />
     );
 
@@ -46,10 +46,10 @@ describe('DotConfirmationDialog', () => {
     const cancelMock = jest.fn();
     render(
       <DotConfirmationDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelMock}
         onSubmit={confirmFunc}
+        open={true}
+        title="Dialog Title"
       />
     );
 
@@ -61,10 +61,10 @@ describe('DotConfirmationDialog', () => {
     const submitMock = jest.fn();
     render(
       <DotConfirmationDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
+        open={true}
+        title="Dialog Title"
       />
     );
 
@@ -75,11 +75,11 @@ describe('DotConfirmationDialog', () => {
   it('message text should render successfully', () => {
     render(
       <DotConfirmationDialog
-        title="Dialog Title"
         message="Hello World"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={confirmFunc}
+        open={true}
+        title="Dialog Title"
       />
     );
 
@@ -89,10 +89,10 @@ describe('DotConfirmationDialog', () => {
   it('title should display as expected', () => {
     render(
       <DotConfirmationDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={confirmFunc}
+        open={true}
+        title="Dialog Title"
       />
     );
 
@@ -102,10 +102,10 @@ describe('DotConfirmationDialog', () => {
   it('default title should display as expected', () => {
     render(
       <DotConfirmationDialog
-        title="Please confirm"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={confirmFunc}
+        open={true}
+        title="Please confirm"
       />
     );
 

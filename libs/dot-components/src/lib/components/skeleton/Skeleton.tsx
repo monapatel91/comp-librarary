@@ -40,8 +40,8 @@ export const DotSkeleton = ({
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       height={height}
-      width={width}
       variant={skeletonVariant}
+      width={width}
     >
       {children}
     </StyledSkeleton>

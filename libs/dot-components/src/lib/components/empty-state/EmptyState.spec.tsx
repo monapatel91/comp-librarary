@@ -33,9 +33,9 @@ describe(' EmptyState', () => {
   it('should render an empty state image', () => {
     render(
       <DotEmptyState
-        title="Hello World"
-        imageSrc={EmptyStateImage}
         imageAltText="Test Name"
+        imageSrc={EmptyStateImage}
+        title="Hello World"
       />
     );
     expect(screen.getByRole('img', { name: 'Test Name' })).toBeVisible();
@@ -47,12 +47,12 @@ describe(' EmptyState', () => {
   });
 
   it('should render an empty state sub-title', () => {
-    render(<DotEmptyState title="Hello World" subtitle="I am a test" />);
+    render(<DotEmptyState subtitle="I am a test" title="Hello World" />);
     expect(screen.getByText('I am a test')).toBeVisible();
   });
 
   it('should not render a button by default', () => {
-    render(<DotEmptyState title="Hello World" subtitle="I am a test" />);
+    render(<DotEmptyState subtitle="I am a test" title="Hello World" />);
     expect(screen.queryByRole('button')).toBeNull();
   });
 

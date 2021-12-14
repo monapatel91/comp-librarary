@@ -43,5 +43,5 @@ export const Default: Story<CheckboxGroupProps> = (args: any) => {
   } = args;
   const endIcon = endIconId && <DotIcon iconId={endIconId} />;
   const startIcon = startIconId && <DotIcon iconId={startIconId} />;
-  return <DotCheckboxGroup {...args} startIcon={startIcon} endIcon={endIcon} />;
+  return <DotCheckboxGroup {...args} endIcon={endIcon} startIcon={startIcon} />;
 };

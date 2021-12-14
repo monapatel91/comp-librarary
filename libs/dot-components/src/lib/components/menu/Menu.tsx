@@ -42,14 +42,12 @@ export interface MenuProps extends CommonProps {
   loading?: boolean;
   /** Maximum number of visible menu items */
   maxVisibleItems?: number;
-  /** Array of items to be displayed inside the menu */
-  menuItems: Array<MenuItemProps>;
   /** Used to specify height of each menu item when custom component, set to "auto" if no specific height is needed or leave empty for auto calculation based on `maxVisibleItems` */
   menuItemHeight?: number | string;
+  /** Array of items to be displayed inside the menu */
+  menuItems: Array<MenuItemProps>;
   /** Determines the placement of the menu */
   menuPlacement?: PopperPlacement;
-  /** If true, the menu is open. */
-  open?: boolean;
   /** Event callback when leaving menu via tab or clicking away */
   onLeave?: (event: KeyboardEvent | MouseEvent) => void;
   /** Callback when menu item is selected */
@@ -58,6 +56,8 @@ export interface MenuProps extends CommonProps {
     menuId: string,
     itemKey: string
   ) => void;
+  /** If true, the menu is open. */
+  open?: boolean;
 }
 
 export interface MenuItemProps {
@@ -188,8 +188,8 @@ export const DotMenu = ({
                       <MenuItem
                         aria-label={item.ariaLabel}
                         className={`dot-li ${item.classes ? item.classes : ''}`}
-                        onClick={(event) => handleSelect(event, item.key)}
                         key={index}
+                        onClick={(event) => handleSelect(event, item.key)}
                         style={{ height: calculateItemHeight() }}
                       >
                         {item.children}

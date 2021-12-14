@@ -26,7 +26,7 @@ describe('DotSnackbar', () => {
   it('should render successfully', () => {
     expect.assertions(1);
     const { baseElement } = render(
-      <DotSnackbar severity="success" open={true} onClose={jest.fn()}>
+      <DotSnackbar onClose={jest.fn()} open={true} severity="success">
         Dot component message.
       </DotSnackbar>
     );
@@ -36,7 +36,7 @@ describe('DotSnackbar', () => {
   it('should render "success" alert', () => {
     expect.assertions(1);
     render(
-      <DotSnackbar severity="success" open={true} onClose={jest.fn()}>
+      <DotSnackbar onClose={jest.fn()} open={true} severity="success">
         Dot component message.
       </DotSnackbar>
     );
@@ -47,7 +47,7 @@ describe('DotSnackbar', () => {
   it('should render "info" alert', () => {
     expect.assertions(1);
     render(
-      <DotSnackbar severity="info" open={true} onClose={jest.fn()}>
+      <DotSnackbar onClose={jest.fn()} open={true} severity="info">
         Dot component message.
       </DotSnackbar>
     );
@@ -57,7 +57,7 @@ describe('DotSnackbar', () => {
   it('should render "warning" alert', () => {
     expect.assertions(1);
     render(
-      <DotSnackbar severity="warning" open={true} onClose={jest.fn()}>
+      <DotSnackbar onClose={jest.fn()} open={true} severity="warning">
         Dot component message.
       </DotSnackbar>
     );
@@ -67,7 +67,7 @@ describe('DotSnackbar', () => {
   it('should render "error" alert', () => {
     expect.assertions(1);
     render(
-      <DotSnackbar severity="error" open={true} onClose={jest.fn()}>
+      <DotSnackbar onClose={jest.fn()} open={true} severity="error">
         Dot component message.
       </DotSnackbar>
     );
@@ -77,7 +77,7 @@ describe('DotSnackbar', () => {
   it('should not show a close button if a function is not passed', () => {
     expect.assertions(1);
     render(
-      <DotSnackbar severity="error" open={true} onClose={undefined}>
+      <DotSnackbar onClose={undefined} open={true} severity="error">
         Dot component message.
       </DotSnackbar>
     );
@@ -86,7 +86,7 @@ describe('DotSnackbar', () => {
   it('should show a close button if no action object is passed', () => {
     expect.assertions(1);
     render(
-      <DotSnackbar severity="error" open={true} onClose={jest.fn()}>
+      <DotSnackbar onClose={jest.fn()} open={true} severity="error">
         Dot component message.
       </DotSnackbar>
     );
@@ -97,9 +97,9 @@ describe('DotSnackbar', () => {
     render(
       <DotSnackbar
         action={<Button>Undo</Button>}
-        severity="error"
-        open={true}
         onClose={undefined}
+        open={true}
+        severity="error"
       >
         Dot component message.
       </DotSnackbar>
@@ -112,9 +112,9 @@ describe('DotSnackbar', () => {
     render(
       <DotSnackbar
         action={<Button onClick={handleClick}>Undo</Button>}
-        severity="error"
-        open={true}
         onClose={undefined}
+        open={true}
+        severity="error"
       >
         Dot component message.
       </DotSnackbar>
@@ -141,8 +141,8 @@ describe('DotSnackbar', () => {
       <DotSnackbar
         ariaLabel={ariaLabel}
         data-testid={dataTestId}
-        severity="error"
         open={true}
+        severity="error"
       >
         Dot component message.
       </DotSnackbar>

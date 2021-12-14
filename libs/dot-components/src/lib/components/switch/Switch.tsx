@@ -55,22 +55,22 @@ export const DotSwitch = ({
   return (
     <StyledFormControlLabel
       className={formRootClassName}
-      labelPlacement={labelPlacement}
       control={
         <StyledSwitch
-          classes={{ root: rootClasses }}
           checked={checked}
+          classes={{ root: rootClasses }}
           color={color}
           data-testid={dataTestId}
           disabled={disabled}
           id={id}
-          inputRef={inputRef}
           inputProps={{ 'aria-label': ariaLabel ? ariaLabel : label }}
+          inputRef={inputRef}
           onChange={handleChange}
           size={size}
         />
       }
       label={label}
+      labelPlacement={labelPlacement}
     />
   );
 };

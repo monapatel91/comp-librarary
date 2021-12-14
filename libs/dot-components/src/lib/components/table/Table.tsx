@@ -17,11 +17,11 @@ const skeletonRows = 4;
 export interface TableRowProps extends CommonProps {
   /** row identifier that will be passed to onRowClick callback */
   id?: string;
-  /** if the row is selected */
-  selected?: boolean;
   /** row data where keys map to column ids and values to cell values */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rowData: any;
+  /** if the row is selected */
+  selected?: boolean;
 }
 export interface TableProps extends CommonProps {
   /** The table header columns */
@@ -40,10 +40,6 @@ export interface TableProps extends CommonProps {
   loading?: boolean;
   /** Maximum height of table container */
   maxHeight?: string;
-  /** The sort order of table data 'asc', 'desc' */
-  order?: Order;
-  /** The ID of the column that you are sorting by */
-  orderBy?: string;
   /** Row click event callback */
   onRowClick?: (event: MouseEvent, id: string) => void;
   /** Update data callback if data is managed by consumer */
@@ -53,6 +49,10 @@ export interface TableProps extends CommonProps {
     page: number,
     rowsPerPage: number
   ) => void;
+  /** The sort order of table data 'asc', 'desc' */
+  order?: Order;
+  /** The ID of the column that you are sorting by */
+  orderBy?: string;
   /** The zero-based index of the current page  for paginated table */
   page?: number;
   /** Rows per page for paginated table */

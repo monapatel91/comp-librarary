@@ -30,10 +30,10 @@ export const Default: Story<TablePaginationProps> = (args) => {
   return (
     <DotTablePagination
       {...args}
-      page={page}
-      rowsPerPage={rowsPerPage}
       onChangePage={onChangePage}
       onChangeRowsPerPage={onChangeRowsPerPage}
+      page={page}
+      rowsPerPage={rowsPerPage}
     />
   );
 };

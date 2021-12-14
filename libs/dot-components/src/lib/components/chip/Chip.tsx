@@ -10,14 +10,14 @@ export interface ChipProps extends CommonProps {
   avatar?: ReactElement;
   /** The text for the chip. */
   children: string;
-  /** If true, the chip is clickable */
-  isClickable?: boolean;
-  /** If true, the chip is deletable */
-  isDeletable?: boolean;
   /** If true, the chip is disabled */
   disabled?: boolean;
   /** If true, the chip is in error */
   error?: boolean;
+  /** If true, the chip is clickable */
+  isClickable?: boolean;
+  /** If true, the chip is deletable */
+  isDeletable?: boolean;
   /** Event callback on click */
   onClick?: (event: MouseEvent) => void;
   /** Event callback when delete icon is clicked */

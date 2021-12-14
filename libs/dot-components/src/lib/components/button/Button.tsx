@@ -75,16 +75,16 @@ export const DotButton = React.forwardRef(
           classes={{ root: rootClasses }}
           color={color}
           data-testid={dataTestId}
-          disabled={disabled}
           disableRipple={disableRipple}
+          disabled={disabled}
           endIcon={endIcon}
           fullWidth={fullWidth}
           onClick={(event) => onClick && onClick(event)}
           ref={ref}
-          variant={variant}
           size={size}
           startIcon={startIcon}
           type={isSubmit ? 'submit' : 'button'}
+          variant={variant}
         >
           {children}
         </StyledButton>

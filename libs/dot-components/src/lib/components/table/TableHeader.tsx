@@ -40,10 +40,10 @@ export interface HeaderCellProps {
   order?: Order;
   /** The ID of the column that you are sorting by */
   orderBy?: string;
-  /** Determines if sorting is enabled */
-  sortable?: boolean;
   /** Determines sorting order of ascending or desceding */
   sortDirection?: 'desc' | 'asc' | undefined;
+  /** Determines if sorting is enabled */
+  sortable?: boolean;
   /**Allows table cell text truncated and displays in only one line */
   truncate?: boolean;
   /** The UID of the cell, if not provided then a randomly generated hash will be created using
@@ -81,9 +81,9 @@ export const DotHeaderRow = ({
             key={CreateUUID()}
             order={order}
             orderBy={orderBy}
-            truncate={cell.truncate}
-            sortable={sortable && cell.sortable}
             sortDirection={orderBy === cell.id ? order : undefined}
+            sortable={sortable && cell.sortable}
+            truncate={cell.truncate}
             uid={CreateUUID()}
             value={cell.label}
             width={cell.width}
@@ -137,8 +137,8 @@ export const DotHeaderCell = ({
     <TableCell
       align={align}
       key={uid}
-      title={headerTitle}
       style={{ width: width ? width : '' }}
+      title={headerTitle}
     >
       {value}
     </TableCell>

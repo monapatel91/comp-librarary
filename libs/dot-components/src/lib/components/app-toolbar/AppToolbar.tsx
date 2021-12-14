@@ -65,14 +65,15 @@ export const DotAppToolbar = ({
   const showMainMenu = mainMenu || mainMenuItems;
   const displayAppLogo = appLogo || appLogoSmall;
   const mainMenuRef = useRef(null);
+  const denseClass = dense ? denseClassName : '';
   const rootClasses = useStylesWithRootClass(
     rootClassName,
     className,
-    dense ? denseClassName : ''
+    denseClass
   );
   const mainMenuClasses = useStylesWithRootClass(
     'dot-main-menu',
-    dense ? denseClassName : '',
+    denseClass,
     menuOpen ? 'open' : ''
   );
 
@@ -132,8 +133,8 @@ export const DotAppToolbar = ({
             data-testid="main-menu"
             onClose={() => updateMenuOpen(false)}
             open={menuOpen}
-            width={mainMenuWidth + 'px'}
             variant="persistent"
+            width={mainMenuWidth + 'px'}
           >
             <div ref={mainMenuRef}>
               {mainMenuItems ? (
@@ -186,8 +187,8 @@ export const DotAppToolbar = ({
                 className={item.className}
                 iconId={item.iconId}
                 iconSize="default"
-                onClick={(event) => item.onClick && item.onClick(event)}
                 key={index}
+                onClick={(event) => item.onClick && item.onClick(event)}
                 size="medium"
                 tooltip={item.tooltip}
               />

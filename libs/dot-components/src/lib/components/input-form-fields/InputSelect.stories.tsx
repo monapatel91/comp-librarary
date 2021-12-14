@@ -33,8 +33,8 @@ export const Default: Story<InputSelectProps> = (args: any) => {
     <DotInputSelect
       {...args}
       endIcon={endIcon}
-      startIcon={startIcon}
       onKeyDown={action('Input on keydown!!')}
+      startIcon={startIcon}
     />
   );
 };

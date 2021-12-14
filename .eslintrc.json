@@ -11,15 +11,21 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
+      "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": false
       },
-      "rules": {}
+      "plugins": ["typescript-sort-keys"],
+      "rules": {
+        "typescript-sort-keys/interface": "error"
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nrwl/nx/javascript"],
-      "rules": {}
+      "rules": {
+        "react/jsx-sort-props": "error"
+      }
     }
   ]
 }

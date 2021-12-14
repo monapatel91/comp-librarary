@@ -66,9 +66,9 @@ export interface DynamicFormControl {
   controlName?: string;
   controlProps?: DynamicFormControlProps;
   controlType: DynamicFormControlType;
-  formSection?: DynamicFormSection;
   customElement?: ReactNode;
   disabled?: DisabledControlCondition;
+  formSection?: DynamicFormSection;
   hidden?: ControlCondition;
   initialValue?: unknown;
   onControlClick?: ControlClickHandler;
@@ -76,8 +76,8 @@ export interface DynamicFormControl {
 }
 
 export interface FieldValidation {
-  isValid: boolean;
   errorMessage: string | null;
+  isValid: boolean;
 }
 
 export interface DynamicFormConfig {
@@ -98,18 +98,18 @@ export interface Length extends ValidationField {
 }
 
 export interface DynamicFormValidation {
-  isRequired?: IsRequired;
-  minLength?: Length;
-  maxLength?: Length;
   customValidator?: (value: unknown) => FieldValidation;
+  isRequired?: IsRequired;
+  maxLength?: Length;
+  minLength?: Length;
 }
 
 export interface DynamicFormStateItem {
-  value: unknown;
-  isValid: boolean;
-  isTouched: boolean;
   errorMessage: string;
   hidden?: ControlCondition;
+  isTouched: boolean;
+  isValid: boolean;
+  value: unknown;
 }
 
 export interface DynamicFormState {
@@ -123,7 +123,7 @@ export interface DynamicFormStateData {
 
 export interface FormStateUpdateArgs {
   controlName: string;
-  newValue: unknown;
   formConfig: DynamicFormConfig;
+  newValue: unknown;
   validate?: boolean;
 }

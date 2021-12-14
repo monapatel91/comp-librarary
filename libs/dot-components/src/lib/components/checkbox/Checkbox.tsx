@@ -51,15 +51,14 @@ export function DotCheckbox({
   return (
     <StyledFormControlLabel
       className={rootClasses}
-      labelPlacement={labelPlacement}
       control={
         <StyledCheckbox
-          classes={{ root: rootCheckboxClassName }}
           checked={checked}
+          classes={{ root: rootCheckboxClassName }}
           color="primary"
           data-testid={dataTestId}
-          disabled={disabled}
           disableRipple={disableRipple}
+          disabled={disabled}
           id={id}
           indeterminate={indeterminate}
           inputProps={{
@@ -75,6 +74,7 @@ export function DotCheckbox({
         />
       }
       label={label}
+      labelPlacement={labelPlacement}
     />
   );
 }

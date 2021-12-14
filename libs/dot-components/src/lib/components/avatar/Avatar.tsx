@@ -40,13 +40,72 @@ export interface AvatarProps extends CommonProps {
   style?: CSSProperties;
   /** The text to be displayed. Only the first 2 letters will be displayed. */
   text?: string;
-  /** The type of the avatar */
-  type?: AvatarType;
   /** Tooltip for avatar */
   tooltip?: string;
+  /** The type of the avatar */
+  type?: AvatarType;
   /** The shape of the avatar */
   variant?: AvatarVariant;
 }
+
+interface AvatarContentProps {
+  'data-testid'?: string;
+  iconId?: string;
+  imageSrc?: string;
+  size: AvatarSize;
+  text: string;
+  type: AvatarType;
+}
+
+const AvatarContent = ({
+  'data-testid': dataTestId,
+  iconId,
+  imageSrc,
+  size,
+  text,
+  type,
+}: AvatarContentProps) => {
+  const parsedText = () => {
+    const textArray = text.split(' ');
+
+    if (textArray.length > 1) {
+      const firstInitial = textArray[0].slice(0, 1);
+      const secondInitial = textArray[1].slice(0, 1);
+
+      return `${firstInitial}${secondInitial}`;
+    } else {
+      return text ? text.slice(0, 1) : '';
+    }
+  };
+
+  const getHeadingFromAvatarSize = (): TypographyVariant =>
+    size === 'large' ? 'h1' : 'h3';
+
+  const getIconFontSizeFromAvatarSize = (): IconFontSize =>
+    size === 'small' ? size : 'medium';
+
+  if (type === 'icon' || (type === 'image' && !imageSrc)) {
+    return (
+      <DotIcon
+        data-testid={`${dataTestId}-icon`}
+        fontSize={getIconFontSizeFromAvatarSize()}
+        iconId={iconId || 'user'}
+      />
+    );
+  }
+
+  if (type === 'text') {
+    return (
+      <DotTypography
+        variant={size === 'small' ? 'caption' : getHeadingFromAvatarSize()}
+      >
+        {parsedText()}
+      </DotTypography>
+    );
+  }
+
+  return null;
+};
 
 export const DotAvatar = ({
   alt,
@@ -73,53 +132,29 @@ export const DotAvatar = ({
     return 'default';
   };
 
-  const parsedText = () => {
-    const textArray = text.split(' ');
-
-    if (textArray.length > 1) {
-      const firstInitial = textArray[0].slice(0, 1);
-      const secondInitial = textArray[1].slice(0, 1);
-
-      return `${firstInitial}${secondInitial}`;
-    } else {
-      return text ? text.slice(0, 1) : '';
-    }
-  };
-
-  const getHeadingFromAvatarSize = (): TypographyVariant =>
-    size === 'large' ? 'h1' : 'h3';
-
-  const getIconFontSizeFromAvatarSize = (): IconFontSize =>
-    size === 'small' ? size : 'medium';
-
   return (
     <DotTooltip title={tooltip}>
       <StyledAvatar
         alt={alt}
         aria-label={ariaLabel}
         className={size}
+        classes={{ root: rootClasses, img: 'dot-img' }}
         color={getAvatarColor()}
         component={onClick ? 'button' : component}
-        classes={{ root: rootClasses, img: 'dot-img' }}
         data-testid={dataTestId}
         onClick={(event: MouseEvent) => (onClick ? onClick(event) : null)}
         src={type === 'image' ? imageSrc : null}
-        variant={variant}
         style={style}
+        variant={variant}
       >
-        {type === 'icon' || (type === 'image' && !imageSrc) ? (
-          <DotIcon
-            data-testid={`${dataTestId}-icon`}
-            iconId={iconId ? iconId : 'user'}
-            fontSize={getIconFontSizeFromAvatarSize()}
-          />
-        ) : type === 'text' ? (
-          <DotTypography
-            variant={size === 'small' ? 'caption' : getHeadingFromAvatarSize()}
-          >
-            {parsedText()}
-          </DotTypography>
-        ) : null}
+        <AvatarContent
+          data-testid={dataTestId}
+          iconId={iconId}
+          imageSrc={imageSrc}
+          text={text}
+          type={type}
+          size={size}
+        />
       </StyledAvatar>
     </DotTooltip>
   );

@@ -90,10 +90,10 @@ export interface ListItemProps extends CommonProps {
   href?: string;
   /** DEPRECATED, DO NOT USE */
   index?: number;
-  /** If provided, the menu item will display a nested list */
-  items?: Array<ListItemProps>;
   /* If true, it will be marked as item which has nested list opened  */
   isOpened?: boolean;
+  /** If provided, the menu item will display a nested list */
+  items?: Array<ListItemProps>;
   /** If nested list type is 'menu', determines the placement of the menu */
   menuPlacement?: PopperPlacement;
   /** If nested type is 'drawer', determines the width of the left spacing */
@@ -123,8 +123,8 @@ export interface ListItemProps extends CommonProps {
 }
 
 interface DividerProps {
-  item: ListItemProps;
   index: number;
+  item: ListItemProps;
 }
 
 const NestedList = ({
@@ -178,8 +178,8 @@ const NestedList = ({
               component={href && !onClick ? 'a' : null}
               href={href}
               key={`${parentItemIndex}-${index}`}
-              target={target}
               onClick={onClick}
+              target={target}
             >
               <span className={flyoutSpanClasses}>
                 {startIconId && startIcon}
@@ -195,16 +195,16 @@ const NestedList = ({
 
     return (
       <DotMenu
-        ariaLabel={ariaLabel}
         anchorEl={anchorEl}
+        ariaLabel={ariaLabel}
         className={flyoutMenuClassName}
         id={CreateUUID()}
+        key={parentItemIndex}
         menuItemHeight="auto"
         menuItems={menuItems}
         menuPlacement={menuPlacement}
         onLeave={onMenuLeave}
         open={open}
-        key={parentItemIndex}
       />
     );
   }
@@ -212,11 +212,11 @@ const NestedList = ({
   if (type === 'drawer') {
     return (
       <DotDrawer
+        PaperProps={{ style: { left: `${nestedDrawerLeftSpacing}px` } }}
         anchor="left"
         className={nestedDrawerClassName}
         data-testid="nested-drawer"
         open={open}
-        PaperProps={{ style: { left: `${nestedDrawerLeftSpacing}px` } }}
         variant="persistent"
       >
         <DotList
@@ -292,8 +292,8 @@ export const DotList = ({
         if (item.divider) {
           return (
             <DotListDivider
-              item={item}
               index={index}
+              item={item}
               key={`divider-${index}`}
             />
           );
@@ -307,12 +307,12 @@ export const DotList = ({
             href={item.href}
             isOpened={listItemIndex === index}
             items={item.items}
-            onClick={item.href && !item.onClick ? null : handleListItemClick}
-            onMenuLeave={handleMenuLeave}
             key={index}
             menuPlacement={menuPlacement}
             nestedDrawerLeftSpacing={nestedDrawerLeftSpacing}
             nestedListType={nestedListType}
+            onClick={item.href && !item.onClick ? null : handleListItemClick}
+            onMenuLeave={handleMenuLeave}
             primaryText={item.primaryText}
             secondaryText={item.secondaryText}
             selected={item.selected}
@@ -463,11 +463,11 @@ export const DotListItem = ({
       </DotTooltip>
       {hasChildren && (
         <NestedList
-          ariaLabel="nested list"
           anchorEl={anchorEl}
+          ariaLabel="nested list"
           items={items}
-          nestedDrawerLeftSpacing={nestedDrawerLeftSpacing}
           menuPlacement={menuPlacement}
+          nestedDrawerLeftSpacing={nestedDrawerLeftSpacing}
           onMenuLeave={handleMenuLeave}
           open={isOpened}
           type={nestedListType}

@@ -6,8 +6,8 @@ import { defaultColumns } from './CssGrid';
 import { CommonProps } from '../CommonProps';
 
 export interface CellSize {
-  start?: number;
   span?: number;
+  start?: number;
 }
 
 export type Placement =
@@ -39,17 +39,17 @@ export interface CssCellProps extends CommonProps {
   md?: CellSize;
   /** Center align vertically and horizontally with flex, used by default */
   middle?: boolean;
+  /** Small column breakpoint */
+  sm?: CellSize;
   /** Column start when Cell column breakpoints are not used */
   start?: number | string;
   /** Row start override */
   top?: number | string;
   width?: number;
-  /** Extra small column breakpoint */
-  xs?: CellSize;
-  /** Small column breakpoint */
-  sm?: CellSize;
   /** Extra large column breakpoint */
   xl?: CellSize;
+  /** Extra small column breakpoint */
+  xs?: CellSize;
 }
 
 const breakpointsGetter = (

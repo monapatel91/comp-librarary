@@ -42,5 +42,5 @@ export const Default: Story<RadioGroupProps> = (args: any) => {
   } = args;
   const endIcon = endIconId && <DotIcon iconId={endIconId} />;
   const startIcon = startIconId && <DotIcon iconId={startIconId} />;
-  return <DotRadioGroup {...args} startIcon={startIcon} endIcon={endIcon} />;
+  return <DotRadioGroup {...args} endIcon={endIcon} startIcon={startIcon} />;
 };

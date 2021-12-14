@@ -58,8 +58,8 @@ export const DotTableBody = ({
         {data.map((row, index) => {
           return (
             <DotTableRow
-              columns={columns}
               className={row.className}
+              columns={columns}
               data={row}
               key={index}
               onActionMenuTrigger={handleActionMenuTrigger}

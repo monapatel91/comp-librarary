@@ -79,8 +79,8 @@ describe('Breadcrumbs', () => {
   it('should show expansion menu on ... click when more than maxItems and expansionMenu is true', () => {
     render(
       <DotBreadcrumbs
-        items={dummyItemsNoOnClick}
         expansionMenu={true}
+        items={dummyItemsNoOnClick}
         maxItems={2}
       />
     );

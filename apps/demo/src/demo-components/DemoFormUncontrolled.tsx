@@ -35,9 +35,9 @@ export const DemoFormUncontrolled = () => {
   const handleOnSubmit = (event: FormEvent) => {
     event.preventDefault();
     const target = event.target as typeof event.target & {
-      name: { value: string };
       artist: { value: string };
       lyric: { value: string };
+      name: { value: string };
       receive: { values: () => Array<RadioButtonProps> };
     };
     const receiveArray = [];

@@ -15,9 +15,9 @@ export interface ButtonToggleProps extends CommonProps {
   buttonOptions: {
     ariaLabel: string;
     disabled?: boolean;
-    value: ButtonToggleValue;
-    text?: string;
     iconId?: string;
+    text?: string;
+    value: ButtonToggleValue;
   }[];
   /** If true, the keyboard focus ripple will be disabled */
   disableFocusRipple?: boolean;
@@ -63,9 +63,9 @@ export const DotButtonToggle = ({
       {buttonOptions.map((option, key) => (
         <ToggleButton
           aria-label={option.ariaLabel}
-          disabled={option.disabled}
           disableFocusRipple={disableFocusRipple}
           disableRipple={disableRipple}
+          disabled={option.disabled}
           key={key}
           value={option.value}
         >

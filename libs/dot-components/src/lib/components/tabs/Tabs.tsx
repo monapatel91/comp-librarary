@@ -73,8 +73,8 @@ export const DotTabs = ({
       <Tab
         aria-label={tab.ariaLabel}
         data-testid={tab['data-testid']}
-        disabled={tab.disabled}
         disableRipple={true}
+        disabled={tab.disabled}
         key={index}
         label={label}
         value={tab.value}

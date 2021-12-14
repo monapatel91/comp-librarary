@@ -38,10 +38,10 @@ export const DotEmptyState = ({
     >
       {imageSrc && (
         <img
-          className="empty-state-image"
-          title={imageAltText || title}
           alt={imageAltText || title}
+          className="empty-state-image"
           src={imageSrc}
+          title={imageAltText || title}
         />
       )}
       <DotTypography variant="h2">{title}</DotTypography>

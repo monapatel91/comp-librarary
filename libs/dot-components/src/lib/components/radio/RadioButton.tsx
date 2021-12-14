@@ -22,10 +22,10 @@ export interface RadioButtonBaseProps extends CommonProps {
   labelPlacement?: RadioLabelPlacement;
   /** name of radio input */
   name?: string;
-  /** controls the size of the radio button 'medium', 'small' */
-  size?: RadioSize;
   /** if true user is required to select an option */
   required?: boolean;
+  /** controls the size of the radio button 'medium', 'small' */
+  size?: RadioSize;
   /** unique value for the radio button */
   value?: string;
 }
@@ -66,13 +66,11 @@ export function DotRadioButton({
   return (
     <StyledFormControlLabel
       className={rootClasses}
-      labelPlacement={labelPlacement}
-      value={value}
       control={
         <StyledRadioButton
           aria-label={ariaLabel}
-          classes={{ root: rootRadioButtonClassName }}
           checked={checked}
+          classes={{ root: rootRadioButtonClassName }}
           color="primary"
           data-testid={dataTestId}
           disabled={disabled}
@@ -85,6 +83,8 @@ export function DotRadioButton({
         />
       }
       label={label}
+      labelPlacement={labelPlacement}
+      value={value}
     />
   );
 }

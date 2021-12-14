@@ -23,8 +23,8 @@ export function DotFormGroup({
   return (
     <StyledFormGroup
       aria-label={ariaLabel}
-      data-testid={dataTestId}
       classes={{ root: rootClasses }}
+      data-testid={dataTestId}
       role="group"
       row={row}
     >

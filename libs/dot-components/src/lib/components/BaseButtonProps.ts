@@ -7,10 +7,10 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 export interface BaseButtonProps extends CommonProps {
   /** If true, the button will be focused **/
   autoFocus?: boolean;
-  /** If true, the button will be disabled. */
-  disabled?: boolean;
   /** If true, the ripple effect will be disabled. */
   disableRipple?: boolean;
+  /** If true, the button will be disabled. */
+  disabled?: boolean;
   /** If true, the button will take up the full width of its container.  */
   fullWidth?: boolean;
   /** Is this a submit button */

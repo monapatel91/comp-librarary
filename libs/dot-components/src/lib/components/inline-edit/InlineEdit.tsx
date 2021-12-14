@@ -124,6 +124,13 @@ export const DotInlineEdit = ({
       onKeyDown={(event) => onKeyPress(event)}
     >
       <TextField
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <DotIcon iconId="edit" />
+            </InputAdornment>
+          ),
+        }}
         aria-label={name}
         autoComplete="off"
         autoFocus={autoFocus}
@@ -135,13 +142,6 @@ export const DotInlineEdit = ({
           'data-testid': dataTestId,
           className: 'dot-input',
           readOnly: readOnly,
-        }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <DotIcon iconId="edit" />
-            </InputAdornment>
-          ),
         }}
         multiline={false}
         name={name}

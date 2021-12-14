@@ -49,20 +49,6 @@ export const DotInputSelect = ({
 
   return (
     <StyledTextField
-      autoFocus={autoFocus}
-      className={`${rootStyles} ${hasWarning}`}
-      defaultValue={defaultValue}
-      disabled={disabled}
-      value={value}
-      error={error}
-      fullWidth={fullWidth}
-      helperText={helperText}
-      id={id}
-      inputProps={{
-        'aria-label': ariaLabel,
-        'data-testid': dataTestId,
-        className: 'dot-select',
-      }}
       InputProps={{
         startAdornment: startIcon && (
           <StyledAdornment
@@ -81,6 +67,22 @@ export const DotInputSelect = ({
           </StyledAdornment>
         ),
       }}
+      SelectProps={{
+        native: true,
+      }}
+      autoFocus={autoFocus}
+      className={`${rootStyles} ${hasWarning}`}
+      defaultValue={defaultValue}
+      disabled={disabled}
+      error={error}
+      fullWidth={fullWidth}
+      helperText={helperText}
+      id={id}
+      inputProps={{
+        'aria-label': ariaLabel,
+        'data-testid': dataTestId,
+        className: 'dot-select',
+      }}
       inputRef={inputRef}
       label={label}
       multiline={false}
@@ -91,10 +93,8 @@ export const DotInputSelect = ({
       onKeyDown={onKeyDown}
       required={required}
       select={true}
-      SelectProps={{
-        native: true,
-      }}
       size={size}
+      value={value}
       variant="outlined"
     >
       {options.map((option) => (

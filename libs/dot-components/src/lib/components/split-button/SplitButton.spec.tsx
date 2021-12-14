@@ -110,8 +110,8 @@ describe('DotButton', () => {
   it('should left button have focus', () => {
     render(
       <DotSplitButton
-        autoFocus={true}
         ariaLabel="splitsville"
+        autoFocus={true}
         onSelect={onSelect}
         options={options}
       >

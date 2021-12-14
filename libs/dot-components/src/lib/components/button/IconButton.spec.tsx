@@ -44,7 +44,7 @@ describe('DotIconButton', () => {
   it('should not allow me to click a disabled icon button', () => {
     const onClick = jest.fn();
     render(
-      <DotIconButton iconId="download" onClick={onClick} disabled={true} />
+      <DotIconButton disabled={true} iconId="download" onClick={onClick} />
     );
     const myButton = screen.getByRole('button');
     userEvent.click(myButton);
