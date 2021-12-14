@@ -21,6 +21,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
+      # - run: echo ${{steps.get_branch_protection.outputs.data}}
+
       - name: Branch protection OFF
         uses: octokit/request-action@v2.0.24
         with:
