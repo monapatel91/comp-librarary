@@ -131,7 +131,8 @@ jobs:
         uses: octokit/request-action@v2.0.24
         with:
           route: PUT /repos/digital-ai/dot-components/branches/develop/protection
-          mediaType: '{"Accept": application/vnd.github.v3+json}'
+          mediaType: |
+            - Accept: application/vnd.github.v3+json
           required_status_checks: |
             null
           enforce_admins: |
@@ -147,7 +148,8 @@ jobs:
         uses: octokit/request-action@v2.0.24
         with:
           route: PUT /repos/digital-ai/dot-components/branches/develop/protection
-          mediaType: '{"Accept": application/vnd.github.v3+json}'
+          mediaType: |
+            - Accept: application/vnd.github.v3+json
           required_status_checks: |
             strict: true
             checks: |
@@ -163,12 +165,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
 
+      # https://github.com/octokit/request-action/issues/133
+      # https://github.community/t/branch-protection-api-returning-404/217405
+      # https://docs.github.com/en/rest/reference/repos#get-branch-protection
       # - name: Get existing branch protection
       #   id: get_branch_protection
       #   uses: octokit/request-action@v2.0.24
       #   with:
       #     route: GET /repos/digital-ai/dot-components/branches/develop/protection
-      #     mediaType: '{"Accept": application/vnd.github.v3+json}'
+      #     mediaType: |
+      #       - Accept: application/vnd.github.v3+json
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
 
