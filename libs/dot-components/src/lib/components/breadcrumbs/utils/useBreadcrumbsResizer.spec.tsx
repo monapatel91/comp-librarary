@@ -3,28 +3,10 @@ import {
   MaxVisibleItems,
   useBreadcrumbsResizer,
 } from './useBreadcrumbsResizer';
-import { BreadcrumbItem } from '../Breadcrumbs';
 import { ITEMS_SEPARATOR_SPACE } from './useBreadcrumbsObserver';
+import { mockBreadcrumbItems } from '../Breadcrumbs.data';
 
 describe('useBreadcrumbsResizer', () => {
-  const breadcrumbItems: BreadcrumbItem[] = [
-    {
-      text: 'Link 1',
-    },
-    {
-      text: 'Link 2',
-    },
-    {
-      text: 'Link 3',
-    },
-    {
-      text: 'Link 4',
-    },
-    {
-      text: 'Link 5',
-    },
-  ];
-
   const getRefMocks = (
     firstItemWidth: number,
     lastItemWidth: number,
@@ -65,7 +47,7 @@ describe('useBreadcrumbsResizer', () => {
       ({ breadcrumbsRightCoord, firstItemRef, lastItemRef }: never) =>
         useBreadcrumbsResizer(
           breadcrumbsRightCoord,
-          { items: breadcrumbItems },
+          { items: mockBreadcrumbItems },
           { firstItemRef, lastItemRef }
         ),
       {

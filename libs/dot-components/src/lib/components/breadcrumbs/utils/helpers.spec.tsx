@@ -7,24 +7,9 @@ import {
   getMenuItems,
   getWidthFromRef,
 } from './helpers';
-import { BreadcrumbItem } from '@digital-ai/dot-components';
+import { mockBreadcrumbItems } from '../Breadcrumbs.data';
 
 describe('breadcrumbs helper functions', () => {
-  const breadcrumbItems: BreadcrumbItem[] = [
-    {
-      text: 'First',
-    },
-    {
-      text: 'Second',
-    },
-    {
-      text: 'Third',
-    },
-    {
-      text: 'Fourth',
-    },
-  ];
-
   describe('getItemsAfterCollapse', () => {
     it("should return undefined when 'maxItems' argument is not defined and 'visibleItemsNumber' is less than 1", () => {
       const result = getItemsAfterCollapse(true, 0);
@@ -96,11 +81,11 @@ describe('breadcrumbs helper functions', () => {
 
   describe('checkIfFirstItemAfterCollapse', () => {
     it('should return false if item is not first item after collapse', () => {
-      checkIfFirstItemAfterCollapse(3, breadcrumbItems, 2);
+      checkIfFirstItemAfterCollapse(3, mockBreadcrumbItems, 2);
     });
 
     it('should return true if item is first item after collapse', () => {
-      checkIfFirstItemAfterCollapse(2, breadcrumbItems, 2);
+      checkIfFirstItemAfterCollapse(2, mockBreadcrumbItems, 2);
     });
   });
 
@@ -128,12 +113,12 @@ describe('breadcrumbs helper functions', () => {
   describe('getInitialMaxVisibleItems', () => {
     it('should return maxItems when it is number greater than zero', () => {
       const maxItems = 2;
-      const result = getInitialMaxVisibleItems(breadcrumbItems, maxItems);
+      const result = getInitialMaxVisibleItems(mockBreadcrumbItems, maxItems);
       expect(result).toBe(maxItems);
     });
     it('should return array length when valid array is provided and maxItems is not provided', () => {
-      const result = getInitialMaxVisibleItems(breadcrumbItems);
-      expect(result).toBe(breadcrumbItems.length);
+      const result = getInitialMaxVisibleItems(mockBreadcrumbItems);
+      expect(result).toBe(mockBreadcrumbItems.length);
     });
 
     it("should return zero when 'items' is empty array and 'maxItems' is not provided", () => {
@@ -160,11 +145,11 @@ describe('breadcrumbs helper functions', () => {
       expect(result).toEqual([]);
     });
     it("should return empty array when 'itemsAfterCollapse' is not a number", () => {
-      const result = getMenuItems(breadcrumbItems, 'xxx' as never);
+      const result = getMenuItems(mockBreadcrumbItems, 'xxx' as never);
       expect(result).toEqual([]);
     });
     it("should return empty array when 'itemsAfterCollapse' is less than 1", () => {
-      const result = getMenuItems(breadcrumbItems, 0);
+      const result = getMenuItems(mockBreadcrumbItems, 0);
       expect(result).toEqual([]);
     });
     it('should return empty array when no menu items', () => {
@@ -172,8 +157,8 @@ describe('breadcrumbs helper functions', () => {
       expect(result).toEqual([]);
     });
     it('should return correct number of items when valid arguments are passed in', () => {
-      const menuItems = getMenuItems(breadcrumbItems, 1);
-      expect(menuItems.length).toEqual(2);
+      const menuItems = getMenuItems(mockBreadcrumbItems, 1);
+      expect(menuItems.length).toEqual(3);
     });
   });
 });
