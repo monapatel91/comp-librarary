@@ -7,8 +7,8 @@ import {
 import { BreadcrumbItem } from '../Breadcrumbs';
 
 export interface MaxVisibleItems {
-  maxVisibleItems: number;
   lastRemovedItemWidth?: number;
+  maxVisibleItems: number;
 }
 
 interface BreadcrumbsResizerRefs {
