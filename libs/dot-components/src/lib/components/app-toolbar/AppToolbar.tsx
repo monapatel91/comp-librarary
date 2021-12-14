@@ -65,14 +65,15 @@ export const DotAppToolbar = ({
   const showMainMenu = mainMenu || mainMenuItems;
   const displayAppLogo = appLogo || appLogoSmall;
   const mainMenuRef = useRef(null);
+  const denseClass = dense ? denseClassName : '';
   const rootClasses = useStylesWithRootClass(
     rootClassName,
     className,
-    dense ? denseClassName : ''
+    denseClass
   );
   const mainMenuClasses = useStylesWithRootClass(
     'dot-main-menu',
-    dense ? denseClassName : '',
+    denseClass,
     menuOpen ? 'open' : ''
   );
 
