@@ -49,7 +49,7 @@ export interface AvatarProps extends CommonProps {
 }
 
 interface AvatarContentProps {
-  dataTestId?: string;
+  'data-testid'?: string;
   iconId?: string;
   imageSrc?: string;
   size: AvatarSize;
@@ -58,7 +58,7 @@ interface AvatarContentProps {
 }
 
 const AvatarContent = ({
-  dataTestId,
+  'data-testid': dataTestId,
   iconId,
   imageSrc,
   size,
