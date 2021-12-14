@@ -35,9 +35,6 @@ export default {
         },
       ],
     },
-    maxItems: {
-      defaultValue: 3,
-    },
   },
 } as Meta;
 
