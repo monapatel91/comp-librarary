@@ -142,7 +142,7 @@ jobs:
           required_pull_request_reviews: |
             null
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
       - name: Branch protection ON
         uses: octokit/request-action@v2.0.24
@@ -163,7 +163,7 @@ jobs:
           required_conversation_resolution: |
             true
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
       # https://github.com/octokit/request-action/issues/133
       # https://github.community/t/branch-protection-api-returning-404/217405
@@ -176,6 +176,6 @@ jobs:
       #     mediaType: |
       #       - Accept: application/vnd.github.v3+json
       #   env:
-      #     GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+      #     GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
       # - run: echo steps.get_branch_protection.outputs.data
