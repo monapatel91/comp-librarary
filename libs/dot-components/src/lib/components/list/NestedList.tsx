@@ -2,13 +2,9 @@ import React, { KeyboardEvent, MouseEvent } from 'react';
 import { Collapse } from '@material-ui/core';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
-  flyoutItemLinkClassName,
-  flyoutListItemClassName,
-  listItemLinkClassName,
   listItemRootClass,
   nestedDrawerClassName,
   nestedListClassName,
-  StyledListItem,
 } from './List.styles';
 import { DotDrawer } from '../drawer/Drawer';
 import { DotIcon } from '../icon/Icon';
@@ -20,6 +16,12 @@ import { flyoutMenuClassName } from '../menu/Menu.styles';
 import { CreateUUID } from '../createUUID';
 import { CommonProps } from '../CommonProps';
 import { ListItemProps } from './ListItem';
+import {
+  flyoutItemLinkClassName,
+  flyoutListItemClassName,
+  listItemLinkClassName,
+  StyledListItem,
+} from './ListItems.styles';
 
 export type NestedListType = 'drawer' | 'expandable' | 'menu';
 

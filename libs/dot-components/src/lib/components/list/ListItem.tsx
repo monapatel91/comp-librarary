@@ -7,11 +7,7 @@ import React, {
 } from 'react';
 import { ListItemIcon, ListItemText } from '@material-ui/core';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import {
-  listItemLinkClassName,
-  listItemRootClass,
-  StyledListItem,
-} from './List.styles';
+import { listItemRootClass } from './List.styles';
 import { DotIcon } from '../icon/Icon';
 import { DotLink, LinkTarget } from '../link/Link';
 import { DotTooltip } from '../tooltip/Tooltip';
@@ -20,6 +16,7 @@ import { getChevronIcon } from './utils/helpers';
 import { CommonProps } from '../CommonProps';
 import { PopperPlacement } from '../menu/Menu';
 import { NestedList, NestedListType } from './NestedList';
+import { listItemLinkClassName, StyledListItem } from './ListItems.styles';
 
 export interface ListItemProps extends CommonProps {
   /** string or JSX element that is displayed inside the list */

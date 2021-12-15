@@ -4,9 +4,10 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { CommonProps } from '../CommonProps';
 import { DotIcon } from '../icon/Icon';
 import { DotIconButton } from '../button/IconButton';
-import { listItemRootClass, StyledListItem } from '../list/List.styles';
+import { listItemRootClass } from '../list/List.styles';
 import { DotTypography } from '../typography/Typography';
 import { fileClassName } from './FileUpload.styles';
+import { StyledListItem } from '../list/ListItems.styles';
 
 export interface FileItemProps extends CommonProps {
   deleteFile: (file: FileWithPath) => void;
