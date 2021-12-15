@@ -1,4 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
+import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotSidebar, SidebarProps } from './Sidebar';
 import { ReactComponent as DemoLogoDark } from '../../assets/demo-logo-dark.svg';
@@ -69,6 +70,7 @@ export const Default: Story<SidebarProps> = (args) => {
   const navItems = [
     {
       startIconId: 'process-template',
+      onClick: action('clicked on Progressions'),
       items: [
         {
           text: 'PLANNING',
