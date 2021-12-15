@@ -408,6 +408,25 @@ export const DotListItem = ({
     return 'chevron-down';
   };
 
+  const startIcon = (
+    <ListItemIcon>
+      <DotIcon iconId={startIconId} />
+    </ListItemIcon>
+  );
+
+  const endIcon = (
+    <ListItemIcon className="dot-list-item-end-icon">
+      <DotIcon iconId={endIconId} />
+    </ListItemIcon>
+  );
+
+  const renderListItemText = (): ReactNode =>
+    primaryText && secondaryText ? (
+      <ListItemText primary={primaryText} secondary={secondaryText} />
+    ) : (
+      <DotTypography variant="body1">{text}</DotTypography>
+    );
+
   return (
     <>
       <DotTooltip
@@ -428,16 +447,8 @@ export const DotListItem = ({
           target={target}
         >
           <span className={listItemLinkClassName}>
-            {startIconId && (
-              <ListItemIcon>
-                <DotIcon iconId={startIconId} />
-              </ListItemIcon>
-            )}
-            {primaryText && secondaryText ? (
-              <ListItemText primary={primaryText} secondary={secondaryText} />
-            ) : (
-              <DotTypography variant="body1">{text}</DotTypography>
-            )}
+            {startIconId && startIcon}
+            {renderListItemText()}
           </span>
           {showEndIcon && (
             <DotIcon iconId={hasChildren ? getChevronIcon() : endIconId} />
