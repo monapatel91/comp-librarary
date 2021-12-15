@@ -16,7 +16,7 @@ import { getChevronIcon } from './utils/helpers';
 import { CommonProps } from '../CommonProps';
 import { PopperPlacement } from '../menu/Menu';
 import { NestedList, NestedListType } from './NestedList';
-import { listItemLinkClassName, StyledListItem } from './ListItems.styles';
+import { listItemLinkClassName, StyledListItem } from './ListItem.styles';
 
 export interface ListItemProps extends CommonProps {
   /** string or JSX element that is displayed inside the list */

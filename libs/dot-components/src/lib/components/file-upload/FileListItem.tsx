@@ -7,7 +7,7 @@ import { DotIconButton } from '../button/IconButton';
 import { listItemRootClass } from '../list/List.styles';
 import { DotTypography } from '../typography/Typography';
 import { fileClassName } from './FileUpload.styles';
-import { StyledListItem } from '../list/ListItems.styles';
+import { StyledListItem } from '../list/ListItem.styles';
 
 export interface FileItemProps extends CommonProps {
   deleteFile: (file: FileWithPath) => void;

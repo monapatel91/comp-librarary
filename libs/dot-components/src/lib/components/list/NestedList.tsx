@@ -20,7 +20,7 @@ import {
   flyoutListItemClassName,
   listItemLinkClassName,
   StyledListItem,
-} from './ListItems.styles';
+} from './ListItem.styles';
 import { StyledDotDrawer } from './NestedList.styles';
 
 export type NestedListType = 'drawer' | 'expandable' | 'menu';
