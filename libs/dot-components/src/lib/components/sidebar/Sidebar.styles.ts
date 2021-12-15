@@ -157,6 +157,11 @@ export const StyledSidebar = styled.aside`
             'transparent'};
           }
 
+          &.Mui-focusVisible {
+            box-shadow: inset 0 0 0 2px ${theme.palette.layer.n0};
+            border: 2px solid ${theme.palette.layer.n900};
+          }
+
           &:hover,
           &:active,
           &:focus {
@@ -192,16 +197,13 @@ export const StyledSidebar = styled.aside`
           .dot-icon {
             border-radius: 50%;
             height: 40px;
+            margin: ${theme.spacing(0, 1)};
             width: 40px;
           }
-          &.Mui-focusVisible {
-            box-shadow: inset 0 0 0 2px ${theme.palette.layer.n0};
-            border: 2px solid ${theme.palette.layer.n900};
-          }
-        }
 
-        li.dot-list-item .dot-typography {
-          white-space: nowrap;
+          .dot-typography {
+            white-space: nowrap;
+          }
         }
       }
 
@@ -257,6 +259,20 @@ export const StyledSidebar = styled.aside`
         -webkit-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
+        li.MuiListSubheader-root .dot-typography,
+        .go-back .MuiTypography-root,
+        .MuiListItem-divider .dot-list-item-link,
+        .child,
+        .powered-by .company-name,
+        .powered-by p.desc {
+          display: none;
+        }
+
+        .dot-nested-drawer li.MuiListSubheader-root .dot-typography,
+        .powered-by .d-icon {
+          display: block;
+        }
+
         header .dot-app-logo {
           text-align: center;
         }
@@ -265,10 +281,6 @@ export const StyledSidebar = styled.aside`
           width: 56px;
           .dot-list-item {
             margin-left: 0;
-
-            .dot-icon {
-              margin-left: ${theme.spacing(1)}px;
-            }
           }
 
           .toggle-nav {
@@ -280,22 +292,8 @@ export const StyledSidebar = styled.aside`
           margin: ${theme.spacing(0, 1)};
         }
 
-        li.MuiListSubheader-root .dot-typography,
-        .go-back .MuiTypography-root,
-        .MuiListItem-divider .dot-list-item-link,
-        .child,
-        .dot-drawer,
-        .powered-by .company-name,
-        .powered-by p.desc {
-          display: none;
-        }
-
         .powered-by {
           align-items: center;
-
-          .d-icon {
-            display: block;
-          }
         }
       }
     }
