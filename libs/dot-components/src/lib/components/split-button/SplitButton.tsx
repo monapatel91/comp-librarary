@@ -104,8 +104,8 @@ export const DotSplitButton = ({
           autoFocus={autoFocus}
           className="label-button"
           data-testid={dataTestId}
-          disabled={disabled}
           disableRipple={disableRipple}
+          disabled={disabled}
           isSubmit={isSubmit}
           onClick={(event) => handleClick(event)}
           size={size}
@@ -117,8 +117,8 @@ export const DotSplitButton = ({
         <DotButton
           className="expand-button"
           data-testid={dataTestId}
-          disabled={disabled}
           disableRipple={disableRipple}
+          disabled={disabled}
           onClick={() => setOpen(!open)}
           size={size}
           type={type}
@@ -133,8 +133,8 @@ export const DotSplitButton = ({
         menuItems={options}
         menuPlacement="bottom-end"
         onLeave={() => setOpen(false)}
-        open={open}
         onSelect={handleClick}
+        open={open}
       />
     </>
   );

@@ -172,10 +172,10 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotInputText
-        key={props.index}
         disabled={false}
         error={false}
         id={controlProps.id}
+        key={props.index}
         label={controlProps.label}
         name={controlProps.name}
         value={value}
@@ -815,10 +815,10 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotProgressButton
+        children={controlProps.children}
         disabled={false}
         isLoading={controlProps.isLoading}
         key={props.index}
-        children={controlProps.children}
         type={controlProps.type}
       />
     );
@@ -1013,12 +1013,12 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotProgressButton
+        children={controlProps.children}
         disabled={false}
         isLoading={false}
         isSubmit={true}
         key={props.index}
         size={controlProps.size}
-        children={controlProps.children}
         type={controlProps.type}
       />
     );

@@ -64,8 +64,8 @@ describe('DotRadioGroup', () => {
     it('should not be checked and have a value of item-2', () => {
       render(
         <DotRadioGroup
-          options={radioButtons}
           data-testid="test-radio-group"
+          options={radioButtons}
           value="item-2"
         />
       );
@@ -78,8 +78,8 @@ describe('DotRadioGroup', () => {
       render(
         <DotRadioGroup
           ariaLabel="test-radio-group"
-          options={radioButtons}
           data-testid="test-radio-group"
+          options={radioButtons}
           value="item-2"
         />
       );
@@ -91,8 +91,8 @@ describe('DotRadioGroup', () => {
       render(
         <DotRadioGroup
           data-testid="test-radio-group"
-          options={radioButtons}
           defaultValue="item-2"
+          options={radioButtons}
         />
       );
       const inputs = screen.getAllByRole('radio');
@@ -103,8 +103,8 @@ describe('DotRadioGroup', () => {
     it('should disable all radio buttons', () => {
       render(
         <DotRadioGroup
-          disableGroup
           data-testid="test-radio-group"
+          disableGroup
           options={radioButtons}
           value="item-2"
         />
@@ -117,10 +117,10 @@ describe('DotRadioGroup', () => {
     it('should have startIcon', () => {
       render(
         <DotRadioGroup
-          groupLabel="Group label"
-          startIcon={<DotIcon data-testid="start-icon" iconId="home" />}
           data-testid="test-radio-group"
+          groupLabel="Group label"
           options={radioButtons}
+          startIcon={<DotIcon data-testid="start-icon" iconId="home" />}
           value="item-2"
         />
       );
@@ -130,9 +130,9 @@ describe('DotRadioGroup', () => {
     it('should have groupLabel', () => {
       const { baseElement } = render(
         <DotRadioGroup
-          groupLabel="Group label"
-          endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
           data-testid="test-radio-group"
+          endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
+          groupLabel="Group label"
           options={radioButtons}
           value="item-2"
         />
@@ -146,9 +146,9 @@ describe('DotRadioGroup', () => {
     it('should have endIcon', () => {
       render(
         <DotRadioGroup
-          groupLabel="Group label"
-          endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
           data-testid="test-radio-group"
+          endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
+          groupLabel="Group label"
           options={radioButtons}
           value="item-2"
         />
@@ -159,10 +159,10 @@ describe('DotRadioGroup', () => {
     it('should have error', () => {
       const { baseElement } = render(
         <DotRadioGroup
+          data-testid="test-radio-group"
           error
           groupLabel="Group label"
           helperText="error"
-          data-testid="test-radio-group"
           options={radioButtons}
           value="item-2"
         />
@@ -179,9 +179,9 @@ describe('DotRadioGroup', () => {
     it('should have helperText', () => {
       const { baseElement } = render(
         <DotRadioGroup
+          data-testid="test-radio-group"
           groupLabel="Group label"
           helperText="Helper test"
-          data-testid="test-radio-group"
           options={radioButtons}
           value="item-2"
         />
@@ -193,10 +193,10 @@ describe('DotRadioGroup', () => {
     it('should have name prop', () => {
       render(
         <DotRadioGroup
+          data-testid="test-radio-group"
           groupLabel="Group label"
           helperText="Helper test"
           name="test-radio-name"
-          data-testid="test-radio-group"
           options={radioButtons}
           value="item-2"
         />
@@ -209,11 +209,11 @@ describe('DotRadioGroup', () => {
     it('should have labelPlacement="start" prop', () => {
       const { baseElement } = render(
         <DotRadioGroup
+          data-testid="test-radio-group"
           groupLabel="Group label"
           helperText="Helper test"
-          name="test-radio-name"
           labelPlacement="start"
-          data-testid="test-radio-group"
+          name="test-radio-name"
           options={radioButtons}
           value="item-2"
         />
@@ -228,12 +228,12 @@ describe('DotRadioGroup', () => {
     it('should have labelPlacement="bottom" prop', () => {
       const { baseElement } = render(
         <DotRadioGroup
+          data-testid="test-radio-group"
           groupLabel="Group label"
           helperText="Helper test"
-          name="test-radio-name"
           labelPlacement="bottom"
+          name="test-radio-name"
           options={radioButtons}
-          data-testid="test-radio-group"
           value="item-2"
         />
       );
@@ -250,8 +250,8 @@ describe('DotRadioGroup', () => {
           data-testid="test-radio-group"
           groupLabel="Group label"
           helperText="Helper test"
-          name="test-radio-name"
           labelPlacement="bottom"
+          name="test-radio-name"
           options={radioButtons}
           size="small"
           value="item-2"
@@ -266,13 +266,13 @@ describe('DotRadioGroup', () => {
       const onChange = jest.fn();
       render(
         <DotRadioGroup
+          data-testid="test-radio-group"
           groupLabel="Group label"
           helperText="Helper test"
+          labelPlacement="bottom"
           name="test-radio-name"
           onChange={onChange}
-          labelPlacement="bottom"
           options={radioButtons}
-          data-testid="test-radio-group"
           value="item-2"
         />
       );
@@ -284,12 +284,12 @@ describe('DotRadioGroup', () => {
     it('should not throw exception if no onChange callback', () => {
       render(
         <DotRadioGroup
+          data-testid="test-radio-group"
           groupLabel="Group label"
           helperText="Helper test"
-          name="test-radio-name"
           labelPlacement="bottom"
+          name="test-radio-name"
           options={radioButtons}
-          data-testid="test-radio-group"
           value="item-2"
         />
       );

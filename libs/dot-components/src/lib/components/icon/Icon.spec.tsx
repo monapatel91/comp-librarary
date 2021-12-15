@@ -34,12 +34,12 @@ describe('DotIcon', () => {
   });
 
   it('should have a deprecation warning if fontSize is set to "default"', () => {
-    render(<DotIcon iconId="home" fontSize="default" />);
+    render(<DotIcon fontSize="default" iconId="home" />);
     expect(consoleSpy).toBeCalled();
   });
 
   it('should have a deprecation warning if fontSize is set to "inherit"', () => {
-    render(<DotIcon iconId="home" fontSize="inherit" />);
+    render(<DotIcon fontSize="inherit" iconId="home" />);
     expect(consoleSpy).toBeCalled();
   });
   it('should have a deprecation warning if title is used', () => {

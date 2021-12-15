@@ -26,7 +26,7 @@ export default {
 export const Default: Story<AlertBannerProps> = (args) => {
   const { action: actionButtonId } = args;
   const actionButton = actionButtonId && (
-    <DotButton type="text" onClick={action('Undo Button clicked!!')}>
+    <DotButton onClick={action('Undo Button clicked!!')} type="text">
       Undo
     </DotButton>
   );

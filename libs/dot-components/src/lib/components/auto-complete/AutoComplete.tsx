@@ -38,9 +38,9 @@ export type AutoCompleteValue =
   | AutoCompleteOption[];
 
 export interface AutoCompleteOption {
+  error?: boolean;
   group?: string;
   title: string;
-  error?: boolean;
 }
 
 // takes multiple types of data from autocomplete selection
@@ -74,10 +74,10 @@ export interface AutoCompleteProps extends CommonProps {
   autoFocus?: boolean;
   /** default option that is selected */
   defaultValue?: AutoCompleteValue;
-  /** If true, the input will be disabled. */
-  disabled?: boolean;
   /** Disable the portal behavior. If true, children stay within parent DOM hierarchy. */
   disablePortal?: boolean;
+  /** If true, the input will be disabled. */
+  disabled?: boolean;
   /** If true, the input will be displayed in an error state. */
   error?: boolean;
   /** If true, any arbitrary value can be typed in the field */
@@ -183,8 +183,8 @@ export const DotAutoComplete = ({
     reason,
   }: {
     event: ChangeEvent<unknown>;
-    val: AutoCompleteValue;
     reason: string;
+    val: AutoCompleteValue;
   }) => {
     onChange && onChange(event, val, reason);
     setShowPlaceholder(parseAutoCompleteValue(val) === '');
@@ -234,9 +234,7 @@ export const DotAutoComplete = ({
             className="dot-action-item"
             /* Add this to short circuit blur event (otherwise button click will not work):
              * https://github.com/mui-org/material-ui/issues/19038 */
-            onMouseDown={(e: MouseEvent<HTMLDivElement>) => {
-              e.preventDefault();
-            }}
+            onBlur={handleBlur}
             onKeyDown={(event) => {
               if (event.key === 'Tab' && textFieldInput) {
                 event.preventDefault();
@@ -244,7 +242,9 @@ export const DotAutoComplete = ({
               }
             }}
             // We want to close the popper each time focus is shifted from action item
-            onBlur={handleBlur}
+            onMouseDown={(e: MouseEvent<HTMLDivElement>) => {
+              e.preventDefault();
+            }}
           >
             <DotButton
               data-testid="dot-action-item-btn"
@@ -265,6 +265,7 @@ export const DotAutoComplete = ({
 
   return (
     <StyledAutocomplete
+      PopperComponent={DotPopper}
       aria-label={ariaLabel}
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
@@ -277,15 +278,11 @@ export const DotAutoComplete = ({
       }
       groupBy={group ? (option: AutoCompleteOption) => option.group : undefined}
       multiple={multiple}
+      onBlur={handleBlur}
       onChange={(event, val: AutoCompleteValue, reason) => {
         valuesChanged({ event, val, reason });
         setIsOpened(false);
       }}
-      open={isOpened}
-      options={sortOptions()}
-      PopperComponent={DotPopper}
-      // We want to close the popper each time focus is shifted from the autocomplete
-      onBlur={handleBlur}
       onClose={(event: ChangeEvent | FocusEvent) => {
         // We want to close popper in each occasion where focus isn't set to action item
         if (
@@ -295,7 +292,10 @@ export const DotAutoComplete = ({
           setIsOpened(false);
         }
       }}
+      // We want to close the popper each time focus is shifted from the autocomplete
       onOpen={() => setIsOpened(true)}
+      open={isOpened}
+      options={sortOptions()}
       renderInput={(params) => (
         // We are not using DotInputText here because the {...params} spread
         // passed to renderInput includes inputProps and InputProps properties
@@ -317,9 +317,6 @@ export const DotAutoComplete = ({
           inputRef={textFieldRef}
           label={label}
           name={label}
-          placeholder={showPlaceholder ? placeholder : undefined}
-          required={false}
-          variant="outlined"
           onKeyDown={(event) => {
             // Intercept 'tab' key press while action item element exists
             if (event.key === 'Tab' && actionItemRef.current) {
@@ -327,6 +324,9 @@ export const DotAutoComplete = ({
               actionItemRef?.current?.focus();
             }
           }}
+          placeholder={showPlaceholder ? placeholder : undefined}
+          required={false}
+          variant="outlined"
         />
       )}
       renderTags={

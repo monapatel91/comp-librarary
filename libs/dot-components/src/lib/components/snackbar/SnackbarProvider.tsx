@@ -44,7 +44,7 @@ export const DotSnackbarContainer = () => {
 
   return (
     <StyledSnackbarContainer className={rootClassName}>
-      <div data-testid={rootClassName} className={rootClassName}>
+      <div className={rootClassName} data-testid={rootClassName}>
         {alerts
           .slice()
           .reverse()
@@ -52,9 +52,9 @@ export const DotSnackbarContainer = () => {
             return (
               <DotSnackbar
                 key={alert.id}
-                severity={alert.severity as SnackbarSeverity}
                 onClose={handleClose(alert.id)}
                 open={alert.open}
+                severity={alert.severity as SnackbarSeverity}
               >
                 {alert.message}
               </DotSnackbar>

@@ -138,13 +138,13 @@ export const CssGridDebug = ({ showInfo = false }: CssGridDebugProps) => {
           <div className="message">NOT FOR PRODUCTION</div>
         </StyledInfo>
       )}
-      <StyledGridOverlay rows="minmax(100vh, 100%)" className={gridClassName}>
+      <StyledGridOverlay className={gridClassName} rows="minmax(100vh, 100%)">
         {[...Array(columns)].map((item, i) => {
           return (
             <CssCell
-              start={i + 1}
               className={`${cellClassName}`}
               key={i}
+              start={i + 1}
               width={1}
             ></CssCell>
           );

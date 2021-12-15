@@ -58,10 +58,10 @@ describe('DotDialog', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -73,10 +73,10 @@ describe('DotDialog', () => {
   it('should render the cancel button successfully', () => {
     render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -88,10 +88,10 @@ describe('DotDialog', () => {
   it('should render the add button successfully', () => {
     render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -104,10 +104,10 @@ describe('DotDialog', () => {
     const cancelMock = jest.fn();
     render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelMock}
         onSubmit={submitFunc}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -121,10 +121,10 @@ describe('DotDialog', () => {
     const cancelMock = jest.fn();
     render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelMock}
         onSubmit={submitFunc}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -138,10 +138,10 @@ describe('DotDialog', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
         <input name="text" type="text" />
@@ -159,10 +159,10 @@ describe('DotDialog', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -176,11 +176,11 @@ describe('DotDialog', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={submitMock}
+        open={true}
         submitButtonProps={{ autoFocus: true, type: 'primary' }}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -193,11 +193,11 @@ describe('DotDialog', () => {
     const submitMock = jest.fn();
     render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
+        cancelButtonProps={{ autoFocus: true, type: 'outlined' }}
         onCancel={cancelFunc}
         onSubmit={submitMock}
-        cancelButtonProps={{ autoFocus: true, type: 'outlined' }}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -209,10 +209,10 @@ describe('DotDialog', () => {
   it('children should render successfully', () => {
     render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -224,10 +224,10 @@ describe('DotDialog', () => {
   it('title should display as expected', () => {
     render(
       <DotDialog
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -240,10 +240,10 @@ describe('DotDialog', () => {
     render(
       <DotDialog
         hasPrimaryAction={false}
-        title="Dialog Title"
-        open={true}
         onCancel={cancelFunc}
         onSubmit={submitFunc}
+        open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>
@@ -260,8 +260,8 @@ describe('DotDialog', () => {
       <DotDialog
         ariaLabel={ariaLabel}
         data-testid={dataTestId}
-        title="Dialog Title"
         open={true}
+        title="Dialog Title"
       >
         <p>Hello World</p>
       </DotDialog>

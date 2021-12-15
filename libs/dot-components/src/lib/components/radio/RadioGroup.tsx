@@ -94,9 +94,9 @@ export const DotRadioGroup = ({
     ? options.map(({ label, value, disabled }) => {
         return (
           <DotRadioButton
-            key={value}
             checked={selectedValue === value}
             disabled={disabled || disableGroup}
+            key={value}
             label={label}
             labelPlacement={labelPlacement}
             size={size}
@@ -110,8 +110,8 @@ export const DotRadioGroup = ({
     <StyledRadioGroupWrapper className={wrapperClassName}>
       <StyledFormControl
         classes={{ root: rootClasses }}
-        error={error}
         component="fieldset"
+        error={error}
         required={required}
       >
         {groupLabel && (

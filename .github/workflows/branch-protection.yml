@@ -1,0 +1,78 @@
+name: Branch Protection Switch
+
+# This workflow is for debugging purposes only.
+# It can be run manually from GitHub actions
+# There was a lot of research involved in getting this to work
+# Resources
+#    - https://github.community/t/branch-protection-api-returning-404/217405
+#    - https://docs.github.com/en/rest/reference/branches#update-branch-protection
+
+on:
+  workflow_dispatch:
+
+jobs:
+  protection:
+    name: Branch Protection
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get existing branch protection
+        id: get_branch_protection
+        uses: octokit/request-action@v2.0.24
+        with:
+          route: GET /repos/digital-ai/dot-components/branches/develop/protection
+          mediaType: |
+            format: application/json
+        env:
+          # Uses a personal access token (PAT) from user with admin rights on repo
+          GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
+
+      # The following step will print the existing branch protection rules
+      # Only uncomment as needed, there is an error within the echo statement
+      # which causes the workflow to fail
+      # - run: echo ${{steps.get_branch_protection.outputs.data}}
+
+      - name: Branch protection OFF
+        uses: octokit/request-action@v2.0.24
+        with:
+          route: PUT /repos/digital-ai/dot-components/branches/develop/protection
+          mediaType: |
+            format: application/json
+          required_status_checks: |
+            null
+          required_pull_request_reviews: |
+            null
+          enforce_admins: |
+            null
+          required_conversation_resolution: |
+            null
+          restrictions: |
+            null
+        env:
+          GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
+
+      # If branch protection rules change in the future
+      # this step will need to be updated to reflect the new rules
+      - name: Branch protection ON
+        uses: octokit/request-action@v2.0.24
+        with:
+          route: PUT /repos/digital-ai/dot-components/branches/develop/protection
+          mediaType: |
+            format: application/json
+          required_status_checks: |
+            strict: false
+            checks:
+              - context: "Lint & Build"
+              - context: "Run Unit Tests"
+              - context: "Run E2E Tests"
+          enforce_admins: |
+            false
+          required_pull_request_reviews: |
+            required_approving_review_count: 1
+          required_conversation_resolution: |
+            true
+          restrictions: |
+            null
+        env:
+          # Uses a personal access token (PAT) from user with admin rights on repo
+          GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}

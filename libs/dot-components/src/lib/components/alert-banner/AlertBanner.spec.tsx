@@ -33,7 +33,7 @@ describe('AlertBanner', () => {
   });
   it('should show a close button if no action object is passed', () => {
     render(
-      <DotAlertBanner severity="error" onClose={onClose}>
+      <DotAlertBanner onClose={onClose} severity="error">
         Test Alert Banner
       </DotAlertBanner>
     );

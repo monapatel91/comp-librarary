@@ -40,10 +40,10 @@ describe('DotAvatar', () => {
   it('should display the initial of the first 2 words when two or more words are passed', () => {
     render(
       <DotAvatar
-        data-testid="test-avatar"
         alt="test"
-        type="text"
+        data-testid="test-avatar"
         text="Bruce Wayne Enterprises"
+        type="text"
       />
     );
 
@@ -53,10 +53,10 @@ describe('DotAvatar', () => {
   it('should display the first character of text if only one word provided', () => {
     render(
       <DotAvatar
-        data-testid="test-avatar"
         alt="test"
-        type="text"
+        data-testid="test-avatar"
         text="Batman"
+        type="text"
       />
     );
 
@@ -66,10 +66,10 @@ describe('DotAvatar', () => {
   it('should display the icon for the iconId provided', () => {
     render(
       <DotAvatar
-        data-testid="test-avatar"
         alt="test"
-        type="icon"
+        data-testid="test-avatar"
         iconId="delete"
+        type="icon"
       />
     );
     const avatarIcon = screen
@@ -79,7 +79,7 @@ describe('DotAvatar', () => {
   });
 
   it('should display the "user" icon if type is image but no source provided', () => {
-    render(<DotAvatar data-testid="test-avatar" alt="test" type="image" />);
+    render(<DotAvatar alt="test" data-testid="test-avatar" type="image" />);
     const avatarIcon = screen
       .getByTestId('test-avatar-icon')
       .querySelector('i');
@@ -87,7 +87,7 @@ describe('DotAvatar', () => {
   });
 
   it('should display the "user" icon if type is icon but no icon ID provided', () => {
-    render(<DotAvatar data-testid="test-avatar" alt="test" type="icon" />);
+    render(<DotAvatar alt="test" data-testid="test-avatar" type="icon" />);
     const avatarIcon = screen
       .getByTestId('test-avatar-icon')
       .querySelector('i');
@@ -97,10 +97,10 @@ describe('DotAvatar', () => {
   it('should display the image if type is image and source is provided', () => {
     render(
       <DotAvatar
-        data-testid="test-avatar"
         alt="test"
-        type="image"
+        data-testid="test-avatar"
         imageSrc="https://cdn1-www.superherohype.com/assets/uploads/2013/11/batmane3-1.jpg"
+        type="image"
       />
     );
     const avatarImage = screen.getByAltText('test');
@@ -111,9 +111,9 @@ describe('DotAvatar', () => {
     const ariaLabel = 'my label';
     render(
       <DotAvatar
-        data-testid="test-avatar"
         alt="test"
         ariaLabel={ariaLabel}
+        data-testid="test-avatar"
         type="image"
       />
     );
@@ -125,7 +125,7 @@ describe('DotAvatar', () => {
     const text = 'John Wayne';
     const dataTestId = 'test-avatar';
     render(
-      <DotAvatar alt="test" data-testid={dataTestId} type="text" text={text} />
+      <DotAvatar alt="test" data-testid={dataTestId} text={text} type="text" />
     );
     const avatarElement = screen.getByTestId(dataTestId);
     expect(avatarElement).toHaveAttribute('color', 'blue');
@@ -146,8 +146,8 @@ describe('DotAvatar', () => {
         alt="test"
         color={color}
         data-testid={dataTestId}
-        type="text"
         text="John Wayne"
+        type="text"
       />
     );
     const avatarElement = screen.getByTestId(dataTestId);
@@ -155,13 +155,13 @@ describe('DotAvatar', () => {
   });
   it('should render as a button when onClick is applied', () => {
     const handleClick = jest.fn();
-    render(<DotAvatar alt="test" type="text" onClick={handleClick} />);
+    render(<DotAvatar alt="test" onClick={handleClick} type="text" />);
     const avatarElement = screen.getByRole('button');
     expect(avatarElement).toBeInTheDocument();
   });
   it('should render as a div when onClick is not applied', () => {
     const dataTestId = 'test-avatar';
-    render(<DotAvatar alt="test" type="text" data-testid={dataTestId} />);
+    render(<DotAvatar alt="test" data-testid={dataTestId} type="text" />);
     const divTag = screen.getByTestId('test-avatar').tagName;
     expect(divTag).toBe('DIV');
   });

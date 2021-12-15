@@ -35,7 +35,7 @@ describe('DotButton', () => {
 
   it('should render the medium button size', () => {
     render(
-      <DotButton size="medium" onClick={testClick} type="outlined">
+      <DotButton onClick={testClick} size="medium" type="outlined">
         Test
       </DotButton>
     );
@@ -46,7 +46,7 @@ describe('DotButton', () => {
 
   it('should render the small button size', () => {
     render(
-      <DotButton size="small" onClick={testClick} type="outlined">
+      <DotButton onClick={testClick} size="small" type="outlined">
         Test
       </DotButton>
     );
@@ -55,7 +55,7 @@ describe('DotButton', () => {
 
   it('should render the large button size', () => {
     render(
-      <DotButton size="large" onClick={testClick} type="outlined">
+      <DotButton onClick={testClick} size="large" type="outlined">
         Test
       </DotButton>
     );
@@ -107,7 +107,7 @@ describe('DotButton', () => {
   it('should not allow me to click a disabled button', () => {
     const onClick = jest.fn();
     render(
-      <DotButton onClick={onClick} type="destructive" disabled={true}>
+      <DotButton disabled={true} onClick={onClick} type="destructive">
         Test
       </DotButton>
     );
@@ -120,8 +120,8 @@ describe('DotButton', () => {
     render(
       <DotButton
         onClick={testClick}
-        type="outlined"
         startIcon={<DotIcon data-testid="icon" iconId="save" />}
+        type="outlined"
       >
         Test
       </DotButton>
@@ -136,10 +136,10 @@ describe('DotButton', () => {
   it('should render the large button size with the default icon size inside a button', () => {
     render(
       <DotButton
-        size="large"
         onClick={testClick}
-        type="outlined"
+        size="large"
         startIcon={<DotIcon data-testid="icon" iconId="save" />}
+        type="outlined"
       >
         Test
       </DotButton>
@@ -186,7 +186,7 @@ describe('DotButton', () => {
       expectedElement = element;
     };
     render(
-      <DotButton onClick={testClick} type="primary" ref={ref}>
+      <DotButton onClick={testClick} ref={ref} type="primary">
         Test
       </DotButton>
     );

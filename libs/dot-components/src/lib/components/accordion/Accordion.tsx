@@ -57,9 +57,9 @@ export const DotAccordion = ({
   children,
   className,
   'data-testid': dataTestId = 'dot-accordion',
-  defaultExpanded = null,
+  defaultExpanded,
   disabled = false,
-  expanded = null,
+  expanded,
   hasElevation = false,
   onChange,
   square = false,
@@ -71,12 +71,12 @@ export const DotAccordion = ({
   const [elevation, setElevation] = useState<number>();
 
   useEffect(() => {
-    if (defaultExpanded !== null) {
+    if (defaultExpanded !== undefined) {
       console.warn(
         'The use of `defaultExpanded` is deprecated and will be removed in the next major release, please use `expanded` instead.'
       );
     }
-    if (onChange && expanded === null) {
+    if (onChange && expanded === undefined) {
       console.warn(
         'The use of an `onChange` callback makes this a controlled component but no `expanded` state has been provided. In effect, this makes the component disabled.'
       );
@@ -88,8 +88,8 @@ export const DotAccordion = ({
   }, [hasElevation]);
 
   let dftExpanded: boolean = defaultExpanded;
-  if (dftExpanded === null) {
-    dftExpanded = expanded === null ? false : expanded;
+  if (dftExpanded === undefined) {
+    dftExpanded = expanded === undefined ? false : expanded;
   }
 
   return (
@@ -99,8 +99,8 @@ export const DotAccordion = ({
       data-testid={dataTestId}
       defaultExpanded={dftExpanded}
       disabled={disabled}
-      expanded={onChange ? expanded : null}
       elevation={elevation}
+      expanded={onChange ? expanded : undefined}
       onChange={onChange}
       square={square}
     >
@@ -110,7 +110,7 @@ export const DotAccordion = ({
         expandIcon={<DotIcon iconId="chevron-down" />}
       >
         {startIcon}
-        <DotTypography variant="body1" noWrap={noWrap}>
+        <DotTypography noWrap={noWrap} variant="body1">
           <DotTooltip title={noWrap ? summary : ''}>{summary}</DotTooltip>
         </DotTypography>
       </AccordionSummary>

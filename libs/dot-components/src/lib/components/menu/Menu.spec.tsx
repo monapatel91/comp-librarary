@@ -137,9 +137,9 @@ describe('Menu', () => {
         <DotMenu
           data-testid={dataTestId}
           id="foo_bar"
+          menuItemHeight={25}
           menuItems={dummyMenuItems}
           open={true}
-          menuItemHeight={25}
         />
       );
       const menuElement = screen.getByTestId(`${dataTestId}-menu`);
@@ -152,9 +152,9 @@ describe('Menu', () => {
         <DotMenu
           data-testid={dataTestId}
           id="foo_bar"
+          menuItemHeight="auto"
           menuItems={dummyMenuItems}
           open={true}
-          menuItemHeight="auto"
         />
       );
       const menuElement = screen.getByTestId(`${dataTestId}-menu`);

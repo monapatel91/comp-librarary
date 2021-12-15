@@ -16,14 +16,14 @@ import {
 } from '@digital-ai/dot-components';
 
 interface FormState {
+  cartoonComments: string;
+  childhoodHero: boolean;
+  commentField: string;
+  devType: '' | 'React Dev' | 'Angular Dev' | 'Other Dev';
+  favTrait: Array<CheckboxProps>;
   firstName: string;
   lastName: string;
-  devType: '' | 'React Dev' | 'Angular Dev' | 'Other Dev';
   superHero: string;
-  favTrait: Array<CheckboxProps>;
-  childhoodHero: boolean;
-  cartoonComments: string;
-  commentField: string;
 }
 
 interface ErrorState {

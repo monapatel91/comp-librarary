@@ -57,7 +57,7 @@ describe('Switch', () => {
   });
 
   it('should be checked', () => {
-    render(<DotSwitch data-testid="test-switch" checked={true}></DotSwitch>);
+    render(<DotSwitch checked={true} data-testid="test-switch"></DotSwitch>);
     expect(screen.getByTestId('test-switch')).toHaveClass('Mui-checked');
   });
 });
@@ -66,8 +66,8 @@ it('should toggle when enabled', () => {
   const onChange = jest.fn();
   render(
     <DotSwitch
-      data-testid="test-switch"
       checked={false}
+      data-testid="test-switch"
       onChange={onChange}
     ></DotSwitch>
   );
@@ -79,8 +79,8 @@ it('should not toggle when disabled', () => {
   const onChange = jest.fn();
   render(
     <DotSwitch
-      data-testid="test-switch"
       checked={true}
+      data-testid="test-switch"
       disabled={true}
       onChange={onChange}
     ></DotSwitch>

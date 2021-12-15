@@ -106,11 +106,11 @@ export const DotDialog = ({
   return (
     <StyledDialog
       aria-label={ariaLabel}
+      aria-labelledby="MuiDialogTitle-root"
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
-      open={isOpen}
       onClose={handleClickAway}
-      aria-labelledby="MuiDialogTitle-root"
+      open={isOpen}
     >
       <DialogTitle disableTypography={true}>
         <DotTypography variant="h2">{title}</DotTypography>
@@ -126,11 +126,11 @@ export const DotDialog = ({
           autoFocus={cancelButtonProps?.autoFocus}
           className={cancelClasses}
           data-testid={cancelButtonProps?.['data-testid']}
-          disabled={cancelButtonProps?.disabled}
           disableRipple={cancelButtonProps?.disableRipple}
+          disabled={cancelButtonProps?.disabled}
           endIcon={cancelButtonProps?.endIcon}
-          startIcon={cancelButtonProps?.startIcon}
           onClick={handleCancel}
+          startIcon={cancelButtonProps?.startIcon}
           titleTooltip={cancelButtonProps?.tooltip}
           type="text"
         >
@@ -141,11 +141,11 @@ export const DotDialog = ({
             autoFocus={submitButtonProps?.autoFocus}
             className={submitButtonProps?.className}
             data-testid={submitButtonProps?.['data-testid']}
-            disabled={submitButtonProps?.disabled}
             disableRipple={submitButtonProps?.disableRipple}
+            disabled={submitButtonProps?.disabled}
             endIcon={submitButtonProps?.endIcon}
-            startIcon={submitButtonProps?.startIcon}
             onClick={handleSubmit}
+            startIcon={submitButtonProps?.startIcon}
             titleTooltip={submitButtonProps?.tooltip}
             type={submitButtonProps?.type || 'primary'}
           >

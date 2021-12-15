@@ -7,9 +7,9 @@ import { DotIcon } from '../icon/Icon';
 
 describe('DotChip', () => {
   const avatar = (
-    <DotAvatar alt="Batman" size="small" data-testid="test-avatar" />
+    <DotAvatar alt="Batman" data-testid="test-avatar" size="small" />
   );
-  const startIcon = <DotIcon iconId="home" data-testid="test-icon" />;
+  const startIcon = <DotIcon data-testid="test-icon" iconId="home" />;
 
   it('should have unchanged API', () => {
     const onClick = jest.fn();

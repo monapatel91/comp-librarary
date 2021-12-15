@@ -27,10 +27,10 @@ export default {
         <DotAvatar
           alt="Batman"
           onClick={action('Clicked')}
-          text="Bruce Wayne"
           size="small"
-          type="text"
+          text="Bruce Wayne"
           tooltip="Bruce Wayne"
+          type="text"
         />
       ),
     },

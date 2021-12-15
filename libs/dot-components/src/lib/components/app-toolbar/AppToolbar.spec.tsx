@@ -12,7 +12,7 @@ import { ReactComponent as DemoLogoSmall } from '../../assets/demo-logo-small.sv
 const consoleSpy = jest.spyOn(global.console, 'warn');
 const menuItems = new Array<IconButtonProps>();
 const userAvatar = (
-  <DotAvatar alt="Batman" text="Bruce Wayne" size="small" type="text" />
+  <DotAvatar alt="Batman" size="small" text="Bruce Wayne" type="text" />
 );
 const customLogo = <LogoDigitalAiCustom title="digital.ai.custom" />;
 const appLogo = <DemoLogo title="app logo" />;
@@ -43,7 +43,7 @@ describe(' AppToolbar', () => {
       ariaLabel: 'app toolbar',
       avatar: userAvatar,
       borderColor: '#1abc9c',
-      children: <Input type="text" placeholder="search" />,
+      children: <Input placeholder="search" type="text" />,
       className: 'test-class',
       customLogo: customLogo,
       'data-testid': 'testid',

@@ -57,12 +57,12 @@ describe('DotInputText', () => {
     const onChange = jest.fn();
     render(
       <DotInputText
+        data-testid="test-input"
         id="id-test"
         label="Test"
         name="test"
-        required={false}
         onChange={onChange}
-        data-testid="test-input"
+        required={false}
       />
     );
     const inputField = screen.getByTestId('test-input');
@@ -74,12 +74,12 @@ describe('DotInputText', () => {
     const onChange = jest.fn();
     render(
       <DotInputText
+        data-testid="test-input"
         id="id-test"
         label="Test"
         name="test"
-        required={false}
         onChange={onChange}
-        data-testid="test-input"
+        required={false}
         value="test value"
       />
     );
@@ -90,12 +90,12 @@ describe('DotInputText', () => {
   it('should be multiline', () => {
     render(
       <DotInputText
+        data-testid="test-input"
         id="id-test"
         label="Test"
         multiline
         name="test"
         required={false}
-        data-testid="test-input"
       />
     );
     const textarea = screen.getByTestId('test-input');
@@ -105,13 +105,13 @@ describe('DotInputText', () => {
   it('rows should be 4', async () => {
     render(
       <DotInputText
+        data-testid="test-input"
         id="id-test"
         label="Test"
-        rows={4}
         multiline
         name="test"
         required={false}
-        data-testid="test-input"
+        rows={4}
       />
     );
     const inputField = screen.getByTestId('test-input');
@@ -121,12 +121,12 @@ describe('DotInputText', () => {
   it('should not be textarea', async () => {
     render(
       <DotInputText
+        data-testid="test-input"
         id="id-test"
         label="Test"
         name="test"
         required={false}
         rows={4}
-        data-testid="test-input"
       />
     );
 
@@ -151,8 +151,8 @@ describe('DotInputText', () => {
   it('should be disabled', () => {
     render(
       <DotInputText
-        disabled={true}
         data-testid="test-input"
+        disabled={true}
         id="id-test"
         label="Test"
         name="test"
@@ -168,10 +168,10 @@ describe('DotInputText', () => {
       render(
         <DotInputText
           data-testid={dataTestId}
+          error={iconType === 'error'}
           id="id-test"
           name="test"
           warning={iconType === 'warning'}
-          error={iconType === 'error'}
         />
       );
     };

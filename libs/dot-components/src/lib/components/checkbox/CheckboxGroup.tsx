@@ -104,17 +104,17 @@ export function DotCheckboxGroup({
     ? options.map(({ label, disabled, value }) => {
         return (
           <DotCheckbox
-            className={checkboxListItemClassName}
             checked={
               selectedOptions.some(
                 (option) => option && option.value === value
               ) || allChecked
             }
+            className={checkboxListItemClassName}
             disabled={disabled || disableGroup}
-            name={name}
             key={value}
             label={label}
             labelPlacement={labelPlacement}
+            name={name}
             onChange={(event) => handleChange(event, { label, value })}
             size={size}
             value={value}
@@ -126,14 +126,14 @@ export function DotCheckboxGroup({
   return (
     <StyledCheckboxGroup
       aria-label={ariaLabel}
-      data-testid={dataTestId}
       className={wrapperClassName}
+      data-testid={dataTestId}
     >
       <StyledFormControl
         classes={{ root: rootClasses }}
+        component="fieldset"
         disabled={disableGroup}
         error={error}
-        component="fieldset"
         required={required}
       >
         {groupLabel && (
@@ -154,8 +154,8 @@ export function DotCheckboxGroup({
               selectedOptions.length > 0 &&
               selectedOptions.length < options.length
             }
-            name={name ? `${name}-select-all` : 'dot-select-all'}
             label={selectAllLabel}
+            name={name ? `${name}-select-all` : 'dot-select-all'}
             onChange={handleSelectAll}
             size={size}
             value="select-all"
