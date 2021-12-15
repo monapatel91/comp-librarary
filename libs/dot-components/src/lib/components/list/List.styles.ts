@@ -57,10 +57,6 @@ export const StyledListItem = styled(ListItem)`
           margin-right: ${theme.spacing(4)}px;
         }
 
-        .dot-list-item-end-icon {
-          /* min-width: auto; */
-        }
-
         .dot-icon i:before {
           color: ${theme.palette.text.primary};
         }

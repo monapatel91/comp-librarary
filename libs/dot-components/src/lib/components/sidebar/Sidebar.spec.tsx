@@ -111,7 +111,7 @@ describe(' Sidebar', () => {
     expect(primaryNav).not.toHaveClass('collapsed');
   });
 
-  xit('nested drawer is hidden when sidebar collapsed', async () => {
+  it('nested drawer is shown when sidebar collapsed', async () => {
     render(
       <DotSidebar
         collapsable={true}
@@ -136,7 +136,7 @@ describe(' Sidebar', () => {
 
     userEvent.click(screen.getByTestId('toggle-nav'));
     expect(primaryNav).toHaveClass('collapsed');
-    expect(screen.getByText('Nested Link')).not.toBeVisible();
+    expect(screen.getByText('Nested Link')).toBeVisible();
   });
 
   it("should have 'aria-label' attribute with correct value", () => {
