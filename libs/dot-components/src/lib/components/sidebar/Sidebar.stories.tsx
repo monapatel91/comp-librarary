@@ -126,6 +126,7 @@ export const Default: Story<SidebarProps> = (args) => {
       text: 'Pipelines',
     },
     {
+      endIconId: 'settings',
       startIconId: 'dashboard',
       onClick: (_event: MouseEvent) => handleClick(6),
       selected: isSelected(6),

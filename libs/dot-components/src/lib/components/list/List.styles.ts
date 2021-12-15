@@ -58,7 +58,7 @@ export const StyledListItem = styled(ListItem)`
         }
 
         .dot-list-item-end-icon {
-          min-width: auto;
+          /* min-width: auto; */
         }
 
         .dot-icon i:before {

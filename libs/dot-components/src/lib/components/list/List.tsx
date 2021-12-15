@@ -165,7 +165,6 @@ const NestedList = ({
   if (type === 'menu') {
     const menuItems = items.map((item, index) => {
       const { href, startIconId, target, onClick, title, tooltip, text } = item;
-      const startIcon = <DotIcon iconId={startIconId} />;
       return {
         children: (
           <DotTooltip
@@ -182,7 +181,7 @@ const NestedList = ({
               target={target}
             >
               <span className={flyoutSpanClasses}>
-                {startIconId && startIcon}
+                {startIconId && <DotIcon iconId={startIconId} />}
                 <DotTypography variant="body1">{text}</DotTypography>
               </span>
             </StyledListItem>
@@ -359,6 +358,7 @@ export const DotListItem = ({
   const hasChildren = items.length > 0;
   const isFlyout = nestedListType === 'menu' && hasChildren;
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
+  const showEndIcon = endIconId || hasChildren;
   const rootClasses = useStylesWithRootClass(
     listItemRootClass,
     className,
@@ -390,9 +390,7 @@ export const DotListItem = ({
       event.stopPropagation();
       onClick(event);
     }
-    if (component === 'li') {
-      toggleOpen(event);
-    }
+    toggleOpen(event);
   };
 
   const handleMenuLeave = () => {
@@ -409,18 +407,6 @@ export const DotListItem = ({
     }
     return 'chevron-down';
   };
-
-  const startIcon = (
-    <ListItemIcon>
-      <DotIcon iconId={startIconId} />
-    </ListItemIcon>
-  );
-
-  const endIcon = (
-    <ListItemIcon className="dot-list-item-end-icon">
-      <DotIcon iconId={endIconId} />
-    </ListItemIcon>
-  );
 
   return (
     <>
@@ -442,24 +428,19 @@ export const DotListItem = ({
           target={target}
         >
           <span className={listItemLinkClassName}>
-            {startIconId && startIcon}
+            {startIconId && (
+              <ListItemIcon>
+                <DotIcon iconId={startIconId} />
+              </ListItemIcon>
+            )}
             {primaryText && secondaryText ? (
               <ListItemText primary={primaryText} secondary={secondaryText} />
             ) : (
               <DotTypography variant="body1">{text}</DotTypography>
             )}
           </span>
-          {hasChildren ? (
-            <DotLink
-              color="inherit"
-              data-testid={`${dataTestId}-link`}
-              onClick={toggleOpen}
-              underline="none"
-            >
-              <DotIcon className="toggle-display" iconId={getChevronIcon()} />
-            </DotLink>
-          ) : (
-            endIconId && endIcon
+          {showEndIcon && (
+            <DotIcon iconId={hasChildren ? getChevronIcon() : endIconId} />
           )}
         </StyledListItem>
       </DotTooltip>

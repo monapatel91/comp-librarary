@@ -25,6 +25,7 @@ describe('dot-components: List component', () => {
     });
 
     it('end icon should be right aligned', () => {
+      // need to target a different way
       cy.get('.dot-list-item-end-icon').should('have.css', 'min-width', 'auto');
     });
 
