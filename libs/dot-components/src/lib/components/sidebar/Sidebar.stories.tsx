@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotSidebar, SidebarProps } from './Sidebar';
 import { ReactComponent as DemoLogoDark } from '../../assets/demo-logo-dark.svg';
 import { ReactComponent as DemoLogoSmall } from '../../assets/demo-logo-small.svg';
-import { NestedListType } from '../list/List';
+import { NestedListType } from '../list/NestedList';
 
 export default {
   title: 'Components/Sidebar',

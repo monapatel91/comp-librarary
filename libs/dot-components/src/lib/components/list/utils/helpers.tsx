@@ -1,4 +1,4 @@
-import { NestedListType } from '../List';
+import { NestedListType } from '../NestedList';
 
 export const getChevronIcon = (
   nestedListType: NestedListType,
