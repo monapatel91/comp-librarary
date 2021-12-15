@@ -1,16 +1,11 @@
 import React, { ElementType } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
-import {
-  DotList,
-  DotListItem,
-  ListItemProps,
-  ListProps,
-  NestedListProps,
-  NestedListType,
-} from './List';
-import { PopperPlacement } from '../menu/Menu';
 import { LinkTarget } from '../link/Link';
+import { DotList, ListProps } from './List';
+import { DotListItem, ListItemProps } from './ListItem';
+import { NestedListProps, NestedListType } from './NestedList';
+import { PopperPlacement } from '../menu/Menu';
 
 const onClick = jest.fn();
 const consoleSpy = jest.spyOn(global.console, 'warn');

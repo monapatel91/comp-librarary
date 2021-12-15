@@ -1,7 +1,9 @@
 import React, { MouseEvent, ReactNode, useEffect, useState } from 'react';
 import { AvatarProps, DotAvatar } from '../avatar/Avatar';
 import { DotIconButton } from '../button/IconButton';
-import { DotList, ListItemProps, NestedListType } from '../list/List';
+import { DotList } from '../list/List';
+import { ListItemProps } from '../list/ListItem';
+import { NestedListType } from '../list/NestedList';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { ReactComponent as LogoD } from '../../assets/logo_d.svg';
