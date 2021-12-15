@@ -34,6 +34,7 @@ import {
 } from './List.styles';
 import { CreateUUID } from '../createUUID';
 import { DotTypography } from '../typography/Typography';
+import { getChevronIcon } from './utils/helpers';
 
 export type NestedListType = 'drawer' | 'expandable' | 'menu';
 
@@ -398,16 +399,6 @@ export const DotListItem = ({
     onMenuLeave();
   };
 
-  const getChevronIcon = () => {
-    if (nestedListType !== 'expandable') {
-      return 'chevron-right';
-    }
-    if (isOpened) {
-      return 'chevron-up';
-    }
-    return 'chevron-down';
-  };
-
   const startIcon = (
     <ListItemIcon>
       <DotIcon iconId={startIconId} />
@@ -435,7 +426,10 @@ export const DotListItem = ({
         onClick={toggleOpen}
         underline="none"
       >
-        <DotIcon className="toggle-display" iconId={getChevronIcon()} />
+        <DotIcon
+          className="toggle-display"
+          iconId={getChevronIcon(nestedListType, isOpened)}
+        />
       </DotLink>
     ) : (
       endIconId && endIcon
