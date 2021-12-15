@@ -94,12 +94,16 @@ export const StyledSidebar = styled.aside`
           : theme.spacing(1, 0)};
       }
 
-      .MuiTypography-subtitle2 {
+      .MuiListSubheader-root {
         border-bottom: 1px solid;
         border-bottom-color: ${theme.palette.product === 'agility'
           ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
         margin: ${theme.spacing(0, 0, 1)};
+
+        .dot-typography {
+          margin: 0;
+        }
       }
 
       ul.side-nav {
@@ -229,7 +233,6 @@ export const StyledSidebar = styled.aside`
         flex-shrink: 0;
         font-size: 12px;
         overflow: hidden;
-        margin: ${theme.palette.product !== 'agility' && theme.spacing(0, 1)};
         padding: ${theme.spacing(1)}px;
 
         p.desc {
@@ -260,9 +263,6 @@ export const StyledSidebar = styled.aside`
 
         ul.side-nav {
           width: 56px;
-          li.MuiListSubheader-root .MuiTypography-root {
-            opacity: 0;
-          }
           .dot-list-item {
             margin-left: 0;
 
@@ -280,19 +280,18 @@ export const StyledSidebar = styled.aside`
           margin: ${theme.spacing(0, 1)};
         }
 
+        li.MuiListSubheader-root .dot-typography,
         .go-back .MuiTypography-root,
         .MuiListItem-divider .dot-list-item-link,
-        .dot-drawer {
+        .child,
+        .dot-drawer,
+        .powered-by .company-name,
+        .powered-by p.desc {
           display: none;
         }
 
         .powered-by {
           align-items: center;
-
-          .company-name,
-          p.desc {
-            display: none;
-          }
 
           .d-icon {
             display: block;

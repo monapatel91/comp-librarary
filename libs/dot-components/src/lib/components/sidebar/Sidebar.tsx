@@ -207,7 +207,7 @@ export const DotSidebar = ({
           width="100%"
         />
       )}
-      {children}
+      {children && <div className="child">{children}</div>}
       {collapsable && (
         <div className="toggle-nav">
           <DotTooltip title={isOpen ? 'Collapse' : 'Expand'}>
