@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.5.0](https://github.com/digital-ai/dot-components/tree/1.5.0) (12/15/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.4.0...1.5.0)
+
+**Features:**
+
+- `Breadcrumbs` enhancement \(collapse and expand automatically\) [\#836](https://github.com/digital-ai/dot-components/issues/836)
+- S-80586: Breadcrumbs enhancement \(collapse and expand automatically\) [\#843](https://github.com/digital-ai/dot-components/pull/843) ([dmiletic85](https://github.com/dmiletic85))
+
+**Fixed bugs:**
+
+- Expand/collapse broken for uncontrolled DotAccordion [\#865](https://github.com/digital-ai/dot-components/issues/865)
+- `Breadcrumbs` meuItems is null when changing the amount of breadcrumb items [\#839](https://github.com/digital-ai/dot-components/issues/839)
+- `Breadcrumbs` Setting `expansionMenu={true}` does not work always [\#838](https://github.com/digital-ai/dot-components/issues/838)
+- `Breadcrumbs`  item with href should be full width clickable when using `expansionMenu={true}` [\#837](https://github.com/digital-ai/dot-components/issues/837)
+- D-19294: Fix broken expand/collapse for uncontrolled accordion [\#866](https://github.com/digital-ai/dot-components/pull/866) ([selsemore](https://github.com/selsemore))
+
+**Merged pull requests:**
+
+- S-80787: branch protection [\#868](https://github.com/digital-ai/dot-components/pull/868) ([CWSites](https://github.com/CWSites))
+- S-80783: add ESLint rule for alpha order [\#867](https://github.com/digital-ai/dot-components/pull/867) ([CWSites](https://github.com/CWSites))
+
 ## [1.4.0](https://github.com/digital-ai/dot-components/tree/1.4.0) (12/13/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.3.7...1.4.0)
@@ -39,7 +61,6 @@
 - S-79571: DotInput - expose onKeyDown [\#846](https://github.com/digital-ai/dot-components/pull/846) ([monapatel91](https://github.com/monapatel91))
 - S-79357: evaluate codebase and remove old references to core Tooltip [\#844](https://github.com/digital-ai/dot-components/pull/844) ([CWSites](https://github.com/CWSites))
 - S-80621: file upload  [\#840](https://github.com/digital-ai/dot-components/pull/840) ([CWSites](https://github.com/CWSites))
-- S-76922: file upload [\#820](https://github.com/digital-ai/dot-components/pull/820) ([CWSites](https://github.com/CWSites))
 
 **Fixed bugs:**
 
@@ -85,6 +106,7 @@
 - Add to `DotList` right arrow in some cases [\#720](https://github.com/digital-ai/dot-components/issues/720)
 - `DotTable` Provide a way to apply custom classes to table rows and cells [\#643](https://github.com/digital-ai/dot-components/issues/643)
 - S-80369: Create `ProgressButton` component [\#822](https://github.com/digital-ai/dot-components/pull/822) ([dmiletic85](https://github.com/dmiletic85))
+- S-76922: file upload [\#820](https://github.com/digital-ai/dot-components/pull/820) ([CWSites](https://github.com/CWSites))
 - S-79696: change size of collapse icon button, add tooltip [\#819](https://github.com/digital-ai/dot-components/pull/819) ([CWSites](https://github.com/CWSites))
 - S-80264: Agility wrapper sandbox documentation [\#810](https://github.com/digital-ai/dot-components/pull/810) ([CWSites](https://github.com/CWSites))
 
@@ -253,7 +275,6 @@
 - S-77041: New component tooltip [\#713](https://github.com/digital-ai/dot-components/pull/713) ([monapatel91](https://github.com/monapatel91))
 - S-76773: product badges in app toolbar and sidebar [\#712](https://github.com/digital-ai/dot-components/pull/712) ([CWSites](https://github.com/CWSites))
 - Icons update oct 7th 2021 [\#709](https://github.com/digital-ai/dot-components/pull/709) ([BojanKocijan](https://github.com/BojanKocijan))
-- Bring `master` back into `develop` [\#705](https://github.com/digital-ai/dot-components/pull/705) ([CWSites](https://github.com/CWSites))
 - S-78833 agility sidebar [\#701](https://github.com/digital-ai/dot-components/pull/701) ([CWSites](https://github.com/CWSites))
 
 ## [1.1.1](https://github.com/digital-ai/dot-components/tree/1.1.1) (10/06/2021)
@@ -266,6 +287,7 @@
 
 **Merged pull requests:**
 
+- Bring `master` back into `develop` [\#705](https://github.com/digital-ai/dot-components/pull/705) ([CWSites](https://github.com/CWSites))
 - MINOR RELEASE [\#704](https://github.com/digital-ai/dot-components/pull/704) ([CWSites](https://github.com/CWSites))
 - S-79291: update nested dependencies [\#700](https://github.com/digital-ai/dot-components/pull/700) ([CWSites](https://github.com/CWSites))
 - S-78832: Agility icon & badge updates [\#698](https://github.com/digital-ai/dot-components/pull/698) ([CWSites](https://github.com/CWSites))
@@ -504,7 +526,6 @@
 - Add isUnderToolbar property to Sidebar for use beneath AppToolbar [\#560](https://github.com/digital-ai/dot-components/pull/560) ([selsemore](https://github.com/selsemore))
 - Move approved components to "Stable" [\#559](https://github.com/digital-ai/dot-components/pull/559) ([CWSites](https://github.com/CWSites))
 - merging master \> develop [\#557](https://github.com/digital-ai/dot-components/pull/557) ([CWSites](https://github.com/CWSites))
-- S-75998: \[PB Tech Debt\] Avoid unnecessary form re-renders when typing application name [\#556](https://github.com/digital-ai/dot-components/pull/556) ([dmiletic85](https://github.com/dmiletic85))
 - S-75991: \[PB Tech Debt\] Refactor and improve wrapper component in demo app [\#546](https://github.com/digital-ai/dot-components/pull/546) ([dmiletic85](https://github.com/dmiletic85))
 
 ## [1.0.1](https://github.com/digital-ai/dot-components/tree/1.0.1) (07/02/2021)
