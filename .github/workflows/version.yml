@@ -179,6 +179,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [create-release]
 
+    # Temporarily turn off branch protection so CI can merge the branch
     steps:
       - name: Branch protection OFF
         uses: octokit/request-action@v2.0.24
@@ -209,6 +210,7 @@ jobs:
           target_branch: develop
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
+      # Turn branch protection back on with previous settings
       - name: Branch protection ON
         uses: octokit/request-action@v2.0.24
         with:

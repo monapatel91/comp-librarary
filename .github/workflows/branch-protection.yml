@@ -1,5 +1,12 @@
 name: Branch Protection Switch
 
+# This workflow is for debugging purposes only.
+# It can be run manually from GitHub actions
+# There was a lot of research involved in getting this to work
+# Resources
+#    - https://github.community/t/branch-protection-api-returning-404/217405
+#    - https://docs.github.com/en/rest/reference/branches#update-branch-protection
+
 on:
   workflow_dispatch:
 
@@ -9,8 +16,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # https://github.community/t/branch-protection-api-returning-404/217405
-      # https://docs.github.com/en/rest/reference/branches#update-branch-protection
       - name: Get existing branch protection
         id: get_branch_protection
         uses: octokit/request-action@v2.0.24
@@ -19,8 +24,12 @@ jobs:
           mediaType: |
             format: application/json
         env:
+          # Uses a personal access token (PAT) from user with admin rights on repo
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
+      # The following step will print the existing branch protection rules
+      # Only uncomment as needed, there is an error within the echo statement
+      # which causes the workflow to fail
       # - run: echo ${{steps.get_branch_protection.outputs.data}}
 
       - name: Branch protection OFF
@@ -42,6 +51,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
+      # If branch protection rules change in the future
+      # this step will need to be updated to reflect the new rules
       - name: Branch protection ON
         uses: octokit/request-action@v2.0.24
         with:
@@ -63,4 +74,5 @@ jobs:
           restrictions: |
             null
         env:
+          # Uses a personal access token (PAT) from user with admin rights on repo
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
