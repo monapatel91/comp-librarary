@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { ListItemProps } from './List';
+import { ListItemProps } from './ListItem';
 
 export const mockHref = '/?path=/story/components-list--default';
 export const mockListItems: Array<ListItemProps> = [
