@@ -2,5 +2,6 @@
 . "$(dirname "$0")/_/husky.sh"
 . "$(dirname "$0")/common"
 
-yarn affected:lint --base=develop~1 --head=develop
+# yarn affected:lint --base=develop~1 --head=develop
+yarn affected:lint
 yarn affected:test --parallel --onlyChanged --silent
