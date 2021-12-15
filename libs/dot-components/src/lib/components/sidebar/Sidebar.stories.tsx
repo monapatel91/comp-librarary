@@ -105,7 +105,6 @@ export const Default: Story<SidebarProps> = (args) => {
       text: 'Progressions',
     },
     {
-      startIconId: 'satellite-group',
       items: [
         {
           text: 'PLANNING',

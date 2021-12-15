@@ -278,7 +278,7 @@ export const DotList = ({
       disablePadding={disablePadding}
       style={{ width: listWidth }}
     >
-      {items.map((item, index) => {
+      {items.map((item: ListItemProps, index) => {
         const handleListItemClick = (e: MouseEvent): void => {
           updateSelectedListItem(index);
           item.onClick?.(e);
@@ -289,6 +289,7 @@ export const DotList = ({
         if (item.child) {
           return item.child;
         }
+
         if (item.divider) {
           return (
             <DotListDivider
@@ -298,6 +299,7 @@ export const DotList = ({
             />
           );
         }
+
         return (
           <DotListItem
             className={item.className}
@@ -316,7 +318,7 @@ export const DotList = ({
             primaryText={item.primaryText}
             secondaryText={item.secondaryText}
             selected={item.selected}
-            startIconId={item.startIconId}
+            startIconId={item.startIconId || 'block'}
             target={item.target}
             text={item.text}
             title={item.title}
