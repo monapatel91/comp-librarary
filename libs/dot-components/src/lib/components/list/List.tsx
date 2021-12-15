@@ -427,6 +427,20 @@ export const DotListItem = ({
       <DotTypography variant="body1">{text}</DotTypography>
     );
 
+  const renderListItemEndIcon = (): ReactNode =>
+    hasChildren ? (
+      <DotLink
+        color="inherit"
+        data-testid={`${dataTestId}-link`}
+        onClick={toggleOpen}
+        underline="none"
+      >
+        <DotIcon className="toggle-display" iconId={getChevronIcon()} />
+      </DotLink>
+    ) : (
+      endIconId && endIcon
+    );
+
   return (
     <>
       <DotTooltip
@@ -450,9 +464,7 @@ export const DotListItem = ({
             {startIconId && startIcon}
             {renderListItemText()}
           </span>
-          {showEndIcon && (
-            <DotIcon iconId={hasChildren ? getChevronIcon() : endIconId} />
-          )}
+          {renderListItemEndIcon()}
         </StyledListItem>
       </DotTooltip>
       {hasChildren && (
