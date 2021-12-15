@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { List } from '@material-ui/core';
-import { levelBottom } from '../../theme-provider/common/variables';
 
 export const rootClassName = 'dot-list';
 export const listItemRootClass = 'dot-list-item';
@@ -15,10 +14,6 @@ export const StyledList = styled(List)`
 
         &.${nestedListClassName} .${listItemRootClass} {
           padding-left: ${theme.spacing(4)}px;
-        }
-
-        .${nestedDrawerClassName} .dot-drawer-paper {
-          z-index: ${levelBottom};
         }
 
         .MuiListSubheader-root {

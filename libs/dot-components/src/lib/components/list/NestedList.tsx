@@ -6,7 +6,6 @@ import {
   nestedDrawerClassName,
   nestedListClassName,
 } from './List.styles';
-import { DotDrawer } from '../drawer/Drawer';
 import { DotIcon } from '../icon/Icon';
 import { DotList } from './List';
 import { DotMenu, PopperPlacement } from '../menu/Menu';
@@ -22,6 +21,7 @@ import {
   listItemLinkClassName,
   StyledListItem,
 } from './ListItems.styles';
+import { StyledDotDrawer } from './NestedList.styles';
 
 export type NestedListType = 'drawer' | 'expandable' | 'menu';
 
@@ -128,8 +128,12 @@ export const NestedList = ({
 
   if (type === 'drawer') {
     return (
-      <DotDrawer
-        PaperProps={{ style: { left: `${nestedDrawerLeftSpacing}px` } }}
+      <StyledDotDrawer
+        PaperProps={{
+          style: {
+            left: `${nestedDrawerLeftSpacing}px`,
+          },
+        }}
         anchor="left"
         className={nestedDrawerClassName}
         data-testid="nested-drawer"
@@ -144,7 +148,7 @@ export const NestedList = ({
           items={items}
           key={parentItemIndex}
         />
-      </DotDrawer>
+      </StyledDotDrawer>
     );
   }
 };
