@@ -40,6 +40,9 @@ export const DotAlertBanner = ({
     warning: AlertBannerIcon('warning-solid'),
   };
   const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const isChildrenString = typeof children === 'string';
+  /* For simple string use default component, for everything else use 'div' */
+  const typographyComponent = !isChildrenString ? 'div' : undefined;
   return (
     <StyledAlertBanner
       action={action}
@@ -50,7 +53,9 @@ export const DotAlertBanner = ({
       onClose={(event: MouseEvent) => (onClose ? onClose(event) : null)}
       severity={severity}
     >
-      <DotTypography variant={textVariant}>{children}</DotTypography>
+      <DotTypography variant={textVariant} component={typographyComponent}>
+        {children}
+      </DotTypography>
     </StyledAlertBanner>
   );
 };
