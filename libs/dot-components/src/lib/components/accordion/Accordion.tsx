@@ -110,9 +110,11 @@ export const DotAccordion = ({
         expandIcon={<DotIcon iconId="chevron-down" />}
       >
         {startIcon}
+        <DotTooltip title={noWrap ? summary : ''}>
         <DotTypography noWrap={noWrap} variant="body1">
-          <DotTooltip title={noWrap ? summary : ''}>{summary}</DotTooltip>
+            {summary}
         </DotTypography>
+        </DotTooltip>
       </AccordionSummary>
       <AccordionDetails
         className={detailClassName}
