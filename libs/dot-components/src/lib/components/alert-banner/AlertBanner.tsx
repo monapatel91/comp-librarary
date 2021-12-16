@@ -42,7 +42,7 @@ export const DotAlertBanner = ({
   const rootClasses = useStylesWithRootClass(rootClassName, className);
   const isChildrenString = typeof children === 'string';
   /* For simple string use default component, for everything else use 'div' */
-  const typographyComponent = !isChildrenString ? 'div' : undefined;
+  const typographyComponent = isChildrenString ? undefined : 'div';
   return (
     <StyledAlertBanner
       action={action}

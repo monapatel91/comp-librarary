@@ -79,4 +79,29 @@ describe('AlertBanner', () => {
     const alertBannerElement = screen.getByTestId(dataTestId);
     expect(alertBannerElement).toHaveAttribute('aria-label', ariaLabel);
   });
+
+  it('should render children inside of a paragraph tag if value of children is pure string', () => {
+    const childrenAsString = 'Test Alert Banner';
+    const dataTestId = 'test-alert-banner';
+    render(
+      <DotAlertBanner data-testid={dataTestId} severity="success">
+        {childrenAsString}
+      </DotAlertBanner>
+    );
+    const element = screen.getByText(childrenAsString);
+    expect(element.nodeName.toLowerCase()).toBe('p');
+    expect(element).toHaveClass('MuiTypography-body1');
+  });
+
+  it('should render children inside of a div tag if value of children is NOT pure string', () => {
+    const children = <p>Test Alert Banner</p>;
+    const dataTestId = 'test-alert-banner';
+    render(
+      <DotAlertBanner data-testid={dataTestId} severity="success">
+        {children}
+      </DotAlertBanner>
+    );
+    const element = screen.getByText('Test Alert Banner').closest('div');
+    expect(element).toHaveClass('MuiTypography-body1');
+  });
 });
