@@ -22,8 +22,10 @@ export default {
 } as Meta;
 
 export const Default: Story<AccordionProps> = (args) => {
-  const { startIcon: startIconId } = args;
-  const startIcon = startIconId && <DotIcon iconId={startIconId} />;
+  const startIcon = args.startIcon && (
+    <DotIcon iconId={args.startIcon as string} />
+  );
+
   return (
     <>
       <DotAccordion {...args} startIcon={startIcon}>

@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  ReactElement,
-  ReactNode,
-  useState,
-  useEffect,
-} from 'react';
+import React, { ChangeEvent, ReactNode, useState, useEffect } from 'react';
 import { useStylesWithRootClass } from '../../components/useStylesWithRootClass';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography } from '../typography/Typography';
@@ -48,7 +42,7 @@ export interface AccordionProps extends CommonProps {
   /** Icon placed before the children. */
   startIcon?: ReactNode;
   /** The text within the expanded Accordion */
-  summary: ReactElement;
+  summary: ReactNode | string;
 }
 
 export const DotAccordion = ({
@@ -110,9 +104,11 @@ export const DotAccordion = ({
         expandIcon={<DotIcon iconId="chevron-down" />}
       >
         {startIcon}
-        <DotTypography noWrap={noWrap} variant="body1">
-          <DotTooltip title={noWrap ? summary : ''}>{summary}</DotTooltip>
-        </DotTypography>
+        <DotTooltip title={noWrap ? summary : ''}>
+          <DotTypography noWrap={noWrap} variant="body1">
+            {summary}
+          </DotTypography>
+        </DotTooltip>
       </AccordionSummary>
       <AccordionDetails
         className={detailClassName}
