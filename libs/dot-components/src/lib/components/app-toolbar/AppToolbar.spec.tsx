@@ -34,6 +34,9 @@ const mainMenuItems = [
   },
 ];
 
+const getPrimaryLogoLink = (): HTMLElement =>
+  screen.getByTestId('primary-logo');
+
 describe(' AppToolbar', () => {
   it('should have unchanged API', () => {
     const props = {
@@ -52,6 +55,7 @@ describe(' AppToolbar', () => {
       mainMenuItems: mainMenuItems,
       mainMenuWidth: 240,
       navItems: menuItems,
+      primaryLogoHref: '/my-href',
     };
 
     const appToolbarProps: AppToolbarProps = props;
@@ -170,5 +174,23 @@ describe(' AppToolbar - Main Menu', () => {
     // click on item with href
     fireEvent.click(linkItem);
     expect(mainMenu).not.toHaveClass('open');
+  });
+
+  it('should display primary logo link with default href attribute', () => {
+    render(<DotAppToolbar mainMenuItems={mainMenuItems} />);
+    const primaryLogoLink = getPrimaryLogoLink();
+    expect(primaryLogoLink).toHaveAttribute('href', '/');
+  });
+
+  it('should display primary logo link with custom href attribute', () => {
+    const customHref = '/my-custom-href';
+    render(
+      <DotAppToolbar
+        mainMenuItems={mainMenuItems}
+        primaryLogoHref={customHref}
+      />
+    );
+    const primaryLogoLink = getPrimaryLogoLink();
+    expect(primaryLogoLink).toHaveAttribute('href', customHref);
   });
 });

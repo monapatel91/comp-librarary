@@ -1,4 +1,8 @@
-import { calculateNumberFromText, getAvatarColorForInputText } from './helpers';
+import {
+  calculateNumberFromText,
+  getAvatarColorForInputText,
+  isString,
+} from './helpers';
 
 describe('helpers', () => {
   describe('calculateNumberFromText', () => {
@@ -23,6 +27,17 @@ describe('helpers', () => {
     });
     it("should return 'default' color when no value is provided", () => {
       expect(getAvatarColorForInputText('')).toBe('default');
+    });
+  });
+
+  describe('isString', () => {
+    it('should return true when string is passed in', () => {
+      const result = isString('123');
+      expect(result).toBe(true);
+    });
+    it('should return false when non-string value is passed in', () => {
+      const result = isString({ value: 123 });
+      expect(result).toBe(false);
     });
   });
 });
