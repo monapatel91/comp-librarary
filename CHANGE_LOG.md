@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.1](https://github.com/digital-ai/dot-components/tree/1.5.1) (12/17/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.5.0...1.5.1)
+
+**Fixed bugs:**
+
+- Breaking prop type change in DotAccordion [\#850](https://github.com/digital-ai/dot-components/issues/850)
+- D-19247: summary prop [\#873](https://github.com/digital-ai/dot-components/pull/873) ([TheKeithStewart](https://github.com/TheKeithStewart))
+
 ## [1.5.0](https://github.com/digital-ai/dot-components/tree/1.5.0) (12/15/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.4.0...1.5.0)
@@ -61,6 +70,7 @@
 - S-79571: DotInput - expose onKeyDown [\#846](https://github.com/digital-ai/dot-components/pull/846) ([monapatel91](https://github.com/monapatel91))
 - S-79357: evaluate codebase and remove old references to core Tooltip [\#844](https://github.com/digital-ai/dot-components/pull/844) ([CWSites](https://github.com/CWSites))
 - S-80621: file upload  [\#840](https://github.com/digital-ai/dot-components/pull/840) ([CWSites](https://github.com/CWSites))
+- S-76922: file upload [\#820](https://github.com/digital-ai/dot-components/pull/820) ([CWSites](https://github.com/CWSites))
 
 **Fixed bugs:**
 
@@ -106,7 +116,6 @@
 - Add to `DotList` right arrow in some cases [\#720](https://github.com/digital-ai/dot-components/issues/720)
 - `DotTable` Provide a way to apply custom classes to table rows and cells [\#643](https://github.com/digital-ai/dot-components/issues/643)
 - S-80369: Create `ProgressButton` component [\#822](https://github.com/digital-ai/dot-components/pull/822) ([dmiletic85](https://github.com/dmiletic85))
-- S-76922: file upload [\#820](https://github.com/digital-ai/dot-components/pull/820) ([CWSites](https://github.com/CWSites))
 - S-79696: change size of collapse icon button, add tooltip [\#819](https://github.com/digital-ai/dot-components/pull/819) ([CWSites](https://github.com/CWSites))
 - S-80264: Agility wrapper sandbox documentation [\#810](https://github.com/digital-ai/dot-components/pull/810) ([CWSites](https://github.com/CWSites))
 
@@ -228,7 +237,6 @@
 - S-76892: create generator for new components [\#736](https://github.com/digital-ai/dot-components/pull/736) ([CWSites](https://github.com/CWSites))
 - D-18986: update app toolbar to be dense by default [\#735](https://github.com/digital-ai/dot-components/pull/735) ([CWSites](https://github.com/CWSites))
 - D-18985: update menu list to be content-box sizing [\#734](https://github.com/digital-ai/dot-components/pull/734) ([CWSites](https://github.com/CWSites))
-- S-77126: Dynamic Form [\#717](https://github.com/digital-ai/dot-components/pull/717) ([dmiletic85](https://github.com/dmiletic85))
 
 ## [1.2.1](https://github.com/digital-ai/dot-components/tree/1.2.1) (10/15/2021)
 
@@ -270,11 +278,13 @@
 - D-18970: remove color prop from Badge storybook config [\#722](https://github.com/digital-ai/dot-components/pull/722) ([CWSites](https://github.com/CWSites))
 - MINOR release [\#719](https://github.com/digital-ai/dot-components/pull/719) ([CWSites](https://github.com/CWSites))
 - Icons oct 13 2021 [\#718](https://github.com/digital-ai/dot-components/pull/718) ([BojanKocijan](https://github.com/BojanKocijan))
+- S-77126: Dynamic Form [\#717](https://github.com/digital-ai/dot-components/pull/717) ([dmiletic85](https://github.com/dmiletic85))
 - S-78918: add loading indicator to menu [\#716](https://github.com/digital-ai/dot-components/pull/716) ([CWSites](https://github.com/CWSites))
 - S-78834: update icon buttons to follow agility theme more closely [\#715](https://github.com/digital-ai/dot-components/pull/715) ([CWSites](https://github.com/CWSites))
 - S-77041: New component tooltip [\#713](https://github.com/digital-ai/dot-components/pull/713) ([monapatel91](https://github.com/monapatel91))
 - S-76773: product badges in app toolbar and sidebar [\#712](https://github.com/digital-ai/dot-components/pull/712) ([CWSites](https://github.com/CWSites))
 - Icons update oct 7th 2021 [\#709](https://github.com/digital-ai/dot-components/pull/709) ([BojanKocijan](https://github.com/BojanKocijan))
+- Bring `master` back into `develop` [\#705](https://github.com/digital-ai/dot-components/pull/705) ([CWSites](https://github.com/CWSites))
 - S-78833 agility sidebar [\#701](https://github.com/digital-ai/dot-components/pull/701) ([CWSites](https://github.com/CWSites))
 
 ## [1.1.1](https://github.com/digital-ai/dot-components/tree/1.1.1) (10/06/2021)
@@ -287,7 +297,6 @@
 
 **Merged pull requests:**
 
-- Bring `master` back into `develop` [\#705](https://github.com/digital-ai/dot-components/pull/705) ([CWSites](https://github.com/CWSites))
 - MINOR RELEASE [\#704](https://github.com/digital-ai/dot-components/pull/704) ([CWSites](https://github.com/CWSites))
 - S-79291: update nested dependencies [\#700](https://github.com/digital-ai/dot-components/pull/700) ([CWSites](https://github.com/CWSites))
 - S-78832: Agility icon & badge updates [\#698](https://github.com/digital-ai/dot-components/pull/698) ([CWSites](https://github.com/CWSites))
@@ -526,6 +535,7 @@
 - Add isUnderToolbar property to Sidebar for use beneath AppToolbar [\#560](https://github.com/digital-ai/dot-components/pull/560) ([selsemore](https://github.com/selsemore))
 - Move approved components to "Stable" [\#559](https://github.com/digital-ai/dot-components/pull/559) ([CWSites](https://github.com/CWSites))
 - merging master \> develop [\#557](https://github.com/digital-ai/dot-components/pull/557) ([CWSites](https://github.com/CWSites))
+- S-75998: \[PB Tech Debt\] Avoid unnecessary form re-renders when typing application name [\#556](https://github.com/digital-ai/dot-components/pull/556) ([dmiletic85](https://github.com/dmiletic85))
 - S-75991: \[PB Tech Debt\] Refactor and improve wrapper component in demo app [\#546](https://github.com/digital-ai/dot-components/pull/546) ([dmiletic85](https://github.com/dmiletic85))
 
 ## [1.0.1](https://github.com/digital-ai/dot-components/tree/1.0.1) (07/02/2021)
