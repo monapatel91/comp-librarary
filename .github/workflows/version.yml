@@ -63,17 +63,47 @@ jobs:
           repo-token: ${{ github.token }}
           wait-interval: 20
 
-  # https://github.com/marketplace/actions/automated-version-bump
-  bump-version:
-    name: Bump Version & Create GitHub Tag
+  # https://github.com/faberNovel/github-changelog-generator-action
+  changelog:
+    name: Generate Changelog
     runs-on: ubuntu-latest
     needs: [checks]
-    outputs:
-      new-version: ${{ steps.version-bump.outputs.newTag }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        outputs:
+          changelog-sha: ${{ steps.commit-changelog.outputs.commit-sha }}
+
+      - name: Generate Changelog
+        uses: fabernovel/github-changelog-generator-action@master
+        with:
+          # https://github.com/github-changelog-generator/github-changelog-generator/wiki/Advanced-change-log-generation-examples#additional-options
+          options: --token ${{ secrets.GITHUB_TOKEN }} --date-format %m/%d/%Y --output CHANGE_LOG.md --enhancement-label **Features:** --enhancement-labels enhancement --bug-labels defect --exclude-labels documentation,question,release --breaking-labels BREAKING-CHANGE --since-tag 1.0.0 --unreleased-label Current Release --add-sections '{"documentation":{"prefix":"**Documentation updates:**","labels":["documentation"]},"accessibility":{"prefix":"**Accessibility updates:**","labels":["accessibility"]},"tech-chore":{"prefix":"**Tech Chores:**","labels":["tech-chore"]}}'
+          # --future-release ${{ needs.bump-version.outputs.new-version }}
+
+      # https://github.com/marketplace/actions/add-commit
+      - name: Commit and Push Changelog
+        id: commit-changelog
+        uses: EndBug/add-and-commit@v7.4.0
+        with:
+          add: CHANGE_LOG.md
+          default_author: github_actions
+          message: 'Update Changelog'
+
+  # https://github.com/marketplace/actions/automated-version-bump
+  bump-version:
+    name: Bump Version & Create GitHub Tag
+    runs-on: ubuntu-latest
+    needs: [changelog]
+    outputs:
+      new-version: ${{ steps.version-bump.outputs.newTag }}
+
+    # checkout SHA which includes the changelog
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        ref: ${{ needs.changelog.outputs.changelog-sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -97,32 +127,6 @@ jobs:
           # rc-wording: 'alpha, RELEASE, BETA'
           target-branch: 'master'
           preid: 'alpha'
-
-  # https://github.com/faberNovel/github-changelog-generator-action
-  changelog:
-    name: Generate Changelog
-    runs-on: ubuntu-latest
-    needs: [bump-version]
-    if: needs.bump-version.outputs.new-version != ''
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Generate Changelog
-        uses: fabernovel/github-changelog-generator-action@master
-        with:
-          # https://github.com/github-changelog-generator/github-changelog-generator/wiki/Advanced-change-log-generation-examples#additional-options
-          options: --token ${{ secrets.GITHUB_TOKEN }} --date-format %m/%d/%Y --output CHANGE_LOG.md --enhancement-label **Features:** --enhancement-labels enhancement --bug-labels defect --exclude-labels documentation,question,release --breaking-labels BREAKING-CHANGE --since-tag 1.0.0 --future-release ${{ needs.bump-version.outputs.new-version }}
-
-      # https://github.com/marketplace/actions/add-commit
-      # TO-DO: use modified SHA to resolve any build issues: https://github.com/EndBug/add-and-commit/issues/200
-      - name: Commit and Push Changelog
-        uses: EndBug/add-and-commit@v7.4.0
-        with:
-          add: CHANGE_LOG.md
-          default_author: github_actions
-          message: 'Update Changelog'
 
   # https://github.com/marvinpinto/action-automatic-releases
   create-release:
@@ -155,7 +159,7 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{"ref": "${{ github.ref }}"}'
+          inputs: '{"ref": "${{ needs.changelog.outputs.changelog-sha }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to NPM
 
@@ -169,7 +173,7 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{"ref": "${{ github.ref }}"}'
+          inputs: '{"ref": "${{ needs.changelog.outputs.changelog-sha }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to GitHub Pages
 
@@ -202,6 +206,7 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
+        ref: ${{ needs.changelog.outputs.changelog-sha }}
 
       - name: merge `master` to `develop`
         uses: devmasx/merge-branch@master
