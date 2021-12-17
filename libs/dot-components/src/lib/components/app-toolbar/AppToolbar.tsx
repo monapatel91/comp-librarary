@@ -159,7 +159,11 @@ export const DotAppToolbar = ({
         </>
       )}
       <div className="dot-branding">
-        <DotLink className="primary-logo" href={primaryLogoHref}>
+        <DotLink
+          className="primary-logo"
+          data-testid="primary-logo"
+          href={primaryLogoHref}
+        >
           {customLogo ? (
             customLogo
           ) : (
