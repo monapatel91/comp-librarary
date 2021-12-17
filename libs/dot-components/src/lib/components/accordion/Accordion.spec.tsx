@@ -158,4 +158,16 @@ describe('Accordion', () => {
     fireEvent.click(screen.getByTestId('test-summary'));
     expect(screen.queryByTestId('test-details')).toBeVisible();
   });
+
+  it('should include a tooltip for the summary if noWrap is TRUE', () => {
+    const summaryText = 'Test summary';
+    render(
+      <DotAccordion data-testid="test" summary={summaryText} noWrap={true}>
+        Testing
+      </DotAccordion>
+    );
+
+    const summary = screen.getByTitle(summaryText);
+    expect(summary).toBeVisible();
+  });
 });
