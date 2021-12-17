@@ -159,7 +159,6 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          # inputs: '{"ref": "${{ github.ref }}"}'
           inputs: '{"ref": "${{ needs.changelog.outputs.changelog-sha }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to NPM
@@ -174,7 +173,6 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          # inputs: '{"ref": "${{ github.ref }}"}'
           inputs: '{"ref": "${{ needs.changelog.outputs.changelog-sha }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to GitHub Pages
@@ -206,7 +204,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.DIGITALAI_BOT_TOKEN }}
 
-      # TO-DO: this needs to merge the SHA of the changelog update
       - name: Checkout code
         uses: actions/checkout@v2
         ref: ${{ needs.changelog.outputs.changelog-sha }}
