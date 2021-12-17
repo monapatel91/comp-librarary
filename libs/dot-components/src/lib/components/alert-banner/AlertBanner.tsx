@@ -4,6 +4,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledAlertBanner } from './AlertBanner.styles';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography, TypographyVariant } from '../typography/Typography';
+import { isString } from '../helpers';
 
 export type AlertBannerSeverity = 'error' | 'info' | 'success' | 'warning';
 
@@ -40,9 +41,8 @@ export const DotAlertBanner = ({
     warning: AlertBannerIcon('warning-solid'),
   };
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-  const isChildrenString = typeof children === 'string';
   /* For simple string use default component, for everything else use 'div' */
-  const typographyComponent = isChildrenString ? undefined : 'div';
+  const typographyComponent = isString(children) ? undefined : 'div';
   return (
     <StyledAlertBanner
       action={action}

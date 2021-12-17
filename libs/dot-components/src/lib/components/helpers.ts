@@ -15,3 +15,5 @@ export const getAvatarColorForInputText = (value: string): AvatarColor => {
   const numberFromValue = calculateNumberFromText(value);
   return colorOptions[numberFromValue % colorOptions.length];
 };
+
+export const isString = (str: unknown): boolean => typeof str === 'string';
