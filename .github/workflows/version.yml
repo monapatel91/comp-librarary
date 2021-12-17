@@ -92,6 +92,12 @@ jobs:
           default_author: github_actions
           message: 'Update Changelog'
 
+      - id: head_commit
+        run: echo "::set-output name=commit_sha::$(git rev-parse HEAD)"
+        shell: bash
+
+      - run: echo {{ steps.head_commit.outputs.commit_sha }}
+
       - run: echo ${{ steps.commit-changelog.outputs.commit-sha }}
 
   # https://github.com/marketplace/actions/automated-version-bump
