@@ -55,6 +55,7 @@ describe(' AppToolbar', () => {
       mainMenuItems: mainMenuItems,
       mainMenuWidth: 240,
       navItems: menuItems,
+      primaryLogoHref: '/my-href',
     };
 
     const appToolbarProps: AppToolbarProps = props;
