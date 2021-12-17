@@ -2,7 +2,15 @@
 
 ## [Current](https://github.com/digital-ai/dot-components/tree/HEAD)
 
-[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.5.2...HEAD)
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.5.3...HEAD)
+
+**Merged pull requests:**
+
+- Merge `master` \> `develop` [\#888](https://github.com/digital-ai/dot-components/pull/888) ([CWSites](https://github.com/CWSites))
+
+## [1.5.3](https://github.com/digital-ai/dot-components/tree/1.5.3) (12/17/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.5.2...1.5.3)
 
 **Features:**
 
@@ -400,6 +408,7 @@
 - D-18424: include breadcrumb wrapper with breadcrumb component [\#675](https://github.com/digital-ai/dot-components/pull/675) ([CWSites](https://github.com/CWSites))
 - Merge `master` back to `develop` [\#674](https://github.com/digital-ai/dot-components/pull/674) ([CWSites](https://github.com/CWSites))
 - D-18536: material 4.12.3 upgrade [\#667](https://github.com/digital-ai/dot-components/pull/667) ([CWSites](https://github.com/CWSites))
+- S-78487: Add agility colors for Accordion, Pill and Tabs [\#661](https://github.com/digital-ai/dot-components/pull/661) ([angel-git](https://github.com/angel-git))
 
 ## [1.0.9](https://github.com/digital-ai/dot-components/tree/1.0.9) (09/02/2021)
 
@@ -425,7 +434,6 @@
 - S-78516 extra files being formatted [\#665](https://github.com/digital-ai/dot-components/pull/665) ([TheKeithStewart](https://github.com/TheKeithStewart))
 - S-78464: add main branch name [\#664](https://github.com/digital-ai/dot-components/pull/664) ([CWSites](https://github.com/CWSites))
 - S-78497: Add 'page' prop to DotTable [\#662](https://github.com/digital-ai/dot-components/pull/662) ([selsemore](https://github.com/selsemore))
-- S-78487: Add agility colors for Accordion, Pill and Tabs [\#661](https://github.com/digital-ai/dot-components/pull/661) ([angel-git](https://github.com/angel-git))
 - Issue \#632: Add aria-label property [\#659](https://github.com/digital-ai/dot-components/pull/659) ([dmiletic85](https://github.com/dmiletic85))
 - S-78464: SonarQube [\#657](https://github.com/digital-ai/dot-components/pull/657) ([CWSites](https://github.com/CWSites))
 - D-18607: Fix rowsPerPage parsing and do not pad table with empty rows [\#655](https://github.com/digital-ai/dot-components/pull/655) ([selsemore](https://github.com/selsemore))
