@@ -141,9 +141,8 @@ describe(' Sidebar', () => {
 
   it("should have 'aria-label' attribute with correct value", () => {
     const ariaLabel = 'my label';
-    const dataTestId = 'test-sidebar';
-    render(<DotSidebar ariaLabel={ariaLabel} data-testid={dataTestId} />);
-    const sidebarElement = screen.getByTestId(`primaryNav ${dataTestId}`);
+    render(<DotSidebar ariaLabel={ariaLabel} />);
+    const sidebarElement = screen.getByTestId('primaryNav');
     expect(sidebarElement).toHaveAttribute('aria-label', ariaLabel);
   });
 });

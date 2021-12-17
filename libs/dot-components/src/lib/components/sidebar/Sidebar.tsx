@@ -120,7 +120,7 @@ export const DotSidebar = ({
   children,
   className,
   collapsable = false,
-  'data-testid': dataTestId = 'dot-sidebar',
+  'data-testid': dataTestId = 'primaryNav',
   displayAppLogo = false,
   displayBrand = true,
   goBack = false,
@@ -161,7 +161,7 @@ export const DotSidebar = ({
     <StyledSidebar
       aria-label={ariaLabel}
       className={rootClasses}
-      data-testid={`primaryNav ${dataTestId}`}
+      data-testid={dataTestId}
       style={{ width: sidebarWidth }}
     >
       {displayHeader && (
