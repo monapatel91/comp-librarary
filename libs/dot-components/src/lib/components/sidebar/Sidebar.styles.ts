@@ -94,12 +94,16 @@ export const StyledSidebar = styled.aside`
           : theme.spacing(1, 0)};
       }
 
-      .MuiTypography-subtitle2 {
+      .MuiListSubheader-root {
         border-bottom: 1px solid;
         border-bottom-color: ${theme.palette.product === 'agility'
           ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
         margin: ${theme.spacing(0, 0, 1)};
+
+        .dot-typography {
+          margin: 0;
+        }
       }
 
       ul.side-nav {
@@ -153,6 +157,11 @@ export const StyledSidebar = styled.aside`
             'transparent'};
           }
 
+          &.Mui-focusVisible {
+            box-shadow: inset 0 0 0 2px ${theme.palette.layer.n0};
+            border: 2px solid ${theme.palette.layer.n900};
+          }
+
           &:hover,
           &:active,
           &:focus {
@@ -188,16 +197,13 @@ export const StyledSidebar = styled.aside`
           .dot-icon {
             border-radius: 50%;
             height: 40px;
+            margin: ${theme.spacing(0, 1)};
             width: 40px;
           }
-          &.Mui-focusVisible {
-            box-shadow: inset 0 0 0 2px ${theme.palette.layer.n0};
-            border: 2px solid ${theme.palette.layer.n900};
-          }
-        }
 
-        li.dot-list-item .dot-typography {
-          white-space: nowrap;
+          .dot-typography {
+            white-space: nowrap;
+          }
         }
       }
 
@@ -229,7 +235,6 @@ export const StyledSidebar = styled.aside`
         flex-shrink: 0;
         font-size: 12px;
         overflow: hidden;
-        margin: ${theme.palette.product !== 'agility' && theme.spacing(0, 1)};
         padding: ${theme.spacing(1)}px;
 
         p.desc {
@@ -254,21 +259,28 @@ export const StyledSidebar = styled.aside`
         -webkit-transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
         transition: all cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
 
+        li.MuiListSubheader-root .dot-typography,
+        .go-back .MuiTypography-root,
+        .MuiListItem-divider .dot-list-item-link,
+        .child,
+        .powered-by .company-name,
+        .powered-by p.desc {
+          display: none;
+        }
+
+        .dot-nested-drawer li.MuiListSubheader-root .dot-typography,
+        .powered-by .d-icon {
+          display: block;
+        }
+
         header .dot-app-logo {
           text-align: center;
         }
 
         ul.side-nav {
           width: 56px;
-          li.MuiListSubheader-root .MuiTypography-root {
-            opacity: 0;
-          }
           .dot-list-item {
             margin-left: 0;
-
-            .dot-icon {
-              margin-left: ${theme.spacing(1)}px;
-            }
           }
 
           .toggle-nav {
@@ -280,23 +292,8 @@ export const StyledSidebar = styled.aside`
           margin: ${theme.spacing(0, 1)};
         }
 
-        .go-back .MuiTypography-root,
-        .MuiListItem-divider .dot-list-item-link,
-        .dot-drawer {
-          display: none;
-        }
-
         .powered-by {
           align-items: center;
-
-          .company-name,
-          p.desc {
-            display: none;
-          }
-
-          .d-icon {
-            display: block;
-          }
         }
       }
     }

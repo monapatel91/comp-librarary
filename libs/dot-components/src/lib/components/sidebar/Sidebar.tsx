@@ -120,7 +120,7 @@ export const DotSidebar = ({
   children,
   className,
   collapsable = false,
-  'data-testid': dataTestId,
+  'data-testid': dataTestId = 'primaryNav',
   displayAppLogo = false,
   displayBrand = true,
   goBack = false,
@@ -136,6 +136,7 @@ export const DotSidebar = ({
   const hasAppLogo = appLogo !== null && displayAppLogo;
   const hasBackItem = goBack && backItem;
   const displayHeader = title || hasAppLogo;
+  const openClass = isOpen ? 'open' : 'collapsed';
 
   useEffect(() => {
     setIsOpen(open);
@@ -149,14 +150,10 @@ export const DotSidebar = ({
     setIsOpen(!isOpen);
   };
 
-  const sidebarClasses = useStylesWithRootClass(
-    'side-nav',
-    isOpen ? 'open' : ''
-  );
-
+  const sidebarClasses = useStylesWithRootClass('side-nav', openClass);
   const rootClasses = useStylesWithRootClass(
     rootClassName,
-    !isOpen ? 'collapsed' : '',
+    openClass,
     className
   );
 
@@ -164,7 +161,7 @@ export const DotSidebar = ({
     <StyledSidebar
       aria-label={ariaLabel}
       className={rootClasses}
-      data-testid={`primaryNav ${dataTestId ? dataTestId : ''}`}
+      data-testid={dataTestId}
       style={{ width: sidebarWidth }}
     >
       {displayHeader && (
@@ -188,7 +185,7 @@ export const DotSidebar = ({
           <div className="go-back">
             <DotIcon
               data-testid="back-button"
-              iconId={backItem.iconId ? backItem.iconId : 'back'}
+              iconId={backItem.iconId || 'back'}
             />
             <DotTypography variant="h4">{backItem.text}</DotTypography>
           </div>
@@ -207,7 +204,7 @@ export const DotSidebar = ({
           width="100%"
         />
       )}
-      {children}
+      {children && <div className="child">{children}</div>}
       {collapsable && (
         <div className="toggle-nav">
           <DotTooltip title={isOpen ? 'Collapse' : 'Expand'}>

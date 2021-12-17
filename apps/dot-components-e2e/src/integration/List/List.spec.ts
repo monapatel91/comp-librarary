@@ -20,12 +20,8 @@ describe('dot-components: List component', () => {
   });
 
   describe('style decisions', () => {
-    it('toggle icon is pushed to the right', () => {
+    it('end icon is pushed to the right', () => {
       cy.get('span.dot-list-item-link').should('have.css', 'flex-grow', '2');
-    });
-
-    it('end icon should be right aligned', () => {
-      cy.get('.dot-list-item-end-icon').should('have.css', 'min-width', 'auto');
     });
 
     it('font format', () => {
