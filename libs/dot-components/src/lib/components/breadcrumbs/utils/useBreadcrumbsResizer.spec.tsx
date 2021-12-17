@@ -1,9 +1,9 @@
 import { renderHook, RenderResult } from '@testing-library/react-hooks';
 import {
+  ITEMS_SEPARATOR_SPACE,
   MaxVisibleItems,
   useBreadcrumbsResizer,
 } from './useBreadcrumbsResizer';
-import { ITEMS_SEPARATOR_SPACE } from './useBreadcrumbsResizer';
 import { mockBreadcrumbItems } from '../Breadcrumbs.data';
 
 describe('useBreadcrumbsResizer', () => {
