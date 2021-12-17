@@ -91,6 +91,8 @@ jobs:
           default_author: github_actions
           message: 'Update Changelog'
 
+      - run: echo ${{ steps.commit-changelog.outputs.commit-sha }}
+
   # https://github.com/marketplace/actions/automated-version-bump
   bump-version:
     name: Bump Version & Create GitHub Tag
@@ -103,7 +105,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        ref: '${{ steps.changelog.outputs.changelog-sha }}'
+        # ref: '${{ steps.changelog.outputs.changelog-sha }}'
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -159,7 +161,7 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{"ref": "${{ steps.changelog.outputs.changelog-sha }}"}'
+          inputs: '{"ref": "${{ github.ref }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to NPM
 
@@ -173,7 +175,7 @@ jobs:
       - name: Trigger Workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          inputs: '{"ref": "${{ steps.changelog.outputs.changelog-sha }}"}'
+          inputs: '{"ref": "${{ github.ref }}"}'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow: Deploy to GitHub Pages
 
@@ -206,7 +208,7 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
-        ref: '${{ steps.changelog.outputs.changelog-sha }}'
+        # ref: '${{ steps.changelog.outputs.changelog-sha }}'
 
       - name: merge `master` to `develop`
         uses: devmasx/merge-branch@master
