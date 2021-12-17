@@ -145,7 +145,7 @@ export const mapBreadcrumbItems = (
       return isLastItemFullyVisible ? (
         getLastItemElement(item, lastItemRef, index)
       ) : (
-        <DotTooltip title={text} key={index}>
+        <DotTooltip title={text} key={index} placement="bottom-start">
           {getLastItemElement(item, lastItemRef)}
         </DotTooltip>
       );
