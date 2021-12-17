@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.5.2](https://github.com/digital-ai/dot-components/tree/1.5.2) (12/17/2021)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.5.1...1.5.2)
+
+**Fixed bugs:**
+
+- `Apptoolbar`: primary logo link is hardcoded to `/` [\#879](https://github.com/digital-ai/dot-components/issues/879)
+- `AlertBanner` [\#834](https://github.com/digital-ai/dot-components/issues/834)
+- D-19319: `Apptoolbar`: primary logo link is hardcoded to `/` [\#880](https://github.com/digital-ai/dot-components/pull/880) ([dmiletic85](https://github.com/dmiletic85))
+- D-19197: Warning in console when using html elements as `AlertBanner` children. [\#874](https://github.com/digital-ai/dot-components/pull/874) ([dmiletic85](https://github.com/dmiletic85))
+
 ## [1.5.1](https://github.com/digital-ai/dot-components/tree/1.5.1) (12/17/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.5.0...1.5.1)
@@ -237,6 +248,7 @@
 - S-76892: create generator for new components [\#736](https://github.com/digital-ai/dot-components/pull/736) ([CWSites](https://github.com/CWSites))
 - D-18986: update app toolbar to be dense by default [\#735](https://github.com/digital-ai/dot-components/pull/735) ([CWSites](https://github.com/CWSites))
 - D-18985: update menu list to be content-box sizing [\#734](https://github.com/digital-ai/dot-components/pull/734) ([CWSites](https://github.com/CWSites))
+- S-77126: Dynamic Form [\#717](https://github.com/digital-ai/dot-components/pull/717) ([dmiletic85](https://github.com/dmiletic85))
 
 ## [1.2.1](https://github.com/digital-ai/dot-components/tree/1.2.1) (10/15/2021)
 
@@ -278,7 +290,6 @@
 - D-18970: remove color prop from Badge storybook config [\#722](https://github.com/digital-ai/dot-components/pull/722) ([CWSites](https://github.com/CWSites))
 - MINOR release [\#719](https://github.com/digital-ai/dot-components/pull/719) ([CWSites](https://github.com/CWSites))
 - Icons oct 13 2021 [\#718](https://github.com/digital-ai/dot-components/pull/718) ([BojanKocijan](https://github.com/BojanKocijan))
-- S-77126: Dynamic Form [\#717](https://github.com/digital-ai/dot-components/pull/717) ([dmiletic85](https://github.com/dmiletic85))
 - S-78918: add loading indicator to menu [\#716](https://github.com/digital-ai/dot-components/pull/716) ([CWSites](https://github.com/CWSites))
 - S-78834: update icon buttons to follow agility theme more closely [\#715](https://github.com/digital-ai/dot-components/pull/715) ([CWSites](https://github.com/CWSites))
 - S-77041: New component tooltip [\#713](https://github.com/digital-ai/dot-components/pull/713) ([monapatel91](https://github.com/monapatel91))
