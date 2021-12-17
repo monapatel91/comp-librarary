@@ -4,6 +4,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledAlertBanner } from './AlertBanner.styles';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography, TypographyVariant } from '../typography/Typography';
+import { isString } from '../helpers';
 
 export type AlertBannerSeverity = 'error' | 'info' | 'success' | 'warning';
 
@@ -40,6 +41,8 @@ export const DotAlertBanner = ({
     warning: AlertBannerIcon('warning-solid'),
   };
   const rootClasses = useStylesWithRootClass(rootClassName, className);
+  /* For simple string use default component, for everything else use 'div' */
+  const typographyComponent = isString(children) ? undefined : 'div';
   return (
     <StyledAlertBanner
       action={action}
@@ -50,7 +53,9 @@ export const DotAlertBanner = ({
       onClose={(event: MouseEvent) => (onClose ? onClose(event) : null)}
       severity={severity}
     >
-      <DotTypography variant={textVariant}>{children}</DotTypography>
+      <DotTypography variant={textVariant} component={typographyComponent}>
+        {children}
+      </DotTypography>
     </StyledAlertBanner>
   );
 };
