@@ -1,5 +1,25 @@
 # Changelog
 
+## [Current](https://github.com/digital-ai/dot-components/tree/HEAD)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.5.2...HEAD)
+
+**Features:**
+
+- `Sidebar` Ability to view the sub nav items without expanding the DotSidebar [\#787](https://github.com/digital-ai/dot-components/issues/787)
+
+**Fixed bugs:**
+
+- Circular dependency on `useBreadcrumbsObserver` [\#881](https://github.com/digital-ai/dot-components/issues/881)
+- `Sidebar` Collapsed sidebar with long divider titles [\#801](https://github.com/digital-ai/dot-components/issues/801)
+- `List` Extended sidenav should open if custom onClick handler is supplied [\#767](https://github.com/digital-ai/dot-components/issues/767)
+- D-19321: `Breadcrumbs` - Circular dependency on `useBreadcrumbsObserver` [\#882](https://github.com/digital-ai/dot-components/pull/882) ([dmiletic85](https://github.com/dmiletic85))
+- S-79458: `Sidebar` & `List` updates [\#872](https://github.com/digital-ai/dot-components/pull/872) ([CWSites](https://github.com/CWSites))
+
+**Merged pull requests:**
+
+- S-80787: include changelog generation with release [\#877](https://github.com/digital-ai/dot-components/pull/877) ([CWSites](https://github.com/CWSites))
+
 ## [1.5.2](https://github.com/digital-ai/dot-components/tree/1.5.2) (12/17/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.5.1...1.5.2)
