@@ -120,7 +120,7 @@ export const DotSidebar = ({
   children,
   className,
   collapsable = false,
-  'data-testid': dataTestId = '',
+  'data-testid': dataTestId = 'dot-sidebar',
   displayAppLogo = false,
   displayBrand = true,
   goBack = false,
