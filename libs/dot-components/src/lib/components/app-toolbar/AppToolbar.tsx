@@ -42,6 +42,8 @@ export interface AppToolbarProps extends CommonProps {
   mainMenuWidth?: number;
   /** Array of nav items to be displayed on the right side */
   navItems?: Array<IconButtonProps>;
+  /** URL of the page the primary logo link will go to */
+  primaryLogoHref?: string;
 }
 
 export const DotAppToolbar = ({
@@ -60,6 +62,7 @@ export const DotAppToolbar = ({
   mainMenu,
   mainMenuItems,
   mainMenuWidth = 240,
+  primaryLogoHref = '/',
 }: AppToolbarProps) => {
   const [menuOpen, updateMenuOpen] = useState(false);
   const showMainMenu = mainMenu || mainMenuItems;
@@ -156,7 +159,7 @@ export const DotAppToolbar = ({
         </>
       )}
       <div className="dot-branding">
-        <DotLink className="primary-logo" href="/">
+        <DotLink className="primary-logo" href={primaryLogoHref}>
           {customLogo ? (
             customLogo
           ) : (
