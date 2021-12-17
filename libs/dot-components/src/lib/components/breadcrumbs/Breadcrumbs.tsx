@@ -14,6 +14,7 @@ import { compareWidth } from '../compareSize';
 import {
   addListenersToMenu,
   BreadcrumbItemRefs,
+  checkIfLastItemFullyVisible,
   getExpandElement,
   getItemsAfterCollapse,
   getMaxItems,
@@ -68,6 +69,11 @@ export const DotBreadcrumbs = ({
 
   const [{ breadcrumbRef, firstItemRef, lastItemRef }, maxVisibleItems] =
     useBreadcrumbsObserver(items, maxItems);
+
+  const isLastItemFullyVisible = checkIfLastItemFullyVisible(
+    breadcrumbRef,
+    lastItemRef
+  );
 
   const itemsAfterCollapse = getItemsAfterCollapse(
     adjustMaxItems,
@@ -139,7 +145,10 @@ export const DotBreadcrumbs = ({
         separator={<DotIcon className="separator" iconId="chevron-right" />}
         style={{ width: minWidth }}
       >
-        {mapBreadcrumbItems(items, breadcrumbItemRefs, itemsAfterCollapse)}
+        {mapBreadcrumbItems(items, breadcrumbItemRefs, {
+          isLastItemFullyVisible,
+          itemsAfterCollapse,
+        })}
       </StyledBreadcrumbs>
       <DotMenu
         anchorEl={anchorEl}

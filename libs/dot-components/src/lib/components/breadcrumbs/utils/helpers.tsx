@@ -1,10 +1,16 @@
-import React, { MutableRefObject } from 'react';
+import React, { MutableRefObject, ReactElement } from 'react';
 import { BreadcrumbItem } from '../Breadcrumbs';
 import { DotLink } from '../../link/Link';
+import { DotTooltip } from '@digital-ai/dot-components';
 
 export interface BreadcrumbItemRefs {
   firstItemRef: MutableRefObject<HTMLDivElement>;
   lastItemRef: MutableRefObject<HTMLSpanElement>;
+}
+
+export interface BreadcrumbItemsConfig {
+  isLastItemFullyVisible: boolean;
+  itemsAfterCollapse: number;
 }
 
 export const getItemsAfterCollapse = (
@@ -108,24 +114,40 @@ export const removeListenersFromMenu = (
   expandElement.removeEventListener('keydown', eventListener);
 };
 
+export const getLastItemElement = (
+  { ariaLabel, text }: BreadcrumbItem,
+  lastItemRef: React.MutableRefObject<HTMLSpanElement>,
+  index?: number
+): ReactElement => {
+  return (
+    <span
+      aria-label={ariaLabel}
+      className="breadcrumb current-page"
+      key={index}
+      ref={lastItemRef}
+    >
+      {text}
+    </span>
+  );
+};
+
 export const mapBreadcrumbItems = (
   items: BreadcrumbItem[],
   refs: BreadcrumbItemRefs,
-  itemsAfterCollapse: number
+  { isLastItemFullyVisible, itemsAfterCollapse }: BreadcrumbItemsConfig
 ) => {
   const { firstItemRef, lastItemRef } = refs;
   return items.map((item: BreadcrumbItem, index: number) => {
     const { ariaLabel, href, onClick, text, underline } = item;
+    // Check if last element
     if (index === items.length - 1) {
-      return (
-        <span
-          aria-label={ariaLabel}
-          className="breadcrumb current-page"
-          key={index}
-          ref={lastItemRef}
-        >
-          {text}
-        </span>
+      // Add tooltip if item is not fully visible
+      return isLastItemFullyVisible ? (
+        getLastItemElement(item, lastItemRef, index)
+      ) : (
+        <DotTooltip title={text} key={index} placement="bottom">
+          {getLastItemElement(item, lastItemRef)}
+        </DotTooltip>
       );
     } else {
       const isFirstItemAfterCollapse = checkIfFirstItemAfterCollapse(
@@ -153,4 +175,16 @@ export const mapBreadcrumbItems = (
       );
     }
   });
+};
+
+export const checkIfLastItemFullyVisible = (
+  breadcrumbRef: React.MutableRefObject<HTMLElement>,
+  lastItemRef: React.MutableRefObject<HTMLSpanElement>
+): boolean => {
+  if (!breadcrumbRef?.current || !lastItemRef.current) return false;
+  const availableSpace =
+    breadcrumbRef?.current.getBoundingClientRect().right -
+    lastItemRef.current.getBoundingClientRect().left;
+  const lastItemWidth = getWidthFromRef(lastItemRef);
+  return lastItemWidth <= availableSpace;
 };
