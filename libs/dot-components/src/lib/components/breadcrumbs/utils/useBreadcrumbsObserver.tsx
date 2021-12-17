@@ -2,9 +2,6 @@ import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { BreadcrumbItem } from '../Breadcrumbs';
 import { useBreadcrumbsResizer } from './useBreadcrumbsResizer';
 
-export const MIN_AVAILABLE_SPACE = 60;
-export const ITEMS_SEPARATOR_SPACE = 20;
-
 interface BreadcrumbsObserverRefs {
   breadcrumbRef: MutableRefObject<HTMLElement>;
   firstItemRef: MutableRefObject<HTMLDivElement>;

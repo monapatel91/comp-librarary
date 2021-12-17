@@ -1,9 +1,5 @@
 import React, { MutableRefObject, useEffect, useState } from 'react';
 import { getInitialMaxVisibleItems, getWidthFromRef } from './helpers';
-import {
-  ITEMS_SEPARATOR_SPACE,
-  MIN_AVAILABLE_SPACE,
-} from './useBreadcrumbsObserver';
 import { BreadcrumbItem } from '../Breadcrumbs';
 
 export interface MaxVisibleItems {
@@ -20,6 +16,9 @@ interface BreadcrumbItemsProps {
   items: Array<BreadcrumbItem>;
   maxItems?: number;
 }
+
+export const MIN_AVAILABLE_SPACE = 60;
+export const ITEMS_SEPARATOR_SPACE = 20;
 
 export const useBreadcrumbsResizer = (
   breadcrumbsRightCoord: number,
