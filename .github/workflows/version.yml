@@ -83,6 +83,7 @@ jobs:
 
       # https://github.com/marketplace/actions/add-commit
       - name: Commit and Push Changelog
+        id: commit
         uses: EndBug/add-and-commit@v7.4.0
         with:
           add: CHANGE_LOG.md
