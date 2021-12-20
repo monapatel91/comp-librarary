@@ -95,7 +95,7 @@ export const DotList = ({
         const handleMenuLeave = () => setListItemIndex(null);
 
         if (item.child) {
-          return <Fragment key={`list-item-${index}`}>{item.child}</Fragment>;
+          return <Fragment key={`item-child-${index}`}>{item.child}</Fragment>;
         }
 
         if (item.divider) {
