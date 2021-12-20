@@ -20,7 +20,7 @@ export const StyledCheckboxGroup = styled.div`
       .${checkboxListClassName} {
         list-style: none;
         margin-top: 0;
-        padding-left: ${theme.spacing(2.5)}px;
+        padding-left: ${theme.spacing(2.5)};
 
         .${formControlLabelClass} {
           margin: 0;

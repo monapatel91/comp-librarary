@@ -303,7 +303,7 @@ export const VsmAccount = () => {
   return (
     <>
       <DotActionToolbar>
-        <Grid container justify="space-between">
+        <Grid container justifyContent="space-between">
           <Typography variant="h1">Account acc-1</Typography>
           <DotButton size="small">Add DPF's</DotButton>
         </Grid>

@@ -35,7 +35,7 @@ describe('dot-components: Sidebar component', () => {
     it('nav divider', () => {
       cy.get('hr.MuiDivider-root')
         .should('have.css', 'margin-top', '8px')
-        .and('have.css', 'background-color', 'rgb(227, 229, 232)');
+        .and('have.css', 'border-color', 'rgb(227, 229, 232)');
     });
 
     it('toggle nav', () => {

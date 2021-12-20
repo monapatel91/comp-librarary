@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
+import {
+  createTheme,
+  ThemeProvider as MuiThemeProvider,
+} from '@mui/material/styles';
 import { StylesProvider } from '@mui/styles';
 import {
   avatarColors,
@@ -11,7 +13,7 @@ import {
 
 export const productLightTheme = createTheme({
   palette: {
-    type: 'light',
+    mode: 'light',
     avatarColors: {
       ...avatarColors,
     },
@@ -62,7 +64,7 @@ export const productLightTheme = createTheme({
 
 export const productDarkTheme = createTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
     avatarColors: {
       ...avatarColors,
     },

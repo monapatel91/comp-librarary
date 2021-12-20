@@ -17,7 +17,6 @@ export type TypographyVariant =
   | 'caption'
   | 'button'
   | 'overline'
-  | 'srOnly'
   | 'inherit';
 
 export interface TypographyProps extends CommonProps {

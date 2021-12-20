@@ -106,7 +106,7 @@ export const DotMenu = ({
     }
   };
 
-  const handleClickAway = (event: MouseEvent<never>) => {
+  const handleClickAway = (event: any) => {
     if (onLeave && (!anchorEl || !anchorEl.contains(event.currentTarget))) {
       onLeave(event);
     }

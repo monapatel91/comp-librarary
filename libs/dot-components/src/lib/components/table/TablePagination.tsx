@@ -11,9 +11,9 @@ export interface TablePaginationProps extends CommonProps {
   /** Total number of rows (-1 if unknown) */
   count: number;
   /** Callback fired when the page is changed */
-  onChangePage: (newPage: number) => void;
+  onPageChange: (newPage: number) => void;
   /** Callback fired when the number of rows per page is changed */
-  onChangeRowsPerPage?: (
+  onRowsPerPageChange?: (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void;
   /** The zero-based index of the current page */
@@ -28,21 +28,21 @@ export const DotTablePagination = ({
   className,
   count,
   'data-testid': dataTestId,
-  onChangePage,
-  onChangeRowsPerPage,
+  onPageChange,
+  onRowsPerPageChange,
   page = 0,
   rowsPerPage = 10,
 }: TablePaginationProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   const handlePageChange = (event: MouseEvent | null, newPage: number) => {
-    onChangePage && onChangePage(newPage);
+    onPageChange && onPageChange(newPage);
   };
 
   const handleChangeRowsPerPage = (
     evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
-    onChangeRowsPerPage && onChangeRowsPerPage(evt);
+    onRowsPerPageChange && onRowsPerPageChange(evt);
   };
 
   return (
@@ -50,8 +50,9 @@ export const DotTablePagination = ({
       aria-label={ariaLabel}
       classes={{
         root: rootClasses,
+        displayedRows: 'dot-typography',
         selectIcon: 'dot-icon',
-        caption: 'dot-typography',
+        selectLabel: 'dot-typography',
         menuItem: 'dot-li',
       }}
       component="div"

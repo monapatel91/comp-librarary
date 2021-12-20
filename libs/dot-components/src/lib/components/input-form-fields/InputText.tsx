@@ -20,6 +20,10 @@ interface InputTextState {
 export interface InputTextProps extends InputProps {
   /** If true, the input will use debounce functionality. **/
   hasDebounce?: boolean;
+  /** max of rows for multiline line */
+  maxRows?: number;
+  /** number of rows for multiline line */
+  minRows?: number;
   /** if multiline it wil render multiple lines */
   multiline?: boolean;
   /** Placeholder text always displayed inside the input field */
@@ -30,6 +34,8 @@ export interface InputTextProps extends InputProps {
   rows?: number;
   /** max of rows for multiline line */
   rowsMax?: number;
+  /** value of the InputText */
+  value?: string;
 }
 
 const getInitialState = (value: string): InputTextState => ({
@@ -59,8 +65,8 @@ export const DotInputText = ({
   placeholder,
   readOnly = false,
   required = false,
-  rows,
-  rowsMax,
+  minRows,
+  maxRows,
   startIcon,
   size = 'small',
   type = 'text',
@@ -177,8 +183,8 @@ export const DotInputText = ({
       onKeyDown={onKeyDown}
       placeholder={placeholder}
       required={required}
-      rows={multiline ? rows : null}
-      rowsMax={multiline ? rowsMax : null}
+      minRows={multiline ? minRows : null}
+      maxRows={multiline ? maxRows : null}
       size={size}
       type={type}
       value={inputTextValue}

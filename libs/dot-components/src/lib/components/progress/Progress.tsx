@@ -5,7 +5,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { StyledCircularProgress, rootClassName } from './Progress.styles';
 
 export type progressColorOptions = 'inherit' | 'primary' | 'secondary';
-export type progressVariantOptions = 'determinate' | 'indeterminate' | 'static';
+export type progressVariantOptions = 'determinate' | 'indeterminate';
 
 export interface ProgressProps extends CommonProps {
   /** color of the loading spinner border */

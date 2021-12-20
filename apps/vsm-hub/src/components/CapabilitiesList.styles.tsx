@@ -6,13 +6,13 @@ export const StyledCapabilities = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
       .dot-card {
-        margin-bottom: ${theme.spacing(2)}px;
+        margin-bottom: ${theme.spacing(2)};
       }
       .list-header {
         max-width: 200px;
       }
       .capabilities-title {
-        margin-bottom: ${theme.spacing(2)}px;
+        margin-bottom: ${theme.spacing(2)};
       }
       .horizontal-card {
         display: flex;
@@ -23,7 +23,7 @@ export const StyledCapabilities = styled.div`
           justify-content: center;
           align-items: center;
           .dot-button {
-            margin: ${theme.spacing(1)}px;
+            margin: ${theme.spacing(1)};
           }
         }
       }

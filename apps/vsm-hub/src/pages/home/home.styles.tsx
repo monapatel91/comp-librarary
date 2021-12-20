@@ -6,7 +6,7 @@ export const containerClassName = 'vsm-hub-container';
 export const StyledVsmHubHome = styled.div`
   ${({ theme }) => css`
     &.${rootClassName} {
-      margin: ${theme.spacing(3)}px;
+      margin: ${theme.spacing(3)};
       position: relative;
     }
   `}

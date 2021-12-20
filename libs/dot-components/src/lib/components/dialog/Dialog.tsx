@@ -112,7 +112,7 @@ export const DotDialog = ({
       onClose={handleClickAway}
       open={isOpen}
     >
-      <DialogTitle disableTypography={true}>
+      <DialogTitle>
         <DotTypography variant="h2">{title}</DotTypography>
         {closeIconVisible && (
           <DotIconButton iconId="close" onClick={handleCancel} size="small" />

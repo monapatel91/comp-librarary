@@ -11,7 +11,7 @@ export const StyledMessage = styled(Paper)`
       margin ${theme.spacing(0, 0, 2, 0)};
       display: flex;
       justify-content: space-between;
-      padding: ${theme.spacing(2)}px;
+      padding: ${theme.spacing(2)};
       min-height: 46px;
       background-color: ${theme.palette.primary[50]};
       border: 1px solid ${theme.palette.primary[50]};
@@ -28,7 +28,7 @@ export const StyledMessage = styled(Paper)`
         align-items: center;
       }
       .${headerClassName} {
-        margin-left: ${theme.spacing(2)}px;
+        margin-left: ${theme.spacing(2)};
       }
     }
   `}

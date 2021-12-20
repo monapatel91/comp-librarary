@@ -39,11 +39,18 @@ export const DotButton = React.forwardRef(
   ) => {
     const rootClasses = useStylesWithRootClass(rootClassName, className);
 
-    let color: 'primary' | 'secondary' | 'default';
+    let color:
+      | 'primary'
+      | 'secondary'
+      | 'inherit'
+      | 'success'
+      | 'error'
+      | 'info'
+      | 'warning';
     let variant: 'contained' | 'outlined' | 'text';
     switch (type) {
       case 'destructive':
-        color = disabled ? 'default' : 'secondary';
+        color = disabled ? 'inherit' : 'secondary';
         variant = 'contained';
         break;
       case 'primary':
@@ -51,11 +58,11 @@ export const DotButton = React.forwardRef(
         variant = 'contained';
         break;
       case 'outlined':
-        color = 'default';
+        color = 'inherit';
         variant = 'outlined';
         break;
       case 'text':
-        color = 'default';
+        color = 'inherit';
         variant = 'text';
         break;
     }

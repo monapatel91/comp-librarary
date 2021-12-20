@@ -24,7 +24,7 @@ export const StyledDialog = styled(Dialog)`
         }
 
         .dot-icon-button {
-          margin-left: ${theme.spacing(1)}px;
+          margin-left: ${theme.spacing(1)};
         }
       }
 

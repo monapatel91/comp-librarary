@@ -8,7 +8,7 @@ export const StyledDemoDynamicForm = styled.div`
       .options {
         display: flex;
         margin: ${theme.spacing(2, 2)};
-        gap: ${theme.spacing(4)}px;
+        gap: ${theme.spacing(4)};
       }
 
       .divider {

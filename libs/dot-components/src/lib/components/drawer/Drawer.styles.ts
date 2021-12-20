@@ -16,7 +16,7 @@ export const StyledDrawer = styled(Drawer)<DrawerProps>`
       theme.palette.layer.n50};
       height: ${({ height, anchor }: DrawerProps) =>
         anchor === 'left' || anchor === 'right' ? '100%' : height};
-      padding: ${theme.spacing(2)}px;
+      padding: ${theme.spacing(2)};
       width: ${({ width, anchor }: DrawerProps) =>
         anchor === 'bottom' || anchor === 'top' ? '100%' : width};
     }

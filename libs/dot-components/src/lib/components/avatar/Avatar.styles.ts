@@ -39,18 +39,18 @@ export const StyledAvatar = styled(Avatar)<AvatarProps>`
       }
 
       &.small {
-        height: ${theme.spacing(avatarSpacing.small)}px;
-        width: ${theme.spacing(avatarSpacing.small)}px;
+        height: ${theme.spacing(avatarSpacing.small)};
+        width: ${theme.spacing(avatarSpacing.small)};
       }
 
       &.medium {
-        height: ${theme.spacing(avatarSpacing.medium)}px;
-        width: ${theme.spacing(avatarSpacing.medium)}px;
+        height: ${theme.spacing(avatarSpacing.medium)};
+        width: ${theme.spacing(avatarSpacing.medium)};
       }
 
       &.large {
-        height: ${theme.spacing(avatarSpacing.large)}px;
-        width: ${theme.spacing(avatarSpacing.large)}px;
+        height: ${theme.spacing(avatarSpacing.large)};
+        width: ${theme.spacing(avatarSpacing.large)};
       }
     }
   `}

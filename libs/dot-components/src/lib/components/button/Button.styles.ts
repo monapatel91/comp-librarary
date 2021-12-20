@@ -7,7 +7,7 @@ export const rootClassName = 'dot-button';
 export const StyledButton = styled(Button)`
   ${({ theme }) => css`
     &.${rootClassName} {
-      margin: ${theme.spacing(0.5)}px;
+      margin: ${theme.spacing(0.5)};
       min-width: auto;
       white-space: nowrap;
 

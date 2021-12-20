@@ -32,7 +32,7 @@ export const StyledFileUploadContainer = styled.div`
         .dot-typography,
         .file-item-text {
           flex-grow: 2;
-          padding-left: ${theme.spacing(1)}px;
+          padding-left: ${theme.spacing(1)};
         }
 
         .file-item-text {
@@ -62,7 +62,7 @@ export const StyledFileUpload = styled.div`
       height: 240px;
       justify-content: center;
       padding: ${theme.spacing(3, 0)};
-      margin-bottom: ${theme.spacing(1)}px;
+      margin-bottom: ${theme.spacing(1)};
 
       &.disabled .dot-typography {
         color: ${theme.palette.layer.n300};

@@ -26,8 +26,7 @@ export const StyledSidebar = styled.aside`
       flex-direction: column;
       justify-content: space-between;
       letter-spacing: 0.01em;
-      padding: ${theme.palette.product === 'agility' &&
-      `${theme.spacing(2)}px`};
+      padding: ${theme.palette.product === 'agility' && `${theme.spacing(2)}`};
       -o-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
       -moz-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
       -webkit-transition: width cubic-bezier(0.4, 0, 0.6, 1) 0.3s;
@@ -44,7 +43,7 @@ export const StyledSidebar = styled.aside`
         flex-shrink: 0;
         overflow: hidden;
         margin-bottom: ${theme.palette.product === 'agility' &&
-        `${theme.spacing(1)}px`};
+        `${theme.spacing(1)}`};
         padding: ${theme.palette.product === 'agililty'
           ? theme.spacing(0, 0, 1)
           : theme.spacing(1, 2)};
@@ -62,7 +61,7 @@ export const StyledSidebar = styled.aside`
         }
 
         .dot-avatar {
-          margin-right: ${theme.spacing(1)}px;
+          margin-right: ${theme.spacing(1)};
         }
       }
 
@@ -75,7 +74,7 @@ export const StyledSidebar = styled.aside`
         display: flex;
 
         .dot-icon {
-          margin-right: ${theme.spacing(2)}px;
+          margin-right: ${theme.spacing(2)};
           width: 40px;
           height: 40px;
         }
@@ -86,7 +85,7 @@ export const StyledSidebar = styled.aside`
       }
 
       hr.MuiDivider-root {
-        background-color: ${theme.palette.product === 'agility'
+        border-color: ${theme.palette.product === 'agility'
           ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
         margin: ${theme.palette.product === 'agility'
@@ -140,7 +139,7 @@ export const StyledSidebar = styled.aside`
 
           .${listItemRootClass} {
             margin: 0;
-            padding-left: ${theme.spacing(2)}px;
+            padding-left: ${theme.spacing(2)};
           }
         }
 
@@ -148,7 +147,7 @@ export const StyledSidebar = styled.aside`
           height: ${theme.palette.product === 'agility' ? '40px' : '44px'};
           padding: 0;
           margin-bottom: ${theme.palette.product === 'agility' &&
-          `${theme.spacing(1)}px`};
+          `${theme.spacing(1)}`};
 
           &.MuiListItem-root.Mui-selected,
           &.MuiListItem-root.Mui-selected:hover,
@@ -191,7 +190,7 @@ export const StyledSidebar = styled.aside`
           }
 
           .dot-list-item-link .dot-icon {
-            margin-right: ${theme.spacing(1)}px;
+            margin-right: ${theme.spacing(1)};
           }
 
           .dot-icon {
@@ -212,7 +211,7 @@ export const StyledSidebar = styled.aside`
         border-top-color: ${theme.palette.product === 'agility'
           ? theme.palette.agilityInterface.sideNavBorder
           : theme.palette.grey[100]};
-        padding: ${theme.spacing(1)}px;
+        padding: ${theme.spacing(1)};
         text-align: right;
 
         .dot-icon {
@@ -235,14 +234,14 @@ export const StyledSidebar = styled.aside`
         flex-shrink: 0;
         font-size: 12px;
         overflow: hidden;
-        padding: ${theme.spacing(1)}px;
+        padding: ${theme.spacing(1)};
 
         p.desc {
           white-space: nowrap;
         }
 
         .company-name {
-          margin-top: ${theme.spacing(1)}px;
+          margin-top: ${theme.spacing(1)};
         }
 
         .d-icon {

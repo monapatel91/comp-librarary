@@ -19,8 +19,8 @@ export const StyledRadioGroupWrapper = styled.div`
 
 export const StyledRadioGroup = styled(RadioGroup)`
   ${({ theme }) => css`{
-    &.${rootClassName} {
-      padding-left: ${theme.spacing(2.5)}px;
+    &.${groupClassName} {
+      padding-left: ${theme.spacing(2.5)};
 
       .${formControlLabelClass} {
         margin: 0;

@@ -15,6 +15,8 @@ import {
   wrapperClassName,
 } from './CheckboxGroup.styles';
 
+// TO-DO: make sure form control label is still good
+// https://next.material-ui.com/guides/migration-v4/#formcontrollabel
 export interface CheckboxGroupProps extends RadioGroupBaseProps {
   /** Array of CheckboxProps to set by default */
   defaultValue?: CheckboxProps[];

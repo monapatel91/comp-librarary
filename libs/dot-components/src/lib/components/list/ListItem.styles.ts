@@ -24,7 +24,7 @@ export const StyledListItem = styled(ListItem)`
       }
 
       .${flyoutItemLinkClassName} .MuiIcon-root {
-        margin-right: ${theme.spacing(4)}px;
+        margin-right: ${theme.spacing(4)};
       }
 
       .dot-list-item-end-icon {

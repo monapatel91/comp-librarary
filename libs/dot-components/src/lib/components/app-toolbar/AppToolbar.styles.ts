@@ -87,7 +87,7 @@ export const StyledAppToolbar = styled.header`
 
         .primary-logo,
         .app-logo {
-          margin-right: ${theme.spacing(1.5)}px;
+          margin-right: ${theme.spacing(1.5)};
         }
 
         .primary-logo,
@@ -112,7 +112,7 @@ export const StyledAppToolbar = styled.header`
         }
 
         .divider {
-          margin-left: ${theme.spacing(2)}px;
+          margin-left: ${theme.spacing(2)};
         }
       }
 

@@ -26,13 +26,6 @@ export const DotSkeleton = ({
   variant,
 }: SkeletonProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);
-  // When we upgrade to Material UI v5 this must be removed!
-  const skeletonVariant =
-    variant === 'circular'
-      ? 'circle'
-      : variant === 'rectangular'
-      ? 'rect'
-      : variant;
   return (
     <StyledSkeleton
       animation="wave"
@@ -40,7 +33,7 @@ export const DotSkeleton = ({
       classes={{ root: rootClasses }}
       data-testid={dataTestId}
       height={height}
-      variant={skeletonVariant}
+      variant={variant}
       width={width}
     >
       {children}

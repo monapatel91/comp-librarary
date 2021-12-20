@@ -4,18 +4,17 @@ import { Link } from 'react-router-dom';
 
 export const mainLevelNav: Array<ListItemProps> = [
   {
-    iconId: 'home',
-    text: 'Home',
-    selected: true,
     component: forwardRef((props, ref) => <Link {...props} to="/" ref={ref} />),
+    selected: true,
+    startIconId: 'home',
+    text: 'Home',
   },
   {
-    iconId: 'list',
-    text: 'Accounts',
-
     component: forwardRef((props, ref) => (
       <Link {...props} to="/accounts" ref={ref} />
     )),
+    startIconId: 'list',
+    text: 'Accounts',
   },
   // {
   //   iconId: 'cloud',
@@ -27,17 +26,17 @@ export const mainLevelNav: Array<ListItemProps> = [
   // },
   { text: '', divider: true },
   {
-    iconId: 'settings',
-    text: 'Settings',
     component: forwardRef((props, ref) => (
       <Link {...props} to="/admin" ref={ref} />
     )),
+    startIconId: 'settings',
+    text: 'Settings',
   },
 ];
 
 export const accountLevelNav: Array<ListItemProps> = [
   {
-    iconId: 'cloud',
+    startIconId: 'cloud',
     text: 'Overview',
     selected: true,
     component: forwardRef((props, ref) => (
@@ -45,7 +44,7 @@ export const accountLevelNav: Array<ListItemProps> = [
     )),
   },
   {
-    iconId: 'settings',
+    startIconId: 'settings',
     text: 'Settings',
     component: forwardRef((props, ref) => (
       <Link {...props} to="/account/settings" ref={ref} />
@@ -55,7 +54,7 @@ export const accountLevelNav: Array<ListItemProps> = [
 
 export const productLevelNav: Array<ListItemProps> = [
   {
-    iconId: 'cloud',
+    startIconId: 'cloud',
     text: 'Overview',
     selected: true,
     component: forwardRef((props, ref) => (
@@ -63,21 +62,21 @@ export const productLevelNav: Array<ListItemProps> = [
     )),
   },
   {
-    iconId: 'monitor',
+    startIconId: 'monitor',
     text: 'Usage',
     component: forwardRef((props, ref) => (
       <Link {...props} to="/product/usage/agility" ref={ref} />
     )),
   },
   {
-    iconId: 'dashboard',
+    startIconId: 'dashboard',
     text: 'Analytics',
     component: forwardRef((props, ref) => (
       <Link {...props} to="/products/analytics/agility" ref={ref} />
     )),
   },
   {
-    iconId: 'list',
+    startIconId: 'list',
     text: 'Logs',
     component: forwardRef((props, ref) => (
       <Link {...props} to="/products/logs/agility" ref={ref} />

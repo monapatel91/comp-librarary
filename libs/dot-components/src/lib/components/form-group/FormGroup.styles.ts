@@ -7,7 +7,7 @@ export const StyledFormGroup = styled(FormGroup)`
   ${({ theme, row }) => css`
     &.${rootClassName} {
       & > * {
-        margin: ${row ? `${theme.spacing(0.5)}px` : 0};
+        margin: ${row ? `${theme.spacing(0.5)}` : 0};
       }
     }
   `}

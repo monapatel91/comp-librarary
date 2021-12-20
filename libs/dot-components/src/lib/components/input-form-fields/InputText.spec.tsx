@@ -34,8 +34,8 @@ describe('DotInputText', () => {
       placeholder: 'Enter something',
       readOnly: true,
       required: true,
-      rows: 5,
-      rowsMax: 15,
+      minRows: 5,
+      maxRows: 15,
       size: 'small' as inputSizeOptions,
       startIcon: <DotIcon iconId="save" />,
       type: 'text',
@@ -102,7 +102,7 @@ describe('DotInputText', () => {
     expect(textarea).toBeVisible();
   });
 
-  it('rows should be 4', async () => {
+  it('minRows should be 4', async () => {
     render(
       <DotInputText
         data-testid="test-input"
@@ -111,11 +111,11 @@ describe('DotInputText', () => {
         multiline
         name="test"
         required={false}
-        rows={4}
+        minRows={4}
       />
     );
     const inputField = screen.getByTestId('test-input');
-    expect(inputField).toHaveAttribute('rows', '4');
+    expect(inputField).toHaveAttribute('minRows', '4');
   });
 
   it('should not be textarea', async () => {
@@ -126,7 +126,7 @@ describe('DotInputText', () => {
         label="Test"
         name="test"
         required={false}
-        rows={4}
+        minRows={4}
       />
     );
 

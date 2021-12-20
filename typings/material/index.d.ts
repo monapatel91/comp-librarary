@@ -3,6 +3,16 @@ interface AvatarPaletteColorOption {
   color: string;
 }
 
+export interface BreakpointOptions {
+  values: {
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
+  };
+}
+
 export interface AvatarPaletteColorOptions {
   default: AvatarPaletteColorOption;
   green: AvatarPaletteColorOption;

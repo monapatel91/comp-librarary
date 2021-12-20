@@ -20,6 +20,8 @@ import {
   wrapperClassName,
 } from './RadioGroup.styles';
 
+// TO-DO: make sure form control label is still good
+// https://next.material-ui.com/guides/migration-v4/#formcontrollabel
 export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   /** Icon placed before the children. */
   endIcon?: ReactNode;

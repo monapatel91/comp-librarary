@@ -6,7 +6,7 @@ import { rootClassName, StyledTabs } from './Tabs.styles';
 import { DotIcon } from '../icon/Icon';
 
 export type TabsColor = 'primary' | 'secondary';
-export type TabsScrollButtons = 'auto' | 'desktop' | 'off' | 'on';
+export type TabsScrollButtons = 'auto' | boolean;
 export type TabsVariant = 'fullWidth' | 'scrollable' | 'standard';
 
 export interface TabProps extends CommonProps {
@@ -47,9 +47,9 @@ export const DotTabs = ({
   'data-testid': dataTestId,
   initialValue = 0,
   onChange,
-  scrollButtons = 'auto',
+  scrollButtons,
   tabs,
-  variant = 'standard',
+  variant,
 }: TabsProps) => {
   const [value, setValue] = useState(initialValue);
   const rootClasses = useStylesWithRootClass(rootClassName, className);

@@ -10,6 +10,8 @@ import {
 } from './RadioButton.styles';
 import { CommonFormFieldProps } from '../input-form-fields/InputFormFields.propTypes';
 
+// TO-DO: make sure form control label is still good
+// https://next.material-ui.com/guides/migration-v4/#formcontrollabel
 export type RadioSize = 'medium' | 'small';
 export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
 

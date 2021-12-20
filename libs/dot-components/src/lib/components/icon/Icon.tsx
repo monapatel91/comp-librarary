@@ -4,8 +4,7 @@ import { DotTooltip } from '../tooltip/Tooltip';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledIcon } from './Icon.styles';
 
-// TO-DO: S-76846 MUI 5 change IconFontSize 'default' to 'medium'
-export type IconFontSize = 'inherit' | 'default' | 'small' | 'medium';
+export type IconFontSize = 'medium' | 'small';
 
 export interface IconProps extends CommonProps {
   /** Determines the size of the icon and spacing around it */
@@ -31,14 +30,6 @@ export const DotIcon = ({
 
   // deprecation warning(s)
   useEffect(() => {
-    // 'inherit' causes the vertical alignment of the icon to be not be centered
-    // TO-DO: S-76846 MUI 5 change IconFontSize 'default' to 'medium'
-    if (fontSize === 'inherit' || fontSize === 'default') {
-      console.warn(
-        `The use of \`fontSize: ${fontSize}\` on \`DotIcon\` is deprecated and will be removed in the next release. Please consider using \`fontSize: medium\` instead.`
-      );
-    }
-    // deprecation warning
     if (title) {
       console.warn(
         'The use of `title` is deprecated and will be removed in the next major release, please use `tooltip` isntead.'
@@ -53,7 +44,7 @@ export const DotIcon = ({
         aria-label={ariaLabel}
         classes={{ root: rootClasses }}
         data-testid={dataTestId}
-        fontSize={fontSize === 'small' ? fontSize : 'medium'}
+        fontSize={fontSize}
       >
         <i className={`icon-${iconId} dot-i`} />
       </StyledIcon>

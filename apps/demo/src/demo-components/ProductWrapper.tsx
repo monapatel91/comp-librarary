@@ -31,9 +31,7 @@ export const ProductButtons = () => {
         <DotTypography variant="h1">Default Button(s)</DotTypography>
         <div style={{ padding: '10px 20px' }}>
           <DotTypography variant="h3">Material UI Button</DotTypography>
-          <Button variant="contained" color="primary">
-            Hello World
-          </Button>
+          <Button variant="contained">Hello World</Button>
           <pre>
             <code>{`
             <Button>Hello World</Button>

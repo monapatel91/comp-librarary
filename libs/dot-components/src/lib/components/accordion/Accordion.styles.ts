@@ -17,7 +17,7 @@ export const StyledAccordion = styled(Accordion)`
         display: flex;
 
         .MuiAccordionSummary-content {
-          width: calc(100% - ${theme.spacing(5)}px);
+          width: calc(100% - ${theme.spacing(5)});
         }
 
         .MuiTypography-root {

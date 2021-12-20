@@ -228,7 +228,7 @@ export const DemoForm = () => {
               name="commentField"
               size="small"
               multiline={true}
-              rows={4}
+              minRows={4}
               value={commentField}
               onChange={handleChange}
             />

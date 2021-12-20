@@ -48,7 +48,7 @@ describe(' Sidebar', () => {
       ariaLabel: 'sidebar',
       backItem: backItem,
       brandDesc: 'best brand',
-      children: <TextField placeholder="search" variant="outlined" />,
+      children: <TextField placeholder="search" />,
       className: 'test-class',
       collapsable: true,
       'data-testid': 'testid',

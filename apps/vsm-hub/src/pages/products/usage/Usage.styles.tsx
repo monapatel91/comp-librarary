@@ -8,10 +8,10 @@ export const iconClassName = 'vsm-hub-usages-icon';
 export const StyledTableCard = styled(DotCard)`
   ${({ theme }) => css`
     &.${tableCardClassName} {
-      margin-top: ${theme.spacing(2)}px;
+      margin-top: ${theme.spacing(2)};
     }
     .label {
-      margin-left: ${theme.spacing(1)}px;
+      margin-left: ${theme.spacing(1)};
     }
   `}
 `;

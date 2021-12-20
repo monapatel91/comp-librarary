@@ -121,7 +121,7 @@ export const DotAvatar = ({
   text = alt,
   type = 'image',
   tooltip,
-  variant = 'circular',
+  variant,
   style,
 }: AvatarProps) => {
   const rootClasses = useStylesWithRootClass(rootClassName, className);

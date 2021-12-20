@@ -1,20 +1,19 @@
+import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
-
-import React from 'react';
 import { Theme } from '@mui/material/styles';
-import { BreakpointValues } from '@mui/material/styles/createBreakpoints';
+// import { BreakpointValues } from '@mui/material/styles/createBreakpoints';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export interface CssGridProps extends CommonProps {
   /** Cells for Grid */
-  children?: React.ReactNode | Array<React.ReactNode>;
+  children?: ReactNode | ReactNode[];
   /** Columns gap */
-  columnGap?: BreakpointValues;
+  columnGap?: any;
   /** Columns, overrides columnsBreakpoints */
   columns?: number | string;
   /** Breakpoints for columns */
-  columnsBreakpoints?: BreakpointValues;
+  columnsBreakpoints?: any;
   /** Overall gap column and row */
   gap?: string;
   /** Template to create layout */
@@ -22,7 +21,7 @@ export interface CssGridProps extends CommonProps {
   /** Height of the grid */
   height?: string;
   /** Row, overrides columnsBreakpoints */
-  rowGap?: BreakpointValues;
+  rowGap?: any;
   /** Row, configuration */
   rows?: number | string;
   /** Width of the grid */
@@ -36,9 +35,9 @@ const frGetter = (value: string | number) =>
 
 const breakpointsGetter = (
   theme: Theme,
-  columnsBreakpoints: BreakpointValues,
-  columnGap: BreakpointValues,
-  rowGap: BreakpointValues
+  columnsBreakpoints: any,
+  columnGap: any,
+  rowGap: any
 ) =>
   `${theme.breakpoints.up('xs')} {
     column-gap: ${`${columnGap.xs}px`};
@@ -66,7 +65,7 @@ const breakpointsGetter = (
     row-gap: ${`${rowGap.xl}px`};
   }`;
 
-export const defaultGutter: BreakpointValues = {
+export const defaultGutter: any = {
   xs: 16,
   sm: 16,
   md: 24,
@@ -74,7 +73,7 @@ export const defaultGutter: BreakpointValues = {
   xl: 24,
 };
 
-export const defaultColumns: BreakpointValues = {
+export const defaultColumns: any = {
   xs: 4,
   sm: 8,
   md: 12,

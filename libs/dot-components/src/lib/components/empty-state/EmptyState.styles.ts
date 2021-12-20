@@ -11,15 +11,15 @@ export const StyledEmptyState = styled.div`
 
       .empty-state-image {
         min-height: 239px;
-        margin-bottom: ${theme.spacing(5)}px;
+        margin-bottom: ${theme.spacing(5)};
       }
 
       h2 {
-        margin-bottom: ${theme.spacing(1)}px;
+        margin-bottom: ${theme.spacing(1)};
       }
 
       .dot-button {
-        margin-top: ${theme.spacing(4)}px;
+        margin-top: ${theme.spacing(4)};
       }
     }
   `}

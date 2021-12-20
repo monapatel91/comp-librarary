@@ -171,14 +171,14 @@ export const DotTable = ({
       : updateData(dataOrder, property, 0, tableRowsPerPage);
   };
 
-  const onChangePage = (newPage: number) => {
+  const onPageChange = (newPage: number) => {
     setPage(newPage);
     onUpdateData
       ? onUpdateData(tableOrder, tableOrderBy, newPage, tableRowsPerPage)
       : updateData(tableOrder, tableOrderBy, newPage, tableRowsPerPage);
   };
 
-  const onChangeRowsPerPage = (
+  const onRowsPerPageChange = (
     evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
     const newRowsPerPage = parseInt(evt.target.value) as RowsPerPageOption;
@@ -282,8 +282,8 @@ export const DotTable = ({
       {rowsPerPage && (
         <DotTablePagination
           count={total}
-          onChangePage={onChangePage}
-          onChangeRowsPerPage={onChangeRowsPerPage}
+          onPageChange={onPageChange}
+          onRowsPerPageChange={onRowsPerPageChange}
           page={tablePage}
           rowsPerPage={tableRowsPerPage}
         />

@@ -14,7 +14,7 @@ export const StyledTabs = styled(Tabs)`
       .dot-tab-label-container {
         display: flex;
         .dot-tab-label {
-          padding-top: ${theme.spacing(0.5)}px;
+          padding-top: ${theme.spacing(0.5)};
         }
       }
       .MuiTab-root {
@@ -45,7 +45,7 @@ export const StyledTabs = styled(Tabs)`
       }
       .MuiIcon-root {
         display: inline;
-        padding-right: ${theme.spacing(0.5)}px;
+        padding-right: ${theme.spacing(0.5)};
       }
       .MuiTabs-indicator {
         background-color: ${theme.palette.product === 'agility' &&

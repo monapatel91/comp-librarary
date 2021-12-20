@@ -54,7 +54,7 @@ export const StyledPopper = styled(Popper)`
       }
 
       .dot-action-item {
-        height: ${theme.spacing(7)}px;
+        height: ${theme.spacing(7)};
         border-top: 1px solid ${theme.palette.grey[100]};
         line-height: inherit;
 
@@ -72,7 +72,7 @@ export const StyledPopper = styled(Popper)`
           }
 
           .MuiButton-label {
-            gap: ${theme.spacing(3)}px;
+            gap: ${theme.spacing(3)};
 
             .MuiButton-startIcon {
               margin-left: 0;

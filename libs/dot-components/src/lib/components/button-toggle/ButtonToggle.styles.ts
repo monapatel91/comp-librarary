@@ -8,7 +8,7 @@ export const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
     &.${rootClassName} {
       .dot-icon {
         + p {
-          margin-left: ${theme.spacing(1)}px;
+          margin-left: ${theme.spacing(1)};
         }
         i {
           height: auto;

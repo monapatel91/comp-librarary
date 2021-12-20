@@ -7,7 +7,9 @@ import {
 } from '../form-controls/FormControlLabel.styles';
 import { rootClassName, StyledSwitch } from './Switch.styles';
 
-export type SwitchColor = 'default' | 'primary' | 'secondary';
+// TO-DO: make sure form control label is still good
+// https://next.material-ui.com/guides/migration-v4/#formcontrollabel
+export type SwitchColor = 'primary' | 'secondary';
 export type SwitchSize = 'medium' | 'small';
 export type SwitchLabelPlacement = 'bottom' | 'end' | 'start' | 'top';
 
@@ -36,7 +38,7 @@ export const DotSwitch = ({
   ariaLabel,
   checked,
   className,
-  color = 'primary',
+  color,
   'data-testid': dataTestId,
   disabled = false,
   id,

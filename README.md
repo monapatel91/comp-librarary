@@ -45,7 +45,7 @@ const StyledWidget = styled.div`
     background-color: ${theme.palette.secondary[300]};
     border: 1px solid ${theme.palette.primary.main};
     .my-widget-text {
-      margin-left: ${theme.spacing(2)}px;
+      margin-left: ${theme.spacing(2)};
     }
   `}
 `;

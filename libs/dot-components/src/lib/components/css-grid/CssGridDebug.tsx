@@ -1,6 +1,6 @@
-import { useTheme } from '@mui/material';
-import { Breakpoint } from '@mui/material/styles/createBreakpoints';
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '@mui/material';
+// import { Breakpoint } from '@mui/material/styles/createBreakpoints';
 import styled, { css } from 'styled-components';
 import { levelBottom } from '../../theme-provider/common/variables';
 import { CssCell } from './CssCell';
@@ -124,10 +124,11 @@ export const CssGridDebug = ({ showInfo = false }: CssGridDebugProps) => {
             <div className="header list">Breakpoints</div>
             <ul className="breakpoints">
               {Object.keys(theme.breakpoints.values).map(
-                (value: Breakpoint) => {
+                // Breakpoint
+                (value: any) => {
                   return (
                     <li key={value}>
-                      {value}: {theme.breakpoints.values[value]}, col:
+                      {/* {value}: {theme.breakpoints.values[value]}, col: */}
                       {defaultColumns[value]}
                     </li>
                   );

@@ -13,14 +13,14 @@ export const StyledList = styled(List)`
         background: ${theme.palette.layer.n0};
 
         &.${nestedListClassName} .${listItemRootClass} {
-          padding-left: ${theme.spacing(4)}px;
+          padding-left: ${theme.spacing(4)};
         }
 
         .MuiListSubheader-root {
           padding: 0;
 
           .MuiTypography-root {
-            padding: ${theme.spacing(1)}px;
+            padding: ${theme.spacing(1)};
           }
         }
       }

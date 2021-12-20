@@ -10,6 +10,8 @@ import {
   rootClassName as rootCheckboxClassName,
 } from './Checkbox.styles';
 
+// TO-DO: make sure form control label is still good
+// https://next.material-ui.com/guides/migration-v4/#formcontrollabel
 export type CheckboxSize = 'medium' | 'small';
 export type CheckboxLabelPlacement = 'bottom' | 'end' | 'start';
 

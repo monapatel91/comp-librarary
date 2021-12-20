@@ -150,7 +150,6 @@ export const DotInlineEdit = ({
         size={size}
         type="text"
         value={inputValue}
-        variant="outlined"
       />
       {editing && (
         <div className="editing-actions">

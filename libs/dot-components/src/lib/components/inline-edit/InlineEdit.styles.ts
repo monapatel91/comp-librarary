@@ -23,14 +23,14 @@ export const StyledInlineEdit = styled.div`
       .editing-actions {
         display: flex;
         justify-content: flex-end;
-        margin-top: ${theme.spacing(0.5)}px;
+        margin-top: ${theme.spacing(0.5)};
 
         .dot-icon-btn {
           background: ${theme.palette.grey[0]};
           border: 1px solid ${theme.palette.grey[300]};
           color: ${theme.palette.grey[700]};
-          margin-left: ${theme.spacing(1)}px;
-          padding: ${theme.spacing(0.25)}px;
+          margin-left: ${theme.spacing(1)};
+          padding: ${theme.spacing(0.25)};
 
           &:hover {
             background: ${theme.palette.grey[50]};

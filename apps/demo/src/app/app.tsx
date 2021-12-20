@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   DotAvatar,
   DotAppToolbar,
@@ -8,8 +9,6 @@ import {
   ListItemProps,
 } from '@digital-ai/dot-components';
 import { Routes } from '../app/routes/Routes';
-
-import { Link } from 'react-router-dom';
 
 const topNavItems: Array<IconButtonProps> = [
   {

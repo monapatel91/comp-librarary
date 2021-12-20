@@ -5,10 +5,11 @@ import {
   ThemeProvider as MuiThemeProvider,
 } from '@mui/material/styles';
 import { StylesProvider } from '@mui/styles';
-// https://mui.com/customization/breakpoints/#custom-breakpoints
-import { BreakpointsOptions } from '@mui/material/styles/createBreakpoints';
 import { TypographyOptions } from '@mui/material/styles/createTypography';
-import { AvatarPaletteColorOptions } from '../../../../../typings/material/index';
+import {
+  AvatarPaletteColorOptions,
+  BreakpointOptions,
+} from '../../../../../typings/material/index';
 import { ThemeProvider } from 'styled-components';
 import { GlobalFonts } from '../fonts/fonts';
 
@@ -102,7 +103,7 @@ export const typographyOptions: TypographyOptions = {
   },
 };
 
-const breakpointOptions: BreakpointsOptions = {
+const breakpointOptions: BreakpointOptions = {
   values: {
     xs: 0,
     sm: 720,
@@ -156,7 +157,7 @@ export const agilityLightTheme = createTheme({
     ...breakpointOptions,
   },
   palette: {
-    type: 'light',
+    mode: 'light',
     product: 'agility',
     avatarColors: {
       ...avatarColors,
@@ -227,7 +228,7 @@ export const agilityDarkTheme = createTheme({
     ...breakpointOptions,
   },
   palette: {
-    type: 'dark',
+    mode: 'dark',
     product: 'agility',
     avatarColors: {
       ...avatarColors,
@@ -298,7 +299,7 @@ export const darkTheme = createTheme({
     ...breakpointOptions,
   },
   palette: {
-    type: 'dark',
+    mode: 'dark',
     avatarColors: {
       ...avatarColors,
     },
@@ -345,7 +346,7 @@ export const lightTheme = createTheme({
     ...breakpointOptions,
   },
   palette: {
-    type: 'light',
+    mode: 'light',
     avatarColors: {
       ...avatarColors,
     },

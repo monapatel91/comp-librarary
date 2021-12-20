@@ -124,7 +124,7 @@ export const DotAppToolbar = ({
             <DotIconButton
               data-testid="main-menu-icon"
               iconId={menuOpen ? 'close' : 'menu'}
-              iconSize="default"
+              iconSize="medium"
               onClick={() => updateMenuOpen(!menuOpen)}
               tooltip="Open Menu"
             />
@@ -193,7 +193,7 @@ export const DotAppToolbar = ({
               <DotIconButton
                 className={item.className}
                 iconId={item.iconId}
-                iconSize="default"
+                iconSize="medium"
                 key={index}
                 onClick={(event) => item.onClick && item.onClick(event)}
                 size="medium"

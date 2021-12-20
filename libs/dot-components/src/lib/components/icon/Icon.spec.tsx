@@ -33,15 +33,6 @@ describe('DotIcon', () => {
     expect(iconElement).toHaveAttribute('aria-label', ariaLabel);
   });
 
-  it('should have a deprecation warning if fontSize is set to "default"', () => {
-    render(<DotIcon fontSize="default" iconId="home" />);
-    expect(consoleSpy).toBeCalled();
-  });
-
-  it('should have a deprecation warning if fontSize is set to "inherit"', () => {
-    render(<DotIcon fontSize="inherit" iconId="home" />);
-    expect(consoleSpy).toBeCalled();
-  });
   it('should have a deprecation warning if title is used', () => {
     render(<DotIcon iconId="home" title="icon title" />);
     expect(consoleSpy).toBeCalled();

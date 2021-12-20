@@ -5,8 +5,8 @@ export const rootClassName = 'dot-radio';
 
 export const StyledRadioButton = styled(Radio)`
   ${({ theme }) => css`{
-  &.${rootClassName} {
-    padding: 8px;
-  }
+    &.${rootClassName} {
+      padding: 8px;
+    }
   `}
 `;

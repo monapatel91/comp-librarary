@@ -10,7 +10,7 @@ export const StyledProducts = styled.div`
       margin: 0;
     }
     .resource-title {
-      margin-bottom: ${theme.spacing(2)}px;
+      margin-bottom: ${theme.spacing(2)};
     }
   `}
 `;

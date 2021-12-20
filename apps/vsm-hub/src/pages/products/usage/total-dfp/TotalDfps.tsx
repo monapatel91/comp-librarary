@@ -67,21 +67,21 @@ export const VsmHubToolDfps = ({
               <DotList component="ul" dense={false}>
                 <>
                   <ListItem component="li">
-                    <Grid container justify="space-between">
+                    <Grid container justifyContent="space-between">
                       <Typography variant="h4">Total DFP's</Typography>
                       <Typography variant="h4">{total}</Typography>
                     </Grid>
                   </ListItem>
                   <Divider />
                   <ListItem component="li">
-                    <Grid container justify="space-between">
+                    <Grid container justifyContent="space-between">
                       <Typography>Used</Typography>
                       <Typography>{dfps} </Typography>
                     </Grid>
                   </ListItem>
                   <Divider />
                   <ListItem component="li">
-                    <Grid container justify="space-between">
+                    <Grid container justifyContent="space-between">
                       <Typography>Available</Typography>
                       <Typography>{total - dfps}</Typography>
                     </Grid>

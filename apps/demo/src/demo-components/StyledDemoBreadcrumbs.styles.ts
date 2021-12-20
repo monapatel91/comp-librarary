@@ -10,7 +10,7 @@ export const StyledDemoBreadcrumbs = styled.div`
 
         .breadcrumbs {
           flex-grow: 1;
-          min-width: ${theme.spacing(25)}px;
+          min-width: ${theme.spacing(25)};
         }
 
         .actions {

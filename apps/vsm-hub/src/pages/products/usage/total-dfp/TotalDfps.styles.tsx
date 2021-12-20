@@ -9,9 +9,6 @@ export const StyledTotalDFpsCard = styled(DotCard)`
       .error {
         color: ${theme.palette.error[500]};
       }
-      .dfp-list {
-        /* margin-top: ${theme.spacing(2)}px; */
-      }
     }
   `}
 `;

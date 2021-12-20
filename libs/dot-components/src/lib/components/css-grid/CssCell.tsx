@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Theme } from '@mui/material/styles';
-import { Breakpoint } from '@mui/material/styles/createBreakpoints';
+// import { Breakpoint } from '@mui/material/styles/createBreakpoints';
 import { defaultColumns } from './CssGrid';
 import { CommonProps } from '../CommonProps';
 
@@ -55,7 +55,8 @@ export interface CssCellProps extends CommonProps {
 const breakpointsGetter = (
   value: CellSize,
   theme: Theme,
-  breakpoint: Breakpoint
+  // Breakpoint
+  breakpoint: any
 ) => {
   return `
   ${theme.breakpoints.up(breakpoint)} {

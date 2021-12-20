@@ -37,7 +37,6 @@
   "private": true,
   "dependencies": {
     "@mui/material": "^5.2.5",
-    "@mui/styled-engine-sc": "^5.1.0",
     "@mui/styles": "^5.2.3",
     "document-register-element": "1.13.1",
     "echarts": "5.2.1",
@@ -60,6 +59,8 @@
     "@babel/preset-env": "7.9.6",
     "@babel/preset-react": "7.9.4",
     "@babel/preset-typescript": "7.9.0",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "@nrwl/cli": "12.9.0",
     "@nrwl/cypress": "12.9.0",
     "@nrwl/devkit": "12.9.0",
