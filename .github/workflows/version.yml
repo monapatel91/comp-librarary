@@ -90,12 +90,13 @@ jobs:
           default_author: github_actions
           message: 'Update Changelog'
 
+      # https://github.com/EndBug/add-and-commit/issues/341
       - name: Generate Changelog SHA
-        id: changelog-sha
+        id: generate_sha
         run: echo "::set-output name={long_sha}::{$(git rev-parse ${{ steps.commit.outputs.commit_sha }})}"
 
       - name: Print Changelog SHA
-        run: echo ${{ steps.changelog-sha.outputs.long_sha }}
+        run: echo ${{ steps.generate_sha.outputs.long_sha }}
 
   # https://github.com/marketplace/actions/automated-version-bump
   bump-version:
