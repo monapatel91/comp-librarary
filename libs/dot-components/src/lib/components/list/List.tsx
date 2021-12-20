@@ -1,4 +1,10 @@
-import React, { ElementType, MouseEvent, ReactNode, useState } from 'react';
+import React, {
+  ElementType,
+  Fragment,
+  MouseEvent,
+  ReactNode,
+  useState,
+} from 'react';
 import { Divider, ListSubheader } from '@material-ui/core';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
@@ -89,7 +95,7 @@ export const DotList = ({
         const handleMenuLeave = () => setListItemIndex(null);
 
         if (item.child) {
-          return item.child;
+          return <Fragment key={`list-item-${index}`}>{item.child}</Fragment>;
         }
 
         if (item.divider) {
