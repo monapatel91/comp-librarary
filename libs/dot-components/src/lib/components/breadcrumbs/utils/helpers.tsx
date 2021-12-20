@@ -1,7 +1,7 @@
 import React, { MutableRefObject, ReactElement } from 'react';
 import { BreadcrumbItem } from '../Breadcrumbs';
 import { DotLink } from '../../link/Link';
-import { DotTooltip } from '@digital-ai/dot-components';
+import { DotTooltip } from '../../tooltip/Tooltip';
 
 export interface BreadcrumbItemRefs {
   firstItemRef: MutableRefObject<HTMLDivElement>;
@@ -116,7 +116,7 @@ export const removeListenersFromMenu = (
 
 export const getLastItemElement = (
   { ariaLabel, text }: BreadcrumbItem,
-  lastItemRef: React.MutableRefObject<HTMLSpanElement>,
+  lastItemRef: MutableRefObject<HTMLSpanElement>,
   index?: number
 ): ReactElement => {
   return (
@@ -178,8 +178,8 @@ export const mapBreadcrumbItems = (
 };
 
 export const checkIfLastItemFullyVisible = (
-  breadcrumbRef: React.MutableRefObject<HTMLElement>,
-  lastItemRef: React.MutableRefObject<HTMLSpanElement>
+  breadcrumbRef: MutableRefObject<HTMLElement>,
+  lastItemRef: MutableRefObject<HTMLSpanElement>
 ): boolean => {
   if (!breadcrumbRef?.current || !lastItemRef.current) return false;
   const availableSpace =
