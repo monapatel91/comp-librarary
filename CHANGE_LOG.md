@@ -1,5 +1,20 @@
 # Changelog
 
+## [Current](https://github.com/digital-ai/dot-components/tree/HEAD)
+
+[Full Changelog](https://github.com/digital-ai/dot-components/compare/1.5.3...HEAD)
+
+**Features:**
+
+- `Breadcrumbs` Display tooltip on last item \(on hover\) when it is clipped with ellipsis [\#878](https://github.com/digital-ai/dot-components/issues/878)
+- S-80855: Display tooltip on last breadcrumb item \(on hover\) when it is clipped with ellipsis [\#883](https://github.com/digital-ai/dot-components/pull/883) ([dmiletic85](https://github.com/dmiletic85))
+
+**Fixed bugs:**
+
+- `List` Nested list drawer is not rendering correctly. [\#835](https://github.com/digital-ai/dot-components/issues/835)
+- D-19247: summary prop [\#873](https://github.com/digital-ai/dot-components/pull/873) ([TheKeithStewart](https://github.com/TheKeithStewart))
+- D-19200: `List` Nested list drawer is not rendering correctly [\#869](https://github.com/digital-ai/dot-components/pull/869) ([dmiletic85](https://github.com/dmiletic85))
+
 ## [1.5.3](https://github.com/digital-ai/dot-components/tree/1.5.3) (12/17/2021)
 
 [Full Changelog](https://github.com/digital-ai/dot-components/compare/1.5.2...1.5.3)
@@ -38,7 +53,6 @@
 **Fixed bugs:**
 
 - Breaking prop type change in DotAccordion [\#850](https://github.com/digital-ai/dot-components/issues/850)
-- D-19247: summary prop [\#873](https://github.com/digital-ai/dot-components/pull/873) ([TheKeithStewart](https://github.com/TheKeithStewart))
 
 ## [1.5.0](https://github.com/digital-ai/dot-components/tree/1.5.0) (12/15/2021)
 
@@ -56,7 +70,6 @@
 - `Breadcrumbs` Setting `expansionMenu={true}` does not work always [\#838](https://github.com/digital-ai/dot-components/issues/838)
 - `Breadcrumbs`  item with href should be full width clickable when using `expansionMenu={true}` [\#837](https://github.com/digital-ai/dot-components/issues/837)
 - D-19294: Fix broken expand/collapse for uncontrolled accordion [\#866](https://github.com/digital-ai/dot-components/pull/866) ([selsemore](https://github.com/selsemore))
-- D-19151: `DotBadge` generates console warnings [\#827](https://github.com/digital-ai/dot-components/pull/827) ([dmiletic85](https://github.com/dmiletic85))
 
 **Merged pull requests:**
 
@@ -132,6 +145,8 @@
 - Go back item in `Sidebar` is not aligned with rest of items [\#824](https://github.com/digital-ai/dot-components/issues/824)
 - DotBadge generates console warnings [\#816](https://github.com/digital-ai/dot-components/issues/816)
 - Sidebar scrollbar should be positioned on the very right of the sidebar [\#746](https://github.com/digital-ai/dot-components/issues/746)
+- D-19151: `DotBadge` generates console warnings [\#827](https://github.com/digital-ai/dot-components/pull/827) ([dmiletic85](https://github.com/dmiletic85))
+- D-19177: `Go back` item in `DotSidebar` is not aligned with rest of items [\#826](https://github.com/digital-ai/dot-components/pull/826) ([dmiletic85](https://github.com/dmiletic85))
 
 **Merged pull requests:**
 
@@ -157,7 +172,6 @@
 - TEST - GitHub + Agility Integration [\#800](https://github.com/digital-ai/dot-components/issues/800)
 - Batman wasn't here [\#798](https://github.com/digital-ai/dot-components/issues/798)
 - Alert component style issues [\#795](https://github.com/digital-ai/dot-components/issues/795)
-- D-19177: `Go back` item in `DotSidebar` is not aligned with rest of items [\#826](https://github.com/digital-ai/dot-components/pull/826) ([dmiletic85](https://github.com/dmiletic85))
 - \#795 Address AlertBanner style issues [\#815](https://github.com/digital-ai/dot-components/pull/815) ([angel-git](https://github.com/angel-git))
 - D-19138: Remove margin-bottom from breadcrumbs [\#813](https://github.com/digital-ai/dot-components/pull/813) ([angel-git](https://github.com/angel-git))
 - D-19148: Input elements not displaying correctly when `border-box` is used in consumer components [\#812](https://github.com/digital-ai/dot-components/pull/812) ([dmiletic85](https://github.com/dmiletic85))
@@ -347,6 +361,7 @@
 **Merged pull requests:**
 
 - MINOR release [\#695](https://github.com/digital-ai/dot-components/pull/695) ([CWSites](https://github.com/CWSites))
+- pass value to tab [\#694](https://github.com/digital-ai/dot-components/pull/694) ([kmmarsh](https://github.com/kmmarsh))
 - S-78831: update AppToolbar component for Agility [\#691](https://github.com/digital-ai/dot-components/pull/691) ([CWSites](https://github.com/CWSites))
 - Bring `master` back into `develop` [\#690](https://github.com/digital-ai/dot-components/pull/690) ([CWSites](https://github.com/CWSites))
 
@@ -362,7 +377,6 @@
 
 **Merged pull requests:**
 
-- pass value to tab [\#694](https://github.com/digital-ai/dot-components/pull/694) ([kmmarsh](https://github.com/kmmarsh))
 - Next Release [\#689](https://github.com/digital-ai/dot-components/pull/689) ([CWSites](https://github.com/CWSites))
 - D-18817: set mainMenuItems to `null` by default [\#688](https://github.com/digital-ai/dot-components/pull/688) ([CWSites](https://github.com/CWSites))
 - D-18664: update link to allow for keypress [\#686](https://github.com/digital-ai/dot-components/pull/686) ([CWSites](https://github.com/CWSites))
