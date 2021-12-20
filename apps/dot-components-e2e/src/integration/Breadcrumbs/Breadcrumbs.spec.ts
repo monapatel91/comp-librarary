@@ -56,3 +56,38 @@ describe('responsive tests', () => {
     cy.get('Link 4').should('not.exist');
   });
 });
+
+describe('automatic items adjustment', () => {
+  const expectItemToBeVisible = (itemText: string) =>
+    cy.contains(itemText).should('be.visible');
+  const expectItemNotToBeInTheList = (itemText: string) =>
+    cy.get('ul').should('not.contain', itemText);
+
+  before(() => cy.visit('/iframe.html?id=components-breadcrumbs--default'));
+
+  it('should NOT contain tooltip element when last item is fully visible', () => {
+    cy.viewport(1000, 700);
+    cy.get('.dot-tooltip').should('not.exist');
+  });
+
+  it('should display hover when last item is not fully visible', () => {
+    // Simulate scenario in which last item is not fully visible thus can be hovered
+    cy.viewport(460, 700);
+    expectItemToBeVisible('Link 1');
+    expectItemToBeVisible('Link 2');
+    expectItemToBeVisible('Link 3');
+    expectItemToBeVisible('Link 4');
+    expectItemToBeVisible('Link 5');
+    cy.get('.dot-tooltip').trigger('mouseover');
+    cy.get('.MuiTooltip-popper').contains('Link 5').should('be.visible');
+  });
+
+  it('should display only first and last item', () => {
+    cy.viewport(250, 700);
+    expectItemToBeVisible('Link 1');
+    expectItemNotToBeInTheList('Link 2');
+    expectItemNotToBeInTheList('Link 3');
+    expectItemNotToBeInTheList('Link 4');
+    expectItemToBeVisible('Link 5');
+  });
+});
