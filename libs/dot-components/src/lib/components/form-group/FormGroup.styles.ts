@@ -1,4 +1,4 @@
-import { FormGroup } from '@material-ui/core';
+import { FormGroup } from '@mui/material';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-form-group';

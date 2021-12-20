@@ -1,5 +1,5 @@
 import React, { MouseEvent, ReactNode } from 'react';
-import { TableRow } from '@material-ui/core';
+import { TableRow } from '@mui/material';
 
 import { DotBodyCell } from './TableCell';
 import { CreateUUID } from '../createUUID';

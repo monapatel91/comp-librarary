@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 import React from 'react';
-import { Theme } from '@material-ui/core/styles';
-import { BreakpointValues } from '@material-ui/core/styles/createBreakpoints';
+import { Theme } from '@mui/material/styles';
+import { BreakpointValues } from '@mui/material/styles/createBreakpoints';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 

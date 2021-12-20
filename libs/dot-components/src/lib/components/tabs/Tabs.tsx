@@ -1,5 +1,5 @@
 import React, { ChangeEvent, ReactNode, useState } from 'react';
-import { Tab } from '@material-ui/core';
+import { Tab } from '@mui/material';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { CommonProps } from '../CommonProps';
 import { rootClassName, StyledTabs } from './Tabs.styles';

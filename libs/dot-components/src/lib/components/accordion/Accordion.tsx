@@ -8,7 +8,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Divider,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   detailClassName,
   rootClassName,

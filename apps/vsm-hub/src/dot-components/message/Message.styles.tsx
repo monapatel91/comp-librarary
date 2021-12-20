@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Paper } from '@material-ui/core';
+import { Paper } from '@mui/material';
 
 export const rootClassName = 'dot-message';
 export const headerClassName = 'dot-message-header';

@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { ListItemIcon, ListItemText } from '@material-ui/core';
+import { ListItemIcon, ListItemText } from '@mui/material';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { listItemRootClass } from './List.styles';
 import { DotIcon } from '../icon/Icon';

@@ -7,7 +7,7 @@ import React, {
   FocusEvent,
   MutableRefObject,
 } from 'react';
-import { AutocompleteGetTagProps } from '@material-ui/lab';
+import { AutocompleteGetTagProps, Paper } from '@mui/material';
 import { rootClassName, StyledAutocomplete } from './AutoComplete.styles';
 import { popperClassName, StyledPopper } from '../menu/Menu.styles';
 import { CommonProps } from '../CommonProps';
@@ -17,7 +17,6 @@ import {
   StyledTextField,
   rootClassName as textFieldRootClassName,
 } from '../input-form-fields/InputFormFields.styles';
-import { Paper } from '@material-ui/core';
 import { DotButton } from '../button/Button';
 import { DotIcon } from '../icon/Icon';
 

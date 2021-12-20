@@ -1,21 +1,21 @@
-import { DotButton } from '@digital-ai/dot-components';
-import { Typography } from '@material-ui/core';
 import React, { ReactNode } from 'react';
+import { DotButton } from '@digital-ai/dot-components';
+import { Typography } from '@mui/material';
 import { StyledMainHero, rootClassName } from './MainHero.styles';
 
 export interface MainHeroProps {
-  title?: string;
-  message?: string;
-  ctaLabel?: string;
-  ctaAction?: () => void;
-  useCta?: boolean;
+  actionToolbarContent?: ReactNode;
   children?: ReactNode;
   className?: string;
-  leftBackgroundImage?: string;
-  rightBackgroundImage?: string;
-  actionToolbarContent?: ReactNode;
+  ctaAction?: () => void;
+  ctaLabel?: string;
   height?: number;
+  leftBackgroundImage?: string;
   marginBottom?: number;
+  message?: string;
+  rightBackgroundImage?: string;
+  title?: string;
+  useCta?: boolean;
 }
 
 export const DotMainHero = ({

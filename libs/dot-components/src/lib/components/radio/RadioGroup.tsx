@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, ReactNode, useEffect } from 'react';
-import { FormHelperText, FormLabel } from '@material-ui/core';
+import { FormHelperText, FormLabel } from '@mui/material';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   endAdornmentClassName,

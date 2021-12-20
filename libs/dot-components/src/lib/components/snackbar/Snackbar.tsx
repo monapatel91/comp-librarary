@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Alert } from '@material-ui/lab';
+import { Alert } from '@mui/material';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledSnackbar } from './Snackbar.styles';

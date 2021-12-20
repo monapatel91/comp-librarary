@@ -1,5 +1,5 @@
 import React, { ChangeEvent, MouseEvent, useState, ReactNode } from 'react';
-import { Table } from '@material-ui/core';
+import { Table } from '@mui/material';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {

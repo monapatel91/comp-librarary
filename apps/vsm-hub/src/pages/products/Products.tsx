@@ -12,11 +12,11 @@ import {
 } from '../../context/NavigationContext';
 import { productLevelNav, agilityBack } from '../../routes/routes';
 import { StyledProducts, rootClassName } from './Products.style';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@mui/material';
 import { VsmHubPageSection } from '../../dot-components/layouts/styled-page/PageSection';
 export const backItems: Array<ListItemProps> = [
   {
-    iconId: 'back',
+    startIconId: 'back',
     onClick: () => console.log('go back clicked'),
     text: 'Agility',
     title: `Go Back to Home`,

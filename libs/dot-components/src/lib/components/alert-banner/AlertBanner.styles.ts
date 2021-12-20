@@ -1,4 +1,4 @@
-import { Alert } from '@material-ui/lab';
+import { Alert } from '@mui/material';
 import { AlertBannerProps } from './AlertBanner';
 import styled, { css } from 'styled-components';
 

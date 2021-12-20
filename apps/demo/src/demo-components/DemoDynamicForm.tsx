@@ -1,4 +1,4 @@
-import { Divider } from '@material-ui/core';
+import { Divider } from '@mui/material';
 import React, { useState } from 'react';
 import {
   AutoCompleteProps,

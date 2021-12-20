@@ -1,4 +1,4 @@
-import { FormControlLabel } from '@material-ui/core';
+import { FormControlLabel } from '@mui/material';
 import styled from 'styled-components';
 
 export const rootClassName = 'dot-form-control-label';

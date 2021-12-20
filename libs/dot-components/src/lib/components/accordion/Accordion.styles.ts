@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Accordion } from '@material-ui/core';
+import { Accordion } from '@mui/material';
 
 export const rootClassName = 'dot-accordion';
 export const summaryClassName = 'dot-accordion-summary';

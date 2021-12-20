@@ -5,7 +5,7 @@ import { DotActionToolbar } from '../action-toolbar/ActionToolbar';
 import { DotTable, TableProps } from './Table';
 import { Order } from '../table/TableBody';
 import { DotTablePagination, RowsPerPageOption } from './TablePagination';
-import { TableRowProps } from '@material-ui/core';
+import { TableRowProps } from '@mui/material';
 import { DotBodyCell } from './TableCell';
 import { DotButton } from '../button/Button';
 

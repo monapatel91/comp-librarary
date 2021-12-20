@@ -1,4 +1,4 @@
-import { Autocomplete } from '@material-ui/lab';
+import { Autocomplete } from '@mui/material';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-autocomplete';

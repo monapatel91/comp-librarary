@@ -16,7 +16,7 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useNavListContext } from '../../context/NavigationContext';
 import { VsmHubPageSection } from '../../dot-components/layouts/styled-page/PageSection';
 import { accountBack, accountLevelNav } from '../../routes/routes';
@@ -39,7 +39,7 @@ import { DotProgressIcon } from '../../dot-components/progress-icon/ProgressIcon
 import { useHistory } from 'react-router';
 
 function createData(
-  capabilities: { id: string; label: string; desc: string },
+  capabilities: { desc: string; id: string; label: string },
   units: number,
   entitled: number,
   dfps: number,

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Theme } from '@material-ui/core/styles';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
+import { Theme } from '@mui/material/styles';
+import { Breakpoint } from '@mui/material/styles/createBreakpoints';
 import { defaultColumns } from './CssGrid';
 import { CommonProps } from '../CommonProps';
 

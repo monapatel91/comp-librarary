@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import {
   DotButton,
   DotIcon,

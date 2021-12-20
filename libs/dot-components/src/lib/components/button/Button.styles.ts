@@ -1,4 +1,4 @@
-import { Button, darken } from '@material-ui/core';
+import { Button, darken } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { agilityGreen } from '../../theme-provider/colors/light-theme-colors';
 

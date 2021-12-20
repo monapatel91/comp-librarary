@@ -1,6 +1,6 @@
 import React, { ReactNode, ReactElement, ChangeEvent } from 'react';
 import { CommonProps } from '../CommonProps';
-import { Tooltip } from '@material-ui/core';
+import { Tooltip } from '@mui/material';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 
 export type tooltipPlacement =

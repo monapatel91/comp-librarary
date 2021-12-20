@@ -1,5 +1,5 @@
 import React, { MouseEvent, ReactNode } from 'react';
-import { Typography, Collapse } from '@material-ui/core';
+import { Typography, Collapse } from '@mui/material';
 import { DotIconButton } from '@digital-ai/dot-components';
 import {
   StyledMessage,
@@ -14,9 +14,9 @@ export interface MessageProps {
   actions?: ReactNode;
   onClose?: (event: MouseEvent<HTMLButtonElement>, isOpen: boolean) => void;
   open?: boolean;
+  startIcon?: ReactNode;
   status?: MessageStatus;
   statusCode?: number | string | null;
-  startIcon?: ReactNode;
   subheader?: string | null;
   title: string;
 }

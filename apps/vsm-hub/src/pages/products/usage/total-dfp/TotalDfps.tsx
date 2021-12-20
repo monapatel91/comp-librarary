@@ -1,22 +1,21 @@
+import React, { useEffect } from 'react';
 import {
-  DotButton,
   DotCardContent,
   DotCardHeader,
   DotList,
 } from '@digital-ai/dot-components';
-import React, { useEffect } from 'react';
-import { StyledTotalDFpsCard, rootClassName } from './TotalDfps.styles';
+import { Divider, Grid, ListItem, Typography } from '@mui/material';
 import ReactECharts from 'echarts-for-react';
-import { Divider, Grid, ListItem, Typography } from '@material-ui/core';
+import { StyledTotalDFpsCard, rootClassName } from './TotalDfps.styles';
 
 export interface ToolDfpsProps {
-  seriesData?: Array<any>;
-  max?: number;
-  used?: number;
   assigned?: number;
-  dfps?: number;
   available?: number;
+  dfps?: number;
+  max?: number;
+  seriesData?: Array<any>;
   total?: number;
+  used?: number;
 }
 
 export const VsmHubToolDfps = ({

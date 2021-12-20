@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react';
-import { ToggleButton } from '@material-ui/lab';
+import { ToggleButton } from '@mui/material';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { CommonProps } from '../CommonProps';
 import { DotIcon } from '../icon/Icon';

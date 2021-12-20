@@ -1,5 +1,5 @@
 import React from 'react';
-import { AvatarGroup } from '@material-ui/lab';
+import { AvatarGroup } from '@mui/material';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { AvatarProps, DotAvatar } from '../avatar/Avatar';

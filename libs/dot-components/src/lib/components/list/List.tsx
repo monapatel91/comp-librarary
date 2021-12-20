@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   useState,
 } from 'react';
-import { Divider, ListSubheader } from '@material-ui/core';
+import { Divider, ListSubheader } from '@mui/material';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { PopperPlacement } from '../menu/Menu';

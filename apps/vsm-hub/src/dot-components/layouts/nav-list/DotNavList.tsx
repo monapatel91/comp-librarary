@@ -1,5 +1,5 @@
-import React, { ReactNode, ReactNodeArray } from 'react';
-import { useMediaQuery, Theme } from '@material-ui/core';
+import React, { ReactNode } from 'react';
+import { useMediaQuery, Theme } from '@mui/material';
 import {
   DotAppToolbar,
   DotSidebar,
@@ -16,9 +16,9 @@ export type Breakpoint = 'sm' | 'md' | 'lg' | 'xl';
 
 export interface NavListProps {
   appToolbar?: AppToolbarProps;
-  navbar?: SidebarProps;
-  children?: ReactNode | ReactNodeArray;
+  children?: ReactNode | ReactNode[];
   navBreakpoint?: Breakpoint;
+  navbar?: SidebarProps;
 }
 
 export const DotNavList = ({

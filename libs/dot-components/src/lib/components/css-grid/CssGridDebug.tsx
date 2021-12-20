@@ -1,5 +1,5 @@
-import { useTheme } from '@material-ui/core';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
+import { useTheme } from '@mui/material';
+import { Breakpoint } from '@mui/material/styles/createBreakpoints';
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { levelBottom } from '../../theme-provider/common/variables';

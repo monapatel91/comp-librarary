@@ -1,4 +1,4 @@
-import { ButtonGroup } from '@material-ui/core';
+import { ButtonGroup } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { levelTop } from '../../theme-provider/common/variables';
 import { DotMenu } from '../menu/Menu';

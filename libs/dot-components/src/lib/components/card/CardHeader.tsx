@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { CardHeader } from '@material-ui/core';
+import { CardHeader } from '@mui/material';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 

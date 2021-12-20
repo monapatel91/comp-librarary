@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DotAccordion, AccordionProps } from './Accordion';
 import { DotIcon } from '../icon/Icon';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 
 const iconOptions = [null, 'notification-bell', 'help'];
 

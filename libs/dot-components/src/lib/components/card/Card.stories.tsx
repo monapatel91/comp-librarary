@@ -1,5 +1,5 @@
 import React, { Fragment, MouseEvent, useState } from 'react';
-import { CardMedia, Menu, MenuItem } from '@material-ui/core';
+import { CardMedia, Menu, MenuItem } from '@mui/material';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import styled from 'styled-components';
 

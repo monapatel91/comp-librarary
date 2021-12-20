@@ -1,4 +1,4 @@
-import { Icon } from '@material-ui/core';
+import { Icon } from '@mui/material';
 import styled from 'styled-components';
 
 export const rootClassName = 'dot-icon';

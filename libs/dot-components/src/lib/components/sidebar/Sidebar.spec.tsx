@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../testing-utils';
 import { ListItemProps } from '../list/ListItem';

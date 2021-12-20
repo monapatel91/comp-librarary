@@ -5,7 +5,7 @@ import {
   MenuItem,
   MenuList,
   Paper,
-} from '@material-ui/core';
+} from '@mui/material';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotProgress } from '../progress/Progress';

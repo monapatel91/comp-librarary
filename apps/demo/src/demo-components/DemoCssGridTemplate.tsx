@@ -1,6 +1,6 @@
 import React from 'react';
 import { CssGrid, CssGridDebug } from '@digital-ai/dot-components';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 import styled, { css } from 'styled-components';
 
 const gridClassName = 'demo-cell';

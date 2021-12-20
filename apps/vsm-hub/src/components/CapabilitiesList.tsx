@@ -5,27 +5,26 @@ import {
   DotCardContent,
   DotCardFooter,
   DotCardHeader,
-  DotIcon,
 } from '@digital-ai/dot-components';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { StyledCapabilities, rootClassName } from './CapabilitiesList.styles';
 import { SimpleStatus, VsmHubSimpleStatus } from './simple-status/SimpleStatus';
 
 export interface Capability {
   iconId?: string;
-  title: string;
-  subtitle?: string;
+  id: string;
   status?: SimpleStatus;
   statusLabel?: string;
-  id: string;
+  subtitle?: string;
+  title: string;
 }
 
 export interface CapabilitiesProps {
-  title?: string;
+  actions?: ReactNode;
   capabilityItems: Array<Capability>;
   onClick?: (type: string, value: Capability) => void;
-  actions?: ReactNode;
+  title?: string;
 }
 
 export const VsmHubCapabilities = ({

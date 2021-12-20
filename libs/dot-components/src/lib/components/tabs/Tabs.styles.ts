@@ -1,5 +1,5 @@
-import { Tabs } from '@material-ui/core';
-import { alpha } from '@material-ui/core/styles';
+import { Tabs } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import styled, { css } from 'styled-components';
 import { agilityGreen } from '../../theme-provider/colors/light-theme-colors';
 

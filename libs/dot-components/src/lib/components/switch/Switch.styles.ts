@@ -1,4 +1,4 @@
-import { Switch } from '@material-ui/core';
+import { Switch } from '@mui/material';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-switch';
@@ -11,7 +11,7 @@ export const StyledSwitch = styled(Switch)`
       }
 
       .MuiSwitch-switchBase
-        :not(.Mui-checked) 
+        :not(.Mui-checked)
         :not(.Mui-disabled) {
             color: ${theme.palette.background.default};
         }

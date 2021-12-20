@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Breadcrumbs } from '@material-ui/core';
+import { Breadcrumbs } from '@mui/material';
 
 export const rootClassName = 'dot-breadcrumbs';
 export const breadcrumbsWrapperClass = 'dot-breadcrumbs-wrapper';

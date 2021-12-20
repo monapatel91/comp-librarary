@@ -1,4 +1,4 @@
-import { Paper, TableContainer } from '@material-ui/core';
+import { Paper, TableContainer } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { DotMenu } from '../menu/Menu';
 

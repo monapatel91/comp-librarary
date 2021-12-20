@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, ReactNode } from 'react';
-import { TableCell } from '@material-ui/core';
+import { TableCell } from '@mui/material';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotIconButton } from '../button/IconButton';

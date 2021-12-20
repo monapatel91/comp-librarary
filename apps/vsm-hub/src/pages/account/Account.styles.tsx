@@ -1,5 +1,5 @@
 import { DotInputText } from '@digital-ai/dot-components';
-import { TableCell } from '@material-ui/core';
+import { TableCell } from '@mui/material';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'vsm-input';

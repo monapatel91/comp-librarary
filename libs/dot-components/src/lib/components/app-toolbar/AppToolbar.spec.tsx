@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '@material-ui/core';
+import { Input } from '@mui/material';
 import { fireEvent, render, screen } from '../../testing-utils';
 import { DotAvatar } from '../avatar/Avatar';
 import { DotAppToolbar, AppToolbarProps } from './AppToolbar';

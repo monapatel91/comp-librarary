@@ -1,4 +1,4 @@
-import { IconButton } from '@material-ui/core';
+import { IconButton } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { g500 } from '../../theme-provider/colors/light-theme-colors';
 

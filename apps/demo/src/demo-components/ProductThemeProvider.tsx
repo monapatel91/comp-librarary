@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
-import { MuiThemeProvider, StylesProvider } from '@material-ui/core';
-import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { StylesProvider } from '@mui/styles';
 import {
   avatarColors,
   DotThemeProvider,

@@ -1,4 +1,4 @@
-import { Dialog } from '@material-ui/core';
+import { Dialog } from '@mui/material';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-dialog';

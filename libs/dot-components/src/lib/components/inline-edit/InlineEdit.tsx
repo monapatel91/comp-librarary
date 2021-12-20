@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, MouseEvent, useState } from 'react';
-import { InputAdornment, TextField } from '@material-ui/core';
+import { InputAdornment, TextField } from '@mui/material';
 import { CommonProps } from '../CommonProps';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { rootClassName, StyledInlineEdit } from './InlineEdit.styles';

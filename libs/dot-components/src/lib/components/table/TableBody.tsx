@@ -1,5 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
-import { TableBody } from '@material-ui/core';
+import { TableBody } from '@mui/material';
 
 import { CreateUUID } from '../createUUID';
 import { DotTableRow, EmptyDotRow } from './TableRow';

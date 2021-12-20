@@ -1,4 +1,4 @@
-import { RadioGroup } from '@material-ui/core';
+import { RadioGroup } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { rootClassName as formControlLabelClass } from '../form-controls/FormControlLabel.styles';
 

@@ -1,4 +1,4 @@
-import { Badge } from '@material-ui/core';
+import { Badge } from '@mui/material';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-badge';

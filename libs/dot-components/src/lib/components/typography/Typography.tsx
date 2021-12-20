@@ -1,7 +1,7 @@
 import React, { ElementType, ReactNode } from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { CommonProps } from '../CommonProps';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 
 export type TypographyVariant =
   | 'h1'

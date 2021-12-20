@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ListItem } from '@material-ui/core';
+import { ListItem } from '@mui/material';
 import { listItemRootClass } from './List.styles';
 
 export const flyoutListItemClassName = 'dot-flyout-list-item';

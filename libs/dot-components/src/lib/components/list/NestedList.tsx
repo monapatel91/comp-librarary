@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
-import { Collapse } from '@material-ui/core';
+import { Collapse } from '@mui/material';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   listItemRootClass,

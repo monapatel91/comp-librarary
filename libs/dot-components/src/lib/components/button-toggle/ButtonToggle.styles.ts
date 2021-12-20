@@ -1,4 +1,4 @@
-import { ToggleButtonGroup } from '@material-ui/lab';
+import { ToggleButtonGroup } from '@mui/material';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-button-toggle';

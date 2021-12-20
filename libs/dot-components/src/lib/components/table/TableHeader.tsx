@@ -1,10 +1,5 @@
 import React, { MouseEvent, ReactNode } from 'react';
-import {
-  TableCell,
-  TableHead,
-  TableRow,
-  TableSortLabel,
-} from '@material-ui/core';
+import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { Order } from './TableBody';
 import { CreateUUID } from '../createUUID';
 import { textAlignment } from './TableCell';

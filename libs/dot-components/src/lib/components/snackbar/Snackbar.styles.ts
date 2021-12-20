@@ -1,4 +1,4 @@
-import { Snackbar } from '@material-ui/core';
+import { Snackbar } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { levelFourth } from '../../theme-provider/common/variables';
 import { SnackbarSeverity } from './Snackbar';

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { TextField, InputAdornment } from '@material-ui/core';
+import { TextField, InputAdornment } from '@mui/material';
 import { agilityGreen } from '../../theme-provider/colors/light-theme-colors';
 
 export const rootClassName = 'dot-text-field';

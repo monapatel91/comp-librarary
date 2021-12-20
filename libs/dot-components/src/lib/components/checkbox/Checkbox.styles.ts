@@ -1,4 +1,4 @@
-import { Checkbox } from '@material-ui/core';
+import { Checkbox } from '@mui/material';
 import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-checkbox';

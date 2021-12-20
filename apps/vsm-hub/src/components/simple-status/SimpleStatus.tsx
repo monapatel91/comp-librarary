@@ -1,13 +1,13 @@
 import { DotIcon } from '@digital-ai/dot-components';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import React from 'react';
 import { StyledSimpleStatus, rootClassName } from './SimpleStatus.styles';
 
 export type SimpleStatus = 'ready' | 'pending' | 'error' | null;
 
 export interface SimpleStatusProps {
-  status?: SimpleStatus;
   label?: string;
+  status?: SimpleStatus;
 }
 
 export const VsmHubSimpleStatus = ({

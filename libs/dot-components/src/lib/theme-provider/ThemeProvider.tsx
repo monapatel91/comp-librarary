@@ -1,8 +1,13 @@
 import React, { ReactNode } from 'react';
-import { MuiThemeProvider, StylesProvider, Theme } from '@material-ui/core';
-import { createTheme } from '@material-ui/core/styles';
-import { BreakpointsOptions } from '@material-ui/core/styles/createBreakpoints';
-import { TypographyOptions } from '@material-ui/core/styles/createTypography';
+import { Theme } from '@mui/material';
+import {
+  createTheme,
+  ThemeProvider as MuiThemeProvider,
+} from '@mui/material/styles';
+import { StylesProvider } from '@mui/styles';
+// https://mui.com/customization/breakpoints/#custom-breakpoints
+import { BreakpointsOptions } from '@mui/material/styles/createBreakpoints';
+import { TypographyOptions } from '@mui/material/styles/createTypography';
 import { AvatarPaletteColorOptions } from '../../../../../typings/material/index';
 import { ThemeProvider } from 'styled-components';
 import { GlobalFonts } from '../fonts/fonts';

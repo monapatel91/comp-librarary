@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { List } from '@material-ui/core';
+import { List } from '@mui/material';
 
 export const rootClassName = 'dot-list';
 export const listItemRootClass = 'dot-list-item';

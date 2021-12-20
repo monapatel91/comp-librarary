@@ -1,4 +1,4 @@
-import { Avatar } from '@material-ui/core';
+import { Avatar } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { AvatarProps } from './Avatar';
 

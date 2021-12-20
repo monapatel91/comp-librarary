@@ -5,7 +5,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import { DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { DotButton } from '../button/Button';
 import { DotIconButton } from '../button/IconButton';
 import { BaseButtonProps } from '../BaseButtonProps';

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { fireEvent } from '@testing-library/react';
 import { render, screen } from '../../testing-utils';
-import Button from '@material-ui/core/Button';
+import { Button } from '@mui/material';
 
 import { DotSnackbar, SnackbarProps, SnackbarSeverity } from './Snackbar';
 import { addAutoHideDuration } from './SnackbarHelper';
