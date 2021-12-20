@@ -23,7 +23,7 @@ import {
   tableCardClassName,
 } from './Usage.styles';
 import { VsmHubToolDfps } from './total-dfp/TotalDfps';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const dfps = [
   {
@@ -71,8 +71,8 @@ const dfps = [
 ];
 
 export const VsmHubUsage = () => {
-  const { navList, setNavList, setGoBack, setBackItem } = useNavListContext();
-  const history = useHistory();
+  const { setNavList, setGoBack, setBackItem } = useNavListContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setNav();
@@ -83,7 +83,7 @@ export const VsmHubUsage = () => {
 
     setBackItem({
       ...agilityBack,
-      onClick: () => history.push('/'),
+      onClick: () => navigate('/'),
     });
     setGoBack(true);
   };

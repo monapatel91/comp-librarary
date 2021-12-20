@@ -8,7 +8,7 @@ import {
   IconButtonProps,
   ListItemProps,
 } from '@digital-ai/dot-components';
-import { Routes } from '../app/routes/Routes';
+import { NavRoutes } from '../app/routes/Routes';
 
 const topNavItems: Array<IconButtonProps> = [
   {
@@ -54,49 +54,49 @@ export const App = () => {
       startIconId: 'comment',
       text: 'Demo Form',
       component: forwardRef((props, ref) => (
-        <Link {...props} to="/demo-form" ref={ref} />
+        <Link {...props} to="demo-form" ref={ref} />
       )),
     },
     {
       startIconId: 'visibility-off',
       text: 'Demo Form Uncontrolled',
       component: forwardRef((props, ref) => (
-        <Link {...props} to="/demo-form-uncontrolled" ref={ref} />
+        <Link {...props} to="demo-form-uncontrolled" ref={ref} />
       )),
     },
     {
       startIconId: 'puzzle',
       text: 'Demo Dynamic Form',
       component: forwardRef((props, ref) => (
-        <Link {...props} to="/demo-dynamic-form" ref={ref} />
+        <Link {...props} to="demo-dynamic-form" ref={ref} />
       )),
     },
     {
       startIconId: 'table',
       text: 'CSS Grid',
       component: React.forwardRef((props, ref) => (
-        <Link {...props} to="/css-grid" ref={ref} />
+        <Link {...props} to="css-grid" ref={ref} />
       )),
     },
     {
       startIconId: 'table',
       text: 'CSS Grid Template',
       component: React.forwardRef((props, ref) => (
-        <Link {...props} to="/css-grid-template" ref={ref} />
+        <Link {...props} to="css-grid-template" ref={ref} />
       )),
     },
     {
       startIconId: 'users',
       text: 'User List',
       component: React.forwardRef((props, ref) => (
-        <Link {...props} to="/user-table" ref={ref} />
+        <Link {...props} to="user-table" ref={ref} />
       )),
     },
     {
       startIconId: 'pattern-bundle',
       text: 'Product Wrapper',
       component: React.forwardRef((props, ref) => (
-        <Link {...props} to="/product-buttons" ref={ref} />
+        <Link {...props} to="product-buttons" ref={ref} />
       )),
     },
     {
@@ -107,14 +107,14 @@ export const App = () => {
       startIconId: 'composition',
       text: 'Drawer',
       component: React.forwardRef((props, ref) => (
-        <Link {...props} to="/sandbox" ref={ref} />
+        <Link {...props} to="sandbox" ref={ref} />
       )),
     },
     {
       startIconId: 'release',
       text: 'Breadcrumbs',
       component: React.forwardRef((props, ref) => (
-        <Link {...props} to="/breadcrumbs" ref={ref} />
+        <Link {...props} to="breadcrumbs" ref={ref} />
       )),
     },
   ];
@@ -137,7 +137,7 @@ export const App = () => {
           title="FedEx"
         />
         <section className="main-content">
-          <Routes />
+          <NavRoutes />
         </section>
       </main>
     </>

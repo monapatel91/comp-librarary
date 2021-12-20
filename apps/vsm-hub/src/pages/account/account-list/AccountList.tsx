@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Grid } from '@mui/material';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import ReactECharts from 'echarts-for-react';
 import {
   DotAvatar,
@@ -22,7 +22,7 @@ import {
 
 export const VsmHubAccountList = () => {
   const { setNavList, setGoBack } = useNavListContext();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setNav();
@@ -34,9 +34,7 @@ export const VsmHubAccountList = () => {
   };
 
   const handleDetails = (event) => {
-    history.push({
-      pathname: `/account/${event.id}`,
-    });
+    navigate(`/account/${event.id}`);
   };
 
   const options = {

@@ -5,7 +5,7 @@ import {
   CssGridDebug,
   DotList,
 } from '@digital-ai/dot-components';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import {
   VsmHubCapabilities,
@@ -47,8 +47,8 @@ export const capabilities: Array<Capability> = [
 ];
 
 export const VsmHome = () => {
-  const { navList, setNavList, setGoBack, setBackItem } = useNavListContext();
-  const history = useHistory();
+  const { setNavList, setGoBack, setBackItem } = useNavListContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setNavList(checkSelectedItem(0, mainLevelNav));
@@ -63,9 +63,7 @@ export const VsmHome = () => {
         '_blank'
       );
     } else if (type === 'details') {
-      history.push({
-        pathname: `/product/${item.id}`,
-      });
+      navigate(`/product/${item.id}`);
     }
   };
 

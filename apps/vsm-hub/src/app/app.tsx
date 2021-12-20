@@ -29,7 +29,7 @@ export function App() {
       }}
     >
       <div className="App">
-        <Route path="/" component={VsmHub} />
+        <Route path="/" element={VsmHub} />
       </div>
     </NavListContext.Provider>
   );

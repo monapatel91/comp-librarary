@@ -36,7 +36,7 @@ import {
 import { useDelay } from '../../dot-components/hooks/useDelay';
 import { DotMessage } from '../../dot-components/message/Message';
 import { DotProgressIcon } from '../../dot-components/progress-icon/ProgressIcon';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 function createData(
   capabilities: { desc: string; id: string; label: string },
@@ -170,13 +170,13 @@ const initialSeriesData = [
 ];
 
 export const VsmAccount = () => {
-  const { navList, setNavList, setGoBack, setBackItem } = useNavListContext();
+  const { setNavList, setGoBack, setBackItem } = useNavListContext();
   const [open, setOpen] = useState(false);
   const [messageOpen, setMessageOpen] = useState(false);
   const [editing, setEditing] = useState(null);
   const [seriesData, setSeriesData] = useState(initialSeriesData);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useDelay(5000, [open], setMessageOpen);
 
@@ -192,7 +192,7 @@ export const VsmAccount = () => {
   const setNav = () => {
     setBackItem({
       ...accountBack,
-      onClick: () => history.push('/'),
+      onClick: () => navigate('/'),
     });
     setGoBack(true);
   };
@@ -246,7 +246,7 @@ export const VsmAccount = () => {
   };
 
   const handleView = () => {
-    history.push('/product/agility');
+    navigate('/product/agility');
   };
 
   const handleEdit = (item) => {

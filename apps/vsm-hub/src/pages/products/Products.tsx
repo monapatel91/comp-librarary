@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DotButton, DotList, ListItemProps } from '@digital-ai/dot-components';
 import {
   Capability,
@@ -46,9 +46,9 @@ export const releaseNotes: Array<Capability> = [
 ];
 
 export const VsmHubProducts = () => {
-  const { navList, setNavList, setGoBack, setBackItem } = useNavListContext();
+  const { setNavList, setGoBack, setBackItem } = useNavListContext();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setNavList(checkSelectedItem(0, productLevelNav));
@@ -59,7 +59,7 @@ export const VsmHubProducts = () => {
   const setNav = () => {
     setBackItem({
       ...agilityBack,
-      onClick: () => history.push('/'),
+      onClick: () => navigate('/'),
     });
     setGoBack(true);
   };
