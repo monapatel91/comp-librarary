@@ -30,8 +30,6 @@ export interface InputTextProps extends InputProps {
   rows?: number;
   /** max of rows for multiline line */
   rowsMax?: number;
-  /** value of the InputText */
-  value?: string;
 }
 
 const getInitialState = (value: string): InputTextState => ({

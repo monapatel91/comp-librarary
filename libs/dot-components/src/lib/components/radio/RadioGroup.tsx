@@ -1,25 +1,16 @@
 import React, { useState, ChangeEvent, ReactNode, useEffect } from 'react';
 import { FormHelperText, FormLabel } from '@material-ui/core';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
+import { CommonFormFieldProps } from '../input-form-fields/InputFormFields.propTypes';
 import {
   endAdornmentClassName,
   groupLabelClassName,
+  rootClassName,
   startAdornmentClassName,
   StyledFormControl,
-  placementClassName,
-  rootClassName,
 } from '../form-controls/FormControl.styles';
-import {
-  RadioButtonBaseProps,
-  DotRadioButton,
-  RadioButtonProps,
-} from './RadioButton';
-import {
-  wrapperClassName,
-  groupClassName,
-  StyledRadioGroupWrapper,
-  StyledRadioGroup,
-} from './RadioGroup.styles';
+import { DotRadioButton, RadioButtonProps } from './RadioButton';
+import { groupClassName, StyledRadioGroup } from './RadioGroup.styles';
 
 export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   /** if true makes all radio buttons disabled */
@@ -28,8 +19,6 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   endIcon?: ReactNode;
   /** If true, the label should be displayed in an error state. */
   error?: boolean;
-  /** The label of the radio button group. */
-  groupLabel?: string;
   /** The helper text content. */
   helperText?: string;
   /** if true user is required to select an option */
@@ -38,42 +27,38 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   row?: boolean;
   /** Icon placed before the children. */
   startIcon?: ReactNode;
-}
-
-export interface RadioGroupProps extends RadioGroupBaseProps {
-  /** The default input element value. Use when the component is not controlled or has a value. */
-  defaultValue?: string;
-  /** A function that should be executed when the value of the radio button changes */
-  onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
-  /** Array of RadioButtonProps used to create the radio buttons */
-  options: RadioButtonProps[];
+  /** value of the input */
+  value?: string;
 }
 
 export const DotRadioGroup = ({
   ariaLabel,
+  ariaLabelledby,
   className,
   'data-testid': dataTestId,
   defaultValue,
-  disableGroup,
+  disabled,
   endIcon,
   error,
+  id,
+  inputRef,
+  label,
   helperText,
-  groupLabel,
-  name,
   labelPlacement = 'end',
+  name,
   onChange,
-  value,
   options,
-  startIcon,
   required,
   row,
   size = 'medium',
-}: RadioGroupProps) => {
-  const placement = `${placementClassName}${labelPlacement}`;
+  startIcon,
+  value,
+}: RadioGroupBaseProps) => {
+  const groupDisabled = disabled;
   const rootClasses = useStylesWithRootClass(
     rootClassName,
-    className,
-    placement
+    `dot-${labelPlacement}`,
+    className
   );
 
   const radioValue = value || defaultValue;
@@ -107,38 +92,16 @@ export const DotRadioGroup = ({
     : null;
 
   return (
-    <StyledRadioGroupWrapper className={wrapperClassName}>
-      <StyledFormControl
+    <StyledFormControl className={wrapperClassName}>
+      <StyledRadioGroup
         classes={{ root: rootClasses }}
         component="fieldset"
         error={error}
         required={required}
       >
-        {groupLabel && (
-          <FormLabel component="legend">
-            {startIcon && (
-              <span className={startAdornmentClassName}>{startIcon}</span>
-            )}
-            <span className={groupLabelClassName}>{groupLabel}</span>
-            {endIcon && (
-              <span className={endAdornmentClassName}>{endIcon}</span>
-            )}
-          </FormLabel>
-        )}
-        <StyledRadioGroup
-          aria-label={ariaLabel}
-          className={groupClassName}
-          data-testid={dataTestId}
-          defaultValue={defaultValue}
-          name={name}
-          onChange={handleChange}
-          row={row}
-          value={selectedValue}
-        >
-          {renderOptions}
-        </StyledRadioGroup>
-        {helperText && <FormHelperText>{helperText}</FormHelperText>}
-      </StyledFormControl>
-    </StyledRadioGroupWrapper>
+        {renderOptions}
+      </StyledRadioGroup>
+      {helperText && <FormHelperText>{helperText}</FormHelperText>}
+    </StyledFormControl>
   );
 };

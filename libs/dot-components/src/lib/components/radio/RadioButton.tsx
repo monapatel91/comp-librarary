@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Ref } from 'react';
+import React, { ChangeEvent } from 'react';
 import {
   rootClassName,
   StyledFormControlLabel,
@@ -8,7 +8,7 @@ import {
   rootClassName as rootRadioButtonClassName,
   StyledRadioButton,
 } from './RadioButton.styles';
-import { CommonProps } from '../CommonProps';
+import { CommonFormFieldProps } from '../input-form-fields/InputFormFields.propTypes';
 
 export type RadioSize = 'medium' | 'small';
 export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
@@ -33,12 +33,10 @@ export interface RadioButtonBaseProps extends CommonProps {
 export interface RadioButtonProps extends RadioButtonBaseProps {
   /** if the radio button is selected */
   checked?: boolean;
-  /** if true makes the radio button disabled */
-  disabled?: boolean;
-  /** text displayed next to the radio button */
-  label?: string;
   /** A function that should be executed when the value of the radio buttom changes */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+  /** value of the input */
+  value?: string;
 }
 
 export function DotRadioButton({
@@ -75,6 +73,10 @@ export function DotRadioButton({
           data-testid={dataTestId}
           disabled={disabled}
           id={id}
+          inputProps={{
+            'aria-label': ariaLabel ? ariaLabel : label,
+            'aria-labelledby': ariaLabelledby,
+          }}
           inputRef={inputRef}
           name={name}
           onChange={handleChange}

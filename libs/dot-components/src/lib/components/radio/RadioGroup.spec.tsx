@@ -24,10 +24,13 @@ describe('DotRadioGroup', () => {
       error: false,
       groupLabel: 'My Button Group',
       helperText: 'a little help here?',
+      labelPlacement: 'end',
+      name: 'radio-group',
       onChange: onChange,
       options: radioButtons,
       required: true,
       row: true,
+      size: 'medium',
       startIcon: <DotIcon iconId="save" />,
     };
     const radioGroupProps: RadioGroupProps = props;

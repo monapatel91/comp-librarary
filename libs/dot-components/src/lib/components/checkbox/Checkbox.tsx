@@ -1,10 +1,10 @@
 import React, { ChangeEvent } from 'react';
-import {
-  StyledFormControlLabel,
-  rootClassName,
-} from '../form-controls/FormControlLabel.styles';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-
+import { CommonFormFieldProps } from '../input-form-fields/InputFormFields.propTypes';
+import {
+  rootClassName as formControlClassName,
+  StyledFormControlLabel,
+} from '../form-controls/FormControlLabel.styles';
 import {
   StyledCheckbox,
   rootClassName as rootCheckboxClassName,
@@ -21,6 +21,10 @@ export interface CheckboxProps extends RadioButtonProps {
   disableRipple?: boolean;
   /** if true the checkbox will display with intermediate */
   indeterminate?: boolean;
+  /** A function that should be executed when the value of the checkbox buttom changes */
+  onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+  /** value of the input */
+  value?: string;
 }
 
 export function DotCheckbox({
@@ -28,9 +32,9 @@ export function DotCheckbox({
   ariaLabelledby,
   checked,
   className,
-  disableRipple,
   'data-testid': dataTestId,
   disabled,
+  disableRipple,
   id,
   indeterminate,
   inputRef,
@@ -42,7 +46,7 @@ export function DotCheckbox({
   size = 'medium',
   value,
 }: CheckboxProps) {
-  const rootClasses = useStylesWithRootClass(rootClassName, className);
+  const rootClasses = useStylesWithRootClass(formControlClassName, className);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(event, event.target.value);

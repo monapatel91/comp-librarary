@@ -23,10 +23,21 @@ describe('DotCheckbox', () => {
       className: 'test-class',
       'data-testid': 'testid',
       defaultValues: defaultValues,
+      disableGroup: false,
+      endIcon: <DotIcon iconId="save" />,
+      error: false,
+      groupLabel: 'My Button Group',
+      helperText: 'a little help here?',
+      name: 'checkbox-group',
+      labelPlacement: 'end',
       onChange: onChange,
       options: options,
+      required: true,
+      row: true,
       selectAllLabel: 'select all',
       showSelectAll: true,
+      size: 'medium',
+      startIcon: <DotIcon iconId="save" />,
     };
     const checkboxGroupProps: CheckboxGroupProps = props;
     expect(checkboxGroupProps).toEqual(props);

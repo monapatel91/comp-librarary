@@ -16,7 +16,7 @@ export default {
     onChange: {
       action: 'clicked',
     },
-    groupLabel: { defaultValue: 'Group of items' },
+    label: { defaultValue: 'Group of items' },
     endIcon: { control: { type: 'select', options: iconOptions } },
     startIcon: { control: { type: 'select', options: iconOptions } },
     options: {

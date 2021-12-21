@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { render, screen } from '../../testing-utils';
 import { DotCheckbox, CheckboxProps } from './Checkbox';
 
 describe('DotCheckbox', () => {
   it('should have unchanged API', () => {
+    const onChange = jest.fn();
+    const inputRef = createRef<HTMLInputElement>();
     const props = {
       ariaLabel: 'Accessibility for the win',
       ariaLabelledby: 'label-man',
       className: 'test-class',
       'data-testid': 'testid',
       disableRipple: true,
+      disabled: false,
+      id: 'checkbox',
       indeterminate: false,
+      inputRef: inputRef,
+      label: 'checkbox label',
+      labelPlacement: 'end',
+      name: 'checkbox',
+      onChange: onChange,
+      required: false,
+      size: 'medium',
+      value: 'Batman was here',
     };
     const checkboxProps: CheckboxProps = props;
     expect(checkboxProps).toEqual(props);

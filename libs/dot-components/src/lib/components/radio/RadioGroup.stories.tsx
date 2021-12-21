@@ -16,7 +16,7 @@ export default {
       action: 'clicked',
     },
     value: { defaultValue: 'item-2' },
-    groupLabel: { defaultValue: 'Group of items' },
+    label: { defaultValue: 'Group of items' },
     options: {
       defaultValue: [
         { label: 'item 1', value: 'item-1' },

@@ -2,14 +2,39 @@ import { ChangeEvent, ReactNode, Ref, KeyboardEvent } from 'react';
 import { CommonProps } from '../CommonProps';
 
 export type inputSizeOptions = 'small' | 'medium';
+export type inputLabelPlacement = 'bottom' | 'end' | 'start';
 
-export interface InputProps extends CommonProps {
+export interface CommonFormFieldProps extends CommonProps {
+  /** accessibility label */
+  ariaLabel?: string;
+  /** accessibility labelled by */
+  ariaLabelledby?: string;
+  /** If true, the input will be disabled. */
+  disabled?: boolean;
+  /**
+   * id to identify the element, also used to create label "for" and helper text id attribute
+   * values while it's optional, it is considered required for accessiblity best practice.
+   */
+  id?: string;
+  /** pass a ref to the input element */
+  inputRef?: Ref<HTMLInputElement>;
+  /** The label content. */
+  label?: string;
+  /** label placement options available 'bottom' | 'end' | 'start' */
+  labelPlacement?: inputLabelPlacement;
+  /** The name of input element */
+  name?: string;
+  /** If true, the label is displayed as required and the input element` will be required. */
+  required?: boolean;
+  /** Size of the input */
+  size?: inputSizeOptions;
+}
+
+export interface InputProps extends CommonFormFieldProps {
   /** This prop helps users to fill forms faster */
   autoFocus?: boolean;
   /** default value of the input element */
   defaultValue?: string;
-  /** If true, the input will be disabled. */
-  disabled?: boolean;
   /** Icon placed after the children. */
   endIcon?: ReactNode;
   /** If true, the label will be displayed in an error state. */
@@ -52,6 +77,8 @@ export interface InputProps extends CommonProps {
    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types
    */
   type?: string;
+  /** value of the input */
+  value?: string;
   /** If true, the label will be displayed in an warning state. */
   warning?: boolean;
 }
