@@ -2,7 +2,10 @@ import React, { useState, ChangeEvent, ReactNode, useEffect } from 'react';
 import { FormHelperText, FormLabel } from '@material-ui/core';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
+  endAdornmentClassName,
+  groupLabelClassName,
   rootClassName,
+  startAdornmentClassName,
   StyledFormControl,
 } from '../form-controls/FormControl.styles';
 import {
@@ -11,10 +14,9 @@ import {
   RadioButtonProps,
 } from './RadioButton';
 import {
-  endAdornmentClassName,
-  groupLabelClassName,
-  startAdornmentClassName,
+  groupClassName,
   StyledRadioGroup,
+  StyledRadioGroupWrapper,
   wrapperClassName,
 } from './RadioGroup.styles';
 
@@ -23,8 +25,6 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   endIcon?: ReactNode;
   /** If true, the label should be displayed in an error state. */
   error?: boolean;
-  /** The label of the radio button group. */
-  groupLabel?: string;
   /** The helper text content. */
   helperText?: string;
   /** if true user is required to select an option */
@@ -38,11 +38,11 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
 }
 
 export interface RadioGroupProps extends RadioGroupBaseProps {
-  /** Array of CheckboxProps to set by default */
-  defaultValue?: RadioButtonProps[];
-  /** A function that should be executed when the value of the radio buttom changes */
+  /** The default input element value. Use when the component is not controlled or has a value. */
+  defaultValue?: string;
+  /** A function that should be executed when the value of the radio button changes */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
-  /** Array of CheckboxProps used to create the checkboxes */
+  /** Array of RadioButtonProps used to create the radio buttons */
   options: RadioButtonProps[];
 }
 
@@ -58,13 +58,13 @@ export const DotRadioGroup = ({
   id,
   inputRef,
   label,
-  groupLabel,
   helperText,
   labelPlacement = 'end',
   name,
   onChange,
   options,
   required,
+  row,
   size = 'medium',
   startIcon,
   value,
@@ -106,25 +106,38 @@ export const DotRadioGroup = ({
     : null;
 
   return (
-    <StyledFormControl className={wrapperClassName}>
-      {groupLabel && (
-        <FormLabel component="legend">
-          {startIcon && (
-            <span className={startAdornmentClassName}>{startIcon}</span>
-          )}
-          <span className={groupLabelClassName}>{groupLabel}</span>
-          {endIcon && <span className={endAdornmentClassName}>{endIcon}</span>}
-        </FormLabel>
-      )}
-      <StyledRadioGroup
+    <StyledRadioGroupWrapper className={wrapperClassName}>
+      <StyledFormControl
         classes={{ root: rootClasses }}
         component="fieldset"
         error={error}
         required={required}
       >
-        {renderOptions}
-      </StyledRadioGroup>
-      {helperText && <FormHelperText>{helperText}</FormHelperText>}
-    </StyledFormControl>
+        {label && (
+          <FormLabel component="legend">
+            {startIcon && (
+              <span className={startAdornmentClassName}>{startIcon}</span>
+            )}
+            <span className={groupLabelClassName}>{label}</span>
+            {endIcon && (
+              <span className={endAdornmentClassName}>{endIcon}</span>
+            )}
+          </FormLabel>
+        )}
+        <StyledRadioGroup
+          aria-label={ariaLabel}
+          className={groupClassName}
+          data-testid={dataTestId}
+          defaultValue={defaultValue}
+          name={name}
+          onChange={handleChange}
+          row={row}
+          value={selectedValue}
+        >
+          {renderOptions}
+        </StyledRadioGroup>
+        {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      </StyledFormControl>
+    </StyledRadioGroupWrapper>
   );
 };
