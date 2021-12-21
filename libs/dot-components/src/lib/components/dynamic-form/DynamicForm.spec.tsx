@@ -103,8 +103,8 @@ describe('DotDynamicForm', () => {
 
   const expectRadioGroupElementToBeChecked = (
     position: number,
-    shouldBeChecked = true,
-    radioGroupElement: HTMLElement
+    radioGroupElement: HTMLElement,
+    shouldBeChecked = true
   ): void => {
     const radioElement =
       within(radioGroupElement).getAllByRole('radio')[position];
@@ -443,8 +443,8 @@ describe('DotDynamicForm', () => {
       expect(vehicleModelElement).toBeEmptyDOMElement();
       waitFor(() => {
         expect(genderRadioButton[0]).toBeChecked();
-        expectRadioGroupElementToBeChecked(0, true, genderRadioGroupElement);
-        expectRadioGroupElementToBeChecked(0, false, hasVehicleElement);
+        expectRadioGroupElementToBeChecked(0, genderRadioGroupElement, true);
+        expectRadioGroupElementToBeChecked(0, hasVehicleElement, false);
         expectCheckboxGroupElementToBeChecked(
           0,
           false,
@@ -521,7 +521,7 @@ describe('DotDynamicForm', () => {
     it("should have disabled 'vehicleModel' control if 'hasVehicle' control's value is set to 'no'", () => {
       const hasVehicleElement = getHasVehicleControlElement();
       const vehicleModelElement = getVehicleModelControlElement();
-      expectRadioGroupElementToBeChecked(0, true, hasVehicleElement);
+      expectRadioGroupElementToBeChecked(0, hasVehicleElement, true);
       expect(vehicleModelElement).toBeDisabled();
     });
 
@@ -529,7 +529,7 @@ describe('DotDynamicForm', () => {
       const hasVehicleElement = getHasVehicleControlElement();
       const vehicleModelElement = getVehicleModelControlElement();
       selectRadioGroupOption(1, hasVehicleElement);
-      expectRadioGroupElementToBeChecked(1, true, hasVehicleElement);
+      expectRadioGroupElementToBeChecked(1, hasVehicleElement, true);
       expect(vehicleModelElement).toBeEnabled();
     });
   });

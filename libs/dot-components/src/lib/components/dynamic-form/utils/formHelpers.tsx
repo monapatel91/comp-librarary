@@ -263,7 +263,7 @@ export const buildRadioGroupControl = ({
     <DotRadioGroup
       key={index}
       {...props}
-      disableGroup={disabled}
+      disabled={disabled}
       error={!!errorMessage}
       helperText={errorMessage || props.helperText}
       onChange={handleChangeFn(controlName)}
@@ -311,7 +311,7 @@ export const buildCheckboxGroupControl = ({
       key={index}
       {...props}
       defaultValues={values}
-      disableGroup={disabled}
+      disabled={disabled}
       error={!!errorMessage}
       helperText={errorMessage || props.helperText}
       onChange={handleChangeFn(controlName)}

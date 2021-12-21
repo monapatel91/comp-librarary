@@ -461,7 +461,7 @@ describe('dynamic form helper functions', () => {
         ...props,
         controlProps: {
           ...controlProps,
-          disableGroup: false,
+          disabled: false,
         },
         disabled: true,
       };
@@ -470,7 +470,7 @@ describe('dynamic form helper functions', () => {
         ...expectedResult,
         props: {
           ...expectedResult.props,
-          disableGroup: true,
+          disabled: true,
         },
       });
     });
@@ -612,7 +612,7 @@ describe('dynamic form helper functions', () => {
         ...props,
         controlProps: {
           ...controlProps,
-          disableGroup: false,
+          disabled: false,
         },
         disabled: true,
       };
@@ -621,7 +621,7 @@ describe('dynamic form helper functions', () => {
         ...expectedResult,
         props: {
           ...expectedResult.props,
-          disableGroup: true,
+          disabled: true,
         },
       });
     });
