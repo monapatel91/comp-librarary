@@ -174,7 +174,7 @@ export const DemoForm = () => {
               id="superHero"
               name="superHero"
               value={superHero}
-              groupLabel="Select Your Favorite Superhero"
+              label="Select Your Favorite Superhero"
               required
               onChange={handleChange}
               options={[
@@ -187,8 +187,8 @@ export const DemoForm = () => {
             />
 
             <DotCheckboxGroup
-              defaultValues={favTrait}
-              groupLabel="Select Reason:"
+              defaultValue={favTrait}
+              label="Select Reason:"
               required
               onChange={(_event, values) => handleCheckboxChange(values)}
               options={[

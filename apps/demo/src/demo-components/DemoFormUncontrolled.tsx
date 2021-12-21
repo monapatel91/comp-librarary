@@ -130,7 +130,7 @@ export const DemoFormUncontrolled = () => {
           helperText={lyricError}
           id="lyric"
           name="lyric"
-          groupLabel="Still don't know..."
+          label="Still don't know..."
           required
           options={[
             { label: 'what happened in Las Vegas', value: 'lasVegas' },
@@ -151,7 +151,7 @@ export const DemoFormUncontrolled = () => {
         {showHint && <DotCard>{hint}</DotCard>}
 
         <DotCheckboxGroup
-          groupLabel="I would like to receive:"
+          label="I would like to receive:"
           id="receive"
           name="receive"
           required

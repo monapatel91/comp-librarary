@@ -419,7 +419,7 @@ describe('dynamic form helper functions', () => {
     ];
     const controlProps: RadioGroupProps = {
       id: 'my-radio-group-id',
-      groupLabel: 'Select Your Favorite Superhero',
+      label: 'Select Your Favorite Superhero',
       options,
     };
     const formData = {
@@ -441,9 +441,9 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotRadioGroup
-        disableGroup={false}
+        disabled={false}
         error={false}
-        groupLabel={controlProps.groupLabel}
+        label={controlProps.label}
         id={controlProps.id}
         key={props.index}
         options={options}
@@ -570,7 +570,7 @@ describe('dynamic form helper functions', () => {
     ];
     const controlProps: CheckboxGroupProps = {
       id: 'my-checkbox-group-id',
-      groupLabel: 'I would like to receive',
+      label: 'I would like to receive',
       options,
     };
     const formData = {
@@ -592,10 +592,10 @@ describe('dynamic form helper functions', () => {
     };
     const expectedResult = (
       <DotCheckboxGroup
-        defaultValues={[]}
-        disableGroup={false}
+        defaultValue={[]}
+        disabled={false}
         error={false}
-        groupLabel={controlProps.groupLabel}
+        label={controlProps.label}
         id={controlProps.id}
         key={props.index}
         options={options}

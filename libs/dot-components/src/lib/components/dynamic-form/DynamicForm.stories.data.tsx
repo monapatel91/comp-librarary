@@ -78,7 +78,7 @@ export const getDynamicFormConfig = (
           'data-testid': 'gender',
           id: 'gender',
           name: 'gender',
-          groupLabel: 'Select Gender',
+          label: 'Select Gender',
           required: true,
           defaultValue: 'male',
           options: [
@@ -238,7 +238,7 @@ export const getDynamicFormConfig = (
           'data-testid': 'hasVehicle',
           id: 'hasVehicle',
           name: 'hasVehicle',
-          groupLabel: 'Do you own a vehicle?',
+          label: 'Do you own a vehicle?',
           defaultValue: 'no',
           options: [
             { label: 'No', value: 'no' },
@@ -263,7 +263,7 @@ export const getDynamicFormConfig = (
         controlName: 'receive',
         controlProps: {
           'data-testid': 'receive',
-          groupLabel: 'I would like to receive',
+          label: 'I would like to receive',
           helperText: 'Pick at least two options',
           options: [
             {

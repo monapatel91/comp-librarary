@@ -28,7 +28,7 @@ export type { ListItemProps } from './list/List';
 export type { MenuItemProps } from './menu/Menu';
 export type { RailItem } from './navigation-rail/NavigationRail';
 export type { RadioButtonProps } from './radio/RadioButton';
-export type { RadioGroupBaseProps } from './radio/RadioGroup';
+export type { RadioGroupProps, RadioGroupBaseProps } from './radio/RadioGroup';
 export type { BackItemProps, SidebarProps } from './sidebar/Sidebar';
 export type { SwitchProps } from './switch/Switch';
 export type { TableRowProps } from './table/Table';

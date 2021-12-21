@@ -45,7 +45,7 @@ export const DemoDynamicForm = () => {
         controlProps: {
           'data-testid': 'hasMiddleName',
           defaultValue: 'no',
-          groupLabel: 'Do you have middle name?',
+          label: 'Do you have middle name?',
           id: 'hasMiddleName',
           name: 'hasMiddleName',
           options: [
@@ -165,7 +165,7 @@ export const DemoDynamicForm = () => {
       {
         controlName: 'receive',
         controlProps: {
-          groupLabel: 'I would like to receive',
+          label: 'I would like to receive',
           options: [
             {
               label: 'Notification of new releases',
@@ -231,7 +231,7 @@ export const DemoDynamicForm = () => {
         controlProps: {
           id: 'superHero',
           name: 'superHero',
-          groupLabel: 'Select Your Favorite Superhero',
+          label: 'Select Your Favorite Superhero',
           required: true,
           defaultValue: 'None',
           options: [
