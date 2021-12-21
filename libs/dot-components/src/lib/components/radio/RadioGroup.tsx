@@ -1,24 +1,30 @@
 import React, { useState, ChangeEvent, ReactNode, useEffect } from 'react';
 import { FormHelperText, FormLabel } from '@material-ui/core';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { CommonFormFieldProps } from '../input-form-fields/InputFormFields.propTypes';
+import {
+  rootClassName,
+  StyledFormControl,
+} from '../form-controls/FormControl.styles';
+import {
+  DotRadioButton,
+  RadioButtonBaseProps,
+  RadioButtonProps,
+} from './RadioButton';
 import {
   endAdornmentClassName,
   groupLabelClassName,
-  rootClassName,
   startAdornmentClassName,
-  StyledFormControl,
-} from '../form-controls/FormControl.styles';
-import { DotRadioButton, RadioButtonProps } from './RadioButton';
-import { groupClassName, StyledRadioGroup } from './RadioGroup.styles';
+  StyledRadioGroup,
+  wrapperClassName,
+} from './RadioGroup.styles';
 
 export interface RadioGroupBaseProps extends RadioButtonBaseProps {
-  /** if true makes all radio buttons disabled */
-  disableGroup?: boolean;
   /** Icon placed before the children. */
   endIcon?: ReactNode;
   /** If true, the label should be displayed in an error state. */
   error?: boolean;
+  /** The label of the radio button group. */
+  groupLabel?: string;
   /** The helper text content. */
   helperText?: string;
   /** if true user is required to select an option */
@@ -31,29 +37,38 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   value?: string;
 }
 
+export interface RadioGroupProps extends RadioGroupBaseProps {
+  /** Array of CheckboxProps to set by default */
+  defaultValue?: RadioButtonProps[];
+  /** A function that should be executed when the value of the radio buttom changes */
+  onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+  /** Array of CheckboxProps used to create the checkboxes */
+  options: RadioButtonProps[];
+}
+
 export const DotRadioGroup = ({
   ariaLabel,
   ariaLabelledby,
   className,
   'data-testid': dataTestId,
   defaultValue,
-  disabled,
+  disabled = false,
   endIcon,
   error,
   id,
   inputRef,
   label,
+  groupLabel,
   helperText,
   labelPlacement = 'end',
   name,
   onChange,
   options,
   required,
-  row,
   size = 'medium',
   startIcon,
   value,
-}: RadioGroupBaseProps) => {
+}: RadioGroupProps) => {
   const groupDisabled = disabled;
   const rootClasses = useStylesWithRootClass(
     rootClassName,
@@ -62,7 +77,6 @@ export const DotRadioGroup = ({
   );
 
   const radioValue = value || defaultValue;
-
   const [selectedValue, setSelectedValue] = useState(radioValue);
 
   /* This will ensure that value can be updated from the outside */
@@ -76,16 +90,16 @@ export const DotRadioGroup = ({
   };
 
   const renderOptions = options
-    ? options.map(({ label, value, disabled }) => {
+    ? options.map((option) => {
         return (
           <DotRadioButton
-            checked={selectedValue === value}
-            disabled={disabled || disableGroup}
-            key={value}
-            label={label}
+            checked={selectedValue === option.value}
+            disabled={option.disabled || groupDisabled}
+            key={option.value}
+            label={option.label}
             labelPlacement={labelPlacement}
             size={size}
-            value={value}
+            value={option.value}
           />
         );
       })
@@ -93,6 +107,15 @@ export const DotRadioGroup = ({
 
   return (
     <StyledFormControl className={wrapperClassName}>
+      {groupLabel && (
+        <FormLabel component="legend">
+          {startIcon && (
+            <span className={startAdornmentClassName}>{startIcon}</span>
+          )}
+          <span className={groupLabelClassName}>{groupLabel}</span>
+          {endIcon && <span className={endAdornmentClassName}>{endIcon}</span>}
+        </FormLabel>
+      )}
       <StyledRadioGroup
         classes={{ root: rootClasses }}
         component="fieldset"

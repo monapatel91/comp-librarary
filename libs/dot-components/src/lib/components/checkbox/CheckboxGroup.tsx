@@ -1,6 +1,5 @@
 import React, { ChangeEvent, ReactNode, useState } from 'react';
 import { FormHelperText, FormLabel } from '@material-ui/core';
-import React, { ChangeEvent, useEffect, useState } from 'react';
 import {
   endAdornmentClassName,
   groupLabelClassName,
@@ -18,8 +17,9 @@ import {
 } from './CheckboxGroup.styles';
 import { DotFormGroup } from '../form-group/FormGroup';
 import { CheckboxProps, DotCheckbox } from '../checkbox/Checkbox';
+import { RadioGroupBaseProps } from '../radio/RadioGroup';
 
-export interface CheckboxGroupProps extends CommonFormFieldProps {
+export interface CheckboxGroupProps extends RadioGroupBaseProps {
   /** Array of CheckboxProps to set by default */
   defaultValue?: CheckboxProps[];
   /** Icon placed before the children. */
@@ -74,7 +74,6 @@ export function DotCheckboxGroup({
   size = 'medium',
   startIcon,
 }: CheckboxGroupProps) {
-  const groupDisabled = disabled;
   const placement = `dot-${labelPlacement}`;
   const rootClasses = useStylesWithRootClass(
     rootClassName,

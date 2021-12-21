@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, Ref } from 'react';
 import {
   rootClassName,
   StyledFormControlLabel,
@@ -13,7 +13,7 @@ import { CommonFormFieldProps } from '../input-form-fields/InputFormFields.propT
 export type RadioSize = 'medium' | 'small';
 export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
 
-export interface RadioButtonBaseProps extends CommonProps {
+export interface RadioButtonBaseProps extends CommonFormFieldProps {
   /** id of radio button */
   id?: string;
   /** pass a ref to the input element */
@@ -35,12 +35,11 @@ export interface RadioButtonProps extends RadioButtonBaseProps {
   checked?: boolean;
   /** A function that should be executed when the value of the radio buttom changes */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
-  /** value of the input */
-  value?: string;
 }
 
 export function DotRadioButton({
   ariaLabel,
+  ariaLabelledby,
   checked,
   className,
   'data-testid': dataTestId,
