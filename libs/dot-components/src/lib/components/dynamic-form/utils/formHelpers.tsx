@@ -310,7 +310,7 @@ export const buildCheckboxGroupControl = ({
     <DotCheckboxGroup
       key={index}
       {...props}
-      defaultValues={values}
+      defaultValue={values}
       disabled={disabled}
       error={!!errorMessage}
       helperText={errorMessage || props.helperText}
