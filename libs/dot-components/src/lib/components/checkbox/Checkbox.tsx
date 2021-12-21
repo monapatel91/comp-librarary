@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { RadioButtonProps } from '../radio/RadioButton';
 import {
-  rootClassName as formControlClassName,
+  rootClassName,
   StyledFormControlLabel,
 } from '../form-controls/FormControlLabel.styles';
 import {
@@ -39,7 +39,7 @@ export function DotCheckbox({
   size = 'medium',
   value,
 }: CheckboxProps) {
-  const rootClasses = useStylesWithRootClass(formControlClassName, className);
+  const rootClasses = useStylesWithRootClass(rootClassName, className);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(event, event.target.value);

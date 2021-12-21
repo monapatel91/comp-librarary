@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { FormHelperText, FormLabel } from '@material-ui/core';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import { DotFormGroup } from '../form-group/FormGroup';
@@ -22,12 +22,6 @@ import {
 export interface CheckboxGroupProps extends RadioGroupBaseProps {
   /** Array of CheckboxProps to set by default */
   defaultValue?: CheckboxProps[];
-  /** Icon placed before the children. */
-  endIcon?: ReactNode;
-  /** If true, the label should be displayed in an error state. */
-  error?: boolean;
-  /** The helper text content. */
-  helperText?: string;
   /** A function that should be executed when the value of the checkbox changes */
   onChange?: (
     event: ChangeEvent<HTMLInputElement>,
@@ -35,14 +29,10 @@ export interface CheckboxGroupProps extends RadioGroupBaseProps {
   ) => void;
   /** Array of CheckboxProps used to create the checkboxes */
   options: CheckboxProps[];
-  /** changes layout to be horizontal if true */
-  row?: boolean;
   /** select all label */
   selectAllLabel?: string;
   /** if true use parent for selecting/deselecting all */
   showSelectAll?: boolean;
-  /** Icon placed before the children. */
-  startIcon?: ReactNode;
 }
 
 // Have this outside of component to avoid having different
@@ -56,13 +46,13 @@ export function DotCheckboxGroup({
   className,
   'data-testid': dataTestId,
   defaultValue = DEFAULT_VALUES,
-  disabled,
+  disabled: groupDisabled,
   endIcon,
   error,
   helperText,
   id,
   inputRef,
-  label,
+  label: groupLabel,
   labelPlacement,
   name,
   onChange,
@@ -73,7 +63,6 @@ export function DotCheckboxGroup({
   showSelectAll = false,
   size = 'medium',
   startIcon,
-  value,
 }: CheckboxGroupProps) {
   const placement = `dot-${labelPlacement}`;
   const rootClasses = useStylesWithRootClass(
@@ -114,7 +103,7 @@ export function DotCheckboxGroup({
   };
 
   const renderOptions = options
-    ? options.map((checkbox) => {
+    ? options.map(({ value, label, disabled }) => {
         return (
           <DotCheckbox
             checked={
@@ -123,14 +112,14 @@ export function DotCheckboxGroup({
               ) || allChecked
             }
             className={checkboxListItemClassName}
-            disabled={checkbox.disabled || disabled}
-            key={checkbox.value}
-            label={checkbox.label}
+            disabled={disabled || groupDisabled}
+            key={value}
+            label={label}
             labelPlacement={labelPlacement}
             name={name}
-            onChange={(event) => handleChange(event, checkbox)}
+            onChange={(event) => handleChange(event, { label, value })}
             size={size}
-            value={checkbox.value}
+            value={value}
           />
         );
       })
@@ -145,16 +134,16 @@ export function DotCheckboxGroup({
       <StyledFormControl
         classes={{ root: rootClasses }}
         component="fieldset"
-        disabled={disabled}
+        disabled={groupDisabled}
         error={error}
         required={required}
       >
-        {label && (
+        {groupLabel && (
           <FormLabel component="legend">
             {startIcon && (
               <span className={startAdornmentClassName}>{startIcon}</span>
             )}
-            <span className={groupLabelClassName}>{label}</span>
+            <span className={groupLabelClassName}>{groupLabel}</span>
             {endIcon && (
               <span className={endAdornmentClassName}>{endIcon}</span>
             )}

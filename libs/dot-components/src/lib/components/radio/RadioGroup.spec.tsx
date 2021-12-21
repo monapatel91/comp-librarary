@@ -97,24 +97,12 @@ describe('DotRadioGroup', () => {
 
       expect(radiaGroup).toHaveAttribute('aria-label', 'test-radio-group');
     });
-    it('should be checked and have a value of item-2', () => {
-      render(
-        <DotRadioGroup
-          data-testid="test-radio-group"
-          defaultValue="item-2"
-          options={radioButtons}
-        />
-      );
-      const inputs = screen.getAllByRole('radio');
 
-      expect(inputs[1]).toBeChecked();
-      expect(inputs[1].getAttribute('value')).toBe('item-2');
-    });
     it('should disable all radio buttons', () => {
       render(
         <DotRadioGroup
           data-testid="test-radio-group"
-          disableGroup
+          disabled={true}
           options={radioButtons}
         />
       );
@@ -127,7 +115,7 @@ describe('DotRadioGroup', () => {
       render(
         <DotRadioGroup
           data-testid="test-radio-group"
-          groupLabel="Group label"
+          label="Group label"
           options={radioButtons}
           startIcon={<DotIcon data-testid="start-icon" iconId="home" />}
           value="item-2"
@@ -141,7 +129,7 @@ describe('DotRadioGroup', () => {
         <DotRadioGroup
           data-testid="test-radio-group"
           endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
-          groupLabel="Group label"
+          label="Group label"
           options={radioButtons}
         />
       );
@@ -153,7 +141,7 @@ describe('DotRadioGroup', () => {
         <DotRadioGroup
           data-testid="test-radio-group"
           endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
-          groupLabel="Group label"
+          label="Group label"
           options={radioButtons}
         />
       );
@@ -183,7 +171,7 @@ describe('DotRadioGroup', () => {
       const { baseElement } = render(
         <DotRadioGroup
           data-testid="test-radio-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           options={radioButtons}
         />
@@ -196,7 +184,7 @@ describe('DotRadioGroup', () => {
       render(
         <DotRadioGroup
           data-testid="test-radio-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           name="test-radio-name"
           options={radioButtons}
@@ -211,7 +199,7 @@ describe('DotRadioGroup', () => {
       const { baseElement } = render(
         <DotRadioGroup
           data-testid="test-radio-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           labelPlacement="start"
           name="test-radio-name"
@@ -229,7 +217,7 @@ describe('DotRadioGroup', () => {
       const { baseElement } = render(
         <DotRadioGroup
           data-testid="test-radio-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           labelPlacement="bottom"
           name="test-radio-name"
@@ -266,7 +254,7 @@ describe('DotRadioGroup', () => {
       render(
         <DotRadioGroup
           data-testid="test-radio-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           labelPlacement="bottom"
           name="test-radio-name"
@@ -284,7 +272,7 @@ describe('DotRadioGroup', () => {
       render(
         <DotRadioGroup
           data-testid="test-radio-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           labelPlacement="bottom"
           name="test-radio-name"

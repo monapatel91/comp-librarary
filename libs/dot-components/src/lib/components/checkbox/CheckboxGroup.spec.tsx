@@ -14,7 +14,7 @@ const options = [
   { label: 'item 3', value: 'item-3' },
   { label: 'item 4', value: 'item-4' },
 ];
-const defaultValues = [
+const defaultValue = [
   { label: 'item 1', value: 'item-1' },
   { label: 'item 3', value: 'item-3' },
   { label: 'item 4', value: 'item-4' },
@@ -27,8 +27,8 @@ describe('DotCheckbox', () => {
     const props = {
       className: 'test-class',
       'data-testid': 'testid',
-      defaultValues: defaultValues,
-      disableGroup: false,
+      defaultValue: defaultValue,
+      disabled: false,
       endIcon: <DotIcon iconId="save" />,
       error: false,
       helperText: 'a little help here?',
@@ -55,7 +55,7 @@ describe('DotCheckbox', () => {
       render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          defaultValue={defaultValues}
+          defaultValue={defaultValue}
           options={options}
         />
       );
@@ -72,7 +72,7 @@ describe('DotCheckbox', () => {
       render(
         <DotCheckboxGroup
           data-testid="test-checkoxb-group"
-          defaultValue={defaultValues}
+          defaultValue={defaultValue}
           options={options}
         />
       );

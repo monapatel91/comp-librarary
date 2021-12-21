@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 import { rootClassName as formControlLabelClass } from '../form-controls/FormControlLabel.styles';
 
-export const rootClassName = 'dot-checkbox-group';
-export const wrapperClassName = 'dot-checkbox-group-wrapper';
 export const checkboxListClassName = 'dot-checkbox-list';
 export const checkboxListItemClassName = 'dot-checkbox-list-item';
+export const rootClassName = 'dot-checkbox-group';
+export const wrapperClassName = 'dot-checkbox-group-wrapper';
 
 export const StyledCheckboxGroup = styled.div`
   ${({ theme }) => css`{
