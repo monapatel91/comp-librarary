@@ -4,7 +4,7 @@ import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   endAdornmentClassName,
   groupLabelClassName,
-  rootClassName,
+  rootClassName as formGroupClassName,
   startAdornmentClassName,
   StyledFormControl,
 } from '../form-controls/FormControl.styles';
@@ -14,7 +14,7 @@ import {
   RadioButtonProps,
 } from './RadioButton';
 import {
-  groupClassName,
+  rootClassName,
   StyledRadioGroup,
   StyledRadioGroupWrapper,
   wrapperClassName,
@@ -93,6 +93,7 @@ export const DotRadioGroup = ({
     ? options.map((option) => {
         return (
           <DotRadioButton
+            ariaLabelledby={ariaLabelledby}
             checked={selectedValue === option.value}
             disabled={option.disabled || groupDisabled}
             key={option.value}
@@ -108,7 +109,7 @@ export const DotRadioGroup = ({
   return (
     <StyledRadioGroupWrapper className={wrapperClassName}>
       <StyledFormControl
-        classes={{ root: rootClasses }}
+        classes={{ root: formGroupClassName }}
         component="fieldset"
         error={error}
         required={required}
@@ -126,7 +127,7 @@ export const DotRadioGroup = ({
         )}
         <StyledRadioGroup
           aria-label={ariaLabel}
-          className={groupClassName}
+          className={rootClasses}
           data-testid={dataTestId}
           defaultValue={defaultValue}
           name={name}

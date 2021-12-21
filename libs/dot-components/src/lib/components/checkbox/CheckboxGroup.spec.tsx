@@ -98,7 +98,7 @@ describe('DotCheckbox', () => {
       render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          disableGroup
+          disabled={true}
           options={options}
         />
       );
@@ -108,10 +108,10 @@ describe('DotCheckbox', () => {
       });
     });
     it('should have startIcon', () => {
-      const { baseElement } = render(
+      render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          groupLabel="Group label"
+          label="Group label"
           options={options}
           startIcon={<DotIcon data-testid="start-icon" iconId="home" />}
           value="item-2"
@@ -125,7 +125,7 @@ describe('DotCheckbox', () => {
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
           endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
-          groupLabel="Group label"
+          label="Group label"
           options={options}
         />
       );
@@ -140,7 +140,7 @@ describe('DotCheckbox', () => {
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
           endIcon={<DotIcon data-testid="end-icon" iconId="home" />}
-          groupLabel="Group label"
+          label="Group label"
           options={options}
         />
       );
@@ -170,7 +170,7 @@ describe('DotCheckbox', () => {
       const { baseElement } = render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           options={options}
         />
@@ -183,7 +183,7 @@ describe('DotCheckbox', () => {
       render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           name="test-checkbox-name"
           options={options}
@@ -198,7 +198,7 @@ describe('DotCheckbox', () => {
       const { baseElement } = render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           labelPlacement="start"
           name="test-checkbox-name"
@@ -216,7 +216,7 @@ describe('DotCheckbox', () => {
       const { baseElement } = render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           labelPlacement="bottom"
           name="test-checkbox-name"
@@ -241,6 +241,7 @@ describe('DotCheckbox', () => {
           name="test-checkbox-name"
           options={options}
           size="small"
+          value="item-2"
         />
       );
       const svgs = baseElement.querySelectorAll('svg');
@@ -253,7 +254,7 @@ describe('DotCheckbox', () => {
       render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           labelPlacement="bottom"
           name="test-checkbox-name"
@@ -271,7 +272,7 @@ describe('DotCheckbox', () => {
       render(
         <DotCheckboxGroup
           data-testid="test-checkbox-group"
-          groupLabel="Group label"
+          label="Group label"
           helperText="Helper test"
           labelPlacement="bottom"
           name="test-checkbox-name"

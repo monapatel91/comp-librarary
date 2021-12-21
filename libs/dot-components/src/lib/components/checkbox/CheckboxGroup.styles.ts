@@ -9,6 +9,13 @@ export const checkboxListItemClassName = 'dot-checkbox-list-item';
 export const StyledCheckboxGroup = styled.div`
   ${({ theme }) => css`{
     &.${wrapperClassName} {
+      .${rootClassName} {
+        width: 100%;
+      }
+      .MuiFormLabel-root {
+        display: inline;
+        width: 100%;
+      }
 
       .${checkboxListClassName} {
         list-style: none;

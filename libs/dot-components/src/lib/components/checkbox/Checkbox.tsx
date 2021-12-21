@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { useStylesWithRootClass } from '../useStylesWithRootClass';
-import { CommonFormFieldProps } from '../input-form-fields/InputFormFields.propTypes';
+import { RadioButtonProps } from '../radio/RadioButton';
 import {
   rootClassName as formControlClassName,
   StyledFormControlLabel,
@@ -9,22 +9,15 @@ import {
   StyledCheckbox,
   rootClassName as rootCheckboxClassName,
 } from './Checkbox.styles';
-import { RadioButtonProps } from '../radio/RadioButton';
 
 export type CheckboxSize = 'medium' | 'small';
 export type CheckboxLabelPlacement = 'bottom' | 'end' | 'start';
 
 export interface CheckboxProps extends RadioButtonProps {
-  /** accessibility labelled by */
-  ariaLabelledby?: string;
   /** If true, the ripple effect will be disabled. */
   disableRipple?: boolean;
   /** if true the checkbox will display with intermediate */
   indeterminate?: boolean;
-  /** A function that should be executed when the value of the checkbox buttom changes */
-  onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
-  /** value of the input */
-  value?: string;
 }
 
 export function DotCheckbox({
