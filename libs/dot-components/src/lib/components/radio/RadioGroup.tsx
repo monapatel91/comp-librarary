@@ -27,14 +27,10 @@ export interface RadioGroupBaseProps extends RadioButtonBaseProps {
   error?: boolean;
   /** The helper text content. */
   helperText?: string;
-  /** if true user is required to select an option */
-  required?: boolean;
   /** changes layout to be horizontal if true */
   row?: boolean;
   /** Icon placed before the children. */
   startIcon?: ReactNode;
-  /** value of the input */
-  value?: string;
 }
 
 export interface RadioGroupProps extends RadioGroupBaseProps {

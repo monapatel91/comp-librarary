@@ -106,6 +106,7 @@ export function DotCheckboxGroup({
     ? options.map(({ value, label, disabled }) => {
         return (
           <DotCheckbox
+            ariaLabelledby={ariaLabelledby}
             checked={
               selectedOptions.some(
                 (option) => option && option.value === value
@@ -113,6 +114,8 @@ export function DotCheckboxGroup({
             }
             className={checkboxListItemClassName}
             disabled={disabled || groupDisabled}
+            id={id}
+            inputRef={inputRef}
             key={value}
             label={label}
             labelPlacement={labelPlacement}

@@ -6,7 +6,7 @@ import {
   rootSelectClassName as selectFieldClass,
 } from '../input-form-fields/InputFormFields.styles';
 import { rootClassName as checkboxGroupClass } from '../checkbox/CheckboxGroup.styles';
-import { groupClassName as radioGroupClass } from '../radio/RadioGroup.styles';
+import { rootClassName as radioGroupClass } from '../radio/RadioGroup.styles';
 
 export const rootClassName = 'dot-form';
 

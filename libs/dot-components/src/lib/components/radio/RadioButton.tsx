@@ -14,16 +14,6 @@ export type RadioSize = 'medium' | 'small';
 export type RadioLabelPlacement = 'bottom' | 'end' | 'start';
 
 export interface RadioButtonBaseProps extends CommonFormFieldProps {
-  /** id of radio button */
-  id?: string;
-  /** pass a ref to the input element */
-  inputRef?: Ref<HTMLInputElement>;
-  /** label placement options available 'bottom' | 'end' | 'start' */
-  labelPlacement?: RadioLabelPlacement;
-  /** name of radio input */
-  name?: string;
-  /** if true user is required to select an option */
-  required?: boolean;
   /** controls the size of the radio button 'medium', 'small' */
   size?: RadioSize;
   /** unique value for the radio button */
