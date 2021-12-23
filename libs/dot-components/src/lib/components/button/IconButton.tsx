@@ -53,7 +53,7 @@ export const DotIconButton = ({
     }
   }, []);
   return (
-    <DotTooltip title={tooltip}>
+    <DotTooltip data-testid="icon-button-tooltip" title={tooltip}>
       <StyledIconButton
         aria-label={ariaLabel}
         classes={{ root: rootClasses }}

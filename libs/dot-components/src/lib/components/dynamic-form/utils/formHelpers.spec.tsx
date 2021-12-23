@@ -131,7 +131,7 @@ describe('dynamic form helper functions', () => {
       title: { value: 'my title' },
     };
     it('should return undefined when no event handler was passed in', () => {
-      const result = getControlClickHandler(formValues, undefined);
+      const result = getControlClickHandler(formValues);
       expect(result).toBeUndefined();
     });
     it("should return correct event handler when 'onControlClick' was passed in", () => {

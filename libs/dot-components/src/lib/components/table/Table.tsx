@@ -282,6 +282,7 @@ export const DotTable = ({
       {rowsPerPage && (
         <DotTablePagination
           count={total}
+          data-testid="dot-table-pagination"
           onPageChange={onPageChange}
           onRowsPerPageChange={onRowsPerPageChange}
           page={tablePage}

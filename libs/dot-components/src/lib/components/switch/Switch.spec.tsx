@@ -34,8 +34,8 @@ describe('Switch', () => {
   it('should render the medium switch size', () => {
     render(<DotSwitch data-testid="test-switch" size="medium"></DotSwitch>);
 
-    expect(screen.getByTestId('test-switch').parentElement).not.toHaveClass(
-      'MuiSwitch-sizeSmall'
+    expect(screen.getByTestId('test-switch').parentElement).toHaveClass(
+      'MuiSwitch-sizeMedium'
     );
   });
 

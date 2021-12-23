@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Ref } from 'react';
+import React, { ChangeEvent } from 'react';
 import {
   rootClassName,
   StyledFormControlLabel,

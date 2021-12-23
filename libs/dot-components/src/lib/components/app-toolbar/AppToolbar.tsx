@@ -164,13 +164,7 @@ export const DotAppToolbar = ({
           data-testid="primary-logo"
           href={primaryLogoHref}
         >
-          {customLogo ? (
-            customLogo
-          ) : (
-            <DotTooltip title="digital.ai">
-              <LogoDigitalAiWhite />
-            </DotTooltip>
-          )}
+          {customLogo ? customLogo : <LogoDigitalAiWhite title="digital.ai" />}
         </DotLink>
         {displayAppLogo && (
           <DotAppLogo

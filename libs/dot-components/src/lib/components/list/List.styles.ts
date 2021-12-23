@@ -1,5 +1,10 @@
 import styled, { css } from 'styled-components';
-import { List } from '@mui/material';
+import { List, ListItem } from '@mui/material';
+import {
+  flyoutItemLinkClassName,
+  flyoutListItemClassName,
+  listItemLinkClassName,
+} from './ListItem.styles';
 
 export const rootClassName = 'dot-list';
 export const listItemRootClass = 'dot-list-item';

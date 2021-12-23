@@ -1,6 +1,11 @@
 import React, { createRef } from 'react';
 import { render, screen } from '../../testing-utils';
-import { DotCheckbox, CheckboxProps } from './Checkbox';
+import {
+  DotCheckbox,
+  CheckboxLabelPlacement,
+  CheckboxProps,
+  CheckboxSize,
+} from './Checkbox';
 
 describe('DotCheckbox', () => {
   it('should have unchanged API', () => {
@@ -9,19 +14,20 @@ describe('DotCheckbox', () => {
     const props = {
       ariaLabel: 'Accessibility for the win',
       ariaLabelledby: 'label-man',
+      checked: true,
       className: 'test-class',
       'data-testid': 'testid',
-      disableRipple: true,
       disabled: false,
+      disableRipple: true,
       id: 'checkbox',
       indeterminate: false,
       inputRef: inputRef,
       label: 'checkbox label',
-      labelPlacement: 'end',
+      labelPlacement: 'end' as CheckboxLabelPlacement,
       name: 'checkbox',
       onChange: onChange,
       required: false,
-      size: 'medium',
+      size: 'medium' as CheckboxSize,
       value: 'Batman was here',
     };
     const checkboxProps: CheckboxProps = props;
@@ -106,8 +112,8 @@ describe('DotCheckbox', () => {
           value="test-value"
         />
       );
-      expect(baseElement.querySelector('svg')).not.toHaveClass(
-        'MuiSvgIcon-fontSizeSmall'
+      expect(baseElement.querySelector('svg')).toHaveClass(
+        'MuiSvgIcon-fontSizeMedium'
       );
     });
   });

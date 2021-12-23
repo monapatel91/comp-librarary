@@ -172,7 +172,7 @@ describe('AutoComplete', () => {
     expect(onChange).toHaveBeenCalledWith(
       expect.anything(),
       ['Bob'],
-      'create-option'
+      'createOption'
     );
   });
 
@@ -197,7 +197,7 @@ describe('AutoComplete', () => {
     expect(onChange).toHaveBeenCalledWith(
       expect.anything(),
       ['Hulk'],
-      'create-option'
+      'createOption'
     );
   });
 

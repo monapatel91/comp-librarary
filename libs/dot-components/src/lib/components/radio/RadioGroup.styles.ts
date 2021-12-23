@@ -1,6 +1,7 @@
 import { RadioGroup } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { rootClassName as formControlLabelClass } from '../form-controls/FormControlLabel.styles';
+import { rootClassName as groupClassName } from '../form-group/FormGroup.styles';
 
 export const rootClassName = 'dot-radio-group';
 export const wrapperClassName = 'dot-radio-group-wrapper';

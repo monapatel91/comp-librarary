@@ -180,6 +180,7 @@ export const DotSidebar = ({
       {hasBackItem && (
         <DotLink
           color="textPrimary"
+          data-testid="backItem"
           onClick={backItem.onClick}
           tooltip={backItem.title || backItem.text}
           underline="none"

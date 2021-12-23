@@ -1,28 +1,30 @@
 import { FormControlLabel } from '@mui/material';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-form-control-label';
 
 export const StyledFormControlLabel = styled(FormControlLabel)`
-  &.${rootClassName} {
-    .MuiFormControlLabel-label {
-      margin-bottom: 0;
-      padding: 0 0 0 4px;
-    }
-    &.MuiFormControlLabel-labelPlacementBottom {
+  ${({ theme }) => css`
+    &.${rootClassName} {
       .MuiFormControlLabel-label {
-        padding: 4px 0 0 0;
+        margin-bottom: 0;
+        padding: ${theme.spacing(0, 0, 0, 0.5)};
+      }
+      &.MuiFormControlLabel-labelPlacementBottom {
+        .MuiFormControlLabel-label {
+          padding: ${theme.spacing(0.5, 0, 0, 0)};
+        }
+      }
+      &.MuiFormControlLabel-labelPlacementTop {
+        .MuiFormControlLabel-label {
+          padding: ${theme.spacing(0, 0, 0.5, 0)};
+        }
+      }
+      &.MuiFormControlLabel-labelPlacementStart {
+        .MuiFormControlLabel-label {
+          padding: ${theme.spacing(0, 0.5, 0)};
+        }
       }
     }
-    &.MuiFormControlLabel-labelPlacementTop {
-      .MuiFormControlLabel-label {
-        padding: 0 0 4px 0;
-      }
-    }
-    &.MuiFormControlLabel-labelPlacementStart {
-      .MuiFormControlLabel-label {
-        padding: 0 4px 0;
-      }
-    }
-  }
+  `}
 `;

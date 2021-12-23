@@ -159,19 +159,27 @@ describe(' Sidebar - Back Button', () => {
     expect(goBack).toHaveBeenCalledTimes(2);
   });
 
-  it('should use backItem.title for backItem link when title is provided', () => {
+  it('should use backItem.title for tooltip when provided', async () => {
     render(<DotSidebar backItem={backItem} goBack={true} />);
-    expect(screen.getAllByTitle(backItem.title)).toHaveLength(1);
+    const tooltipElm = screen.queryByTestId('backItem');
+    userEvent.hover(tooltipElm);
+    await waitFor(() => {
+      expect(screen.queryByText(backItem.title)).toBeInTheDocument();
+    });
   });
 
-  it('should use backItem.text for backItem link when title is not provided', () => {
+  it('should use backItem.text for tooltip when title not provided', async () => {
     const noTitleBackItem: BackItemProps = {
       iconId: 'back',
       onClick: goBack,
       text: 'Home',
     };
     render(<DotSidebar backItem={noTitleBackItem} goBack={true} />);
-    expect(screen.getAllByTitle(noTitleBackItem.text)).toHaveLength(1);
+    const tooltipElm = screen.queryByTestId('backItem');
+    userEvent.hover(tooltipElm);
+    await waitFor(() => {
+      expect(screen.queryByText(noTitleBackItem.text)).toBeInTheDocument();
+    });
   });
 });
 

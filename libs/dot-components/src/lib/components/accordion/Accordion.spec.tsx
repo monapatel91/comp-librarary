@@ -3,6 +3,7 @@ import { fireEvent, render, screen, waitFor } from '../../testing-utils';
 import { DotAccordion, AccordionProps } from './Accordion';
 import { DotIcon } from '../icon/Icon';
 import { DotTypography } from '../typography/Typography';
+import userEvent from '@testing-library/user-event';
 
 const onChange = jest.fn();
 const consoleSpy = jest.spyOn(global.console, 'warn');
@@ -159,7 +160,7 @@ describe('Accordion', () => {
     expect(screen.queryByTestId('test-details')).toBeVisible();
   });
 
-  it('should include a tooltip for the summary if noWrap is TRUE', () => {
+  it('should include a tooltip for the summary if noWrap is TRUE', async () => {
     const summaryText = 'Test summary';
     render(
       <DotAccordion data-testid="test" summary={summaryText} noWrap={true}>
@@ -167,7 +168,9 @@ describe('Accordion', () => {
       </DotAccordion>
     );
 
-    const summary = screen.getByTitle(summaryText);
-    expect(summary).toBeVisible();
+    userEvent.hover(screen.getByTestId('test'));
+    await waitFor(() => {
+      expect(screen.getByTestId('accordion-tooltip')).toBeVisible();
+    });
   });
 });

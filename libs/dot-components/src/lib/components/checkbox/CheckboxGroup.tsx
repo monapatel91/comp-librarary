@@ -1,5 +1,6 @@
-import { FormHelperText, FormLabel } from '@mui/material';
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { FormHelperText, FormLabel } from '@mui/material';
+import { useStylesWithRootClass } from '../useStylesWithRootClass';
 import {
   endAdornmentClassName,
   groupLabelClassName,
@@ -7,6 +8,9 @@ import {
   startAdornmentClassName,
   StyledFormControl,
 } from '../form-controls/FormControl.styles';
+import { DotFormGroup } from '../form-group/FormGroup';
+import { RadioGroupBaseProps } from '../radio/RadioGroup';
+import { CheckboxProps, DotCheckbox } from './Checkbox';
 import {
   checkboxListClassName,
   checkboxListItemClassName,

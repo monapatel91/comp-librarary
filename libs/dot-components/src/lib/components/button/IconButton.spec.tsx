@@ -53,7 +53,7 @@ describe('DotIconButton', () => {
 
   it('should render an icon button with tooltip', () => {
     render(<DotIconButton iconId="download" tooltip="Test title" />);
-    const title = screen.getByTitle('Test title');
+    const title = screen.getByTestId('icon-button-tooltip');
     expect(screen.getByTestId('button-icon')).toBeVisible();
     expect(title).toBeVisible();
   });

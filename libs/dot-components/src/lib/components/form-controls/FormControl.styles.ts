@@ -1,5 +1,5 @@
 import { FormControl } from '@mui/material';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const rootClassName = 'dot-form-group';
 export const groupLabelClassName = 'dot-form-group-label';
