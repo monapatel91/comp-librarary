@@ -60,44 +60,44 @@ describe('Switch', () => {
     render(<DotSwitch checked={true} data-testid="test-switch"></DotSwitch>);
     expect(screen.getByTestId('test-switch')).toHaveClass('Mui-checked');
   });
-});
 
-it('should toggle when enabled', () => {
-  const onChange = jest.fn();
-  render(
-    <DotSwitch
-      checked={false}
-      data-testid="test-switch"
-      onChange={onChange}
-    ></DotSwitch>
-  );
-  userEvent.click(screen.getByTestId('test-switch'));
-  expect(onChange).toHaveBeenCalledTimes(1);
-});
+  it('should toggle when enabled', () => {
+    const onChange = jest.fn();
+    render(
+      <DotSwitch
+        checked={false}
+        data-testid="test-switch"
+        onChange={onChange}
+      ></DotSwitch>
+    );
+    userEvent.click(screen.getByTestId('test-switch'));
+    expect(onChange).toHaveBeenCalledTimes(1);
+  });
 
-it('should not toggle when disabled', () => {
-  const onChange = jest.fn();
-  render(
-    <DotSwitch
-      checked={true}
-      data-testid="test-switch"
-      disabled={true}
-      onChange={onChange}
-    ></DotSwitch>
-  );
-  userEvent.click(screen.getByTestId('test-switch'));
-  expect(onChange).toHaveBeenCalledTimes(0);
-});
+  it('should not toggle when disabled', () => {
+    const onChange = jest.fn();
+    render(
+      <DotSwitch
+        checked={true}
+        data-testid="test-switch"
+        disabled={true}
+        onChange={onChange}
+      ></DotSwitch>
+    );
+    userEvent.click(screen.getByTestId('test-switch'));
+    expect(onChange).toHaveBeenCalledTimes(0);
+  });
 
-it('label should be placed at start', () => {
-  render(
-    <DotSwitch
-      data-testid="test-switch"
-      label="Test Label"
-      labelPlacement="start"
-    ></DotSwitch>
-  );
-  expect(
-    screen.getByTestId('test-switch').parentElement.parentElement
-  ).toHaveClass('MuiFormControlLabel-labelPlacementStart');
+  it('label should be placed at start', () => {
+    render(
+      <DotSwitch
+        data-testid="test-switch"
+        label="Test Label"
+        labelPlacement="start"
+      ></DotSwitch>
+    );
+    expect(
+      screen.getByTestId('test-switch').parentElement.parentElement
+    ).toHaveClass('MuiFormControlLabel-labelPlacementStart');
+  });
 });
