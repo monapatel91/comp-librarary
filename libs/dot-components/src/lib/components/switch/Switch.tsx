@@ -43,7 +43,7 @@ export const DotSwitch = ({
   disabled = false,
   id,
   inputRef,
-  label,
+  label = '',
   labelPlacement = 'end',
   onChange,
   size = 'medium',

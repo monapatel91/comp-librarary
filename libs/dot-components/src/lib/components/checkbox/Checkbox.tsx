@@ -33,7 +33,7 @@ export function DotCheckbox({
   id,
   indeterminate,
   inputRef,
-  label,
+  label = '',
   labelPlacement,
   name,
   onChange,
